@@ -1,0 +1,252 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a10:e10b:b0:5ec:db95:1ae4 with SMTP id a11csp3123138pxw;
+        Tue, 13 May 2025 00:34:59 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IFs5gvJBKjESuNIyBlw3bm/+eHJ2ZosSKIpMPftPm8pb8LkQafn9Y4YmKXwbEYFJ9a8E0b3
+X-Received: by 2002:a05:620a:4306:b0:7ca:ea9a:828c with SMTP id af79cd13be357-7cd0114f25dmr2655797385a.48.1747121699744;
+        Tue, 13 May 2025 00:34:59 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1747121699; cv=none;
+        d=google.com; s=arc-20240605;
+        b=hS/ZNCdri3kLy9cUYSnpbp7urp6WoE/NtlPLwi+4NOvrY6i72HS6111DOwOCu31VWp
+         M0NO96fC5IvrcgZl+n9h+qyUfhC/4Ziexng6xk4o4WFBaDABmU7bfy44Qn9WPwyzqonx
+         kSH7iXjk9lrh1pJUc+tKudKjhUk1o6mL/aIMfeCMimeF4NO2doVK5vBs4kwTyrWbkgMQ
+         hyoew2bcfBEJ6gsmAQRNyE92bO9kbc7/qzLxG9+VsQslnLsp5lNTjAFy23KJA+vsFGp5
+         SAU1OQ3hvfmQanTxuQ7U0AcqHhJ4U9UJJXBb+1BPy38XIv43LmWyQjbZ0jmQ9MBjbIrR
+         eXVg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:subject:references:in-reply-to:message-id:to:reply-to
+         :from:date:dkim-signature;
+        bh=0bHnL0Gc7IMhwfgcHyROKTPX+N3q4gGnV/nbAQbbbx0=;
+        fh=+ZSZzLtrqjYAnpssQkgK417RpHpTSSzuH+J6PqTYzzs=;
+        b=Qx8s2ajZD8BwqYGp8/OO8OqjzcHIO3bNirpXeweFXa6htgo1sVqPu2IEbAVlYw8Rcp
+         FsB/eRYPC5uLfYLPbiKDqerkJqaAWuqOoJjUIzFBbqlQo6+LvgrySfdgWyy79NLMotUG
+         NmhoSQhJQw0xuK5YC9aDpcZGi5PuII+kts3n6tMVm2AvcAsgOq9EvuXb6tmRtI4iUR+i
+         Hh0LagUT9yeRj4L47N+dWswI3VnRh7Z9rxTWaAvAHEbeZ1+w+f5lyiuWnhLMpTjz4EX4
+         kQMoUXSlxzS4dcWOI+HzvTj/bLSucppXqjQrq8axUk6+00PkwoTxV5CCToF5Js9u9slL
+         vnSw==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=goC9glDh;
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.132.125 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+Return-Path: <zipnpup@yahoo.com>
+Received: from sonic314-15.consmr.mail.bf2.yahoo.com (sonic314-15.consmr.mail.bf2.yahoo.com. [74.6.132.125])
+        by mx.google.com with ESMTPS id af79cd13be357-7cd00ff09c7si1096122485a.586.2025.05.13.00.34.59
+        for <paulrcohen@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 13 May 2025 00:34:59 -0700 (PDT)
+Received-SPF: pass (google.com: domain of zipnpup@yahoo.com designates 74.6.132.125 as permitted sender) client-ip=74.6.132.125;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=goC9glDh;
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.132.125 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1747121699; bh=0bHnL0Gc7IMhwfgcHyROKTPX+N3q4gGnV/nbAQbbbx0=; h=Date:From:Reply-To:To:In-Reply-To:References:Subject:From:Subject:Reply-To; b=goC9glDhpJ7n04YhYnuB6f89AGu8yJ1fA9w+LAHpz3Ky9ME5bQvexnI9HJBrxDQphPPCTOMm+fISwX+krOS2DVBVWGvAa0Z5wJcxtxsnNaLv7siAHRAE8JD2BB5Y4MM5D3GybUlsSQaFVS9qxd5wIhxSW+HVHW3VkJ8fNeN69Y0DNvdhLfQBBgy8wkXb4jwmLfY7L/S5Y5KpvscldtWi+VzTQ50onTTgVJMBnwx1n9qwMsYgn68XDr8w4gWX7xQlw3HvLfuyFeWzMuLQ9kQhyPO9HUTNeXOwGSht/tzbmnn1NvMNTVfBj1FaPZZJCvxaU4OENe4wvMv9BsxPo4tn2g==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1747121699; bh=+ZU2tJWP1iRjGba2nGd5GGjjQQAefRKDipsXlrThKPT=; h=X-Sonic-MF:Date:From:To:Subject:From:Subject; b=MM2PkH7nS8bRZdjSvZppdE1EseprQNIXP5s8AqqUbZsRbfVgg7ykQigiW5EGdZ41biBa6guiX6ABXcEkPZtzblcXFgBIfOf/QNtyr3zGl5oBnDohB/6N18uH5rr1ICZbHuKvXfqr21dJg2oXCwlwPZytgNhZ/+d0GGCFY3U2UOCbNASzeBT7VjjMWei8G669Wbe+A+Bu5W1tiIDv5eZDR9HDrWm5OTwxXdKwNsg102CtZhpJr8oJhyMbeIScbKDoUdP4XhBUDk/RCSMSlgaA80HPoE5TRmz50/kyE5AEzBJoR8hNUbcQfVoFg4hWpvlHRBBnrxms/QJ0Vfbx/7BWPw==
+X-YMail-OSG: V3QFGpsVM1nXwwrLDDHubAfjHokH9QRwheXEXC9V2BWur33qOFuIwgMzOXoO_mz
+ hVgF2smCNMeDR7ZLmX_CO0cQ3WmdFo4buvNJ5RXwyB4ZTLXJ82ttFcJSXPLdNikdPaXz8tj.PLJj
+ FzC_gcgeHH1.GvTXR77lZ4HERKYfGOBNUg1MeccQpSlv92Tcd8pesKOXBtqPOC_8tP0dwrS8BkxJ
+ rbroJHZfYOp8VZzR1JedowGDFUI4VU_GWofH3LsbxmIXB4rouBc3tBv_fJEShTl8Rs1fhHqz0UMI
+ Hh9WfbuAb0Fhzqg082UsVAbXuJJXcnQPnmJk6fHaKs1wzFK8JwlnlxvUDt7MVCway1rL_6Ygc5fs
+ utjVgNRCpXosgy7ExPEfCs3MMltoBLx6JKgygIBvURTIAimUjS0gGKDEi22XVVQjN8fHJqYHpjtt
+ .WLoXDgERfJ5q0U86MZ_k9lIBzJy_Uu_gmCP7JBMX_aaUTBa0Evn2o2JfvvXleI6G4bKwUU6QvNR
+ bk_TJj_WTdqq4SKsfeFI7KMRnF6igg2z93_rA5RrzNTkBoBIff.y3FYKddBk3taH9sgfI_xJgp_6
+ H8mCgaKgZo79gItAlsS89c_AghndhrzHzVkQzdMHt8WxKYF374ah1dYRvG_bu1_Q7yWs08J30y72
+ A5Pu2aYTK.Sfbh0CahBsMQno2Qh2_w2tNZlWt0tdEwbE4AqKif1y1_iDHNNXVJKfBx2x8v6nW9k7
+ KbFk_f6OKZIjIgIfJnRNlLi9WCyHarIzenjE2Cuf66U4sQ.pyoVMsci4h9W1NiIjQ2M4ZeftSY32
+ o0kFlquiV5_6lsDJQ4KYJA1S.vOoVzwDl.NGeJX0Lta8uS.YCwiTdxCHdLDuKvl9yvVbOUtFmqp8
+ otvYTeLHyPzdtJ3M_Pkf4p6d3z17ZEKeCYdr6vLnriFYxWWKWmTLxiAmolNbBbpNi8vK18a3tV_M
+ VVAks7Chw.RZJL5YmEBlBWEi3keV67uY5eiP.cwyPKs5sHOzKB3Kc8J10e_SAB1yV9HLvgGwmEqF
+ pcTeqDSBMExRAKoqUisFFvbGraUxH8.xnX1wuSHsqfJDNYIJ91rN00yRO1ACt68jES1xHX6wapIs
+ Yg530jtQkqH3l84xYgiatutYmS0BAnKOKY2Ocnd2YH_jvyW9vkCg7nmdaRAeCyK3jYx0LWPispgA
+ anF.nf5MKtvQdx2EEOI3_OAT6BrdqwIo0wzF8LMHAMSmFyWeVE1Ua8_UmyeUhWKkJJxlel8LGChi
+ pw.fbLDIuekbBN6xJjKkmupNRN_FMZ.4qsakdluA2vZxY1PpRVGiF2wqUgDxG3dv7p_Ll8BZO1Se
+ rB1er4ZC5z_LT454.mWXhl4U8S8GXt6L1fZAZbLOfzPQUzmlHUtKLQZOBZ.sgV3ytdQV.lX3hmXG
+ rkM8riHkNmZT_l7LSymRUBlRufQq80zx8tjgGq6S1Nb9fJz_WzoyVZikb7m8bWaavVlZ0tVPg5U4
+ FS4N.LVXM7prgtsknLRA_F1rzRLqn9Na4.U_ypO55H6PTWc_ZCuuPR7HQ.Yeb9k87tQXHdnLOPw_
+ D9w8wMaHnEFaf3w0FNcyXe1ao6KVIvhD_aqO0NOtiwh0UbjUKZZKTW25es.P2UqDlKTyVMLgEOX2
+ JY8VyZua6i40O4aWcDGWmDCy4dp8XkYt_lxV0G3G0DwY6.5kcnXxix.z_mqsaYihojtZiRUdU5H4
+ FyfBF8ohVEgNMVeCpI2FLJuS2cnz7339zC8M6ChPt68PW0jpee78DEwFXk2MmApjtzDfq.1_nUph
+ PUpecR_xOCHSH1JGCZqikWvreysylobZr3QpllLKgkfMT7rH2S5Zr1c18MxPrslDIQrBFXFtTN5u
+ c7B8Tt0qwYylbGO_5BbeuiMfsINPCAcCXLgMMvRxGkaUWuJR1pugg0soP4PI0MXp773ckTdPX8aR
+ zDekAd8XIYKh.kv52n0IdLQEcl9qhos6.rux15Yt9ifOE06yqwMJA.GeDOcLMjylQVl5jc0SkH6J
+ a2HHS13b5ajCq7c3QlcFeVdtkSktlXiiERvu6gMGPJ5vozHz0jbpxE2bczmlZvlPQ2G0qHyH5WQc
+ pOhmLBrkJJGU54i2HXBXDbg7chdI1I_Jgf83buY5OOYJ.AVinjA.ur3zbMyESSh8e76Rjtn2Y0Ib
+ mz_j1e8Fbby7tFqG2zwywaxDdz7KKp52lNBb5246LOgF4nNFt_k7f7fHcT_hQ0_v55ntm67Af0eq
+ fDz_zVwh1Zid4vve_Ff.9N4ERKpyJWSgH8aEsh82ZoEjnWEAxDJqGXv4v13FbhgaDlbL8xBw0ycL
+ Dd8Zd_11bZXxtVJ6HIk4iKEmDumIEbovjXCsn
+X-Sonic-MF: <zipnpup@yahoo.com>
+X-Sonic-ID: e3872584-78a5-43dc-8b71-55509cd44f3a
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic314.consmr.mail.bf2.yahoo.com with HTTP; Tue, 13 May 2025 07:34:59 +0000
+Date: Tue, 13 May 2025 07:34:56 +0000 (UTC)
+From: Thomas Machnik <zipnpup@yahoo.com>
+Reply-To: Thomas Machnik <zipnpup@yahoo.com>
+To: Paul Cohen <paulrcohen@gmail.com>
+Message-ID: <1315612960.2327185.1747121696622@mail.yahoo.com>
+In-Reply-To: <CAKjPZkFrZFF2kXTYfn1traWXcs7zWgRz-7Uh8B2xi-Rf40O5qw@mail.gmail.com>
+References: <CAKjPZkFrZFF2kXTYfn1traWXcs7zWgRz-7Uh8B2xi-Rf40O5qw@mail.gmail.com>
+Subject: Re: quick update
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_2327184_33369544.1747121696620"
+X-Mailer: WebService/1.1.23772 YMailNovation
+Content-Length: 10113
+
+------=_Part_2327184_33369544.1747121696620
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+ Hi Paul,Thanks for the update. I am sorry to hear George is no longer with=
+ Gazelli. He will be missed. I certainly wish him well and hope our paths c=
+ross again. This news does not surprise me. Gazelli has been awfully quiet =
+as of late and was a bit concerned. Also because there is much uncertainty =
+in the society at large and I kinda thought Dallas would be a litmus test o=
+f sorts reflecting how much people are being affected by all the uncertaint=
+y. And I guess they responded in a clear uniform manner.=C2=A0
+We still haven=E2=80=99t shipped any of the work we talked about back in De=
+cember. I rather think its okay at this point to put it all back now and wa=
+it for a more favorable change in the wind. Since the pulled work takes up =
+much space, I have been moving forward with documenting the digital invento=
+ry of AARON images we have starting from 1995 with a focus on translating t=
+he previously unviewable AARON vector script files. But I would like to put=
+ the pulled work back into the racks and so I can finish inventorying the p=
+hysical work in Kanoko=E2=80=99s room.=C2=A0
+I would also like at some point to purchase a Windows machine with the inte=
+nt to set it up as a dedicated machine whose sole function would be to run =
+all the various code we have. I tried setting up some Virtual Machines on t=
+he new Macbook but since the Macbook has an Apple M2 processor it won=E2=80=
+=99t run any Intel x86 processor operating systems like Red Hat and Windows=
+.=C2=A0
+Last week I finished compiling and running all the 2007 code we have. That =
+means I have checked all the code from 2007 to 2016. For a total of 116 ver=
+sion tested. Not all of them run of course. We don=E2=80=99t have any sourc=
+e code from 2006. I would like at some point to start working on 2005. I di=
+d try to compile a few of the 2005 AARON versions but apparently the was a =
+big change in Allegro=E2=80=99s compiler between 2005 and 2007 and we don=
+=E2=80=99t have their 2005 compiler. Some of the 2005 ones it compile with =
+a large number of warnings complaining that I don=E2=80=99t have the right =
+compile. In any case, they don't run. I did however find passwords for earl=
+y versions of Allegro but have not found any earlier compilers yet.=C2=A0
+I also started looking at the earliest code we have from the 1995/96s. Most=
+ of it seems to be standard Common Lisp so maybe some or it can be compiled=
+ by the Allegro we have. I do know that some of the code is cut off so I do=
+ubt any one version is complete. We may have to use code from other version=
+s and/or make some assumptions to get the oldest ones running. =C2=A0Unfort=
+unately for these 1990s versions we don=E2=80=99t have any make files and n=
+ot descriptor files saying how to make AARON from that time. That can be ov=
+ercome I am sure.=C2=A0
+Based on your call with Mila, what do you think regarding the shipment? Geo=
+rge seems to have been the one spearheading the list. With him out of the p=
+icture, shall we hold off until the winds change toward a more favorable di=
+rection? If so, I am ok with that.
+Tom
+
+
+
+
+
+    On Monday, May 12, 2025 at 07:07:27 PM PDT, Paul Cohen <paulrcohen@gmai=
+l.com> wrote: =20
+=20
+ Tom, I had a long-delayed chat with Mila today.=C2=A0 Just to let you know=
+ that George handed in his notice.=C2=A0 One reason seems to be that the ar=
+t market is very dead right now.=C2=A0 Apparently nothing sold at the Gazel=
+li booth at Dallas, despite them showing a glorious selection of $3M worth =
+of Cohen, Boshier, and Boty. The upshot is that this is a good time for all=
+ the back-burner projects.=C2=A0 --P
+______________________________
+
+Paul Cohen,=C2=A0=C2=A0ProfessorSchool of Computing and InformationUniversi=
+ty of Pittsburghpersonal webpage
+______________________________ =20
+------=_Part_2327184_33369544.1747121696620
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head></head><body><div class=3D"ydp2e7bb431yahoo-style-wrap" style=
+=3D"font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px=
+;"><div></div>
+        <div dir=3D"ltr" data-setdir=3D"false">Hi Paul,</div><div dir=3D"lt=
+r" data-setdir=3D"false">Thanks for the update. I am sorry to hear George i=
+s no longer with Gazelli. He will be missed. I certainly wish him well and =
+hope our paths cross again. This news does not surprise me. Gazelli has bee=
+n awfully quiet as of late and was a bit concerned. Also because there is m=
+uch uncertainty in the society at large and I kinda thought Dallas would be=
+ a litmus test of sorts reflecting how much people are being affected by al=
+l the uncertainty. And I guess they responded in a clear uniform manner.&nb=
+sp;</div><div dir=3D"ltr" data-setdir=3D"false"><br></div><div dir=3D"ltr" =
+data-setdir=3D"false">We still haven=E2=80=99t shipped any of the work we t=
+alked about back in December. I rather think its okay at this point to put =
+it all back now and wait for a more favorable change in the wind. Since the=
+ pulled work takes up much space, I have been moving forward with documenti=
+ng the digital inventory of AARON images we have starting from 1995 with a =
+focus on translating the previously unviewable AARON vector script files. B=
+ut I would like to put the pulled work back into the racks and so I can fin=
+ish inventorying the physical work in Kanoko=E2=80=99s room.&nbsp;</div><di=
+v dir=3D"ltr" data-setdir=3D"false"><br></div><div dir=3D"ltr" data-setdir=
+=3D"false">I would also like at some point to purchase a Windows machine wi=
+th the intent to set it up as a dedicated machine whose sole function would=
+ be to run all the various code we have. I tried setting up some Virtual Ma=
+chines on the new Macbook but since the Macbook has an Apple M2 processor i=
+t won=E2=80=99t run any Intel x86 processor operating systems like Red Hat =
+and Windows.&nbsp;</div><div dir=3D"ltr" data-setdir=3D"false"><br></div><d=
+iv dir=3D"ltr" data-setdir=3D"false">Last week I finished compiling and run=
+ning all the 2007 code we have. That means I have checked all the code from=
+ 2007 to 2016. For a total of 116 version tested. Not all of them run of co=
+urse. We don=E2=80=99t have any source code from 2006. I would like at some=
+ point to start working on 2005. I did try to compile a few of the 2005 AAR=
+ON versions but apparently the was a big change in Allegro=E2=80=99s compil=
+er between 2005 and 2007 and we don=E2=80=99t have their 2005 compiler. Som=
+e of the 2005 ones it compile with a large number of warnings complaining t=
+hat I don=E2=80=99t have the right compile. In any case, they don't run. I =
+did however find passwords for early versions of Allegro but have not found=
+ any earlier compilers yet.&nbsp;</div><div dir=3D"ltr" data-setdir=3D"fals=
+e"><br></div><div dir=3D"ltr" data-setdir=3D"false">I also started looking =
+at the earliest code we have from the 1995/96s. Most of it seems to be stan=
+dard Common Lisp so maybe some or it can be compiled by the Allegro we have=
+. I do know that some of the code is cut off so I doubt any one version is =
+complete. We may have to use code from other versions and/or make some assu=
+mptions to get the oldest ones running. &nbsp;Unfortunately for these 1990s=
+ versions we don=E2=80=99t have any make files and not descriptor files say=
+ing how to make AARON from that time. That can be overcome I am sure.&nbsp;=
+</div><div dir=3D"ltr" data-setdir=3D"false"><br></div><div dir=3D"ltr" dat=
+a-setdir=3D"false">Based on your call with Mila, what do you think regardin=
+g the shipment? George seems to have been the one spearheading the list. Wi=
+th him out of the picture, shall we hold off until the winds change toward =
+a more favorable direction? If so, I am ok with that.</div><div dir=3D"ltr"=
+ data-setdir=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"false">Tom=
+</div><div dir=3D"ltr" data-setdir=3D"false"><br></div><div dir=3D"ltr" dat=
+a-setdir=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"false"><br></d=
+iv><div dir=3D"ltr" data-setdir=3D"false"><br></div><div dir=3D"ltr" data-s=
+etdir=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"false"><br></div>
+       =20
+        <div id=3D"ydp2e7bb431yahoo_quoted_7602477828" class=3D"ydp2e7bb431=
+yahoo_quoted">
+            <div style=3D"font-family:'Helvetica Neue', Helvetica, Arial, s=
+ans-serif;font-size:13px;">
+               =20
+                <div>
+                    On Monday, May 12, 2025 at 07:07:27 PM PDT, Paul Cohen =
+&lt;paulrcohen@gmail.com&gt; wrote:
+                </div>
+                <div><br></div>
+                <div><br></div>
+                <div><div id=3D"ydp2e7bb431yiv6755311426"><div dir=3D"ltr">=
+<div><div style=3D"font-size:small;" class=3D"ydp2e7bb431yiv6755311426gmail=
+_default">Tom, I had a long-delayed chat with Mila today.&nbsp; Just to let=
+ you know that George handed in his notice.&nbsp; One reason seems to be th=
+at the art market is very dead right now.&nbsp; Apparently nothing sold at =
+the Gazelli booth at Dallas, despite them showing a glorious selection of $=
+3M worth of Cohen, Boshier, and Boty. The upshot is that this is a good tim=
+e for all the back-burner projects.&nbsp; --P</div><br clear=3D"all"></div>=
+<div><div dir=3D"ltr" class=3D"ydp2e7bb431yiv6755311426gmail_signature"><di=
+v dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"=
+ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr">__________________________=
+____<br><br>Paul Cohen,&nbsp;&nbsp;Professor</div><div dir=3D"ltr">School o=
+f Computing and Information</div><div dir=3D"ltr">University of Pittsburgh<=
+/div><div dir=3D"ltr"><a href=3D"https://paulrcohen.github.io/" rel=3D"nofo=
+llow" target=3D"_blank">personal webpage</a><br>___________________________=
+___</div></div></div></div></div></div></div></div></div></div></div></div>=
+</div></div>
+</div></div>
+            </div>
+        </div></div></body></html>
+------=_Part_2327184_33369544.1747121696620--

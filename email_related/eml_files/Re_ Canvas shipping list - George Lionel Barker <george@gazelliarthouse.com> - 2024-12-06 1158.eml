@@ -1,0 +1,713 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a11:624d:b0:5ad:6c17:f336 with SMTP id vj13csp1020877pxb;
+        Fri, 6 Dec 2024 08:58:27 -0800 (PST)
+X-Received: by 2002:aa7:c2d5:0:b0:5d0:c8fd:108a with SMTP id 4fb4d7f45d1cf-5d3be678794mr3596862a12.13.1733504307597;
+        Fri, 06 Dec 2024 08:58:27 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1733504307; cv=none;
+        d=google.com; s=arc-20240605;
+        b=LW0VKE0B9EdjHiwIrdEjD8X+vXidGsrf0ApGAxhFGs61NefyAwqXZJPElIeA7CwSbO
+         3lC8GD62E6cS5jjGDBPs7w0oCs6OJvzc4+mXeJd2Ht9msg5UvmmibL7ZaoN7jvVKX7/t
+         PsPbJdxRgagEMkRhcPH/0bf4ntyU/LNxVMEU6i0ErjSE4wUUngNpn+AeeyA+niOp3BM7
+         83R6VS+gH9sDZUHC2YFFCqJrLdhJK55UKiygDuFQI/rglaGF/U2K9qlBsMPoTlE9NuVB
+         8I9pxrUR9su8rrw8JUWhlPkdSaCUtfaOvxFZAjFjTW7KLk6mxwAsl/6J2+u/vji6jYRO
+         uR9Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=wMi+dMx/Tqob/QaG9VA1cmjFLJxUTKEoUOw9DjumECY=;
+        fh=f0GWyYS2j7eoY8jObcSZZHacVpS9csfG9TDkoNK2TmQ=;
+        b=JgmpRk69fHZ7CxCI9oNurC0NJM9PsdR64BrJTdU+LY+6lHdc9sgmymU0JWPMz0pDlO
+         v7jdFcp6Oq0YKX/HOc5/mt9y30WZZc6arkESWyvvf9p/0IeiFWk+CRWFvDIIosDtszpG
+         CEF3WOjcfkN62rs8fJArg4YgqVmWcetTtuzuN6Z/MX3oJl/ULBYK8PhfMaZH2zATaqKn
+         jPVJQep/LyaeiPQ24yqhgxxCGHqYQc5lIPYuP66fFSNlflAO9mYsn5raoBlWyNajrQxm
+         87jJOCCnFyUKoxapGloeDoc7OLryvTDw+lJ7VfoyR/sGEVli3kHmGX4hyed8rAVehiKV
+         vJyQ==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@gazelliarthouse-com.20230601.gappssmtp.com header.s=20230601 header.b=UIX9YchJ;
+       spf=pass (google.com: domain of george@gazelliarthouse.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=george@gazelliarthouse.com;
+       dara=pass header.i=@gmail.com
+Return-Path: <george@gazelliarthouse.com>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id 4fb4d7f45d1cf-5d3d98acd08sor28618a12.5.2024.12.06.08.58.27
+        for <paulrcohen@gmail.com>
+        (Google Transport Security);
+        Fri, 06 Dec 2024 08:58:27 -0800 (PST)
+Received-SPF: pass (google.com: domain of george@gazelliarthouse.com designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@gazelliarthouse-com.20230601.gappssmtp.com header.s=20230601 header.b=UIX9YchJ;
+       spf=pass (google.com: domain of george@gazelliarthouse.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=george@gazelliarthouse.com;
+       dara=pass header.i=@gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gazelliarthouse-com.20230601.gappssmtp.com; s=20230601; t=1733504307; x=1734109107; dara=google.com;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=wMi+dMx/Tqob/QaG9VA1cmjFLJxUTKEoUOw9DjumECY=;
+        b=UIX9YchJQk/zR5sS2WpMOgZa32SNFpnzskzm40rjjeQfTQlJhCTfHlr2oJjWc/SeCw
+         kMPkljcWC4WWi42KDX3FQFLNghIIa3nnN4i5VB3EdPqPVFN1KX5gobvWUTs2qbQ5bzOM
+         UaNj2Mzxb6ie7Qg48RPzISSquhOXh0tXpnKuDKfOvB4ifrd5xwZQmstjjhgdSwVJPLIV
+         sdhRCqpvc1nuZ6TLaAQM6thhZwE8Uu1Uiz+BWaUH3Jl0jH/j6R9Vtms5oJ6jULyuM1yQ
+         GmO2zyxZpDkkp04O7uIX4EuE/EmmkOpVzcJArLlvyfqgabr+VQ85CNOexotVngqnbEPW
+         9ycw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733504307; x=1734109107;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=wMi+dMx/Tqob/QaG9VA1cmjFLJxUTKEoUOw9DjumECY=;
+        b=kSZK2bAes6W8y4e9qpFqAEmmd/wEDZMXuLbhPFf348KPRmz80/PVm7jw7k8qypR4Ot
+         iH/fw3vtQUhKjIDY61R0RPLmNTyYzHxboyZSZlOpr3KxclfPgkM31BjG/0pVFj9chylQ
+         CaHrHiKk2CExipSQ5g6SSBlW9T2pJgpP+kcDppTU8YU0BJKBvH0gCw2XXy4fSU4Iu0EE
+         6yvAK5wqYQ/sAFUjK6WMZmEnJKnvJHCjbsYDlBLEs2sc767u1wzsHCbojKFCrD5pHhyo
+         N1bImp6X512hsTv9oocDm/9DX4fj0ibDn+BguwPUrnzBc5+ukFVAZ7ZcqpDX1GT8Djoc
+         ZrHw==
+X-Gm-Message-State: AOJu0YzT7XUiSFkDBlREd9hYVE00zMn2jIyaqgyCV0vjcC4bV7UTtE0g
+	VJf6+KBcX2UdlEbe9s+gdlzLl2MRFGlbsg8xDxPkxSaiiD4yFELM9MiVnKg+Y+CRmLgXJDdZxKO
+	HFDnlJl2qIlJX0v4h36e7QBnEtMcMM4k5siEjyiCJUKV44tsVlQ==
+X-Gm-Gg: ASbGncuF+3OXdbr+we9IMpsyFq+EQJ6Ep8D4io4kVukJ06OoDV1EHBgKrOFxRByuJw5
+	cDOVuWWZ8RLR4CZ5frledZPBe5mkhli3L
+X-Google-Smtp-Source: AGHT+IHcwPfh4Fp63fkpaX426PSnql9/HPzy90WKzI5+fELGF/UXma2xqAs7Kh7Ka2az2fyL+uD4ItixpHBw2nrK+Ow=
+X-Received: by 2002:a05:6402:3908:b0:5d0:cfb9:4132 with SMTP id
+ 4fb4d7f45d1cf-5d3be694898mr4442985a12.18.1733504306312; Fri, 06 Dec 2024
+ 08:58:26 -0800 (PST)
+MIME-Version: 1.0
+References: <CAFoqNjQgFL9Q5SqqaYLe9qcRDLxi9uEh130FzQ-UK6xUTV-gNA@mail.gmail.com>
+ <CAKjPZkH12yvasf+i04Qv9g3E1w+WzP8gq=s-SUWZHGJdQ0n_LQ@mail.gmail.com>
+In-Reply-To: <CAKjPZkH12yvasf+i04Qv9g3E1w+WzP8gq=s-SUWZHGJdQ0n_LQ@mail.gmail.com>
+From: George Lionel Barker <george@gazelliarthouse.com>
+Date: Fri, 6 Dec 2024 16:58:15 +0000
+Message-ID: <CAFoqNjTtpCQ7SGqtJJ9TxO0dOYTFDra=z11T+Awh2Yr6_5=EvA@mail.gmail.com>
+Subject: Re: Canvas shipping list
+To: Paul Cohen <paulrcohen@gmail.com>
+Cc: Mila Askarova <m.askarova@gazelliarthouse.com>
+Content-Type: multipart/alternative; boundary="000000000000651be606289cec72"
+
+--000000000000651be606289cec72
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Paul,
+
+Great to hear from you.
+
+Yes, we are all on the same page with regards to Mila's idea of pricing the
+medium-sized works on canvas in relation to their 'quality'. The four works
+I highlighted would be priced at =C2=A3150,000, and the first 'batch' we ca=
+n
+sell.
+
+Regarding the Art Fairs strategy, I think the best route forward is to
+decide on the selection depending on which fairs we get into. Currently we
+are in the process of applying for/waiting to be invited to, both Armory
+NYC and Dallas. So we can make a selection once we get in? But either way,
+are we agreed that the four paintings I highlighted are ok to be priced at
+=C2=A3150,000?
+
+Regarding Tom Gruber, we are getting a good deal if we buy his work, but it
+is a purchase decision, so I will leave it up to you both.
+
+The Artsy alert is in relation to a group show we have curated over the
+Christmas and New Year period called 'Quiet Motion'. We have priced the 60s
+work at =C2=A3100,000. The pricing is aligned with the 60s canvases we show=
+ed
+during 'Refactoring'.
+
+Let me know if that's all clear? We're really excited to see what Tom will
+send over in the roll!
+
+With warmest wishes,
+
+George Barke
+
+
+
+*GAZELLI ART HOUSE*
+
+LONDON
+Group Show: Quiet Motion
+<https://886b17ba.streaklinks.com/COZtfqiJiXC63H8Urg3bO80o/https%3A%2F%2Fga=
+zelliarthouse.com%2Fexhibitions%2F189-quiet-motion-derek-boshier-pauline-bo=
+ty-harold-cohen-judy-chicago%2F>
+
+BAKU
+Parallel Worlds: Chris Levine, Michael Takeo Magruder, Marshmallow Laser
+Feast, Elnara Nasirli, Recycle Group, Nye Thompson
+<https://886b17ba.streaklinks.com/COZtfqSY2OT9Ai5e-QrC1uKE/https%3A%2F%2Fga=
+zelliarthouse.com%2Fexhibitions%2F188-parallel-worlds-chris-levine-michael-=
+takeo-magruder-marshmallow-laser-feast%2F>
+
+GAZELL.iO
+December Resident | Tom White
+<https://886b17ba.streaklinks.com/COZtfqS-PnadSuUXUQ7hXZF3/https%3A%2F%2Fga=
+zell.io%2Fpages%2Ftom-white>
+
+www.gazelliarthouse.com
++44 (0) 207 491 8816 / +994 (0) 12 498 1230
+<https://886b17ba.streaklinks.com/COZtfqSPT_xozG8fog3qsQF6/https%3A%2F%2Fww=
+w.instagram.com%2Fgazelliarthouse%2F>
+<https://886b17ba.streaklinks.com/COZtfqSFRb4SYyXALgOQ4hQf/https%3A%2F%2Ftw=
+itter.com%2FGazelliArtHouse>
+
+<https://886b17ba.streaklinks.com/COZtfqOMTAz5aLQBsQiD512R/https%3A%2F%2Fww=
+w.facebook.com%2FGazelliArtHouse%2F>
+
+
+
+
+This e-mail message, including all attachments, is for the sole use of the
+intended recipient(s) and may contain legally privileged and confidential
+information. If you are not an intended recipient, you are hereby notified
+that you have either received this message in error or
+through interception, and that any review, use, distribution, copying or
+disclosure of this message and/or its attachments or parts thereof is
+strictly prohibited and is subject to criminal and civil penalties with
+appropriate national legislation.
+
+=E1=90=A7
+
+On Fri, 6 Dec 2024 at 16:04, Paul Cohen <paulrcohen@gmail.com> wrote:
+
+> Hi George, sorry for my delayed reply.  My recollection of the pricing
+> discussion is similar to yours, but not quite the same, and my recollecti=
+on
+> of our strategy might be a bit different as well.
+>
+> I recall that the pricing discussion changed from "size-based" to
+> "quality-based".  Mila pointed out that some mid-sized works are better
+> than others.  She asked why some should not be priced at X, where X is
+> higher than 150K.  FWIW, I think the four mid-sized works cited in your
+> email aren't the best, so I won't argue that their price should be higher=
+.
+> But if we were planning to show, say, 2475 or 2476 etc. then I'd agree wi=
+th
+> Mila: These are better paintings.
+>
+> As to strategy, we discussed several but I don't remember which we settle=
+d
+> on.  At one point in the conversation, Mila suggested not sending large
+> works to the art fairs but holding them back.  At another point we
+> discussed sending a mix of mid-size and large work.  I think we all agree=
+d
+> that small canvases are anomalous and will be held back.  You seem to be
+> suggesting sending a mix of mid-sized and large works priced at 150K and
+> 300K, respectively.  Do you intend that the mid-sized works for the fairs
+> will be the ones you mention in your message, or were you suggesting only
+> that these works should be priced at 150K as our first tranche irrespecti=
+ve
+> of where they are shown for sale?
+>
+> Changing subject, any further thoughts on us purchasing Tom Gruber's
+> paintings?
+>
+> Incidentally, I got an alert from Artsy this morning.  Is this just a
+> random spasmodic mailing or have we started to market the early work?
+>
+> https://www.artsy.net/artwork/67530c4392b8875af5adaa93?utm_medium=3Demail=
+&utm_source=3Dbraze&utm_campaign=3Dalert&utm_term=3Dv2
+> Cheers, --Paul
+>
+> ______________________________
+>
+> Paul Cohen,  Professor
+> School of Computing and Information
+> University of Pittsburgh
+> personal webpage <https://paulrcohen.github.io/>
+> ______________________________
+>
+>
+> On Tue, Dec 3, 2024 at 6:02=E2=80=AFAM George Lionel Barker <
+> george@gazelliarthouse.com> wrote:
+>
+>> Dear both,
+>>
+>> Please find enclosed a link to our proposed shipping list for the
+>> figurative canvases that are currently in Encinitas, to be sent alongsid=
+e
+>> the unrolled works in Tom's previous email:
+>> https://privateviews.artlogic.net/2/f5fcb1f56f9ce5a013b84a/
+>>
+>> Can we please also have the remaining Painting Machine works you have
+>> there too? New pricing TBC.
+>>
+>> We agreed to set the retail price of HC2477, HC2448, HC4426 and HC4427 a=
+t
+>> =C2=A3150,000. I think it would be beneficial to sell one work in the ne=
+w year,
+>> leaving three for the fairs.
+>>
+>> The plan was to market some of them at Dallas Art Fair and Armoury NYC i=
+n
+>> 2025, alongside a selection of other Cohen works. At this stage, we woul=
+d
+>> still need to be invited/apply to both fairs, and the longer term goal i=
+s
+>> Frieze and Basel in 2026.
+>>
+>> Are we ok to price the first available large one at =C2=A3300,000? And t=
+hen
+>> increase the price by 100k until the third one is =C2=A3500,000? It look=
+s like
+>> there are 15 or so large ones, compared with 10 medium sized ones.
+>>
+>> Regarding a cursory stock-check of all figurative canvases, both in
+>> London and California, I have counted 29 in total. There are 4 not liste=
+d
+>> on AL, but found via a PDF on our shared drive (attached). We are hoping
+>> that Tom's rolled canvases yield some more.
+>>
+>> I think we'd need to get the shipping process up and running as soon as
+>> we can.
+>>
+>> Looking forward to hearing from you,
+>>
+>> George
+>>
+>>
+>>
+>> *GAZELLI ART HOUSE*
+>>
+>> LONDON
+>> Cipher: Pouran Jinchi & Ruba Salameh
+>> <https://gazelliarthouse.com/exhibitions/185-cipher-pouran-jinchi-ruba-s=
+alameh/>
+>> The Window: Aida Mahmudova
+>> <https://886b17ba.streaklinks.com/COI_U3nKCit8YrqmfAsHTFsc/https%3A%2F%2=
+Fgazelliarthouse.com%2Fexhibitions%2F186-the-window-aida-mahmudova%2F>
+>>
+>>
+>> BAKU
+>> Parallel Worlds: Chris Levine, Michael Takeo Magruder, Marshmallow Laser
+>> Feast, Elnara Nasirli, Recycle Group, Nye Thompson
+>> <https://886b17ba.streaklinks.com/COI_U3niosEkcRatIgOylZrI/https%3A%2F%2=
+Fgazelliarthouse.com%2Fexhibitions%2F188-parallel-worlds-chris-levine-micha=
+el-takeo-magruder-marshmallow-laser-feast%2F>
+>>
+>> GAZELL.iO
+>> November Resident | LoVid
+>> <https://886b17ba.streaklinks.com/COI_U3nERBA6ELpWCgbsNGI2/https%3A%2F%2=
+Fgazell.io%2Fexhibitions%2F141-lovid%2F>
+>>
+>> www.gazelliarthouse.com
+>> +44 (0) 207 491 8816 / +994 (0) 12 498 1230
+>>
+>> <https://886b17ba.streaklinks.com/COI_U3nZWXthxOCUaARiG711/https%3A%2F%2=
+Fwww.instagram.com%2Fgazelliarthouse%2F>
+>>
+>> <https://886b17ba.streaklinks.com/COI_U3nJCWAAf9BwMAM6MCfj/https%3A%2F%2=
+Ftwitter.com%2FGazelliArtHouse>
+>>
+>> <https://886b17ba.streaklinks.com/COI_U3zamlv796qcjAc03ecp/https%3A%2F%2=
+Fwww.facebook.com%2FGazelliArtHouse%2F>
+>>
+>>
+>>
+>>
+>> This e-mail message, including all attachments, is for the sole use of
+>> the intended recipient(s) and may contain legally privileged and
+>> confidential information. If you are not an intended recipient, you are
+>> hereby notified that you have either received this message in error or
+>> through interception, and that any review, use, distribution, copying or
+>> disclosure of this message and/or its attachments or parts thereof is
+>> strictly prohibited and is subject to criminal and civil penalties with
+>> appropriate national legislation
+>> =E1=90=A7
+>>
+>
+
+--000000000000651be606289cec72
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Hi Paul,=C2=A0</div><div><br></div><div>Great to hear=
+ from you.=C2=A0</div><div><br></div><div>Yes, we are all on the same page =
+with regards to Mila&#39;s idea of pricing the medium-sized works on canvas=
+ in relation to their=C2=A0&#39;quality&#39;. The four works I highlighted =
+would be priced at =C2=A3150,000, and the first &#39;batch&#39; we can sell=
+.=C2=A0</div><div><br></div><div>Regarding the Art Fairs strategy, I think =
+the best route forward is to decide on the selection depending on which fai=
+rs we get into. Currently we are in the process of applying for/waiting to =
+be invited to, both Armory NYC and Dallas. So we can make a selection once =
+we get in? But either way, are we agreed that the four paintings I highligh=
+ted are ok to be priced at =C2=A3150,000?=C2=A0</div><div><br></div><div>Re=
+garding Tom Gruber, we are getting a good deal if we buy his work, but it i=
+s a purchase decision, so I will leave it up to you both.=C2=A0</div><div><=
+br></div><div>The Artsy alert is in relation to a group show we have=C2=A0c=
+urated=C2=A0over the Christmas and New Year period called &#39;Quiet Motion=
+&#39;. We have priced the 60s work  at =C2=A3100,000. The pricing is aligne=
+d with the 60s canvases we showed during &#39;Refactoring&#39;.=C2=A0</div>=
+<div><br></div><div>Let me know if that&#39;s all clear? We&#39;re really e=
+xcited to see what Tom will send over in the roll!=C2=A0</div><div><br></di=
+v><div>With warmest wishes,=C2=A0</div><div><br></div><div>George Barke=C2=
+=A0</div><div><br></div><div><br></div><div><br></div><div><div dir=3D"ltr"=
+ class=3D"gmail_signature" data-smartmail=3D"gmail_signature"><div dir=3D"l=
+tr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><di=
+v dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+style=3D"padding-top:0px;padding-right:0px;padding-left:0px;display:flex"><=
+div style=3D"margin:0px;padding:0px 0px 20px;width:1116px"><div dir=3D"ltr"=
+><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div d=
+ir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"l=
+tr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><di=
+v dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"lt=
+r"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div=
+ dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D=
+"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><=
+div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div di=
+r=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"lt=
+r"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div=
+ dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D=
+"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr" s=
+tyle=3D"color:rgb(34,34,34)"><div dir=3D"ltr"><div dir=3D"ltr"><div style=
+=3D"padding-top:0px;padding-right:0px;padding-left:0px;display:flex;font-fa=
+mily:&quot;Google Sans&quot;,Roboto,RobotoDraft,Helvetica,Arial,sans-serif"=
+><div style=3D"margin:0px;min-width:0px;padding:0px 0px 20px;width:initial"=
+><div style=3D"margin:8px 0px 0px;padding:0px;overflow-x:hidden"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr" style=3D"font-family:Arial,Helvetica,sans-serif"><div di=
+r=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"lt=
+r"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><span><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><font color=3D"#000000"><b>GA=
+ZELLI ART HOUSE</b></font></div><div dir=3D"ltr"><br></div><div dir=3D"ltr"=
+><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div d=
+ir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"l=
+tr"><div dir=3D"ltr"><div dir=3D"ltr"><font face=3D"arial, sans-serif" colo=
+r=3D"#000000">LONDON</font></div><div><font face=3D"arial, sans-serif"><a h=
+ref=3D"https://886b17ba.streaklinks.com/COZtfqiJiXC63H8Urg3bO80o/https%3A%2=
+F%2Fgazelliarthouse.com%2Fexhibitions%2F189-quiet-motion-derek-boshier-paul=
+ine-boty-harold-cohen-judy-chicago%2F" style=3D"color:rgb(17,85,204)" targe=
+t=3D"_blank">Group Show: Quiet Motion</a></font></div><div><span style=3D"c=
+olor:rgb(0,0,0);font-family:arial,sans-serif"><br></span></div><div><span s=
+tyle=3D"color:rgb(0,0,0);font-family:arial,sans-serif">BAKU=C2=A0</span></d=
+iv><div><a href=3D"https://886b17ba.streaklinks.com/COZtfqSY2OT9Ai5e-QrC1uK=
+E/https%3A%2F%2Fgazelliarthouse.com%2Fexhibitions%2F188-parallel-worlds-chr=
+is-levine-michael-takeo-magruder-marshmallow-laser-feast%2F" style=3D"color=
+:rgb(17,85,204)" target=3D"_blank">Parallel Worlds: Chris Levine, Michael T=
+akeo Magruder, Marshmallow Laser Feast, Elnara Nasirli, Recycle Group, Nye =
+Thompson</a></div><div dir=3D"ltr"><div><font color=3D"#000000" face=3D"ari=
+al, sans-serif"><br></font></div><div><font color=3D"#000000" face=3D"arial=
+, sans-serif">GAZELL.iO=C2=A0</font></div><div><font face=3D"arial, sans-se=
+rif">December Resident |=C2=A0<a href=3D"https://886b17ba.streaklinks.com/C=
+OZtfqS-PnadSuUXUQ7hXZF3/https%3A%2F%2Fgazell.io%2Fpages%2Ftom-white" style=
+=3D"color:rgb(17,85,204)" target=3D"_blank">Tom White</a></font></div></div=
+></div></div></div></div></div></div></div></div><div dir=3D"ltr"><br></div=
+></div></div></div></div><div dir=3D"ltr"><font face=3D"arial, sans-serif">=
+<div><a href=3D"http://www.gazelliarthouse.com/" style=3D"color:rgb(17,85,2=
+04)" target=3D"_blank"><font color=3D"#0b5394">www.gazelliarthouse.com</fon=
+t></a></div><div>+44 (0) 207 491 8816 / +994 (0) 12 498 1230</div><div><div=
+><font color=3D"#000000"><a href=3D"https://886b17ba.streaklinks.com/COZtfq=
+SPT_xozG8fog3qsQF6/https%3A%2F%2Fwww.instagram.com%2Fgazelliarthouse%2F" st=
+yle=3D"color:rgb(17,85,204);display:inline-block" target=3D"_blank"><img sr=
+c=3D"https://68ef2f69c7787d4078ac-7864ae55ba174c40683f10ab811d9167.ssl.cf1.=
+rackcdn.com/instagram-icon_24x24.png" width=3D"24" style=3D"margin:0.8em 0.=
+2em;padding:0px;letter-spacing:-0.1px;border:0px;vertical-align:middle;max-=
+width:100%"><div style=3D"margin:0px;width:0px;height:0px"><div></div></div=
+></a><a href=3D"https://886b17ba.streaklinks.com/COZtfqSFRb4SYyXALgOQ4hQf/h=
+ttps%3A%2F%2Ftwitter.com%2FGazelliArtHouse" style=3D"color:rgb(17,85,204);d=
+isplay:inline-block" target=3D"_blank"><img src=3D"https://68ef2f69c7787d40=
+78ac-7864ae55ba174c40683f10ab811d9167.ssl.cf1.rackcdn.com/twitter-icon_24x2=
+4.png" width=3D"24" style=3D"margin:0.8em 0.2em;padding:0px;letter-spacing:=
+-0.1px;border:0px;vertical-align:middle;max-width:100%"><div style=3D"margi=
+n:0px;width:0px;height:0px"><div></div></div></a>=C2=A0<a href=3D"https://8=
+86b17ba.streaklinks.com/COZtfqOMTAz5aLQBsQiD512R/https%3A%2F%2Fwww.facebook=
+.com%2FGazelliArtHouse%2F" style=3D"color:rgb(17,85,204);display:inline-blo=
+ck" target=3D"_blank"><img src=3D"https://68ef2f69c7787d4078ac-7864ae55ba17=
+4c40683f10ab811d9167.ssl.cf1.rackcdn.com/facebook-icon_24x24.png" width=3D"=
+24" style=3D"margin:0.8em 0.2em;padding:0px;letter-spacing:-0.1px;border:0p=
+x;vertical-align:middle;max-width:100%"></a></font></div></div><div><br></d=
+iv><div><img width=3D"96" height=3D"44" src=3D"https://ci3.googleuserconten=
+t.com/mail-sig/AIorK4w7gKovNZAR8tYAuQ9hIjEiBgWel9uIDPpW34GyeY595Rek12deHDAl=
+PE9ZZxtPymKBYCzaHBU"><br></div><div><br></div><div><br></div><div><font col=
+or=3D"#000000">This e-mail message, including all attachments, is for the=
+=C2=A0sole use of the intended recipient(s) and may contain=C2=A0legally pr=
+ivileged and confidential information. If you are=C2=A0not an intended reci=
+pient, you are hereby notified that=C2=A0you have either received this mess=
+age in error or through=C2=A0interception, and that any=C2=A0review, use, d=
+istribution,=C2=A0copying or disclosure of this message and/or its=C2=A0att=
+achments or parts thereof is strictly prohibited and is=C2=A0subject to cri=
+minal and civil penalties with appropriate=C2=A0national legislation.</font=
+></div></font></div></div></div></div></div></div></div></span></div></div>=
+</div></div></div></div></div></div></div></div></div></div></div></div></d=
+iv></div></div></div></div></div></div></div></div></div></div></div></div>=
+</div></div></div></div></div></div></div></div></div></div></div></div></d=
+iv></div><div style=3D"color:rgb(34,34,34)"><div dir=3D"ltr"><div dir=3D"lt=
+r"><div><div></div></div></div></div></div></div></div></div></div></div></=
+div></div></div></div></div></div></div></div></div></div></div></div></div=
+></div></div></div></div></div></div></div></div></div></div></div></div></=
+div><div style=3D"color:rgb(34,34,34)"><div dir=3D"ltr"><div dir=3D"ltr"></=
+div></div></div></div></div></div></div></div></div></div></div></div></div=
+></div></div></div></div></div></div></div></div></div></div></div></div></=
+div></div></div></div></div></div></div></div></div></div></div></div></div=
+></div></div></div></div></div></div></div></div></div></div></div></div></=
+div></div></div></div></div></div></div></div></div></div></div></div></div=
+></div></div></div></div></div></div></div></div></div></div></div></div></=
+div></div></div></div></div></div></div></div></div></div></div></div></div=
+></div></div></div></div></div></div></div></div></div></div></div></div></=
+div></div><div style=3D"margin:8px 0px 0px;padding:0px"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div><div dir=3D"ltr"><div dir=3D"ltr"><div></=
+div></div></div></div><div><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"lt=
+r"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><span></span></div></=
+div></div></div></div></div></div></div></div></div></div></div></div></div=
+></div></div></div></div></div></div></div></div></div></div></div></div></=
+div></div></div></div></div></div></div></div></div></div></div></div></div=
+></div></div></div></div></div></div></div><br></div><div hspace=3D"streak-=
+pt-mark" style=3D"max-height:1px"><img alt=3D"" style=3D"width:0px;max-heig=
+ht:0px;overflow:hidden" src=3D"https://mailfoogae.appspot.com/t?sender=3DaZ=
+2VvcmdlQGdhemVsbGlhcnRob3VzZS5jb20%3D&amp;type=3Dzerocontent&amp;guid=3D221=
+fe90d-009a-424b-807a-c608257e9443"><font color=3D"#ffffff" size=3D"1">=E1=
+=90=A7</font></div><br><div class=3D"gmail_quote gmail_quote_container"><di=
+v dir=3D"ltr" class=3D"gmail_attr">On Fri, 6 Dec 2024 at 16:04, Paul Cohen =
+&lt;<a href=3D"mailto:paulrcohen@gmail.com">paulrcohen@gmail.com</a>&gt; wr=
+ote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px=
+ 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D=
+"ltr"><div><div style=3D"font-size:small" class=3D"gmail_default">Hi George=
+, sorry for my delayed reply.=C2=A0 My recollection of the pricing discussi=
+on is similar to yours, but not quite the same, and my recollection of our =
+strategy might be a bit different as well. <br></div><div style=3D"font-siz=
+e:small" class=3D"gmail_default"><br></div><div style=3D"font-size:small" c=
+lass=3D"gmail_default">I recall that the pricing discussion changed from &q=
+uot;size-based&quot; to &quot;quality-based&quot;.=C2=A0 Mila pointed out t=
+hat some mid-sized works are better than others.=C2=A0 She asked why some s=
+hould not be priced at X, where X is higher than 150K.=C2=A0 FWIW, I think =
+the four mid-sized works cited in your email aren&#39;t the best, so I won&=
+#39;t argue that their price should be higher.=C2=A0 But if we were plannin=
+g to show, say, 2475 or 2476 etc. then I&#39;d agree with Mila: These are b=
+etter paintings.<br></div><div style=3D"font-size:small" class=3D"gmail_def=
+ault"><br></div><div style=3D"font-size:small" class=3D"gmail_default">As t=
+o strategy, we discussed several but I don&#39;t remember which we settled =
+on.=C2=A0 At one point in the conversation, Mila suggested not sending larg=
+e works to the art fairs but holding them back.=C2=A0 At another point we d=
+iscussed sending a mix of mid-size and large work.=C2=A0 I think we all agr=
+eed that small canvases are anomalous and will be held back.=C2=A0 You seem=
+ to be suggesting sending a mix of mid-sized and large works priced at 150K=
+ and 300K, respectively.=C2=A0 Do you intend that the mid-sized works for t=
+he fairs will be the ones you mention in your message, or were you suggesti=
+ng only that these works should be priced at 150K as our first tranche irre=
+spective of where they are shown for sale?<br></div><div style=3D"font-size=
+:small" class=3D"gmail_default"><br></div><div style=3D"font-size:small" cl=
+ass=3D"gmail_default">Changing subject, any further thoughts on us purchasi=
+ng Tom Gruber&#39;s paintings?</div><div style=3D"font-size:small" class=3D=
+"gmail_default"><br></div><div style=3D"font-size:small" class=3D"gmail_def=
+ault">Incidentally, I got an alert from Artsy this morning.=C2=A0 Is this j=
+ust a random spasmodic mailing or have we started to market the early work?=
+<br></div><div style=3D"font-size:small" class=3D"gmail_default"><a href=3D=
+"https://www.artsy.net/artwork/67530c4392b8875af5adaa93?utm_medium=3Demail&=
+amp;utm_source=3Dbraze&amp;utm_campaign=3Dalert&amp;utm_term=3Dv2" target=
+=3D"_blank">https://www.artsy.net/artwork/67530c4392b8875af5adaa93?utm_medi=
+um=3Demail&amp;utm_source=3Dbraze&amp;utm_campaign=3Dalert&amp;utm_term=3Dv=
+2</a></div></div><div><div style=3D"font-size:small" class=3D"gmail_default=
+"></div><div style=3D"font-size:small" class=3D"gmail_default">Cheers, --Pa=
+ul<br></div><br clear=3D"all"></div><div><div dir=3D"ltr" class=3D"gmail_si=
+gnature"><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div>=
+<div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr">______________=
+________________<br><br>Paul Cohen,=C2=A0=C2=A0Professor</div><div dir=3D"l=
+tr">School of Computing and Information</div><div dir=3D"ltr">University of=
+ Pittsburgh</div><div dir=3D"ltr"><a href=3D"https://paulrcohen.github.io/"=
+ target=3D"_blank">personal webpage</a><br>______________________________</=
+div></div></div></div></div></div></div></div></div></div></div></div></div=
+><br></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_a=
+ttr">On Tue, Dec 3, 2024 at 6:02=E2=80=AFAM George Lionel Barker &lt;<a hre=
+f=3D"mailto:george@gazelliarthouse.com" target=3D"_blank">george@gazelliart=
+house.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=
+=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
+-left:1ex"><div dir=3D"ltr"><div><div>Dear both,=C2=A0</div><div><br></div>=
+<div>Please find enclosed=C2=A0a link to our proposed shipping list for the=
+ figurative canvases that are currently in Encinitas, to be sent alongside =
+the unrolled works in Tom&#39;s previous email:=C2=A0<a href=3D"https://pri=
+vateviews.artlogic.net/2/f5fcb1f56f9ce5a013b84a/" target=3D"_blank">https:/=
+/privateviews.artlogic.net/2/f5fcb1f56f9ce5a013b84a/</a></div><div><br></di=
+v><div>Can we please also have the=C2=A0remaining Painting Machine works yo=
+u have there too? New pricing TBC.</div><div><br></div><div>We agreed to se=
+t the retail price of HC2477, HC2448, HC4426 and HC4427 at =C2=A3150,000. I=
+ think it would be beneficial to sell one work in the new year, leaving thr=
+ee for the fairs.=C2=A0</div><div><br></div><div>The plan was to market som=
+e of them at Dallas Art Fair and Armoury NYC in 2025, alongside a selection=
+ of other Cohen works. At this stage, we would still need to be invited/app=
+ly to both fairs,=C2=A0and the longer term goal is Frieze and Basel in 2026=
+.=C2=A0</div><div><br></div><div>Are we ok to price the first available lar=
+ge one at =C2=A3300,000? And then increase the price by 100k until the thir=
+d one is =C2=A3500,000? It looks like there are 15 or so large ones, compar=
+ed with 10 medium sized ones.=C2=A0</div><div><br></div><div>Regarding a cu=
+rsory stock-check of all figurative canvases, both in London and California=
+, I have counted 29 in total. There are 4 not listed on AL, but found via a=
+ PDF on our shared drive (attached). We are hoping that Tom&#39;s rolled ca=
+nvases yield some more.=C2=A0</div><div><br></div><div>I think we&#39;d nee=
+d to get the shipping process up and running as soon as we can.=C2=A0</div>=
+<div><br></div><div>Looking forward to hearing from you,=C2=A0</div><div><b=
+r></div><div>George=C2=A0</div><div><br></div></div><div><br></div><div><br=
+></div><div><div dir=3D"ltr" class=3D"gmail_signature"><div dir=3D"ltr"><di=
+v dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div style=
+=3D"padding-top:0px;padding-right:0px;padding-left:0px;display:flex"><div s=
+tyle=3D"margin:0px;padding:0px 0px 20px;width:1116px"><div dir=3D"ltr"><div=
+ dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D=
+"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><=
+div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div=
+ dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D=
+"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><=
+div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"lt=
+r"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div=
+ dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D=
+"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><=
+div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr" style=3D=
+"color:rgb(34,34,34)"><div dir=3D"ltr"><div dir=3D"ltr"><div style=3D"paddi=
+ng-top:0px;padding-right:0px;padding-left:0px;display:flex;font-family:&quo=
+t;Google Sans&quot;,Roboto,RobotoDraft,Helvetica,Arial,sans-serif"><div sty=
+le=3D"margin:0px;min-width:0px;padding:0px 0px 20px;width:initial"><div sty=
+le=3D"margin:8px 0px 0px;padding:0px;overflow-x:hidden"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr" style=3D"font-family:Arial,Helvetica,sans-serif"><div dir=3D"ltr">=
+<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div di=
+r=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><span><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><font color=3D"#000000"><b>GAZELLI ART HOUSE</b></font></div><div dir=3D"=
+ltr"><br></div><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><font=
+ face=3D"arial, sans-serif" color=3D"#000000">LONDON</font></div><div><font=
+ face=3D"arial, sans-serif"><a href=3D"https://gazelliarthouse.com/exhibiti=
+ons/185-cipher-pouran-jinchi-ruba-salameh/" style=3D"color:rgb(17,85,204)" =
+target=3D"_blank">Cipher: Pouran Jinchi &amp; Ruba Salameh</a></font></div>=
+<div><font face=3D"arial, sans-serif"><a href=3D"https://886b17ba.streaklin=
+ks.com/COI_U3nKCit8YrqmfAsHTFsc/https%3A%2F%2Fgazelliarthouse.com%2Fexhibit=
+ions%2F186-the-window-aida-mahmudova%2F" style=3D"color:rgb(17,85,204)" tar=
+get=3D"_blank">The Window: Aida Mahmudova</a>=C2=A0</font></div><div><font =
+face=3D"arial, sans-serif"><br></font></div><div><span style=3D"color:rgb(0=
+,0,0);font-family:arial,sans-serif">BAKU=C2=A0</span></div><div><a href=3D"=
+https://886b17ba.streaklinks.com/COI_U3niosEkcRatIgOylZrI/https%3A%2F%2Fgaz=
+elliarthouse.com%2Fexhibitions%2F188-parallel-worlds-chris-levine-michael-t=
+akeo-magruder-marshmallow-laser-feast%2F" style=3D"color:rgb(17,85,204)" ta=
+rget=3D"_blank">Parallel Worlds: Chris Levine, Michael Takeo Magruder, Mars=
+hmallow Laser Feast, Elnara Nasirli, Recycle Group, Nye Thompson</a></div><=
+div dir=3D"ltr"><div><font color=3D"#000000" face=3D"arial, sans-serif"><br=
+></font></div><div><font color=3D"#000000" face=3D"arial, sans-serif">GAZEL=
+L.iO=C2=A0</font></div><div><font face=3D"arial, sans-serif">November Resid=
+ent |=C2=A0<a href=3D"https://886b17ba.streaklinks.com/COI_U3nERBA6ELpWCgbs=
+NGI2/https%3A%2F%2Fgazell.io%2Fexhibitions%2F141-lovid%2F" style=3D"color:r=
+gb(17,85,204)" target=3D"_blank">LoVid</a></font></div></div></div></div></=
+div></div></div></div></div></div></div></div></div></div><div dir=3D"ltr">=
+<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><br></div></div></div></=
+div></div></div><div dir=3D"ltr"><font face=3D"arial, sans-serif"><div><a h=
+ref=3D"http://www.gazelliarthouse.com/" style=3D"color:rgb(17,85,204)" targ=
+et=3D"_blank"><font color=3D"#0b5394">www.gazelliarthouse.com</font></a></d=
+iv><div>+44 (0) 207 491 8816 / +994 (0) 12 498 1230</div><div><div><font co=
+lor=3D"#000000"><a href=3D"https://886b17ba.streaklinks.com/COI_U3nZWXthxOC=
+UaARiG711/https%3A%2F%2Fwww.instagram.com%2Fgazelliarthouse%2F" style=3D"co=
+lor:rgb(17,85,204);display:inline-block" target=3D"_blank"><img src=3D"http=
+s://68ef2f69c7787d4078ac-7864ae55ba174c40683f10ab811d9167.ssl.cf1.rackcdn.c=
+om/instagram-icon_24x24.png" width=3D"24" style=3D"margin: 0.8em 0.2em; pad=
+ding: 0px; letter-spacing: -0.1px; border: 0px; vertical-align: middle; max=
+-width: 100%;"><div style=3D"margin:0px;width:0px;height:0px"><div></div></=
+div></a><a href=3D"https://886b17ba.streaklinks.com/COI_U3nJCWAAf9BwMAM6MCf=
+j/https%3A%2F%2Ftwitter.com%2FGazelliArtHouse" style=3D"color:rgb(17,85,204=
+);display:inline-block" target=3D"_blank"><img src=3D"https://68ef2f69c7787=
+d4078ac-7864ae55ba174c40683f10ab811d9167.ssl.cf1.rackcdn.com/twitter-icon_2=
+4x24.png" width=3D"24" style=3D"margin: 0.8em 0.2em; padding: 0px; letter-s=
+pacing: -0.1px; border: 0px; vertical-align: middle; max-width: 100%;"><div=
+ style=3D"margin:0px;width:0px;height:0px"><div></div></div></a>=C2=A0<a hr=
+ef=3D"https://886b17ba.streaklinks.com/COI_U3zamlv796qcjAc03ecp/https%3A%2F=
+%2Fwww.facebook.com%2FGazelliArtHouse%2F" style=3D"color:rgb(17,85,204);dis=
+play:inline-block" target=3D"_blank"><img src=3D"https://68ef2f69c7787d4078=
+ac-7864ae55ba174c40683f10ab811d9167.ssl.cf1.rackcdn.com/facebook-icon_24x24=
+.png" width=3D"24" style=3D"margin: 0.8em 0.2em; padding: 0px; letter-spaci=
+ng: -0.1px; border: 0px; vertical-align: middle; max-width: 100%;"></a></fo=
+nt></div></div><div><br></div><div><img width=3D"96" height=3D"44" src=3D"h=
+ttps://ci3.googleusercontent.com/mail-sig/AIorK4w7gKovNZAR8tYAuQ9hIjEiBgWel=
+9uIDPpW34GyeY595Rek12deHDAlPE9ZZxtPymKBYCzaHBU"><br></div><div><br></div><d=
+iv><br></div><div><font color=3D"#000000">This e-mail message, including al=
+l attachments, is for the=C2=A0sole use of the intended recipient(s) and ma=
+y contain=C2=A0legally privileged and confidential information. If you are=
+=C2=A0not an intended recipient, you are hereby notified that=C2=A0you have=
+ either received this message in error or through=C2=A0interception, and th=
+at any=C2=A0review, use, distribution,=C2=A0copying or disclosure of this m=
+essage and/or its=C2=A0attachments or parts thereof is strictly prohibited =
+and is=C2=A0subject to criminal and civil penalties with appropriate=C2=A0n=
+ational legislation</font></div></font></div></div></div></span></div></div=
+></div></div></div></div></div></div></div></div></div></div></div></div></=
+div></div></div></div></div></div></div></div></div></div></div></div></div=
+></div></div></div></div></div></div></div></div></div></div></div></div></=
+div></div><div style=3D"color:rgb(34,34,34)"><div dir=3D"ltr"><div dir=3D"l=
+tr"><div><div></div></div></div></div></div></div></div></div></div></div><=
+/div></div></div></div></div></div></div></div></div></div></div></div></di=
+v></div></div></div></div></div></div></div></div></div></div></div></div><=
+/div><div style=3D"color:rgb(34,34,34)"><div dir=3D"ltr"><div dir=3D"ltr"><=
+/div></div></div></div></div></div></div></div></div></div></div></div></di=
+v></div></div></div></div></div></div></div></div></div></div></div></div><=
+/div></div></div></div></div></div></div></div></div></div></div></div></di=
+v></div></div></div></div></div></div></div></div></div></div></div></div><=
+/div></div></div></div></div></div></div></div></div></div></div></div></di=
+v></div></div></div></div></div></div></div></div></div></div></div></div><=
+/div></div></div></div></div></div></div></div></div></div></div></div></di=
+v></div></div></div></div></div></div></div></div></div></div></div></div><=
+/div></div><div style=3D"margin:8px 0px 0px;padding:0px"><div dir=3D"ltr"><=
+div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div><div dir=3D"ltr"><div dir=3D"ltr"><div></=
+div></div></div></div><div><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"lt=
+r"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><span></span></div></=
+div></div></div></div></div></div></div></div></div></div></div></div></div=
+></div></div></div></div></div></div></div></div></div></div></div></div></=
+div></div></div></div></div></div></div></div></div></div></div></div></div=
+></div></div></div></div></div></div></div></div><div hspace=3D"streak-pt-m=
+ark" style=3D"max-height:1px"><img alt=3D"" style=3D"width: 0px; max-height=
+: 0px; overflow: hidden;" src=3D"https://mailfoogae.appspot.com/t?sender=3D=
+aZ2VvcmdlQGdhemVsbGlhcnRob3VzZS5jb20%3D&amp;type=3Dzerocontent&amp;guid=3D4=
+e8052c1-e7fe-4d29-a342-553918451e8f"><font color=3D"#ffffff" size=3D"1">=E1=
+=90=A7</font></div>
+</blockquote></div>
+</blockquote></div>
+
+--000000000000651be606289cec72--

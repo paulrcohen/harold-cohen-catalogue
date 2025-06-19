@@ -1,0 +1,54 @@
+Subject: Re: Final Copy check
+From: Thomas Machnik <zipnpup@yahoo.com>
+To: Paul Cohen <team@haroldcohentrust.org>, 
+	Cohen Paul <paulrcohen@gmail.com>, 
+	Robert Norton <robert@verisart.com>
+Date: 2024-10-01 17:07:26
+Message-ID: <962072738.7825412.1727802446870@mail.yahoo.com>
+--------------------------------------------------------------------------------
+
+Robert, can you hang on just for a second? I don't quite understand why the file size in the computer does not match the metadata from the metadata reader. 
+Tom
+
+ On Tuesday, October 1, 2024, 9:42:51 AM PDT, Robert Norton <robert@verisart.com> wrote: 
+
+ Tom,
+Thanks for your time earlier.  Per discussion we will go with:
+1) the Earl & Birdie Taylor gallery2) Use Harold Cohen Trust instead of HCT3) We will use the file sizes as per the files themselves and not the file size in the Word Document you previously provided.
+
+Thanks for clarifying - we will pass this on to Sotheby’s.
+Best
+Robert
+
+Robert NortonCEO & co-founderVerisart
+
+
+
+Hi Thomas,
+Thanks so much for the additional information you provided yesterday.  We wanted to run a few changes by you which have been picked up by our team.
+
+ - We noticed that the Birdie Taylor gallery is referred to online as the Earl & Birdie Taylor gallery online - should we go with this version? ie.  Earl & Birdie Taylor gallery
+ - We suggest using Harold Cohen Trust instead as HCT as believe this is clearer.  Are you OK with this?
+ - Should we change paper to Roland PQM-CRBW-33-50 paper? Or are you not sure if all prints are on this type of paper? 
+
+ - Some of the file sizes are slightly different to what you wrote when we double checked them on our end.  See below for more information.  Are you OK with these changes?
+
+ - 0309-03s (C3 AW50)From: 208 KiB’ To 213 KiB’ 
+0309-06 (i23-3370)From: 167 KiB To: 171 KiB 
+0311-32 (i23-3405)From: 177 KiB To: 181 KiB 
+0311-35 (i23-3404)From: 172 KiB To: 176 KiB 
+030804 (i23-3373)From: 366 KiB To:  374 KiB 
+
+ - 
+
+030905 (i23-3369)From: 187 KiB To: 191 KiB 
+030907 (C3 AW52)From: 158 KiB To: 162 KiB 
+040502 (i23-3377)From: 251 KiB To: 257 KiB 
+
+Please can you and Paul approve these changes so we can send final copy to Sotheby’s.  Please find attached copy for both the NFTs and the Physical Print Certificates and the images we will use to mint the NFTs.
+Best
+Robert
+
+Robert NortonCEO & co-founderVerisart
+
+<verisart-certified-signature (1).gif>

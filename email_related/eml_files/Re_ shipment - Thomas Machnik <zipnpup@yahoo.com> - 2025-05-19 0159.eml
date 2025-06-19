@@ -1,0 +1,453 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a10:e10b:b0:5ec:db95:1ae4 with SMTP id a11csp6651832pxw;
+        Sun, 18 May 2025 22:59:12 -0700 (PDT)
+X-Forwarded-Encrypted: i=2; AJvYcCWTR1YDTWZPhvKkqrpcNhHGfkPCo+AnZJxzu7iUOVZ/YGBSo8fCOcAzaAtot+TycaOrfBYjKUiut2wk@gmail.com
+X-Google-Smtp-Source: AGHT+IEDBeZZwDsx9T5FDWT5aZi0n4FN6wzFVWekazE1Q46+mKdYgtaqYP4cPHMN3JZuj+s1Gr4f
+X-Received: by 2002:a05:620a:414f:b0:7c9:2383:afef with SMTP id af79cd13be357-7cd4677e54dmr1367998785a.37.1747634352291;
+        Sun, 18 May 2025 22:59:12 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1747634352; cv=none;
+        d=google.com; s=arc-20240605;
+        b=Gr6ZcYJH/M/gmT0Foz0sFi5UWYLZWLdGJUpkNK5KMy0KvrQ+98k49A5fl+WRJ6/RfV
+         Y1+sNMFZdvrPvty8/B4nwiVFAjMfDvAk5UhfsTirBVlSHzjzAuKXPcVKY0TiZJFPCuND
+         MQFUD0Ksq7boy1IJ9rsKAGd+7eMpgokeLytbDA2Co2RdlunB8MHOHMHLK+E3Ar8n2I/5
+         JzSp43CpkNspaWaKbfdI6hElFZh7CSIja4H0hDFEQ6YTq9o9Sdkh4sezrgwavtIyyy38
+         wHHwWQCgK3/aGAOUe8fJ4uq/6j8zb0I7+06Az2WocY5i5Yon8+8coy1JxByAT4lh4OWM
+         OVYA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:subject:references:in-reply-to:message-id:cc:to
+         :reply-to:from:date:dkim-signature;
+        bh=BGjQC04rHV56WeYOHCKBx11n4yuM/Qam0CCk1kpRnEk=;
+        fh=g275W+Nt24/n2RvBcc9V2uwLr+jT2HxVxaemdWgqkAg=;
+        b=XkqMILw2kcVBJPJMCAEI2yy8ODdRyKL/WSYlDbqfocMkRxZX32zjHNXbzKfhGzi83z
+         r38cwJCz7hZDDzSNpXOq2R/en6OOGNb5FOXnHzhJ+RPqximxvyLDSOmTydKZhe686D5C
+         dkntZGLwTPJetNudA3W9DuI4WX5WeKJ7XK11IK5cLBuWWhMrRTHVLGhec1rQdMmsv+7R
+         I6439OCREvfgec2FpxTGpBcNah2CL0CZLmZC1qyOar/7GOMR8q0FmJjhQ4H2IFVtL98n
+         G0P21guXXrNTNqxx5+tuB8Em1i0CZOR4KWMP9tk+D0iCAnI20SJtdzo59CBOkXZW5jwu
+         3UhQ==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b="W7BY/Qgw";
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.131.125 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+Return-Path: <zipnpup@yahoo.com>
+Received: from sonic311-15.consmr.mail.bf2.yahoo.com (sonic311-15.consmr.mail.bf2.yahoo.com. [74.6.131.125])
+        by mx.google.com with ESMTPS id af79cd13be357-7cd467cef9asi867198285a.96.2025.05.18.22.59.12
+        for <paulrcohen@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 18 May 2025 22:59:12 -0700 (PDT)
+Received-SPF: pass (google.com: domain of zipnpup@yahoo.com designates 74.6.131.125 as permitted sender) client-ip=74.6.131.125;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b="W7BY/Qgw";
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.131.125 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1747634351; bh=BGjQC04rHV56WeYOHCKBx11n4yuM/Qam0CCk1kpRnEk=; h=Date:From:Reply-To:To:Cc:In-Reply-To:References:Subject:From:Subject:Reply-To; b=W7BY/QgwPQVrcQuum6e3e4I3aXLreqDGRg1XtTgOB3P82+UxgWzwEvMhalF1smSOV150vjLxue0qQ3BmiQE79s+OpBhRdrM49jGOC8pGCf2D7uvu1md2l24lowKHx0Zzhv6+AvSTZF6d8e+rAbU+xQLaEgARPT8wgSqj28c9wvJfqLb36n6mWBsTNAQALckUgQW9ZnOCNmluV5RG15VQuLuy5X5o9Km9FB8SCEHuLsEnuoZsEqJpHNLVQdCcDZ9TTfRGjvOm382b/nTq9hbo+Qt/A7U2GjLBaQVkFbJumyk7pIFa9iuIzEWt6O6Mk9NsGOwV7WsprkTZggnJZJL8pQ==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1747634351; bh=ewKBGDQtzJEr0RecjM3W7tjN04tK78lJNXvU9C+vUAA=; h=X-Sonic-MF:Date:From:To:Subject:From:Subject; b=m4vBuMZJ2mnEjBzZEg95OSYnHOy4xO9sfcKIBFyw47QmGrB3JGyMXNng17PdJz8WXtlR1W98gzICzu4iLejhf3yBOfxOlcVa7g+T+PCgF79HlUZ7ZcGYkuYKNWMj56xQtnu+Armw140c/oZ4d8HI97MBrNoUjpxcu7VRd2kjlfWJI9JPdczmefh8HqBfMfd9OgfuqjLFgDyVJKrSswhKBuXuIP4AtBeuhJ/LZewa8+EPjQyM1qZRKhqVZWOVPGDrbg4fzlLCEKzz6jOTHhiXrxNbcI/fsr0Mz3q1LTDCfozPK29CjF+nNRQS2csJaRMw/0KaQ0GGa4lCoZm/xTww+A==
+X-YMail-OSG: 67GpDEUVM1nbo9l2xnuoYG0uX3acV1FGk51w4sd625rMhplZ6e1zb_H1XR_1_fk
+ 1XKj63wuUR9xenWYXj14HA9LX_KHIai2K4Quc_FMHxo8nbum0WCG9X6ikLAjsx5.TdvGlRHwwWE5
+ xItkDszvbOPo9jvmZltJPi9hHVGsoxYHRKAygwCPLkhGIbf3nacTFmMBwxuRH_I87dBlxJKuKCmF
+ eGnWRWLO.gJvYeTw.zVzxTrSLW1JyF3JbVCNNnkhRDsrXShjQYIGACYNEPktRo9.vQ83EWnJuq5F
+ 29jL4rO1nJXWQp06twGqCyXNsh.2uvMfRTK9pVFvBjD5vFMFwHudxlzO1jL4zR5oNr2zFoBSTr9f
+ 3n73Iq2sRp640Y0J29icK3y6kuZnks_MZAUyTTogn20_t4gTwy8PDjKJLjYxDIMlkrg5YQwgSaBB
+ AYF43DRtJfmsgGc7Rvh_yLoboJz7x18U5EVFqe9bhSlRcMvljvb2QMA_PJHYmYkbzmrIRHgVpCEr
+ UHzu3qLORiQkeF3sbltmTmPxNhLPLmuV4usOtNYPgKHlXswLH5t4v.FxH2mxM7M_HcWrEaatDKSK
+ omNsyoz6IcupizRw3DjIXmGSTbS9cumV6PFDMo0RfvMsVzLqJIyQp5Ic8Os4mwZ65Gia6vzEvm4m
+ UnrmMehSKTrwR4b_cOhgvxXYtNDdbPdUpMerFx8E9pJjVV.3tHCqysNQC1GgZu4LWYqREP4v04Io
+ mOvk2DQYj8.yQ64QooYX3QdCakuHVd.jbtlNk8lovR42_5OAMVzaYcHzCGJmOAfbRnhHkAO2Pphj
+ mfGUo5ktLVKS2FTw5i7iDYG_bnToGq7DXiTmwTWeNVBMHEyG2X2jJgZyL7pgO9prT8CCJzcg2c4F
+ dQ9FoZHdwvXdGvJq3xCcqZPe770b4kQKqNsIcd_1Ttd4kUE.oo4Pjadt0aEgunJcs4umk1TyDpMY
+ pQojOp6qnvXBNFg7U8lvPPJDOZSeix2AOyiRqjXVrXASA7_RXoXM3sJ641eIwsrLd5Eejc21o6Mw
+ Uk3I32bRaXtBDX57jtH1el7dTi0nT23.Uh0tPznSUvvnKqKpDxJkEosWGOKKvg_ptUzEphAXd55D
+ Vlq5.jFKwiXutHupbl_8_i2t1LmUkkEAd1b5V4Ja7N04a0k2cHu2r6A4GNJyPRXcNQxkwzsyy9OY
+ i_eEzfXxQYHkr3Igx6OtcGov_JixV_pDLSpuUF569CiOw6iqmSrwOPNgzsELDYHu3lICfROsV7mK
+ pmsm1SWzAbZ86BjjPHH0.hGRyozvQ5AJeQoN5BJ6aafggtvhfu_7.Y3B.kJmZmNwkBFyvO5HlO2w
+ zJe6JSkrWhFHOhVNH14P_c05dqfjLAcJRb6StefI0NRR8HXFxddCEN6T2vqUNLHGVCxiEV.Pl.Sz
+ zQziJIWS.v9OqXhFC3sVg_F5wnPNoZp0C6Tv6fEGnPU50tzgmHtilbh3oTXxa_chgVSRe1p0TBn.
+ pB7MMAZ6pQJzfyNQmKQbCT9LfekD_7Su2I7w9fa2IlU6vFLMJxYMwhqFNb5wn218EB1JdlWr5b7I
+ PEgQwqftQa8fpeV3I2se52LGAe7JYUyeHa4TYG.N8RFSaeMyQTZr9qqzmMxPNJ_Je3oH3pHpAzc9
+ ZYfCaNVIp0pWiTR38Gr4jZOqPX4eApv8DSi7Nl8Zy5zP_OFx_Ktb9GFBlCxMNDTMJPxP6mgRMfbf
+ 39fchbsyBiIb4zHaNlNTLKm0qrPQ6j5BX1rSALSOk9b86j2nYzHf1K8gLK2pgn0pkPpJPL42DTjX
+ Zkgnzrxj4maNFPSxQrd2Odlr7BkIJGAL0FGonrko_dO8E8o8KLHQKt5cZHAVc.TaJVctgWJgW7uW
+ 3x56Nfz8EyjphcQmXHIDObkJ7MLjKSKtxKDFJ9xV5jdaXKgRvn70aXBofLULMYcmxqGzdK.xbUdk
+ nEpVNFywoZtX834OM5IV8q1kMGwhd1reob.4J4jsIRoDKssLMUtxXfvGSUOLcEqhAmHGr0ahqE9S
+ C9PFfBI9r_H1zqOtx6VhzE97nOtZzNx4UorITkVctqNsuHEhScTzmiQli1SC9ewXCAe9HaxSOvOr
+ BrnUjNm_eR.iKxcbkFXtepMEo6jMDN8cF9OhHmoIiibx7zLPXdzNPCMXXLXziUBJbFexOJIwBljk
+ VxA5AqsSIE17dedwEHyfwupsrWsLI1JJjnrLPK02_OpFOzQOS2OSsRjOXF3Mw2RhCfUyPssLMN8F
+ BosfwOmSMbb_4GrW9Il09Mds-
+X-Sonic-MF: <zipnpup@yahoo.com>
+X-Sonic-ID: 2e771d12-fb62-49b0-b98d-b737165f241b
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic311.consmr.mail.bf2.yahoo.com with HTTP; Mon, 19 May 2025 05:59:11 +0000
+Date: Mon, 19 May 2025 05:59:11 +0000 (UTC)
+From: Thomas Machnik <zipnpup@yahoo.com>
+Reply-To: Thomas Machnik <zipnpup@yahoo.com>
+To: Mila Askarova <m.askarova@gazelliarthouse.com>
+Cc: Michael Pollard <michael@gazelliarthouse.com>, 
+	Paul Cohen <paulrcohen@gmail.com>
+Message-ID: <912738772.1071112.1747634351570@mail.yahoo.com>
+In-Reply-To: <CAAOqD35uHQHbstzP4k0_hX1Nk5MdX1SPBVpdK8MWpTJnTLu60A@mail.gmail.com>
+References: <CAKjPZkEwcr5bJAfeg2eBxv4L_UeV_zmCe7Zb9=EHcRJLTt3ajQ@mail.gmail.com> <CAAOqD34VoaoJj5+mbjnOxCM-gr9gBvT12Lyy+ih+npSRYG=nQg@mail.gmail.com> <1231958119.44175.1747163804732@mail.yahoo.com> <CAAOqD34u+OT+Mt-3=4v229NJqnBy7s_98o3Kfbg1LPFDXu2EOw@mail.gmail.com> <2051407112.161903.1747207778154@mail.yahoo.com> <CAAOqD35uHQHbstzP4k0_hX1Nk5MdX1SPBVpdK8MWpTJnTLu60A@mail.gmail.com>
+Subject: Re: shipment
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_1071111_2082651834.1747634351567"
+X-Mailer: WebService/1.1.23840 YMailNovation
+Content-Length: 20706
+
+------=_Part_1071111_2082651834.1747634351567
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+ Hi Mila,Happy Monday! Regarding a potential visit this week for a prelimin=
+ary visit or a pickup, Wednesday, Thursday & Friday would be best. Today (M=
+onday would be ok too but since I have not heard anything I assume that is =
+off the table.
+Tom
+    On Wednesday, May 14, 2025 at 01:48:21 AM PDT, Mila Askarova <m.askarov=
+a@gazelliarthouse.com> wrote: =20
+=20
+ Thanks Tom!=C2=A0
+Let us arrange this with them directly and confirm.=C2=A0
+My best,=C2=A0Mila=C2=A0
+
+Mila Askarova=C2=A0
+CEO & Founder=C2=A0
+
+GAZELLI ART HOUSE
+
+www.gazelliarthouse.com
++44 (0) 207 491 8816 / +994 (0) 12 498 1230
+
+
+On Wed, 14 May 2025 at 08:29, Thomas Machnik <zipnpup@yahoo.com> wrote:
+
+ Dear Mila,
+The next three work days should be fine,=C2=A0Thursday May 15=C2=A0Friday M=
+ay 16 (I do need to leave the studio by 3p)Monday May 19
+Let me know if any these work or if they need more lead time,
+Sincerely,Tom
+
+    On Tuesday, May 13, 2025 at 03:37:12 PM PDT, Mila Askarova <m.askarova@=
+gazelliarthouse.com> wrote: =20
+=20
+ Hi Tom,=C2=A0
+Great to hear from you and it=E2=80=99s been a while!=C2=A0Yes, the list st=
+ill looks good to me.=C2=A0
+I think we=E2=80=99re at the point of just booking the slot for them to com=
+e and collect the works.
+When would be best for you?=C2=A0
+My best,=C2=A0Mila=C2=A0
+
+Mila Askarova=C2=A0
+CEO & Founder=C2=A0
+
+GAZELLI ART HOUSE
+
+www.gazelliarthouse.com
++44 (0) 207 491 8816 / +994 (0) 12 498 1230
+
+
+On Tue, 13 May 2025 at 20:16, Thomas Machnik <zipnpup@yahoo.com> wrote:
+
+ Hi Mila,
+Happy Tuesday. Sounds like we will move forward. As it has been some time d=
+o we need to review the works? If so, these are the works we plan to send,=
+=C2=A0https://docs.google.com/spreadsheets/d/11MqbW2pAIPfUA4YNC6AHWu09PPzyM=
+20-YvIF8nedKNs/edit?gid=3D0#gid=3D0
+
+Also are we still going with Dietl? We sent the signed Dietl paper work to =
+Gazelli on April 16th. Looks like I sent it to Michael but didn=E2=80=99t c=
+c you. Sorry about that.=C2=A0 What is it that we need to do on our end in =
+order to proceed?
+Sincerely,=C2=A0Tom
+    On Tuesday, May 13, 2025 at 07:22:56 AM PDT, Mila Askarova <m.askarova@=
+gazelliarthouse.com> wrote: =20
+=20
+ Hi Paul,=C2=A0
+I think we are all ready to go with it on our end so do go ahead and send i=
+t over if you=E2=80=99re happy with that! I know the girls were keen at get=
+ting them photographed and offered to a few clients on the waiting list.=C2=
+=A0
+Speak soon,=C2=A0Mila=C2=A0
+
+Mila Askarova=C2=A0
+CEO & Founder=C2=A0
+
+GAZELLI ART HOUSE
+
+www.gazelliarthouse.com
++44 (0) 207 491 8816 / +994 (0) 12 498 1230
+
+
+On Tue, 13 May 2025 at 13:31, Paul Cohen <paulrcohen@gmail.com> wrote:
+
+Hi Mila,=C2=A0 In a brief email chat with Tom he asked about the shipment.=
+=C2=A0 Specifically, he needs the space in the studio that's currently occu=
+pied by the shipment work so he's inclined to put it all back in the racks.=
+=C2=A0 We're not sure of the current status.=C2=A0 I signed with Dietl last=
+ month but we haven't heard anything since then.=C2=A0=20
+
+The question is whether you want to go ahead with the shipment or wait, giv=
+en how quiet the art market is.
+Thanks,=20
+
+--P______________________________
+
+Paul Cohen,=C2=A0=C2=A0ProfessorSchool of Computing and InformationUniversi=
+ty of Pittsburghpersonal webpage
+______________________________
+ =20
+ =20
+ =20
+------=_Part_1071111_2082651834.1747634351567
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head></head><body><div class=3D"ydp7dffeb6cyahoo-style-wrap" style=
+=3D"font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px=
+;"><div></div>
+        <div dir=3D"ltr" data-setdir=3D"false">Hi Mila,</div><div dir=3D"lt=
+r" data-setdir=3D"false">Happy Monday! Regarding a potential visit this wee=
+k for a preliminary visit or a pickup, Wednesday, Thursday &amp; Friday wou=
+ld be best. Today (Monday would be ok too but since I have not heard anythi=
+ng I assume that is off the table.</div><div dir=3D"ltr" data-setdir=3D"fal=
+se"><br></div><div dir=3D"ltr" data-setdir=3D"false">Tom</div><div><br></di=
+v>
+       =20
+        <div id=3D"ydp7dffeb6cyahoo_quoted_7940182081" class=3D"ydp7dffeb6c=
+yahoo_quoted">
+            <div style=3D"font-family:'Helvetica Neue', Helvetica, Arial, s=
+ans-serif;font-size:13px;">
+               =20
+                <div>
+                    On Wednesday, May 14, 2025 at 01:48:21 AM PDT, Mila Ask=
+arova &lt;m.askarova@gazelliarthouse.com&gt; wrote:
+                </div>
+                <div><br></div>
+                <div><br></div>
+                <div><div id=3D"ydp7dffeb6cyiv7030014209"><div><div>Thanks =
+Tom!&nbsp;</div><div><br clear=3D"none"></div><div>Let us arrange this with=
+ them directly and confirm.&nbsp;</div><div><br clear=3D"none"></div><div>M=
+y best,&nbsp;</div><div>Mila&nbsp;<br clear=3D"all"><br clear=3D"all"><div>=
+<div dir=3D"ltr" class=3D"ydp7dffeb6cyiv7030014209gmail_signature">Mila Ask=
+arova&nbsp;<br clear=3D"none">CEO &amp; Founder&nbsp;<br clear=3D"none"><br=
+ clear=3D"none">GAZELLI ART HOUSE<br clear=3D"none"><br clear=3D"none"><a s=
+hape=3D"rect" href=3D"http://www.gazelliarthouse.com" rel=3D"nofollow" targ=
+et=3D"_blank">www.gazelliarthouse.com</a><br clear=3D"none">+44 (0) 207 491=
+ 8816 / +994 (0) 12 498 1230<br clear=3D"none"></div></div></div><div><br c=
+lear=3D"none"></div><div id=3D"ydp7dffeb6cyiv7030014209yqt72737" class=3D"y=
+dp7dffeb6cyiv7030014209yqt0791502520"><div><br clear=3D"none"><div class=3D=
+"ydp7dffeb6cyiv7030014209gmail_quote"><div dir=3D"ltr" class=3D"ydp7dffeb6c=
+yiv7030014209gmail_attr">On Wed, 14 May 2025 at 08:29, Thomas Machnik &lt;<=
+a shape=3D"rect" href=3D"mailto:zipnpup@yahoo.com" rel=3D"nofollow" target=
+=3D"_blank">zipnpup@yahoo.com</a>&gt; wrote:<br clear=3D"none"></div><block=
+quote style=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px;border-left-s=
+tyle:solid;padding-left:1ex;border-left-color:rgb(204,204,204);" class=3D"y=
+dp7dffeb6cyiv7030014209gmail_quote"><div><div style=3D"font-family:Helvetic=
+a, Arial, sans-serif;font-size:16px;"><div style=3D"font-family:Helvetica, =
+Arial, sans-serif;"></div>
+        <div dir=3D"ltr" style=3D"font-family:Helvetica, Arial, sans-serif;=
+">Dear Mila,</div><div dir=3D"ltr" style=3D"font-family:Helvetica, Arial, s=
+ans-serif;"><br clear=3D"none"></div><div dir=3D"ltr" style=3D"font-family:=
+Helvetica, Arial, sans-serif;">The next three work days should be fine,&nbs=
+p;</div><div dir=3D"ltr" style=3D"font-family:Helvetica, Arial, sans-serif;=
+">Thursday May 15&nbsp;</div><div dir=3D"ltr" style=3D"font-family:Helvetic=
+a, Arial, sans-serif;">Friday May 16 (I do need to leave the studio by 3p)<=
+/div><div dir=3D"ltr" style=3D"font-family:Helvetica, Arial, sans-serif;">M=
+onday May 19</div><div dir=3D"ltr" style=3D"font-family:Helvetica, Arial, s=
+ans-serif;"><br clear=3D"none"></div><div dir=3D"ltr" style=3D"font-family:=
+Helvetica, Arial, sans-serif;">Let me know if any these work or if they nee=
+d more lead time,</div><div dir=3D"ltr" style=3D"font-family:Helvetica, Ari=
+al, sans-serif;"><br clear=3D"none"></div><div dir=3D"ltr" style=3D"font-fa=
+mily:Helvetica, Arial, sans-serif;">Sincerely,</div><div dir=3D"ltr" style=
+=3D"font-family:Helvetica, Arial, sans-serif;">Tom</div></div></div><div><d=
+iv style=3D"font-family:Helvetica, Arial, sans-serif;font-size:16px;"><div =
+dir=3D"ltr" style=3D"font-family:Helvetica, Arial, sans-serif;"><br clear=
+=3D"none"></div><div style=3D"font-family:Helvetica, Arial, sans-serif;"><b=
+r clear=3D"none"></div>
+       =20
+        <div id=3D"ydp7dffeb6cyiv7030014209m_-3496548646339468172ydp623f911=
+eyahoo_quoted_7417196473" style=3D"font-family:Helvetica, Arial, sans-serif=
+;">
+            <div style=3D"font-family:Helvetica, Arial, sans-serif;font-siz=
+e:13px;">
+               =20
+                <div style=3D"font-family:Helvetica, Arial, sans-serif;">
+                    On Tuesday, May 13, 2025 at 03:37:12 PM PDT, Mila Askar=
+ova &lt;<a shape=3D"rect" href=3D"mailto:m.askarova@gazelliarthouse.com" st=
+yle=3D"font-family:Helvetica, Arial, sans-serif;" rel=3D"nofollow" target=
+=3D"_blank">m.askarova@gazelliarthouse.com</a>&gt; wrote:
+                </div>
+                <div style=3D"font-family:Helvetica, Arial, sans-serif;"><b=
+r clear=3D"none"></div>
+                <div style=3D"font-family:Helvetica, Arial, sans-serif;"><b=
+r clear=3D"none"></div>
+                <div style=3D"font-family:Helvetica, Arial, sans-serif;"><d=
+iv id=3D"ydp7dffeb6cyiv7030014209m_-3496548646339468172ydp623f911eyiv435318=
+0928" style=3D"font-family:Helvetica, Arial, sans-serif;"><div style=3D"fon=
+t-family:Helvetica, Arial, sans-serif;"><div style=3D"font-family:Helvetica=
+, Arial, sans-serif;">Hi Tom,&nbsp;</div><div style=3D"font-family:Helvetic=
+a, Arial, sans-serif;"><br clear=3D"none"></div><div style=3D"font-family:H=
+elvetica, Arial, sans-serif;"><div style=3D"font-family:Helvetica, Arial, s=
+ans-serif;"><div dir=3D"ltr" style=3D"font-family:Helvetica, Arial, sans-se=
+rif;">Great to hear from you and it=E2=80=99s been a while!&nbsp;</div><div=
+ dir=3D"ltr" style=3D"font-family:Helvetica, Arial, sans-serif;">Yes, the l=
+ist still looks good to me.&nbsp;</div><div dir=3D"ltr" style=3D"font-famil=
+y:Helvetica, Arial, sans-serif;"><br clear=3D"none"></div><div dir=3D"ltr" =
+style=3D"font-family:Helvetica, Arial, sans-serif;">I think we=E2=80=99re a=
+t the point of just booking the slot for them to come and collect the works=
+.</div><div dir=3D"ltr" style=3D"font-family:Helvetica, Arial, sans-serif;"=
+><br clear=3D"none"></div><div dir=3D"ltr" style=3D"font-family:Helvetica, =
+Arial, sans-serif;">When would be best for you?&nbsp;</div><div dir=3D"ltr"=
+ style=3D"font-family:Helvetica, Arial, sans-serif;"><br clear=3D"none"></d=
+iv><div dir=3D"ltr" style=3D"font-family:Helvetica, Arial, sans-serif;">My =
+best,&nbsp;</div><div dir=3D"ltr" style=3D"font-family:Helvetica, Arial, sa=
+ns-serif;">Mila&nbsp;</div><div dir=3D"ltr" style=3D"font-family:Helvetica,=
+ Arial, sans-serif;"><br clear=3D"none"></div><div dir=3D"ltr" style=3D"fon=
+t-family:Helvetica, Arial, sans-serif;"><br clear=3D"none"></div><div dir=
+=3D"ltr" style=3D"font-family:Helvetica, Arial, sans-serif;">Mila Askarova&=
+nbsp;<br clear=3D"none">CEO &amp; Founder&nbsp;<br clear=3D"none"><br clear=
+=3D"none">GAZELLI ART HOUSE<br clear=3D"none"><br clear=3D"none"><a shape=
+=3D"rect" href=3D"http://www.gazelliarthouse.com" style=3D"font-family:Helv=
+etica, Arial, sans-serif;" rel=3D"nofollow" target=3D"_blank">www.gazelliar=
+thouse.com</a><br clear=3D"none">+44 (0) 207 491 8816 / +994 (0) 12 498 123=
+0<br clear=3D"none"></div></div></div><div style=3D"font-family:Helvetica, =
+Arial, sans-serif;"><br clear=3D"none"></div><div id=3D"ydp7dffeb6cyiv70300=
+14209m_-3496548646339468172ydp623f911eyiv4353180928yqt76457" style=3D"font-=
+family:Helvetica, Arial, sans-serif;"><div style=3D"font-family:Helvetica, =
+Arial, sans-serif;"><br clear=3D"none"><div style=3D"font-family:Helvetica,=
+ Arial, sans-serif;"><div dir=3D"ltr" style=3D"font-family:Helvetica, Arial=
+, sans-serif;">On Tue, 13 May 2025 at 20:16, Thomas Machnik &lt;<a shape=3D=
+"rect" href=3D"mailto:zipnpup@yahoo.com" style=3D"font-family:Helvetica, Ar=
+ial, sans-serif;" rel=3D"nofollow" target=3D"_blank">zipnpup@yahoo.com</a>&=
+gt; wrote:<br clear=3D"none"></div><blockquote style=3D"margin:0px 0px 0px =
+0.8ex;border-left-width:1px;border-left-style:solid;padding-left:1ex;font-f=
+amily:Helvetica, Arial, sans-serif;border-left-color:rgb(204,204,204);"><di=
+v style=3D"font-family:Helvetica, Arial, sans-serif;"><div style=3D"font-fa=
+mily:Helvetica, Arial, sans-serif;font-size:16px;"><div style=3D"font-famil=
+y:Helvetica, Arial, sans-serif;"></div>
+        <div dir=3D"ltr" style=3D"font-family:Helvetica, Arial, sans-serif;=
+">Hi Mila,</div><div dir=3D"ltr" style=3D"font-family:Helvetica, Arial, san=
+s-serif;"><br clear=3D"none"></div><div dir=3D"ltr" style=3D"font-family:He=
+lvetica, Arial, sans-serif;">Happy Tuesday. Sounds like we will move forwar=
+d. As it has been some time do we need to review the works? If so, these ar=
+e the works we plan to send,&nbsp;</div><div dir=3D"ltr" style=3D"font-fami=
+ly:Helvetica, Arial, sans-serif;"><span style=3D"font-family:Helvetica, Ari=
+al, sans-serif;"><a shape=3D"rect" href=3D"https://docs.google.com/spreadsh=
+eets/d/11MqbW2pAIPfUA4YNC6AHWu09PPzyM20-YvIF8nedKNs/edit?gid=3D0#gid=3D0" s=
+tyle=3D"font-family:Helvetica, Arial, sans-serif;" rel=3D"nofollow" target=
+=3D"_blank">https://docs.google.com/spreadsheets/d/11MqbW2pAIPfUA4YNC6AHWu0=
+9PPzyM20-YvIF8nedKNs/edit?gid=3D0#gid=3D0</a></span><br clear=3D"none"></di=
+v><div dir=3D"ltr" style=3D"font-family:Helvetica, Arial, sans-serif;"><br =
+clear=3D"none"></div><div dir=3D"ltr" style=3D"font-family:Helvetica, Arial=
+, sans-serif;">Also are we still going with Dietl? We sent the signed Dietl=
+ paper work to Gazelli on April 16th. Looks like I sent it to Michael but d=
+idn=E2=80=99t cc you. Sorry about that.&nbsp; What is it that we need to do=
+ on our end in order to proceed?</div><div dir=3D"ltr" style=3D"font-family=
+:Helvetica, Arial, sans-serif;"><br clear=3D"none"></div><div dir=3D"ltr" s=
+tyle=3D"font-family:Helvetica, Arial, sans-serif;">Sincerely,&nbsp;</div><d=
+iv dir=3D"ltr" style=3D"font-family:Helvetica, Arial, sans-serif;">Tom</div=
+></div></div><div style=3D"font-family:Helvetica, Arial, sans-serif;"><div =
+style=3D"font-family:Helvetica, Arial, sans-serif;font-size:16px;"><div sty=
+le=3D"font-family:Helvetica, Arial, sans-serif;"><br clear=3D"none"></div>
+       =20
+        <div id=3D"ydp7dffeb6cyiv7030014209m_-3496548646339468172ydp623f911=
+eyiv4353180928m_8513150548162707194ydpb2f663f3yahoo_quoted_7506539982" styl=
+e=3D"font-family:Helvetica, Arial, sans-serif;">
+            <div style=3D"font-family:Helvetica, Arial, sans-serif;font-siz=
+e:13px;">
+               =20
+                <div style=3D"font-family:Helvetica, Arial, sans-serif;">
+                    On Tuesday, May 13, 2025 at 07:22:56 AM PDT, Mila Askar=
+ova &lt;<a shape=3D"rect" href=3D"mailto:m.askarova@gazelliarthouse.com" st=
+yle=3D"font-family:Helvetica, Arial, sans-serif;" rel=3D"nofollow" target=
+=3D"_blank">m.askarova@gazelliarthouse.com</a>&gt; wrote:
+                </div>
+                <div style=3D"font-family:Helvetica, Arial, sans-serif;"><b=
+r clear=3D"none"></div>
+                <div style=3D"font-family:Helvetica, Arial, sans-serif;"><b=
+r clear=3D"none"></div>
+                <div style=3D"font-family:Helvetica, Arial, sans-serif;"><d=
+iv id=3D"ydp7dffeb6cyiv7030014209m_-3496548646339468172ydp623f911eyiv435318=
+0928m_8513150548162707194ydpb2f663f3yiv8802390229" style=3D"font-family:Hel=
+vetica, Arial, sans-serif;"><div style=3D"font-family:Helvetica, Arial, san=
+s-serif;"><div style=3D"font-family:Helvetica, Arial, sans-serif;">Hi Paul,=
+&nbsp;</div><div style=3D"font-family:Helvetica, Arial, sans-serif;"><br cl=
+ear=3D"none"></div><div style=3D"font-family:Helvetica, Arial, sans-serif;"=
+>I think we are all ready to go with it on our end so do go ahead and send =
+it over if you=E2=80=99re happy with that! I know the girls were keen at ge=
+tting them photographed and offered to a few clients on the waiting list.&n=
+bsp;</div><div style=3D"font-family:Helvetica, Arial, sans-serif;"><br clea=
+r=3D"none"></div><div style=3D"font-family:Helvetica, Arial, sans-serif;">S=
+peak soon,&nbsp;</div><div style=3D"font-family:Helvetica, Arial, sans-seri=
+f;">Mila&nbsp;</div><div style=3D"font-family:Helvetica, Arial, sans-serif;=
+"><br clear=3D"all"><br clear=3D"all"><div style=3D"font-family:Helvetica, =
+Arial, sans-serif;"><div dir=3D"ltr" style=3D"font-family:Helvetica, Arial,=
+ sans-serif;">Mila Askarova&nbsp;<br clear=3D"none">CEO &amp; Founder&nbsp;=
+<br clear=3D"none"><br clear=3D"none">GAZELLI ART HOUSE<br clear=3D"none"><=
+br clear=3D"none"><a shape=3D"rect" href=3D"http://www.gazelliarthouse.com"=
+ style=3D"font-family:Helvetica, Arial, sans-serif;" rel=3D"nofollow" targe=
+t=3D"_blank">www.gazelliarthouse.com</a><br clear=3D"none">+44 (0) 207 491 =
+8816 / +994 (0) 12 498 1230<br clear=3D"none"></div></div></div><div style=
+=3D"font-family:Helvetica, Arial, sans-serif;"><br clear=3D"none"></div><di=
+v id=3D"ydp7dffeb6cyiv7030014209m_-3496548646339468172ydp623f911eyiv4353180=
+928m_8513150548162707194ydpb2f663f3yiv8802390229yqt19120" style=3D"font-fam=
+ily:Helvetica, Arial, sans-serif;"><div style=3D"font-family:Helvetica, Ari=
+al, sans-serif;"><br clear=3D"none"><div style=3D"font-family:Helvetica, Ar=
+ial, sans-serif;"><div dir=3D"ltr" style=3D"font-family:Helvetica, Arial, s=
+ans-serif;">On Tue, 13 May 2025 at 13:31, Paul Cohen &lt;<a shape=3D"rect" =
+href=3D"mailto:paulrcohen@gmail.com" style=3D"font-family:Helvetica, Arial,=
+ sans-serif;" rel=3D"nofollow" target=3D"_blank">paulrcohen@gmail.com</a>&g=
+t; wrote:<br clear=3D"none"></div><blockquote style=3D"margin:0px 0px 0px 0=
+.8ex;border-left-width:1px;border-left-style:solid;padding-left:1ex;font-fa=
+mily:Helvetica, Arial, sans-serif;border-left-color:rgb(204,204,204);"><div=
+ dir=3D"ltr" style=3D"font-family:Helvetica, Arial, sans-serif;"><div style=
+=3D"font-family:Helvetica, Arial, sans-serif;"><div style=3D"font-size:smal=
+l;font-family:Helvetica, Arial, sans-serif;">Hi Mila,&nbsp; In a brief emai=
+l chat with Tom he asked about the shipment.&nbsp; Specifically, he needs t=
+he space in the studio that's currently occupied by the shipment work so he=
+'s inclined to put it all back in the racks.&nbsp; We're not sure of the cu=
+rrent status.&nbsp; I signed with Dietl last month but we haven't heard any=
+thing since then.&nbsp; <br clear=3D"none"></div></div><div style=3D"font-f=
+amily:Helvetica, Arial, sans-serif;"><br clear=3D"none"></div><div style=3D=
+"font-family:Helvetica, Arial, sans-serif;">The question is whether you wan=
+t to go ahead with the shipment or wait<span style=3D"font-size:small;font-=
+family:Helvetica, Arial, sans-serif;">, given how quiet the art market is.<=
+/span></div><div style=3D"font-family:Helvetica, Arial, sans-serif;"><span =
+style=3D"font-size:small;font-family:Helvetica, Arial, sans-serif;"><br cle=
+ar=3D"none"></span></div><div style=3D"font-family:Helvetica, Arial, sans-s=
+erif;"><span style=3D"font-size:small;font-family:Helvetica, Arial, sans-se=
+rif;">Thanks, <br clear=3D"none"></span></div><div style=3D"font-family:Hel=
+vetica, Arial, sans-serif;"><span style=3D"font-size:small;font-family:Helv=
+etica, Arial, sans-serif;"><br clear=3D"none"></span></div><div style=3D"fo=
+nt-family:Helvetica, Arial, sans-serif;"><span style=3D"font-size:small;fon=
+t-family:Helvetica, Arial, sans-serif;">--P</span></div><div style=3D"font-=
+family:Helvetica, Arial, sans-serif;"><div dir=3D"ltr" style=3D"font-family=
+:Helvetica, Arial, sans-serif;"><div dir=3D"ltr" style=3D"font-family:Helve=
+tica, Arial, sans-serif;"><div style=3D"font-family:Helvetica, Arial, sans-=
+serif;"><div dir=3D"ltr" style=3D"font-family:Helvetica, Arial, sans-serif;=
+"><div style=3D"font-family:Helvetica, Arial, sans-serif;"><div dir=3D"ltr"=
+ style=3D"font-family:Helvetica, Arial, sans-serif;"><div style=3D"font-fam=
+ily:Helvetica, Arial, sans-serif;"><div dir=3D"ltr" style=3D"font-family:He=
+lvetica, Arial, sans-serif;"><div style=3D"font-family:Helvetica, Arial, sa=
+ns-serif;"><div dir=3D"ltr" style=3D"font-family:Helvetica, Arial, sans-ser=
+if;"><div style=3D"font-family:Helvetica, Arial, sans-serif;"><div dir=3D"l=
+tr" style=3D"font-family:Helvetica, Arial, sans-serif;">___________________=
+___________<br clear=3D"none"><br clear=3D"none">Paul Cohen,&nbsp;&nbsp;Pro=
+fessor</div><div dir=3D"ltr" style=3D"font-family:Helvetica, Arial, sans-se=
+rif;">School of Computing and Information</div><div dir=3D"ltr" style=3D"fo=
+nt-family:Helvetica, Arial, sans-serif;">University of Pittsburgh</div><div=
+ dir=3D"ltr" style=3D"font-family:Helvetica, Arial, sans-serif;"><a shape=
+=3D"rect" href=3D"https://paulrcohen.github.io/" style=3D"font-family:Helve=
+tica, Arial, sans-serif;" rel=3D"nofollow" target=3D"_blank">personal webpa=
+ge</a><br clear=3D"none">______________________________</div></div></div></=
+div></div></div></div></div></div></div></div></div></div></div>
+</blockquote></div></div></div>
+</div></div></div>
+            </div>
+        </div></div></div></blockquote></div></div></div>
+</div></div></div>
+            </div>
+        </div></div></div></blockquote></div></div></div>
+</div></div></div>
+            </div>
+        </div></div></body></html>
+------=_Part_1071111_2082651834.1747634351567--

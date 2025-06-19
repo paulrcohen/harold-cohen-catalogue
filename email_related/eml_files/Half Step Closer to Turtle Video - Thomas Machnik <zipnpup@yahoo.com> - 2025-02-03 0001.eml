@@ -1,0 +1,153 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a11:a211:b0:5c7:f970:fbca with SMTP id fp17csp2111438pxc;
+        Sun, 2 Feb 2025 21:01:12 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFe/5wrYm+lQQXQaRmiCKNceQmzEDImYVA4eul4l6YVvF+Ixgc977i02JurUlpuJA6or3jn
+X-Received: by 2002:a05:622a:1195:b0:467:6d36:4c94 with SMTP id d75a77b69052e-46fea06b75amr191817061cf.2.1738558871996;
+        Sun, 02 Feb 2025 21:01:11 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1738558871; cv=none;
+        d=google.com; s=arc-20240605;
+        b=G6YcSdzM5YDr7b5ODk1OLPCP4g9735djFV681PnkwYKLkqrpvmygel19qfBNRtEeHW
+         7kcoeuT/hmnnkBdQPm3cwZDli913HG5Nb1CWf5AnWcFsB7onHTU6l47WNGU/Z3GqbYtM
+         DO7jNUCoVPdWvVptbKfWbOgpPssNibhbPg4dVXrSLzFRD15GkuyoXIgJrQYHMqCVhsQV
+         6Gb+81ZYoPxvIbNRi3XptlPj/X2+ssJZah85IFa69xCw3dFy4Y+oDKvsm4+2HU8bZv3z
+         LQlPxpNBryqyeAp/9K54/ccC3J4HGXq5tqCHlrlNLMrgOuvx8WhCPNPS3orxxkIDmwTx
+         rl3Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=references:mime-version:subject:message-id:cc:to:reply-to:from:date
+         :dkim-signature;
+        bh=NA4yIY0/R6h2mhMN7L74fGNW/Q7FKtsWEuH9cReK5js=;
+        fh=nA9K9RJbhS0sDse9JDA+PJBZ6UruSyUPT45tu0jGHh8=;
+        b=Utw5FBNhaakugnwtytmkEgZvPi4yR25qJVurrpHPEmAq+QXzZg20PPVD2Am/dmmX9x
+         mAgj7+U3jSOQnVKueVZNlHNnlsfpoDTMVL/VUkQ6Bg9KqZudvOgSocFrmILBgYnsinQS
+         OyK9Uvz9/HBvGaR/HZXxIqFvE7ftgrzso1wTROlfsa6Y160czqdlLdfmd/Zvq50t3bjF
+         Gx6o22ld/nz+qSr7eNxqt2eUU4y+ZpQL43rbjFrE3ICkMwGhPS0lWeIrYGNGo8Kh9uOo
+         so3PrbQcI+fjBrujfBboadhIqvGhCQLof+nmVyQloclXkdCj8+zhVDr7AIffM3FEiKtw
+         0eVg==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=XmsvcTjN;
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.135.125 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+Return-Path: <zipnpup@yahoo.com>
+Received: from sonic310-15.consmr.mail.bf2.yahoo.com (sonic310-15.consmr.mail.bf2.yahoo.com. [74.6.135.125])
+        by mx.google.com with ESMTPS id d75a77b69052e-46fdf1f3d01si87020271cf.657.2025.02.02.21.01.11
+        for <paulrcohen@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 02 Feb 2025 21:01:11 -0800 (PST)
+Received-SPF: pass (google.com: domain of zipnpup@yahoo.com designates 74.6.135.125 as permitted sender) client-ip=74.6.135.125;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=XmsvcTjN;
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.135.125 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1738558871; bh=NA4yIY0/R6h2mhMN7L74fGNW/Q7FKtsWEuH9cReK5js=; h=Date:From:Reply-To:To:Cc:Subject:References:From:Subject:Reply-To; b=XmsvcTjNLukKZQ/YVbvjhqpCsLavpAvsP6TyWb+WhdTL7nRPmELKedbviQWBsvbW1rdCaSdZF2wkWxPBt4SB4hZCBkWG+uKJba/157g0+UC2Zx25NegpiPqKAm/M1UtBIGxrjamG8hZxz7K6covXvbyolPrZY9z18yyAZ+qrqVK9UjlOcgVw2pDylOgM8X9ZWzoSxZ6kzOweBlCESBJFMcoORQgJZiBv+86tFZSpbKP0ZO1jsr5sjIwIA58CDCHc3yGhT9AYtcvfoZAPm148bVdNkbflq6Yln6jky3RE/n/AVlwAJ5zmhge857TVYZVK8P7vcH2ElsjxgZc/6YjZmA==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1738558871; bh=IiVhCfwTOUZKJK6E22AQjmh8vrM1cuRn2SAIAPO/UQX=; h=X-Sonic-MF:Date:From:To:Subject:From:Subject; b=cYE4s5n0L/At0Yc5xoo1W5wSUqcRYCx1fjUnSErZHAcb3J0J576tIq2B5cSuU40/ApplBK68FN9XBwjLfk/YENK7TT+awt8apH8zLbyglbIdAcRD59DnaP4QCwa7VLJJoUSr1xutPFco78uQX0uZ3/aEq/vWOkLIJELqUHHcFwimyYeuGB5DGB0lStpxDTJYP8Aa3FUiVOur26uqYobyno4Lz2R0WX3+B7DhRu5pBlmo8QIyk7s0MZCCIbmORpeL45Bx5mmtmhWd3lrSy1++PxoZKmuhZREhj8DY6P4daNE3RyN6hWiAwgqYZmxbXeXVWmZpDqbVzl+Mw+keGocxDA==
+X-YMail-OSG: 7kfEvqwVM1mXUq4c6PKwekMF4G4sTjMo61uWsQC2LZPUncSbcLt9b_EoC_KwRlm
+ FPtQ3_KPCkzvXKpU4auBGauTrZfDJR0tscX6CXJqtnmxhZMwgXZXwAPDvh9UEoe4R_Wk1UrF4AtU
+ UzRAVlen20oGVtBmhMHW7SpTLHzS9Y_lS8XQeiGe3YtXZYv5cXq9PVaO1lLGpoMCPKQ7Lkr2gTJR
+ gyodhf4igJMVieQLYELGugmtPKSddrgt6t_s9_qfylzpPgjU4JNpa0rQHLANvUVgWl2VAoLsUg6S
+ nKTsjlpXy2n5sBIRlRRU7GiSwFAJ96fTfD9bXeK7VTra1IuiijrQDeB1EAIvFKdR6kXvtgNYngyP
+ cs7DdkWfkWjEcLqr9LxEUO7XuoIihvidgPjiSgmOqvrtkl4y5GuylC36TIjbHq.m9opQ9oTe162V
+ Gz0b.rVYEA.L.F8CxxZKTghLpqEFWkTTC7wbITXoJEXXNx66PxQqycun4kOgnaqOB7NZkEg3UJet
+ wu4tum7mnq_HGt70jv4NhkerppQvZ7c8dHAj4duGdTDrU2Bkjs8S9TfsOVr4e0lQFRbZrVQUb2HD
+ st7WyRCrG6nqx2wge00I0aiZaooNhqaqSSE2G_gbCSxAITHX_ZxypgdehNGwYLIZEQ4U_Gspeevx
+ c9K5Bxu2IQMQCRRoNih3KuUtGn35plHuO1rmOk70JPKMXt_JehHtkR.uYwkc11XCxiie77UOMOlG
+ sPwJ6CefysgbJMcKLdgHqaQz0U52PxE8lRFBO8L75ur4QODluGSjQxCTzS.dfc9buVNzLkxRuc4s
+ K2ApSVaoEi.hrv1wGqRgMQaHgCWbxDHm8pv0.KDUaOlTPyIW3KIhPzq3VKhgayCg8WioycCWfzav
+ r2aZ9xPR0_tcWoaMiv7JavrEXmgl2bZyfu16w6pqJuVcRaQVb3BOA9MejvUs5PfDRB7g_eW3.SsO
+ 8oik7vFodIipQpwxrQvTT4QsEB558E2w9UgfouqjZjiaJ3IBUyxdY4uJNfu1AMuWWVc3nxciWykD
+ 6Pi5BjYOrRVHeb9L9ua9Ch9eJYamWbcJ7cmMf0WSBIBWaK8xlVbkEnXXPgdHyX7wjZ93HukKWK2o
+ FQfE4udUDROg8zTBYGpsrfuVJXZqH4RYZnVbAGfAEWtuTiI9itjOCWHAVwegtwZtCEGzwHnWe3dn
+ 7zc9Ob6.zDNxKgS52ajtKCdzic4UdvUCznmrGM0cgimiscESYH1BUAdLo2mby0CH.XJ0ewBH.dZQ
+ egE1JThfi61Qvll9lCv5eCr1Nw1PzyFuQp7fLHZhx4YuWUYnPHsLvnstDs24KnbGxRKbY7BbmbYc
+ QUSwQR75hvQhHntjpqFb_.snrJ2kB9rXM6JoTPVLVzQtVVdy9Ekf.vkw_LmLoEoOsNkqTwzhL.aB
+ lVL74TEmu89z0I15afcHaU0H4zsOiJQaHgMNNydNPQH9eeHrf5VB4LWMrCltGdKboKBC7MlkLmRz
+ i6KV7XkYsSdWax.HSbMAzTBC3gIGkWdQNDHumRm_JPNvs2cn5ghfFw6jnl9YEvF7vtsYvFF42abP
+ GlceC_RstRacsP_c4EWUN.e_da1VCeKNDIhoBsL2D2gVHE4BlqIW5YLgSIAIZUnw186Gloyyv4kC
+ uuy7R2qSCakDpsMHBiR0CMC7.4dHQgiLDS.Nwc2_OASJBzMBTEKf6EN0B5GFIIeua64LXlh39Cpz
+ c2oGB1bjOW2Mqgax7bjp1VuLb889s6gwb1ZxK1F.ikGV0x.U6WB.LWPUUTXkr_EIrE8qiz2vd3gJ
+ PnYX9AJGpIEqW0zjG2SkR4q9SCxaJwxWcOj_YX36rWyDWR24aj3h5gqjAEORvlScFygSGLntAj9X
+ 5svxHDLGadWtTyXHa.BdcApN6O387HTw4S8HvwlAVwPKdxxLDm39TcnlIM9OytLhahk3p5NcjBdn
+ HWrUa4BqrZ2TlezmrgSVtNizplWW4Y3r1ikfYVreqdpb6tpLKXu9n3zHHqtfplW8q4DvlWTrS2.w
+ GAAGE4wJ0l5Upu4jvimCcqasoD36YQPv85MLXeGLxMUi2Nr1adsE44vdldMRp9pbNp9RXjEzxcyg
+ eNjCLSxQX3nBYmOrWTMQz0ujkq89hRieiegCI6uOndvzO4NT6lAHDZFD69RVL3wkNfF19_KAJIN3
+ ycyJp_r8jY.HlEvEK5UiNc2LmSD5ChQ5A8sDul4xWPaCYF0ToFIHHy3uaUguqOyl_1mBzmxT5j3O
+ EBW.E8nkbDf.nht5SPu9eDBDJC78D.uXBzsVF_OYjtOMe371YIU1SflCOJI7F0lqZjXxfS.B0FNQ
+ YSlvpngbuEQtp.0wjLd3OkQCe8gCzwj0PbUljL_1s_Q--
+X-Sonic-MF: <zipnpup@yahoo.com>
+X-Sonic-ID: 91b10f48-83c0-4977-8641-83d1a82c7ed9
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic310.consmr.mail.bf2.yahoo.com with HTTP; Mon, 3 Feb 2025 05:01:11 +0000
+Date: Mon, 3 Feb 2025 05:01:06 +0000 (UTC)
+From: Thomas Machnik <zipnpup@yahoo.com>
+Reply-To: Thomas Machnik <zipnpup@yahoo.com>
+To: George Lionel Barker <george@gazelliarthouse.com>
+Cc: Paul Cohen <paulrcohen@gmail.com>, 
+	Mila Askarova <m.askarova@gazelliarthouse.com>, 
+	Harold Cohen Trust <aaron@aaronshome.com>, 
+	Anastasia Shapovalova <anastasia@gazelliarthouse.com>
+Message-ID: <6637600.4163933.1738558866563@mail.yahoo.com>
+Subject: Half Step Closer to Turtle Video
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_4163932_1490447295.1738558866561"
+References: <6637600.4163933.1738558866563.ref@mail.yahoo.com>
+X-Mailer: WebService/1.1.23187 YMailNovation
+Content-Length: 3762
+
+------=_Part_4163932_1490447295.1738558866561
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi George, Happy Monday!
+I came across a video you might be interested in viewing dated December 198=
+0. And while it is not the Holy Grail video of the Turtle in action, it doe=
+s bring us a half step closer to seeing the elusive Turtle crawling. This v=
+ideo does have a recorded-live segment of AARON generating a Turtle Era wor=
+k on the computer terminal. Also, I recently read an old correspondence wri=
+tten by Becky Cohen. In the letter she claims that the they had received a =
+video tape of the 1977 Stedelijk Museum show. But unfortunately they could =
+not find a machine that could play the tape. Apparently at that time the US=
+ had a different video format than what was being used in the Netherlands. =
+She latter claimed in the letter that she was returning the video. I believ=
+e she was returning it in the hopes the video could be converted in the Net=
+herlands for viewing in the US. I haven=E2=80=99t found a reply so I don=E2=
+=80=99t know if a viewable video was returned. However, this does tell me t=
+hat I video was made so there is still hope!
+Here is the youtube link to the video of AARON running back in 1980. He als=
+o speaks of the Murals he was executing at the time.https://www.youtube.com=
+/watch?v=3DEcnZegsQjYA
+
+Have a great week,Tom
+------=_Part_4163932_1490447295.1738558866561
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head></head><body><div class=3D"ydp6ed2ad75yahoo-style-wrap" style=
+=3D"font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px=
+;"><div id=3D"ydp6ed2ad75yiv8806974890"><div style=3D"font-family:Helvetica=
+ Neue, Helvetica, Arial, sans-serif;font-size:16px;" class=3D"ydp6ed2ad75yi=
+v8806974890yahoo-style-wrap" dir=3D"ltr" data-setdir=3D"false"><div dir=3D"=
+ltr" data-setdir=3D"false">Hi George, Happy Monday!</div><div dir=3D"ltr" d=
+ata-setdir=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"false">I cam=
+e across a video you might be interested in viewing dated December 1980. An=
+d while it is not the Holy Grail video of the Turtle in action, it does bri=
+ng us a half step closer to seeing the elusive Turtle crawling. This video =
+does have a recorded-live segment of AARON generating a Turtle Era work on =
+the computer terminal. Also, I recently read an old correspondence written =
+by Becky Cohen. In the letter she claims that the they had received a video=
+ tape of the 1977 Stedelijk Museum show. But unfortunately they could not f=
+ind a machine that could play the tape. Apparently at that time the US had =
+a different video format than what was being used in the Netherlands. She l=
+atter claimed in the letter that she was returning the video. I believe she=
+ was returning it in the hopes the video could be converted in the Netherla=
+nds for viewing in the US. I haven=E2=80=99t found a reply so I don=E2=80=
+=99t know if a viewable video was returned. However, this does tell me that=
+ I video was made so there is still hope!</div><div dir=3D"ltr" data-setdir=
+=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"false">Here is the you=
+tube link to the video of AARON running back in 1980. He also speaks of the=
+ Murals he was executing at the time.</div><div dir=3D"ltr" data-setdir=3D"=
+false"><a href=3D"https://www.youtube.com/watch?v=3DEcnZegsQjYA">https://ww=
+w.youtube.com/watch?v=3DEcnZegsQjYA</a><br></div><span></span><div dir=3D"l=
+tr" data-setdir=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"false">=
+Have a great week,</div><div dir=3D"ltr" data-setdir=3D"false">Tom</div></d=
+iv></div></div></body></html>
+------=_Part_4163932_1490447295.1738558866561--

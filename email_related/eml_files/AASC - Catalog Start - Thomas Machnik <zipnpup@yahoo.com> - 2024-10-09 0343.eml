@@ -1,0 +1,180 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a10:4b91:b0:5ad:6c17:f336 with SMTP id sk17csp729738pxb;
+        Wed, 9 Oct 2024 00:44:11 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHi0wkjPbTkVK0o/BXYyQNuOONif6IOdlLuRvmfWZR4liluWyt1WeKWIZ02UWIEJGbp3pZz
+X-Received: by 2002:a05:622a:5c92:b0:45f:7f0:c3e4 with SMTP id d75a77b69052e-45fb0e40a00mr22159231cf.45.1728459851557;
+        Wed, 09 Oct 2024 00:44:11 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1728459851; cv=none;
+        d=google.com; s=arc-20240605;
+        b=UFRhotg5cV4Ti94bbEMZYFZvsNO0fchdKVPXDZEVIU2W1W+6Rt5YcWTF7/VLStDw5e
+         TCgvEVtyAwGv9f95zOLgr7+KZ8sHQMw/+RYAsC8b3nAp1Z2yf9WgrD7qogSDVcUqpszB
+         uleGpLcelJIRr82pmTJH4cXwBl/v0TkyThoqG+xnJpdHOPBa72aLnHhbAfdihphpoIgv
+         UQtgUmxaWvcYoVtXgBhMYRkpOzqABWvrYFgI5fCJ2x2FsxZ7mveuhmsHF4EioOdyI7yg
+         2vP0nbaTcXtlBewkrLaPr+6tunkKbO3JyUkoWtgVzB7s94H5RIXXNRcCy4//G4Vp+8V4
+         4+Ww==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=references:mime-version:subject:message-id:cc:to:reply-to:from:date
+         :dkim-signature;
+        bh=DLOEiZe7pQdOzOVomDRIHBFEwN9IW6hGIq9/6uTjD9Y=;
+        fh=9KF8GfHGoghc8Ptoja+rnEaviAGdW9gT42bexdmiTvM=;
+        b=SMlCX+KTOJ19K03GyMInSyHtpYGt5acVq6PVzOFJVn5ihMwJMaqYKWvESJHGyPHWVL
+         n0E+zTGlT/gmaaRkL0U0sAUP9684O/fJ3MueGWpdL2otLMk1jiCtFb6PgWD8mTuBMyVC
+         ODyhJLRv73eNR7PRyz5rrUM2bNkb3izQ48cw4OcmO8wX7JKJle/mZ9OBqFq2h1TOSaAu
+         GHkCEO5PNQoxsLCR+G99s/sQ/BvocCoO6Nx1KUmT+HvYvglmuEpkT/kvZSD8JqDqYD5S
+         MqWsv+t2UpTxCTSGNS+rjs2SBh8H6OJOcmqi/5Xhfz3lbYcLYeu9RqjtTCk1mha9lr5Y
+         Gcdw==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=ScMnB9QQ;
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.131.83 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+Return-Path: <zipnpup@yahoo.com>
+Received: from sonic319-28.consmr.mail.bf2.yahoo.com (sonic319-28.consmr.mail.bf2.yahoo.com. [74.6.131.83])
+        by mx.google.com with ESMTPS id d75a77b69052e-45da75dfdbdsi110186191cf.303.2024.10.09.00.44.11
+        for <paulrcohen@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 09 Oct 2024 00:44:11 -0700 (PDT)
+Received-SPF: pass (google.com: domain of zipnpup@yahoo.com designates 74.6.131.83 as permitted sender) client-ip=74.6.131.83;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=ScMnB9QQ;
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.131.83 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1728459851; bh=DLOEiZe7pQdOzOVomDRIHBFEwN9IW6hGIq9/6uTjD9Y=; h=Date:From:Reply-To:To:Cc:Subject:References:From:Subject:Reply-To; b=ScMnB9QQ0b31pfc4U93aOpGrl+UOXeYOaH/sbIyHA1UomAIl2OB7SlhWlFiZFK65BX1qLLkVlWaUsJqfPfHUCyedcZLh8EqMsn7gXKFbpdXMGY/P8UD+GxvMGKYCrsdSB7DNTsrfUJ7RkJpISzn71NGcfdmhBFLglaMfscM8tmJj+3SCC0ekuKyaZZtD4VxR1F9a853mLPdHb1SSOYSe9KhdXsFZ3RC4x7xjVtFGVC+qcjUHJVVVvdsy1fDVhC4w4oP/E11g0Bik2BBilE8xAqt1QBSOH4r70gJCUOan92cQXjJglg6xvG/rlkl+la8RJEVrfPXL5lR8h0Rbexp/MA==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1728459851; bh=bgOedhDcgwH2hxlzVmJ57Rdv+dZtqPYOwGrTnGVWey7=; h=X-Sonic-MF:Date:From:To:Subject:From:Subject; b=mWnpKwZRBTz17gIQwqAstE+nv9lkbpzYeeEUK4rIkCSEZH1AjTjVgEGa00Vq2YzPOin6LUF2KCyq1+Os6ILpaIMIiLhsBgrmBgTRvhEALAswWsxH/QyIE31KjKTuTURbAFGFa59OBPRxuzxPXBm7tqLVET9dXYq5Gl/pzh2iY8dk2JoZgrWBkUijyrybo6L38voBh+eh5DhBE8Hvxu89qiocy1lToMGCtQHyINRc1cMcu3BsVKsDcKLGtBkCKrVURjQSHAeKEVhbEo7TO7CEp8V5EYdhJUQR28zb+aGjrjZTClMSGiIWd55CfzqBO1BCQBKFDFYNGvTyT8Ra/Kp2jQ==
+X-YMail-OSG: 1XGi6m8VM1l_zt3R3nj.HeEZFz2AwUiSbtxiEeX23rQ8OQB_FGwo8AjZRYRwGK.
+ NKTQGs7vpz8DJmxj2K9htXBO44ahhQMi3lwN5_qhU_EvWpo.hIvdyRX6StU4nqIK6qisCEs8xVr9
+ qzhfeypMkFHfmdEdhn_nIdC2PuUf8TJPsTUtvdrX4h2wT7IIP0OIzXCbTbe1aTs5ncU2erfm4jXA
+ FLWjt_vh4b12xoTNSK4jeP5P1v7SruiN96dE._.CJcD9yoDbGYfHSqdwQXjLCBFiHH5sZtpBTzA5
+ MQbrOCsEeEI18I8cFGOy4w1UqsxfsFGnW2ozEc5suPzLRn2dX41Pp_Ton4d7qbdvI3yNbXOaMEs4
+ NZqS5flmanMOKXS_GMdYsPCL.RTqC0aO4G7vTSVOdtzyoMoftgFd6PwLQqWhMMa35zz9VmuxgkE4
+ 3rUAzj6Qp996skI7iLQlku3LvJzvWW0sgK7ZxPkoOg.h._jHd1YEid3HJkCyr.BhSC5a3Us2YmSy
+ eVVmNmyUZNlVzgygLh4oLnD1NMPMS1HvpduslFlQ9jw3VmItok83BYv97u7QVqBBQZ.HkTbPtcGk
+ iGxo66txAo_XpQmAKJA4PzAUVVHGch3GWsnT3b6X.by7qaHq9KE4_ExR_0j40bqmhFRfeqT81KT5
+ VwIiChZQDvvOxrQ2p4m_G7Jo3HJ88_OR6UQy7bjP3KQ0gLByp0qt1Z1SEOvFSDq9tAZmgi_Ky31W
+ ohu56P3FCpDXD3rOCiaNIW_ps5ovHJUA52Bh6t0.A4KNL63YS05Oh0DBRsTD1u.ptGKemWNmjCYO
+ Wsce6Lsxj9SRFpoqgNkQ38NkLNJp458zd9fTewsB9D8B3N.TOog6nWHGzn86ZRCweVX9iViNAA9a
+ g.FaAqR15gEdlFuCMWG.vg_chy1CwJgj5DsBb501W9cWmmlgass9OK4VkSHLqonjndWgLgMvHWWq
+ H.Efsy3vue1hNr5FLZqaOg7ULKz7Bb69vAAfyVe1pOE.6D6ExMongzH5x.lmF9Eqt8EFd2RewWKw
+ 99CTuHSf8J4YFyHuSnYLCRpv0_03yK6XXOe2M_WpIAN.AbXtzuQxjj2JbXEU.6bcVymJqrtS5AbQ
+ iTeee8fQ_Rgh1vH8LCb_so5qGmyaCev5PaKKP6adq99WIJJaBP3PgMyDJNtGkvVTwYZgvoExGO7I
+ vWCTjrMO3HeMZ8eNn9VD6v_0vtyRD1ZDFW_QV_Qhht2KNoIIMo9r0.O9e3VF8q9rDZkPTVselXtG
+ cOPOAyKNVLUW4W1WT0K6UWzNspOj6U63x7ufIsEjC0RPKObzURpU2lH0fmx75sQA4Xpj4colusFz
+ Xt3NruBFERVd6qYWv9MUSf49qUa9TZZN4R.zCZz6JGowfvDvNsupqOSFz6OwACRh6lvy9P6iFoRw
+ IWMyG0XyODnLr7KjTK8J37.Q8H4SDvpyaA3xGoZZUpLc8M8teF1lY.ErtHqEyvX12yf_c80SnA0.
+ G1OezK6m6YwD8Hy5glBFIrVv2AhglSOoij2OMJhqPNQ_2EsLam3az2TiQ98ShmUMV4nVPTEVEeTS
+ xFk1olNwHpsMIwydr1.BXBghF5h0kHS.2d6oV0jGd0uy3z8YHe0kKcjlAXFVCdiK3NwOyvt5TFYw
+ wxOJaEFgha1XXZ9DddfhXjV7ZFEL8dNfEERJTM2HZVCr7tcevQFjlWxNouEaLIF7uuhwuBZ3.kvC
+ HC4MdTERVKhRflLPLsDYvQ2468a6uT73J0tZHRzpTufklXfq0wBJhRSrKX6rQ5xc5kNFjQelmpR6
+ .RD1MblkiWH6mKEgya_lWuuXRSMu17AcSN2C8fYEGS0mC6EXEhtlIFA.9vb7Q5WwwQQoPIDbR7jG
+ T.ZM7r_xKmzH2v2joSB6DdT.w6fDqYJpoP1gHJf_kJHEdL.YqM2a804kLc_IciAoSbT7IzZuvt6r
+ yfHo2yMlkzVp.pibrYENCM0ACZn3tNhIOqxclOu4FuiuXI_Qgt5OxlpHMUyKpYfVrub_dyFNKSxA
+ DZQErfC5381FM6bt_dH6JrLBx8RTi97dmFbd23LYamu_FYxqcIu_5IEWcbcx18USmhl.3NewguRB
+ G6OPSJdHi_Qvsb3T7UOU5pV84zHrhEBK4pWVLQh_iJOIIQCbIvZ8KJiNYIZJJ6782WP4abBmfgEW
+ 0G.jXkejNquIsJSbnbbay_YcQn0JSuGRBsH.job8x4py40IXFjvk3Her681MhjMuKMMDXi19uiFB
+ qhyLa0J4xYLzQa60cYagtGGIR1PvaGHqKocj4u1Zt0o.t_5GqqvfHnowcOQY9K2PdfhoyfBmqBeO
+ eFsORwVVL2A9YalmZZXXsDOtDZ2vadLH5oYS3eBE8raIXUh3dJuQzmP_RmDjYhdNqee3rcEp6xFA
+ QMphZsSw06x5X40JkGaAEkw96VfiGPaMyuV90E9fmGbU-
+X-Sonic-MF: <zipnpup@yahoo.com>
+X-Sonic-ID: 4542d68b-4592-4cc7-a959-ee9f41481271
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic319.consmr.mail.bf2.yahoo.com with HTTP; Wed, 9 Oct 2024 07:44:11 +0000
+Date: Wed, 9 Oct 2024 07:43:48 +0000 (UTC)
+From: Thomas Machnik <zipnpup@yahoo.com>
+Reply-To: Thomas Machnik <zipnpup@yahoo.com>
+To: Paul Cohen <paulrcohen@gmail.com>
+Cc: Paul Cohen <team@haroldcohentrust.org>, 
+	Harold Cohen Trust <aaron@aaronshome.com>
+Message-ID: <407634867.9588998.1728459828563@mail.yahoo.com>
+Subject: AASC - Catalog Start
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_9588997_130114183.1728459828561"
+References: <407634867.9588998.1728459828563.ref@mail.yahoo.com>
+X-Mailer: WebService/1.1.22645 YMailNorrin
+Content-Length: 5501
+
+------=_Part_9588997_130114183.1728459828561
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+Hi Paul,I compiled the various versions of AARON that we have from 2001 to 2016 and organized them into what appears to be a logical intent. Based on the naming conventions, I was able to break the various versions into 4 main chronological groups and 2 non-chronologoical groups. We also have some pre 2001 code (painting machine era code) which I will include at a later time. I envision this as a start toward providing a comprehensive AASC Catalog. A catalog with at a minimum examples of generated work and for the versions that run -- examples of it running. I imagine initially it would be a hyperlinked catalog. Ideally it would be embodied into App. 
+
+Below is the summary of items. And here is the link to the detail list. I say detail but in actuality the list shows only the main versions of AARON and not all the minor versions, Tom
+https://drive.google.com/file/d/1dEjMSrOHON8mbuVxTc3XsEV6p8HQlRep/view?usp=drive_link 
+ 
+Chronological Groups
+1) 2001 - 2006 People+Plants to Plants with no people
+AASC naming convention aaron, aaron2, aaron3... aaron10
+
+2) 2007 - 2009 Plants with no people to No Gravity
+naming convention aaron.devlp, aaron.devlp6... aaron.devlp10
+3) 2009 - 2013 No Gravity to No Backgrounds
+aaron.d1, aaron.d2...aaron.d12
+4) 2013 - 2015 Fingerpainting
+aaron.e1, aaron.e2... aaron.e5
+
+Non-Chronological
+5) 2010 Hanging Sculptures
+coc1, coc7 & pcoc1
+
+6) 2001 - 2013 Special Names
+AADEMO, AAJAPAN, aaron.london.13 aaron.gijon plus others
+
+
+
+
+
+
+------=_Part_9588997_130114183.1728459828561
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head></head><body><div class=3D"yahoo-style-wrap" style=3D"font-fami=
+ly:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px;"><div dir=
+=3D"ltr" data-setdir=3D"false">Hi Paul,</div><div dir=3D"ltr" data-setdir=
+=3D"false">I compiled the various versions of AARON that we have from 2001 =
+to 2016 and organized them into what appears to be a logical intent. Based =
+on the naming conventions, I was able to break the various versions into 4 =
+main chronological groups and 2 non-chronologoical groups. We also have som=
+e pre 2001 code (painting machine era code) which I will include at a later=
+ time. I envision this as a start toward providing a comprehensive AASC Cat=
+alog. A catalog with at a minimum examples of generated work and for the ve=
+rsions that run -- examples of it running. <span>I imagine initially it wou=
+ld be a hyperlinked catalog. </span>Ideally it would be embodied into App. =
+<br></div><div dir=3D"ltr" data-setdir=3D"false"><br></div><div dir=3D"ltr"=
+ data-setdir=3D"false">Below is the summary of items. And here is the link =
+to the detail list. I say detail but in actuality the list shows only the m=
+ain versions of AARON and not all the minor versions, Tom<br></div><div dir=
+=3D"ltr" data-setdir=3D"false"><a href=3D"https://drive.google.com/file/d/1=
+dEjMSrOHON8mbuVxTc3XsEV6p8HQlRep/view?usp=3Ddrive_link" rel=3D"nofollow" ta=
+rget=3D"_blank">https://drive.google.com/file/d/1dEjMSrOHON8mbuVxTc3XsEV6p8=
+HQlRep/view?usp=3Ddrive_link</a> <br></div><div dir=3D"ltr" data-setdir=3D"=
+false"> <br></div><div dir=3D"ltr" data-setdir=3D"false">Chronological Grou=
+ps<br></div><div dir=3D"ltr" data-setdir=3D"false">1) 2001 - 2006 <span><sp=
+an>People+Plants to Plants with no people</span></span><br></div><div dir=
+=3D"ltr" data-setdir=3D"false">AASC naming convention aaron, aaron2, aaron3=
+... aaron10<br></div><div dir=3D"ltr" data-setdir=3D"false"><span><br></spa=
+n></div><div dir=3D"ltr" data-setdir=3D"false"><span>2) <span><span>2007 - =
+2009 Plants with no people to No Gravity</span></span><br></span></div><div=
+ dir=3D"ltr" data-setdir=3D"false"><span>naming convention aaron.devlp, aar=
+on.devlp6... aaron.devlp10</span></div><div dir=3D"ltr" data-setdir=3D"fals=
+e"><span><br></span></div><div dir=3D"ltr" data-setdir=3D"false"><span>3) <=
+span><span>2009 - 2013 No Gravity to No Backgrounds</span></span><br></span=
+></div><div dir=3D"ltr" data-setdir=3D"false"><span>aaron.d1, aaron.d2...aa=
+ron.d12</span></div><div dir=3D"ltr" data-setdir=3D"false"><span><br></span=
+></div><div dir=3D"ltr" data-setdir=3D"false"><span>4) <span><span>2013 - 2=
+015 Fingerpainting</span></span><br></span></div><div dir=3D"ltr" data-setd=
+ir=3D"false"><span>aaron.e1, aaron.e2... aaron.e5<br></span></div><div dir=
+=3D"ltr" data-setdir=3D"false"><span><br></span></div><div dir=3D"ltr" data=
+-setdir=3D"false"><span>Non-Chronological<br></span></div><div dir=3D"ltr" =
+data-setdir=3D"false"><span>5) <span><span>2010 Hanging Sculptures</span></=
+span><br></span></div><div dir=3D"ltr" data-setdir=3D"false"><span>coc1, co=
+c7 &amp; pcoc1<br></span></div><div dir=3D"ltr" data-setdir=3D"false"><span=
+><br></span></div><div dir=3D"ltr" data-setdir=3D"false"><span>6) <span><sp=
+an>2001 - 2013 Special Names</span></span><br></span></div><div dir=3D"ltr"=
+ data-setdir=3D"false"><span>AADEMO, AAJAPAN, aaron.london.13 aaron.gijon p=
+lus others<br></span></div><div dir=3D"ltr" data-setdir=3D"false"><span><br=
+></span></div><div dir=3D"ltr" data-setdir=3D"false"><span><br></span></div=
+><div dir=3D"ltr" data-setdir=3D"false"><span><br></span></div><div dir=3D"=
+ltr" data-setdir=3D"false"><span></span><br></div><div dir=3D"ltr" data-set=
+dir=3D"false"><br></div></div></body></html>
+------=_Part_9588997_130114183.1728459828561--

@@ -1,0 +1,211 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a10:4b91:b0:5ad:6c17:f336 with SMTP id sk17csp227pxb;
+        Mon, 7 Oct 2024 20:53:24 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHxzMke/ygtRfoV5Cj+B+oRwFXjc0Tt0Q2pCQJdRh61ToRzAPcTJZ3CaccCxtKbpbylKwUN
+X-Received: by 2002:a05:622a:229b:b0:458:534f:fa06 with SMTP id d75a77b69052e-45d9baf4333mr230795931cf.50.1728359603891;
+        Mon, 07 Oct 2024 20:53:23 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1728359603; cv=none;
+        d=google.com; s=arc-20240605;
+        b=KIKGZGz6o/hMiBs3pMq0Kd+YKmjlqzQC7psTFXuQzEdYhVuFzD0dVsMvM9TOXI6WIc
+         c4lrLMpuJoWhz+GiEHYiYTJdIWzeysfa/XpS/OgN1CoFGcfVIMAogQkMPAic5YpKKNX0
+         m/PFVB/W6zb7FDaLmW/gqrTecTZ6OFMpoSADcmlxscYxNk5ZovaYXk7vymlXoa21p84A
+         DUGbDiwIDpNXVvpK0IvqF1PQpHRuHH2+PonIWPj1rx0DOORTPhUFuC2tVKP7N6ziTp8O
+         Udh1I7JAXkY0hf1BTgHPlm0jkXCOocXrXIsSPCBbNBTVh/PUOi2/n4Ec1S4ruYcq0e1b
+         WtiQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:subject:references:in-reply-to:message-id:cc:to
+         :reply-to:from:date:dkim-signature;
+        bh=1jqo88RKMcctNLhIEm4Nb+96hOdjV35qiACRl4UD5zA=;
+        fh=CEquyTtr/RNXkruVrnzlPLr+K+GOScvVJHYZyxEQg7E=;
+        b=Z4QLwJ9uAELIoFinpqBYVExhNor98VHTJQ+TGXr5V44gzq1MlHuAbLtgtOo9tN8zKQ
+         6UcTkhDRBorPUj1jCGX+qvPfzvwqpqp5F1n2nBeFWXR/t5XLP0BLNJh7K7i2W4Z6szm4
+         2WwyTNp5lnzxYFjN5AX0FJ/hCLxsCHR3Rv02FEeA17BnZ+6d6eeJxe4R8I4kh1lXhGnB
+         qhWXSW8PTjVh+6h2lLkz6K/ncvzelLb6k65rU9G693lXZgw97XbrdQQvZ2X02fo7vhPZ
+         zizMPwzGFGtlmsAXA6O6G6XmtipVCo0zNaog/mz5AwfYo6fn5rSCyPkNFHcSiP3UQN2Z
+         1GjQ==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=JaQ11XEO;
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.128.84 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+Return-Path: <zipnpup@yahoo.com>
+Received: from sonic312-22.consmr.mail.bf2.yahoo.com (sonic312-22.consmr.mail.bf2.yahoo.com. [74.6.128.84])
+        by mx.google.com with ESMTPS id d75a77b69052e-45da74af136si78155421cf.148.2024.10.07.20.53.22
+        for <paulrcohen@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 07 Oct 2024 20:53:23 -0700 (PDT)
+Received-SPF: pass (google.com: domain of zipnpup@yahoo.com designates 74.6.128.84 as permitted sender) client-ip=74.6.128.84;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=JaQ11XEO;
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.128.84 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1728359602; bh=1jqo88RKMcctNLhIEm4Nb+96hOdjV35qiACRl4UD5zA=; h=Date:From:Reply-To:To:Cc:In-Reply-To:References:Subject:From:Subject:Reply-To; b=JaQ11XEOCL8D1TPOvakau877Gl3RqBnuwMJRNr8yMKATD57qMi30MF5o0dyLdJoPOUev0T2lxOBO81R/qw+cXOiZ1YSKNwXCt7JrLPatS6VzM0JBrvJH9QcTwYeitR/FIxU6dvfEfh/RzRdll38FBUio26xmuvLcGwmfv2PKRwg4iehJZOFHFTYFSp06O0UkUiKHAsN4Rrp9qFY2fQR4v/Uvnw01lk+WLp0N5lNf+G8lU20SfKls0LFq/UyINFDJqLWh4etlGOzvV2wrcpM7MgEi3/lMfgVdejaHI3ZG3lBIbTpQunMjLljaQ2VPaE8Ac1yj8nV5/CoA+g1Qbq8F6A==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1728359602; bh=Q6Qc8cPKiQuR+yU/QDUt1l53EhCbGvM/A7bQrJzedbr=; h=X-Sonic-MF:Date:From:To:Subject:From:Subject; b=KIJriDnVtVgt++MYsyG81sdG2+oqi+lbOlTJmjUj64NnQn3nrnYPF20rejZ8fPGlNznNZ51p34aCKpVn3QbPb57vcxkIwtG6Syol1cisQIYt9eTWMS44c99kInBtnCQBlhxsfK83u1TfFuBkyPz24zk8qd3NPs8Tjgz2gicwKn+xMDDtAornNTkZ377+bL41FkNKPKFe/JAvTydt7Zy9yxLirBosxE2geLeqmIIeHwSA4XcjghImhx5SWRMIKLPCxzoK+ISkvbF2qjA9isg990Pm7XoEMttVXzc0LY5mowtidXyw/hS9og9lf3Xjfew652vvFt5p8YgB2i/+Q0IgPA==
+X-YMail-OSG: sUN8NoMVM1kbGn7Y35TNzB4aYUSN3dj69vPUqlooP3zKWqSP9jYyeazOmD6u4v6
+ awxVCVVcj2y6j8ldeTbnIVm_toThw_tw0WyP7RtUCWc7GlPoyp4iqxU_.ys9YQSE.YL2gMi2sZA4
+ EHQZCfk_0vaRgro9wnRxG.1yNkM1gZr4xxT56IplFjnJ1ozOKi8epB_15VPinf09qz7HstnFCPDK
+ BEl88HIHOuVBpzC0..h_vHbNcYZzGROQjK8b9AvY6KbLy7SA3VF.rv84Y..zt05oWfrWPJNZqQcJ
+ 5EpampayNqtzAz49OA5j6meE7KmWYIGn3PmY8KfLAJ54nuQs6lhXkJrhIFLp5Au8uFcjgJlA5Ljz
+ Jt.Y5av0mjtfzjJ3AS_lQn9hpfX.MKKd_BhkK6GHG77YLDve0ckEjvpcYZiAmuSHgmdds6kbd6GV
+ pyk94ABHjZrzBeLq6Cspw2Jzq9kowzY55Hw32DatJ0oiwRLmzb0eKpiX20Y4_pxi4e1Sn2ywZn4R
+ e.2HBNqiSAPTYF5qE3T_Gvw1Fn89RxYSmYiHT5Kkm4Qq3Ch6yGXvqPFIIq2NfGUqkV6xVnmo.38O
+ sUtmV5VLvlFKRFRb.nhi46d8fKnN6lG4CksSRkBwDE3OfTaBg2JDJTX_gvdeeoYta_BBQORL7X1n
+ jMD8GjtpN9HR6jaicssUGXa0tCY8nTleg_V3PHQ0.1S58DodTgtjCMkxMr82CuxW4VlUR9GkXo2b
+ vqi.op2eZAcw.TiojW8o_UAu6AJwDMyOeg0MhjQxWH7WGtzOXsPiSYSA9PwtYHHy_IGJgqwoYzia
+ 6sS02d5DXJQURDRFiGdDz134d2wYZpbs1Ee0f5DgLHkjeyIrBBYpN4a4h2pd6XT.CZY7eYAdtOAz
+ 5hZVmpjyQeYlxzL4I905L6vZ9UdNNe0DqWQ3oFbNFSqDFgBPnZBId1uRlaTj.IO0oZBi5QZAKMtr
+ mzmzFdYuCR5SmDjofExBvYQ4gjLNJbx6bxqvmY5s2ZKdArCTUoeSJcsW2YJFkSQVoSOU318MHC3T
+ K.zyxX._4oascBxmEH6dmHH0kVg0BnFJXflvfkkew1fcDKzWKaij3NC53AXcLHPTZKhtMcQRIUbN
+ lrqdECudfoRNob.IlvBrgnxX9b3w48lQVxfXDzRaS88lTk9.TGEnr9.7ron889pQi1PL.uRSBjO7
+ RdkDHy5CZYTtUQCSF4OWcqGMmwX3YYCFg62UHRCdOfnu6vGaVYjfLA2aY3wLtWhFbViDWK1hJJIV
+ QT66iPyEnFiMOyEsfFG.GhLKCQYGL89MBkq3glLBi7mThQGh46qJHEPZ92FpsIfqwQ4qV4i2a2rG
+ wZoqi7pESG.LDEI7lZ01PRZBlHQjWfEOsrCNQY26bN0Bt.VaeIGc867T8lhimp_KwytEAPpH0_lK
+ EHKgv6ayLVLGvcKp0zHs.tMuf9hMrYT3Mh5eYe0lF_NVBVFTA6zGWkAx.CIAHFxakHnRvFc9a_Lx
+ S4o9qbJywFGTydhooSlmUUsE8DzECm4XLI84Tw3esZa1aHrxFxl1wWaSqxpUJkyLrFJIUUHPSQnk
+ ue5zm7l4wJY5GLflvTk26dvIGM7dvU4XCoT258mwEuQUmLj_OvQ3qnDnivR_LhHpKYbEMJ3M1DtY
+ CBfH3FyNfeQMc56nYtL6vgmSvMpH74vOwB9G1yPXS7zQ0.QK.Jff9asXG67e6CZLjWh76A0etuCE
+ P9G4PavYRZOjsWMy6fAYp9G9CAOuqlV6wxmzI3WuIEcL.8itrlBAGE.WCwFqkHVW_g05YX8B066B
+ emnlOHW9QmxB83X.fJF9I2KVMf3G8kM4KCdpuZjxyNgjed8IGxuHh5DDnTn1JvLsQJPBx32uVtlo
+ MQs14t3B.EqiH3i9DS0LwTtjo7c45SA4P6AgQ3XRAMO8eWrdgRjkA3D.AmEuAOWFVY0lytOCfY6y
+ JJ6ZG6qH.mjeRWXs.p48RT.RCEjuw5NEhiCiLHtk4dURkmiKZ2cfGQM2B8OBjpAKkzMhEjLt.hJY
+ r4HSfGOt5rqwFkv0Nbwwcp.ZVx3MbqDfu4oHYxe7mBzBRZLDtNfHF_uOp45cC6bFKC1KK8DT3217
+ 8btfhZiMFbycEK3OkQPZH9ToRuQ5mdOkBoNtaWt_2Dddgg8JGW_ccflhduPpBxCMBLjPWb45.JkD
+ VVrDWeoe1O1jm0hAfTXHabrh_AlyRZ0_.n2xlcVL.kPveCIfWxLN.EO8BGXDYmZMvodGR9s81dm8
+ Njc4YGTauD3qncyt7dmvwgjJclCE5GBY5bGpG.vzAkuMa09eBW5PwRGEzCMuOUNdZBDigZrX5ecs
+ 9eeCeRNDa_WXaAcL33jDPsQBBuc1LxLxpy11p4Z7ZguX2pR.WG_aRUca43rBR92Q2_yDcrHiScJK
+ onK0.rpc-
+X-Sonic-MF: <zipnpup@yahoo.com>
+X-Sonic-ID: 5466248f-d0cc-49bb-bf1b-11cc0a3ebfdd
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic312.consmr.mail.bf2.yahoo.com with HTTP; Tue, 8 Oct 2024 03:53:22 +0000
+Date: Tue, 8 Oct 2024 03:53:20 +0000 (UTC)
+From: Thomas Machnik <zipnpup@yahoo.com>
+Reply-To: Thomas Machnik <zipnpup@yahoo.com>
+To: Robert norton <robert@verisart.com>
+Cc: Paul Cohen <paulrcohen@gmail.com>, 
+	Harold Cohen Trust <aaron@aaronshome.com>
+Message-ID: <1114527533.9312649.1728359601009@mail.yahoo.com>
+In-Reply-To: <8F8809C8-043C-411D-8EE1-10A8E8B7BF24@verisart.com>
+References: <8F8809C8-043C-411D-8EE1-10A8E8B7BF24@verisart.com>
+Subject: Re: Quick question re Harold Cohen data for Sothebys
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_9312648_1430698144.1728359601008"
+X-Mailer: WebService/1.1.22645 YMailNorrin
+Content-Length: 6145
+
+------=_Part_9312648_1430698144.1728359601008
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Robert,When it comes to Harold there rarely is a quick answer. Since the=
+ physical print date precedes the aa file timestamp by one year, that begs =
+the question, "How is this possible?" I know you probably want a quick yes =
+or no answer. If that is true then the quick is answer yes. Yes, meaning th=
+e physical work is signed as 2002 and the aa file timestamp is 2003. But th=
+is would certainly suggest an error. Did Tom write down the information inc=
+orrectly? Is that the error? No. The timestamp for the aa file is 2003 and =
+the signed print is 2002.=20
+
+It seems like we have one of two scenarios. One, Harold signed the physical=
+ print incorrectly.=C2=A0 Two, he signed the print correctly. But, we don't=
+ know why the generated work seems to be in the future. If the second scena=
+rio is true, how could it be true? Maybe, the version of AARON Harold used =
+was from 2002 and that he simply ran it in 2003.=20
+
+We had a situation at the Whitney this past year whereby all the work was g=
+enerated in 2023 and then plotted in 2024. However, the version of AARON ge=
+nerating the work was from 2001. We may think these are 2024 works because =
+they were plotted in 2024. But maybe in the mind of the artist they are rea=
+lly 2001 works because all the works were already fixed as potentials in th=
+e 2001.
+
+I'm not sure if the second scenario can be confirmed or not as I never thou=
+ght about this before. When I go to the studio Tuesday, I will see what I c=
+an find. I also sent a message to Cohen's 2002-2003 assistant and waiting f=
+or her thoughts and this matter.
+
+Tom=C2=A0=20
+
+
+Sent from Yahoo Mail for iPad
+
+
+On Monday, October 7, 2024, 4:29 PM, Robert norton <robert@verisart.com> wr=
+ote:
+
+Hi Tom
+
+Sothebys have flagged this work as the production year says 2002 but the de=
+scription of the file says the file was created in 2003.=C2=A0=20
+
+Can you confirm this is correct?
+
+Thanks
+
+Robert=20
+
+
+
+
+
+
+------=_Part_9312648_1430698144.1728359601008
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head></head><body><div class=3D"ydp46ee6939yahoo-style-wrap" style=
+=3D"font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px=
+;"><div id=3D"ydp46ee6939yiv3563451446"><div><div>
+Hi Robert,</div><div><span>When it comes to Harold there rarely is a quick =
+answer. Since the=20
+physical print date precedes the aa file timestamp by one year, that begs t=
+he=20
+question, "How is this possible?"</span> I know you probably want a quick y=
+es or no answer. If that is true then the quick is answer yes. Yes, meaning=
+ the physical work is signed as 2002 and the aa file timestamp is 2003. But=
+ this would certainly suggest an error. Did Tom write down the information =
+incorrectly? Is that the error? No. The timestamp for the aa file is 2003 a=
+nd the signed print is 2002. <br></div><div dir=3D"ltr" data-setdir=3D"fals=
+e"><br></div><div dir=3D"ltr" data-setdir=3D"false">It seems like we have o=
+ne of two scenarios. One, Harold signed the physical print incorrectly.&nbs=
+p; Two, he signed the print correctly. But, we don't know why the generated=
+ work seems to be in the future. If the second scenario is true, how could =
+it be true? Maybe, the version of AARON Harold used was from 2002 and that =
+he simply ran it in 2003. <br></div><div dir=3D"ltr" data-setdir=3D"false">=
+<br></div><div dir=3D"ltr" data-setdir=3D"false"><span>We had a situation a=
+t the Whitney this past year whereby all the work=20
+was generated in 2023 and then plotted in 2024. However, the version of=20
+AARON generating the work was from 2001. We may think these are 2024 works=
+=20
+because they were plotted in 2024. But maybe in the mind of the artist=20
+they are really 2001 works because all the works were already fixed as=20
+potentials in the 2001.</span><br></div><div dir=3D"ltr" data-setdir=3D"fal=
+se"><br></div><div dir=3D"ltr" data-setdir=3D"false">I'm not sure if the se=
+cond scenario can be confirmed or not as I never thought about this before.=
+ When I go to the studio Tuesday, I will see what I can find. I also sent a=
+ message to Cohen's 2002-2003 assistant and waiting for her thoughts and th=
+is matter.<br></div><div dir=3D"ltr" data-setdir=3D"false"><br></div><div d=
+ir=3D"ltr" data-setdir=3D"false">Tom&nbsp; <br></div><div><br clear=3D"none=
+"></div><div><br clear=3D"none"><div class=3D"ydp46ee6939yiv3563451446yahoo=
+-signature"><a shape=3D"rect" style=3D"font-size:12px;" href=3D"https://mai=
+l.onelink.me/107872968?pid=3Dnativeplacement&amp;c=3DGlobal_Acquisition_YMk=
+tg_315_Internal_EmailSignature&amp;af_sub1=3DAcquisition&amp;af_sub2=3DGlob=
+al_YMktg&amp;af_sub3=3D&amp;af_sub4=3D100000604&amp;af_sub5=3DEmailSignatur=
+e__Static_" rel=3D"nofollow" target=3D"_blank">Sent from Yahoo Mail for iPa=
+d</a><br clear=3D"none"></div><br clear=3D"none"></div>
+</div></div></div><div id=3D"ydpe5aee37dyiv3563451446yqt90330" class=3D"ydp=
+e5aee37dyiv3563451446yqt6041747182"><p style=3D"font-size:15px;color:rgb(12=
+3, 106, 246);padding-top:15px;margin-top:0px;" class=3D"ydpe5aee37dyiv35634=
+51446yahoo-quoted-begin">On Monday, October 7, 2024, 4:29 PM, Robert norton=
+ &lt;robert@verisart.com&gt; wrote:</p><blockquote class=3D"ydpe5aee37dyiv3=
+563451446iosymail"><div dir=3D"ltr">Hi Tom<br clear=3D"none"></div><div dir=
+=3D"ltr"><br clear=3D"none"></div><div dir=3D"ltr">Sothebys have flagged th=
+is work as the production year says 2002 but the description of the file sa=
+ys the file was created in 2003.&nbsp; <br clear=3D"none"></div><div dir=3D=
+"ltr"><br clear=3D"none"></div><div dir=3D"ltr">Can you confirm this is cor=
+rect?<br clear=3D"none"></div><div dir=3D"ltr"><br clear=3D"none"></div><di=
+v dir=3D"ltr">Thanks<br clear=3D"none"></div><div dir=3D"ltr"><br clear=3D"=
+none"></div><div dir=3D"ltr">Robert <br clear=3D"none"></div><div dir=3D"lt=
+r"><br clear=3D"none"></div><br clear=3D"none"><blockquote></blockquote></b=
+lockquote></div></body></html>
+------=_Part_9312648_1430698144.1728359601008--

@@ -1,0 +1,375 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a10:2a94:b0:5ec:db95:1ae4 with SMTP id ja20csp1456570pxb;
+        Sun, 23 Mar 2025 07:18:25 -0700 (PDT)
+X-Received: by 2002:a05:690c:887:b0:6ff:1d6f:38af with SMTP id 00721157ae682-700babed912mr120731397b3.4.1742739505579;
+        Sun, 23 Mar 2025 07:18:25 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1742739505; cv=none;
+        d=google.com; s=arc-20240605;
+        b=dmQTk8DfQGDMvrdlEKhzVpQS0m9CUk5AqUQ7bdDdV5z2oMiZcJmIFBvK8fL7qRL2C6
+         aLCUHneSBKY+M5AJ0rK5UMdJvMyl+HRMf8DuJU/roZu6RHossYJBxD7he3BGzxOQeLiB
+         oGmauTLQOVUfHhFEbkaZz2qsoY7MInPHF9ik7PufNgNsGlCXkrFvJ89+K9isqbectseV
+         hjcJvadN2A/1+JKAg8YbpgAlpR4qcrserGGE6l+3GJZSKWwm1okjmEYzO6V6MOaBOXgi
+         YAu1lP6IS/i0gmQnqmnB5v2NyccDmA8A8cJ47KB33kUieuIbrOzuQNoKpYI+stvjmsr+
+         IiMQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :dkim-signature;
+        bh=c+2Tx7EthxDqXUp83N6QbzDh7QXAokgU4aasTt3lU+o=;
+        fh=+ZSZzLtrqjYAnpssQkgK417RpHpTSSzuH+J6PqTYzzs=;
+        b=J+nhy3CaJSfTR2YUbhBqTCvjjN3DJfe7O+V0X17i8LbAm4a0LIeQpLrEYpvQK5sX8x
+         r4RiQ7GDFfVHKrR7oCYwg87JyVZELkhDCCXVHGeKtdFOIXPR2WdxuLSbmrpLGa3avdT+
+         xnP4t7HebU0xNZj58lVCFpT4XK5cLeXcSOUqYu/FTxgfgRY1CaLvdR9J8zfskaMPOJJt
+         Xn+6c46aOt5+Yd9/b8nZ5X53KF6MPaZAJYYUre2r8RqIIKiBn0/CYOYCudXL0/FaQP/p
+         Ao+qZ+RWwxdzwT4aPUkx2PtkzI+BV2v8qScPQ8aoRFmZryhZCS+faqmD9sb6q5nyxLrv
+         JDLg==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20230601 header.b=LFakkWxa;
+       spf=pass (google.com: domain of rahendel@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=rahendel@gmail.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com;
+       dara=pass header.i=@gmail.com
+Return-Path: <rahendel@gmail.com>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id 00721157ae682-700ba70c90asor33709077b3.6.2025.03.23.07.18.25
+        for <paulrcohen@gmail.com>
+        (Google Transport Security);
+        Sun, 23 Mar 2025 07:18:25 -0700 (PDT)
+Received-SPF: pass (google.com: domain of rahendel@gmail.com designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20230601 header.b=LFakkWxa;
+       spf=pass (google.com: domain of rahendel@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=rahendel@gmail.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com;
+       dara=pass header.i=@gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1742739505; x=1743344305; dara=google.com;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=c+2Tx7EthxDqXUp83N6QbzDh7QXAokgU4aasTt3lU+o=;
+        b=LFakkWxaB8illGi0s6AE3oAMxFyRBLH8zdqjKRoir0KVafDFNj2KqqRCdo5hMzRkT0
+         OW2w0GFgRro0mb3c1fn0ENXerc+W75GDYsJeuBETs3cHTiMFrLHdbqqcroeci++9eHuE
+         V7AKCsJu1OJXfSYqJcIEAoBhvdMVYtaaJl6fvKIJA+ZyNrI1qESn7hk98hTWL6+2xcPL
+         8We02CF9zeDzRfHRPW2oTjt2mCcQg6xTFDIR7DoUTtmUp/hAXjOAaTRcwR388Nhoqgdi
+         yEfMiw7Kw/hiKW9xOa7qK9c0vFjxaJT+erzKO4Xwzuc6kQrUkQ+nqPtPZ1Qz2ZUL0c4i
+         zT/w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1742739505; x=1743344305;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=c+2Tx7EthxDqXUp83N6QbzDh7QXAokgU4aasTt3lU+o=;
+        b=tEOgcNOJ1ypy512tH+TJ8tDAfAak+hZ14Dek1lK/0l6/4k5mHWS1NNuv9soCK0zjyG
+         1ptKSmHlHUcwIJsuVdSH7e1b9aGfss7wIeb9NMmoYghx5xW97KQXdUx6axTX5QfNetic
+         /rs6mKUfKRxnU0uLbRB/rVn+tXvT4li5PHyYJZs/bQiT6N0lqFa54hCqgpPqFwLQlwPH
+         jh0QRaAsNUxc3T4KQUxbZYb2VakZ8WKqpaca/kjFOxa4dBpUBzkZswlgD8uycxlqgKlL
+         T/aMlgRIr8Drt2LPTC/X6Yl2AUB5hBVh1E1VMBaqVXANDCr6+mphm5LRD8ZtuJ00CdoN
+         2njg==
+X-Gm-Message-State: AOJu0YytzOxJ+oYo+4a8yVIGaO7qNKUdC6ADcXCoPxUEOSqWRr0we0pR
+	F+riVoU/BK7k7TOUtl7uNxHRPXHpqK/3c7dNjPfRcG9m1rwQ8XB2+xFoqFwxsyHhoO3Txm3zaz6
+	qjq0wAKwYcVP0P5I+X9SnyMmfVLJbRg==
+X-Gm-Gg: ASbGncsGpHSxYz90AHoMGYhqIv4WHsEpq/grTx3OgSkmfXqOKkjNkdSUTdy+bsDOxMa
+	QGhioGKzepZJSgxH+C/qo8ovBEcXrcy9fajvkz9nZG/GcceI/TeU06daIUHeDshJN6K6+Gozgx3
+	VVM0DsAZOjdnuvp7XVJMJrsjzsxaTw9fXdY2HT
+X-Google-Smtp-Source: AGHT+IGW6nkK1Yi6kqMRd/E9lAWk1c28gvP0+XEJc2M90Tc9FgCp3mxZFZM8FHYBa3va/VmjUQm0QhhLYwgkOsvxWtM=
+X-Received: by 2002:a05:690c:4444:b0:6fe:e79f:bd8f with SMTP id
+ 00721157ae682-700bacd58eemr143130597b3.26.1742739504719; Sun, 23 Mar 2025
+ 07:18:24 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAHisCj7_6rFw4T+7y2BLQnszebLcPapc6P7gaOaMTE3F1tmyHw@mail.gmail.com>
+ <CAKjPZkHuHNgGxqE=whQyebtc5G2oiH9MdNAnHG3CSNKESkmPeA@mail.gmail.com> <CAHisCj6EYkTuKOHohskMhzzpNgA47wFUSZMPjqTiEV4PoQoY5A@mail.gmail.com>
+In-Reply-To: <CAHisCj6EYkTuKOHohskMhzzpNgA47wFUSZMPjqTiEV4PoQoY5A@mail.gmail.com>
+From: Bob Hendel <rahendel@gmail.com>
+Date: Sun, 23 Mar 2025 10:18:13 -0400
+X-Gm-Features: AQ5f1JqLaXGQRqpknnmzRrLzCp8rD0fFzQLOJKsM0nUUR8Lvi6gLA9jNyfBairc
+Message-ID: <CAHisCj4RgSpUOz=WjrZmMNXEOSsCoq=fFSbiEyRb2Q4RF69aRQ@mail.gmail.com>
+Subject: Fwd: Just touching base
+To: Paul Cohen <paulrcohen@gmail.com>
+Content-Type: multipart/alternative; boundary="0000000000001d72d4063103299a"
+
+--0000000000001d72d4063103299a
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Paul,
+
+Just touching base again ... with a reminder about the Whitney plotter
+drawings that we'd love to have as part of our memories of the exhibit.
+
+Trust you are well and now living in Boston?
+
+Any progress with the commercial sponsor? It would be exciting to see the
+exhibit travel.
+
+Thanks!
+
+Bob
+
+
+---------- Forwarded message ---------
+From: Bob Hendel <rahendel@gmail.com>
+Date: Thu, Dec 5, 2024, 12:00=E2=80=AFPM
+Subject: Re: Just touching base
+To: Paul Cohen <paulrcohen@gmail.com>
+
+
+Hi Paul ... Thanks for the update on your travels and future events for the
+Whitney exhibit.  It would be exciting to see it travel.
+
+Zach is thriving at Bantam. He loves working there. He's like a kid in a
+large candy store! Even has a new girlfriend (from NY city) and it looks
+like it's fairly serious. We recently visited Peekskill and had the
+opportunity to meet her. We were impressed!
+
+As regards the hurricanes, the last one, Milton's center eye, came directly
+at us. Lots of damage especially to our barrier islands.  We survived in
+our 9th floor condo (located in downtown Sarasota on Sarasota Bay) and were
+especially lucky in that we never lost power, internet etc although all the
+other condos in our neighborhood did. It's been almost two months and the
+city is still trying to recover.
+
+Congrats on your daughter's  marriage! We did meet her at the reception
+dinner but only for a few minutes. Sounds like she is smart like her Dad
+and just as charming.
+
+Boston is a great city. Did you know that there are several universities in
+that area that would love to hire a prof with your bio!
+
+Lastly, we'd love to have some of the Whitney drawings. If possible, how
+about 10 from each of the plotters (total 20) and one from each plotter
+(total 2) signed by the three famous Harold Cohen supporters.  Of course,
+please send the shipping costs and where I should send payment.
+
+Our address:
+
+Bob & Debbie Hendel
+401 S. Palm Ave., Unit 903
+Sarasota, FL 34236
+
+Mobile 917 301 9665
+
+THANKS!
+
+Bob & Debbie
+
+
+
+On Tue, Dec 3, 2024 at 2:57=E2=80=AFPM Paul Cohen <paulrcohen@gmail.com> wr=
+ote:
+
+> Hi Bob and Debbie, how nice to hear from you!  I was thinking of you both
+> last week because, yes, I went to England for the opening of Electric
+> Dreams and also to meet with Mila and her team at the Gazelli gallery.  A
+> commercial sponsor might be interested in underwriting the touring of the
+> Whitney show.  Very early stages of discussion, but they seem quite
+> excited.  As it happened, Bre Pettis (the plotter guy) was also in London=
+.
+> Is Zach still enjoying his work there?
+>
+> Did you and the art survive the twin hurricanes?  I think one of them hit
+> your part of Florida pretty hard, didn't it?
+>
+> I can't remember whether you met my daughter and her fiancee at the
+> Whitney event.  They got married last month, very lovely ceremony with a
+> small crowd of friends from college and their respective labs.  Allegra i=
+s
+> finishing a tour or duty at DARPA and planning her next gig.
+>
+> Last week I bought a house in Boston so I can be closer to Allegra and
+> Hitch.  I was at the Courtauld Institute during the closing looking at th=
+e
+> Cezannes, but thanks to Docusign it all worked!  I'll sell the Pittsburgh
+> place in the spring.  No idea whether I'll remain as a prof.  The Trust
+> takes so much time but it doesn't pay me anything, so I'm kinda stuck
+> between a rock and a hard place!
+>
+> As to drawings, we have a ridiculously big stack of them in San Diego and
+> I'd be happy to send some (I'll need your address).  I also have five fro=
+m
+> each plotter that were signed by Christiane, Bre and me.  I'll send one o=
+f
+> each of these if you're interested.
+>
+> Really good to hear from you, thanks for keeping in touch! --P
+>
+>
+>
+> ______________________________
+>
+> Paul Cohen,  Professor
+> School of Computing and Information
+> University of Pittsburgh
+> personal webpage <https://paulrcohen.github.io/>
+> ______________________________
+>
+>
+> On Tue, Dec 3, 2024 at 12:44=E2=80=AFPM Bob Hendel <rahendel@gmail.com> w=
+rote:
+>
+>> Hi Paul!
+>>
+>> It's been awhile since we've chatted.
+>> Debbie and I still have not come down to earth since the exhibit. We've
+>> now completed all the photo books, distributed all the t-shirts and
+>> postcards and organized all other memorabilia.
+>>
+>> Any new exciting developments with the Estate?
+>>
+>> Did you attend the Electric Dreams exhibit at the Tate? Harold's artwork
+>> at the Tate is terrific.
+>>
+>> Did the Whitney send you the drawings from the exhibit? We were hoping
+>> that we might get some to add to our collection.
+>>
+>> Take care,
+>>
+>> Bob & Debbie
+>>
+>>
+>>
+>>
+
+--0000000000001d72d4063103299a
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto"><div>Hi=C2=A0Paul,<div dir=3D"auto"><br></div><div dir=3D=
+"auto">Just touching base again ... with a reminder about the Whitney plott=
+er drawings that we&#39;d love to have as part of our memories of the exhib=
+it.</div><div dir=3D"auto"><br></div><div dir=3D"auto">Trust you are well a=
+nd now living in Boston?</div><div dir=3D"auto"><br></div><div dir=3D"auto"=
+>Any progress with the commercial sponsor? It would be exciting to see the =
+exhibit travel.</div><div dir=3D"auto"><br></div><div dir=3D"auto">Thanks!<=
+/div><div dir=3D"auto"><br></div><div dir=3D"auto">Bob</div><br><br><div cl=
+ass=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">---------- Forwar=
+ded message ---------<br>From: <strong class=3D"gmail_sendername" dir=3D"au=
+to">Bob Hendel</strong> <span dir=3D"auto">&lt;<a href=3D"mailto:rahendel@g=
+mail.com" target=3D"_blank" rel=3D"noreferrer">rahendel@gmail.com</a>&gt;</=
+span><br>Date: Thu, Dec 5, 2024, 12:00=E2=80=AFPM<br>Subject: Re: Just touc=
+hing base<br>To: Paul Cohen &lt;<a href=3D"mailto:paulrcohen@gmail.com" tar=
+get=3D"_blank" rel=3D"noreferrer">paulrcohen@gmail.com</a>&gt;<br></div><br=
+><br><div dir=3D"ltr"><div class=3D"gmail_default" style=3D"font-family:ari=
+al,helvetica,sans-serif;font-size:small">Hi Paul ... Thanks for the update =
+on your travels and future events for the Whitney exhibit.=C2=A0 It would b=
+e exciting to see it travel.</div><div class=3D"gmail_default" style=3D"fon=
+t-family:arial,helvetica,sans-serif;font-size:small"><br></div><div class=
+=3D"gmail_default" style=3D"font-family:arial,helvetica,sans-serif;font-siz=
+e:small">Zach is thriving at Bantam. He loves working there. He&#39;s like =
+a kid in a large candy store! Even has a new girlfriend (from NY city) and =
+it looks like it&#39;s fairly serious. We recently visited Peekskill and ha=
+d the opportunity=C2=A0to meet her. We were impressed!</div><div class=3D"g=
+mail_default" style=3D"font-family:arial,helvetica,sans-serif;font-size:sma=
+ll"><br></div><div class=3D"gmail_default" style=3D"font-family:arial,helve=
+tica,sans-serif;font-size:small">As regards the hurricanes, the last one, M=
+ilton&#39;s center eye, came directly at us. Lots of damage especially to o=
+ur barrier islands.=C2=A0 We survived in our 9th floor condo (located in do=
+wntown Sarasota on Sarasota Bay) and were especially lucky in that we never=
+ lost power, internet=C2=A0etc although all the other condos in our neighbo=
+rhood did. It&#39;s been almost two months and the city is still trying to =
+recover.</div><div class=3D"gmail_default" style=3D"font-family:arial,helve=
+tica,sans-serif;font-size:small"><br></div><div class=3D"gmail_default" sty=
+le=3D"font-family:arial,helvetica,sans-serif;font-size:small">Congrats on y=
+our daughter&#39;s=C2=A0 marriage! We did meet her at the reception dinner =
+but only for a few minutes. Sounds like she is smart like her Dad and just =
+as charming.</div><div class=3D"gmail_default" style=3D"font-family:arial,h=
+elvetica,sans-serif;font-size:small"><br></div><div class=3D"gmail_default"=
+ style=3D"font-family:arial,helvetica,sans-serif;font-size:small">Boston is=
+ a great city. Did you know that there are several universities in that are=
+a that would love to hire a prof with your bio!=C2=A0</div><div class=3D"gm=
+ail_default" style=3D"font-family:arial,helvetica,sans-serif;font-size:smal=
+l"><br></div><div class=3D"gmail_default" style=3D"font-family:arial,helvet=
+ica,sans-serif;font-size:small">Lastly, we&#39;d=C2=A0love to have some of =
+the Whitney drawings. If possible, how about 10 from each of the plotters (=
+total 20) and one from each plotter (total 2) signed by the three famous Ha=
+rold Cohen supporters.=C2=A0 Of course, please send the shipping costs and =
+where I should send payment.=C2=A0</div><div class=3D"gmail_default" style=
+=3D"font-family:arial,helvetica,sans-serif;font-size:small"><br></div><div =
+class=3D"gmail_default" style=3D"font-family:arial,helvetica,sans-serif;fon=
+t-size:small">Our address:</div><div class=3D"gmail_default" style=3D"font-=
+family:arial,helvetica,sans-serif;font-size:small"><br></div><div class=3D"=
+gmail_default" style=3D"font-family:arial,helvetica,sans-serif;font-size:sm=
+all">Bob &amp; Debbie Hendel</div><div class=3D"gmail_default" style=3D"fon=
+t-family:arial,helvetica,sans-serif;font-size:small">401 S. Palm Ave., Unit=
+ 903</div><div class=3D"gmail_default" style=3D"font-family:arial,helvetica=
+,sans-serif;font-size:small">Sarasota, FL 34236</div><div class=3D"gmail_de=
+fault" style=3D"font-family:arial,helvetica,sans-serif;font-size:small"><br=
+></div><div class=3D"gmail_default" style=3D"font-family:arial,helvetica,sa=
+ns-serif;font-size:small">Mobile 917 301 9665</div><div class=3D"gmail_defa=
+ult" style=3D"font-family:arial,helvetica,sans-serif;font-size:small"><br><=
+/div><div class=3D"gmail_default" style=3D"font-family:arial,helvetica,sans=
+-serif;font-size:small">THANKS!</div><div class=3D"gmail_default" style=3D"=
+font-family:arial,helvetica,sans-serif;font-size:small"><br></div><div clas=
+s=3D"gmail_default" style=3D"font-family:arial,helvetica,sans-serif;font-si=
+ze:small">Bob &amp; Debbie</div><div class=3D"gmail_default" style=3D"font-=
+family:arial,helvetica,sans-serif;font-size:small"><br></div><div class=3D"=
+gmail_default" style=3D"font-family:arial,helvetica,sans-serif;font-size:sm=
+all"><br></div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
+=3D"gmail_attr">On Tue, Dec 3, 2024 at 2:57=E2=80=AFPM Paul Cohen &lt;<a hr=
+ef=3D"mailto:paulrcohen@gmail.com" rel=3D"noreferrer noreferrer" target=3D"=
+_blank">paulrcohen@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"g=
+mail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204=
+,204,204);padding-left:1ex"><div dir=3D"ltr"><div><div style=3D"font-size:s=
+mall" class=3D"gmail_default">Hi Bob and Debbie, how nice to hear from you!=
+=C2=A0 I was thinking of you both last week because, yes, I went to England=
+ for the opening of Electric Dreams and also to meet with Mila and her team=
+ at the Gazelli gallery.=C2=A0 A commercial sponsor might be interested in =
+underwriting the touring of the Whitney show.=C2=A0 Very early stages of di=
+scussion, but they seem quite excited.=C2=A0 As it happened, Bre Pettis (th=
+e plotter guy) was also in London. Is Zach still enjoying his work there?<b=
+r></div><div style=3D"font-size:small" class=3D"gmail_default"><br></div><d=
+iv style=3D"font-size:small" class=3D"gmail_default">Did you and the art su=
+rvive the twin hurricanes?=C2=A0 I think one of them hit your part of Flori=
+da pretty hard, didn&#39;t it?=C2=A0 <br></div><div style=3D"font-size:smal=
+l" class=3D"gmail_default"><br></div><div style=3D"font-size:small" class=
+=3D"gmail_default">I can&#39;t remember whether you met my daughter and her=
+ fiancee at the Whitney event.=C2=A0 They got married last month, very love=
+ly ceremony with a small crowd of friends from college and their respective=
+ labs.=C2=A0 Allegra is finishing a tour or duty at DARPA and planning her =
+next gig.=C2=A0 <br></div><div style=3D"font-size:small" class=3D"gmail_def=
+ault"><br></div><div style=3D"font-size:small" class=3D"gmail_default">Last=
+ week I bought a house in Boston so I can be closer to Allegra and Hitch.=
+=C2=A0 I was at the Courtauld Institute during the closing looking at the C=
+ezannes, but thanks to Docusign it all worked!=C2=A0 I&#39;ll sell the Pitt=
+sburgh place in the spring.=C2=A0 No idea whether I&#39;ll remain as a prof=
+.=C2=A0 The Trust takes so much time but it doesn&#39;t pay me anything, so=
+ I&#39;m kinda stuck between a rock and a hard place! =C2=A0 <br></div><div=
+ style=3D"font-size:small" class=3D"gmail_default"><br></div><div style=3D"=
+font-size:small" class=3D"gmail_default">As to drawings, we have a ridiculo=
+usly big stack of them in San Diego and I&#39;d be happy to send some (I&#3=
+9;ll need your address).=C2=A0 I also have five from each plotter that were=
+ signed by Christiane, Bre and me.=C2=A0 I&#39;ll send one of each of these=
+ if you&#39;re interested.=C2=A0 <br></div><div style=3D"font-size:small" c=
+lass=3D"gmail_default"><br></div><div style=3D"font-size:small" class=3D"gm=
+ail_default">Really good to hear from you, thanks for keeping in touch! --P=
+<br></div><div style=3D"font-size:small" class=3D"gmail_default"><br></div>=
+<div style=3D"font-size:small" class=3D"gmail_default"><br></div><br clear=
+=3D"all"></div><div><div dir=3D"ltr" class=3D"gmail_signature"><div dir=3D"=
+ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div=
+><div dir=3D"ltr"><div><div dir=3D"ltr">______________________________<br><=
+br>Paul Cohen,=C2=A0=C2=A0Professor</div><div dir=3D"ltr">School of Computi=
+ng and Information</div><div dir=3D"ltr">University of Pittsburgh</div><div=
+ dir=3D"ltr"><a href=3D"https://paulrcohen.github.io/" rel=3D"noreferrer no=
+referrer" target=3D"_blank">personal webpage</a><br>_______________________=
+_______</div></div></div></div></div></div></div></div></div></div></div></=
+div></div><br></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
+=3D"gmail_attr">On Tue, Dec 3, 2024 at 12:44=E2=80=AFPM Bob Hendel &lt;<a h=
+ref=3D"mailto:rahendel@gmail.com" rel=3D"noreferrer noreferrer" target=3D"_=
+blank">rahendel@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmai=
+l_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,20=
+4,204);padding-left:1ex"><div dir=3D"auto">Hi Paul!=C2=A0<div dir=3D"auto">=
+<br></div><div dir=3D"auto">It&#39;s been awhile since we&#39;ve chatted.=
+=C2=A0</div><div dir=3D"auto">Debbie and I still have not come down to eart=
+h since the exhibit. We&#39;ve now completed all the photo books, distribut=
+ed all the t-shirts and postcards and organized all other memorabilia.</div=
+><div dir=3D"auto"><br></div><div dir=3D"auto">Any new exciting development=
+s with the Estate?=C2=A0</div><div dir=3D"auto"><br></div><div dir=3D"auto"=
+>Did you attend the Electric Dreams exhibit=C2=A0at the Tate? Harold&#39;s =
+artwork at the Tate is terrific.</div><div dir=3D"auto"><br></div><div dir=
+=3D"auto">Did the Whitney send you the drawings from the exhibit? We were h=
+oping that we might get some to add to our collection.</div><div dir=3D"aut=
+o"><br></div><div dir=3D"auto">Take care,</div><div dir=3D"auto"><br></div>=
+<div dir=3D"auto">Bob &amp; Debbie</div><div dir=3D"auto"><br></div><div di=
+r=3D"auto"></div><div dir=3D"auto"><br></div><div dir=3D"auto"><br></div></=
+div>
+</blockquote></div>
+</blockquote></div>
+</div></div></div>
+
+--0000000000001d72d4063103299a--

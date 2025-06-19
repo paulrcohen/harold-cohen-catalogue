@@ -1,0 +1,962 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a10:b103:b0:5ad:6c17:f336 with SMTP id l3csp537874pxh;
+        Fri, 11 Oct 2024 06:41:07 -0700 (PDT)
+X-Received: by 2002:adf:e44e:0:b0:37d:332e:d6ab with SMTP id ffacd0b85a97d-37d552ad401mr2343148f8f.43.1728654066697;
+        Fri, 11 Oct 2024 06:41:06 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1728654066; cv=none;
+        d=google.com; s=arc-20240605;
+        b=cQeYR1d/2IF9IkZhwuXLIlQ6W2c6cGKZB0H25CIec2HjPwY4pWnD8O10rBpsvgMg5A
+         hNxUd31cOgdJC9qfy7mUKhjjSyxgclOOlpqEBai7v6Ru8dK9t+fBVYlxe3fxkn5tloXj
+         P3oA412IeKc/9G5Z9twrnWsSfxdvhUYx09dqsNsz0I1Q6EV7BX+l+zM8KQxiMwapqAjQ
+         A5RXVljnNgpZsMWQM5zqAMd7e8/B5huWIg8h9MhyzH8oT4igSX1aSzVquUjUte8NJBnn
+         pQxx1LV69yCXUf9LaQ6wXuztlu/Vy2zy+XXlLKP+ptvJNBKuTftt3AiT1EaWlggxIC72
+         bTcg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=references:to:cc:in-reply-to:date:subject:mime-version:message-id
+         :from:dkim-signature;
+        bh=k6EurrcG32HMEephJQg0XDo/H7zi66RY32yWRyqlHIM=;
+        fh=MtLBcSJ/HXe3CwUdJFhCBgPnvni7szGi0IZ+dl1F2IM=;
+        b=fcX4SpHVe8/Ifg230DV/asFyt0cofuZsYRocOcVp5toMEY3ZY/MK4CirpNHQV/CbDy
+         zWZekeZ6NlfUejhPd5Nb+Knqm3MN9BS1qmLhYmY97lQAxxVEjWYycybjzq7qy6UjXdXp
+         LMg1upYQcWhhsbFvBy3Pj3tmyc+bTRvHgCEkgTtgB3gSFhkt4bBxMK0UeJjrNSfYePGy
+         DBG88ii2nZ/BkfuZ0Inkqeegjc/2QLLs789zb5PZCPy6L3VPRUqIkWBiE4PQ6ZUhRcTy
+         5RYjaGTjgpO5/8l74jL7ZjS7UamOfsRrN1oWeyo8wuLHvY2DMqwDIv/f/dak+EbUfStU
+         vP4w==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@verisart.com header.s=google header.b=LTj1PTiT;
+       spf=pass (google.com: domain of robert@verisart.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=robert@verisart.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=verisart.com;
+       dara=pass header.i=@gmail.com
+Return-Path: <robert@verisart.com>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id ffacd0b85a97d-37d4b92f111sor1098182f8f.10.2024.10.11.06.41.06
+        for <paulrcohen@gmail.com>
+        (Google Transport Security);
+        Fri, 11 Oct 2024 06:41:06 -0700 (PDT)
+Received-SPF: pass (google.com: domain of robert@verisart.com designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@verisart.com header.s=google header.b=LTj1PTiT;
+       spf=pass (google.com: domain of robert@verisart.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=robert@verisart.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=verisart.com;
+       dara=pass header.i=@gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=verisart.com; s=google; t=1728654066; x=1729258866; dara=google.com;
+        h=references:to:cc:in-reply-to:date:subject:mime-version:message-id
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=k6EurrcG32HMEephJQg0XDo/H7zi66RY32yWRyqlHIM=;
+        b=LTj1PTiTnXOSjpWdqoDFirUHbjxghGtsAsNK7nalb0UaHT+tYM173WF4WSgbByGbV9
+         FWnJprVk3x1kMOY4QlVX3yf1GxZ9zELKPPZoZOEypoPHRXDZydoJ/e97ape6p3LpZN2z
+         sO3KOUlyfLDE21oyro0k1K5mcsIlfE8Z96xVFigd7+IOLSBNCgfALcX0WOY6z5CactWG
+         LFV4zK/9RQnov1mjU+2Bw9RDFjo8J/MhR1FDHve+PspDEJCNvrz7nwC+TQQ51ivnCOxt
+         tk8sDbxtzNbI5XUKhCDdeHwykOPWiMG2RycRWe/kFJL1PdgKOYEytpRiI5QIkrYUz3d3
+         XT0g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728654066; x=1729258866;
+        h=references:to:cc:in-reply-to:date:subject:mime-version:message-id
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=k6EurrcG32HMEephJQg0XDo/H7zi66RY32yWRyqlHIM=;
+        b=FcinVVU68SnHTNoKoRluG84X+f2s3k2ubWZsqU2OWNQclX2/z919d6EY3pfSdI/odk
+         jC8XZJjSwwa6cwUjVjmfe8DblGZfhZ1f370HAA7H2vRK/y7TlWg47C9i4iYiRTheGYmo
+         w9g7gd18sVO6aBBj6hvzm8ZqZIY4UHK9bRv9zx36mo1mIbVmWP5yHV+Bss0yNZtjN0ZH
+         nS0e831YXQGO9uotgEmqcf++EYGS11zhIVX7/OGXhryytYBclbOnnbGdW02QCqr32kkh
+         VKSeizCEm00uG/Fk85eBtw333gEPLupl80sz3eh1sGgvhGvhsHk/zVLVC3CK6Nt6UKKg
+         F9KA==
+X-Gm-Message-State: AOJu0Yw6Mg/HTzmoUsB68/7xhPJP7akVNFjbSN51Pg4Z0sGqdZzeH2FG
+	EcVU1u9POOo1ZELV5oNm5Mzi2OJvghJws8Z/ifxYyuNijwDwd2bFjXxkUQ4L4Hvcnux0GexWM5h
+	XHgda5VfaDTZn8moCeSzX9wjJCwdT+gjfPjnQsZIQc4b+2V3Ztqh8xY+eOPp8VG5qkQh/ABrIfn
+	xzp2KIZ7jq1Jq82IIafdpZuKGJSy5sb2lbSbw0
+X-Google-Smtp-Source: AGHT+IHZj8l9rmOn4+3E++RD1b1rN8uyhnXVCb5jdvyYChDue1/FLqJXKbBP/cp9PTs2aLVk/yvgBA==
+X-Received: by 2002:a5d:4e44:0:b0:37d:4eeb:7370 with SMTP id ffacd0b85a97d-37d552ec88amr2240704f8f.56.1728654065435;
+        Fri, 11 Oct 2024 06:41:05 -0700 (PDT)
+Return-Path: <robert@verisart.com>
+Received: from smtpclient.apple ([212.140.171.194])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-43117ff5930sm43241885e9.0.2024.10.11.06.41.04
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 11 Oct 2024 06:41:04 -0700 (PDT)
+From: Robert Norton <robert@verisart.com>
+Message-Id: <CFD2C761-D146-4BDB-BB94-95211019D5CB@verisart.com>
+Content-Type: multipart/alternative;
+	boundary="Apple-Mail=_1F718077-27ED-4561-ADC0-E02E768AF6E0"
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3818.100.11.1.3\))
+Subject: Re: Quick question re Harold Cohen data for Sothebys
+Date: Fri, 11 Oct 2024 14:40:54 +0100
+In-Reply-To: <CAKjPZkFT=padksd2nFSxBR7=ZheGHt_zjoxm9cK6Y8ooj8HLgw@mail.gmail.com>
+Cc: Thomas Machnik <zipnpup@yahoo.com>,
+ Harold Cohen Trust <aaron@aaronshome.com>,
+ Askarova Norton Mila <m.askarova@gazelliarthouse.com>,
+ Chow Natalia <natalia@verisart.com>
+To: Cohen Paul <paulrcohen@gmail.com>
+References: <1565338113.93777.1728545465695@mail.yahoo.com>
+ <1E9EE169-F747-49DB-8B0F-8D57FB899071@verisart.com>
+ <CAKjPZkFT=padksd2nFSxBR7=ZheGHt_zjoxm9cK6Y8ooj8HLgw@mail.gmail.com>
+X-Mailer: Apple Mail (2.3818.100.11.1.3)
+
+
+--Apple-Mail=_1F718077-27ED-4561-ADC0-E02E768AF6E0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=utf-8
+
+Thanks Paul for your input and good to have an agreed direction.
+
+With your agreement, we will change the year if production from 2002 to =
+2003 and add a note to the COA for the print with the following text:
+
+=E2=80=9CThe Harold Cohen Trust notes that the artist has signed this =
+print as 2002 but has concluded this was an error.  The file name =
+0311-32 refers to the year 2003, the month November and the 32nd Aaron =
+generated work in that month.'
+
+We will also need to burn the existing NFT and re-mint it with the =
+correct date.  Please let me know if this works and I=E2=80=99ll inform =
+Sotheby=E2=80=99s.
+
+Best
+
+Robert
+
+
+
+Robert Norton
+CEO & co-founder
+Verisart <http://www.verisart.com/>
+
+
+=EF=BF=BC
+
+> On Oct 10, 2024, at 19:51, Paul Cohen <paulrcohen@gmail.com> wrote:
+>=20
+> Robert, Tom, sorry for being out of touch,I just got to Boston.
+>=20
+> I think our best option is to tell the whole story.  If we were stamp =
+collectors, errors like this would be worth a fortune.  The story as I =
+understand it leaves no doubt that "2002" was an error.  Here's the =
+evidence:
+>=20
+> The left side of the print identifies the work as 03-11-32 (Tom, =
+correct me if I misremember the order of the pairs), which means 2003, =
+November, 32nd print of the year
+> Another print in the sale was printed at nearly the same time.  On the =
+left it says 03-11-35.  On the right it says 2003.
+> Harold compiled a catalog of work in 2004.  In that catalog, the print =
+is given the date 2003.
+> We might be able to find an exhibition catalog that shows the print =
+and gives it the date 2003.  Tom is looking now.
+> Most importantly, Aaron simply couldn't have made this image in 2002.  =
+Tom's research shows that potted plants happened in 2003 and, notably, =
+shadows didn't appear until the summer of 2003.
+> All this evidence and Harold's well-known inability to keep track of =
+days and dates leave no doubt in my mind that "2002" is an error.   The =
+Trust can stand confidently behind this account.  Far from raising =
+questions about the dates of the other prints, the research that went =
+into resolving this anomaly should convince Sotheby's and collectors =
+that we are very serious about the dates.
+>=20
+> --Paul
+> ______________________________
+>=20
+> Paul Cohen,  Professor
+> School of Computing and Information
+> University of Pittsburgh
+> personal webpage <https://paulrcohen.github.io/>
+> ______________________________
+>=20
+>=20
+> On Thu, Oct 10, 2024 at 4:11=E2=80=AFAM Robert norton =
+<robert@verisart.com <mailto:robert@verisart.com>> wrote:
+>> Thanks Tim for explaining all this.  The work is not being auctioned =
+by Sothebys - rather it is a selling exhibition on show in NY and with =
+fixed prices so we will be able to discuss all this with the collector =
+if we choose. =20
+>>=20
+>> Best
+>>=20
+>> Robert=20
+>>=20
+>>> On Oct 10, 2024, at 08:31, Thomas Machnik <zipnpup@yahoo.com =
+<mailto:zipnpup@yahoo.com>> wrote:
+>>>=20
+>>> =EF=BB=BF
+>>> Hi Robert,
+>>>=20
+>>> Well, we have a dilemma. I actual see two additional options. I =
+don't necessarily have the final word as we should get Paul's input. In =
+order of my preference from most preferred to least, I list them below. =
+Just want to note that knowing what I now know, I would not have sent =
+this one.
+>>>=20
+>>> Preference from most preferred to least
+>>> 1) Pull the work from the auction
+>>> 2) Sell the print but without the NFT or sell NFT without print
+>>> 3) Use your 2nd option with a minor change
+>>> Your second option is to leave the certificate as is but add a note. =
+I suggest changing the note on the certificate to, "this is the earliest =
+known file the estate has for this work."  I would leave out, "the =
+descriptor file was not saved until 2003". We might consider, "the =
+earliest known descriptor file for this work has a 2003 timestamp."
+>>> 4) is the one about changing the certificate to 2003. This is =
+probably the most appropriate thing to do because it reflects reality. =
+But we are concerned about the implications for the collectors. And =
+because of this, I included the option of pulling the work from the =
+auction or selling the print but not the NFT with it.
+>>>=20
+>>> Honestly, except for #1 I am a bit uncomfortable with all of them. =
+Maybe in general an auction is not the proper venue for selling works =
+that include signing errors. Maybe in those cases it would be better to =
+have a one-on-one conversation with the collector on the reality and =
+provide a more complete story of the work. And maybe this is what we =
+should do regarding this work.
+>>>=20
+>>> I do have an additional concern regarding this work (with respect to =
+generating a certificate) in that we have some evidence that a 2/3 and =
+3/3 might have been made and as of yet, I do not know how they were =
+signed. I do know that in our 2002 - 2004 catalog (the one I showed you =
+when you visited)... in there the work is documented as being 2003. So =
+again everything points to the work being 2003 and that Harold made an =
+error.
+>>>=20
+>>> If we keep the claim of the print as being signed as 2002 without =
+explanation, internally we will have implications as well. And these =
+implications may actually out way the concern of the implications =
+related to collectors. For example, if we want to make our 2002 - 2004 =
+catalog in its current or expanded form more widely available, the =
+catalog will not jive with the certificate. And in any other instance =
+whereby Harold referred to this work (this includes multiple Powerpoint =
+presentations, speeches and the like) the confusion is only exasperated =
+due to that one number in pencil being written as a 2 and not a 3.
+>>>=20
+>>> I know this is on the eve of the auction and I would have preferred =
+I didn't send this one. And like you mention though not in these exact =
+terms, this work belongs to the misfits group. I don't know we can pull =
+this work on the eve of the auction but that is my preference. But I am =
+open to hear what Paul things about all this.
+>>>=20
+>>> Tom
+>>>=20
+>>>=20
+>>>=20
+>>>=20
+>>>=20
+>>>=20
+>>>=20
+>>>=20
+>>>=20
+>>>=20
+>>>=20
+>>>=20
+>>> On Wednesday, October 9, 2024, 8:52:46 AM PDT, Robert Norton =
+<robert@verisart.com <mailto:robert@verisart.com>> wrote:
+>>>=20
+>>>=20
+>>> Thanks Tom for double checking all this.  Appreciate that all this =
+takes time and it=E2=80=99s sometimes hard to determine what happened so =
+long ago.
+>>>=20
+>>> Regarding this work, we now have two options:
+>>>=20
+>>> 1) We create a new certificate for the print and change the date =
+from 2002 to 2003.  The problem with this is that the collector would =
+receive the print and may then ask why the year says 2002 whereas the =
+record says 2003 and this may create further confusion and invite =
+further scrutiny regarding dates written on other prints.  I think we =
+would want to avoid this as we are looking to build a trusted market for =
+this works.  We would also need to destroy the already minted NFT which =
+states a production year of 2002 which is what is supplied although the =
+file metadata does say 2003.
+>>>=20
+>>> 2) We leave the certificate for the print as it stands which states =
+it was produced in 2002.  We add a note to the certificate for the NFT =
+to say this is the earliest known file the estate has for this work and =
+say that the descriptor file was not saved until 2003.  The benefit with =
+this is we don't have to re-mint or re-issue the NFT or the certificate =
+and we can simply amend the certificate for the NFT to reflect the =
+above.
+>>>=20
+>>> I suspect there may be other cases we come across when we put =
+together the catalog raisonne and it may be better to include all works =
+together in a series of changes the estate agrees upon than to introduce =
+all this know on the eve, so to speak, of the selling exhibition with =
+Sotheby=E2=80=99s.
+>>>=20
+>>> We will do whatever you think is best but from our perspective we =
+think Option 2 is preferable at this stage.
+>>>=20
+>>> Grateful for your thoughts and guidance on this.
+>>>=20
+>>> Best
+>>>=20
+>>> Robert
+>>>=20
+>>> Robert Norton
+>>> CEO & co-founder
+>>> Verisart <http://www.verisart.com/>
+>>>=20
+>>>=20
+>>> <verisart-certified-signature (1).gif>
+>>>=20
+>>>> On Oct 9, 2024, at 07:37, Thomas Machnik <zipnpup@yahoo.com =
+<mailto:zipnpup@yahoo.com>> wrote:
+>>>>=20
+>>>> Dear Robert,
+>>>> I looked into the matter and the short answer is still the same -- =
+the digital files are timestamped 2003 and the print is signed 2002. I =
+did not find any evidence to support the idea that the files were some =
+how generated in 2002 instead of 2003. I came to this conclusion by =
+examining the all the digital & physical works from the beginning of =
+2002 to the end 2003 in chronological order. Ideally I would lay out a =
+visual timeline so we can see the progression of AARON's development =
+over that time. That will take quite a bit of time to put together so I =
+will leave that to a future date. But I did note in my notebook the =
+style and key elements that each of the versions of AARON produced =
+during the 2002-03 time period.=20
+>>>>=20
+>>>> By doing this, it became quite clear that AARON was not capable of =
+producing anything in 2002 even remotely close to the plant imagery of =
+0311-32 (i23-3405) in terms of variety and complexity. The earliest it =
+might have been able to do so would have been very late summer of 2003. =
+Also, the work in question (0311-32) & its sister print at Sotheby's =
+(0311-35) both belong to a series of works that were all generated in =
+Oct 2003. And in this series we see portrait works, square works and =
+landscape works all with the same complexity and similar style of =
+imagery. If we some how put 0311-32 in year 2002 then we have to ask =
+well what about its sister print 0311-35? And what about all the other =
+works in the series?=20
+>>>>=20
+>>>> In terms of AARON's early-post-painting-machine phase development =
+there is an obvious deliberate progression. The start of which seems to =
+coincide with his purchase of a Roland HiFi printer in early 2000 along =
+with a switch to Windows NT/2000 around the same time.  The two works at =
+Sotheby's express the zenith in terms of AARON's =
+early-post-painting-machine phase development. The next phase (2004+) is =
+much different as we can see in only 2004 work we have at Sotheby's.=20
+>>>>=20
+>>>> Of course Harold is not here to ask what happened. I rather think =
+he signed 0311-32 inadvertently as 2002. I don't know what the =
+implications of this are. I hope it is like the mint minting a coin and =
+making a mistake impressing the wrong year. And in turn by doing so =
+created something rare and more valuable as because by adding human =
+error this work truly is "unique."
+>>>>=20
+>>>> Tom
+>>>>=20
+>>>>=20
+>>>> On Tuesday, October 8, 2024, 5:50:35 PM PDT, Paul Cohen =
+<paulrcohen@gmail.com <mailto:paulrcohen@gmail.com>> wrote:
+>>>>=20
+>>>>=20
+>>>> This doesn=E2=80=99tadd much but Harold did sometimes get dates =
+wrong.  I=E2=80=99ll have to dig for it but I remember at least one work =
+signed as a birthday present but the wrong day =F0=9F=98=9F
+>>>>=20
+>>>> On Tue, Oct 8, 2024 at 4:44 AM Robert norton <robert@verisart.com =
+<mailto:robert@verisart.com>> wrote:
+>>>> Thanks Tom for this and I do appreciate how hard it is to account =
+for everything that happened such a long time ago.  This was one of the =
+motivations for starting Verisart -  to help artists keep veritable and =
+accurate records. =20
+>>>>=20
+>>>> Just to clarify Sotheby=E2=80=99s are not asking about the print as =
+this spreadsheet specifically refers to the image file for the NFT. Is =
+it possible that the program was run in 2002 but the image not saved =
+until 2003?
+>>>>=20
+>>>> Perhaps your answer is the same for the image as it was for the =
+print but just wanted to make check this with you.=20
+>>>>=20
+>>>> Grateful for any further thoughts.  In meantime I can share this =
+with Sotheby=E2=80=99s. =20
+>>>>=20
+>>>> Thanks
+>>>>=20
+>>>> Robert=20
+>>>>=20
+>>>>> On Oct 8, 2024, at 04:53, Thomas Machnik <zipnpup@yahoo.com =
+<mailto:zipnpup@yahoo.com>> wrote:
+>>>>>=20
+>>>>> =EF=BB=BF
+>>>>=20
+>>>>> Hi Robert,
+>>>>> When it comes to Harold there rarely is a quick answer. Since the =
+physical print date precedes the aa file timestamp by one year, that =
+begs the question, "How is this possible?" I know you probably want a =
+quick yes or no answer. If that is true then the quick is answer yes. =
+Yes, meaning the physical work is signed as 2002 and the aa file =
+timestamp is 2003. But this would certainly suggest an error. Did Tom =
+write down the information incorrectly? Is that the error? No. The =
+timestamp for the aa file is 2003 and the signed print is 2002.
+>>>>>=20
+>>>>> It seems like we have one of two scenarios. One, Harold signed the =
+physical print incorrectly.  Two, he signed the print correctly. But, we =
+don't know why the generated work seems to be in the future. If the =
+second scenario is true, how could it be true? Maybe, the version of =
+AARON Harold used was from 2002 and that he simply ran it in 2003.
+>>>>>=20
+>>>>> We had a situation at the Whitney this past year whereby all the =
+work was generated in 2023 and then plotted in 2024. However, the =
+version of AARON generating the work was from 2001. We may think these =
+are 2024 works because they were plotted in 2024. But maybe in the mind =
+of the artist they are really 2001 works because all the works were =
+already fixed as potentials in the 2001.
+>>>>>=20
+>>>>> I'm not sure if the second scenario can be confirmed or not as I =
+never thought about this before. When I go to the studio Tuesday, I will =
+see what I can find. I also sent a message to Cohen's 2002-2003 =
+assistant and waiting for her thoughts and this matter.
+>>>>>=20
+>>>>> Tom=20
+>>>>>=20
+>>>>>=20
+>>>>> Sent from Yahoo Mail for iPad =
+<https://mail.onelink.me/107872968?pid=3Dnativeplacement&c=3DGlobal_Acquis=
+ition_YMktg_315_Internal_EmailSignature&af_sub1=3DAcquisition&af_sub2=3DGl=
+obal_YMktg&af_sub3=3D&af_sub4=3D100000604&af_sub5=3DEmailSignature__Static=
+_>
+>>>>>=20
+>>>>> On Monday, October 7, 2024, 4:29 PM, Robert norton =
+<robert@verisart.com <mailto:robert@verisart.com>> wrote:
+>>>>>=20
+>>>>> Hi Tom
+>>>>>=20
+>>>>> Sothebys have flagged this work as the production year says 2002 =
+but the description of the file says the file was created in 2003.=20
+>>>>>=20
+>>>>> Can you confirm this is correct?
+>>>>>=20
+>>>>> Thanks
+>>>>>=20
+>>>>> Robert
+>>>>>=20
+>>>>>=20
+>>>> --
+>>>> ______________________________
+>>>>=20
+>>>> Paul Cohen,  Professor
+>>>> School of Computing and Information
+>>>> University of Pittsburgh
+>>>> personal webpage <https://paulrcohen.github.io/>
+>>>> ______________________________
+>>>=20
+>>> <verisart-certified-signature (1).gif>
+
+
+--Apple-Mail=_1F718077-27ED-4561-ADC0-E02E768AF6E0
+Content-Type: multipart/related;
+	type="text/html";
+	boundary="Apple-Mail=_763C60F7-8F1A-441A-BAD8-13E03F58600F"
+
+
+--Apple-Mail=_763C60F7-8F1A-441A-BAD8-13E03F58600F
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=utf-8
+
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; =
+charset=3Dutf-8"></head><body style=3D"overflow-wrap: break-word; =
+-webkit-nbsp-mode: space; line-break: after-white-space;">Thanks Paul =
+for your input and good to have an agreed =
+direction.<div><br></div><div>With your agreement, we will change the =
+year if production from 2002 to 2003 and add a note to the COA for the =
+print with the following text:</div><div><br></div><div>=E2=80=9CThe =
+Harold Cohen Trust notes that the artist has signed this print as 2002 =
+but has concluded this was an error. &nbsp;The file name 0311-32 refers =
+to the year 2003, the month November and the 32nd Aaron generated work =
+in that month.'</div><div><br></div><div>We will also need to burn the =
+existing NFT and re-mint it with the correct date. &nbsp;Please let me =
+know if this works and I=E2=80=99ll inform =
+Sotheby=E2=80=99s.</div><div><br></div><div>Best</div><div><br></div><div>=
+Robert</div><div><br></div><div><br><div><div>
+<div style=3D"font-family: Helvetica; font-size: 12px; font-style: =
+normal; font-variant-caps: normal; font-weight: normal; letter-spacing: =
+normal; orphans: auto; text-align: start; text-indent: 0px; =
+text-transform: none; white-space: normal; widows: auto; word-spacing: =
+0px; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; =
+text-decoration: none; caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); =
+word-wrap: break-word; -webkit-nbsp-mode: space; line-break: =
+after-white-space;"><font color=3D"#696969"><br =
+class=3D"Apple-interchange-newline">Robert Norton</font></div><div =
+style=3D"font-family: Helvetica; font-size: 12px; font-style: normal; =
+font-variant-caps: normal; font-weight: normal; letter-spacing: normal; =
+orphans: auto; text-align: start; text-indent: 0px; text-transform: =
+none; white-space: normal; widows: auto; word-spacing: 0px; =
+-webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; =
+text-decoration: none; caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); =
+word-wrap: break-word; -webkit-nbsp-mode: space; line-break: =
+after-white-space;"><font color=3D"#696969">CEO &amp; =
+co-founder</font></div><div style=3D"font-family: Helvetica; font-size: =
+12px; font-style: normal; font-variant-caps: normal; font-weight: =
+normal; letter-spacing: normal; orphans: auto; text-align: start; =
+text-indent: 0px; text-transform: none; white-space: normal; widows: =
+auto; word-spacing: 0px; -webkit-text-size-adjust: auto; =
+-webkit-text-stroke-width: 0px; text-decoration: none; caret-color: =
+rgb(0, 0, 0); color: rgb(0, 0, 0); word-wrap: break-word; =
+-webkit-nbsp-mode: space; line-break: after-white-space;"><a =
+href=3D"http://www.verisart.com">Verisart</a></div><div =
+style=3D"font-family: Helvetica; font-size: 12px; font-style: normal; =
+font-variant-caps: normal; font-weight: 400; letter-spacing: normal; =
+orphans: auto; text-align: start; text-indent: 0px; text-transform: =
+none; white-space: normal; widows: auto; word-spacing: 0px; =
+-webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; =
+text-decoration: none; caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); =
+word-wrap: break-word; -webkit-nbsp-mode: space; line-break: =
+after-white-space;"><br></div><br =
+class=3D"Apple-interchange-newline"><span><img =
+alt=3D"verisart-certified-signature (1).gif" =
+src=3D"cid:824DAC38-7178-4033-BBF9-689D677D7C42"></span>
+</div>
+<div><br><blockquote type=3D"cite"><div>On Oct 10, 2024, at 19:51, Paul =
+Cohen &lt;paulrcohen@gmail.com&gt; wrote:</div><br =
+class=3D"Apple-interchange-newline"><div><div dir=3D"ltr"><div =
+class=3D"gmail_default" style=3D"font-size:small">Robert, Tom, sorry for =
+being out of touch,I just got to Boston.<br><br></div><div =
+class=3D"gmail_default" style=3D"font-size:small">I think our best =
+option is to tell the whole story.&nbsp; If we were stamp collectors, =
+errors like this would be worth a fortune.&nbsp; The story as I =
+understand it leaves no doubt that "2002" was an error.&nbsp; Here's the =
+evidence:<br><br><ul><li>The left side of the print identifies the work =
+as 03-11-32 (Tom, correct me if I misremember the order of the pairs), =
+which means 2003, November, 32nd print of the year</li><li>Another print =
+in the sale was printed at nearly the same time.&nbsp; On the left it =
+says 03-11-35.&nbsp; On the right it says 2003.</li><li>Harold compiled =
+a catalog of work in 2004.&nbsp; In that catalog, the print is given the =
+date 2003.</li><li>We might be able to find an exhibition catalog that =
+shows the print and gives it the date 2003.&nbsp; Tom is looking =
+now.</li><li>Most importantly, Aaron simply couldn't have made this =
+image in 2002.&nbsp; Tom's research shows that potted plants happened in =
+2003 and, notably, shadows didn't appear until the summer of =
+2003.</li></ul><div>All this evidence and Harold's well-known inability =
+to keep track of days and dates leave no doubt in my mind that "2002" is =
+an error.&nbsp;&nbsp; The Trust can stand confidently behind this =
+account.&nbsp; Far from raising questions about the dates of the other =
+prints, the research that went into resolving this anomaly should =
+convince Sotheby's and collectors that we are very serious about the =
+dates. <br></div><div><br></div><div>--Paul<br></div></div><div><div =
+dir=3D"ltr" class=3D"gmail_signature" =
+data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><div><div =
+dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div =
+dir=3D"ltr"><div><div =
+dir=3D"ltr">______________________________<br><br>Paul =
+Cohen,&nbsp;&nbsp;Professor</div><div dir=3D"ltr">School of Computing =
+and Information</div><div dir=3D"ltr">University of Pittsburgh</div><div =
+dir=3D"ltr"><a href=3D"https://paulrcohen.github.io/" =
+target=3D"_blank">personal =
+webpage</a><br>______________________________</div></div></div></div></div=
+></div></div></div></div></div></div></div></div><br></div><br><div =
+class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, Oct =
+10, 2024 at 4:11=E2=80=AFAM Robert norton &lt;<a =
+href=3D"mailto:robert@verisart.com">robert@verisart.com</a>&gt; =
+wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px =
+0px 0px 0.8ex;border-left:1px solid =
+rgb(204,204,204);padding-left:1ex"><div dir=3D"auto"><div =
+dir=3D"ltr"></div><div dir=3D"ltr">Thanks Tim for explaining all =
+this.&nbsp; The work is not being auctioned by Sothebys - rather it is a =
+selling exhibition on show in NY and with fixed prices so we will be =
+able to discuss all this with the collector if we choose. =
+&nbsp;</div><div dir=3D"ltr"><br></div><div dir=3D"ltr">Best</div><div =
+dir=3D"ltr"><br></div><div dir=3D"ltr">Robert&nbsp;</div><div =
+dir=3D"ltr"><br><blockquote type=3D"cite">On Oct 10, 2024, at 08:31, =
+Thomas Machnik &lt;<a href=3D"mailto:zipnpup@yahoo.com" =
+target=3D"_blank">zipnpup@yahoo.com</a>&gt; =
+wrote:<br><br></blockquote></div><blockquote type=3D"cite"><div =
+dir=3D"ltr">=EF=BB=BF<div style=3D"font-family:Helvetica =
+Neue,Helvetica,Arial,sans-serif;font-size:16px"><div></div>
+        <div dir=3D"ltr">Hi Robert,</div><div dir=3D"ltr"><br></div><div =
+dir=3D"ltr">Well, we have a dilemma. I actual see two additional =
+options. I don't necessarily have the final word as we should get Paul's =
+input. In order of my preference from most preferred to least, I list =
+them below. Just want to note that knowing what I now know, I would not =
+have sent this one. <br></div><div dir=3D"ltr"><br></div><div =
+dir=3D"ltr">Preference from most preferred to least</div><div =
+dir=3D"ltr">1) Pull the work from the auction</div><div dir=3D"ltr">2) =
+Sell the print but without the NFT or sell NFT without =
+print<br></div><div dir=3D"ltr">3) Use your 2nd option with a minor =
+change</div><div dir=3D"ltr">Your second option is to leave the =
+certificate as is but add a note. I suggest changing the note on the =
+certificate to, "<span>this is the earliest known file the estate has =
+for this work."&nbsp; I would leave out, "<span>the descriptor file was =
+not saved until 2003</span>". We might consider, "the earliest known =
+descriptor file for this work has a 2003 =
+timestamp."<br></span></div><div dir=3D"ltr"><span>4) is the one about =
+changing the certificate to 2003. This is probably the most appropriate =
+thing to do because it reflects reality. But we are concerned about the =
+implications for the collectors. And because of this, I included the =
+option of pulling the work from the auction or selling the print but not =
+the NFT with it. <br></span></div><div =
+dir=3D"ltr"><span><br></span></div><div dir=3D"ltr"><span>Honestly, =
+except for #1 I am a bit uncomfortable with all of them. Maybe in =
+general an auction is not the proper venue for selling works that =
+include signing errors. Maybe in those cases it would be better to have =
+a one-on-one conversation with the collector on the reality and provide =
+a more complete story of the work. And maybe this is what we should do =
+regarding this work.<br></span></div><div =
+dir=3D"ltr"><span><br></span></div><div dir=3D"ltr"><span>I do have an =
+additional concern regarding this work (with respect to generating a =
+certificate) in that we have some evidence that a 2/3 and 3/3 might have =
+been made and as of yet, I do not know how they were signed. I do know =
+that in our 2002 - 2004 catalog (the one I showed you when you =
+visited)... in there the work is documented as being 2003. =
+<span><span>So again everything points to the work being 2003 and that =
+Harold made an error. </span></span><br></span></div><div =
+dir=3D"ltr"><span><br></span></div><div dir=3D"ltr"><span>If we keep the =
+claim of the print as being signed as 2002 without explanation, =
+internally we will have implications as well. And these implications may =
+actually out way the concern of the implications related to collectors. =
+For example, if we want to make our 2002 - 2004 catalog in its current =
+or expanded form more widely available, the catalog will not jive with =
+the certificate. And in any other instance whereby Harold referred to =
+this work (this includes multiple Powerpoint presentations, speeches and =
+the like) the confusion is only exasperated due to that one number in =
+pencil being written as a 2 and not a 3.</span></div><div =
+dir=3D"ltr"><span><br></span></div><div dir=3D"ltr"><span>I know this is =
+on the eve of the auction and I would have preferred I didn't send this =
+one. And like you mention though not in these exact terms, this work =
+belongs to the misfits group. I don't know we can pull this work on the =
+eve of the auction but that is my preference. But I am open to hear what =
+Paul things about all this.</span></div><div =
+dir=3D"ltr"><span><br></span></div><div =
+dir=3D"ltr"><span>Tom<br></span></div><div =
+dir=3D"ltr"><span><br></span></div><div =
+dir=3D"ltr"><span><br></span></div><div =
+dir=3D"ltr"><span><br></span></div><div =
+dir=3D"ltr"><span><br></span></div><div =
+dir=3D"ltr"><span><br></span></div><div =
+dir=3D"ltr"><span><br></span></div><div =
+dir=3D"ltr"><span><br></span></div><div =
+dir=3D"ltr"><span><br></span></div><div =
+dir=3D"ltr"><span><br></span></div><div =
+dir=3D"ltr"><span><br></span></div><div =
+dir=3D"ltr"><br></div><div><br></div>
+       =20
+        </div><div =
+id=3D"m_566412562348980139ydp85146d65yahoo_quoted_8582474910">
+            <div style=3D"font-family:&quot;Helvetica =
+Neue&quot;,Helvetica,Arial,sans-serif;font-size:13px;color:rgb(38,40,42)">=
+
+               =20
+                <div>
+                        On Wednesday, October 9, 2024, 8:52:46 AM PDT, =
+Robert Norton &lt;<a href=3D"mailto:robert@verisart.com" =
+target=3D"_blank">robert@verisart.com</a>&gt; wrote:
+                    </div>
+                    <div><br></div>
+                    <div><br></div>
+               =20
+               =20
+                <div><div =
+id=3D"m_566412562348980139ydp85146d65yiv9454411221"><div>Thanks Tom for =
+double checking all this.&nbsp; Appreciate that all this takes time and =
+it=E2=80=99s sometimes hard to determine what happened so long =
+ago.<div><br clear=3D"none"></div><div>Regarding this work, we now have =
+two options:</div><div><br clear=3D"none"></div><div>1) We create a new =
+certificate for the print and change the date from 2002 to 2003.&nbsp; =
+The problem with this is that the collector would receive the print and =
+may then ask why the year says 2002 whereas the record says 2003 and =
+this may create further confusion and invite further scrutiny regarding =
+dates written on other prints.&nbsp; I think we would want to avoid this =
+as we are looking to build a trusted market for this works.&nbsp; We =
+would also need to destroy the already minted NFT which states a =
+production year of 2002 which is what is supplied although the file =
+metadata does say 2003.</div><div><br clear=3D"none"></div><div>2) We =
+leave the certificate for the print as it stands which states it was =
+produced in 2002.&nbsp; We add a note to the certificate for the NFT to =
+say this is the earliest known file the estate has for this work and say =
+that the descriptor file was not saved until 2003.&nbsp; The benefit =
+with this is we don't have to re-mint or re-issue the NFT or the =
+certificate and we can simply amend the certificate for the NFT to =
+reflect the above.</div><div><br clear=3D"none"></div><div>I suspect =
+there may be other cases we come across when we put together the catalog =
+raisonne and it may be better to include all works together in a series =
+of changes the estate agrees upon than to introduce all this know on the =
+eve, so to speak, of the selling exhibition with =
+Sotheby=E2=80=99s.</div><div><br clear=3D"none"></div><div>We will do =
+whatever you think is best but from our perspective we think Option 2 is =
+preferable at this stage.</div><div><br clear=3D"none"></div><div>Grateful=
+ for your thoughts and guidance on this.</div><div><br =
+clear=3D"none"></div><div>Best</div><div><br =
+clear=3D"none"></div><div>Robert</div><div>
+<div style=3D"font-family: Helvetica; font-size: 12px; font-style: =
+normal; font-weight: normal; letter-spacing: normal; text-indent: 0px; =
+text-transform: none; white-space: normal; word-spacing: 0px; =
+text-decoration: none; text-decoration-style: solid; =
+text-decoration-color: currentcolor;"><font color=3D"#696969"><br =
+clear=3D"none">Robert Norton</font></div><div style=3D"font-family: =
+Helvetica; font-size: 12px; font-style: normal; font-weight: normal; =
+letter-spacing: normal; text-indent: 0px; text-transform: none; =
+white-space: normal; word-spacing: 0px; text-decoration: none; =
+text-decoration-style: solid; text-decoration-color: =
+currentcolor;"><font color=3D"#696969">CEO &amp; =
+co-founder</font></div><div style=3D"font-family: Helvetica; font-size: =
+12px; font-style: normal; font-weight: normal; letter-spacing: normal; =
+text-indent: 0px; text-transform: none; white-space: normal; =
+word-spacing: 0px; text-decoration: none; text-decoration-style: solid; =
+text-decoration-color: currentcolor;"><a shape=3D"rect" =
+href=3D"http://www.verisart.com/" rel=3D"nofollow" =
+target=3D"_blank">Verisart</a></div><div style=3D"font-family: =
+Helvetica; font-size: 12px; font-style: normal; font-weight: 400; =
+letter-spacing: normal; text-indent: 0px; text-transform: none; =
+white-space: normal; word-spacing: 0px; text-decoration: none; =
+text-decoration-style: solid; text-decoration-color: currentcolor;"><br =
+clear=3D"none"></div><br =
+clear=3D"none"><span><div>&lt;verisart-certified-signature =
+(1).gif&gt;</div></span>
+</div>
+<div id=3D"m_566412562348980139ydp85146d65yiv9454411221yqt53015"><div><br =
+clear=3D"none"><blockquote type=3D"cite"><div>On Oct 9, 2024, at 07:37, =
+Thomas Machnik &lt;<a href=3D"mailto:zipnpup@yahoo.com" =
+target=3D"_blank">zipnpup@yahoo.com</a>&gt; wrote:</div><br =
+clear=3D"none"><div><div><div style=3D"font-family:Helvetica =
+Neue,Helvetica,Arial,sans-serif;font-size:16px"><div></div>
+        <div dir=3D"ltr"><div>Dear Robert,<br clear=3D"none">I looked =
+into the matter and the short answer is still the same -- the digital =
+files are timestamped 2003 and the print is signed 2002. I did not find =
+any evidence to support the idea that the files were some how generated =
+in 2002 instead of 2003. I came to this conclusion by examining the all =
+the digital &amp; physical works from the beginning of 2002 to the end =
+2003 in chronological order. Ideally I would lay out a visual timeline =
+so we can see the progression of AARON's development over that time. =
+That will take quite a bit of time to put together so I will leave that =
+to a future date. But I did note in my notebook the style and key =
+elements that each of the versions of AARON produced during the 2002-03 =
+time period. <br clear=3D"none"><br clear=3D"none">By doing this, it =
+became quite clear that AARON was not capable of producing anything in =
+2002 even remotely close to the plant imagery of 0311-32 (i23-3405) in =
+terms of variety and complexity. The earliest it might have been able to =
+do so would have been very late summer of 2003. Also, the work in =
+question (0311-32) &amp; its sister print at Sotheby's (0311-35) both =
+belong to a series of works that were all generated in Oct 2003. And in =
+this series we see portrait works, square works and landscape works all =
+with the same complexity and similar style of imagery. If we some how =
+put 0311-32 in year 2002 then we have to ask well what about its sister =
+print 0311-35? And what about all the other works in the series? <br =
+clear=3D"none"><br clear=3D"none">In terms of AARON's =
+early-post-painting-machine phase development there is an obvious =
+deliberate progression. The start of which seems to coincide with his =
+purchase of a Roland HiFi printer in early 2000 along with a switch to =
+Windows NT/2000 around the same time.&nbsp; The two works at Sotheby's =
+express the zenith in terms of AARON's early-post-painting-machine phase =
+development. The next phase (2004+) is much different as we can see in =
+only 2004 work we have at Sotheby's. <br clear=3D"none"><br =
+clear=3D"none">Of course Harold is not here to ask what happened. I =
+rather think he signed 0311-32 inadvertently as 2002. I don't know what =
+the implications of this are. I hope it is like the mint minting a coin =
+and making a mistake impressing the wrong year. And in turn by doing so =
+created something rare and more valuable as because by adding human =
+error this work truly is "unique."<br clear=3D"none"><br =
+clear=3D"none">Tom</div><div><br clear=3D"none"></div></div><div><br =
+clear=3D"none"></div>
+       =20
+        </div><div =
+id=3D"m_566412562348980139ydp85146d65yiv9454411221ydpd041b7deyahoo_quoted_=
+8686318801">
+            <div style=3D"font-family:&quot;Helvetica =
+Neue&quot;,Helvetica,Arial,sans-serif;font-size:13px;color:rgb(38,40,42)">=
+
+               =20
+                <div>
+                        On Tuesday, October 8, 2024, 5:50:35 PM PDT, =
+Paul Cohen &lt;<a href=3D"mailto:paulrcohen@gmail.com" =
+target=3D"_blank">paulrcohen@gmail.com</a>&gt; wrote:
+                    </div>
+                    <div><br clear=3D"none"></div>
+                    <div><br clear=3D"none"></div>
+               =20
+               =20
+                <div><div =
+id=3D"m_566412562348980139ydp85146d65yiv9454411221ydpd041b7deyiv7500347759=
+"><div><div>This doesn=E2=80=99tadd much but Harold did sometimes get =
+dates wrong.&nbsp; I=E2=80=99ll have to dig for it but I remember at =
+least one work signed as a birthday present but the wrong day =
+=F0=9F=98=9F</div><div =
+id=3D"m_566412562348980139ydp85146d65yiv9454411221ydpd041b7deyiv7500347759=
+yqt09711"><div><br clear=3D"none"><div><div dir=3D"ltr">On Tue, Oct 8, =
+2024 at 4:44 AM Robert norton &lt;<a shape=3D"rect" =
+href=3D"mailto:robert@verisart.com" rel=3D"nofollow" =
+target=3D"_blank">robert@verisart.com</a>&gt; wrote:<br =
+clear=3D"none"></div><blockquote style=3D"margin:0px 0px 0px =
+0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div><div =
+dir=3D"ltr"></div><div dir=3D"ltr">Thanks Tom for this and I do =
+appreciate how hard it is to account for everything that happened such a =
+long time ago.&nbsp; This was one of the motivations for starting =
+Verisart - &nbsp;to help artists keep veritable and accurate records. =
+&nbsp;</div><div dir=3D"ltr"><br clear=3D"none"></div><div =
+dir=3D"ltr">Just to clarify Sotheby=E2=80=99s are not asking about the =
+print as this spreadsheet specifically refers to the image file for the =
+NFT. Is it possible that the program was run in 2002 but the image not =
+saved until 2003?</div><div dir=3D"ltr"><br clear=3D"none"></div><div =
+dir=3D"ltr">Perhaps your answer is the same for the image as it was for =
+the print but just wanted to make check this with you.&nbsp;</div><div =
+dir=3D"ltr"><br clear=3D"none"></div><div dir=3D"ltr">Grateful for any =
+further thoughts.&nbsp; In meantime I can share this with Sotheby=E2=80=99=
+s. &nbsp;</div><div dir=3D"ltr"><br clear=3D"none"></div><div =
+dir=3D"ltr">Thanks</div><div dir=3D"ltr"><br clear=3D"none"></div><div =
+dir=3D"ltr">Robert&nbsp;</div><div dir=3D"ltr"><br =
+clear=3D"none"><blockquote type=3D"cite">On Oct 8, 2024, at 04:53, =
+Thomas Machnik &lt;<a shape=3D"rect" href=3D"mailto:zipnpup@yahoo.com" =
+rel=3D"nofollow" target=3D"_blank">zipnpup@yahoo.com</a>&gt; wrote:<br =
+clear=3D"none"><br clear=3D"none"></blockquote></div><blockquote =
+type=3D"cite"><div =
+dir=3D"ltr">=EF=BB=BF</div></blockquote></div><div><blockquote =
+type=3D"cite"><div dir=3D"ltr"><div =
+style=3D"font-family:Helvetica,Arial,sans-serif;font-size:16px"><div =
+id=3D"m_566412562348980139ydp85146d65yiv9454411221ydpd041b7deyiv7500347759=
+m_-5475077003459768395ydp46ee6939yiv3563451446" =
+style=3D"font-family:Helvetica,Arial,sans-serif"><div =
+style=3D"font-family:Helvetica,Arial,sans-serif"><div =
+style=3D"font-family:Helvetica,Arial,sans-serif">
+Hi Robert,</div><div =
+style=3D"font-family:Helvetica,Arial,sans-serif"><span =
+style=3D"font-family:Helvetica,Arial,sans-serif">When it comes to Harold =
+there rarely is a quick answer. Since the=20
+physical print date precedes the aa file timestamp by one year, that =
+begs the=20
+question, "How is this possible?"</span> I know you probably want a =
+quick yes or no answer. If that is true then the quick is answer yes. =
+Yes, meaning the physical work is signed as 2002 and the aa file =
+timestamp is 2003. But this would certainly suggest an error. Did Tom =
+write down the information incorrectly? Is that the error? No. The =
+timestamp for the aa file is 2003 and the signed print is 2002. <br =
+clear=3D"none"></div><div dir=3D"ltr" =
+style=3D"font-family:Helvetica,Arial,sans-serif"><br =
+clear=3D"none"></div><div dir=3D"ltr" =
+style=3D"font-family:Helvetica,Arial,sans-serif">It seems like we have =
+one of two scenarios. One, Harold signed the physical print =
+incorrectly.&nbsp; Two, he signed the print correctly. But, we don't =
+know why the generated work seems to be in the future. If the second =
+scenario is true, how could it be true? Maybe, the version of AARON =
+Harold used was from 2002 and that he simply ran it in 2003. <br =
+clear=3D"none"></div><div dir=3D"ltr" =
+style=3D"font-family:Helvetica,Arial,sans-serif"><br =
+clear=3D"none"></div><div dir=3D"ltr" =
+style=3D"font-family:Helvetica,Arial,sans-serif"><span =
+style=3D"font-family:Helvetica,Arial,sans-serif">We had a situation at =
+the Whitney this past year whereby all the work=20
+was generated in 2023 and then plotted in 2024. However, the version of=20=
+
+AARON generating the work was from 2001. We may think these are 2024 =
+works=20
+because they were plotted in 2024. But maybe in the mind of the artist=20=
+
+they are really 2001 works because all the works were already fixed as=20=
+
+potentials in the 2001.</span><br clear=3D"none"></div><div dir=3D"ltr" =
+style=3D"font-family:Helvetica,Arial,sans-serif"><br =
+clear=3D"none"></div><div dir=3D"ltr" =
+style=3D"font-family:Helvetica,Arial,sans-serif">I'm not sure if the =
+second scenario can be confirmed or not as I never thought about this =
+before. When I go to the studio Tuesday, I will see what I can find. I =
+also sent a message to Cohen's 2002-2003 assistant and waiting for her =
+thoughts and this matter.<br clear=3D"none"></div><div dir=3D"ltr" =
+style=3D"font-family:Helvetica,Arial,sans-serif"><br =
+clear=3D"none"></div><div dir=3D"ltr" =
+style=3D"font-family:Helvetica,Arial,sans-serif">Tom&nbsp; <br =
+clear=3D"none"></div><div =
+style=3D"font-family:Helvetica,Arial,sans-serif"><br =
+clear=3D"none"></div><div =
+style=3D"font-family:Helvetica,Arial,sans-serif"><br clear=3D"none"><div =
+style=3D"font-family:Helvetica,Arial,sans-serif"><a shape=3D"rect" =
+style=3D"font-size:12px;font-family:Helvetica,Arial,sans-serif" =
+href=3D"https://mail.onelink.me/107872968?pid=3Dnativeplacement&amp;c=3DGl=
+obal_Acquisition_YMktg_315_Internal_EmailSignature&amp;af_sub1=3DAcquisiti=
+on&amp;af_sub2=3DGlobal_YMktg&amp;af_sub3=3D&amp;af_sub4=3D100000604&amp;a=
+f_sub5=3DEmailSignature__Static_" rel=3D"nofollow" target=3D"_blank">Sent =
+from Yahoo Mail for iPad</a><br clear=3D"none"></div><br =
+clear=3D"none"></div>
+</div></div></div><div =
+id=3D"m_566412562348980139ydp85146d65yiv9454411221ydpd041b7deyiv7500347759=
+m_-5475077003459768395ydpe5aee37dyiv3563451446yqt90330"><p =
+style=3D"font-size:15px;padding-top:15px;margin-top:0px;color:rgb(123,106,=
+246)">On Monday, October 7, 2024, 4:29 PM, Robert norton &lt;<a =
+shape=3D"rect" href=3D"mailto:robert@verisart.com" rel=3D"nofollow" =
+target=3D"_blank">robert@verisart.com</a>&gt; wrote:</p><blockquote><div =
+dir=3D"ltr">Hi Tom<br clear=3D"none"></div><div dir=3D"ltr"><br =
+clear=3D"none"></div><div dir=3D"ltr">Sothebys have flagged this work as =
+the production year says 2002 but the description of the file says the =
+file was created in 2003.&nbsp; <br clear=3D"none"></div><div =
+dir=3D"ltr"><br clear=3D"none"></div><div dir=3D"ltr">Can you confirm =
+this is correct?<br clear=3D"none"></div><div dir=3D"ltr"><br =
+clear=3D"none"></div><div dir=3D"ltr">Thanks<br clear=3D"none"></div><div =
+dir=3D"ltr"><br clear=3D"none"></div><div dir=3D"ltr">Robert <br =
+clear=3D"none"></div><div dir=3D"ltr"><br clear=3D"none"></div><br =
+clear=3D"none"><blockquote></blockquote></blockquote></div></div></blockqu=
+ote></div></blockquote></div></div></div>-- <br clear=3D"none"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div =
+dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div =
+dir=3D"ltr">______________________________<br clear=3D"none"><br =
+clear=3D"none">Paul Cohen,&nbsp;&nbsp;Professor</div><div =
+dir=3D"ltr">School of Computing and Information</div><div =
+dir=3D"ltr">University of Pittsburgh</div><div dir=3D"ltr"><a =
+shape=3D"rect" href=3D"https://paulrcohen.github.io/" rel=3D"nofollow" =
+target=3D"_blank">personal webpage</a><br =
+clear=3D"none">______________________________</div></div></div></div></div=
+></div></div></div></div></div></div></div>
+</div></div></div>
+            </div>
+        </div></div></div></blockquote></div></div><br =
+clear=3D"none"></div></div></div>
+            </div>
+        </div><div>&lt;verisart-certified-signature =
+(1).gif&gt;</div></div></blockquote></div></blockquote></div>
+</div></blockquote></div><br></div></div></body></html>=
+
+--Apple-Mail=_763C60F7-8F1A-441A-BAD8-13E03F58600F
+Content-Transfer-Encoding: base64
+Content-Disposition: inline;
+	filename="verisart-certified-signature (1).gif"
+Content-Type: image/gif;
+	name="verisart-certified-signature (1).gif"
+Content-Id: <824DAC38-7178-4033-BBF9-689D677D7C42>
+
+R0lGODlhuQAQAPf/ALS0tVhYWpaWl3p6e2lpa46Oj1xcXqamp0xMTqysrVpaXENDRElJSjU1NoSE
+hTw8PkFBQ5SUlUpKTIeHiFFRUiUlJpCQkWdnaUVFRjo6PF5eYBYWGMnJyldXWKKio3BwcXV1dm9v
+cK6ur2JiY6qqqz4+QIaGhlRUVZycnW5ub5qam4mJirCwsGtrbGFhYoGBgmVlZnJyc3NzdGxsbX5+
+fxAQEjg4OqioqYiIiXR0daCgohQUFjIyNCgoKn9/gCoqLDAwMlJSU1NTVBoaHIWFhjc3OIODhCMj
+JR0dHy0tLyYmJxISFB8fIRgYGkdHSfr6+v39/fz8/N3d3fv7+/n5+dfX1/f393d3eHd3efLy8vj4
++NDQ0HZ2d87Oztvb3MPDw4CAgd/f3+zs7PT09Pb29tzc3NPT0/X19b29vnl5evf3+PDw8PHx8ePj
+497e3tHR0ebm5qCgoE9PUH19ftTU1OXl5V5eX3x8fHh4ent7fNbW1ri4ubm5uvPz89XV1eTk5Orq
+6tra2o+PkJiYmefn5yEhI+Li4qGhoVZWV9fX2MbGxre3uJWVlrKyssrKy8TExNjY2bu7vMjIyU5O
+UM/Pz4uLjI2NjnFxcu3t7b29vdLS0ry8vOvr683Nzu7u7sfHyOfn6KSkpFBQUdnZ2vb2952dnpub
+nIyMjenp6oqKi6enqKmpqrq6u9bW17y8vaCgocvLzLa2tre3t76+v3x8fURERczMzX19fb+/wOnp
+6cDAwKOjpMPDxLOzs+bm55mZmpOTlIKCg5eXmNTU1W1tbmNjZMLCwtra28bGx8fHx+jo6c3Nzb6+
+vp6en5+fn4CAgOHh4a+vsOPj5O/v77+/v7Gxstvb287Oz9HR0uDg4FVVVp+foC4uMOjo6MzMzGZm
+Z8rKyuXl5mRkZcvLy8TExZ6ennd3d8/P0Nzc3Xh4eEVFR/X19tXV1sXFxU9PUa2trqurrOTk5WBg
+YVtbXcnJyZOTk3Z2eJGRkra2t7Kys8XFxsHBwoGBgWhoaQ8PEf///yH5BAEAAP8ALAAAAAC5ABAA
+AAj/AP8JHEiwoMGDCBMqXMhwIJQ2XUaROajm2JY/AgHp0VOlY0c6hqb8I1WGTpWNbZ4cnPJmS5SC
+dAQUYJYloRZJoxBOS+TnZCJOBkH54ejRoxloYqR48VKGE5SGUKMapMJGJcE+66T+y3RpwLiDmnyE
+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
+--Apple-Mail=_763C60F7-8F1A-441A-BAD8-13E03F58600F--
+
+--Apple-Mail=_1F718077-27ED-4561-ADC0-E02E768AF6E0--

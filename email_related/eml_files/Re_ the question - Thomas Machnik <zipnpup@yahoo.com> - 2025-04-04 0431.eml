@@ -1,0 +1,703 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a10:5c8:b0:5ec:db95:1ae4 with SMTP id p8csp4759270pxt;
+        Fri, 4 Apr 2025 01:33:03 -0700 (PDT)
+X-Forwarded-Encrypted: i=2; AJvYcCWjpP72+esDzPKGRaZUKTgl1CLwR07IYT4JLG+MgcHLBqo1HvTge3iTiQNQ7yWsoy7cm84Sw8h5+JKE@gmail.com
+X-Google-Smtp-Source: AGHT+IGx63/1IS4eJ1dxhHoHeT4ikwO3oMm7VcMO1POyJxJsHR/Qb0rgaKhGdN8UeypfbIaWUKAu
+X-Received: by 2002:ac8:5713:0:b0:478:e507:f6ec with SMTP id d75a77b69052e-4792598f270mr26422411cf.23.1743755583360;
+        Fri, 04 Apr 2025 01:33:03 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1743755583; cv=none;
+        d=google.com; s=arc-20240605;
+        b=UsCT/XwDlvh9h5abUXkq9aKAaeie9nyQh9fVDw9qQCnu8krXnhP0tgHJ6aYocelNUB
+         vh5BeRwPwgzdhCpax222dvQfVTGv6b6y4p5N9awDkEmJpkVeWVVXy1lChEEaC2CgsQOg
+         1rRNpNlPa7TloaWnLzzMu0sYEsTxON3ezLbsZI0NB8KhfogOwrAYNPSBc7yj89vWxkH9
+         7Dpa1H38zmRn0aqzMQ3a5zw+Vhwh6yEeve+vpj/idgtVnAICFymRbFfbsHr6h/UXZDUz
+         Tozm2XQhuqBZUzLI1Q0x8rXMg47Qpzrcqs84meU8mx/SO5HWgUJz2wX80sTgyhSMlcTm
+         Ubtw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:subject:references:in-reply-to:message-id:cc:to
+         :reply-to:from:date:dkim-signature;
+        bh=Eph2/W8sCsA+klMpqCKgkj7Z8QO2KBHOUgMFvieSFpw=;
+        fh=v9fjBgkQHD9wovv7Qc4zhIT/M6cnG7RfZMWlwt6TsoQ=;
+        b=BM4Q93pFAi9zJu5nlnfnQDsuBik4fNHQ5cYE9eVDhH+q0Xp7xj6pnw0XtoQONbv5qv
+         ypl334ybdJUGu+ul9MB7z0Hl7oPLawa342SithsKTlVqwraFoscSPCOeDn/Cp0PRjKvQ
+         M7s0nELVXVvGKfG2JL7gXv1GmYgYq1uYm/3p6WQ+1Nc79evZnDTPb0SjATGPH+5TUojj
+         Kh2yo1Hb5RN9FPIgjJt/TvRgSUMUZVe1OuPSi77bux4XgsUIbPyRdQ2Izbq7Se5PVHmd
+         9q5PSbkuoMYeHancV3GX/mhDH3Ocz3rnidlTv6QhJnC0HJyhPgw6YWf1/ek07+TRYAXD
+         7SKw==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=oj1ea2QM;
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.133.83 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+Return-Path: <zipnpup@yahoo.com>
+Received: from sonic321-28.consmr.mail.bf2.yahoo.com (sonic321-28.consmr.mail.bf2.yahoo.com. [74.6.133.83])
+        by mx.google.com with ESMTPS id d75a77b69052e-4791b198035si26936281cf.377.2025.04.04.01.33.03
+        for <paulrcohen@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 04 Apr 2025 01:33:03 -0700 (PDT)
+Received-SPF: pass (google.com: domain of zipnpup@yahoo.com designates 74.6.133.83 as permitted sender) client-ip=74.6.133.83;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=oj1ea2QM;
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.133.83 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1743755582; bh=Eph2/W8sCsA+klMpqCKgkj7Z8QO2KBHOUgMFvieSFpw=; h=Date:From:Reply-To:To:Cc:In-Reply-To:References:Subject:From:Subject:Reply-To; b=oj1ea2QMdQsY/ikCjoekxqtwbemlSTwoU+hz1c52yj9OMKx8pJFLgxrhxNwO3sa0tKYYNGxnVepR3sVbkJcCP9dkXaqcH0kVVgMCHb3wKbQid9uq15MHTdTu6f3Uae2WTHKBt6H9Fmtno1RbouJaJ76kjUInxcRDB8eTA3nZAiQJ6V7YksLrPYG/bXOn0w/I04g+RnyUpw82xcYwv0Y/pWWZcjPJDBZd8Ss7h2HlvzAz7BzvPFZ8xVGPSCf2b9ucsGKqCVEIExuY3j2bOEqtQR6Yg0ifwL03pN+H5/DGzsZLJwyk+Em6e9i37AAv4k2Ioh/oD1uCu0VlVsiJTKbg9A==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1743755582; bh=Tir9S3DTjkndA9Xu1tzgAhCM1Ezesiqi+Mw8JS/O9hT=; h=X-Sonic-MF:Date:From:To:Subject:From:Subject; b=Bq65Qz6zfn3Wig/VJKb8MCKPCeds4zBVhgfBW3RE9EDqfUTxh1x5OEgmw3Eu6Zwj9Yr4CK+Vq2nDajr3ySFeAQh2CbXHUivBePiDNKMXX75vYmQ8bQy3xXgd18ehnFqF/PWpcuEIy9DluvbS1ZpCOc+jzwAz3aqwtaqOCm17q3FHffIcJRIXgWfp7mgyPO9aqqeQ1LFB+f/IYWWbrxScn1X0iqjBRQ2cScHdHeN6JNLdT4oh89U/hcfcZcSlhQAIdeJ+tiHkrC8jLJvUrr9WwV+npwnTbe1VI0uJP8ntYIMOF3A4+9hNXMr5bh7P4mOcwuMKMKLf52P7tpCPtzNLwg==
+X-YMail-OSG: YnuyIwsVM1lkaFAIrn3bWtk3vNOu25o5zc4NjPtRF4ah.lSonXepB52R5NnAnt8
+ K4SgjLbfKJrT.sCyA5tWpwJt40dc1fE0nU8qtN3c2AvcsVAYOtrakS59trGouZrjlB1e8mgJJvsO
+ GqfU53d2nVRe3mWCbM4b0hcy3Xp7uGr4OdukJcG0gqdBmM5i7BKydqGg7TXNLg7gwAGGA3IZunAp
+ RVwLShMLzShYLCKwdQYHfKzxM7AK_vlbwaJcXEGyzZItEY5mygQEZqZi09hhWK7QF1qU0uPpyWH4
+ KVcEkdrCR4AIXqLchMfYzRdEHiPwg4m3FqM3_.KDllAqBfIKkBB1bk35mUvz2G76lZW29FBwRFMD
+ kkdb88ogmFrfYCAfgAwx4t43YwASVEdH1kYS_S3tZJcZ5FVWAIsWIG97.RuMPufkBtkoOLmn4cKX
+ i7Q0V39TfvYGCsa.2AehDiiooW38bAglPlKnBL2tAQ3n6awQ1zauuJi_GQzZvkur6cXp8qXcluXu
+ HArTXt19Ff0HPFIoAKLVUXzncNcskbOFvbExUGERe4AjOkQCqaI8EA8JHCJMoxSGRobCtF31U1ZP
+ V_WwV6gSPSRcWv9.F6QKnDtaKihOWcDNV3NJrDXs6QspxGhxayzkkMN6lpEgl5DHYzVj4z5KfZXO
+ nH8l5oDU11gqNkDSDdMxBKlcXKI5f8aqOpuk6K8dKUw2o5G0YIFc7gN7.xLFCCDMyuitkj6oErVf
+ 72Ya5TipWrO5R6JKl13ZZpapEXVNVDGDJ929D1wY.xjNra3GpMGo7bwgllCuAcFipRBn2U.XOv1L
+ b.cXLMq9g9LvNJ0uQpst8Dc3eOBwXYYhbbeQX4w05v.6f9e5uZz9D2w4kcnb_7ICVfpQxceGPyym
+ xiD_ooFWMaHlXo8FNZfpigc_vRg_3xjtyPCLbwDfSXYUyTAGm9XoecX52EMQmd.2TgKYYJgrdb_U
+ NpU8kxiNNYPmG4k.FiwwxblwdVbe49_iULs9Z6q3509SyU7hwbw8iW13023aWdngaxdajeA2Trf2
+ qBhepOdoFcOBSj_Uclr7DYKyirSCsklvcB2WvWCo41viAJACnt4P6ILOQQ6lIoNSBCPW9b29rU96
+ SUAbhzXwJ7pyyAohM0rohgM.MVMmcnzL6WQlXk1hEu1ixXtGD7XAXWNSgVEm9MPnkgh5izZG4zRZ
+ P6m1bL9Ysl2fTTTQkxFji7zGlKpNlMb6JbkLY4q_cY6BtQAfUvz43x7OmlzdmpiEhxGGFTU6s4DG
+ vAvFLfU408Vkp.QCjxrhcybwrJtTJ6iRNtf.I56GPCAAP5h0QnToy6dn3swxV8NOseqNfAkkVD.X
+ ECiYLThjXM0mkevwnsPDI8pprquKTb_PHP6HzLpB0KOcGLEjzXtSYIXHJiESBXiR2TkNMYSF82Ci
+ H1A1pLw61Z0wDYtUhVYxd7XxL1153gTdJ5HQ3_sudPtqIf8jl48J1FK1110.Xcad8kVLtcVjlTKJ
+ j5TfNZDwDThl_2ZLsnA0Weg9xR0DUuDYRHIBjNSeyN4JRiFQMmp9J5GWVnMWjhIJDJMzEujUhpEn
+ 6xOZwUhjgU.NV2v3AU9p1Rnb8a22QI0C0vErT7LcwPJ2lMndZp20brYwcmDdmb2GmCUKJGBVoC9x
+ hanSOMllsregzSQ5UcVWc3gNt1Og4Y2oNJfTSUXfBZDyBSh3sJAafNuhoB73eI7yxnhB85rM8uHs
+ sUiYs3ViCqA96lnS6bgC.MasEWrPjbb2qJqJ9U_msOpyWiGnq.5bSo8PynwTls7P.jZVKq3dEpEQ
+ BgkGLur9os87eVtG9H3VqMQ6YlhV7IiOmRu8aiGjFekoHqmLjjDtGFrhEWRB5joqGOEmmz5cinXD
+ oMm7QAiCJAJ8l99X6aFNb7j6fclb07J8MPR_8Q3pQPAoVMeP8eCbILc6y9GZ3xVFz7pjlI2txL_f
+ fCvlg63OIzHzkBLsxSL5UALyFmeAvKUV73gwzlLI7m.oSX.ra8d5VkcZjKsoHxqeBGgYdazFBg2f
+ U9dg2nGhjQw.nMRoBnb_AZyFng059mCamxM_Xze61_MF9dwhEgL.cZcYdaiPEK3pKn8fDojOu3xq
+ 1OmRiwG2m8APv.wlSvnTjH6bx_flGJN_UfM27GUVecm6pzUKbDD9sqSfFbXzjwVl4T.VaVKfNMOU
+ DIqkXvveSBwRUawtkvPj5TDTbPafmsgb5pS1bYGPAVQIV_EvKw.wggu6G3QVMiLqG4.H72quNr6v
+ PUvLKNWRLWHWfXNywWXKC5T55GKQ5K59lpwG26I3MijAvdtHYW6b3USqq6JhmKYJcguqRRL_9aVc
+ Nln0L3Vy7xjZaktbFi.eBALozPu.U1ud2daSbgw--
+X-Sonic-MF: <zipnpup@yahoo.com>
+X-Sonic-ID: 4ad0b46f-745c-46d4-b894-8811ba1e44bf
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic321.consmr.mail.bf2.yahoo.com with HTTP; Fri, 4 Apr 2025 08:33:02 +0000
+Date: Fri, 4 Apr 2025 08:31:04 +0000 (UTC)
+From: Thomas Machnik <zipnpup@yahoo.com>
+Reply-To: Thomas Machnik <zipnpup@yahoo.com>
+To: Nina Karavasiles <nkaravasiles@gmail.com>, 
+	"stalbaum@ucsd.edu" <stalbaum@ucsd.edu>
+Cc: Harold Cohen Trust <aaron@aaronshome.com>, 
+	Paul Cohen <team@haroldcohentrust.org>
+Message-ID: <1396180043.912378.1743755464384@mail.yahoo.com>
+In-Reply-To: <93bdf077-5c1a-4099-8a08-38e10fcc8483@ucsd.edu>
+References: <CAP8AsbFXe=FmLHi_pULsKMS+pahiNy+3F_sTym2dbJrUK_ctxQ@mail.gmail.com> <1137597029.1589761.1743525569846@yahoo.com> <CAP8AsbH=7hgBr8eW3aXzOzEaFc24v1bti85N-o8_u_pg=mhASQ@mail.gmail.com> <BY5PR04MB68842FF92F26F0AB8948D283D2AC2@BY5PR04MB6884.namprd04.prod.outlook.com> <1484481370.390566.1743582420433@mail.yahoo.com> <93bdf077-5c1a-4099-8a08-38e10fcc8483@ucsd.edu>
+Subject: Re: the question
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_912377_2129616340.1743755464381"
+X-Mailer: WebService/1.1.23590 YMailNovation
+Content-Length: 32571
+
+------=_Part_912377_2129616340.1743755464381
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+ Dear Brett,
+The studio is in Encinitas. We might be able to meet at the studio at some =
+point depending on the timing. I am in the middle of something in the studi=
+o that should not be disturbed. I=E2=80=99m wondering if maybe an initial z=
+oom call would be preferred. This way we get an overview and recap of where=
+ Ceci Moss is at and potentially ascertain what resources from the Trust UC=
+SD would be seeking. Then based on that, I believe a studio visit would be =
+more productive.=C2=A0
+These are my thoughts,
+SincererlyThomas Machnik =E2=80=94 Art Studio Manager =E2=80=94 The Harold =
+Cohen Trust
+    On Wednesday, April 2, 2025 at 01:52:54 PM PDT, Brett Stalbaum <bstalba=
+um@ucsd.edu> wrote: =20
+=20
+ =20
+Thank Thomas. To answer your questions, this is why I would like to bring C=
+eci Moss into the conversation. They were working on something up through l=
+ast year that I don't fully understand as I only joined the advisory commit=
+tee this year. I just know we had to withdraw for some reason.
+=20
+We do have some deep archive divers around here and some fantastic things h=
+ave been dredged up, but that has not included my involvement. But I can ce=
+rtainly imagine an initiative related to an exhibition! I will help in my c=
+apacity in every way I can.
+=20
+ I am also keen to be involved and to get my ICAM students involved, in fac=
+t I was added to the advisory committee specifically because I have an ongo=
+ing agenda to get undergrads involved in such things. Btw, I am Teaching Pr=
+ofessor, a position with particular focus on undergraduate education, and I=
+ have organized special studies classes in the past to specifically perform=
+ new media archeology. That is a way I can contribute, possibly.
+=20
+=20
+I really think us being in conversation including the MAG director who was =
+involved in the abandoned effort, getting her into this loop would be great=
+. Can we invite you both to campus, or possibly come to where you are? (Nin=
+a and I are both backcountry SD people, as it turns out. This was a serendi=
+pitous connection indeed!)
+=20
+cheers,
+ Brett
+=20
+ On 4/2/25 01:27, Thomas Machnik wrote:
+ =20
+  Dear Brett Stalbaum,=20
+  Thank-you for your interest in Harold Cohen=E2=80=99s work and for your i=
+ntroduction. I recall working with Sheldon Brown on the 2017 UCSD show "Cre=
+ating Computational Creativity.=E2=80=9D I was also worked on Harold=E2=80=
+=99s 2011 show "Collaborations with my other self.=E2=80=9D =C2=A0And it wa=
+s during the prep for the show I met Sheldon for the first time.=20
+  It seems you have already done some planning. I have a couple initial que=
+stions. Do you have a time frame for the show? With respect to creating a s=
+pecial exhibition while getting some art history grads involved, has there =
+been any discussion on how that would shape the exhibition content? In othe=
+r words, are you considering a historical dive?=20
+  I am currently working on resolving multiple Harold Cohen mysteries. One =
+of these mysteries has to do with his 1976 mural titled =E2=80=9CDrawing fo=
+r Machine and Four Hands=E2=80=9D executed at UCSD =E2=80=94 a very early A=
+ARON work in a public space. Unfortunately, I unable to find any photos in =
+our archive of the completed work =E2=80=94 only a few cropped segments. Do=
+es this work still exist on campus? Who would I contact at UCSD regarding a=
+ny possible historical photos of this work?=C2=A0=20
+  Also in our archives are mentions of Faculty shows but very little info o=
+n the works shown. There was a mention of a 1968 Fall show for example. Thi=
+s would have been just weeks after arriving to the campus. What was shown a=
+t that time? There are many other UCSD shows he participated in as well. Al=
+so in our archives is a mention of a 1995 Machine Painting being on loan to=
+ the UCSD Chancellor=E2=80=99s office (TCM#38). Is that still there?=C2=A0=
+=20
+  I mention these because I am wondering if the direction you are pursuing =
+is to highlight Harold=E2=80=99s direct contributions to UCSD. Harold built=
+ multiple drawing machines and painting machines and the turtle with much g=
+row and development happened on the campus over time. And while AARON may h=
+ave come to life at Stanford, it seems our oldest screen captures of AARON =
+works are when Harold was here in San Diego and connecting to the Stanford =
+computer via telephone line thereby running AARON remotely. This was 1975. =
+And of course there are multiple high end computers he used on campus and h=
+elped acquire. That is another mystery... what happened to the various comp=
+uter equipment. We have photos and video of these older systems using open =
+reel tapes and removable hard drives. What happened to media? Do they still=
+ exist somewhere and if so, is there any code on any of the media or in pri=
+nted form? Speaking of video and photos what additional media does UCSD hav=
+e? Are you thinking in this direction? Or something else especially with re=
+spect to involving the art history grad.
+ =20
+  Regarding a potential zoom meeting, can you provide some potential times,=
+ dates and expected length of time. If we were to pull the Director of The =
+Harold Cohen Trust =E2=80=94 Paul Cohen =E2=80=94 we need to keep in mind h=
+e is on the east coast.=C2=A0=20
+  Looking forward to hearing more. And hope at some point some of my questi=
+ons can be answered.=20
+  Sincerely, Thomas Machnik =E2=80=94 Art Studio Manager =E2=80=94 The Haro=
+ld Cohen Trust=20
+ =20
+ =20
+ =20
+     On Tuesday, April 1, 2025 at 10:18:45 AM PDT, Stalbaum, Brett <bstalba=
+um@ucsd.edu> wrote: =20
+ =20
+     Thank you all! Yes I would like to loop a colleague in if we could zoo=
+m or something? I teach Harold's work in a large introductory course, and t=
+he MAG (Mandeville Art Gallery on which I serve as advisory board member) v=
+ery much wants to make something special happen for our colleague! I did no=
+t know Harold, as he (essentially, hiring is more complex than this) had br=
+ought on Sheldon Brown who later brought me on, but just personally I feel =
+the history every day. I have had Harold centered in our large survey of co=
+mputing in the arts course and lectures on AI since arriving. I trust with =
+your help we can strengthen this pedagogy, get some art history grads invol=
+ved and create a special exhibition, discussion panels, etc. In fact, much =
+of this had been in the planning phases when COVID hit, waylaying many thin=
+gs, and we really want to get back to it!=20
+  Cheers, Brett Stalbaum Teaching Professor of Visual Arts Interdisciplinar=
+y Computing in the Arts=20
+  Get  Outlook for Android   From: Nina Karavasiles <nkaravasiles@gmail.com=
+>
+ Sent: Tuesday, April 1, 2025 9:49:06 AM
+ To: zipnpup <zipnpup@yahoo.com>; Stalbaum, Brett <bstalbaum@ucsd.edu>
+ Subject: Re: the question =C2=A0   Tom, That will be great. This is Brett =
+email. bstalbaum@ucsd.edu=20
+  Brett, this is Tom Machnik who works for the Cohen Trust.=C2=A0 zipnpup@y=
+ahoo.com=20
+  Please speak with each other on the topic of having an exhibit of Harold'=
+s art at UCSD! Thanks Nina=20
+  =20
+  On Tue, Apr 1, 2025 at 9:39=E2=80=AFAM zipnpup <zipnpup@yahoo.com> wrote:
+ =20
+  Hi Nina =C2=A0Based on what's happening at this time is it would be best =
+that Brett Stalbaum contacts me first to do a preliminary assessment and th=
+en go from there.=C2=A0=20
+  Tom=C2=A0=20
+ =20
+ =20
+   Sent from my T-Mobile 4G LTE Device =20
+ =20
+   -------- Original message -------- From: Nina Karavasiles <nkaravasiles@=
+gmail.com>  Date: 4/1/25 8:52 AM (GMT-08:00)  To: Thomas Machnik <zipnpup@y=
+ahoo.com>  Subject: the question =20
+    Hi Tom, A while back I sent an email, which I have copied below regardi=
+ng a show at UCSD. I'm circling back to see if you saw it, if you thought a=
+bout it, or contacted Paul. If its a no, I will understand and move on. I j=
+ust think UCSD is a fitting place to have Harold's work shown either at the=
+ gallery or even CRCA. Thanks =C2=A0Nina=20
+ =20
+   Tom, Yesterday I was speaking to Brett Stalbaum. He is a professor at UC=
+ that Harold helped to get in (I think). He had mentioned that the faculty =
+wanted to have a showing of Harold's work at the UC gallery, but couldn't a=
+fford it. I said I would ask you if it was possible to have a show with a l=
+esser cost, not through the museum. If this is a question for Paul, please =
+give me his email or phone contact.=20
+  Thanks and I missed seeing you guys yesterday at Trail Fest, and I totall=
+y understand the long drive aspect. The weather was on our side with billow=
+y clouds and sun. There were many exhausted=C2=A0and hungry hikers. Sheriff=
+s on horses. The Native American singers arrived 2 hours late and did a gre=
+at job. I'll keep you on my list to notify you in the future. If you want t=
+o come out for a hike just with Ralf and I, that would be welcomed too.   N=
+ina=20
+  =20
+  --=20
+  Nina Karavasiles
+ 619-607-0511 www.ninak.info    =20
+ =20
+ =20
+  --=20
+  Nina Karavasiles
+ 619-607-0511 www.ninak.info          =20
+  =20
+------=_Part_912377_2129616340.1743755464381
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head></head><body><div class=3D"ydp581dd631yahoo-style-wrap" style=
+=3D"font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px=
+;"><div></div>
+        <div dir=3D"ltr" data-setdir=3D"false">Dear Brett,</div><div dir=3D=
+"ltr" data-setdir=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"false=
+">The studio is in Encinitas. We might be able to meet at the studio at som=
+e point depending on the timing. I am in the middle of something in the stu=
+dio that should not be disturbed. I=E2=80=99m wondering if maybe an initial=
+ zoom call would be preferred. This way we get an overview and recap of whe=
+re Ceci Moss is at and potentially ascertain what resources from the Trust =
+UCSD would be seeking. Then based on that, I believe a studio visit would b=
+e more productive.&nbsp;</div><div dir=3D"ltr" data-setdir=3D"false"><br></=
+div><div dir=3D"ltr" data-setdir=3D"false">These are my thoughts,</div><div=
+ dir=3D"ltr" data-setdir=3D"false"><br></div><div dir=3D"ltr" data-setdir=
+=3D"false">Sincererly</div><div dir=3D"ltr" data-setdir=3D"false">Thomas Ma=
+chnik =E2=80=94 Art Studio Manager =E2=80=94 The Harold Cohen Trust</div><d=
+iv><br></div>
+       =20
+        <div id=3D"ydp581dd631yahoo_quoted_4157001238" class=3D"ydp581dd631=
+yahoo_quoted">
+            <div style=3D"font-family:'Helvetica Neue', Helvetica, Arial, s=
+ans-serif;font-size:13px;">
+               =20
+                <div>
+                    On Wednesday, April 2, 2025 at 01:52:54 PM PDT, Brett S=
+talbaum &lt;bstalbaum@ucsd.edu&gt; wrote:
+                </div>
+                <div><br></div>
+                <div><br></div>
+                <div><div id=3D"ydp581dd631yiv9185720190"><div>
+    <p>Thank Thomas. To answer your questions, this is why I would like
+      to bring Ceci Moss into the conversation. They were working on
+      something up through last year that I don't fully understand as I
+      only joined the advisory committee this year. I just know we had
+      to withdraw for some reason.</p>
+    <p>We do have some deep archive divers around here and some
+      fantastic things have been dredged up, but that has not included
+      my involvement. But I can certainly imagine an initiative related
+      to an exhibition! I will help in my capacity in every way I can.<br c=
+lear=3D"none">
+      <br clear=3D"none">
+      I am also keen to be involved and to get my ICAM students
+      involved, in fact I was added to the advisory committee
+      specifically because I have an ongoing agenda to get undergrads
+      involved in such things. Btw, I am Teaching Professor, a position
+      with particular focus on undergraduate education, and I have
+      organized special studies classes in the past to specifically
+      perform new media archeology. That is a way I can contribute,
+      possibly.<br clear=3D"none">
+    </p>
+    <p>I really think us being in conversation including the MAG
+      director who was involved in the abandoned effort, getting her
+      into this loop would be great. Can we invite you both to campus,
+      or possibly come to where you are? (Nina and I are both
+      backcountry SD people, as it turns out. This was a serendipitous
+      connection indeed!)</p>
+    <p>cheers,<br clear=3D"none">
+      Brett<br clear=3D"none">
+    </p>
+    <div id=3D"ydp581dd631yiv9185720190yqt23941" class=3D"ydp581dd631yiv918=
+5720190yqt7745352105"><div class=3D"ydp581dd631yiv9185720190moz-cite-prefix=
+">On 4/2/25 01:27, Thomas Machnik wrote:<br clear=3D"none">
+    </div>
+    <blockquote type=3D"cite">
+     =20
+      <div style=3D"font-family:Helvetica Neue, Helvetica, Arial, sans-seri=
+f;font-size:16px;" class=3D"ydp581dd631yiv9185720190ydp6d952258yahoo-style-=
+wrap">
+        <div dir=3D"ltr">Dear Brett Stalbaum,</div>
+        <div dir=3D"ltr"><br clear=3D"none">
+        </div>
+        <div dir=3D"ltr">Thank-you for your interest
+          in Harold Cohen=E2=80=99s work and for your introduction. I recal=
+l
+          working with Sheldon Brown on the 2017 UCSD show "Creating
+          Computational Creativity.=E2=80=9D I was also worked on Harold=E2=
+=80=99s 2011
+          show "Collaborations with my other self.=E2=80=9D &nbsp;And it wa=
+s during
+          the prep for the show I met Sheldon for the first time.</div>
+        <div dir=3D"ltr"><br clear=3D"none">
+        </div>
+        <div dir=3D"ltr">It seems you have already
+          done some planning. I have a couple initial questions. Do you
+          have a time frame for the show? With respect to creating a
+          special exhibition while getting some art history grads
+          involved, has there been any discussion on how that would
+          shape the exhibition content? In other words, are you
+          considering a historical dive?</div>
+        <div dir=3D"ltr"><br clear=3D"none">
+        </div>
+        <div dir=3D"ltr">I am currently working on
+          resolving multiple Harold Cohen mysteries. One of these
+          mysteries has to do with his 1976 mural titled =E2=80=9CDrawing f=
+or
+          Machine and Four Hands=E2=80=9D executed at UCSD =E2=80=94 a very=
+ early AARON
+          work in a public space. Unfortunately, I unable to find any
+          photos in our archive of the completed work =E2=80=94 only a few
+          cropped segments. Does this work still exist on campus? Who
+          would I contact at UCSD regarding any possible historical
+          photos of this work?&nbsp;</div>
+        <div dir=3D"ltr"><br clear=3D"none">
+        </div>
+        <div dir=3D"ltr">Also in our archives are
+          mentions of Faculty shows but very little info on the works
+          shown. There was a mention of a 1968 Fall show for example.
+          This would have been just weeks after arriving to the campus.
+          What was shown at that time? There are many other UCSD shows
+          he participated in as well. Also in our archives is a mention
+          of a 1995 Machine Painting being on loan to the UCSD
+          Chancellor=E2=80=99s office (TCM#38). Is that still there?&nbsp;<=
+/div>
+        <div dir=3D"ltr"><span style=3D"color:rgb(89, 89, 89);font-family:A=
+rial, sans-serif;font-size:10.1pt;"><br clear=3D"none">
+          </span></div>
+        <div dir=3D"ltr">I mention these because I am
+          wondering if the direction you are pursuing is to highlight
+          Harold=E2=80=99s direct contributions to UCSD. Harold built multi=
+ple
+          drawing machines and painting machines and the turtle with
+          much grow and development happened on the campus over time.
+          And while AARON may have come to life at Stanford, it seems
+          our oldest screen captures of AARON works are when Harold was
+          here in San Diego and connecting to the Stanford computer via
+          telephone line thereby running AARON remotely. This was 1975.
+          And of course there are multiple high end computers he used on
+          campus and helped acquire. That is another mystery... what
+          happened to the various computer equipment. We have photos and
+          video of these older systems using open reel tapes and
+          removable hard drives. What happened to media? Do they still
+          exist somewhere and if so, is there any code on any of the
+          media or in printed form? Speaking of video and photos what
+          additional media does UCSD have? Are you thinking in this
+          direction? Or something else especially with respect to
+          involving the art history grad.<br clear=3D"none">
+        </div>
+        <div dir=3D"ltr"><br clear=3D"none">
+        </div>
+        <div dir=3D"ltr">Regarding a potential zoom
+          meeting, can you provide some potential times, dates and
+          expected length of time. If we were to pull the Director of
+          The Harold Cohen Trust =E2=80=94 Paul Cohen =E2=80=94 we need to =
+keep in mind
+          he is on the east coast.&nbsp;</div>
+        <div dir=3D"ltr"><br clear=3D"none">
+        </div>
+        <div dir=3D"ltr">Looking forward to hearing
+          more. And hope at some point some of my questions can be
+          answered.</div>
+        <div dir=3D"ltr"><br clear=3D"none">
+        </div>
+        <div dir=3D"ltr">Sincerely,</div>
+        <div dir=3D"ltr">Thomas Machnik =E2=80=94 Art Studio
+          Manager =E2=80=94 The Harold Cohen Trust</div>
+        <div dir=3D"ltr"><br clear=3D"none">
+        </div>
+        <div dir=3D"ltr"><br clear=3D"none">
+        </div>
+        <div dir=3D"ltr"><br clear=3D"none">
+        </div>
+        <div dir=3D"ltr"><br clear=3D"none">
+        </div>
+        <div id=3D"ydp581dd631yiv9185720190ydp6d952258yahoo_quoted_37595827=
+60" class=3D"ydp581dd631yiv9185720190ydp6d952258yahoo_quoted">
+          <div style=3D"font-family:'Helvetica Neue', Helvetica, Arial, san=
+s-serif;font-size:13px;">
+            <div> On Tuesday, April 1, 2025 at 10:18:45 AM PDT,
+              Stalbaum, Brett <a shape=3D"rect" href=3D"mailto:bstalbaum@uc=
+sd.edu" class=3D"ydp581dd631yiv9185720190moz-txt-link-rfc2396E" rel=3D"nofo=
+llow" target=3D"_blank">&lt;bstalbaum@ucsd.edu&gt;</a> wrote: </div>
+            <div><br clear=3D"none">
+            </div>
+            <div><br clear=3D"none">
+            </div>
+            <div>
+              <div id=3D"ydp581dd631yiv9185720190ydp6d952258yiv3084641887">
+                <div>
+                  <div>Thank you all! Yes I would like to loop a
+                    colleague in if we could zoom or something? I teach
+                    Harold's work in a large introductory course, and
+                    the MAG (Mandeville Art Gallery on which I serve as
+                    advisory board member) very much wants to make
+                    something special happen for our colleague! I did
+                    not know Harold, as he (essentially, hiring is more
+                    complex than this) had brought on Sheldon Brown who
+                    later brought me on, but just personally I feel the
+                    history every day. I have had Harold centered in our
+                    large survey of computing in the arts course and
+                    lectures on AI since arriving. I trust with your
+                    help we can strengthen this pedagogy, get some art
+                    history grads involved and create a special
+                    exhibition, discussion panels, etc. In fact, much of
+                    this had been in the planning phases when COVID hit,
+                    waylaying many things, and we really want to get
+                    back to it!</div>
+                  <div><br clear=3D"none">
+                  </div>
+                  <div>Cheers,</div>
+                  <div>Brett Stalbaum</div>
+                  <div>Teaching Professor of Visual Arts</div>
+                  <div>Interdisciplinary Computing in the Arts</div>
+                  <div id=3D"ydp581dd631yiv9185720190ydp6d952258yiv30846418=
+87ms-outlook-mobile-body-separator-line"><br clear=3D"none">
+                  </div>
+                  <div id=3D"ydp581dd631yiv9185720190ydp6d952258yiv30846418=
+87ms-outlook-mobile-signature">Get <a shape=3D"rect" href=3D"https://urldef=
+ense.com/v3/__https://aka.ms/AAb9ysg__;!!Mih3wA!F5b2SqcIchU41dW0AnOiZIocKEq=
+WxabcJqc6tQhBSXeAzNf2cnzPRGWOQku0aisCM0bM1RZBUpIatFQa$" rel=3D"nofollow" ta=
+rget=3D"_blank">
+                      Outlook for Android</a></div>
+                  <hr style=3D"display:inline-block;width:98%;" tabindex=3D=
+"-1">
+                  <div id=3D"ydp581dd631yiv9185720190ydp6d952258yiv30846418=
+87yqt40961" class=3D"ydp581dd631yiv9185720190ydp6d952258yiv3084641887yqt844=
+5654089">
+                    <div dir=3D"ltr" id=3D"ydp581dd631yiv9185720190ydp6d952=
+258yiv3084641887divRplyFwdMsg"><font face=3D"Calibri, sans-serif" style=3D"=
+font-size:11pt;" color=3D"#000000"><b>From:</b>
+                        Nina Karavasiles <a shape=3D"rect" href=3D"mailto:n=
+karavasiles@gmail.com" class=3D"ydp581dd631yiv9185720190moz-txt-link-rfc239=
+6E" rel=3D"nofollow" target=3D"_blank">&lt;nkaravasiles@gmail.com&gt;</a><b=
+r clear=3D"none">
+                        <b>Sent:</b> Tuesday, April 1, 2025 9:49:06 AM<br c=
+lear=3D"none">
+                        <b>To:</b> zipnpup <a shape=3D"rect" href=3D"mailto=
+:zipnpup@yahoo.com" class=3D"ydp581dd631yiv9185720190moz-txt-link-rfc2396E"=
+ rel=3D"nofollow" target=3D"_blank">&lt;zipnpup@yahoo.com&gt;</a>;
+                        Stalbaum, Brett <a shape=3D"rect" href=3D"mailto:bs=
+talbaum@ucsd.edu" class=3D"ydp581dd631yiv9185720190moz-txt-link-rfc2396E" r=
+el=3D"nofollow" target=3D"_blank">&lt;bstalbaum@ucsd.edu&gt;</a><br clear=
+=3D"none">
+                        <b>Subject:</b> Re: the question</font>
+                      <div>&nbsp;</div>
+                    </div>
+                    <div>
+                      <div dir=3D"ltr">Tom,
+                        <div>That will be great. This is Brett email.</div>
+                        <div><a shape=3D"rect" href=3D"mailto:bstalbaum@ucs=
+d.edu" style=3D"color:rgb(35,82,124);outline:0px;font-family:Roboto, sans-s=
+erif;font-size:16px;" class=3D"ydp581dd631yiv9185720190moz-txt-link-freetex=
+t" rel=3D"nofollow" target=3D"_blank">bstalbaum@ucsd.edu</a></div>
+                        <div><br clear=3D"none">
+                        </div>
+                        <div>Brett, this is Tom Machnik who works for
+                          the Cohen Trust.&nbsp;</div>
+                        <div><span style=3D"color:rgb(94,94,94);font-family=
+:Roboto, RobotoDraft, Helvetica, Arial, sans-serif;font-size:14px;"><a shap=
+e=3D"rect" href=3D"mailto:zipnpup@yahoo.com" class=3D"ydp581dd631yiv9185720=
+190moz-txt-link-freetext" rel=3D"nofollow" target=3D"_blank">zipnpup@yahoo.=
+com</a></span></div>
+                        <div><span style=3D"color:rgb(94,94,94);font-family=
+:Roboto, RobotoDraft, Helvetica, Arial, sans-serif;font-size:14px;"><br cle=
+ar=3D"none">
+                          </span></div>
+                        <div><span style=3D"color:rgb(94,94,94);font-family=
+:Roboto, RobotoDraft, Helvetica, Arial, sans-serif;font-size:14px;">Please
+                            speak with each other on the topic of having
+                            an exhibit of Harold's art at UCSD!</span></div=
+>
+                        <div><span style=3D"color:rgb(94,94,94);font-family=
+:Roboto, RobotoDraft, Helvetica, Arial, sans-serif;font-size:14px;">Thanks<=
+/span></div>
+                        <div><span style=3D"color:rgb(94,94,94);font-family=
+:Roboto, RobotoDraft, Helvetica, Arial, sans-serif;font-size:14px;">Nina</s=
+pan></div>
+                        <div><br clear=3D"none">
+                        </div>
+                      </div>
+                      <br clear=3D"none">
+                      <div class=3D"ydp581dd631yiv9185720190ydp6d952258yiv3=
+084641887x_gmail_quote ydp581dd631yiv9185720190ydp6d952258yiv3084641887x_gm=
+ail_quote_container">
+                        <div dir=3D"ltr" class=3D"ydp581dd631yiv9185720190y=
+dp6d952258yiv3084641887x_gmail_attr">On
+                          Tue, Apr 1, 2025 at 9:39=E2=80=AFAM zipnpup &lt;<=
+a shape=3D"rect" href=3D"mailto:zipnpup@yahoo.com" class=3D"ydp581dd631yiv9=
+185720190moz-txt-link-freetext" rel=3D"nofollow" target=3D"_blank">zipnpup@=
+yahoo.com</a>&gt;
+                          wrote:<br clear=3D"none">
+                        </div>
+                        <blockquote style=3D"margin:0px 0px 0px 0.8ex;borde=
+r-left:1px solid rgb(204,204,204);padding-left:1ex;" class=3D"ydp581dd631yi=
+v9185720190ydp6d952258yiv3084641887x_gmail_quote">
+                          <div>
+                            <div>Hi Nina</div>
+                            <div>&nbsp;Based on what's happening at this ti=
+me
+                              is it would be best that Brett Stalbaum
+                              contacts me first to do a preliminary
+                              assessment and then go from there.&nbsp;</div=
+>
+                            <div><br clear=3D"none">
+                            </div>
+                            <div>Tom&nbsp;</div>
+                            <div><br clear=3D"none">
+                            </div>
+                            <div><br clear=3D"none">
+                            </div>
+                            <div><br clear=3D"none">
+                            </div>
+                            <div id=3D"ydp581dd631yiv9185720190ydp6d952258y=
+iv3084641887x_m_548804156007467554composer_signature">
+                              <div style=3D"font-size:12px;color:rgb(87,87,=
+87);">Sent from my T-Mobile 4G LTE
+                                Device</div>
+                            </div>
+                            <div><br clear=3D"none">
+                            </div>
+                            <div><br clear=3D"none">
+                            </div>
+                            <div align=3D"left" style=3D"font-size:100%;col=
+or:rgb(0,0,0);">
+                              <div>-------- Original message --------</div>
+                              <div>From: Nina Karavasiles &lt;<a shape=3D"r=
+ect" href=3D"mailto:nkaravasiles@gmail.com" class=3D"ydp581dd631yiv91857201=
+90moz-txt-link-freetext" rel=3D"nofollow" target=3D"_blank">nkaravasiles@gm=
+ail.com</a>&gt;
+                              </div>
+                              <div>Date: 4/1/25 8:52 AM (<a shape=3D"rect" =
+class=3D"ydp581dd631yiv9185720190moz-txt-link-freetext">GMT-08:00</a>) </di=
+v>
+                              <div>To: Thomas Machnik &lt;<a shape=3D"rect"=
+ href=3D"mailto:zipnpup@yahoo.com" class=3D"ydp581dd631yiv9185720190moz-txt=
+-link-freetext" rel=3D"nofollow" target=3D"_blank">zipnpup@yahoo.com</a>&gt=
+;
+                              </div>
+                              <div>Subject: the question </div>
+                              <div><br clear=3D"none">
+                              </div>
+                            </div>
+                            <div dir=3D"ltr">
+                              <div>Hi Tom,</div>
+                              <div>A while back I sent an email, which I
+                                have copied below regarding a show at
+                                UCSD. I'm circling back to see if you
+                                saw it, if you thought about it, or
+                                contacted Paul. If its a no, I will
+                                understand and move on. I just think
+                                UCSD is a fitting place to have Harold's
+                                work shown either at the gallery or even
+                                CRCA.</div>
+                              <div>Thanks</div>
+                              <div>&nbsp;Nina</div>
+                              <div><br clear=3D"none">
+                              </div>
+                              <div><br clear=3D"none">
+                              </div>
+                              <div>
+                                <div>Tom,</div>
+                                <div>Yesterday I was speaking to Brett
+                                  Stalbaum. He is a professor at UC that
+                                  Harold helped to get in (I think). He
+                                  had mentioned that the faculty wanted
+                                  to have a showing of Harold's work at
+                                  the UC gallery, but couldn't afford
+                                  it. I said I would ask you if it was
+                                  possible to have a show with a lesser
+                                  cost, not through the museum.</div>
+                                <div>If this is a question for Paul,
+                                  please give me his email or phone
+                                  contact.</div>
+                                <div><br clear=3D"none">
+                                </div>
+                                <div>Thanks and I missed seeing you guys
+                                  yesterday at Trail Fest, and I totally
+                                  understand the long drive aspect. The
+                                  weather was on our side with billowy
+                                  clouds and sun. There were many
+                                  exhausted&nbsp;and hungry hikers. Sheriff=
+s
+                                  on horses. The Native American singers
+                                  arrived 2 hours late and did a great
+                                  job.</div>
+                                <div>I'll keep you on my list to notify
+                                  you in the future. If you want to come
+                                  out for a hike just with Ralf and I,
+                                  that would be welcomed too.</div>
+                                <font color=3D"#888888">
+                                </font>
+                                <div>Nina</div>
+                                <div><br clear=3D"none">
+                                </div>
+                              </div>
+                              <div><br clear=3D"none">
+                              </div>
+                              <span class=3D"ydp581dd631yiv9185720190ydp6d9=
+52258yiv3084641887x_gmail_signature_prefix">-- </span><br clear=3D"none">
+                              <div dir=3D"ltr" class=3D"ydp581dd631yiv91857=
+20190ydp6d952258yiv3084641887x_gmail_signature">
+                                <div dir=3D"ltr">Nina Karavasiles<br clear=
+=3D"none">
+                                  619-607-0511
+                                  <div><a shape=3D"rect" href=3D"https://ur=
+ldefense.com/v3/__http://www.ninak.info__;!!Mih3wA!BK-LGjddhED1pNoiboqMsCfB=
+vFlU_YeqPbwTo8gwDI2w659_XYTIPS98NsJz1X44U36ExooBVYGTYGsLOFL3j4Q$" rel=3D"no=
+follow" target=3D"_blank">www.ninak.info</a></div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </blockquote>
+                      </div>
+                      <div><br clear=3D"all">
+                      </div>
+                      <div><br clear=3D"none">
+                      </div>
+                      <span class=3D"ydp581dd631yiv9185720190ydp6d952258yiv=
+3084641887x_gmail_signature_prefix">-- </span><br clear=3D"none">
+                      <div dir=3D"ltr" class=3D"ydp581dd631yiv9185720190ydp=
+6d952258yiv3084641887x_gmail_signature">
+                        <div dir=3D"ltr">Nina Karavasiles<br clear=3D"none"=
+>
+                          619-607-0511
+                          <div><a shape=3D"rect" href=3D"https://urldefense=
+.com/v3/__http://www.ninak.info__;!!Mih3wA!BK-LGjddhED1pNoiboqMsCfBvFlU_Yeq=
+PbwTo8gwDI2w659_XYTIPS98NsJz1X44U36ExooBVYGTYGsLOFL3j4Q$" rel=3D"nofollow" =
+target=3D"_blank">www.ninak.info</a></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </blockquote></div>
+  </div></div></div>
+            </div>
+        </div></div></body></html>
+------=_Part_912377_2129616340.1743755464381--

@@ -1,0 +1,435 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a11:111:b0:5c7:f970:fbca with SMTP id x17csp1521067pxu;
+        Sun, 23 Feb 2025 19:33:20 -0800 (PST)
+X-Forwarded-Encrypted: i=3; AJvYcCVZHY4DBVZyKiJWzG24w9OOJoWPbUQCLlBghEWXYReBFPHzbRkMaxZu9o6f/hJEcAgKbwmZctnXto8v@gmail.com
+X-Google-Smtp-Source: AGHT+IEDRUNySaUzpIMqkN+rX1/JI66nR4KlhdaCkjS/BDjIS+/1/MngvRoGY1CQSALHS6qfwxuZ
+X-Received: by 2002:ad4:5d62:0:b0:6e4:2e12:3a0c with SMTP id 6a1803df08f44-6e6ae9a129cmr160795076d6.39.1740368000734;
+        Sun, 23 Feb 2025 19:33:20 -0800 (PST)
+ARC-Seal: i=2; a=rsa-sha256; t=1740368000; cv=pass;
+        d=google.com; s=arc-20240605;
+        b=UPjeC9rhek8cQ3Eu/Cqi4Wsfki2DzRM0gCnS572/rwRxSbbI/c2FvEq8ITaJ1tyjF8
+         bRuvMRDQlwxtGv/EKS5DVig6BmeOSuXRb73JHBKFV98nE4LBXb0UBGtPzkIBsHX4nw01
+         Olhf08aWzomuxpIxKFgLte6BVwLkn3KKoclaSCm7r3hAehV+Reh5HHLPpzSua+0fJRhx
+         RXAojZgx9PdELjMFomNOKcdMpJkreOPxHUuhi1oIUk0RLX5terPwik/wcENNxnYU9yC6
+         ASgNNyvP91eNogrlpGw522UnJQbLLMz2WHhm1f5oagf4JPpIMX5pswWPY1d5ZNxw4wXd
+         v2cA==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:msip_labels:content-language:accept-language
+         :in-reply-to:references:message-id:date:thread-index:thread-topic
+         :subject:cc:to:from:dkim-signature;
+        bh=xj/1/y3fNDbEt24nbCjZ4Mqmqv1PmU3oUOwS0piAnKg=;
+        fh=rJclm15cwBQoeevwFfRPNh3Uq+/hpNoGIF+eDppoXFM=;
+        b=fo4cgpezsfW4kv+dza+gzHeigQOlmS9OO3IU3VA70v4yucVsG7Ccvk4dKV2veXHmTP
+         bn84rIDjpDv2tgzktt5D7TdC4tPo7ZoJV8JG2sWqSbPsSsitC7DR/n944st+6OQ36psB
+         fYdRAbg7n8BuH3d31gtq9wmiZdeAoLGXzhPgPcq6E0Pyrlzbu2xsYUZ3SV2aQZ+1Eo4j
+         RUHY2Gb4WDZbitPJ3ptQdNWQXVy8pxecPLgyiJXRfzq2MHAWxTFojVcaSo9Xzckx2d03
+         S3Z6IF1hkuWN4Dak1nK0Ffx9vpnncEzE5mTdWoH0UVwuyr/tisrSqai1wWgG0CB6/4ZB
+         WUxQ==;
+        dara=google.com
+ARC-Authentication-Results: i=2; mx.google.com;
+       dkim=pass header.i=@whitney.org header.s=selector1 header.b=XzXfj2XX;
+       arc=pass (i=1 spf=pass spfdomain=whitney.org dkim=pass dkdomain=whitney.org dmarc=pass fromdomain=whitney.org);
+       spf=pass (google.com: domain of christiane_paul@whitney.org designates 209.222.82.132 as permitted sender) smtp.mailfrom=Christiane_Paul@whitney.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=whitney.org
+Return-Path: <Christiane_Paul@whitney.org>
+Received: from outbound-ip193b.ess.barracuda.com (outbound-ip193b.ess.barracuda.com. [209.222.82.132])
+        by mx.google.com with ESMTPS id 6a1803df08f44-6e65d73443dsi210904656d6.74.2025.02.23.19.33.19
+        for <paulrcohen@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Sun, 23 Feb 2025 19:33:20 -0800 (PST)
+Received-SPF: pass (google.com: domain of christiane_paul@whitney.org designates 209.222.82.132 as permitted sender) client-ip=209.222.82.132;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@whitney.org header.s=selector1 header.b=XzXfj2XX;
+       arc=pass (i=1 spf=pass spfdomain=whitney.org dkim=pass dkdomain=whitney.org dmarc=pass fromdomain=whitney.org);
+       spf=pass (google.com: domain of christiane_paul@whitney.org designates 209.222.82.132 as permitted sender) smtp.mailfrom=Christiane_Paul@whitney.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=whitney.org
+Received: from NAM04-BN8-obe.outbound.protection.outlook.com (mail-bn8nam04lp2048.outbound.protection.outlook.com [104.47.74.48]) by mx-outbound19-173.us-east-2b.ess.aws.cudaops.com (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO); Mon, 24 Feb 2025 03:33:18 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=lxM5CTOLDRmgawZbAntwe1iaLhPhGNH3EZ5L/9hCkRbswtfWoOy8Q/XybwXe68zCiBpENQPhn88JGRibm2rZYNOlhsHXMBuwAD8Wlci8/nUJymFG94N4OPPyLHcTc/I7rfo1eePyDhhcsWTEc3UrD8EgBJQpIMyJ+E9bIMlmeDx7chE7nz3XiXznRwLEvIYP33Y8LbUunwCuM60R7CrcQQbJd5Ox0hjT4lYSo+uD52AUGro13Gt+tsklEWbQwAH9DVUyAio5oSzn0fBJiiRChRdIcsZdIvN4TqP4gjzonqupZtJu5sMSd1s0adQjArMa2d6Z4VjPK31d4gz69HBlKA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=xj/1/y3fNDbEt24nbCjZ4Mqmqv1PmU3oUOwS0piAnKg=;
+ b=M2Pha1a7FW4HXPzV/aRwmMdIEAKVt6ZdBCuZo8e/fu8MFrtBtnrZfmd7g16Wv/tc1RThaRV2PYehRUpbEQ4uX0YqcDhJM2gS0RU7MHF5lMLX/QzxU9TIp7k+nD9iEF4EzU9crJ/pVZdqMGCqM0UMJ0+P9ow4velrTc5+mTxIpfYtaK5qEzAWmIEFqGdEMPBaph10xDUUYiDc8GjF7x6CvI89I9VTe6P+SwvgQth/lb4izZ8GlO4RdWIHm5k43qPyCiEzuR2TADTMKnAut8/C+8lGkLO8Pqk9pg8bDxexMK2GaXg+8Au/wBkHzJVLw4G8R+vWO4TJXRYd12ANhiH58g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=whitney.org; dmarc=pass action=none header.from=whitney.org;
+ dkim=pass header.d=whitney.org; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=whitney.org;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=xj/1/y3fNDbEt24nbCjZ4Mqmqv1PmU3oUOwS0piAnKg=;
+ b=XzXfj2XXnR+eWFlufBnSTISkgxrA57az5nYgM7sMicabqkRz9yYKLtMLqCGEvuo4oEeaKqpkzrCaL13nVV/DWjB1qLYm6wqh3/9CMVnNr6hEqzvI7pE4ZWxnJ528MKoi00pvdNq5m0JlFzSqej9gh2VrMP4MNwpQQUYQBnp2cY8=
+Received: from BL1PR22MB3659.namprd22.prod.outlook.com (2603:10b6:208:396::16)
+ by PH0PR22MB2922.namprd22.prod.outlook.com (2603:10b6:510:fd::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8489.14; Mon, 24 Feb
+ 2025 03:33:11 +0000
+Received: from BL1PR22MB3659.namprd22.prod.outlook.com
+ ([fe80::3341:17d7:1d00:30e8]) by BL1PR22MB3659.namprd22.prod.outlook.com
+ ([fe80::3341:17d7:1d00:30e8%5]) with mapi id 15.20.8489.010; Mon, 24 Feb 2025
+ 03:33:11 +0000
+From: Christiane Paul <Christiane_Paul@whitney.org>
+To: Thomas Machnik <zipnpup@yahoo.com>
+CC: Harold Cohen Trust <aaron@aaronshome.com>, Paul Cohen
+	<paulrcohen@gmail.com>
+Subject: Re: KCAT works filmed at the Whitney show
+Thread-Topic: KCAT works filmed at the Whitney show
+Thread-Index: AQHbhWjZLaJmY1k5nU6B4J0sn5YSOrNVy7V6
+Date: Mon, 24 Feb 2025 03:33:11 +0000
+Message-ID:
+ <BL1PR22MB3659309DB3556883B6D86A089DC02@BL1PR22MB3659.namprd22.prod.outlook.com>
+References: <752327734.1821996.1740256319185.ref@mail.yahoo.com>
+ <752327734.1821996.1740256319185@mail.yahoo.com>
+In-Reply-To: <752327734.1821996.1740256319185@mail.yahoo.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+msip_labels:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=whitney.org;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: BL1PR22MB3659:EE_|PH0PR22MB2922:EE_
+x-ms-office365-filtering-correlation-id: 5d5cc62d-643c-4007-129c-08dd5483f6a5
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|366016|10070799003|1800799024|376014|38070700018|7053199007|8096899003;
+x-microsoft-antispam-message-info:
+ =?Windows-1252?Q?4pkHwofz4QRlQ0x3/mqUEhR6rwSzEgZwJOI6H3K12GBP9PpM0gGNtO2O?=
+ =?Windows-1252?Q?/QB2nigAQHgw4z0amAMtmqk001btIIEqjchkXQAxk6+Hgq4ppjWfu2hq?=
+ =?Windows-1252?Q?kMPrSyrzqkFTcvpbUtd9GM5MiKAcfno4zgKtKA3jST/LIP+Drshwscbd?=
+ =?Windows-1252?Q?u3o0Xz3z2ADLuCNa6UkgPrRoxMh2JNFGaaF3WnfT+kx2CvmwJM5nPFD/?=
+ =?Windows-1252?Q?GxBTTURglH2L3inIZqkw1Pz42CkuHVOgUSMmctIXjudyell7XFc7/Teq?=
+ =?Windows-1252?Q?zQzY7mP4/os6FC3n5knrSCPtP44iFePorR46lh89fDK8vNWPnvCOET69?=
+ =?Windows-1252?Q?Q7hvXQUg7Xs/rsr0n1lpz9DZOpcB7wXmVNYDTCOAfT7UeNiYt+HXXoPo?=
+ =?Windows-1252?Q?DaH1Rcd9xKf9a6zYiDm8O8mN1x/eKJQahsb7s4Ssb9e9TQDaIFYlkeSj?=
+ =?Windows-1252?Q?v5+AqFpoXOnLsERcogqjGFjl/zBQ+kzs9xThySglOzIHx5m3/WBe3EZA?=
+ =?Windows-1252?Q?bDtxgtuWQ8sNaEsbjxGhhtN8l8cVtaiNlWD09f+HYdcvf9LOMDhxVE7Y?=
+ =?Windows-1252?Q?RWt6sF6FRfh4A1L8oPZFndsITHkAENlzOoBcu2OlB9Qo4t1o25gvgzL4?=
+ =?Windows-1252?Q?9/KEm+HhEknK8EdifKCdjJb3G01/E2scef3p3Fv+WHzIhdsKeMNFQAw1?=
+ =?Windows-1252?Q?O7kdK98wlSsimt7PbWxJ+dnQUXZkVte0I3k9rDD7i8H0g6WBqSCCe29O?=
+ =?Windows-1252?Q?JdEvCWlQqwvPiTRyaiQZmqiElsyJZmmkBHpTfgfJVKHOaXjKhit8w2yU?=
+ =?Windows-1252?Q?EQFfyO5I0bw47DGuo7sN2SXKbBn+fOiAcw2oCNM26Gm/Azq9EHdG+gMF?=
+ =?Windows-1252?Q?Wzwpo3FgZh3cMP9dQKAd3gRPgfByrNYYxsX1jQm+ttnP04mAT9BLnr8/?=
+ =?Windows-1252?Q?AkbjU5BzjS4wVTubbEi0bBpWlAgfKC7B9Ds1o6rCKazeEoTs3JcRkRpf?=
+ =?Windows-1252?Q?J+Ru+9hJzwhCARA1Er1Q5YYf02xC5rGd8MsOp2WWQI1jcElNgo3p1ywq?=
+ =?Windows-1252?Q?neGL1e3uXs6BGuVntx7RXq0pk+QLD8LGwVRVZDaavYRaGlFszytIdi4R?=
+ =?Windows-1252?Q?E4+jmEwDQjqcSOT/YfM+rbXbuMn8dcAk8dQU/JZ7RgTfgVnp60GoSQC4?=
+ =?Windows-1252?Q?DL2LyMynp8nYbSfD+ybFlmbtrMTetvAswu5QO6u2OVTBNAdUgeJevLmK?=
+ =?Windows-1252?Q?0qFzlmg7IX4dQhaudVX0Fbg9vq+Ps+fmwsePrnoWqx+hjOSTfzCEk/L+?=
+ =?Windows-1252?Q?WH1QpiUdgnNIWVSGdCbswoeCGEFm/U4+vkcEF/PJ3bzO4FyBo0YopEIP?=
+ =?Windows-1252?Q?F5FcgFPJldq9WgPTpBtPKeIV7x0mHIhMlZjlKltK5YxXGeKVcBi172fR?=
+ =?Windows-1252?Q?Q6aM7NyODgx+ZG5hSaUApgqxj3aAvx8NiKE9LD+Ficm4C9YKS1yLTp0Q?=
+ =?Windows-1252?Q?2wV8EI9ca5W6VkdDeEvwPOgXMSiI6c1/AM4iroZLQFXztvJ+lRz7U9ZP?=
+ =?Windows-1252?Q?4gYclLvGWFwchokY?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BL1PR22MB3659.namprd22.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(10070799003)(1800799024)(376014)(38070700018)(7053199007)(8096899003);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?Windows-1252?Q?AZv16bItdC/IaV98+H4VHtv/BFSA44/ZugQrrxQUt3VqOx1sO/Ct9n6V?=
+ =?Windows-1252?Q?PGhVxjLk3tfsmnmr2K1BabQeyM2yymA3DGVjSVhd2nFPNJCT03SXny5b?=
+ =?Windows-1252?Q?uczFdo4cq4NiHyfrqBcX8Ie3RcnpalfrdQa3jIk+CtYdNGtubvJYgyBv?=
+ =?Windows-1252?Q?q6zuAm/Qmp0vhD67xF2oYDC/dDYndDQ+rKISiG/4pv/gYx1S3UX9YmTE?=
+ =?Windows-1252?Q?9sauwIkYZQTJfYpjcHQEIZriWhIc9UptZPWiCLxmqg4Vm4jRi2k+uKIH?=
+ =?Windows-1252?Q?jDxaW7XK4FrTwSsCEkbKs8pFZcks86KmFp1QDFkqpJcno8NUNqv4/Twt?=
+ =?Windows-1252?Q?ZW1VrQlgv0qdZviO4/iCv27rPJRGbhu/OzgB3yg14CU/VuGxIdgZsGb+?=
+ =?Windows-1252?Q?bNsC3d39SIazcQ3bPumaByBvVLKVv4tRAV/AaAeOfOXqXGcLfDN5zhGx?=
+ =?Windows-1252?Q?ItelhLaHbOgIVEcIc5QyQyN4pSqsEO/A3kY+mhRwm8oLtEvDhhD3ezB7?=
+ =?Windows-1252?Q?VM66Xt7lOKDGNFAkTWQUhDnpIq7DtELnWzsklh5I67YBthywmzUi5xCY?=
+ =?Windows-1252?Q?JQef4fUVbKsTXGGGHQx038aNlo9fzgnsw8XYLPT0iGv2xivklPeSvyHb?=
+ =?Windows-1252?Q?pOsvWxF0SoPOj1Mj5jjTjcA4va8IM6nhOuP8Vqa7hAUuzNf41QiNYuDy?=
+ =?Windows-1252?Q?bHQyAX+0xxXkUiTyV8puItnbaMS4yaGuLJ2QDHsoxXZuplQaamC9p02A?=
+ =?Windows-1252?Q?UmMuYLTkXUuYzUeqrNdxK/QsPdaDfmj/bj/j1Jh/OWI3ICzVWudsI/e+?=
+ =?Windows-1252?Q?GsYfcN4KD03uZOh3+cetmhOZbjN93eJkuokkJQlx6AIEPu7xZRXP8Vhg?=
+ =?Windows-1252?Q?VzLYmHOBzjm+LDYrejiN848/CS5veHaFFhaQwQVhQQ0DDF7pkle4InCC?=
+ =?Windows-1252?Q?0K3vSSc3Dzpg/3tlZGgGSj2O3CcCtNqJV7adcF1elTYl46usLKFqKZBn?=
+ =?Windows-1252?Q?L3w/GSYx4KHrCTaGQeT8WqasRBpO7Iz5j/wdUVmnJnm884kUh33IEEn0?=
+ =?Windows-1252?Q?CPbX1yhCy8K7vLtLxjesLZtb7GZN2zKBW31ICZ6RjhTVDD0/LCWqAYb6?=
+ =?Windows-1252?Q?Tt582tUMkfe+LCzkHxwQCU3yOZ6Q/UEfp3YnfTvsh8US7dpHi2oA0bib?=
+ =?Windows-1252?Q?tFiTJ6aBN1m55jULBX7etjSDcmraX5/jGfOB96lAaEAF+TnTU3rrxVSn?=
+ =?Windows-1252?Q?QpRTn6YZl/By4WkdYj5WHL7gvy0MboGI0asOY4it0ZGjSL0h/m9oVeA1?=
+ =?Windows-1252?Q?5WwdVMqsjPEyXli5cJXeBDZ9V+BcDnqjQ2YvZiRKZbOwabtqiIluZFTn?=
+ =?Windows-1252?Q?kOKD2SfFpwpcyrgPjpf1PjXRwGcjOw7zD6/LGZ+1b0XrVEnkSr7IcT19?=
+ =?Windows-1252?Q?jpz4kf34XKBinOl410pKx9Yj9kpB60w7bzEZlQvelzskgXmnO/+RBPP8?=
+ =?Windows-1252?Q?jyVhsDxMlrp3d3z5qDwEBR+GmtmRSKKGxDeijKLNdFhVYtVt+Pq6XXho?=
+ =?Windows-1252?Q?B+r8TxvdVQ5dLbL85yr5RoJrGxQVwT36Bd3k0/8DppQnQn4GIthfgX0O?=
+ =?Windows-1252?Q?xY9WU7jIc/745E/3zEwIqEj8d1zpPprGhqIwGqs/peFDEhZEiCbH3pcm?=
+ =?Windows-1252?Q?zP3AgHDNM4yUiztlrwzXnLlcay5y8ibL9Qd5NSCRh4MDs6Gq0bRZ7c5R?=
+ =?Windows-1252?Q?eYNdw6WQwYkUWuKdhus=3D?=
+Content-Type: multipart/alternative;
+	boundary="_000_BL1PR22MB3659309DB3556883B6D86A089DC02BL1PR22MB3659namp_"
+MIME-Version: 1.0
+X-OriginatorOrg: whitney.org
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BL1PR22MB3659.namprd22.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5d5cc62d-643c-4007-129c-08dd5483f6a5
+X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Feb 2025 03:33:11.1399
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 28ad7bce-66ad-4171-92a3-6e36d172f6eb
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: gh1ncGJPwG6EEpHnb7dcArgbD3MnVLQvnjQWE/IJ5DijADKJbNSau+qIt9AKY3NDuGvaO8VZep9ZADTNVsnwzw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR22MB2922
+X-BESS-ID: 1740367997-105037-9504-23333-1
+X-BESS-VER: 2019.1_20250219.2339
+X-BESS-Apparent-Source-IP: 104.47.74.48
+X-BESS-Parts: H4sIAAAAAAACAzXLMQ7DIAyF4bt4zmBjY0OuUnUggJUlylCGSlXuXoZkefr1pO
+	/1g/4dsMKYu8D5gZWDyax9ng1Vtx64USbqTFzELSRt7ikJKVzL4/dx3N5QHx/FY2ROWj
+	pvXNSqCyLWmptLyQbX+w+wsNf/gQAAAA==
+X-BESS-Outbound-Spam-Score: 0.00
+X-BESS-Outbound-Spam-Report: Code version 3.2, rules version 3.2.2.262724 [from 
+	cloudscan18-94.us-east-2b.ess.aws.cudaops.com]
+	Rule breakdown below
+	 pts rule name              description
+	---- ---------------------- --------------------------------
+	0.00 HTML_MESSAGE           BODY: HTML included in message 
+	0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
+X-BESS-Outbound-Spam-Status: SCORE=0.00 using account:ESS111578 scores of KILL_LEVEL=7.0 tests=HTML_MESSAGE, BSF_BESS_OUTBOUND
+X-BESS-BRTS-Status:1
+
+--_000_BL1PR22MB3659309DB3556883B6D86A089DC02BL1PR22MB3659namp_
+Content-Type: text/plain; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Tom,
+So nice to hear from you and likewise, I hope you're doing well! Thanks for=
+ sharing your amazing research, I really appreciate your attention to detai=
+l.
+
+We didn't photograph the KCAT images we selected for our archives but maybe=
+ we could retrieve them from storage and look through them in a Zoom meetin=
+g with you? Or could you tell us what exactly you're looking for, so that D=
+avid could go through the drawings and take photos of ones that might be of=
+ interest?
+Let me know what might work best for you.
+Thanks so much,
+Christiane
+
+
+Christiane Paul
+
+Curator of Digital Art
+
+Whitney Museum of American Art
+99 Gansevoort Street
+New York, NY 10014
+
+________________________________
+From: Thomas Machnik <zipnpup@yahoo.com>
+Sent: Saturday, February 22, 2025 3:31 PM
+To: Christiane Paul <Christiane_Paul@whitney.org>
+Cc: Harold Cohen Trust <aaron@aaronshome.com>; Paul Cohen <paulrcohen@gmail=
+.com>
+Subject: KCAT works filmed at the Whitney show
+
+
+This email was sent from an external source so please treat with caution.
+
+Hi Christiane,
+
+I hope your year is off to a good start and that you are involved with exci=
+ting enjoyable efforts. Hard to believe a year has past already since we we=
+re there with you at your incredible Whitney evident for Harold and his AAR=
+ON.
+
+I am currently working on identifying AARON works executed during the Harol=
+d=92s transition period away from the painting machine toward his use of wi=
+de-format commercial printers (1998-2002). At the moment, I am focusing on =
+Harolds year 2000 efforts =97 just prior to KCAT=92s release. There is this=
+ one digital image that seems like an outlier. Based on the imagery it seem=
+s to belong to June of 2000 except for one stylistic feature =97 the nose.
+
+I know that after the initial KCAT release, Harold began an effort to remov=
+e all the black lines. The earliest dated evidence I have seen of the lines=
+ being removed is May 2001. This artwork has no people though. The earliest=
+ dated evidence we have of people without the line drawing is Oct of 2001. =
+After Oct 2001, the lines are completely gone until 2012.
+
+I recall Harold commenting in particular about the line used to make the no=
+se and how to handle its removal. From that view point it might be possible=
+ that the work in question was a kind of transitional/experiment work of hi=
+s. A transitional work that would be post KCAT and pre-line removal. And if=
+ so, maybe he used an earlier 2000 AARON version to do an experiment. This =
+is just a guess. Ideally, I find other examples of this nose prior to May 2=
+001.
+
+When I look through our people with faces works (1990=92s to 2001), I have =
+yet to find a nose like this one. AARON did have the capacity to generate a=
+ wide range of variety and I haven=92t necessarily seen the extent of its v=
+ariety. Your Whitney show did produce a large number of works. In fact we h=
+ave many of them here in the studio. I believe looking through this collect=
+ion will help me resolve this issue and possibly others to come.
+
+We do plan on photographing the works you sent to us sometime in the future=
+, I am wondering if there is a way to look through the Whitney KCAT collect=
+ion without having to do so physically and prior to photographing them.
+
+I would appreciate any thoughts you have on this matter.
+
+Sincerely,
+Tom Machnik
+
+
+--_000_BL1PR22MB3659309DB3556883B6D86A089DC02BL1PR22MB3659namp_
+Content-Type: text/html; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
+252">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div class=3D"elementToProof" style=3D"font-family: Calibri, Helvetica, san=
+s-serif; font-size: 10pt; color: rgb(0, 0, 0);">
+Hi Tom,</div>
+<div class=3D"elementToProof" style=3D"font-family: Calibri, Helvetica, san=
+s-serif; font-size: 10pt; color: rgb(0, 0, 0);">
+So nice to hear from you and likewise, I hope you're doing well! Thanks for=
+ sharing your amazing research, I really appreciate your attention to detai=
+l.</div>
+<div class=3D"elementToProof" style=3D"font-family: Calibri, Helvetica, san=
+s-serif; font-size: 10pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div class=3D"elementToProof" style=3D"font-family: Calibri, Helvetica, san=
+s-serif; font-size: 10pt; color: rgb(0, 0, 0);">
+We didn't photograph the KCAT images we selected for our archives but maybe=
+ we could retrieve them from storage and look through them in a Zoom meetin=
+g with you? Or could you tell us what exactly you're looking for, so that D=
+avid could go through the drawings
+ and take photos of ones that might be of interest?</div>
+<div class=3D"elementToProof" style=3D"font-family: Calibri, Helvetica, san=
+s-serif; font-size: 10pt; color: rgb(0, 0, 0);">
+Let me know what might work best for you.</div>
+<div class=3D"elementToProof" style=3D"font-family: Calibri, Helvetica, san=
+s-serif; font-size: 10pt; color: rgb(0, 0, 0);">
+Thanks so much,</div>
+<div class=3D"elementToProof" style=3D"font-family: Calibri, Helvetica, san=
+s-serif; font-size: 10pt; color: rgb(0, 0, 0);">
+Christiane</div>
+<div style=3D"font-family: Calibri, Helvetica, sans-serif; font-size: 10pt;=
+ color: rgb(0, 0, 0);">
+<br>
+</div>
+<div id=3D"Signature">
+<p style=3D"text-align: left; background-color: rgb(255, 255, 255); margin:=
+ 0in 0in 0.0001pt;">
+<span style=3D"font-family: Calibri, sans-serif, serif, EmojiFont; font-siz=
+e: 9pt; color: rgb(33, 33, 33);"><b>Christiane Paul</b></span></p>
+<div style=3D"background-color: rgb(255, 255, 255); margin: 0px;">
+<div style=3D"direction: ltr; text-align: left; margin: 0px; font-family: C=
+alibri, sans-serif, serif, EmojiFont; font-size: 9pt; color: rgb(33, 33, 33=
+);">
+Curator of Digital Art</div>
+<div style=3D"direction: ltr; text-align: left; margin: 0px; font-family: C=
+alibri, sans-serif, serif, EmojiFont; font-size: 9pt; color: rgb(33, 33, 33=
+);">
+<br>
+</div>
+<div style=3D"direction: ltr; text-align: left; margin: 0px; font-family: C=
+alibri, sans-serif, serif, EmojiFont; font-size: 9pt; color: rgb(33, 33, 33=
+);">
+<b>Whitney Museum of American Art</b></div>
+<div style=3D"direction: ltr; text-align: left; margin: 0px; font-family: C=
+alibri, sans-serif, serif, EmojiFont; font-size: 9pt; color: rgb(33, 33, 33=
+);">
+99 Gansevoort Street</div>
+<div style=3D"direction: ltr; text-align: left; margin: 0px; font-family: C=
+alibri, sans-serif, serif, EmojiFont; font-size: 9pt; color: rgb(33, 33, 33=
+);">
+New York, NY 10014</div>
+</div>
+<div style=3D"text-align: left; background-color: rgb(255, 255, 255); margi=
+n: 0in 0in 0.0001pt; font-family: Calibri, Helvetica, sans-serif; font-size=
+: 9pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+</div>
+<div id=3D"appendonsend"></div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Thomas Machnik &lt;zi=
+pnpup@yahoo.com&gt;<br>
+<b>Sent:</b> Saturday, February 22, 2025 3:31 PM<br>
+<b>To:</b> Christiane Paul &lt;Christiane_Paul@whitney.org&gt;<br>
+<b>Cc:</b> Harold Cohen Trust &lt;aaron@aaronshome.com&gt;; Paul Cohen &lt;=
+paulrcohen@gmail.com&gt;<br>
+<b>Subject:</b> KCAT works filmed at the Whitney show</font>
+<div>&nbsp;</div>
+</div>
+<div>
+<p>This email was sent from an external source so please treat with caution=
+.</p>
+<div class=3D"x_yahoo-style-wrap" style=3D"font-family:Helvetica Neue,Helve=
+tica,Arial,sans-serif; font-size:16px">
+<div dir=3D"ltr" data-setdir=3D"false">Hi Christiane,</div>
+<div dir=3D"ltr" data-setdir=3D"false"><br>
+</div>
+<div dir=3D"ltr" data-setdir=3D"false">I hope your year is off to a good st=
+art and that you are involved with exciting enjoyable efforts. Hard to beli=
+eve a year has past already since we were there with you at your incredible=
+ Whitney evident for Harold and his
+ AARON.&nbsp;</div>
+<div dir=3D"ltr" data-setdir=3D"false"><br>
+</div>
+<div dir=3D"ltr" data-setdir=3D"false">I am currently working on identifyin=
+g AARON works executed during the Harold=92s transition period away from th=
+e painting machine toward his use of wide-format commercial printers (1998-=
+2002). At the moment, I am focusing on
+ Harolds year 2000 efforts =97 just prior to KCAT=92s release. There is thi=
+s one digital image that seems like an outlier. Based on the imagery it see=
+ms to belong to June of 2000 except for one stylistic feature =97 the nose.=
+ &nbsp;</div>
+<div dir=3D"ltr" data-setdir=3D"false"><br>
+</div>
+<div dir=3D"ltr" data-setdir=3D"false">I know that after the initial KCAT r=
+elease, Harold began an effort to remove all the black lines. The earliest =
+dated evidence I have seen of the lines being removed is May 2001. This art=
+work has no people though. The earliest
+ dated evidence we have of people without the line drawing is Oct of 2001. =
+After Oct 2001, the lines are completely gone until 2012.&nbsp;</div>
+<div dir=3D"ltr" data-setdir=3D"false"><br>
+</div>
+<div dir=3D"ltr" data-setdir=3D"false">I recall Harold commenting in partic=
+ular about the line used to make the nose and how to handle its removal. Fr=
+om that view point it might be possible that the work in question was a kin=
+d of transitional/experiment work of
+ his. A transitional work that would be post KCAT and pre-line removal. And=
+ if so, maybe he used an earlier 2000 AARON version to do an experiment. Th=
+is is just a guess. Ideally, I find other examples of this nose prior to Ma=
+y 2001.&nbsp;</div>
+<div dir=3D"ltr" data-setdir=3D"false"><br>
+</div>
+<div dir=3D"ltr" data-setdir=3D"false">When I look through our people with =
+faces works (1990=92s to 2001), I have yet to find a nose like this one. AA=
+RON did have the capacity to generate a wide range of variety and I haven=
+=92t necessarily seen the extent of its variety.
+ Your Whitney show did produce a large number of works. In fact we have man=
+y of them here in the studio. I believe looking through this collection wil=
+l help me resolve this issue and possibly others to come.&nbsp;</div>
+<div dir=3D"ltr" data-setdir=3D"false"><br>
+</div>
+<div dir=3D"ltr" data-setdir=3D"false">We do plan on photographing the work=
+s you sent to us sometime in the future, I am wondering if there is a way t=
+o look through the Whitney KCAT collection without having to do so physical=
+ly and prior to photographing them.</div>
+<div dir=3D"ltr" data-setdir=3D"false"><br>
+</div>
+<div dir=3D"ltr" data-setdir=3D"false">I would appreciate any thoughts you =
+have on this matter.</div>
+<div dir=3D"ltr" data-setdir=3D"false"><br>
+</div>
+<div dir=3D"ltr" data-setdir=3D"false">Sincerely,</div>
+<div dir=3D"ltr" data-setdir=3D"false">Tom Machnik</div>
+<div dir=3D"ltr" data-setdir=3D"false"><br>
+</div>
+</div>
+</div>
+</body>
+</html>
+
+--_000_BL1PR22MB3659309DB3556883B6D86A089DC02BL1PR22MB3659namp_--

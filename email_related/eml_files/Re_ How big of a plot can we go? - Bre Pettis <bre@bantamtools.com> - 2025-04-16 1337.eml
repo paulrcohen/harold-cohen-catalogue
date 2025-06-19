@@ -1,0 +1,178 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a10:6f10:b0:5ec:db95:1ae4 with SMTP id jd16csp2576051pxb;
+        Wed, 16 Apr 2025 10:37:15 -0700 (PDT)
+X-Received: by 2002:a05:6102:5f0b:b0:4bb:c24b:b644 with SMTP id ada2fe7eead31-4cb592b9bb5mr1759088137.20.1744825035684;
+        Wed, 16 Apr 2025 10:37:15 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1744825035; cv=none;
+        d=google.com; s=arc-20240605;
+        b=eSFQLoB56+4JwZ6ccCkWogfqcyJ7hEIS6D6yNCNjL1O1BBGvGvTA7wV1efo1pOsaT6
+         eNkHKART4J4dXRTzUxMPZ/UU4AFOfI5UfPvapXAms/zNrmhXxpimPn+E1dvwJ/8ExZW2
+         /8y7GJU/yPvhTnfuHz2rNUtqy5yQFQjD0r/DeiZO1mybJH0MCOYJyo5R1AsK1jGEdQe7
+         EKNYF1GM3Hu7U5UJhMNinhHc+HeXnvcdpM8Iezz0SMdSLfbtosqzRb5MxvJeVIthU7oY
+         nnKXnP/bratZVvF8fL0cowHm8GL9V3W5klq/6MS6oPAHeEIPTvrUZKY+zIGEyUSVouLb
+         hh9w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=Zwk8YxchOABBy69P8WpGC+tf+q0o8lpQHCKwrznjC08=;
+        fh=nyb3Zzc/5q13AmGz68ollfJIWrSjlCs6UrmkOPftKZ4=;
+        b=VLYnDMNPW1oTk06xMLuljdEKbwmbWsIKoQu1W+DA03DqNwoyXChC828DtzbtyyUUQ+
+         FyFGMIc601U93qDuT6HPzWZpAiZfTXa4eX9dAOU5PB9LmB11uawPY7VRqgKwG8Hgz3T2
+         HGchz6tIIxizt7/mzBl8r6x7KTbFERG2OVFXE0kWhhVNtsnObphr66bLOm/yHxMcFyJW
+         w1MYFi0eEB0K5GiwDqXckYc002byTv8JvhhGzOTW/oziQ7q+Eou03dNUKUazCmVaUpWp
+         yFe3VRimFG6rauD4Fw6ue1ItWOFQ2n5JWB444QlTxUq240yr+CcMI/pegqrJH9RhMZG3
+         vwYg==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@bantamtools-com.20230601.gappssmtp.com header.s=20230601 header.b=hFkNm7NY;
+       spf=neutral (google.com: 209.85.220.69 is neither permitted nor denied by domain of bre@bantamtools.com) smtp.mailfrom=bre@bantamtools.com;
+       dara=pass header.i=@gmail.com
+Return-Path: <bre@bantamtools.com>
+Received: from mail-sor-f69.google.com (mail-sor-f69.google.com. [209.85.220.69])
+        by mx.google.com with SMTPS id ada2fe7eead31-4c9c95d0f12sor586660137.0.2025.04.16.10.37.15
+        for <paulrcohen@gmail.com>
+        (Google Transport Security);
+        Wed, 16 Apr 2025 10:37:15 -0700 (PDT)
+Received-SPF: neutral (google.com: 209.85.220.69 is neither permitted nor denied by domain of bre@bantamtools.com) client-ip=209.85.220.69;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@bantamtools-com.20230601.gappssmtp.com header.s=20230601 header.b=hFkNm7NY;
+       spf=neutral (google.com: 209.85.220.69 is neither permitted nor denied by domain of bre@bantamtools.com) smtp.mailfrom=bre@bantamtools.com;
+       dara=pass header.i=@gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=bantamtools-com.20230601.gappssmtp.com; s=20230601; t=1744825035; x=1745429835; dara=google.com;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=Zwk8YxchOABBy69P8WpGC+tf+q0o8lpQHCKwrznjC08=;
+        b=hFkNm7NYKuqVBviCCtBcTg8qpryLCcsg/n4kNAGe6Tf4gDKT0uNMLjZuioK3YuMbFE
+         GDfxaKLBYoMBELSKtNd0GgLRKVVhg+mOOEsXDtE35Rb6JL1JeRshIOdgMlsBD9WaV1LP
+         gLR/bBYst8RrVHPEeXO537vTqX8HZnCk1AlbizMgVXRI7FFy5tjQ8egiqSZY8z4LfAu7
+         jNekETTI7ZAdUptD5IE4tYKAWNrdfW2MSqvGNY6w0WFDyYb9sAlWrWwTusPj2yegU1Lj
+         kINooj7hUoj1bm0puJbDKuovNq9dVZ/2JNKriaNbrxhDlSUobN7IE2oHoMXakwBIOAwt
+         IHFw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1744825035; x=1745429835;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Zwk8YxchOABBy69P8WpGC+tf+q0o8lpQHCKwrznjC08=;
+        b=AxTmL8gE9v5o/a1FCK1BXCn6tFI3Bp1tlbTOtNDiJWONA7+1pG71RqDuHC8veo6eXL
+         5C6qwUOtc/VhVChJr9Bcp+IHbhQio9SUYEMKJNH1HAGgTbPyrQim2FH1b7oyiZYTJ1d9
+         yaLOi7s0dq7IrYwsvjuwhvtq9J+5qvGRL0R48w4calRTAPXJIzEoaGbrAc+4YzBMS5pA
+         Y4Ppic8m0iEgrk1HRqjC20xVcVBKkdNTOP2ns0J6v/nalsvQG/jKZ2lxGGFqYTOGkzeT
+         6FYGsBMdiy5suX72Pgn+RCHTaGHrjg3fm3MGvZjzKY+KsK32cn09JXIP+ZxLn8Hyzyi+
+         jG1w==
+X-Gm-Message-State: AOJu0YzMMhMKSgLajR44S3bpGy685DxBmgtQ4L3aI6m4155NsGO2RUbo
+	cydLQOA2D0oV7YRCPKgGhioXjOd0aeR1TufLdjF4V7JsUuaWhBp1ZWVydp+0/PCEqL9vJUDSYUl
+	p0xiAdsqtYdGFsJpkkQZsUcxjPGzdiDH41xhVaRvmd0U/yChj
+X-Gm-Gg: ASbGncsgfRIlChBsk3taU8+Z5ojZL8XNcwq3pA6p+b80APdBYm5Zllodt5ImjyY4dUs
+	iVL8zPcEELvFQjccb9WV1D7XaVQF7WIvGclNhZefyPt5lCkMEMTEazxdBa5STU39Bss9MZQ8sPM
+	Xd5FH8SieOuNhZ76cIwHle
+X-Google-Smtp-Source: AGHT+IEGYFRYLIT3Bwn7O1Ms7bICxzwiFwmzb454bjyVdpSeU98WJk1Ylu9wPBf61lbx8eMjDv7OynTiSwV5ACJVvYM=
+X-Received: by 2002:a67:f944:0:b0:4c5:1a61:c2d8 with SMTP id
+ ada2fe7eead31-4cb62c33727mr146649137.7.1744825034930; Wed, 16 Apr 2025
+ 10:37:14 -0700 (PDT)
+MIME-Version: 1.0
+References: <870313733.488364.1744413579696.ref@mail.yahoo.com> <870313733.488364.1744413579696@mail.yahoo.com>
+In-Reply-To: <870313733.488364.1744413579696@mail.yahoo.com>
+From: Bre Pettis <bre@bantamtools.com>
+Date: Wed, 16 Apr 2025 13:37:04 -0400
+X-Gm-Features: ATxdqUHbvx9o2rR0MKKjeRdOVOMRUt-_l4R1hWL1sdy5Pg5OI6LOLRDbjl4BVzw
+Message-ID: <CACze48upzGr5AOHEu5+GdQPwwer0mmfc9fJ157i0MQu-x+9wzQ@mail.gmail.com>
+Subject: Re: How big of a plot can we go?
+To: Thomas Machnik <zipnpup@yahoo.com>
+Cc: Paul Cohen <paulrcohen@gmail.com>, Harold Cohen Trust <aaron@aaronshome.com>
+Content-Type: multipart/alternative; boundary="0000000000006726f00632e8bc94"
+
+--0000000000006726f00632e8bc94
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Just catching up.
+
+We have a prototype that can do a 24x72" plot on 28x76" paper. Giant and
+wall mounted plotters are possible, but the effort and expense are non
+trivial.
+
+Happy to chat more about ideas if you like. Do you have a project in mind?
+
+Bre
+
+
+
+
+On Fri, Apr 11, 2025 at 7:19=E2=80=AFPM Thomas Machnik <zipnpup@yahoo.com> =
+wrote:
+
+> Hi Bre,
+>
+> Hope you are well.  Hoping to get some preliminary background on the
+> possibility of an idea Paul mentioned.  How close to a mural-size work do
+> you think your plotters could plot? Is 48 or 60 inch wide paper a
+> possibility? Is even larger, say 8 or 10 ft possible? And instead having =
+a
+> person manually mount each sheet like at the Whitney, is it possible to
+> have a roll of paper? Like, say a 60=E2=80=9D x 100 foot roll or 48=E2=80=
+=9D x 350 ft? Or
+> multiple rolls? And plot maybe a 60x48inch area at a time. And then advan=
+ce
+> the roll for the next plot? Or could it somehow plot an area, whatever si=
+ze
+> that maybe, and then, move to another area and plot that other area. And
+> move about across whatever space is available to complete the work? And
+> maybe more importantly than the size=E2=80=A6 could all of this be done v=
+ertically?
+> This may be a bit ambitious, but in a sense, I am asking how close do you
+> think you could get to making a vertical turtle that would execute multip=
+le
+> murals and do so with minimal human intervention. And however close that
+> might be, what would that look like?
+>
+> Sincerely,
+> Tom
+>
+
+--0000000000006726f00632e8bc94
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Just catching up.=C2=A0<div><br></div><div>We have a proto=
+type that can do a 24x72&quot; plot on 28x76&quot; paper. Giant and wall mo=
+unted plotters are possible, but the effort and expense are non trivial.</d=
+iv><div><br></div><div>Happy to chat more about ideas if you like. Do you h=
+ave a project in mind?</div><div><br></div><div>Bre</div><div><br></div><di=
+v><br></div><div><br></div></div><br><div class=3D"gmail_quote gmail_quote_=
+container"><div dir=3D"ltr" class=3D"gmail_attr">On Fri, Apr 11, 2025 at 7:=
+19=E2=80=AFPM Thomas Machnik &lt;<a href=3D"mailto:zipnpup@yahoo.com">zipnp=
+up@yahoo.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" styl=
+e=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);paddin=
+g-left:1ex"><div><div style=3D"font-family:&quot;Helvetica Neue&quot;,Helve=
+tica,Arial,sans-serif;font-size:16px"><div dir=3D"ltr"><span id=3D"m_-65785=
+09670597205318ydp850d646docs-internal-guid-d380a387-7fff-4617-7b90-ba4a1a1d=
+f7dd" style=3D"color:rgb(0,0,0)"><p dir=3D"ltr" style=3D"line-height:1.38;m=
+argin-top:0pt;margin-bottom:0pt"><span style=3D"font-size:12pt;font-family:=
+Arial,sans-serif;color:rgb(29,29,29);vertical-align:baseline">Hi Bre,</span=
+></p><br><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bot=
+tom:0pt"><span style=3D"font-size:12pt;font-family:Arial,sans-serif;color:r=
+gb(29,29,29);vertical-align:baseline">Hope you are well.=C2=A0 Hoping to ge=
+t some preliminary background on the possibility of an idea Paul mentioned.=
+=C2=A0 How close to a mural-size work do you think your plotters could plot=
+? Is 48 or 60 inch wide paper a possibility? Is even larger, say 8 or 10 ft=
+ possible? And instead having a person manually mount each sheet like at th=
+e Whitney, is it possible to have a roll of paper? Like, say a 60=E2=80=9D =
+x 100 foot roll or 48=E2=80=9D x 350 ft? Or multiple rolls? And plot maybe =
+a 60x48inch area at a time. And then advance the roll for the next plot? Or=
+ could it somehow plot an area, whatever size that maybe, and then, move to=
+ another area and plot that other area. And move about across whatever spac=
+e is available to complete the work? And maybe more importantly than the si=
+ze=E2=80=A6 could all of this be done vertically? This may be a bit ambitio=
+us, but in a sense, I am asking how close do you think you could get to mak=
+ing a vertical turtle that would execute multiple murals and do so with min=
+imal human intervention. And however close that might be, what would that l=
+ook like?=C2=A0=C2=A0=C2=A0</span></p><br><p dir=3D"ltr" style=3D"line-heig=
+ht:1.38;margin-top:0pt;margin-bottom:0pt"><span style=3D"font-size:12pt;fon=
+t-family:Arial,sans-serif;color:rgb(29,29,29);vertical-align:baseline">Sinc=
+erely,</span></p><div><span style=3D"font-size:12pt;font-family:Arial,sans-=
+serif;color:rgb(29,29,29);vertical-align:baseline">Tom</span></div></span><=
+/div></div></div></blockquote></div>
+
+--0000000000006726f00632e8bc94--

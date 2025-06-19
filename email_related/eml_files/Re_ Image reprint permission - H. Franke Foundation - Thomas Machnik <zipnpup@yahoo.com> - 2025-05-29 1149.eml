@@ -1,0 +1,796 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a11:2e26:b0:616:43e8:43fd with SMTP id xg38csp577412pxb;
+        Thu, 29 May 2025 08:50:29 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGc3Z01me4eHthe9jHsh9A81ifC4sXlhilKQ9BtzuV3bfCgsS5omIpTcEjXOuO06BzXehkU
+X-Received: by 2002:a05:6102:292c:b0:4e6:e17f:1523 with SMTP id ada2fe7eead31-4e6e40dab5fmr48958137.4.1748533828783;
+        Thu, 29 May 2025 08:50:28 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1748533828; cv=none;
+        d=google.com; s=arc-20240605;
+        b=jdOYj4tChlKHYDTc9EjOUlrBMBtRtVb7904+YbMFXXku2BUwexsw0/D0aDldpxnYPI
+         MRlpDgVywgg9tNuLv459vgI4+NM8RZqX74Lib2ZSr3jikgzbdT/vLnl98OwHvQnH3KaZ
+         u0mSvSChyNAthvhSLODH8aYTizky3exPrQw9KnrPlCcBoxQ4V9cjw/BkxcpYviATNZZP
+         JKTxrP9vNiiUUiFcWVgQ9SCYuhCIrGxcQPZTW2ku++oh91Yzeg1DGodRot7YOr2Lq+R/
+         WpRsghxWlebOp7lTPDcA//uLQQMpbGYjgLYj5b3knVidNy91SHpC56R/+PP12qpqMcFV
+         6XNQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:subject:references:in-reply-to:message-id:cc:to
+         :reply-to:from:date:dkim-signature;
+        bh=ltSAOWh7EILxJYN69vzPfeVOYrPCLkWLhUbLPw8LO1w=;
+        fh=gh3KT63lVCD0Wub+001HEMeNQ2Gw51JyISLXs2rjTh8=;
+        b=aJBuQwMYIux7CKjI846PhC4XLd4u5UFiCPILc/tNd+oQ2sguwsrQJcXu2uAMidNN6U
+         Uhvs9iVlZ+r+Z5RC+pEIGsPYrpNiKQxT+WK0j58d3Tof/cUc6RZz3IN4jHBlTbX1bZIo
+         7AtS0xJ189SQagzoG2/Onb/fTu8I6iGHL0C30PDmj1U8QH2Z7uZZ0u1Pgg0225DlTN/P
+         D1VXGgiXRWptnuLyq3V8g56yL3SOC5oz6o2SaDLCDupTskWs1RmB9g0/fqybcpi9sQwm
+         HMWRUlm1AuVip2j8Bf5yr1J/z3/2OwGahgRwQAo6plaJQ48jtZ1o9rfUMsLkUbqL0xcO
+         Xgcg==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=Trgw7nbC;
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.133.123 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+Return-Path: <zipnpup@yahoo.com>
+Received: from sonic313-13.consmr.mail.bf2.yahoo.com (sonic313-13.consmr.mail.bf2.yahoo.com. [74.6.133.123])
+        by mx.google.com with ESMTPS id ada2fe7eead31-4e64ea5999bsi507757137.533.2025.05.29.08.50.28
+        for <paulrcohen@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 29 May 2025 08:50:28 -0700 (PDT)
+Received-SPF: pass (google.com: domain of zipnpup@yahoo.com designates 74.6.133.123 as permitted sender) client-ip=74.6.133.123;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=Trgw7nbC;
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.133.123 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1748533828; bh=ltSAOWh7EILxJYN69vzPfeVOYrPCLkWLhUbLPw8LO1w=; h=Date:From:Reply-To:To:Cc:In-Reply-To:References:Subject:From:Subject:Reply-To; b=Trgw7nbC0A3kF3srEPPsjA4/FJ+594MA6XxVOdsaxQfrl07HdRPaGqmB2HrH4NQqYjzN0KKHj6dr3qNyWy8zIM6NCqqBaIo+qL1fV4ChvjPiccGLNGWDynATZxZ22cPpwoBMNED8AUMRpkJIvRHsNZRaC3nGUn0fMFPfxs1IOL+Oljc0Sqy++et6UPhDI/Z2OwbpjZ1bKjW8MHu1O7ii7uJzi2Zsj62f3cUXmn3QS/UDnuT+EGa2OQDKbFTczqyy/wKyBKc0oepgLg6xcB/ix9/4bBU5h+e9pTdp2sXqH2o6yELfz4Tfhosg8qMh2nv6rXepj7WWwcB8v9lPOfNUpg==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1748533828; bh=OoukgtvXeNx+y4LDNkLlYOs/62hr18mkFXj0q5VTxV8=; h=X-Sonic-MF:Date:From:To:Subject:From:Subject; b=mvrmm1rXhYTijj41wmJXVhF6MQxrC6x+D0MQemoyzn53bcJJcjhLmU1pbEuliWrbBJlF7Xlff+eRUV6FsCnUhkDL/YHOAgp2aFeZYuwQtfHRQSxj5I9q6qdQWeWbQtbcfhYXu6bKU3ge083/UvxsRCmg42lGCUx1AP8mstJcYjjXteikfrHKMJ8K8gTx2IKpLQLcJCX0NdNwt3SETqFJToayu1IqAPsbbOaCgEYeCdlCZVaozeIT+Fjf/vvGoDppsMVd06x0VrETko/71VFNXyAYicFWIXPIiOfTZarQHZDpYhD8c83ker1g+h3aH7/f5tPCmsIpRExFQDip/zGkPg==
+X-YMail-OSG: FyCRPrIVM1nDW31ScVYSdG7E3Av5wJORCrXILhIExvMb0cZNX.jF9TeE_gLEvgF
+ B_S_pRGABw9TRkW5C6PoD_P6M9YSKCcYd80MUfCAT5tma6ueKF0b289tF0WGqIqTe625uQSJpUEN
+ 470VsULR2bK5f6j26BWcsgdYULHOp7_fq.CijBXX9y24DsTBQZzR6HhHjOURnXSp90gZouV6K0H2
+ 8CmdryGQ6Mi4M62mhIwtBDSjW8VGQbepKwT.ZdOuoOvsYCVqfUpgsygggFOeKGWv5fEoksJ0K_fL
+ HgBZnmrwfIlwvJQ3zhg.nNnagvBi9OMRnK9iSmCuuAbKD8g9PCc0lpaT0jRDuw2EYlIJeWjfQnmD
+ kh4XX4EShsJ0hyJxJZ9qBiRjUP6h1CjgmpbZGXEG8lpYv9xPAZP0lh2oxpLDr.t.bkIftpzEKe0s
+ 5guP4RjK2V4Ttrh0AiAGRnuOFrnyc1eRhR84CjSbmV.A16BEAd.xHL6rKLSwTyGwG3SSPlnVtS7X
+ 1dvQaVw3nYh.To395g_VQ9edV.jTCO0kdsqFgyG7a5XY4qfV6sj3CKXlYUoHsEzElF6hU19WN31K
+ hmNINpNRGQDi7_Ov6Hp.6Tjh28CpgC2tX.GaJKwIPhDEguknumCwJwlwS4FBDfX2YTwv3IOM9cGQ
+ sv4DIy11nQcMQEM2Wjqhnhpnen6yOWc6XUpHdS1nq.1bGb2qlpLp6aGusSyq64e.4uQDec3dCeBW
+ yq19vA.b151.eAzFD4rVJR72pimKuptAjSkkqHytZM98NDjYYjIX.oqlDrhWTMaCb4dLUA9qUFnk
+ PcWzVDAeqvuPXNc4wbmi5G77DY26PnVuIlIkkARUAcMUZ7RCzhbLmSnpOT5iC1yrKjYOaBWFaEcK
+ KZejF_st.Nc456_dmgpmbYwuxbvC0miqWApKagTRRY3joLAJ6dpji2wA_uT3dqmVS7GrQYU3UoHZ
+ cn_6MN_OYtmDiYbTfomnBG8gng__IBypzTxlLlytGDo9yt8adq__AxD149dUF9CoGmnqk5N1FHw2
+ iJT8K.eQ7KQ_VIptSHetWDHmeuAqpEPPHtssOfAIbq_.1Ic3obuKWvQRiaS8rY_k9G7RRenw10IN
+ 8GzH..Za21gQEP2lPJqa.LxkmXHpYt0V1LWNJdcT.Qk5m7uFGTBZIZdXW05s90qTT1XQ4N_lLJHw
+ Y4vrrX3UwPe_wVY6xHFCcosZeqa.yPwjCL_hmnGMMt6EHXJHW1Pe6prVms0vpibEq_lQJavDfAFS
+ eWN34cK26D3EcacKLDMw4O2YvVbzKaikHc7W60IQ0c655IddAq1pdqc4_OFQBVuLmDb14AALWp9f
+ 2DNz5yXNdI0SEyIO10dXkbdja6sg991Hyk2sZr5rQqxSBllaeGi5WAA_z.7EhqQZ0eJVza2xzFh8
+ y78X5C0FvQiVl3MhgtRF2Bc8tbIjoq28b0U_JiuwWkQ0VXB0ftxOJR4bVcoFm99tmIb7S3RNhvMH
+ Lg89vSiV6Uq6NlxCaPnXg.e0imypL5DpLNkNWC38X9gt7I0wpdaG6wZ5nqpbYFrwn5QBzPHv9568
+ GE1mvy0qE_SwSXuPHUhHj0itc5MU9BwptWfJpARhucg3fli4Ot2TID9B6jkWsGuW_SX3CCn_GPYC
+ qsC78kb3QDTel55tEM6NOgofRAPB26atzcdOC5nGouLUhJrbx_9bISVocUEYdgxDWB0ai1aPBHQQ
+ 8tNZx3llJipjj3nLEL3hhrUjFif_vS0XBsS_Fm6MH5txwc0YOp3N3RsBYLbRSnBQf4wIgmkCPgUs
+ lbYaX77snpj5Ziz_e0V9FDQTzLZ0ZAk6nJI5WKI_GwXXEATuGhDFhbITXWpJm0LyCbwMnbbSDKje
+ J8Uj6r2oV8OW3MOOsrNI7ENLvQnfXtX3GVtpj_KjxtPjvA1qFpdt0LIrkbLMeVfzi2PAo48Xa.XW
+ nDyOsEWDvgyfY83ECh6V9fN3ISGS6.h8e0xiFXJ9eHzMQiL.oQXekk5oNba2Kf_Bvo3CDd80EQfW
+ 2zqQm93a.nXZUxkE5FBz3jjWrnD6wZf18aabYyWcxVKvEHGL9rNxMUNTMylW9NDwTCqQHrrMb19U
+ 3Kz5KCBwGWwL.A0bVC7mJZGxBzV2_mXnEoHn5FBOHaJDF6dkIg1DKPe3VnCR0chpnga0tAIccJwG
+ VMwdlnmdJOu3jJnRiXQt.C9lcyAikPwXex11zZhW8MV7.DWsGlK4_onEz6viK3Lqq5HHsYkL0rPS
+ Y2EvtA.t00Hu3HGCrVWajoQfKrSAFxyyKyFUPBxbqNW2lxEXIj7b9_JqOrHMijS5QIrzf_SCaVwd
+ zPwiiBraUNhp7_U9BIA2gROE-
+X-Sonic-MF: <zipnpup@yahoo.com>
+X-Sonic-ID: fe4b1f30-e2c4-40f0-86d5-ae9b21b5372a
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic313.consmr.mail.bf2.yahoo.com with HTTP; Thu, 29 May 2025 15:50:28 +0000
+Date: Thu, 29 May 2025 15:49:35 +0000 (UTC)
+From: Thomas Machnik <zipnpup@yahoo.com>
+Reply-To: Thomas Machnik <zipnpup@yahoo.com>
+To: Mila Askarova <m.askarova@gazelliarthouse.com>
+Cc: Paul Cohen <paulrcohen@gmail.com>
+Message-ID: <1136210876.1476002.1748533775678@mail.yahoo.com>
+In-Reply-To: <CAAOqD37EuJOp5tY5my8a_b3gMChq0u8m96FphbhjSuUx+Z2MBg@mail.gmail.com>
+References: <1942063414.1391590.1748490272824@mail.yahoo.com> <CF55C337-BD24-4732-BAB4-6AFAA3C9CF17@gazelliarthouse.com> <1383707889.1404609.1748505389543@mail.yahoo.com> <CAAOqD35mCfumy6wK2ZLHXczHnW_+gy0MJyBg75+_fB-i_MiEog@mail.gmail.com> <CAAOqD37EuJOp5tY5my8a_b3gMChq0u8m96FphbhjSuUx+Z2MBg@mail.gmail.com>
+Subject: Re: Image reprint permission - H. Franke Foundation
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_1476001_564060041.1748533775673"
+X-Mailer: WebService/1.1.23884 YMailNovation
+Content-Length: 43294
+
+------=_Part_1476001_564060041.1748533775673
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+ Mila,The first sentence is ok, I prefer the second sentence as shown:
+Computer-generated drawing (1976-1978) by Harold Cohen, University of Calif=
+ornia, San Diego.=C2=A0This early artificial intelligence work was composed=
+ by Cohen=E2=80=99s first implementation of AARON (1974-1980) later called =
+Primitive AARON.
+=C2=A0 One sentence is ok. If additional information is more ideal, I prefe=
+r what I shared here.
+Tom
+
+    On Thursday, May 29, 2025 at 07:21:56 AM PDT, Mila Askarova <m.askarova=
+@gazelliarthouse.com> wrote: =20
+=20
+ Hi Tom,=C2=A0
+Following your notes, they got inspired and =C2=A0suggested to include a re=
+vised caption as per below: =C2=A0
+Computer-generated drawing (1976-1978) by Harold Cohen, University of Calif=
+ornia, San Diego. The drawing was probably made with the help of his artifi=
+cial intelligence AARON that was published first in 1979.
+If this won=E2=80=99t work, then they will include the original plus the da=
+te:=C2=A0Computer-generated drawing (1976-1978) by Harold Cohen, University=
+ of California, San Diego.
+I believe the original plus the date works better but let me know what you =
+think!=C2=A0
+My best,=C2=A0Mila=C2=A0
+Mila Askarova=C2=A0
+CEO & Founder=C2=A0
+
+GAZELLI ART HOUSE
+
+www.gazelliarthouse.com
++44 (0) 207 491 8816 / +994 (0) 12 498 1230
+
+
+On Thu, 29 May 2025 at 10:30, Mila Askarova <m.askarova@gazelliarthouse.com=
+> wrote:
+
+Hi Tom,=C2=A0
+This is all super useful - thank you! I have passed it on.=C2=A0I have rela=
+yed to them, that if they need to feature the date, it would be best to inc=
+lude 1976-1978.=C2=A0
+My best,=C2=A0Mila=C2=A0
+
+Mila Askarova=C2=A0
+CEO & Founder=C2=A0
+
+GAZELLI ART HOUSE
+
+www.gazelliarthouse.com
++44 (0) 207 491 8816 / +994 (0) 12 498 1230
+
+
+On Thu, 29 May 2025 at 09:56, Thomas Machnik <zipnpup@yahoo.com> wrote:
+
+ Mila,I was not able to determine the year. The particular style is from 19=
+76 to 1980/82ish. With the production date more likely closer to 1976 than =
+1982. The fact that the original caption does not include AARON suggests it=
+ is certainly much closer to 1976. Harold didn=E2=80=99t mention AARON publ=
+icly until 1979 in his paper What is an Image? Some of the motifs suggest t=
+he work was produced during the Documenta show 1977 or prior to.=C2=A0 If y=
+ou have to put a date I suggest circa 1976-1978.=C2=A0
+Let me know what you think,Tom
+    On Thursday, May 29, 2025 at 12:47:52 AM PDT, <m.askarova@gazelliarthou=
+se.com> wrote: =20
+=20
+ Hi Tom,
+Thank you for this.Which year would it be best to attribute the work to - 1=
+983 or 1984?=C2=A0
+My best,=C2=A0Mila=C2=A0
+Mila Askarova=C2=A0
+CEO & Founder=C2=A0Gazelli Art House=C2=A039 Dover Street=C2=A0W1S 4NN, Lon=
+don, UK=C2=A0M: +44 (0)79 6829 3537
+
+On 29 May 2025, at 05:44, Thomas Machnik <zipnpup@yahoo.com> wrote:
+
+
+
+=EF=BB=BF Hi Mila,I found quite a bit of information in our archives relate=
+d to Herbert W Franke all of which can be viewed herehttps://drive.google.c=
+om/drive/folders/14_kJAIaaMPWWQzCWQ3BJ09d452HCPYzu?usp=3Dshare_link
+The most important find is a copy of Franke=E2=80=99s book with Harold=E2=
+=80=99s images on page 120 along with the original caption =E2=80=94 see at=
+tached. Instead of changing the caption, let=E2=80=99s go with the original=
+ since we have to assume Harold was okay with the original at that time as =
+I found no objections in subsequent exchanges between Franke and Harold. -T=
+om
+<IMG_0370.JPG>
+
+
+    On Wednesday, May 28, 2025 at 06:20:40 PM PDT, <m.askarova@gazelliartho=
+use.com> wrote: =20
+=20
+ Hi Tom!
+Hope all is well.
+Unfortunately they don=E2=80=99t have much more information on the works:Th=
+ere are 2 works, but they could belong in a set.They are sure these are rea=
+l plots that are fixed on a carton.=C2=A0
+They said Harold=E2=80=99s image is published in the 1985 Springer edition =
+page 120 (attached)=C2=A0
+They can use the published image with the same caption adding ~1983 or ~198=
+4.=C2=A0
+They=E2=80=99ll need a response by end of tomorrow (29th) to make their pub=
+lishing deadline.
+My best,=C2=A0Mila=C2=A0
+<image0.jpeg>
+
+
+Mila Askarova=C2=A0
+CEO & Founder=C2=A0Gazelli Art House=C2=A039 Dover Street=C2=A0W1S 4NN, Lon=
+don, UK=C2=A0M: +44 (0)79 6829 3537
+
+On 23 May 2025, at 04:33, Mila Askarova <m.askarova@gazelliarthouse.com> wr=
+ote:
+
+
+
+=EF=BB=BFJust checking with them - will confirm asap=C2=A0
+My best=C2=A0Mila=C2=A0
+
+Mila Askarova=C2=A0
+CEO & Founder=C2=A0
+
+GAZELLI ART HOUSE
+
+www.gazelliarthouse.com
++44 (0) 207 491 8816 / +994 (0) 12 498 1230
+
+
+On Thu, 22 May 2025 at 22:26, zipnpup <zipnpup@yahoo.com> wrote:
+
+Hi MilaThanks for the quick reply.=C2=A0Do you know if these were two disti=
+nct images and not intended to be one work? Also it sounds like you are say=
+ing they still have the original art works Harold sent. Do you believe that=
+ is true? If so I wonder is there is anything written on the back.=C2=A0Tom=
+=C2=A0
+
+
+Sent from my T-Mobile 4G LTE Device
+
+-------- Original message --------From: Mila Askarova <m.askarova@gazelliar=
+thouse.com> Date: 5/22/25 7:17 PM (GMT-08:00) To: Thomas Machnik <zipnpup@y=
+ahoo.com> Cc: Paul Cohen <paulrcohen@gmail.com> Subject: Re: Image reprint =
+permission - H. Franke Foundation=20
+Hi Tom!=C2=A0
+Thanks for your note.=C2=A0
+All I could get from them was this:It was part of the working material of H=
+erbart, related to the publication of the 2nd=C2=A0edition of =E2=80=9CComp=
+uter graphics =E2=80=93 Computer Art=E2=80=9D in 1985. It was not printed t=
+here - it must have been sent to Herbert 1983 or 1984. These are 2 images a=
+ small plots that are fixed on a cart board.
+Speak soon,=C2=A0Mila=C2=A0
+Mila Askarova=C2=A0
+CEO & Founder=C2=A0
+
+GAZELLI ART HOUSE
+
+www.gazelliarthouse.com
++44 (0) 207 491 8816 / +994 (0) 12 498 1230
+
+
+On Thu, 22 May 2025 at 22:04, Thomas Machnik <zipnpup@yahoo.com> wrote:
+
+ Hi Mila,Happy Thursday! Thanks for the request. I have not seen this image=
+ before and there is a motif which I am not familiar with. I am looking thr=
+ough the archives to see if we this one or a similar one was photographed. =
+This work certainly falls into the category of Primitive AARON (1974-1982) =
+but is certainly later 1974. I looked for Herbert Franke in our digital arc=
+hives and only found an invitation to his 80th birthday in 2007.=C2=A0 On F=
+riday I will look and see if we have this book in the studio and also conti=
+nue to look at the photographs of works from 1975+. I will also see if we h=
+ave a manila folder for Herbert Franke. It would be nice to provide somethi=
+ng beside just Copyright Harold Cohen. In the previous publication, do they=
+ happen to have a publication date and/or any text in the body of the book =
+associated with Harold that they can share with us?=C2=A0
+Sincerely,Tom
+    On Thursday, May 22, 2025 at 04:32:46 AM PDT, m.askarova@gazelliarthous=
+e.com <m.askarova@gazelliarthouse.com> wrote: =20
+=20
+ Hi Tom!=C2=A0
+Herbert Franke foundation are preparing a re-print of =E2=80=9CComputer Gra=
+phics - Computer Art=E2=80=9D in cooperation with a publisher in a small ed=
+ition.=C2=A0
+They=E2=80=99d like to publish the image here of Harold Cohen=E2=80=99s. Ca=
+n we get permission for it and relevant credit line ?=C2=A0For now they=E2=
+=80=99ve just got :=C2=A0Copyright: Harold Cohen=C2=A0
+My best,=C2=A0Mila=C2=A0
+
+
+
+
+Mila Askarova=C2=A0
+CEO & Founder=C2=A0Gazelli Art House=C2=A039 Dover Street=C2=A0W1S 4NN, Lon=
+don, UK=C2=A0M: +44 (0)79 6829 3537 =20
+
+
+  <IMG_0370.JPG><image0.jpeg>
+ =20
+
+ =20
+------=_Part_1476001_564060041.1748533775673
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head></head><body><div class=3D"ydp59f05cbdyahoo-style-wrap" style=
+=3D"font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px=
+;"><div></div>
+        <div dir=3D"ltr" data-setdir=3D"false">Mila,</div><div dir=3D"ltr" =
+data-setdir=3D"false"><span style=3D"color: rgb(49, 49, 49); font-family: s=
+ans-serif; word-spacing: 1px;">The first sentence is ok, I prefer the secon=
+d sentence as shown:</span></div><div dir=3D"ltr" data-setdir=3D"false"><sp=
+an style=3D"color: rgb(49, 49, 49); font-family: sans-serif; word-spacing: =
+1px;"><br></span></div><div dir=3D"ltr" data-setdir=3D"false"><span style=
+=3D"color: rgb(49, 49, 49); font-family: sans-serif; word-spacing: 1px;">Co=
+mputer-generated drawing (1976-1978) by Harold Cohen, University of Califor=
+nia, San Diego.&nbsp;</span>This early artificial intelligence work was com=
+posed by Cohen=E2=80=99s first implementation of AARON (1974-1980) later ca=
+lled Primitive AARON.</div><div dir=3D"ltr" data-setdir=3D"false"><br></div=
+><div dir=3D"ltr" data-setdir=3D"false">&nbsp; One sentence is ok. If addit=
+ional information is more ideal, I prefer what I shared here.</div><div dir=
+=3D"ltr" data-setdir=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"fa=
+lse">Tom</div><div dir=3D"ltr" data-setdir=3D"false"><br></div><div><br></d=
+iv>
+       =20
+        <div id=3D"ydp59f05cbdyahoo_quoted_9116649808" class=3D"ydp59f05cbd=
+yahoo_quoted">
+            <div style=3D"font-family:'Helvetica Neue', Helvetica, Arial, s=
+ans-serif;font-size:13px;">
+               =20
+                <div>
+                    On Thursday, May 29, 2025 at 07:21:56 AM PDT, Mila Aska=
+rova &lt;m.askarova@gazelliarthouse.com&gt; wrote:
+                </div>
+                <div><br></div>
+                <div><br></div>
+                <div><div id=3D"ydp59f05cbdyiv7377672983"><div><div>Hi Tom,=
+&nbsp;</div><div><br clear=3D"none"></div><div>Following your notes, they g=
+ot inspired and &nbsp;suggested to include a revised caption as per below: =
+&nbsp;</div><div><span style=3D"font-family: sans-serif; word-spacing: 1px;=
+ border-color: rgb(49, 49, 49); color: rgb(49, 49, 49);"><br clear=3D"none"=
+></span></div><div><span style=3D"font-family: sans-serif; word-spacing: 1p=
+x; border-color: rgb(49, 49, 49); color: rgb(49, 49, 49);">Computer-generat=
+ed drawing (1976-1978) by Harold Cohen, University of California, San Diego=
+. The drawing was probably made with the help of his artificial intelligenc=
+e AARON that was published first in 1979.</span></div><div><span style=3D"f=
+ont-family: sans-serif; word-spacing: 1px; border-color: rgb(49, 49, 49); c=
+olor: rgb(49, 49, 49);"><br clear=3D"none"></span></div><div>If this won=E2=
+=80=99t work, then they will include the original plus the date:&nbsp;</div=
+><div><div><span style=3D"font-family: sans-serif; font-size: 14.666672px; =
+font-style: normal; font-weight: 400; letter-spacing: normal; text-indent: =
+0px; text-transform: none; word-spacing: 1px; text-decoration: none; float:=
+ none; border-color: rgb(49, 49, 49); color: rgb(49, 49, 49); display: inli=
+ne !important;">Computer-generated drawing (1976-1978) by Harold Cohen, Uni=
+versity of California, San Diego.</span></div><div><br clear=3D"none"></div=
+>I believe the original plus the date works better but let me know what you=
+ think!&nbsp;</div><div><br clear=3D"all">My best,&nbsp;</div><div>Mila&nbs=
+p;</div><div><br clear=3D"all"><div><div dir=3D"ltr" class=3D"ydp59f05cbdyi=
+v7377672983gmail_signature">Mila Askarova&nbsp;<br clear=3D"none">CEO &amp;=
+ Founder&nbsp;<br clear=3D"none"><br clear=3D"none">GAZELLI ART HOUSE<br cl=
+ear=3D"none"><br clear=3D"none"><a shape=3D"rect" href=3D"http://www.gazell=
+iarthouse.com" rel=3D"nofollow" target=3D"_blank">www.gazelliarthouse.com</=
+a><br clear=3D"none">+44 (0) 207 491 8816 / +994 (0) 12 498 1230<br clear=
+=3D"none"></div></div></div><div><br clear=3D"none"></div><div id=3D"ydp59f=
+05cbdyiv7377672983yqt04658" class=3D"ydp59f05cbdyiv7377672983yqt5970903092"=
+><div><br clear=3D"none"><div class=3D"ydp59f05cbdyiv7377672983gmail_quote"=
+><div dir=3D"ltr" class=3D"ydp59f05cbdyiv7377672983gmail_attr">On Thu, 29 M=
+ay 2025 at 10:30, Mila Askarova &lt;<a shape=3D"rect" href=3D"mailto:m.aska=
+rova@gazelliarthouse.com" rel=3D"nofollow" target=3D"_blank">m.askarova@gaz=
+elliarthouse.com</a>&gt; wrote:<br clear=3D"none"></div><blockquote style=
+=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px;border-left-style:solid;=
+padding-left:1ex;border-left-color:rgb(204,204,204);" class=3D"ydp59f05cbdy=
+iv7377672983gmail_quote"><div>Hi Tom,&nbsp;</div><div><br clear=3D"none"></=
+div><div>This is all super useful - thank you! I have passed it on.&nbsp;</=
+div><div>I have relayed to them, that if they need to feature the date, it =
+would be best to include 1976-1978.&nbsp;</div><div><br clear=3D"none"></di=
+v><div>My best,&nbsp;</div><div></div><div>Mila&nbsp;<br clear=3D"all"><br =
+clear=3D"all"><div><div dir=3D"ltr" class=3D"ydp59f05cbdyiv7377672983gmail_=
+signature">Mila Askarova&nbsp;<br clear=3D"none">CEO &amp; Founder&nbsp;<br=
+ clear=3D"none"><br clear=3D"none">GAZELLI ART HOUSE<br clear=3D"none"><br =
+clear=3D"none"><a shape=3D"rect" href=3D"http://www.gazelliarthouse.com" re=
+l=3D"nofollow" target=3D"_blank">www.gazelliarthouse.com</a><br clear=3D"no=
+ne">+44 (0) 207 491 8816 / +994 (0) 12 498 1230<br clear=3D"none"></div></d=
+iv></div><div><br clear=3D"none"></div><div><br clear=3D"none"><div class=
+=3D"ydp59f05cbdyiv7377672983gmail_quote"><div dir=3D"ltr" class=3D"ydp59f05=
+cbdyiv7377672983gmail_attr">On Thu, 29 May 2025 at 09:56, Thomas Machnik &l=
+t;<a shape=3D"rect" href=3D"mailto:zipnpup@yahoo.com" rel=3D"nofollow" targ=
+et=3D"_blank">zipnpup@yahoo.com</a>&gt; wrote:<br clear=3D"none"></div><blo=
+ckquote style=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px;border-left=
+-style:solid;padding-left:1ex;border-left-color:rgb(204,204,204);" class=3D=
+"ydp59f05cbdyiv7377672983gmail_quote"><div><div style=3D"font-family:Helvet=
+ica, Arial, sans-serif;font-size:16px;"><div style=3D"font-family:Helvetica=
+, Arial, sans-serif;"></div>
+        <div dir=3D"ltr" style=3D"font-family:Helvetica, Arial, sans-serif;=
+">Mila,</div><div dir=3D"ltr" style=3D"font-family:Helvetica, Arial, sans-s=
+erif;">I was not able to determine the year. The particular style is from 1=
+976 to 1980/82ish. With the production date more likely closer to 1976 than=
+ 1982. The fact that the original caption does not include AARON suggests i=
+t is certainly much closer to 1976. Harold didn=E2=80=99t mention AARON pub=
+licly until 1979 in his paper What is an Image? Some of the motifs suggest =
+the work was produced during the Documenta show 1977 or prior to.&nbsp; If =
+you have to put a date I suggest circa 1976-1978.&nbsp;</div><div dir=3D"lt=
+r" style=3D"font-family:Helvetica, Arial, sans-serif;"><br clear=3D"none"><=
+/div><div dir=3D"ltr" style=3D"font-family:Helvetica, Arial, sans-serif;">L=
+et me know what you think,</div><div dir=3D"ltr" style=3D"font-family:Helve=
+tica, Arial, sans-serif;">Tom</div></div></div><div><div style=3D"font-fami=
+ly:Helvetica, Arial, sans-serif;font-size:16px;"><div style=3D"font-family:=
+Helvetica, Arial, sans-serif;"><br clear=3D"none"></div>
+       =20
+        <div id=3D"ydp59f05cbdyiv7377672983m_-1697720800528751534m_-7066118=
+445608320940ydpe7a0d7d7yahoo_quoted_9298338245" style=3D"font-family:Helvet=
+ica, Arial, sans-serif;">
+            <div style=3D"font-family:Helvetica, Arial, sans-serif;font-siz=
+e:13px;">
+               =20
+                <div style=3D"font-family:Helvetica, Arial, sans-serif;">
+                    On Thursday, May 29, 2025 at 12:47:52 AM PDT,  &lt;<a s=
+hape=3D"rect" href=3D"mailto:m.askarova@gazelliarthouse.com" style=3D"font-=
+family:Helvetica, Arial, sans-serif;" rel=3D"nofollow" target=3D"_blank">m.=
+askarova@gazelliarthouse.com</a>&gt; wrote:
+                </div>
+                <div style=3D"font-family:Helvetica, Arial, sans-serif;"><b=
+r clear=3D"none"></div>
+                <div style=3D"font-family:Helvetica, Arial, sans-serif;"><b=
+r clear=3D"none"></div>
+                <div style=3D"font-family:Helvetica, Arial, sans-serif;"><d=
+iv id=3D"ydp59f05cbdyiv7377672983m_-1697720800528751534m_-70661184456083209=
+40ydpe7a0d7d7yiv0135550318" style=3D"font-family:Helvetica, Arial, sans-ser=
+if;"><div style=3D"font-family:Helvetica, Arial, sans-serif;">Hi Tom,<div s=
+tyle=3D"font-family:Helvetica, Arial, sans-serif;"><br clear=3D"none"></div=
+><div style=3D"font-family:Helvetica, Arial, sans-serif;">Thank you for thi=
+s.</div><div style=3D"font-family:Helvetica, Arial, sans-serif;">Which year=
+ would it be best to attribute the work to - 1983 or 1984?&nbsp;</div><div =
+style=3D"font-family:Helvetica, Arial, sans-serif;"><br clear=3D"none"></di=
+v><div style=3D"font-family:Helvetica, Arial, sans-serif;">My best,&nbsp;</=
+div><div style=3D"font-family:Helvetica, Arial, sans-serif;">Mila&nbsp;</di=
+v><div style=3D"font-family:Helvetica, Arial, sans-serif;"><br clear=3D"non=
+e" id=3D"ydp59f05cbdyiv7377672983m_-1697720800528751534m_-70661184456083209=
+40ydpe7a0d7d7yiv0135550318lineBreakAtBeginningOfSignature"><div dir=3D"ltr"=
+ style=3D"font-family:Helvetica, Arial, sans-serif;"><div style=3D"font-fam=
+ily:UICTFontTextStyleBody;">Mila Askarova&nbsp;</div><div style=3D"font-fam=
+ily:UICTFontTextStyleBody;"><br clear=3D"none"></div><div style=3D"font-fam=
+ily:UICTFontTextStyleBody;">CEO &amp; Founder&nbsp;</div><div style=3D"font=
+-family:UICTFontTextStyleBody;">Gazelli Art House&nbsp;</div><div style=3D"=
+font-family:UICTFontTextStyleBody;"><a shape=3D"rect" href=3D"https://www.g=
+oogle.com/maps/search/39+Dover+Street+W1S+4NN,+London,+UK?entry=3Dgmail&amp=
+;source=3Dg" style=3D"font-family:UICTFontTextStyleBody;" rel=3D"nofollow" =
+target=3D"_blank">39 Dover Street</a>&nbsp;</div><div style=3D"font-family:=
+UICTFontTextStyleBody;"><a shape=3D"rect" href=3D"https://www.google.com/ma=
+ps/search/39+Dover+Street+W1S+4NN,+London,+UK?entry=3Dgmail&amp;source=3Dg"=
+ style=3D"font-family:UICTFontTextStyleBody;" rel=3D"nofollow" target=3D"_b=
+lank">W1S 4NN, London, UK</a>&nbsp;</div><div style=3D"font-family:UICTFont=
+TextStyleBody;">M: +44 (0)79 6829 3537</div></div><div dir=3D"ltr" style=3D=
+"font-family:Helvetica, Arial, sans-serif;"><br clear=3D"none"><blockquote =
+type=3D"cite" style=3D"font-family:Helvetica, Arial, sans-serif;">On 29 May=
+ 2025, at 05:44, Thomas Machnik &lt;<a shape=3D"rect" href=3D"mailto:zipnpu=
+p@yahoo.com" style=3D"font-family:Helvetica, Arial, sans-serif;" rel=3D"nof=
+ollow" target=3D"_blank">zipnpup@yahoo.com</a>&gt; wrote:<br clear=3D"none"=
+><br clear=3D"none"></blockquote></div><blockquote type=3D"cite" style=3D"f=
+ont-family:Helvetica, Arial, sans-serif;"><div dir=3D"ltr" style=3D"font-fa=
+mily:Helvetica, Arial, sans-serif;">=EF=BB=BF<div style=3D"font-family:Helv=
+etica, Arial, sans-serif;font-size:16px;"><div style=3D"font-family:Helveti=
+ca, Arial, sans-serif;"></div>
+        <div dir=3D"ltr" style=3D"font-family:Helvetica, Arial, sans-serif;=
+">Hi Mila,</div><div dir=3D"ltr" style=3D"font-family:Helvetica, Arial, san=
+s-serif;">I found quite a bit of information in our archives related to Her=
+bert W Franke all of which can be viewed here</div><div dir=3D"ltr" style=
+=3D"font-family:Helvetica, Arial, sans-serif;"><a shape=3D"rect" href=3D"ht=
+tps://drive.google.com/drive/folders/14_kJAIaaMPWWQzCWQ3BJ09d452HCPYzu?usp=
+=3Dshare_link" style=3D"font-family:Helvetica, Arial, sans-serif;" rel=3D"n=
+ofollow" target=3D"_blank">https://drive.google.com/drive/folders/14_kJAIaa=
+MPWWQzCWQ3BJ09d452HCPYzu?usp=3Dshare_link</a><br clear=3D"none"></div><div =
+dir=3D"ltr" style=3D"font-family:Helvetica, Arial, sans-serif;">The most im=
+portant find is a copy of Franke=E2=80=99s book with Harold=E2=80=99s image=
+s on page 120 along with the original caption =E2=80=94 see attached. Inste=
+ad of changing the caption, let=E2=80=99s go with the original since we hav=
+e to assume Harold was okay with the original at that time as I found no ob=
+jections in subsequent exchanges between Franke and Harold. -Tom</div><div =
+dir=3D"ltr" style=3D"font-family:Helvetica, Arial, sans-serif;"><br clear=
+=3D"none"></div><div dir=3D"ltr" style=3D"font-family:Helvetica, Arial, san=
+s-serif;"><div style=3D"font-family:Helvetica, Arial, sans-serif;">&lt;IMG_=
+0370.JPG&gt;</div><br clear=3D"none"></div><div dir=3D"ltr" style=3D"font-f=
+amily:Helvetica, Arial, sans-serif;"><br clear=3D"none"></div><div style=3D=
+"font-family:Helvetica, Arial, sans-serif;"><br clear=3D"none"></div>
+       =20
+        <div id=3D"ydp59f05cbdyiv7377672983m_-1697720800528751534m_-7066118=
+445608320940ydpe7a0d7d7yiv0135550318ydpf2dc8a7fyahoo_quoted_8583193744" sty=
+le=3D"font-family:Helvetica, Arial, sans-serif;">
+            <div style=3D"font-family:Helvetica, Arial, sans-serif;font-siz=
+e:13px;">
+               =20
+                <div style=3D"font-family:Helvetica, Arial, sans-serif;">
+                    On Wednesday, May 28, 2025 at 06:20:40 PM PDT,  &lt;<a =
+shape=3D"rect" href=3D"mailto:m.askarova@gazelliarthouse.com" style=3D"font=
+-family:Helvetica, Arial, sans-serif;" rel=3D"nofollow" target=3D"_blank">m=
+.askarova@gazelliarthouse.com</a>&gt; wrote:
+                </div>
+                <div style=3D"font-family:Helvetica, Arial, sans-serif;"><b=
+r clear=3D"none"></div>
+                <div style=3D"font-family:Helvetica, Arial, sans-serif;"><b=
+r clear=3D"none"></div>
+                <div style=3D"font-family:Helvetica, Arial, sans-serif;"><d=
+iv id=3D"ydp59f05cbdyiv7377672983m_-1697720800528751534m_-70661184456083209=
+40ydpe7a0d7d7yiv0135550318ydpf2dc8a7fyiv7110853386" style=3D"font-family:He=
+lvetica, Arial, sans-serif;"><div style=3D"font-family:Helvetica, Arial, sa=
+ns-serif;">Hi Tom!<div style=3D"font-family:Helvetica, Arial, sans-serif;">=
+<br clear=3D"none"></div><div style=3D"font-family:Helvetica, Arial, sans-s=
+erif;">Hope all is well.</div><div style=3D"font-family:Helvetica, Arial, s=
+ans-serif;"><br clear=3D"none"></div><div style=3D"font-family:Helvetica, A=
+rial, sans-serif;">Unfortunately they don=E2=80=99t have much more informat=
+ion on the works:</div><div style=3D"font-family:Helvetica, Arial, sans-ser=
+if;">There are 2 works, but they could belong in a set.</div><div style=3D"=
+font-family:Helvetica, Arial, sans-serif;">They are sure these are real plo=
+ts that are fixed on a carton.&nbsp;</div><div style=3D"font-family:Helveti=
+ca, Arial, sans-serif;"><br clear=3D"none"></div><div style=3D"font-family:=
+Helvetica, Arial, sans-serif;">They said Harold=E2=80=99s image is publishe=
+d in the 1985 Springer edition page 120 (attached)&nbsp;</div><div style=3D=
+"font-family:Helvetica, Arial, sans-serif;"><br clear=3D"none"></div><div s=
+tyle=3D"font-family:Helvetica, Arial, sans-serif;">They can use the publish=
+ed image with the same caption adding ~1983 or ~1984.&nbsp;</div><div style=
+=3D"font-family:Helvetica, Arial, sans-serif;"><br clear=3D"none"></div><di=
+v style=3D"font-family:Helvetica, Arial, sans-serif;">They=E2=80=99ll need =
+a response by end of tomorrow (29th) to make their publishing deadline.</di=
+v><div style=3D"font-family:Helvetica, Arial, sans-serif;"><br clear=3D"non=
+e"></div><div style=3D"font-family:Helvetica, Arial, sans-serif;">My best,&=
+nbsp;</div><div style=3D"font-family:Helvetica, Arial, sans-serif;">Mila&nb=
+sp;</div><div style=3D"font-family:Helvetica, Arial, sans-serif;"><br clear=
+=3D"none"></div><div style=3D"font-family:Helvetica, Arial, sans-serif;"><d=
+iv style=3D"font-family:Helvetica, Arial, sans-serif;">&lt;image0.jpeg&gt;<=
+/div><div id=3D"ydp59f05cbdyiv7377672983m_-1697720800528751534m_-7066118445=
+608320940ydpe7a0d7d7yiv0135550318yqtfd51139" style=3D"font-family:Helvetica=
+, Arial, sans-serif;"><br clear=3D"none"></div></div><div id=3D"ydp59f05cbd=
+yiv7377672983m_-1697720800528751534m_-7066118445608320940ydpe7a0d7d7yiv0135=
+550318yqtfd55776" style=3D"font-family:Helvetica, Arial, sans-serif;"><div =
+style=3D"font-family:Helvetica, Arial, sans-serif;"><br clear=3D"none"></di=
+v></div><div style=3D"font-family:Helvetica, Arial, sans-serif;"><div id=3D=
+"ydp59f05cbdyiv7377672983m_-1697720800528751534m_-7066118445608320940ydpe7a=
+0d7d7yiv0135550318yqtfd29946" style=3D"font-family:Helvetica, Arial, sans-s=
+erif;"><br clear=3D"none"></div><div style=3D"font-family:Helvetica, Arial,=
+ sans-serif;"><div id=3D"ydp59f05cbdyiv7377672983m_-1697720800528751534m_-7=
+066118445608320940ydpe7a0d7d7yiv0135550318yqtfd46034" style=3D"font-family:=
+Helvetica, Arial, sans-serif;"><div dir=3D"ltr" style=3D"font-family:Helvet=
+ica, Arial, sans-serif;"><div style=3D"font-family:UICTFontTextStyleBody;">=
+Mila Askarova&nbsp;</div><div style=3D"font-family:UICTFontTextStyleBody;">=
+<br clear=3D"none"></div><div style=3D"font-family:UICTFontTextStyleBody;">=
+CEO &amp; Founder&nbsp;</div><div style=3D"font-family:UICTFontTextStyleBod=
+y;">Gazelli Art House&nbsp;</div><div style=3D"font-family:UICTFontTextStyl=
+eBody;"><a shape=3D"rect" href=3D"https://www.google.com/maps/search/39+Dov=
+er+Street+W1S+4NN,+London,+UK?entry=3Dgmail&amp;source=3Dg" style=3D"font-f=
+amily:UICTFontTextStyleBody;" rel=3D"nofollow" target=3D"_blank">39 Dover S=
+treet</a>&nbsp;</div><div style=3D"font-family:UICTFontTextStyleBody;"><a s=
+hape=3D"rect" href=3D"https://www.google.com/maps/search/39+Dover+Street+W1=
+S+4NN,+London,+UK?entry=3Dgmail&amp;source=3Dg" style=3D"font-family:UICTFo=
+ntTextStyleBody;" rel=3D"nofollow" target=3D"_blank">W1S 4NN, London, UK</a=
+>&nbsp;</div><div style=3D"font-family:UICTFontTextStyleBody;">M: +44 (0)79=
+ 6829 3537</div></div><div dir=3D"ltr" style=3D"font-family:Helvetica, Aria=
+l, sans-serif;"><div id=3D"ydp59f05cbdyiv7377672983m_-1697720800528751534m_=
+-7066118445608320940ydpe7a0d7d7yiv0135550318ydpf2dc8a7fyiv7110853386yqtfd31=
+224" style=3D"font-family:Helvetica, Arial, sans-serif;"><br clear=3D"none"=
+><blockquote type=3D"cite" style=3D"font-family:Helvetica, Arial, sans-seri=
+f;">On 23 May 2025, at 04:33, Mila Askarova &lt;<a shape=3D"rect" href=3D"m=
+ailto:m.askarova@gazelliarthouse.com" style=3D"font-family:Helvetica, Arial=
+, sans-serif;" rel=3D"nofollow" target=3D"_blank">m.askarova@gazelliarthous=
+e.com</a>&gt; wrote:<br clear=3D"none"><br clear=3D"none"></blockquote></di=
+v></div></div><div id=3D"ydp59f05cbdyiv7377672983m_-1697720800528751534m_-7=
+066118445608320940ydpe7a0d7d7yiv0135550318ydpf2dc8a7fyiv7110853386yqtfd8783=
+5" style=3D"font-family:Helvetica, Arial, sans-serif;"><blockquote type=3D"=
+cite" style=3D"font-family:Helvetica, Arial, sans-serif;"><div dir=3D"ltr" =
+style=3D"font-family:Helvetica, Arial, sans-serif;"><div id=3D"ydp59f05cbdy=
+iv7377672983m_-1697720800528751534m_-7066118445608320940ydpe7a0d7d7yiv01355=
+50318yqtfd80392" style=3D"font-family:Helvetica, Arial, sans-serif;">=EF=BB=
+=BF<div style=3D"font-family:Helvetica, Arial, sans-serif;">Just checking w=
+ith them - will confirm asap&nbsp;</div><div style=3D"font-family:Helvetica=
+, Arial, sans-serif;"><br clear=3D"none"></div><div style=3D"font-family:He=
+lvetica, Arial, sans-serif;">My best&nbsp;</div><div style=3D"font-family:H=
+elvetica, Arial, sans-serif;">Mila&nbsp;<br clear=3D"all"><br clear=3D"all"=
+><div style=3D"font-family:Helvetica, Arial, sans-serif;"><div dir=3D"ltr" =
+style=3D"font-family:Helvetica, Arial, sans-serif;">Mila Askarova&nbsp;<br =
+clear=3D"none">CEO &amp; Founder&nbsp;<br clear=3D"none"><br clear=3D"none"=
+>GAZELLI ART HOUSE<br clear=3D"none"><br clear=3D"none"><a shape=3D"rect" h=
+ref=3D"http://www.gazelliarthouse.com" style=3D"font-family:Helvetica, Aria=
+l, sans-serif;" rel=3D"nofollow" target=3D"_blank">www.gazelliarthouse.com<=
+/a><br clear=3D"none">+44 (0) 207 491 8816 / +994 (0) 12 498 1230<br clear=
+=3D"none"></div></div></div><div style=3D"font-family:Helvetica, Arial, san=
+s-serif;"><br clear=3D"none"></div></div><div style=3D"font-family:Helvetic=
+a, Arial, sans-serif;"><div id=3D"ydp59f05cbdyiv7377672983m_-16977208005287=
+51534m_-7066118445608320940ydpe7a0d7d7yiv0135550318yqtfd64721" style=3D"fon=
+t-family:Helvetica, Arial, sans-serif;"><br clear=3D"none"></div><div style=
+=3D"font-family:Helvetica, Arial, sans-serif;"><div id=3D"ydp59f05cbdyiv737=
+7672983m_-1697720800528751534m_-7066118445608320940ydpe7a0d7d7yiv0135550318=
+yqtfd72370" style=3D"font-family:Helvetica, Arial, sans-serif;"><div dir=3D=
+"ltr" style=3D"font-family:Helvetica, Arial, sans-serif;">On Thu, 22 May 20=
+25 at 22:26, zipnpup &lt;<a shape=3D"rect" href=3D"mailto:zipnpup@yahoo.com=
+" style=3D"font-family:Helvetica, Arial, sans-serif;" rel=3D"nofollow" targ=
+et=3D"_blank">zipnpup@yahoo.com</a>&gt; wrote:<br clear=3D"none"></div></di=
+v><blockquote style=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px;borde=
+r-left-style:solid;padding-left:1ex;font-family:Helvetica, Arial, sans-seri=
+f;border-left-color:rgb(204,204,204);"><div id=3D"ydp59f05cbdyiv7377672983m=
+_-1697720800528751534m_-7066118445608320940ydpe7a0d7d7yiv0135550318yqtfd412=
+60" style=3D"font-family:Helvetica, Arial, sans-serif;"><div style=3D"font-=
+family:Helvetica, Arial, sans-serif;"><div style=3D"font-family:Helvetica, =
+Arial, sans-serif;">Hi Mila</div><div style=3D"font-family:Helvetica, Arial=
+, sans-serif;">Thanks for the quick reply.&nbsp;</div><div style=3D"font-fa=
+mily:Helvetica, Arial, sans-serif;">Do you know if these were two distinct =
+images and not intended to be one work? Also it sounds like you are saying =
+they still have the original art works Harold sent. Do you believe that is =
+true? If so I wonder is there is anything written on the back.&nbsp;</div><=
+div style=3D"font-family:Helvetica, Arial, sans-serif;">Tom&nbsp;</div><div=
+ style=3D"font-family:Helvetica, Arial, sans-serif;"><br clear=3D"none"></d=
+iv><div style=3D"font-family:Helvetica, Arial, sans-serif;"><br clear=3D"no=
+ne"></div><div style=3D"font-family:Helvetica, Arial, sans-serif;"><br clea=
+r=3D"none"></div><div id=3D"ydp59f05cbdyiv7377672983m_-1697720800528751534m=
+_-7066118445608320940ydpe7a0d7d7yiv0135550318ydpf2dc8a7fyiv7110853386m_-769=
+4165715081984754composer_signature" style=3D"font-family:Helvetica, Arial, =
+sans-serif;"><div style=3D"font-size:12px;font-family:Helvetica, Arial, san=
+s-serif;color:rgb(87,87,87);">Sent from my T-Mobile 4G LTE Device</div></di=
+v></div></div><div style=3D"font-family:Helvetica, Arial, sans-serif;"><div=
+ id=3D"ydp59f05cbdyiv7377672983m_-1697720800528751534m_-7066118445608320940=
+ydpe7a0d7d7yiv0135550318yqtfd10415" style=3D"font-family:Helvetica, Arial, =
+sans-serif;"><div style=3D"font-family:Helvetica, Arial, sans-serif;"><br c=
+lear=3D"none"></div><div style=3D"font-family:Helvetica, Arial, sans-serif;=
+"><br clear=3D"none"></div><div align=3D"left" style=3D"font-size:100%;font=
+-family:Helvetica, Arial, sans-serif;color:rgb(0,0,0);"><div style=3D"font-=
+family:Helvetica, Arial, sans-serif;">-------- Original message --------</d=
+iv><div style=3D"font-family:Helvetica, Arial, sans-serif;">From: Mila Aska=
+rova &lt;<a shape=3D"rect" href=3D"mailto:m.askarova@gazelliarthouse.com" s=
+tyle=3D"font-family:Helvetica, Arial, sans-serif;" rel=3D"nofollow" target=
+=3D"_blank">m.askarova@gazelliarthouse.com</a>&gt; </div><div style=3D"font=
+-family:Helvetica, Arial, sans-serif;">Date: 5/22/25  7:17 PM  (GMT-08:00) =
+</div><div style=3D"font-family:Helvetica, Arial, sans-serif;">To: Thomas M=
+achnik &lt;<a shape=3D"rect" href=3D"mailto:zipnpup@yahoo.com" style=3D"fon=
+t-family:Helvetica, Arial, sans-serif;" rel=3D"nofollow" target=3D"_blank">=
+zipnpup@yahoo.com</a>&gt; </div><div style=3D"font-family:Helvetica, Arial,=
+ sans-serif;">Cc: Paul Cohen &lt;<a shape=3D"rect" href=3D"mailto:paulrcohe=
+n@gmail.com" style=3D"font-family:Helvetica, Arial, sans-serif;" rel=3D"nof=
+ollow" target=3D"_blank">paulrcohen@gmail.com</a>&gt; </div><div style=3D"f=
+ont-family:Helvetica, Arial, sans-serif;">Subject: Re: Image reprint permis=
+sion - H. Franke Foundation </div><div style=3D"font-family:Helvetica, Aria=
+l, sans-serif;"><br clear=3D"none"></div></div><div style=3D"font-family:He=
+lvetica, Arial, sans-serif;">Hi Tom!&nbsp;</div><div style=3D"font-family:H=
+elvetica, Arial, sans-serif;"><br clear=3D"none"></div><div style=3D"font-f=
+amily:Helvetica, Arial, sans-serif;">Thanks for your note.&nbsp;</div><div =
+style=3D"font-family:Helvetica, Arial, sans-serif;"><br clear=3D"none"></di=
+v><div style=3D"font-family:Helvetica, Arial, sans-serif;">All I could get =
+from them was this:</div><div style=3D"font-family:Helvetica, Arial, sans-s=
+erif;"><div style=3D"font-family:Helvetica, Arial, sans-serif;"><span style=
+=3D"font-family:Calibri, sans-serif;font-size:14.666667px;font-style:normal=
+;font-weight:400;letter-spacing:normal;text-indent:0px;text-transform:none;=
+word-spacing:1px;text-decoration:none;float:none;display:inline!important;b=
+order-color:rgb(49,49,49);color:rgb(49,49,49);">It was part of the working =
+material of Herbart, related to the publication of the 2</span><sup style=
+=3D"font-family:Calibri, sans-serif;font-style:normal;font-weight:400;lette=
+r-spacing:normal;text-indent:0px;text-transform:none;word-spacing:1px;text-=
+decoration:none;border-color:rgb(49,49,49);color:rgb(49,49,49);">nd</sup><s=
+pan style=3D"font-family:Calibri, sans-serif;font-size:14.666667px;font-sty=
+le:normal;font-weight:400;letter-spacing:normal;text-indent:0px;text-transf=
+orm:none;word-spacing:1px;text-decoration:none;float:none;display:inline!im=
+portant;border-color:rgb(49,49,49);color:rgb(49,49,49);"><span style=3D"fon=
+t-family:Calibri, sans-serif;">&nbsp;</span>edition of =E2=80=9CComputer gr=
+aphics =E2=80=93 Computer Art=E2=80=9D in 1985. It was not printed there - =
+it must have been sent to Herbert 1983 or 1984. These are 2 images a small =
+plots that are fixed on a cart board.</span></div><br clear=3D"all">Speak s=
+oon,&nbsp;</div><div style=3D"font-family:Helvetica, Arial, sans-serif;">Mi=
+la&nbsp;</div><div style=3D"font-family:Helvetica, Arial, sans-serif;"><br =
+clear=3D"all"><div style=3D"font-family:Helvetica, Arial, sans-serif;"><div=
+ dir=3D"ltr" style=3D"font-family:Helvetica, Arial, sans-serif;">Mila Askar=
+ova&nbsp;<br clear=3D"none">CEO &amp; Founder&nbsp;<br clear=3D"none"><br c=
+lear=3D"none">GAZELLI ART HOUSE<br clear=3D"none"><br clear=3D"none"><a sha=
+pe=3D"rect" href=3D"http://www.gazelliarthouse.com" style=3D"font-family:He=
+lvetica, Arial, sans-serif;" rel=3D"nofollow" target=3D"_blank">www.gazelli=
+arthouse.com</a><br clear=3D"none">+44 (0) 207 491 8816 / +994 (0) 12 498 1=
+230<br clear=3D"none"></div></div></div><div style=3D"font-family:Helvetica=
+, Arial, sans-serif;"><br clear=3D"none"></div></div><div style=3D"font-fam=
+ily:Helvetica, Arial, sans-serif;"><div id=3D"ydp59f05cbdyiv7377672983m_-16=
+97720800528751534m_-7066118445608320940ydpe7a0d7d7yiv0135550318yqtfd80155" =
+style=3D"font-family:Helvetica, Arial, sans-serif;"><br clear=3D"none"></di=
+v><div style=3D"font-family:Helvetica, Arial, sans-serif;"><div id=3D"ydp59=
+f05cbdyiv7377672983m_-1697720800528751534m_-7066118445608320940ydpe7a0d7d7y=
+iv0135550318yqtfd29491" style=3D"font-family:Helvetica, Arial, sans-serif;"=
+><div dir=3D"ltr" style=3D"font-family:Helvetica, Arial, sans-serif;">On Th=
+u, 22 May 2025 at 22:04, Thomas Machnik &lt;<a shape=3D"rect" href=3D"mailt=
+o:zipnpup@yahoo.com" style=3D"font-family:Helvetica, Arial, sans-serif;" re=
+l=3D"nofollow" target=3D"_blank">zipnpup@yahoo.com</a>&gt; wrote:<br clear=
+=3D"none"></div></div><blockquote style=3D"margin:0px 0px 0px 0.8ex;border-=
+left-width:1px;border-left-style:solid;padding-left:1ex;font-family:Helveti=
+ca, Arial, sans-serif;border-left-color:rgb(204,204,204);"><div id=3D"ydp59=
+f05cbdyiv7377672983m_-1697720800528751534m_-7066118445608320940ydpe7a0d7d7y=
+iv0135550318yqtfd23261" style=3D"font-family:Helvetica, Arial, sans-serif;"=
+><div style=3D"font-family:Helvetica, Arial, sans-serif;"><div style=3D"fon=
+t-family:Helvetica, Arial, sans-serif;font-size:16px;"><div style=3D"font-f=
+amily:Helvetica, Arial, sans-serif;"></div>
+        <div dir=3D"ltr" style=3D"font-family:Helvetica, Arial, sans-serif;=
+">Hi Mila,</div><div dir=3D"ltr" style=3D"font-family:Helvetica, Arial, san=
+s-serif;">Happy Thursday! Thanks for the request. I have not seen this imag=
+e before and there is a motif which I am not familiar with. I am looking th=
+rough the archives to see if we this one or a similar one was photographed.=
+ This work certainly falls into the category of Primitive AARON (1974-1982)=
+ but is certainly later 1974. I looked for Herbert Franke in our digital ar=
+chives and only found an invitation to his 80th birthday in 2007.&nbsp; On =
+Friday I will look and see if we have this book in the studio and also cont=
+inue to look at the photographs of works from 1975+. I will also see if we =
+have a manila folder for Herbert Franke. It would be nice to provide someth=
+ing beside just Copyright Harold Cohen. In the previous publication, do the=
+y happen to have a publication date and/or any text in the body of the book=
+ associated with Harold that they can share with us?&nbsp;</div><div dir=3D=
+"ltr" style=3D"font-family:Helvetica, Arial, sans-serif;"><br clear=3D"none=
+"></div><div dir=3D"ltr" style=3D"font-family:Helvetica, Arial, sans-serif;=
+">Sincerely,</div><div dir=3D"ltr" style=3D"font-family:Helvetica, Arial, s=
+ans-serif;">Tom</div></div></div></div><div style=3D"font-family:Helvetica,=
+ Arial, sans-serif;"><div style=3D"font-family:Helvetica, Arial, sans-serif=
+;font-size:16px;"><div id=3D"ydp59f05cbdyiv7377672983m_-1697720800528751534=
+m_-7066118445608320940ydpe7a0d7d7yiv0135550318yqtfd51001" style=3D"font-fam=
+ily:Helvetica, Arial, sans-serif;"><div style=3D"font-family:Helvetica, Ari=
+al, sans-serif;"><br clear=3D"none"></div>
+       =20
+        </div><div id=3D"ydp59f05cbdyiv7377672983m_-1697720800528751534m_-7=
+066118445608320940ydpe7a0d7d7yiv0135550318ydpf2dc8a7fyiv7110853386m_-769416=
+5715081984754m_-5508448700559163897ydp2d25d7c1yahoo_quoted_8764291974" styl=
+e=3D"font-family:Helvetica, Arial, sans-serif;"><div id=3D"ydp59f05cbdyiv73=
+77672983m_-1697720800528751534m_-7066118445608320940ydpe7a0d7d7yiv013555031=
+8yqtfd04040" style=3D"font-family:Helvetica, Arial, sans-serif;">
+            </div><div style=3D"font-family:Helvetica, Arial, sans-serif;fo=
+nt-size:13px;"><div id=3D"ydp59f05cbdyiv7377672983m_-1697720800528751534m_-=
+7066118445608320940ydpe7a0d7d7yiv0135550318yqtfd08646" style=3D"font-family=
+:Helvetica, Arial, sans-serif;">
+               =20
+                <div style=3D"font-family:Helvetica, Arial, sans-serif;">
+                    On Thursday, May 22, 2025 at 04:32:46 AM PDT, <a shape=
+=3D"rect" style=3D"font-family:Helvetica, Arial, sans-serif;" href=3D"mailt=
+o:m.askarova@gazelliarthouse.com" rel=3D"nofollow" target=3D"_blank">m.aska=
+rova@gazelliarthouse.com</a> &lt;<a shape=3D"rect" style=3D"font-family:Hel=
+vetica, Arial, sans-serif;" href=3D"mailto:m.askarova@gazelliarthouse.com" =
+rel=3D"nofollow" target=3D"_blank">m.askarova@gazelliarthouse.com</a>&gt; w=
+rote:
+                </div>
+                <div style=3D"font-family:Helvetica, Arial, sans-serif;"><b=
+r clear=3D"none"></div>
+                <div style=3D"font-family:Helvetica, Arial, sans-serif;"><b=
+r clear=3D"none"></div>
+                <div style=3D"font-family:Helvetica, Arial, sans-serif;"><d=
+iv id=3D"ydp59f05cbdyiv7377672983m_-1697720800528751534m_-70661184456083209=
+40ydpe7a0d7d7yiv0135550318ydpf2dc8a7fyiv7110853386m_-7694165715081984754m_-=
+5508448700559163897ydp2d25d7c1yiv1134021495" style=3D"font-family:Helvetica=
+, Arial, sans-serif;"><div style=3D"font-family:Helvetica, Arial, sans-seri=
+f;"><div dir=3D"ltr" style=3D"font-family:Helvetica, Arial, sans-serif;">Hi=
+ Tom!&nbsp;</div><div dir=3D"ltr" style=3D"font-family:Helvetica, Arial, sa=
+ns-serif;"><br clear=3D"none"></div><div dir=3D"ltr" style=3D"font-family:H=
+elvetica, Arial, sans-serif;">Herbert Franke foundation are preparing a re-=
+print of =E2=80=9CComputer Graphics - Computer Art=E2=80=9D in cooperation =
+with a publisher in a small edition.&nbsp;</div><div dir=3D"ltr" style=3D"f=
+ont-family:Helvetica, Arial, sans-serif;"><br clear=3D"none"></div><div dir=
+=3D"ltr" style=3D"font-family:Helvetica, Arial, sans-serif;">They=E2=80=99d=
+ like to publish the image here of Harold Cohen=E2=80=99s. Can we get permi=
+ssion for it and relevant credit line ?&nbsp;</div><div dir=3D"ltr" style=
+=3D"font-family:Helvetica, Arial, sans-serif;">For now they=E2=80=99ve just=
+ got :&nbsp;</div><div dir=3D"ltr" style=3D"font-family:Helvetica, Arial, s=
+ans-serif;">Copyright: Harold Cohen&nbsp;</div><div dir=3D"ltr" style=3D"fo=
+nt-family:Helvetica, Arial, sans-serif;"><br clear=3D"none"></div><div dir=
+=3D"ltr" style=3D"font-family:Helvetica, Arial, sans-serif;">My best,&nbsp;=
+</div><div dir=3D"ltr" style=3D"font-family:Helvetica, Arial, sans-serif;">=
+Mila&nbsp;</div><div dir=3D"ltr" style=3D"font-family:Helvetica, Arial, san=
+s-serif;"><br clear=3D"none"></div><div dir=3D"ltr" style=3D"font-family:He=
+lvetica, Arial, sans-serif;"><br clear=3D"none"></div><div dir=3D"ltr" styl=
+e=3D"font-family:Helvetica, Arial, sans-serif;"><p style=3D"margin:0cm;font=
+-size:11pt;font-family:Calibri, sans-serif;color:rgb(0,0,0);"><img style=3D=
+"width:852px;max-width:100%;font-family:Calibri, sans-serif;border-color:rg=
+b(255, 255, 255);color:rgb(255, 255, 255);" alt=3D"F&amp;F_Friends_1708_07_=
+Cohen_2#103.jpg" data-inlineimagemanipulating=3D"true" data-id=3D"174852909=
+5390"></p></div><br clear=3D"none" id=3D"ydp59f05cbdyiv7377672983m_-1697720=
+800528751534m_-7066118445608320940ydpe7a0d7d7yiv0135550318ydpf2dc8a7fyiv711=
+0853386m_-7694165715081984754m_-5508448700559163897ydp2d25d7c1yiv1134021495=
+lineBreakAtBeginningOfSignature"><div dir=3D"ltr" style=3D"font-family:Helv=
+etica, Arial, sans-serif;"><div style=3D"font-family:UICTFontTextStyleBody;=
+">Mila Askarova&nbsp;</div><div style=3D"font-family:UICTFontTextStyleBody;=
+"><br clear=3D"none"></div><div style=3D"font-family:UICTFontTextStyleBody;=
+">CEO &amp; Founder&nbsp;</div><div style=3D"font-family:UICTFontTextStyleB=
+ody;">Gazelli Art House&nbsp;</div><div style=3D"font-family:UICTFontTextSt=
+yleBody;"><a shape=3D"rect" style=3D"font-family:UICTFontTextStyleBody;" hr=
+ef=3D"https://www.google.com/maps/search/39+Dover+Street+W1S+4NN,+London,+U=
+K?entry=3Dgmail&amp;source=3Dg" rel=3D"nofollow" target=3D"_blank">39 Dover=
+ Street</a>&nbsp;</div><div style=3D"font-family:UICTFontTextStyleBody;"><a=
+ shape=3D"rect" style=3D"font-family:UICTFontTextStyleBody;" href=3D"https:=
+//www.google.com/maps/search/39+Dover+Street+W1S+4NN,+London,+UK?entry=3Dgm=
+ail&amp;source=3Dg" rel=3D"nofollow" target=3D"_blank">W1S 4NN, London, UK<=
+/a>&nbsp;</div><div style=3D"font-family:UICTFontTextStyleBody;">M: +44 (0)=
+79 6829 3537</div></div></div></div></div></div>
+            </div>
+        </div></div></div></blockquote></div></div>
+</div></blockquote></div></div>
+</div></blockquote></div></div></div></div></div></div>
+            </div>
+        </div></div><div style=3D"font-family:Helvetica, Arial, sans-serif;=
+">&lt;IMG_0370.JPG&gt;</div><div style=3D"font-family:Helvetica, Arial, san=
+s-serif;">&lt;image0.jpeg&gt;</div></div></blockquote></div></div></div></d=
+iv>
+            </div>
+        </div></div></div></blockquote></div></div>
+</blockquote></div></div></div>
+</div></div></div>
+            </div>
+        </div></div></body></html>
+------=_Part_1476001_564060041.1748533775673--

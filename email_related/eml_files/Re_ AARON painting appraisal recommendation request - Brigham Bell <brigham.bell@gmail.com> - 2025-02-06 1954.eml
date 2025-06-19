@@ -1,0 +1,576 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a10:b092:b0:5c7:f970:fbca with SMTP id y18csp1884698pxa;
+        Thu, 6 Feb 2025 16:55:01 -0800 (PST)
+X-Forwarded-Encrypted: i=2; AJvYcCXkZFhm/Xu3ip7JFtAmTQDI/cy0MAaD/oVO2lBBnbJU9F6rrLoIvNbZP9B2bvDNqS2wBtRwpYe4Omgo@gmail.com
+X-Received: by 2002:a17:902:ce90:b0:216:2bd7:1c4a with SMTP id d9443c01a7336-21f4e7248a8mr17949135ad.26.1738889701554;
+        Thu, 06 Feb 2025 16:55:01 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1738889701; cv=none;
+        d=google.com; s=arc-20240605;
+        b=UqOV7LQifXUqgHY11nPNXkXYhztT4EPMtpqkQv10MHOco8dsyANeQxiVbmT5Qqz0g+
+         mLTmwOKTAocYhQB8eGrzabp8Ob9+eoaIL3+HNH5J8k414hqJPf3hSK2cM3qH2r5YT8/U
+         I0f8BOghlJKqjdMPWKnBodhLutthzbKDSBc/KhvkNAyBU6ADkENrVR3qBOc0M+aIjbD6
+         KrNU8G7mBwDbis84nOt5xZkagTMFs+/7JxcQdMLtctR2oAZaO4F2Tr82iwa9KOyM3d2f
+         jbDC3dSMLMYjeKLvyu8C9JHwqHqeFIhFDcwdZ3rKSCjLZSCPC71OZQVTInlwtRLpdKdX
+         sggw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:in-reply-to:cc:references:message-id:date:subject:mime-version
+         :from:content-transfer-encoding:dkim-signature;
+        bh=b4RQbg3+X+Cj1DQmy1abnTUOfzRkazbpEuQBtz0Q89k=;
+        fh=0/gNnJRDpL84AC2OX5hjIMDh52ysJIYgbY0YI/4nNzU=;
+        b=P1z2mGhdGrYLhRT+hnxX+ZiX8vOhxXXaUx67Et1W9yKEILqHjLVjnheQYz2aWoebRj
+         LKqgGcrIAiSEqkUcGoVxBwrVk98CHKHhDjzyMyIcIzdRVhrUefpzyoNiZZ0Leznsjwp0
+         GEmtVP0ev+l0rS/e6P32Ljc3Saymy+vv/O0VnnUm5JQz/ePRtCrWdiOsdS3C11IAK+yy
+         36nDOb9ncCM+/zaMXY9EaAsjBJYgeajahRNy+kxZEkZHq9MUR0MvQkeIj5z1WUe6rXdj
+         P8dFtMv7Xm6n59ZjcZy1abT7WQbghxMwXyP2UjOQP5pspl0n2/y9e3G0roP5nVTFBwbx
+         ledA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20230601 header.b=a5vEOkEX;
+       spf=pass (google.com: domain of brigham.bell@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=brigham.bell@gmail.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com;
+       dara=pass header.i=@gmail.com
+Return-Path: <brigham.bell@gmail.com>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id d9443c01a7336-21f365516a3sor23444625ad.5.2025.02.06.16.55.01
+        for <paulrcohen@gmail.com>
+        (Google Transport Security);
+        Thu, 06 Feb 2025 16:55:01 -0800 (PST)
+Received-SPF: pass (google.com: domain of brigham.bell@gmail.com designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20230601 header.b=a5vEOkEX;
+       spf=pass (google.com: domain of brigham.bell@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=brigham.bell@gmail.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com;
+       dara=pass header.i=@gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1738889701; x=1739494501; dara=google.com;
+        h=to:in-reply-to:cc:references:message-id:date:subject:mime-version
+         :from:content-transfer-encoding:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=b4RQbg3+X+Cj1DQmy1abnTUOfzRkazbpEuQBtz0Q89k=;
+        b=a5vEOkEXZPr1xp7IzNqXsn8BP6C1asZYu83cK3DSV7GmlC1+cAoVv/sao3bcYL0n6c
+         bKqDwNYLcs136d2dKVPImdRXMb23tR6x04nO2FGuApQ8jQczRKG+APscURTHCbMxIEu0
+         dJhhetVJGLEdxGXzs/FyxSGAauy8klALXz83ZaVLC3YMbdOSiWCZidceLorIh9iiZcWr
+         +sccDOlAaNxzRjZjYBtWo0lA5YiWkal5bHB9hzihFF7Q9uDhmWWoIQZpljAPO/16R9wj
+         3blcQG7//AUveR13QI9PKE7eQLkeSq+Ha+0Z4bXtcQWAnRND0b/r/Zh6yU5qeYk/nUuM
+         Kpzw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1738889701; x=1739494501;
+        h=to:in-reply-to:cc:references:message-id:date:subject:mime-version
+         :from:content-transfer-encoding:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=b4RQbg3+X+Cj1DQmy1abnTUOfzRkazbpEuQBtz0Q89k=;
+        b=ZMg0x+5aHgeiA9UyPpVhsEfgC0UqVYKIQn2xUVz03mm3/5+jkQ6UV/i/YC7JVVMXQc
+         tE5vx2VIuVQrluUIFRx29l81knbISUChr9IVqctoAOIuhZ5GZN0plYwp2OEB0JsWXtcb
+         LIgUwtFlkNUWvt8iwJU3yCXtGmeLwzLE/MB7G/0jf+MQL+D9F6FmSPYEvg7ljFPbVYQl
+         yHuS3dEWbbqJhVwKpOF7qNfkBEd2yOIXALWBylpzCkuF0XyLFOMBE6s116JRcT2EZ5D3
+         0rkagdKM92CJDN5pRmL1gIrs5cJIJ28ebQuFREAJbqrIr5KxGpjdV2h2x0FEO2I/QCQS
+         UTNw==
+X-Forwarded-Encrypted: i=1; AJvYcCWa/neAXYRfbut8bkSJ4akpJitAJhqVq4n+CDGux3kaSliumDfL8npKvx5aMqIPh5VRYm757RcHT8gK@gmail.com
+X-Gm-Message-State: AOJu0Yxs2K1wv7dcY6osWm4adc8vZ1wlLP/ub4QbQITVSG5zBf8d4Wj/
+	VFj3jD/HbmFCKgnSSChvPfUzsNdkcXlMumA5CIFvHXv8vPG71iYHMpskzMlE
+X-Gm-Gg: ASbGncvlV+q7vMju/sZbtj8X08XL8phl3Mw1Fm0f0bXDOxizNmB1p9ROIhaq8Y4JW4N
+	hzxRVc6jU4/8xv6hpp4wsXohFohoEukoyfzegCLEoG0TECPpvJmogCLLBSTEBP99csTKPIviDhX
+	Aw5c60AMgW04Q2G/2nW4eLscR3t0p/HV29BlLOqOr0Yhu+TgWybRLnns1jj88E50v5VYQuBs9Cx
+	YhUbjnHQMhWJes6UJq290TYEQIyIhM6Z6Oswoixmv1lJHaNf2IxX85CF36sGASgZDo/OXOsTHmP
+	Yo731+aoO1rBuFTDKqeZK4DQYORGdhEirHN/nqima/bK1u8=
+X-Google-Smtp-Source: AGHT+IHkBpKcnOG6G/LkWfwdzXNUZmxu982OoNRTw36TFMpEUuzIXduTOLQ6qekz/GeybH3J+BJdIw==
+X-Received: by 2002:a17:903:22c4:b0:212:55c0:7e80 with SMTP id d9443c01a7336-21f4e70bd37mr18539875ad.20.1738889700849;
+        Thu, 06 Feb 2025 16:55:00 -0800 (PST)
+Return-Path: <brigham.bell@gmail.com>
+Received: from smtpclient.apple ([2607:fb91:8e0c:c1ee:656b:7674:c54d:c227])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-21f51b07025sm2129255ad.25.2025.02.06.16.55.00
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 06 Feb 2025 16:55:00 -0800 (PST)
+Content-Type: multipart/alternative; boundary=Apple-Mail-F61CB806-BC4D-40F1-82ED-3908C60BE63B
+Content-Transfer-Encoding: 7bit
+From: Brigham Bell <brigham.bell@gmail.com>
+Mime-Version: 1.0 (1.0)
+Subject: Re: AARON painting appraisal recommendation request
+Date: Thu, 6 Feb 2025 17:54:49 -0700
+Message-Id: <C3CC5724-F30E-4ADF-A390-FD29DE22EC7F@gmail.com>
+References: <8662927a-8177-38cd-2b71-2f7ad7661eb3@aaronshome.com>
+Cc: George Lionel Barker <george@gazelliarthouse.com>,
+ Thomas Machnik <zipnpup@yahoo.com>, Paul Cohen <paulrcohen@gmail.com>
+In-Reply-To: <8662927a-8177-38cd-2b71-2f7ad7661eb3@aaronshome.com>
+To: Harold Cohen Trust <aaron@aaronshome.com>
+X-Mailer: iPhone Mail (22B91)
+
+
+--Apple-Mail-F61CB806-BC4D-40F1-82ED-3908C60BE63B
+Content-Type: text/html;
+	charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
+utf-8"></head><body dir=3D"auto">Wow! Thank you so much.<div><div dir=3D"ltr=
+"><br></div><div dir=3D"ltr"><br><blockquote type=3D"cite">On Feb 6, 2025, a=
+t 4:33=E2=80=AFPM, Harold Cohen Trust &lt;aaron@aaronshome.com&gt; wrote:<br=
+><br></blockquote></div><blockquote type=3D"cite"><div dir=3D"ltr">=EF=BB=BF=
+
+ =20
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DUTF-8"=
+>
+ =20
+ =20
+    Hi Brig and Paul,<br>
+    <br>
+    Sometimes you get lucky. I am looking at Harold's digital files from
+    Quickbooks that go back to Jan 1988. Unfortunately, we don't have
+    Quickbooks to open it properly. But, using a text editor I believe I
+    found the entry we are looking for. <br>
+    <br>
+    900125__o&gt;h_ch_ich_10000.00_gordon bell_ptg "on gauguin's beach"_<br>=
+
+    <br>
+    The way I read the entry is that he sold the ptg (painting) to
+    Gordon Bell and received a check for $10,000. The entry of the date
+    is 1/25/1990 and the amount is close to what Paul recalled. <br>
+    &nbsp;<br>
+    In quick books a few days earlier I see these additional entries
+    that seem to be related to the delivery,<br>
+    900108__mcc&gt;o_mc_tra_46.76_harris ranch_lunch, taking ptg to
+    Bells. corp to repay_<br>
+    900107__mch&gt;o_mc_tra_24.51_harris ranch_lunch, bell delivery_<br>
+    900108__mch&gt;o_mc_tra_19.79_harris ranch_lunch, bell delivery_<br>
+    <br>
+    I feel confident that we could generate a bill of sale for you based
+    on this historical information. I will, however, also now look into
+    the hard files for further confirmation.<br>
+    <br>
+    Tom<br>
+    <br>
+    <div class=3D"moz-cite-prefix">On 2/6/25 2:47 PM, Brigham Bell wrote:<br=
+>
+    </div>
+    <blockquote type=3D"cite" cite=3D"mid:F70ABECC-9B66-48A1-8684-EEC647F511=
+A4@gmail.com">
+      <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DUTF-=
+8">
+      <div dir=3D"ltr"><font style=3D"font-size: 21px;" face=3D"Verdana" col=
+or=3D"#38571a">Hi George,</font></div>
+      <div dir=3D"ltr"><font style=3D"font-size: 21px;" face=3D"Verdana" col=
+or=3D"#38571a"><br>
+        </font></div>
+      <div dir=3D"ltr"><span style=3D"font-size: 21px;"><font face=3D"Verdan=
+a" color=3D"#38571a">Would you be able to appraise</font>&nbsp;</span><span s=
+tyle=3D"color: rgb(39, 78, 19); font-family: verdana,
+          sans-serif;"><a href=3D"https://www.computerhistory.org/revolution=
+/computer-graphics-music-and-art/15/231/745" target=3D"_blank" style=3D"font=
+-style: italic;" moz-do-not-send=3D"true">Meeting on Gauguin's Beach</a>&nbs=
+p;for
+          insurance purposes?</span></div>
+      <div dir=3D"ltr"><span style=3D"color: rgb(39, 78, 19); font-family:
+          verdana, sans-serif;"><br>
+        </span></div>
+      <div dir=3D"ltr"><span style=3D"color: rgb(39, 78, 19); font-family:
+          verdana, sans-serif;">Tom,</span></div>
+      <div dir=3D"ltr"><span style=3D"color: rgb(39, 78, 19); font-family:
+          verdana, sans-serif;"><br>
+        </span></div>
+      <div dir=3D"ltr"><font face=3D"verdana, sans-serif" color=3D"#274e13">=
+I
+          don=E2=80=99t have the invoice for this painting. I inherited it f=
+rom
+          Gordon and Gwen Bell, who were <span style=3D"caret-color:
+            rgb(39, 78, 19);">its</span>&nbsp;original owners. Do you have a=
+
+          copy of the invoice for this? It would be from 1988 or
+          possibly a year or two later.</font></div>
+      <div dir=3D"ltr"><font face=3D"verdana, sans-serif" color=3D"#274e13">=
+<br>
+        </font></div>
+      <div dir=3D"ltr"><font face=3D"verdana, sans-serif" color=3D"#274e13">=
+Thanks
+          everyone for all your help.</font></div>
+      <div dir=3D"ltr"><font face=3D"verdana, sans-serif" color=3D"#274e13">=
+<br>
+        </font></div>
+      <div dir=3D"ltr"><font face=3D"verdana, sans-serif" color=3D"#274e13">=
+Regards,</font></div>
+      <div dir=3D"ltr"><font face=3D"verdana, sans-serif" color=3D"#274e13">=
+Brig</font></div>
+      <div dir=3D"ltr"><br>
+      </div>
+      <div dir=3D"ltr"><br>
+      </div>
+      <div dir=3D"ltr"><br>
+        <blockquote type=3D"cite">On Feb 6, 2025, at 12:26=E2=80=AFPM, Paul C=
+ohen
+          <a class=3D"moz-txt-link-rfc2396E" href=3D"mailto:team@haroldcohen=
+trust.org">&lt;team@haroldcohentrust.org&gt;</a> wrote:<br>
+          <br>
+        </blockquote>
+      </div>
+      <blockquote type=3D"cite">
+        <div dir=3D"ltr">=EF=BB=BF
+          <div dir=3D"ltr">Hi both,&nbsp;
+            <div>I received a quote from Michael Maloney and have
+              attached it below. I rather think working with George
+              Barker is the way to go. It's nice to have Maloney's quote
+              as a reference for the future.</div>
+            <div><br>
+            </div>
+            <div>Tom Machnik -- Art Studio Manager -- The Harold Cohen
+              Trust</div>
+            <div><br>
+            </div>
+            <div>--- --- ---</div>
+            <div><span style=3D"color:rgb(29,29,29);font-family:&quot;Helvet=
+ica
+                Neue&quot;,Helvetica,Arial,sans-serif;font-size:13px">Hello,=
+
+                Tom.</span>
+              <div style=3D"line-height:1.5;color:rgb(29,29,29);font-family:=
+&quot;Helvetica
+                Neue&quot;,Helvetica,Arial,sans-serif;font-size:13px">Yes,
+                this is something I can take care of for your client's
+                insurance appraisal.</div>
+              <div style=3D"line-height:1.5;color:rgb(29,29,29);font-family:=
+&quot;Helvetica
+                Neue&quot;,Helvetica,Arial,sans-serif;font-size:13px">Is
+                it just the one painting?&nbsp; The project will fall within=
+
+                my 3-hour-minimum for a review of the current value of
+                the painting and document preparation.&nbsp; The cost will b=
+e
+                $1200. ($400 per hour x 3).</div>
+              <div style=3D"line-height:1.5;color:rgb(29,29,29);font-family:=
+&quot;Helvetica
+                Neue&quot;,Helvetica,Arial,sans-serif;font-size:13px"><br cl=
+ear=3D"none">
+              </div>
+              <div style=3D"line-height:1.5;color:rgb(29,29,29);font-family:=
+&quot;Helvetica
+                Neue&quot;,Helvetica,Arial,sans-serif;font-size:13px">If
+                your client would like me to proceed, I will need the
+                following:</div>
+              <div style=3D"line-height:1.5;color:rgb(29,29,29);font-family:=
+&quot;Helvetica
+                Neue&quot;,Helvetica,Arial,sans-serif;font-size:13px">
+                <ul style=3D"margin-block-start: 1em;">
+                  <li style=3D"margin-bottom:4px">an image of the
+                    painting, the title, medium &amp; size.<br clear=3D"none=
+">
+                  </li>
+                  <li style=3D"margin-bottom:4px">A copy of the original
+                    invoice, which I am guessing you may have on file.<br cl=
+ear=3D"none">
+                  </li>
+                  <li style=3D"margin-bottom:4px">The client's name and
+                    address.<br clear=3D"none">
+                  </li>
+                  <li>The location of the artwork</li>
+                </ul>
+                <div style=3D"line-height:1.5">Attached is a basic
+                  overview of fees and procedures.</div>
+              </div>
+              <div style=3D"line-height:1.5;color:rgb(29,29,29);font-family:=
+&quot;Helvetica
+                Neue&quot;,Helvetica,Arial,sans-serif;font-size:13px">If
+                I can be of assistance, I trust you or your&nbsp;client will=
+
+                let me know.</div>
+              <div style=3D"line-height:1.5;color:rgb(29,29,29);font-family:=
+&quot;Helvetica
+                Neue&quot;,Helvetica,Arial,sans-serif;font-size:13px">
+                <div dir=3D"ltr" style=3D"line-height:1.5">Michael Maloney<b=
+r clear=3D"none">
+                </div>
+                <div style=3D"line-height:1.5"><font size=3D"2">Fine Art
+                    Appraiser</font></div>
+                <div style=3D"line-height:1.5"><font size=3D"2">MALONEY FINE=
+
+                    ART APPRAISAL SERVICES</font></div>
+                <div style=3D"line-height:1.5"><font size=3D"2">6121 Sunset
+                    Boulevard</font></div>
+                <div style=3D"line-height:1.5"><font size=3D"2">Los Angeles,=
+
+                    CA 90028</font></div>
+                <div style=3D"line-height:1.5"><font size=3D"2">1310.570.642=
+0</font></div>
+              </div>
+            </div>
+          </div>
+          <br>
+          <div class=3D"gmail_quote gmail_quote_container">
+            <div dir=3D"ltr" class=3D"gmail_attr">On Thu, Feb 6, 2025 at
+              8:57=E2=80=AFAM Paul Cohen &lt;<a href=3D"mailto:paulrcohen@gm=
+ail.com" moz-do-not-send=3D"true">paulrcohen@gmail.com</a>&gt;
+              wrote:<br>
+            </div>
+            <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px
+0.8ex;border-left-width:1px;border-left-style:solid;border-left-color:rgb(20=
+4,204,204);padding-left:1ex">
+              <div dir=3D"ltr">
+                <div>
+                  <div style=3D"font-size:small" class=3D"gmail_default">Hi
+                    Brig, actually the email was from Tom Machnik, not
+                    me; thanks Tom!<br>
+                    <br>
+                  </div>
+                  <div style=3D"font-size:small" class=3D"gmail_default">Mic=
+hael
+                    Maloney appraised Harold's estate right after he
+                    died for tax purposes so the appraisals were low and
+                    the recent increase in prices wasn't reflected.&nbsp; It=
+
+                    might be more accurate to ask the Gazelli Art House,
+                    which represents the Harold Cohen Trust, for a
+                    reference for an appraiser.&nbsp; I've cc'd George
+                    Barker, there.&nbsp; --P<br>
+                  </div>
+                  <br clear=3D"all">
+                </div>
+                <div>
+                  <div dir=3D"ltr" class=3D"gmail_signature">
+                    <div dir=3D"ltr">
+                      <div>
+                        <div dir=3D"ltr">
+                          <div>
+                            <div dir=3D"ltr">
+                              <div>
+                                <div dir=3D"ltr">
+                                  <div>
+                                    <div dir=3D"ltr">
+                                      <div>
+                                        <div dir=3D"ltr">___________________=
+___________<br>
+                                          <br>
+                                          Paul Cohen,&nbsp;&nbsp;Professor</=
+div>
+                                        <div dir=3D"ltr">School of
+                                          Computing and Information</div>
+                                        <div dir=3D"ltr">University of
+                                          Pittsburgh</div>
+                                        <div dir=3D"ltr"><a href=3D"https://=
+paulrcohen.github.io/" target=3D"_blank" moz-do-not-send=3D"true">personal
+                                            webpage</a><br>
+                                          ______________________________</di=
+v>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <br>
+              </div>
+              <br>
+              <div class=3D"gmail_quote">
+                <div dir=3D"ltr" class=3D"gmail_attr">On Thu, Feb 6, 2025 at=
+
+                  9:56=E2=80=AFAM Brigham Bell &lt;<a href=3D"mailto:brigham=
+.bell@gmail.com" target=3D"_blank" moz-do-not-send=3D"true">brigham.bell@gma=
+il.com</a>&gt;
+                  wrote:<br>
+                </div>
+                <blockquote class=3D"gmail_quote" style=3D"margin:0px 0px
+                  0px
+0.8ex;border-left-width:1px;border-left-style:solid;border-left-color:rgb(20=
+4,204,204);padding-left:1ex">
+                  <div dir=3D"auto">
+                    <div dir=3D"ltr">Hi Paul,</div>
+                    <div dir=3D"ltr"><br>
+                    </div>
+                    <div dir=3D"ltr">Thanks so much!</div>
+                    <div dir=3D"ltr"><br>
+                    </div>
+                    <div dir=3D"ltr">I=E2=80=99ll check in with them Michael=
+
+                      Maloney, too.</div>
+                    <div dir=3D"ltr"><br>
+                    </div>
+                    <div dir=3D"ltr">Regards,</div>
+                    <div dir=3D"ltr">Brig</div>
+                    <div dir=3D"ltr"><br>
+                      <blockquote type=3D"cite">On Feb 6, 2025, at
+                        2:14=E2=80=AFAM, Paul Cohen &lt;<a href=3D"mailto:te=
+am@haroldcohentrust.org" target=3D"_blank" moz-do-not-send=3D"true">team@har=
+oldcohentrust.org</a>&gt;
+                        wrote:<br>
+                        <br>
+                      </blockquote>
+                    </div>
+                    <blockquote type=3D"cite">
+                      <div dir=3D"ltr">=EF=BB=BF
+                        <div dir=3D"ltr">Dear Brigham&nbsp;
+                          <div>Thank-you for your inquiry. It is nice to
+                            know one of Harold's more important works is
+                            alive, appreciated and well cared for. On
+                            your behalf, I have reached out to an
+                            appraiser we have used in the past and I am
+                            awaiting a reply. If you prefer, you are
+                            welcome to reach out to him as well. Here is
+                            his contact information:</div>
+                          <div><span style=3D"color:rgb(29,29,29);font-famil=
+y:&quot;Helvetica
+Neue&quot;,Helvetica,Arial,sans-serif;font-size:x-small">Michael Maloney</sp=
+an><br style=3D"color:rgb(29,29,29);font-family:&quot;Helvetica
+                              Neue&quot;,Helvetica,Arial,sans-serif" clear=3D=
+"none">
+                            <span style=3D"color:rgb(29,29,29);font-family:&=
+quot;Helvetica
+Neue&quot;,Helvetica,Arial,sans-serif;font-size:x-small">MALONEY FINE
+                              ART</span><br style=3D"color:rgb(29,29,29);fon=
+t-family:&quot;Helvetica
+                              Neue&quot;,Helvetica,Arial,sans-serif" clear=3D=
+"none">
+                            <span style=3D"color:rgb(29,29,29);font-family:&=
+quot;Helvetica
+Neue&quot;,Helvetica,Arial,sans-serif;font-size:x-small">2680 South La
+                              Cienega Blvd</span><br style=3D"color:rgb(29,2=
+9,29);font-family:&quot;Helvetica
+                              Neue&quot;,Helvetica,Arial,sans-serif" clear=3D=
+"none">
+                            <span style=3D"color:rgb(29,29,29);font-family:&=
+quot;Helvetica
+Neue&quot;,Helvetica,Arial,sans-serif;font-size:x-small">Los Angeles, CA
+                              90034</span><br style=3D"color:rgb(29,29,29);f=
+ont-family:&quot;Helvetica
+                              Neue&quot;,Helvetica,Arial,sans-serif" clear=3D=
+"none">
+                            <span style=3D"color:rgb(29,29,29);font-family:&=
+quot;Helvetica
+Neue&quot;,Helvetica,Arial,sans-serif;font-size:x-small">1310.570.6420</span=
+><br>
+                          </div>
+                          <div><br>
+                          </div>
+                          <div><br>
+                          </div>
+                          <div>Tom Machnik -- Art Studio Manager -- The
+                            Harold Cohen Trust</div>
+                        </div>
+                        <br>
+                        <div class=3D"gmail_quote">
+                          <div dir=3D"ltr" class=3D"gmail_attr">On Wed, Feb
+                            5, 2025 at 9:01=E2=80=AFAM Brigham Bell &lt;<a h=
+ref=3D"mailto:brigham.bell@gmail.com" target=3D"_blank" moz-do-not-send=3D"t=
+rue">brigham.bell@gmail.com</a>&gt;
+                            wrote:<br>
+                          </div>
+                          <blockquote class=3D"gmail_quote" style=3D"margin:=
+0px 0px 0px
+0.8ex;border-left-width:1px;border-left-style:solid;border-left-color:rgb(20=
+4,204,204);padding-left:1ex">
+                            <div dir=3D"auto">
+                              <div dir=3D"ltr">Need advice on appraisal. I
+                                asked Sotheby=E2=80=99s, but they don=E2=80=99=
+t have an
+                                idea on whether to appraise it as art or
+                                technology. Should I ask an auction
+                                house, or is there an AARON appraisal
+                                specialist somewhere?</div>
+                              <div dir=3D"ltr"><br>
+                              </div>
+                              <div dir=3D"ltr">Any suggestions are
+                                welcome.</div>
+                              <div dir=3D"ltr"><br>
+                              </div>
+                              <div dir=3D"ltr">Again, not planning on
+                                selling this anytime soon, as it is
+                                considered important to our whole
+                                family.</div>
+                              <div dir=3D"ltr"><br>
+                                <blockquote type=3D"cite">On Jan 30, 2025,
+                                  at 3:59=E2=80=AFPM, Brig &lt;<a href=3D"ma=
+ilto:brigham.bell@gmail.com" target=3D"_blank" moz-do-not-send=3D"true">brig=
+ham.bell@gmail.com</a>&gt;
+                                  wrote:<br>
+                                  <br>
+                                </blockquote>
+                              </div>
+                              <blockquote type=3D"cite">
+                                <div dir=3D"ltr">=EF=BB=BF
+                                  <div dir=3D"ltr">
+                                    <div dir=3D"ltr">
+                                      <div dir=3D"ltr">
+                                        <div class=3D"gmail_default">
+                                          <div>
+                                            <p class=3D"MsoNormal" style=3D"=
+color:rgb(34,34,34)"><span style=3D"color:rgb(39,78,19)"><font face=3D"verda=
+na, sans-serif">Hi,</font></span></p>
+                                            <p class=3D"MsoNormal" style=3D"=
+color:rgb(34,34,34)"><font face=3D"verdana,
+                                                sans-serif"><br>
+                                              </font></p>
+                                            <p class=3D"MsoNormal"><font fac=
+e=3D"verdana,
+                                                sans-serif"><span style=3D"c=
+olor:rgb(39,78,19)">Do
+                                                  you know the best
+                                                  place to get
+                                                  an&nbsp;appraisal of AARON=
+
+                                                  paintings?</span><br>
+                                              </font></p>
+                                            <p class=3D"MsoNormal"><font fac=
+e=3D"verdana,
+                                                sans-serif" color=3D"#274e13=
+"><br>
+                                              </font></p>
+                                            <p class=3D"MsoNormal"><font fac=
+e=3D"verdana,
+                                                sans-serif" color=3D"#274e13=
+">Most
+                                                importantly, I need an
+                                                appraisal of <i><a href=3D"h=
+ttps://www.computerhistory.org/revolution/computer-graphics-music-and-art/15=
+/231/745" target=3D"_blank" moz-do-not-send=3D"true">Meeting
+                                                    on Gauguin's Beach</a></=
+i>,
+                                                so that I know how much
+                                                to insure it for when
+                                                shipping it from
+                                                California to Colorado.</fon=
+t></p>
+                                            <p class=3D"MsoNormal"><span sty=
+le=3D"color:rgb(39,78,19)"><font face=3D"verdana,
+                                                  sans-serif"><br>
+                                                </font></span></p>
+                                            <p class=3D"MsoNormal"><span sty=
+le=3D"color:rgb(39,78,19)"><font face=3D"verdana,
+                                                  sans-serif">Thanks in
+                                                  advance for any help,</fon=
+t></span></p>
+                                            <p class=3D"MsoNormal"><span sty=
+le=3D"color:rgb(39,78,19)"><font face=3D"verdana,
+                                                  sans-serif">Brigham
+                                                  Bell</font></span></p>
+                                            <p class=3D"MsoNormal"><span sty=
+le=3D"color:rgb(39,78,19)"><font face=3D"verdana,
+                                                  sans-serif">1-720-339-6103=
+<br>
+                                                </font></span></p>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </blockquote>
+                            </div>
+                          </blockquote>
+                        </div>
+                      </div>
+                    </blockquote>
+                  </div>
+                </blockquote>
+              </div>
+            </blockquote>
+          </div>
+        </div>
+      </blockquote>
+    </blockquote>
+    <br>
+ =20
+
+</div></blockquote></div></body></html>=
+
+--Apple-Mail-F61CB806-BC4D-40F1-82ED-3908C60BE63B--

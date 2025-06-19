@@ -1,0 +1,1290 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a10:774d:b0:5c7:f970:fbca with SMTP id yp13csp11985042pxc;
+        Mon, 6 Jan 2025 02:12:44 -0800 (PST)
+X-Forwarded-Encrypted: i=2; AJvYcCWb88VmmBA4hFtrkQD3kY7qJWscHR4ok1DjTnYPHptdwbUzLMxhvntGWcD9xTIRugbNZmZqa1lmJteS@gmail.com
+X-Received: by 2002:a17:907:1c91:b0:aa6:5d30:d976 with SMTP id a640c23a62f3a-aac270278edmr5706296466b.10.1736158364032;
+        Mon, 06 Jan 2025 02:12:44 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1736158364; cv=none;
+        d=google.com; s=arc-20240605;
+        b=bonVy16MptDfEAGgeKaKORWJfz7c0cxnb1zpq2IIDxy2lxS+1NcjIcawGMWq9m5Cuz
+         Gxah7eZHBpXE1gZIsAWwpe9Q4FTj5jq3j81ZFHh2eBd69d7zjzXx0jyy5hnWb+NCbx+O
+         +DwflPT4NTEgXNLthOeTxy6Bs/9+vYThHcuJ6aRF24yoBqjrN2/LAnxgKa4YSeazD38R
+         eOFQpPbe5WSOH4yyPSvUDypJTHRo+QKqjKXlkrzZDy2d717ZB1gmlDYBcNjUXXTVb1Qu
+         1AJMrbmz4gVLlxUiJ/h/OJ3C22lwZuMwPDL66FeBMOIg1JlcBs1sDcfjN6A+CJFdQ5vo
+         V2XA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=KYoKApcb4NWzBh0T4UgFrD8mJbEXb5YRvryYTJtN1L4=;
+        fh=PUIpAZJ2gPwCq9FThK+mJMiMCqWQTWqPHjbnNtixSw4=;
+        b=k+7HrTk2zlr+WbLY6jlXa6ZOYAkIDihvtK94d+Y6lu6bu1Ft9Ra6Td2kY481fvDlgt
+         7jmIoqOcj3UnPM8/igrKKV5hNMQ2pTC4457ALquHCmlQbZnEDey0Md5qfFsi3szssu/e
+         oUasq/Y4P2p4zAGyO+3zHtdthuLUmvcnqpj9PNJdrdY1+DPpV6T/JS711nusIZ/yxtbJ
+         Hc49Sv5ebgstw0vePpWgRtLQTX2uc78NapmO2+knmHEThX3o7XZ46/zaptD6Yokma5p3
+         YTO5B3yKWS4eZ6Y4LT6mkXeclr5oxb6y31BfqcBGALc5gs1gLMZOrUcf/2ig1YnSn9ix
+         IUlg==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@gazelliarthouse-com.20230601.gappssmtp.com header.s=20230601 header.b=kzqCLqIp;
+       spf=pass (google.com: domain of michael@gazelliarthouse.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=michael@gazelliarthouse.com;
+       dara=pass header.i=@gmail.com
+Return-Path: <michael@gazelliarthouse.com>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id a640c23a62f3a-aac0e99989fsor973208066b.10.2025.01.06.02.12.43
+        for <paulrcohen@gmail.com>
+        (Google Transport Security);
+        Mon, 06 Jan 2025 02:12:44 -0800 (PST)
+Received-SPF: pass (google.com: domain of michael@gazelliarthouse.com designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@gazelliarthouse-com.20230601.gappssmtp.com header.s=20230601 header.b=kzqCLqIp;
+       spf=pass (google.com: domain of michael@gazelliarthouse.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=michael@gazelliarthouse.com;
+       dara=pass header.i=@gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gazelliarthouse-com.20230601.gappssmtp.com; s=20230601; t=1736158363; x=1736763163; dara=google.com;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=KYoKApcb4NWzBh0T4UgFrD8mJbEXb5YRvryYTJtN1L4=;
+        b=kzqCLqIpZdhsoTtwdFzoUyoDLBLP2SAr5m6vOYmahRWZ2/7dFQv5T3LaHMA9Pwj7JJ
+         9kvxqBRIB4P97sfaStrgiOGE3addYuQfM3eN/O6DiHjVBC9r+2RsiR/fWfB3U/LgQu/u
+         fWZj3MtPZK4Q5DVHrs1fD29pSbreuYmmvOkBMaiT/gR8Ab5i9NzqZL0BP26ipzOe84vk
+         t5LPPum4ySmeg/bSakUtV2p6cbG/uKJLQbOFSicUmgCaKzou5Q/biXJ5TE425fNQNsYF
+         4Yhuao4xDC3P2afIGAFH3F4c6qtuApENy4W3aDrm+NC5loymkJnr+xP0YUatZ4eG1JvZ
+         zECw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736158363; x=1736763163;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=KYoKApcb4NWzBh0T4UgFrD8mJbEXb5YRvryYTJtN1L4=;
+        b=tSAnzJqBynqsl7cUqxYs3V1QZx9J0BsIYk/q8wZKAV0mkZ4PY71hbCVOyr7cHVhuGE
+         kAK4B9L1+PcC3RWBCtbpiXSE88D01e7qTTHv6AzmG/HoZBHkIAOIgSRwzPSoJBYhNLWf
+         jVxWzJ4Vd/oKd2ucynDe99ofT2cPRbn+3W6JE++aixHTC3CICYBYNX+3umQ0PWmnKHcs
+         K8HSPaKtQ9aQ2HcbxwjPsM1nYOE+CNErUZjdoYAs1rieJTm091U47B8/N4tYCTQmoGRM
+         iUuL7/5y41/a/zJc2j0azDlZI5/XouEwOdlDugeZHgu9m97arwtLGpwnZVerJPVS0XqX
+         yVGg==
+X-Forwarded-Encrypted: i=1; AJvYcCX8c+TDVBQw0K9782682jcjE6YYfuPGvGXrWhC1qyrTfAJ+Pka3pQIsAC00oiyr5qCp1Jo4YwJ/7gBI@gmail.com
+X-Gm-Message-State: AOJu0Yz2BBKunShdGcnCPD+9u1Qhb2cLJGt74UgwPhmm3N7T8e2jXDTV
+	rTMPbgiC0rjyeecXeHogjJB/zQqH5J73TFL0bvy9Hith+Ixn1zaIq2FeyZwrZKt3PijwE6xeyfC
+	wvPoGE6J3Rkw3/AVBrJC/1y+GZ85bdaifAZtjBw==
+X-Gm-Gg: ASbGncvVfUEW1Dt7zh41C+gfSdO58yyoZCvxBz7JtGQwe/QH9vmKgy/erautVftksik
+	aYF82Ms0hVACWZjuMhLrq9OP7eqeRTWG9YJVvm/Z/
+X-Google-Smtp-Source: AGHT+IEEdY3lC+V8X4xsoMQpcAa7JWO4+A7nOWt30h0L0gzGFnOjjhjUPBcaeywy0bk/pb9WesxpiYJDMqcL3V6QC00=
+X-Received: by 2002:a17:907:7f0e:b0:aa6:c169:4e21 with SMTP id
+ a640c23a62f3a-aac27028286mr5116971666b.6.1736158363121; Mon, 06 Jan 2025
+ 02:12:43 -0800 (PST)
+MIME-Version: 1.0
+References: <CAAOqD34jVYpiH0GQFGTQn_0mtdQ3AvGwZRUg6YQAMjLCtfP1vg@mail.gmail.com>
+ <1323447892.2593803.1736146084087@yahoo.com>
+In-Reply-To: <1323447892.2593803.1736146084087@yahoo.com>
+From: Michael Pollard <michael@gazelliarthouse.com>
+Date: Mon, 6 Jan 2025 10:12:32 +0000
+X-Gm-Features: AbW1kvbaJxf2_rkLrueFMbIqX_KuXwnqUZ24UUOcwr8-Jhu2xkh9Q7kGOkTc8jM
+Message-ID: <CAGxUL8v3LHZ9KD-RTdPmm+fRCkUnLNfJ41BjyFLBxoADKrAC8g@mail.gmail.com>
+Subject: Re: UK Export license for 'Untitled', 1971
+To: zipnpup <zipnpup@yahoo.com>
+Cc: Mila Askarova <m.askarova@gazelliarthouse.com>, 
+	George Lionel Barker <george@gazelliarthouse.com>, Paul Cohen <paulrcohen@gmail.com>
+Content-Type: multipart/alternative; boundary="000000000000821725062b06dea4"
+
+--000000000000821725062b06dea4
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Ideally for shipment, I would receive a working list of the items being
+collected.
+I would then provide this to various shippers to see what their
+availability / costs are and possibly arrange a site visit to work out the
+logistics.
+
+Insurance value of works can be worked out while the pieces are being
+collected / packed / crated.
+
+Michael.
+
+On Mon, 6 Jan 2025 at 06:48, zipnpup <zipnpup@yahoo.com> wrote:
+
+> Dear Mila
+> Ok got it... will plan on sending the framed prints. Tom
+>
+>
+>
+> Sent from my T-Mobile 4G LTE Device
+>
+>
+> -------- Original message --------
+> From: Mila Askarova <m.askarova@gazelliarthouse.com>
+> Date: 1/5/25 11:34 PM (GMT-07:00)
+> To: zipnpup <zipnpup@yahoo.com>
+> Cc: George Lionel Barker <george@gazelliarthouse.com>, Michael Pollard <
+> michael@gazelliarthouse.com>, Paul Cohen <paulrcohen@gmail.com>
+> Subject: Re: UK Export license for 'Untitled', 1971
+>
+> Hi Tom,
+>
+> Yes to sending the prints please!
+>
+> Thanks
+> Mila
+>
+> Mila Askarova
+> CEO & Founder
+>
+> GAZELLI ART HOUSE
+>
+> www.gazelliarthouse.com
+> +44 (0) 207 491 8816 / +994 (0) 12 498 1230
+>
+>
+> On Mon, 6 Jan 2025 at 09:11, zipnpup <zipnpup@yahoo.com> wrote:
+>
+>> Hi Mila and George
+>>
+>> Thanks Mila for assuming responsibility to inspect and sort out the work=
+s
+>> in need of TLC.
+>>
+>> Thanks George for your reply. I would like clarification as I am not
+>> quite sure about #3 Below.
+>>
+>> 1. Yes Send - Posters
+>> 2. Yes Send - last completed work
+>> 3. Do/Don't Send - large framed signed prints from 2004+2011. I suggeste=
+d
+>> these as they are getting damaged. Mila saw these on her most recent vis=
+it
+>>
+>> Lastly, what else do you need from me prior to me setting up a time for
+>> the initial visit from the shipper?
+>>
+>> Tom
+>>
+>>
+>> Sent from my T-Mobile 4G LTE Device
+>>
+>>
+>> -------- Original message --------
+>> From: Mila Askarova <m.askarova@gazelliarthouse.com>
+>> Date: 1/5/25 11:48 AM (GMT-07:00)
+>> To: George Lionel Barker <george@gazelliarthouse.com>
+>> Cc: Michael Pollard <michael@gazelliarthouse.com>, Paul Cohen <
+>> paulrcohen@gmail.com>, zipnpup <zipnpup@yahoo.com>
+>> Subject: Re: UK Export license for 'Untitled', 1971
+>>
+>> Many thanks Tom!
+>>
+>> Just to also reiterate what we discussed with Paul when he was in London
+>> - it would be easier for us to carry out the appropriate condition check=
+s
+>> on all these works, and inventorise them when we receive them at the
+>> gallery so the works that are slightly damaged and/or in need of tlc, we=
+=E2=80=99ll
+>> sort it out.
+>>
+>> Looking forward to receiving these and thanks so much for all your help.
+>>
+>> My best,
+>> Mila
+>>
+>> Mila Askarova
+>> CEO & Founder
+>>
+>> GAZELLI ART HOUSE
+>>
+>> www.gazelliarthouse.com
+>> +44 (0) 207 491 8816 / +994 (0) 12 498 1230
+>>
+>>
+>> On Sunith all the proper , 5 Jan 2025 at 19:29, George Lionel Barker <
+>> george@gazelliarthouse.com> wrote:
+>>
+>>> Hi Tom,
+>>>
+>>> Happy new year!
+>>>
+>>> Apologies if this was missed, but I think we should include the posters
+>>> and finger painting you mentioned in the shipment, along with the other
+>>> works we discussed.
+>>>
+>>> Many thanks,
+>>>
+>>> George
+>>>
+>>>
+>>>
+>>> 39 Dover Street
+>>> <https://www.google.com/maps/search/39+Dover+Street+W1S+4NN+London?entr=
+y=3Dgmail&source=3Dg>
+>>> W1S 4NN
+>>> <https://www.google.com/maps/search/39+Dover+Street+W1S+4NN+London?entr=
+y=3Dgmail&source=3Dg>
+>>> London
+>>> <https://www.google.com/maps/search/39+Dover+Street+W1S+4NN+London?entr=
+y=3Dgmail&source=3Dg>
+>>>
+>>>
+>>> T: +44 (0) 207 491 8816
+>>> M: +44 (0) 7895 096 252
+>>>
+>>> On 5 Jan 2025, at 14:56, zipnpup <zipnpup@yahoo.com> wrote:
+>>>
+>>> =EF=BB=BF
+>>>
+>>> Hi Mila and all yes Happy New Year!
+>>>
+>>> Previously i sent the following email probably right as you were
+>>> shutting down for the year and for some reason not in this chain. Miche=
+al
+>>> did respond regarding my logistical/timely pickup question. But I also
+>>> asked about whether we should sent additional works at this time. Since=
+ I
+>>> dont see my email in the chain below,  I am resending it,  again Happy =
+New
+>>> Year and let me know if any additional items should be sent or held off=
+ for
+>>> now, Tom
+>>> -----
+>>>
+>>> Dear George
+>>> Thanks for the information.
+>>>
+>>> Regarding additional works, there are no additional canvas paintings
+>>> that fit the 6 parameters.
+>>>
+>>> As for a pickup. I am currently reorganizing the remaining 15 drawers o=
+f
+>>> works yet to be inventoried so that they are grouped into logical group=
+s
+>>> and not just strewn where ever. A few of the drawers do not have artwor=
+k
+>>> but rather other artifacts. One in particular has posters from some of
+>>> Harold's exhibitions. Might we send a few of these at this time?
+>>>
+>>> I think early next year is doable. Ideally once the work is pulled that
+>>> it is picked up in a timely manner. It would be helpful to know if the
+>>> shipper will need the studio space for preparing the work to be shipped=
+.
+>>> That would help me determine how much other work I can have out.
+>>>
+>>> I know this is not part of the works that fit the 6 parameters, but we
+>>> have a group of large sized framed prints that have to sit on the studi=
+o
+>>> floor as we dont have a proper place to store them and they are slowly
+>>> getting damaged. Some are from the same time period as they ones auctio=
+ned
+>>> off this past fall. Others are more recent like 2010 or so. I am wonder=
+ing
+>>> if some or all of these should go at this time.
+>>>
+>>> Also Harold's very last work -- Fingerpainting on canvas -- needs TLC.
+>>> While the composition is complete, it was not stretched and sprayed wit=
+h
+>>> acrylic like all the others. This is because I printed it while Harold =
+was
+>>> in the hospital for the last time. He did return home shortly before hi=
+s
+>>> passing and saw the completed work and ok'd it. Normally he would have =
+had
+>>> me stretch it so that I could then spray it. But we did not have enough
+>>> wood and he did not authorize me to order the additional wood. Therefor=
+e
+>>> this work is not sprayed with acrylic and therefore more delicate and i=
+n
+>>> need of tlc.
+>>>
+>>> Sent from my T-Mobile 4G LTE Device
+>>>
+>>>
+>>> -------- Original message --------
+>>> From: Mila Askarova <m.askarova@gazelliarthouse.com>
+>>> Date: 1/5/25 12:52 AM (GMT-07:00)
+>>> To: George Lionel Barker <george@gazelliarthouse.com>
+>>> Cc: Michael Pollard <michael@gazelliarthouse.com>, Paul Cohen <
+>>> paulrcohen@gmail.com>, Thomas Machnik <zipnpup@yahoo.com>
+>>> Subject: Re: UK Export license for 'Untitled', 1971
+>>>
+>>> Hello all!
+>>>
+>>> Happy new year! I hope the year is off to a good start.
+>>>
+>>> I wanted to see if we are all good with the list of works George has
+>>> sent through in the previous email and can get a timeline on when the w=
+orks
+>>> will be ready to be collected?
+>>>
+>>> My best,
+>>> Mila
+>>>
+>>> Mila Askarova
+>>> CEO & Founder
+>>>
+>>> GAZELLI ART HOUSE
+>>>
+>>> www.gazelliarthouse.com
+>>> +44 (0) 207 491 8816 / +994 (0) 12 498 1230
+>>>
+>>>
+>>> On Mon, 16 Dec 2024 at 20:28, George Lionel Barker <
+>>> george@gazelliarthouse.com> wrote:
+>>>
+>>>> Hi Paul,
+>>>>
+>>>> Thanks for the update, I appreciate it.
+>>>>
+>>>> I'm not sure how many more Painting Machine works you guys have, but I
+>>>> remember we didn't ship everything to London
+>>>> <https://www.google.com/maps/search/39+Dover+Street+W1S+4NN+London?ent=
+ry=3Dgmail&source=3Dg>
+>>>> last time..? Understanding how many figurative works on canvas you hav=
+e is
+>>>> important, so if you wouldn't mind confirming which ones you have, asi=
+de
+>>>> from this list that would be great:
+>>>> https://privateviews.artlogic.net/2/f5fcb1f56f9ce5a013b84a/ we'd like
+>>>> to ship them all over.
+>>>>
+>>>> Thanks everyone !
+>>>>
+>>>> George
+>>>>
+>>>> *GAZELLI ART HOUSE*
+>>>>
+>>>> LONDON
+>>>> Group Show: Quiet Motion
+>>>> <https://886b17ba.streaklinks.com/CPNGlFxzc-OoTuC6GACoxZ9Z/https%3A%2F=
+%2Fgazelliarthouse.com%2Fexhibitions%2F189-quiet-motion-derek-boshier-pauli=
+ne-boty-harold-cohen-judy-chicago%2F>
+>>>>
+>>>> BAKU
+>>>> Parallel Worlds: Chris Levine, Michael Takeo Magruder, Marshmallow
+>>>> Laser Feast, Elnara Nasirli, Recycle Group, Nye Thompson
+>>>> <https://886b17ba.streaklinks.com/CPNGlFtCwh4C7l00YAT6QxnB/https%3A%2F=
+%2Fgazelliarthouse.com%2Fexhibitions%2F188-parallel-worlds-chris-levine-mic=
+hael-takeo-magruder-marshmallow-laser-feast%2F>
+>>>>
+>>>> GAZELL.iO
+>>>> December Resident | Tom White
+>>>> <https://886b17ba.streaklinks.com/CPNGlFxr6ykc9RF_WQ1LAYjI/https%3A%2F=
+%2Fgazell.io%2Fpages%2Ftom-white>
+>>>>
+>>>> www.gazelliarthouse.com
+>>>> +44 (0) 207 491 8816 / +994 (0) 12 498 1230
+>>>>
+>>>> <https://886b17ba.streaklinks.com/CPNGlFxBAVGKyUzagwjHEbkW/https%3A%2F=
+%2Fwww.instagram.com%2Fgazelliarthouse%2F>
+>>>>
+>>>> <https://886b17ba.streaklinks.com/CPNGlF16uijnaUCagAk9ruhV/https%3A%2F=
+%2Ftwitter.com%2FGazelliArtHouse>
+>>>>
+>>>> <https://886b17ba.streaklinks.com/CPNGlFxGhhXAW_fHug6ktqRg/https%3A%2F=
+%2Fwww.facebook.com%2FGazelliArtHouse%2F>
+>>>>
+>>>>
+>>>>
+>>>>
+>>>> This e-mail message, including all attachments, is for the sole use of
+>>>> the intended recipient(s) and may contain legally privileged and
+>>>> confidential information. If you are not an intended recipient, you ar=
+e
+>>>> hereby notified that you have either received this message in error or
+>>>> through interception, and that any review, use, distribution, copying =
+or
+>>>> disclosure of this message and/or its attachments or parts thereof is
+>>>> strictly prohibited and is subject to criminal and civil penalties wit=
+h
+>>>> appropriate national legislation.
+>>>>
+>>>> =E1=90=A7
+>>>>
+>>>> On Mon, 16 Dec 2024 at 16:13, Paul Cohen <paulrcohen@gmail.com> wrote:
+>>>>
+>>>>> Hi George, I chatted with Tom last week.  My understanding is that th=
+e
+>>>>> rolled works are mostly dacron drawings and "dots" paintings, but Tom=
+ will
+>>>>> correct me if that's wrong.  The figurative paintings are mostly
+>>>>> stretched.  Not sure how many painting machine paintings remain in Sa=
+n
+>>>>> Diego.  --P
+>>>>>
+>>>>> ______________________________
+>>>>>
+>>>>> Paul Cohen,  Professor
+>>>>> School of Computing and Information
+>>>>> University of Pittsburgh
+>>>>> personal webpage <https://paulrcohen.github.io/>
+>>>>> ______________________________
+>>>>>
+>>>>>
+>>>>> On Mon, Dec 16, 2024 at 8:08=E2=80=AFAM George Lionel Barker <
+>>>>> george@gazelliarthouse.com> wrote:
+>>>>>
+>>>>>> Hi Mike and Tom,
+>>>>>>
+>>>>>> Please find attached the shipping list of figurative works on canvas
+>>>>>> that we think are with you:
+>>>>>> https://privateviews.artlogic.net/2/f5fcb1f56f9ce5a013b84a/ These
+>>>>>> are to be sent alongside the unrolled works mentioned in your previo=
+us
+>>>>>> email @Thomas Machnik <zipnpup@yahoo.com>  If you can send the
+>>>>>> rolls, we will unroll here to save time. I remembered that there mig=
+ht be
+>>>>>> additional 'figurative' works on canvas that have not yet gone on th=
+e
+>>>>>> spreadsheet too?
+>>>>>>
+>>>>>> We would also love to have the remaining Painting Machine pieces you
+>>>>>> have in California. Here's a list of everything in London:
+>>>>>> https://privateviews.artlogic.net/2/237bf664d6efbf6f724c20  @Thomas
+>>>>>> Machnik <zipnpup@yahoo.com> how many do you still have with you?
+>>>>>>
+>>>>>> Looking forward to hearing from you, and let me know if you have any
+>>>>>> questions.
+>>>>>>
+>>>>>> George
+>>>>>>
+>>>>>>
+>>>>>>
+>>>>>> *GAZELLI ART HOUSE*
+>>>>>>
+>>>>>> LONDON
+>>>>>> Group Show: Quiet Motion
+>>>>>> <https://886b17ba.streaklinks.com/CPMY2Zh1tflLiOLcAAew1get/https%3A%=
+2F%2Fgazelliarthouse.com%2Fexhibitions%2F189-quiet-motion-derek-boshier-pau=
+line-boty-harold-cohen-judy-chicago%2F>
+>>>>>>
+>>>>>> BAKU
+>>>>>> Parallel Worlds: Chris Levine, Michael Takeo Magruder, Marshmallow
+>>>>>> Laser Feast, Elnara Nasirli, Recycle Group, Nye Thompson
+>>>>>> <https://886b17ba.streaklinks.com/CPMY2ZhoaBmz6jykCgrDQeV5/https%3A%=
+2F%2Fgazelliarthouse.com%2Fexhibitions%2F188-parallel-worlds-chris-levine-m=
+ichael-takeo-magruder-marshmallow-laser-feast%2F>
+>>>>>>
+>>>>>> GAZELL.iO
+>>>>>> December Resident | Tom White
+>>>>>> <https://886b17ba.streaklinks.com/CPMY2Zd-fhWlLAQZaQ3y-2iP/https%3A%=
+2F%2Fgazell.io%2Fpages%2Ftom-white>
+>>>>>>
+>>>>>> www.gazelliarthouse.com
+>>>>>> +44 (0) 207 491 8816 / +994 (0) 12 498 1230
+>>>>>>
+>>>>>> <https://886b17ba.streaklinks.com/CPMY2ZdcnPKEd29PBQYxSO3g/https%3A%=
+2F%2Fwww.instagram.com%2Fgazelliarthouse%2F>
+>>>>>>
+>>>>>> <https://886b17ba.streaklinks.com/CPMY2ZZOzooMwrUb6QfHPX_H/https%3A%=
+2F%2Ftwitter.com%2FGazelliArtHouse>
+>>>>>>
+>>>>>> <https://886b17ba.streaklinks.com/CPMY2ZhRUUTGqvbNgA_Etco7/https%3A%=
+2F%2Fwww.facebook.com%2FGazelliArtHouse%2F>
+>>>>>>
+>>>>>>
+>>>>>>
+>>>>>>
+>>>>>> This e-mail message, including all attachments, is for the sole use
+>>>>>> of the intended recipient(s) and may contain legally privileged and
+>>>>>> confidential information. If you are not an intended recipient, you =
+are
+>>>>>> hereby notified that you have either received this message in error =
+or
+>>>>>> through interception, and that any review, use, distribution, copyin=
+g or
+>>>>>> disclosure of this message and/or its attachments or parts thereof i=
+s
+>>>>>> strictly prohibited and is subject to criminal and civil penalties w=
+ith
+>>>>>> appropriate national legislation.
+>>>>>>
+>>>>>> =E1=90=A7
+>>>>>>
+>>>>>> On Sun, 15 Dec 2024 at 11:27, Michael Pollard <
+>>>>>> michael@gazelliarthouse.com> wrote:
+>>>>>>
+>>>>>>> Hello Paul,
+>>>>>>>
+>>>>>>> This can be left to me and Tom.
+>>>>>>> I would simply need the list of inventory and current packed method=
+s
+>>>>>>> / dims (if packed) in order to start scheduling a local shipper to =
+collect.
+>>>>>>>
+>>>>>>> I'll follow up for any important information when needed (estimated
+>>>>>>> values, additional detail if necessary)
+>>>>>>>
+>>>>>>> Michael.
+>>>>>>>
+>>>>>>> On Fri, 13 Dec 2024 at 19:05, Paul Cohen <paulrcohen@gmail.com>
+>>>>>>> wrote:
+>>>>>>>
+>>>>>>>> Great news, Michael, thanks for letting us know.
+>>>>>>>>
+>>>>>>>> On a related subject, Mila and I talked earlier this week about
+>>>>>>>> getting started on shipping the "figurative" canvases compiled by =
+Tom and
+>>>>>>>> George --
+>>>>>>>> https://privateviews.artlogic.net/2/f5fcb1f56f9ce5a013b84a/ -- to
+>>>>>>>> GAH.  Do we need to have a zoom call to get going on this, or can =
+we leave
+>>>>>>>> it with you and Tom?
+>>>>>>>>
+>>>>>>>> Thanks, --Paul
+>>>>>>>>
+>>>>>>>> ______________________________
+>>>>>>>>
+>>>>>>>> Paul Cohen,  Professor
+>>>>>>>> School of Computing and Information
+>>>>>>>> University of Pittsburgh
+>>>>>>>> personal webpage <https://paulrcohen.github.io/>
+>>>>>>>> ______________________________
+>>>>>>>>
+>>>>>>>>
+>>>>>>>> On Fri, Dec 13, 2024 at 12:53=E2=80=AFPM Michael Pollard <
+>>>>>>>> michael@gazelliarthouse.com> wrote:
+>>>>>>>>
+>>>>>>>>> Dear Paul and Tom,
+>>>>>>>>>
+>>>>>>>>> I just wanted to follow up and say thank you both for your help
+>>>>>>>>> here.
+>>>>>>>>>
+>>>>>>>>> The Arts council (faster than expected) approved the Export
+>>>>>>>>> license without an issue or any follow up questions.
+>>>>>>>>>
+>>>>>>>>> I'm certain the signed letter and the researched details that Tom
+>>>>>>>>> provided that were provided along with the application made a hug=
+e
+>>>>>>>>> contribution in this going through without contest.
+>>>>>>>>>
+>>>>>>>>> Best,
+>>>>>>>>>
+>>>>>>>>> Michael.
+>>>>>>>>>
+>>>>>>>>> On Wed, 4 Dec 2024 at 15:50, Michael Pollard <
+>>>>>>>>> michael@gazelliarthouse.com> wrote:
+>>>>>>>>>
+>>>>>>>>>> This is perfect, thank you so much!
+>>>>>>>>>>
+>>>>>>>>>> I will let you know the outcome.
+>>>>>>>>>> FYI, there is a chance you may receive an email directly from th=
+e
+>>>>>>>>>> Arts Council asking for more detail if available / possible.
+>>>>>>>>>>
+>>>>>>>>>> If they reach out, feel free to ask me any questions.
+>>>>>>>>>>
+>>>>>>>>>> Michael.
+>>>>>>>>>>
+>>>>>>>>>> On Wed, 4 Dec 2024 at 15:40, Paul Cohen <paulrcohen@gmail.com>
+>>>>>>>>>> wrote:
+>>>>>>>>>>
+>>>>>>>>>>> Hi Michael, thanks for writing this!  I put it on my university
+>>>>>>>>>>> letterhead to make it seem more official.  Hope this is fine, l=
+et me know.
+>>>>>>>>>>> --P
+>>>>>>>>>>>
+>>>>>>>>>>> ______________________________
+>>>>>>>>>>>
+>>>>>>>>>>> Paul Cohen,  Professor
+>>>>>>>>>>> School of Computing and Information
+>>>>>>>>>>> University of Pittsburgh
+>>>>>>>>>>> personal webpage <https://paulrcohen.github.io/>
+>>>>>>>>>>> ______________________________
+>>>>>>>>>>>
+>>>>>>>>>>>
+>>>>>>>>>>> On Wed, Dec 4, 2024 at 6:37=E2=80=AFAM Michael Pollard <
+>>>>>>>>>>> michael@gazelliarthouse.com> wrote:
+>>>>>>>>>>>
+>>>>>>>>>>>> Dear Paul,
+>>>>>>>>>>>>
+>>>>>>>>>>>> Sorry we didn't get to chat again after our brief sit-down.
+>>>>>>>>>>>>
+>>>>>>>>>>>> Attached here is a proposed affidavit / draft for a
+>>>>>>>>>>>> document stating that, to the best of the Trust's knowledge, t=
+hat the
+>>>>>>>>>>>> artwork was imported at some point during, likely during the m=
+id-70's /
+>>>>>>>>>>>> early 80's, for the purpose of exhibition.
+>>>>>>>>>>>>
+>>>>>>>>>>>> To confirm, the artwork in question is this one:
+>>>>>>>>>>>> [image: image.png]
+>>>>>>>>>>>> *Harold Cohen*
+>>>>>>>>>>>> *Untitled*, 1971
+>>>>>>>>>>>> Acrylic on canvas
+>>>>>>>>>>>> 213.4 x 302 cm, 84 x 118 7/8 in
+>>>>>>>>>>>> (HC0174)
+>>>>>>>>>>>>
+>>>>>>>>>>>> If you could review the attached, edit as you deem appropriate=
+,
+>>>>>>>>>>>> and let me know if you'd be willing to sign / have this submit=
+ted as part
+>>>>>>>>>>>> of the application to the UK Arts Council, that would be appre=
+ciated.
+>>>>>>>>>>>>
+>>>>>>>>>>>> Also any questions you may have about the application process,
+>>>>>>>>>>>> I would be happy to answer.
+>>>>>>>>>>>> Michael.
+>>>>>>>>>>>>
+>>>>>>>>>>>> --
+>>>>>>>>>>>> *Michael Pollard*
+>>>>>>>>>>>> *Senior Registrar*
+>>>>>>>>>>>>
+>>>>>>>>>>>>
+>>>>>>>>>>>>
+>>>>>>>>>>>> *GAZELLI ART HOUSELONDON  *
+>>>>>>>>>>>>
+>>>>>>>>>>>
+
+--000000000000821725062b06dea4
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Ideally for shipment, I would receive a working list of th=
+e items being collected.<div>I would then provide=C2=A0this to various ship=
+pers to see what their availability / costs are and possibly arrange a site=
+ visit to work out the logistics.</div><div><br></div><div>Insurance=C2=A0v=
+alue of works can be worked out while the pieces are being collected / pack=
+ed / crated.</div><div><br></div><div>Michael.</div></div><br><div class=3D=
+"gmail_quote gmail_quote_container"><div dir=3D"ltr" class=3D"gmail_attr">O=
+n Mon, 6 Jan 2025 at 06:48, zipnpup &lt;<a href=3D"mailto:zipnpup@yahoo.com=
+">zipnpup@yahoo.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quot=
+e" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204)=
+;padding-left:1ex"><div dir=3D"auto"><div dir=3D"auto">Dear Mila</div><div =
+dir=3D"auto">Ok got it... will plan on sending the framed prints. Tom</div>=
+<div dir=3D"auto"><br></div><div dir=3D"auto"><br></div><div dir=3D"auto"><=
+br></div><div id=3D"m_-2272607495135317770composer_signature" dir=3D"auto">=
+<div style=3D"font-size:12px;color:rgb(87,87,87)" dir=3D"auto">Sent from my=
+ T-Mobile 4G LTE Device</div></div><div dir=3D"auto"><br></div><div><br></d=
+iv><div align=3D"left" dir=3D"auto" style=3D"font-size:100%;color:rgb(0,0,0=
+)"><div>-------- Original message --------</div><div>From: Mila Askarova &l=
+t;<a href=3D"mailto:m.askarova@gazelliarthouse.com" target=3D"_blank">m.ask=
+arova@gazelliarthouse.com</a>&gt; </div><div>Date: 1/5/25  11:34 PM  (GMT-0=
+7:00) </div><div>To: zipnpup &lt;<a href=3D"mailto:zipnpup@yahoo.com" targe=
+t=3D"_blank">zipnpup@yahoo.com</a>&gt; </div><div>Cc: George Lionel Barker =
+&lt;<a href=3D"mailto:george@gazelliarthouse.com" target=3D"_blank">george@=
+gazelliarthouse.com</a>&gt;, Michael Pollard &lt;<a href=3D"mailto:michael@=
+gazelliarthouse.com" target=3D"_blank">michael@gazelliarthouse.com</a>&gt;,=
+ Paul Cohen &lt;<a href=3D"mailto:paulrcohen@gmail.com" target=3D"_blank">p=
+aulrcohen@gmail.com</a>&gt; </div><div>Subject: Re: UK Export license for &=
+#39;Untitled&#39;, 1971 </div><div><br></div></div><div dir=3D"auto">Hi Tom=
+,</div><div dir=3D"auto"><br></div><div dir=3D"auto">Yes to sending the pri=
+nts please!</div><div dir=3D"auto"><br></div><div dir=3D"auto">Thanks</div>=
+<div dir=3D"auto">Mila=C2=A0<br clear=3D"all"><br clear=3D"all"><div dir=3D=
+"auto"><div class=3D"gmail_signature" dir=3D"ltr">Mila Askarova=C2=A0<br>CE=
+O &amp; Founder=C2=A0<br><br>GAZELLI ART HOUSE<br><br><a href=3D"http://www=
+.gazelliarthouse.com" target=3D"_blank">www.gazelliarthouse.com</a><br>+44 =
+(0) 207 491 8816 / +994 (0) 12 498 1230<br></div></div></div><div><br></div=
+><div><br><div class=3D"gmail_quote"><div class=3D"gmail_attr" dir=3D"ltr">=
+On Mon, 6 Jan 2025 at 09:11, zipnpup &lt;<a href=3D"mailto:zipnpup@yahoo.co=
+m" target=3D"_blank">zipnpup@yahoo.com</a>&gt; wrote:<br></div><blockquote =
+style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);pa=
+dding-left:1ex" class=3D"gmail_quote"><div dir=3D"auto"><div dir=3D"auto">H=
+i Mila and George</div><div dir=3D"auto"><br></div><div dir=3D"auto">Thanks=
+ Mila for assuming responsibility to inspect and sort out the works in need=
+ of TLC.</div><div dir=3D"auto"><br></div><div dir=3D"auto">Thanks George f=
+or your reply. I would like clarification as I am not quite sure about #3 B=
+elow.</div><div dir=3D"auto"><br></div><div dir=3D"auto">1. Yes Send - Post=
+ers</div><div dir=3D"auto">2. Yes Send - last completed work</div><div dir=
+=3D"auto">3. Do/Don&#39;t Send - large framed signed prints from 2004+2011.=
+ I suggested these as they are getting damaged. Mila saw these on her most =
+recent visit</div><div dir=3D"auto"><br></div><div dir=3D"auto">Lastly, wha=
+t else do you need from me prior to me setting up a time for the initial vi=
+sit from the shipper?</div><div dir=3D"auto"><br></div><div dir=3D"auto">To=
+m</div></div><div dir=3D"auto"><div dir=3D"auto"><br></div><div dir=3D"auto=
+"><br></div><div dir=3D"auto" id=3D"m_-2272607495135317770m_-11371083144491=
+29677composer_signature"><div dir=3D"auto" style=3D"font-size:12px;color:rg=
+b(87,87,87)">Sent from my T-Mobile 4G LTE Device</div></div><div dir=3D"aut=
+o"><br></div><div><br></div><div style=3D"font-size:100%;color:rgb(0,0,0)" =
+dir=3D"auto" align=3D"left"><div>-------- Original message --------</div><d=
+iv>From: Mila Askarova &lt;<a href=3D"mailto:m.askarova@gazelliarthouse.com=
+" target=3D"_blank">m.askarova@gazelliarthouse.com</a>&gt; </div><div>Date:=
+ 1/5/25  11:48 AM  (GMT-07:00) </div><div>To: George Lionel Barker &lt;<a h=
+ref=3D"mailto:george@gazelliarthouse.com" target=3D"_blank">george@gazellia=
+rthouse.com</a>&gt; </div><div>Cc: Michael Pollard &lt;<a href=3D"mailto:mi=
+chael@gazelliarthouse.com" target=3D"_blank">michael@gazelliarthouse.com</a=
+>&gt;, Paul Cohen &lt;<a href=3D"mailto:paulrcohen@gmail.com" target=3D"_bl=
+ank">paulrcohen@gmail.com</a>&gt;, zipnpup &lt;<a href=3D"mailto:zipnpup@ya=
+hoo.com" target=3D"_blank">zipnpup@yahoo.com</a>&gt; </div><div>Subject: Re=
+: UK Export license for &#39;Untitled&#39;, 1971 </div><div><br></div></div=
+><div dir=3D"auto">Many thanks Tom!=C2=A0</div><div dir=3D"auto"><br></div>=
+<div dir=3D"auto">Just to also reiterate what we discussed with Paul when h=
+e was in London - it would be easier for us to carry out the appropriate co=
+ndition checks on all these works, and inventorise them when we receive the=
+m at the gallery so the works that are slightly damaged and/or in need of t=
+lc, we=E2=80=99ll sort it out.=C2=A0</div><div dir=3D"auto"><br></div><div =
+dir=3D"auto">Looking forward to receiving these and thanks so much for all =
+your help.</div><div dir=3D"auto"><br></div><div dir=3D"auto">My best,=C2=
+=A0</div><div dir=3D"auto">Mila=C2=A0</div><div dir=3D"auto"><br clear=3D"a=
+ll"><div dir=3D"auto"><div dir=3D"ltr" class=3D"gmail_signature">Mila Askar=
+ova=C2=A0<br>CEO &amp; Founder=C2=A0<br><br>GAZELLI ART HOUSE<br><br><a hre=
+f=3D"http://www.gazelliarthouse.com" target=3D"_blank">www.gazelliarthouse.=
+com</a><br>+44 (0) 207 491 8816 / +994 (0) 12 498 1230<br></div></div></div=
+><div><br></div><div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
+=3D"gmail_attr">On Sunith all the proper , 5 Jan 2025 at 19:29, George Lion=
+el Barker &lt;<a href=3D"mailto:george@gazelliarthouse.com" target=3D"_blan=
+k">george@gazelliarthouse.com</a>&gt; wrote:<br></div><blockquote class=3D"=
+gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(20=
+4,204,204);padding-left:1ex"><div dir=3D"auto">Hi Tom,=C2=A0<div><br></div>=
+<div>Happy new year!=C2=A0<br><div><br></div><div>Apologies if this was mis=
+sed, but I think we should include the posters and finger painting you ment=
+ioned in the shipment, along with the other works we discussed.=C2=A0</div>=
+<div><br></div><div>Many thanks,=C2=A0</div><div><br></div><div>George=C2=
+=A0<br><div><br></div><div><br></div><div><br id=3D"m_-2272607495135317770m=
+_-1137108314449129677m_8581151222645339724lineBreakAtBeginningOfSignature">=
+<div dir=3D"ltr"><div><a href=3D"https://www.google.com/maps/search/39+Dove=
+r+Street+W1S+4NN+London?entry=3Dgmail&amp;source=3Dg" target=3D"_blank">39 =
+Dover Street</a></div><div><a href=3D"https://www.google.com/maps/search/39=
++Dover+Street+W1S+4NN+London?entry=3Dgmail&amp;source=3Dg" target=3D"_blank=
+">W1S 4NN</a></div><div><a href=3D"https://www.google.com/maps/search/39+Do=
+ver+Street+W1S+4NN+London?entry=3Dgmail&amp;source=3Dg" target=3D"_blank">L=
+ondon</a>=C2=A0</div><div><br></div><div>T: +44 (0) 207 491 8816</div><div>=
+M: +44 (0) 7895 096 252</div></div><div dir=3D"ltr"><br><blockquote type=3D=
+"cite">On 5 Jan 2025, at 14:56, zipnpup &lt;<a href=3D"mailto:zipnpup@yahoo=
+.com" target=3D"_blank">zipnpup@yahoo.com</a>&gt; wrote:<br><br></blockquot=
+e></div><blockquote type=3D"cite"><div dir=3D"ltr">=EF=BB=BF</div></blockqu=
+ote></div></div></div></div><div dir=3D"auto"><div><div><div><blockquote ty=
+pe=3D"cite"><div dir=3D"ltr"><div dir=3D"auto">Hi Mila and all yes Happy Ne=
+w Year!</div><div dir=3D"auto"><br></div><div dir=3D"auto">Previously i sen=
+t the following email probably right as you were shutting down for the year=
+ and for some reason not in this chain. Micheal did respond regarding my lo=
+gistical/timely pickup question. But I also asked about whether we should s=
+ent additional works at this time. Since I dont see my email in the chain b=
+elow,=C2=A0 I am resending it,=C2=A0 again Happy New Year and let me know i=
+f any additional items should be sent or held off for now, Tom</div><div di=
+r=3D"auto">-----</div><div dir=3D"auto"><br></div><div dir=3D"auto"><div di=
+r=3D"auto">Dear George</div><div dir=3D"auto">Thanks for the information.=
+=C2=A0</div><div dir=3D"auto"><br></div><div dir=3D"auto">Regarding additio=
+nal works, there are no additional canvas paintings that fit the 6 paramete=
+rs.=C2=A0</div><div dir=3D"auto"><br></div><div dir=3D"auto">As for a picku=
+p. I am currently reorganizing the remaining 15 drawers of works yet to be =
+inventoried so that they are grouped into logical groups and not just strew=
+n where ever. A few of the drawers do not have artwork but rather other art=
+ifacts. One in particular has posters from some of Harold&#39;s exhibitions=
+. Might we send a few of these at this time?=C2=A0</div><div dir=3D"auto"><=
+br></div><div dir=3D"auto">I think early next year is doable. Ideally once =
+the work is pulled that it is picked up in a timely manner. It would be hel=
+pful to know if the shipper will need the studio space for preparing the wo=
+rk to be shipped. That would help me determine how much other work I can ha=
+ve out.=C2=A0</div><div dir=3D"auto"><br></div><div dir=3D"auto">I know thi=
+s is not part of the works that fit the 6 parameters, but we have a group o=
+f large sized framed prints that have to sit on the studio floor as we dont=
+ have a proper place to store them and they are slowly getting damaged. Som=
+e are from the same time period as they ones auctioned off this past fall. =
+Others are more recent like 2010 or so. I am wondering if some or all of th=
+ese should go at this time.=C2=A0</div><div dir=3D"auto"><br></div><div dir=
+=3D"auto">Also Harold&#39;s very last work -- Fingerpainting on canvas -- n=
+eeds TLC. While the composition is complete, it was not stretched and spray=
+ed with acrylic like all the others. This is because I printed it while Har=
+old was in the hospital for the last time. He did return home shortly befor=
+e his passing and saw the completed work and ok&#39;d it. Normally he would=
+ have had me stretch it so that I could then spray it. But we did not have =
+enough wood and he did not authorize me to order the additional wood. There=
+fore this work is not sprayed with acrylic and therefore more delicate and =
+in need of tlc.</div></div><div dir=3D"auto"><br></div><div id=3D"m_-227260=
+7495135317770m_-1137108314449129677m_8581151222645339724composer_signature"=
+ dir=3D"auto"><div style=3D"font-size:12px;color:rgb(87,87,87)" dir=3D"auto=
+">Sent from my T-Mobile 4G LTE Device</div></div><div dir=3D"auto"><br></di=
+v><div><br></div><div align=3D"left" dir=3D"auto" style=3D"font-size:100%;c=
+olor:rgb(0,0,0)"><div>-------- Original message --------</div><div>From: Mi=
+la Askarova &lt;<a href=3D"mailto:m.askarova@gazelliarthouse.com" target=3D=
+"_blank">m.askarova@gazelliarthouse.com</a>&gt; </div><div>Date: 1/5/25  12=
+:52 AM  (GMT-07:00) </div><div>To: George Lionel Barker &lt;<a href=3D"mail=
+to:george@gazelliarthouse.com" target=3D"_blank">george@gazelliarthouse.com=
+</a>&gt; </div><div>Cc: Michael Pollard &lt;<a href=3D"mailto:michael@gazel=
+liarthouse.com" target=3D"_blank">michael@gazelliarthouse.com</a>&gt;, Paul=
+ Cohen &lt;<a href=3D"mailto:paulrcohen@gmail.com" target=3D"_blank">paulrc=
+ohen@gmail.com</a>&gt;, Thomas Machnik &lt;<a href=3D"mailto:zipnpup@yahoo.=
+com" target=3D"_blank">zipnpup@yahoo.com</a>&gt; </div><div>Subject: Re: UK=
+ Export license for &#39;Untitled&#39;, 1971 </div><div><br></div></div><di=
+v dir=3D"auto">Hello all!=C2=A0</div><div dir=3D"auto"><br></div><div dir=
+=3D"auto">Happy new year! I hope the year=C2=A0is off to a good start.=C2=
+=A0</div><div dir=3D"auto"><br></div><div dir=3D"auto">I wanted to see if w=
+e are all good with the list of works George has sent through in the previo=
+us email and can get a timeline on when the works will be ready to be colle=
+cted?=C2=A0</div><div dir=3D"auto"><br></div><div dir=3D"auto">My best,=C2=
+=A0</div><div dir=3D"auto">Mila=C2=A0</div><div dir=3D"auto"><br clear=3D"a=
+ll"><div dir=3D"auto"><div class=3D"gmail_signature" dir=3D"ltr">Mila Askar=
+ova=C2=A0<br>CEO &amp; Founder=C2=A0<br><br>GAZELLI ART HOUSE<br><br><a hre=
+f=3D"http://www.gazelliarthouse.com" target=3D"_blank">www.gazelliarthouse.=
+com</a><br>+44 (0) 207 491 8816 / +994 (0) 12 498 1230<br></div></div></div=
+><div><br></div><div><br><div class=3D"gmail_quote"><div class=3D"gmail_att=
+r" dir=3D"ltr">On Mon, 16 Dec 2024 at 20:28, George Lionel Barker &lt;<a hr=
+ef=3D"mailto:george@gazelliarthouse.com" target=3D"_blank">george@gazelliar=
+thouse.com</a>&gt; wrote:<br></div><blockquote style=3D"margin:0px 0px 0px =
+0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex" class=3D"gma=
+il_quote"><div dir=3D"ltr"><div>Hi Paul,=C2=A0</div><div><br></div><div>Tha=
+nks for the update, I appreciate it.=C2=A0</div><div><br></div><div>I&#39;m=
+ not sure how many more Painting Machine works you=C2=A0guys have, but I re=
+member we didn&#39;t ship everything to <a href=3D"https://www.google.com/m=
+aps/search/39+Dover+Street+W1S+4NN+London?entry=3Dgmail&amp;source=3Dg" tar=
+get=3D"_blank">London</a> last time..? Understanding how many figurative wo=
+rks on canvas you have is important, so if you wouldn&#39;t mind confirming=
+ which=C2=A0ones you have, aside from this list=C2=A0that would be great:=
+=C2=A0<a href=3D"https://privateviews.artlogic.net/2/f5fcb1f56f9ce5a013b84a=
+/" target=3D"_blank">https://privateviews.artlogic.net/2/f5fcb1f56f9ce5a013=
+b84a/</a>=C2=A0we&#39;d like to ship them all over.=C2=A0</div><div><br></d=
+iv><div>Thanks everyone !=C2=A0</div><div><br></div><div>George=C2=A0</div>=
+<div><br></div><div><div class=3D"gmail_signature" dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+style=3D"padding-top:0px;padding-right:0px;padding-left:0px;display:flex"><=
+div style=3D"margin:0px;padding:0px 0px 20px;width:1116px"><div dir=3D"ltr"=
+><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div d=
+ir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"l=
+tr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><di=
+v dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"lt=
+r"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div=
+ dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D=
+"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><=
+div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div di=
+r=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"lt=
+r"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div=
+ dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D=
+"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div style=3D"colo=
+r:rgb(34,34,34)" dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div style=
+=3D"padding-top:0px;padding-right:0px;padding-left:0px;display:flex;font-fa=
+mily:&quot;Google Sans&quot;,Roboto,RobotoDraft,Helvetica,Arial,sans-serif"=
+><div style=3D"margin:0px;min-width:0px;padding:0px 0px 20px;width:initial"=
+><div style=3D"margin:8px 0px 0px;padding:0px;overflow-x:hidden"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div style=3D"font-family:Arial,Helvetica,sans-serif" dir=3D"ltr"><div di=
+r=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"lt=
+r"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><span><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><font color=3D"#000000"><b>GA=
+ZELLI ART HOUSE</b></font></div><div dir=3D"ltr"><br></div><div dir=3D"ltr"=
+><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div d=
+ir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"l=
+tr"><div dir=3D"ltr"><div dir=3D"ltr"><font color=3D"#000000" face=3D"arial=
+, sans-serif">LONDON</font></div><div><font face=3D"arial, sans-serif"><a s=
+tyle=3D"color:rgb(17,85,204)" href=3D"https://886b17ba.streaklinks.com/CPNG=
+lFxzc-OoTuC6GACoxZ9Z/https%3A%2F%2Fgazelliarthouse.com%2Fexhibitions%2F189-=
+quiet-motion-derek-boshier-pauline-boty-harold-cohen-judy-chicago%2F" targe=
+t=3D"_blank">Group Show: Quiet Motion</a></font></div><div><span style=3D"c=
+olor:rgb(0,0,0);font-family:arial,sans-serif"><br></span></div><div><span s=
+tyle=3D"color:rgb(0,0,0);font-family:arial,sans-serif">BAKU=C2=A0</span></d=
+iv><div><a style=3D"color:rgb(17,85,204)" href=3D"https://886b17ba.streakli=
+nks.com/CPNGlFtCwh4C7l00YAT6QxnB/https%3A%2F%2Fgazelliarthouse.com%2Fexhibi=
+tions%2F188-parallel-worlds-chris-levine-michael-takeo-magruder-marshmallow=
+-laser-feast%2F" target=3D"_blank">Parallel Worlds: Chris Levine, Michael T=
+akeo Magruder, Marshmallow Laser Feast, Elnara Nasirli, Recycle Group, Nye =
+Thompson</a></div><div dir=3D"ltr"><div><font face=3D"arial, sans-serif" co=
+lor=3D"#000000"><br></font></div><div><font face=3D"arial, sans-serif" colo=
+r=3D"#000000">GAZELL.iO=C2=A0</font></div><div><font face=3D"arial, sans-se=
+rif">December Resident |=C2=A0<a style=3D"color:rgb(17,85,204)" href=3D"htt=
+ps://886b17ba.streaklinks.com/CPNGlFxr6ykc9RF_WQ1LAYjI/https%3A%2F%2Fgazell=
+.io%2Fpages%2Ftom-white" target=3D"_blank">Tom White</a></font></div></div>=
+</div></div></div></div></div></div></div></div><div dir=3D"ltr"><br></div>=
+</div></div></div></div><div dir=3D"ltr"><font face=3D"arial, sans-serif"><=
+div><a style=3D"color:rgb(17,85,204)" href=3D"http://www.gazelliarthouse.co=
+m/" target=3D"_blank"><font color=3D"#0b5394">www.gazelliarthouse.com</font=
+></a></div><div>+44 (0) 207 491 8816 / +994 (0) 12 498 1230</div><div><div>=
+<font color=3D"#000000"><a style=3D"color:rgb(17,85,204);display:inline-blo=
+ck" href=3D"https://886b17ba.streaklinks.com/CPNGlFxBAVGKyUzagwjHEbkW/https=
+%3A%2F%2Fwww.instagram.com%2Fgazelliarthouse%2F" target=3D"_blank"><img sty=
+le=3D"margin: 0.8em 0.2em; padding: 0px; letter-spacing: -0.1px; border: 0p=
+x; vertical-align: middle; max-width: 100%;" width=3D"24" src=3D"https://68=
+ef2f69c7787d4078ac-7864ae55ba174c40683f10ab811d9167.ssl.cf1.rackcdn.com/ins=
+tagram-icon_24x24.png"><div style=3D"margin:0px;width:0px;height:0px"><div>=
+</div></div></a><a style=3D"color:rgb(17,85,204);display:inline-block" href=
+=3D"https://886b17ba.streaklinks.com/CPNGlF16uijnaUCagAk9ruhV/https%3A%2F%2=
+Ftwitter.com%2FGazelliArtHouse" target=3D"_blank"><img style=3D"margin: 0.8=
+em 0.2em; padding: 0px; letter-spacing: -0.1px; border: 0px; vertical-align=
+: middle; max-width: 100%;" width=3D"24" src=3D"https://68ef2f69c7787d4078a=
+c-7864ae55ba174c40683f10ab811d9167.ssl.cf1.rackcdn.com/twitter-icon_24x24.p=
+ng"><div style=3D"margin:0px;width:0px;height:0px"><div></div></div></a>=C2=
+=A0<a style=3D"color:rgb(17,85,204);display:inline-block" href=3D"https://8=
+86b17ba.streaklinks.com/CPNGlFxGhhXAW_fHug6ktqRg/https%3A%2F%2Fwww.facebook=
+.com%2FGazelliArtHouse%2F" target=3D"_blank"><img style=3D"margin: 0.8em 0.=
+2em; padding: 0px; letter-spacing: -0.1px; border: 0px; vertical-align: mid=
+dle; max-width: 100%;" width=3D"24" src=3D"https://68ef2f69c7787d4078ac-786=
+4ae55ba174c40683f10ab811d9167.ssl.cf1.rackcdn.com/facebook-icon_24x24.png">=
+</a></font></div></div><div><br></div><div><img src=3D"https://ci3.googleus=
+ercontent.com/mail-sig/AIorK4w7gKovNZAR8tYAuQ9hIjEiBgWel9uIDPpW34GyeY595Rek=
+12deHDAlPE9ZZxtPymKBYCzaHBU" height=3D"44" width=3D"96"><br></div><div><br>=
+</div><div><br></div><div><font color=3D"#000000">This e-mail message, incl=
+uding all attachments, is for the=C2=A0sole use of the intended recipient(s=
+) and may contain=C2=A0legally privileged and confidential information. If =
+you are=C2=A0not an intended recipient, you are hereby notified that=C2=A0y=
+ou have either received this message in error or through=C2=A0interception,=
+ and that any=C2=A0review, use, distribution,=C2=A0copying or disclosure of=
+ this message and/or its=C2=A0attachments or parts thereof is strictly proh=
+ibited and is=C2=A0subject to criminal and civil penalties with appropriate=
+=C2=A0national legislation.</font></div></font></div></div></div></div></di=
+v></div></div></span></div></div></div></div></div></div></div></div></div>=
+</div></div></div></div></div></div></div></div></div></div></div></div></d=
+iv></div></div></div></div></div></div></div></div></div></div></div></div>=
+</div></div></div></div></div></div></div><div style=3D"color:rgb(34,34,34)=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div><div></div></div></div></div></div=
+></div></div></div></div></div></div></div></div></div></div></div></div></=
+div></div></div></div></div></div></div></div></div></div></div></div></div=
+></div></div></div></div></div></div><div style=3D"color:rgb(34,34,34)"><di=
+v dir=3D"ltr"><div dir=3D"ltr"></div></div></div></div></div></div></div></=
+div></div></div></div></div></div></div></div></div></div></div></div></div=
+></div></div></div></div></div></div></div></div></div></div></div></div></=
+div></div></div></div></div></div></div></div></div></div></div></div></div=
+></div></div></div></div></div></div></div></div></div></div></div></div></=
+div></div></div></div></div></div></div></div></div></div></div></div></div=
+></div></div></div></div></div></div></div></div></div></div></div></div></=
+div></div></div></div></div></div></div></div></div></div></div></div></div=
+></div></div></div></div></div></div></div><div style=3D"margin:8px 0px 0px=
+;padding:0px"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div><div di=
+r=3D"ltr"><div dir=3D"ltr"><div></div></div></div></div><div><div dir=3D"lt=
+r"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div=
+ dir=3D"ltr"><span></span></div></div></div></div></div></div></div></div><=
+/div></div></div></div></div></div></div></div></div></div></div></div></di=
+v></div></div></div></div></div></div></div></div></div></div></div></div><=
+/div></div></div></div></div></div></div></div></div></div></div></div></di=
+v><br></div><div style=3D"max-height:1px"><img src=3D"https://mailfoogae.ap=
+pspot.com/t?sender=3DaZ2VvcmdlQGdhemVsbGlhcnRob3VzZS5jb20%3D&amp;type=3Dzer=
+ocontent&amp;guid=3De574a8b7-a027-44ae-bdcc-ed4751827af7" style=3D"width: 0=
+px; max-height: 0px; overflow: hidden;" alt=3D""><font size=3D"1" color=3D"=
+#ffffff">=E1=90=A7</font></div><br><div class=3D"gmail_quote"><div class=3D=
+"gmail_attr" dir=3D"ltr">On Mon, 16 Dec 2024 at 16:13, Paul Cohen &lt;<a hr=
+ef=3D"mailto:paulrcohen@gmail.com" target=3D"_blank">paulrcohen@gmail.com</=
+a>&gt; wrote:<br></div><blockquote style=3D"margin:0px 0px 0px 0.8ex;border=
+-left:1px solid rgb(204,204,204);padding-left:1ex" class=3D"gmail_quote"><d=
+iv dir=3D"ltr"><div><div class=3D"gmail_default" style=3D"font-size:small">=
+Hi George, I chatted with Tom last week.=C2=A0 My understanding is that the=
+ rolled works are mostly dacron drawings and &quot;dots&quot; paintings, bu=
+t Tom will correct me if that&#39;s wrong.=C2=A0 The figurative paintings a=
+re mostly stretched.=C2=A0 Not sure how many painting machine paintings rem=
+ain in San Diego.=C2=A0 --P<br></div><br clear=3D"all"></div><div><div clas=
+s=3D"gmail_signature" dir=3D"ltr"><div dir=3D"ltr"><div><div dir=3D"ltr"><d=
+iv><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div d=
+ir=3D"ltr">______________________________<br><br>Paul Cohen,=C2=A0=C2=A0Pro=
+fessor</div><div dir=3D"ltr">School of Computing and Information</div><div =
+dir=3D"ltr">University of Pittsburgh</div><div dir=3D"ltr"><a href=3D"https=
+://paulrcohen.github.io/" target=3D"_blank">personal webpage</a><br>_______=
+_______________________</div></div></div></div></div></div></div></div></di=
+v></div></div></div></div><br></div><br><div class=3D"gmail_quote"><div cla=
+ss=3D"gmail_attr" dir=3D"ltr">On Mon, Dec 16, 2024 at 8:08=E2=80=AFAM Georg=
+e Lionel Barker &lt;<a href=3D"mailto:george@gazelliarthouse.com" target=3D=
+"_blank">george@gazelliarthouse.com</a>&gt; wrote:<br></div><blockquote sty=
+le=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);paddi=
+ng-left:1ex" class=3D"gmail_quote"><div dir=3D"ltr"><div>Hi Mike and Tom,=
+=C2=A0<br clear=3D"all"></div><div><br></div><div>Please find attached the =
+shipping list of figurative works on canvas that we think are with you:=C2=
+=A0<a href=3D"https://privateviews.artlogic.net/2/f5fcb1f56f9ce5a013b84a/" =
+target=3D"_blank">https://privateviews.artlogic.net/2/f5fcb1f56f9ce5a013b84=
+a/</a>=C2=A0These are to be sent alongside the unrolled works mentioned in =
+your previous email=C2=A0<a href=3D"mailto:zipnpup@yahoo.com" id=3D"m_-2272=
+607495135317770m_-1137108314449129677m_8581151222645339724m_-21792113763601=
+11372m_3911403396652685062m_3289542770075083766plusReplyChip-1" class=3D"gm=
+ail_plusreply" target=3D"_blank">@Thomas Machnik</a>=C2=A0 If you can send =
+the rolls, we will unroll here to save time. I remembered that there might =
+be additional=C2=A0&#39;figurative&#39; works on canvas that have not yet g=
+one on the spreadsheet too?=C2=A0</div><div><br></div><div>We would also lo=
+ve to have the remaining Painting Machine pieces you have in California. He=
+re&#39;s a list of everything in London:=C2=A0<span style=3D"background-col=
+or:rgb(247,247,249);color:rgb(81,168,224);font-family:ProximaNova,Helvetica=
+,Arial,sans-serif;font-size:13px;letter-spacing:0.2px"><a href=3D"https://p=
+rivateviews.artlogic.net/2/237bf664d6efbf6f724c20" target=3D"_blank">https:=
+//privateviews.artlogic.net/2/237bf664d6efbf6f724c20</a>=C2=A0=C2=A0<a href=
+=3D"mailto:zipnpup@yahoo.com" id=3D"m_-2272607495135317770m_-11371083144491=
+29677m_8581151222645339724m_-2179211376360111372m_3911403396652685062m_3289=
+542770075083766plusReplyChip-0" class=3D"gmail_plusreply" target=3D"_blank"=
+>@Thomas Machnik</a>=C2=A0</span><span style=3D"font-family:ProximaNova,Hel=
+vetica,Arial,sans-serif;font-size:13px;letter-spacing:0.2px;background-colo=
+r:rgb(255,255,255)"><font color=3D"#000000">how many do you still have with=
+ you?=C2=A0</font></span></div><div><span style=3D"font-family:ProximaNova,=
+Helvetica,Arial,sans-serif;font-size:13px;letter-spacing:0.2px;background-c=
+olor:rgb(255,255,255)"><font color=3D"#000000"><br></font></span></div><div=
+><span style=3D"font-family:ProximaNova,Helvetica,Arial,sans-serif;font-siz=
+e:13px;letter-spacing:0.2px;background-color:rgb(255,255,255)"><font color=
+=3D"#000000">Looking forward to hearing from you, and let=C2=A0me know if y=
+ou have any questions.=C2=A0</font></span></div><div><span style=3D"font-fa=
+mily:ProximaNova,Helvetica,Arial,sans-serif;font-size:13px;letter-spacing:0=
+.2px;background-color:rgb(255,255,255)"><font color=3D"#000000"><br></font>=
+</span></div><div><span style=3D"font-family:ProximaNova,Helvetica,Arial,sa=
+ns-serif;font-size:13px;letter-spacing:0.2px;background-color:rgb(255,255,2=
+55)"><font color=3D"#000000">George=C2=A0</font></span></div><div><br></div=
+><div><br></div><div><br></div><div><div class=3D"gmail_signature" dir=3D"l=
+tr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><di=
+v dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div style=3D"padding-top:0px;padding-right:0px;padding-left:0p=
+x;display:flex"><div style=3D"margin:0px;padding:0px 0px 20px;width:1116px"=
+><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div d=
+ir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"l=
+tr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><di=
+v dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div><div dir=3D"ltr"><div dir=3D"lt=
+r"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div=
+ dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D=
+"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><=
+div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div><div dir=3D"ltr"><div dir=3D"ltr"><div di=
+r=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"lt=
+r"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div=
+ dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D=
+"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><=
+div style=3D"color:rgb(34,34,34)" dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div style=3D"padding-top:0px;padding-right:0px;padding-left:0px;displ=
+ay:flex;font-family:&quot;Google Sans&quot;,Roboto,RobotoDraft,Helvetica,Ar=
+ial,sans-serif"><div style=3D"margin:0px;min-width:0px;padding:0px 0px 20px=
+;width:initial"><div style=3D"margin:8px 0px 0px;padding:0px;overflow-x:hid=
+den"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div style=3D"font-family:Arial,Helvetica,sans-serif" dir=3D=
+"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><=
+div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><span><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><font color=3D"=
+#000000"><b>GAZELLI ART HOUSE</b></font></div><div dir=3D"ltr"><br></div><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><font color=3D"#000000=
+" face=3D"arial, sans-serif">LONDON</font></div><div><font face=3D"arial, s=
+ans-serif"><a style=3D"color:rgb(17,85,204)" href=3D"https://886b17ba.strea=
+klinks.com/CPMY2Zh1tflLiOLcAAew1get/https%3A%2F%2Fgazelliarthouse.com%2Fexh=
+ibitions%2F189-quiet-motion-derek-boshier-pauline-boty-harold-cohen-judy-ch=
+icago%2F" target=3D"_blank">Group Show: Quiet Motion</a></font></div><div><=
+span style=3D"color:rgb(0,0,0);font-family:arial,sans-serif"><br></span></d=
+iv><div><span style=3D"color:rgb(0,0,0);font-family:arial,sans-serif">BAKU=
+=C2=A0</span></div><div><a style=3D"color:rgb(17,85,204)" href=3D"https://8=
+86b17ba.streaklinks.com/CPMY2ZhoaBmz6jykCgrDQeV5/https%3A%2F%2Fgazelliartho=
+use.com%2Fexhibitions%2F188-parallel-worlds-chris-levine-michael-takeo-magr=
+uder-marshmallow-laser-feast%2F" target=3D"_blank">Parallel Worlds: Chris L=
+evine, Michael Takeo Magruder, Marshmallow Laser Feast, Elnara Nasirli, Rec=
+ycle Group, Nye Thompson</a></div><div dir=3D"ltr"><div><font face=3D"arial=
+, sans-serif" color=3D"#000000"><br></font></div><div><font face=3D"arial, =
+sans-serif" color=3D"#000000">GAZELL.iO=C2=A0</font></div><div><font face=
+=3D"arial, sans-serif">December Resident |=C2=A0<a style=3D"color:rgb(17,85=
+,204)" href=3D"https://886b17ba.streaklinks.com/CPMY2Zd-fhWlLAQZaQ3y-2iP/ht=
+tps%3A%2F%2Fgazell.io%2Fpages%2Ftom-white" target=3D"_blank">Tom White</a><=
+/font></div></div></div></div></div></div></div></div></div></div><div dir=
+=3D"ltr"><br></div></div></div></div></div><div dir=3D"ltr"><font face=3D"a=
+rial, sans-serif"><div><a style=3D"color:rgb(17,85,204)" href=3D"http://www=
+.gazelliarthouse.com/" target=3D"_blank"><font color=3D"#0b5394">www.gazell=
+iarthouse.com</font></a></div><div>+44 (0) 207 491 8816 / +994 (0) 12 498 1=
+230</div><div><div><font color=3D"#000000"><a style=3D"color:rgb(17,85,204)=
+;display:inline-block" href=3D"https://886b17ba.streaklinks.com/CPMY2ZdcnPK=
+Ed29PBQYxSO3g/https%3A%2F%2Fwww.instagram.com%2Fgazelliarthouse%2F" target=
+=3D"_blank"><img style=3D"margin: 0.8em 0.2em; padding: 0px; letter-spacing=
+: -0.1px; border: 0px; vertical-align: middle; max-width: 100%;" width=3D"2=
+4" src=3D"https://68ef2f69c7787d4078ac-7864ae55ba174c40683f10ab811d9167.ssl=
+.cf1.rackcdn.com/instagram-icon_24x24.png"><div style=3D"margin:0px;width:0=
+px;height:0px"><div></div></div></a><a style=3D"color:rgb(17,85,204);displa=
+y:inline-block" href=3D"https://886b17ba.streaklinks.com/CPMY2ZZOzooMwrUb6Q=
+fHPX_H/https%3A%2F%2Ftwitter.com%2FGazelliArtHouse" target=3D"_blank"><img =
+style=3D"margin: 0.8em 0.2em; padding: 0px; letter-spacing: -0.1px; border:=
+ 0px; vertical-align: middle; max-width: 100%;" width=3D"24" src=3D"https:/=
+/68ef2f69c7787d4078ac-7864ae55ba174c40683f10ab811d9167.ssl.cf1.rackcdn.com/=
+twitter-icon_24x24.png"><div style=3D"margin:0px;width:0px;height:0px"><div=
+></div></div></a>=C2=A0<a style=3D"color:rgb(17,85,204);display:inline-bloc=
+k" href=3D"https://886b17ba.streaklinks.com/CPMY2ZhRUUTGqvbNgA_Etco7/https%=
+3A%2F%2Fwww.facebook.com%2FGazelliArtHouse%2F" target=3D"_blank"><img style=
+=3D"margin: 0.8em 0.2em; padding: 0px; letter-spacing: -0.1px; border: 0px;=
+ vertical-align: middle; max-width: 100%;" width=3D"24" src=3D"https://68ef=
+2f69c7787d4078ac-7864ae55ba174c40683f10ab811d9167.ssl.cf1.rackcdn.com/faceb=
+ook-icon_24x24.png"></a></font></div></div><div><br></div><div><img src=3D"=
+https://ci3.googleusercontent.com/mail-sig/AIorK4w7gKovNZAR8tYAuQ9hIjEiBgWe=
+l9uIDPpW34GyeY595Rek12deHDAlPE9ZZxtPymKBYCzaHBU" height=3D"44" width=3D"96"=
+><br></div><div><br></div><div><br></div><div><font color=3D"#000000">This =
+e-mail message, including all attachments, is for the=C2=A0sole use of the =
+intended recipient(s) and may contain=C2=A0legally privileged and confident=
+ial information. If you are=C2=A0not an intended recipient, you are hereby =
+notified that=C2=A0you have either received this message in error or throug=
+h=C2=A0interception, and that any=C2=A0review, use, distribution,=C2=A0copy=
+ing or disclosure of this message and/or its=C2=A0attachments or parts ther=
+eof is strictly prohibited and is=C2=A0subject to criminal and civil penalt=
+ies with appropriate=C2=A0national legislation.</font></div></font></div></=
+div></div></div></div></div></div></span></div></div></div></div></div></di=
+v></div></div></div></div></div></div></div></div></div></div></div></div><=
+/div></div></div></div></div></div></div></div></div></div></div></div></di=
+v></div></div></div></div></div></div></div></div></div></div><div style=3D=
+"color:rgb(34,34,34)"><div dir=3D"ltr"><div dir=3D"ltr"><div><div></div></d=
+iv></div></div></div></div></div></div></div></div></div></div></div></div>=
+</div></div></div></div></div></div></div></div></div></div></div></div></d=
+iv></div></div></div></div></div></div></div></div></div><div style=3D"colo=
+r:rgb(34,34,34)"><div dir=3D"ltr"><div dir=3D"ltr"></div></div></div></div>=
+</div></div></div></div></div></div></div></div></div></div></div></div></d=
+iv></div></div></div></div></div></div></div></div></div></div></div></div>=
+</div></div></div></div></div></div></div></div></div></div></div></div></d=
+iv></div></div></div></div></div></div></div></div></div></div></div></div>=
+</div></div></div></div></div></div></div></div></div></div></div></div></d=
+iv></div></div></div></div></div></div></div></div></div></div></div></div>=
+</div></div></div></div></div></div></div></div></div></div></div></div></d=
+iv></div></div></div></div></div></div></div></div></div></div><div style=
+=3D"margin:8px 0px 0px;padding:0px"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div><div dir=3D"ltr"><div dir=3D"ltr"><div></div></div></div></di=
+v><div><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr">=
+<div dir=3D"ltr"><div dir=3D"ltr"><span></span></div></div></div></div></di=
+v></div></div></div></div></div></div></div></div></div></div></div></div><=
+/div></div></div></div></div></div></div></div></div></div></div></div></di=
+v></div></div></div></div></div></div></div></div></div></div></div></div><=
+/div></div></div></div><br></div><div style=3D"max-height:1px"><img src=3D"=
+https://mailfoogae.appspot.com/t?sender=3DaZ2VvcmdlQGdhemVsbGlhcnRob3VzZS5j=
+b20%3D&amp;type=3Dzerocontent&amp;guid=3Da591f37f-e9ff-48d4-bbb7-76302c296e=
+58" style=3D"width: 0px; max-height: 0px; overflow: hidden;" alt=3D""><font=
+ size=3D"1" color=3D"#ffffff">=E1=90=A7</font></div><br><div class=3D"gmail=
+_quote"><div class=3D"gmail_attr" dir=3D"ltr">On Sun, 15 Dec 2024 at 11:27,=
+ Michael Pollard &lt;<a href=3D"mailto:michael@gazelliarthouse.com" target=
+=3D"_blank">michael@gazelliarthouse.com</a>&gt; wrote:<br></div><blockquote=
+ style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);p=
+adding-left:1ex" class=3D"gmail_quote"><div dir=3D"ltr">Hello Paul,<div><br=
+></div><div>This can be left to me and Tom.</div><div>I would=C2=A0simply n=
+eed the list of inventory=C2=A0and current packed methods / dims (if packed=
+) in order to start scheduling a local shipper to collect.</div><div><br></=
+div><div>I&#39;ll follow up for any important information=C2=A0when needed =
+(estimated values, additional detail if necessary)</div><div><br></div><div=
+>Michael.</div></div><br><div class=3D"gmail_quote"><div class=3D"gmail_att=
+r" dir=3D"ltr">On Fri, 13 Dec 2024 at 19:05, Paul Cohen &lt;<a href=3D"mail=
+to:paulrcohen@gmail.com" target=3D"_blank">paulrcohen@gmail.com</a>&gt; wro=
+te:<br></div><blockquote style=3D"margin:0px 0px 0px 0.8ex;border-left:1px =
+solid rgb(204,204,204);padding-left:1ex" class=3D"gmail_quote"><div dir=3D"=
+ltr"><div><div class=3D"gmail_default" style=3D"font-size:small">Great news=
+, Michael, thanks for letting us know.</div><div class=3D"gmail_default" st=
+yle=3D"font-size:small"><br></div><div class=3D"gmail_default" style=3D"fon=
+t-size:small">On a related subject, Mila and I talked earlier this week abo=
+ut getting started on shipping the &quot;figurative&quot; canvases compiled=
+ by Tom and George -- <a href=3D"https://privateviews.artlogic.net/2/f5fcb1=
+f56f9ce5a013b84a/" target=3D"_blank">https://privateviews.artlogic.net/2/f5=
+fcb1f56f9ce5a013b84a/</a> -- to GAH.=C2=A0 Do we need to have a zoom call t=
+o get going on this, or can we leave it with you and Tom?</div><div class=
+=3D"gmail_default" style=3D"font-size:small"><br></div><div class=3D"gmail_=
+default" style=3D"font-size:small">Thanks, --Paul<br></div><br clear=3D"all=
+"></div><div><div class=3D"gmail_signature" dir=3D"ltr"><div dir=3D"ltr"><d=
+iv><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div d=
+ir=3D"ltr"><div><div dir=3D"ltr">______________________________<br><br>Paul=
+ Cohen,=C2=A0=C2=A0Professor</div><div dir=3D"ltr">School of Computing and =
+Information</div><div dir=3D"ltr">University of Pittsburgh</div><div dir=3D=
+"ltr"><a href=3D"https://paulrcohen.github.io/" target=3D"_blank">personal =
+webpage</a><br>______________________________</div></div></div></div></div>=
+</div></div></div></div></div></div></div></div><br></div><br><div class=3D=
+"gmail_quote"><div class=3D"gmail_attr" dir=3D"ltr">On Fri, Dec 13, 2024 at=
+ 12:53=E2=80=AFPM Michael Pollard &lt;<a href=3D"mailto:michael@gazelliarth=
+ouse.com" target=3D"_blank">michael@gazelliarthouse.com</a>&gt; wrote:<br><=
+/div><blockquote style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
+b(204,204,204);padding-left:1ex" class=3D"gmail_quote"><div dir=3D"ltr"><di=
+v dir=3D"ltr">Dear Paul and Tom,<div><br></div><div>I just wanted to follow=
+ up and say thank you both for your help here.</div><div><br></div><div>The=
+ Arts council (faster than expected) approved the Export license without an=
+ issue or any follow=C2=A0up questions.</div><div><br></div><div>I&#39;m ce=
+rtain the signed letter and the researched=C2=A0details that Tom provided t=
+hat were provided along with the application made a huge contribution in th=
+is going through without contest.</div><div><br></div><div>Best,</div><div>=
+<br></div><div>Michael.</div></div></div><br><div class=3D"gmail_quote"><di=
+v class=3D"gmail_attr" dir=3D"ltr">On Wed, 4 Dec 2024 at 15:50, Michael Pol=
+lard &lt;<a href=3D"mailto:michael@gazelliarthouse.com" target=3D"_blank">m=
+ichael@gazelliarthouse.com</a>&gt; wrote:<br></div><blockquote style=3D"mar=
+gin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1=
+ex" class=3D"gmail_quote"><div dir=3D"ltr">This is perfect, thank you so mu=
+ch!=C2=A0<div><br></div><div>I will let you know the outcome.</div><div>FYI=
+, there is a chance you may receive an email directly from the Arts Council=
+ asking for more detail if available / possible.</div><div><br></div><div>I=
+f they reach out, feel free to ask me any questions.</div><div><br></div><d=
+iv>Michael.</div></div><br><div class=3D"gmail_quote"><div class=3D"gmail_a=
+ttr" dir=3D"ltr">On Wed, 4 Dec 2024 at 15:40, Paul Cohen &lt;<a href=3D"mai=
+lto:paulrcohen@gmail.com" target=3D"_blank">paulrcohen@gmail.com</a>&gt; wr=
+ote:<br></div><blockquote style=3D"margin:0px 0px 0px 0.8ex;border-left:1px=
+ solid rgb(204,204,204);padding-left:1ex" class=3D"gmail_quote"><div dir=3D=
+"ltr"><div><div class=3D"gmail_default" style=3D"font-size:small">Hi Michae=
+l, thanks for writing this!=C2=A0 I put it on my university letterhead to m=
+ake it seem more official.=C2=A0 Hope this is fine, let me know.=C2=A0 --P<=
+br></div><br clear=3D"all"></div><div><div class=3D"gmail_signature" dir=3D=
+"ltr"><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div><di=
+v dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr">_________________=
+_____________<br><br>Paul Cohen,=C2=A0=C2=A0Professor</div><div dir=3D"ltr"=
+>School of Computing and Information</div><div dir=3D"ltr">University of Pi=
+ttsburgh</div><div dir=3D"ltr"><a href=3D"https://paulrcohen.github.io/" ta=
+rget=3D"_blank">personal webpage</a><br>______________________________</div=
+></div></div></div></div></div></div></div></div></div></div></div></div><b=
+r></div><br><div class=3D"gmail_quote"><div class=3D"gmail_attr" dir=3D"ltr=
+">On Wed, Dec 4, 2024 at 6:37=E2=80=AFAM Michael Pollard &lt;<a href=3D"mai=
+lto:michael@gazelliarthouse.com" target=3D"_blank">michael@gazelliarthouse.=
+com</a>&gt; wrote:<br></div><blockquote style=3D"margin:0px 0px 0px 0.8ex;b=
+order-left:1px solid rgb(204,204,204);padding-left:1ex" class=3D"gmail_quot=
+e"><div dir=3D"ltr"><div dir=3D"ltr"><div>Dear Paul,</div><div><br></div><d=
+iv>Sorry we didn&#39;t get to chat again after our brief sit-down.</div><di=
+v><br></div><div>Attached here is a proposed affidavit=C2=A0/ draft for a d=
+ocument=C2=A0stating that, to the best of the Trust&#39;s knowledge, that t=
+he artwork was imported at some point during, likely=C2=A0during the mid-70=
+&#39;s / early 80&#39;s, for the purpose of exhibition.</div><div><br></div=
+><div>To confirm, the artwork in question is this one:</div><div><img style=
+=3D"width: 600px; max-width: 100%;" alt=3D"image.png"><br></div><div><div s=
+tyle=3D"box-sizing:border-box;padding-top:1px;color:rgb(0,0,0);font-size:14=
+px;font-family:ProximaNova,Helvetica,Arial,sans-serif;letter-spacing:0.2px"=
+><strong style=3D"box-sizing:border-box">Harold Cohen</strong></div><div st=
+yle=3D"box-sizing:border-box;color:rgb(0,0,0);font-family:ProximaNova,Helve=
+tica,Arial,sans-serif;font-size:13px;letter-spacing:0.2px"><em style=3D"box=
+-sizing:border-box">Untitled</em>, 1971</div><div style=3D"box-sizing:borde=
+r-box;color:rgb(0,0,0);font-family:ProximaNova,Helvetica,Arial,sans-serif;f=
+ont-size:13px;letter-spacing:0.2px">Acrylic on canvas</div><div style=3D"bo=
+x-sizing:border-box;color:rgb(0,0,0);font-family:ProximaNova,Helvetica,Aria=
+l,sans-serif;font-size:13px;letter-spacing:0.2px">213.4 x 302 cm, 84 x 118 =
+7/8 in</div><div style=3D"box-sizing:border-box;color:rgb(0,0,0);font-famil=
+y:ProximaNova,Helvetica,Arial,sans-serif;font-size:13px;letter-spacing:0.2p=
+x">(HC0174)</div></div><div><br></div><div>If you=C2=A0could review the att=
+ached, edit as you deem appropriate, and let me know if you&#39;d be willin=
+g to sign / have this submitted as part of the application to the UK Arts C=
+ouncil, that would be appreciated.</div><div><br></div><div>Also any questi=
+ons you may have about the application process, I would be happy to answer.=
+</div><div>Michael.</div><div><br></div><span class=3D"gmail_signature_pref=
+ix">-- </span><br><div class=3D"gmail_signature" dir=3D"ltr"><div dir=3D"lt=
+r"><div style=3D"color:rgb(34,34,34)"><div dir=3D"ltr"><div dir=3D"ltr"><fo=
+nt size=3D"1"><b>Michael Pollard</b></font></div><div dir=3D"ltr"><font siz=
+e=3D"1"><b>Senior Registrar</b></font></div><div dir=3D"ltr"><font size=3D"=
+1"><b><br></b></font></div><div dir=3D"ltr"><font size=3D"1"><b>GAZELLI ART=
+ HOUSE<br><br>LONDON=C2=A0=C2=A0</b></font></div></div></div></div></div></=
+div></div>
+</blockquote></div>
+</blockquote></div>
+</blockquote></div>
+</blockquote></div>
+</blockquote></div>
+</blockquote></div>
+</blockquote></div>
+</blockquote></div>
+</blockquote></div></div>
+</div></blockquote></div></div></div></div></blockquote></div></div>
+</div></blockquote></div></div>
+</div></blockquote></div>
+
+--000000000000821725062b06dea4--

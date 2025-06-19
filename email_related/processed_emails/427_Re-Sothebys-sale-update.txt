@@ -1,0 +1,46 @@
+Subject: Re: Sotheby’s sale update
+From: Thomas Machnik <zipnpup@yahoo.com>
+To: Mila Askarova <m.askarova@gazelliarthouse.com>
+Date: 2024-10-21 05:03:59
+Message-ID: <1795953263.2268612.1729487039721@mail.yahoo.com>
+--------------------------------------------------------------------------------
+
+Hi Mila,Thanks for the links to the works showing them hanging and for the update. Regarding NFT Collector's enquiry, I am currently piecing together the source code history. But currently I only have a rudimentary outline and information. I do have additional details but probably not necessarily pertinent. Of course if the collector has specific questions we can address those one by one. 
+
+But as a general response,
+
+The main groups (which are subject to change) are:(1995 to 2006) People+Plants to Plants with No People
+(2007 to 2009) Plants to No Gravity(2009 to 2013) No Gravity to No Backgrounds(2013 to 2016) Fingerpainting
+The works in the show belong to the first group (1995 to 2006) People+Plants to Plants with No People.The area of focus for the show was 2002-2003 with 2003 being the main focus. 2003 is important because the 20 year effort to include people breathed its last breath that year so too did the table along with a cube, bowls, vases, bottles and goblets. The last iteration that included these elements also included shadows cast on the table. It is the shadow feature that Harold carried forward and let the others ones go. The shadow element is important for over time it morphs and he transformed its function. Another element he continued with was the potted plant. However, the pots are not necessarily always visible sometimes they are out of the frame and or there existence only implied. He seems to have a couple trains of thought at that time. One is to continue to include the pot and showcase that it is still in a room with or without tiles and/or shadows.  The another was to focus on the foliage in the upper canopy along with stems and branches. It took time but ultimately the latter won out. 
+
+As for technical details. We have currently do not have any AARON versions from 2002 or 2003 that run. We do have saved source code versions from 2002 and 2003 though. And based on dates of the files in the source we can guess which version was used to generate the works that are in the show. Depending on which work we are referring to it could have been aaron5, aaron6 or aaron7. Of course, ideally we get these versions running and see what AARON was actually generated to be absolutely sure. 
+
+The 2002/2003 code was written in Lisp on a Windows based machine most likely running Windows 2000 but I don't have enough information to confirm this. It might have been Windows XP Professional-64. I can however, say that AARON was compiled with Franz Allegro and most likely compiled with version acl62w. He would have run the program from within the Allegro integrated environment as he rarely made executable versions. The executable versions were typically only made for exhibitions and unfortunately we do not have a known executable ones from this time period. Because we do not have any known executables we can't say how big the program was. However, I did look at one of the aaron6 versions. It consisted of 1.1MB of typed code in 79 source code files. Unfortunately, Harold rarely used comments so this 1.1MB is almost all hand typed Lisp source code. Because we no longer have the computer that he used to created the works shown at the show, we can't say for sure how long it took AARON to generated a particular image but it is believed to have been 1 to 7 minutes or so depending on complexity. 
+
+As for notebooks, Harold seemed to have stopped using paper notebooks on a regular basis sometime in the 1990s which is prior to these works. However, Harold did continue to write for publications. I don't see any written in 2003 but the following two were written in 2002.
+Leonardo: Journal of the International
+Society for the Arts,Sciences and
+Technology (Volume 35, No. 1, 2002)
+Here is a link to another 2002 publication which links to our website. Although it is written in 2002, starting on page 29 he does dive into some details that maybe be of interest
+https://aaronshome.com/aaron/publications/changingworld.doc
+On Monday, I will look to see if we have any additional computer note files from 2003 in our archives. 
+
+Tom
+
+ On Saturday, October 19, 2024, 11:48:15 AM PDT, Mila Askarova <m.askarova@gazelliarthouse.com> wrote: 
+
+ Hi both, 
+Hope all is well! Paul, looking forward to our catch up Monday but in the meantime wanted to touch base to let you know that the exhibition is up and open and getting a lot of interest. 
+2 works have now been sold with another 3 being considered. Once the physical exhibition is over on Tuesday, the sale will continue online. 
+There was an enquiry from one of the top NFT collectors re the actual program producing these (some technical questions). Is there anything we can share in addition to what has already been communicated ? Perhaps some images of Harold’s sketchbook or anything you might think would be relevant. 
+Some images here:https://x.com/sothebysverse/status/1847327303132451073?s=46&t=MQotEjrmgi3F1ivLDzYr4g
+And the link to the online sale here:https://www.sothebys.com/en/digital-catalogues/aaron-the-earliest-ai-program-for-artmaking
+My best, Mila 
+
+Mila Askarova 
+CEO & Founder 
+
+GAZELLI ART HOUSE
+
+www.gazelliarthouse.com
++44 (0) 207 491 8816 / +994 (0) 12 498 1230

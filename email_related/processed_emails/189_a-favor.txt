@@ -1,0 +1,18 @@
+Subject: a favor
+From: Paul Cohen <paulrcohen@gmail.com>
+To: George Lionel Barker <george@gazelliarthouse.com>, 
+	Michael Pollard <michael@gazelliarthouse.com>, Thomas Machnik <zipnpup@yahoo.com>
+Date: 2024-12-04 15:39:14
+Message-ID: <CAKjPZkFaPratFK8U9mqGykdFAov7T1Mk8Vyks+4ZGhizRUJgGQ@mail.gmail.com>
+--------------------------------------------------------------------------------
+
+Guys, I am writing to ask a favor. A couple of months back, I agreed to
+supervise a class project for three undergrads here at Pitt. The class is
+a web development thing where they have to design a web front end and back
+end. I suggested that they build something for Harold's inventory and sent
+them a csv file that contains a fraction of Harold's stuff on Art Logic.
+To get a grade in the class, they need the work to be evaluated by
+professionals in the field. It would require you to sit through a short
+demo and (probably) write a very short evaluation, just a few sentences.
+
+I haven't seen the project yet because they are undergraduates who have

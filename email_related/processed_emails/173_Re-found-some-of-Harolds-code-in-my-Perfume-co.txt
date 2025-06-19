@@ -1,0 +1,21 @@
+Subject: Re: found some of Harold's code in my "Perfume" code from 1982
+From: George Legrady <glegrady@ucsb.edu>
+To: Paul Cohen <paulrcohen@gmail.com>
+Date: 2024-09-18 11:03:00
+Message-ID: <77123204-9E9B-4F75-915D-D1798C6028D9@ucsb.edu>
+--------------------------------------------------------------------------------
+
+Hi Paul, 
+
+The code which I will scan this week-end and send to you is simple - it visualizes how a set of particles leave the contained space of a bottle to fill the large space around it. What is relevant to you is that I am using Harold’s environment of how the software data is visualized on the Tecktronix, so you get to have the code for the interface. 
+
+—
+
+Background: I arrived in San Digeo in August 1981, and was staying by chance with a grad student, Jeff Greenberg, who turned out to be Harold’s assistant. I saw a “BYTE” magazine in the corner of the room, and told him about my interest in getting to know about computers. Jeff took me to Harold’s studio and introduced me. It was a Friday afternoon. After about 5 minutes’ conversation, Harold said, come by Monday and we will get you a key to the studio. Harold knew I was an artist as I think Jeff had shown Harold my two-page photographic spread titled “Artificial Intelligence” in Parachute magazine, an art theory journal from Montreal.
+
+I had access to Harold’s studio and equipment for about 3 years, while teaching photography at Cal Arts. That is how I learned computing, working at his PD-11 and later VAX mainframe whenever I was not in the way. There were 3 or 4 terminals so we each had our personal station. I got Kernigan’s and Ritchie’s book on C language and learned on my own with Jeff helping me out here and there. Harold never asked anything from me, and I consider his generous offer to his computer invaluable as there was no access to computers unless one was afiliated with academia, industry or the military. It was on Harold’s system that I was able to transition from the analog world of photography to the computational world. Nonetheless I had to wait until 1986 to be able to do “digital photography” when the AT&T Targa Truevision system became available. There is an early image from that series in the “Digital Witness” exh. at LACMA. 
+
+George
+
+> On Sep 18, 2024, at 7:32 AM, Paul Cohen <paulrcohen@gmail.com> wrote:
+>

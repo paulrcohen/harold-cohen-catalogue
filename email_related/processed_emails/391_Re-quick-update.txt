@@ -1,0 +1,16 @@
+Subject: Re: quick update
+From: Thomas Machnik <zipnpup@yahoo.com>
+To: Paul Cohen <paulrcohen@gmail.com>
+Date: 2025-05-13 07:34:56
+Message-ID: <1315612960.2327185.1747121696622@mail.yahoo.com>
+--------------------------------------------------------------------------------
+
+Hi Paul,Thanks for the update. I am sorry to hear George is no longer with Gazelli. He will be missed. I certainly wish him well and hope our paths cross again. This news does not surprise me. Gazelli has been awfully quiet as of late and was a bit concerned. Also because there is much uncertainty in the society at large and I kinda thought Dallas would be a litmus test of sorts reflecting how much people are being affected by all the uncertainty. And I guess they responded in a clear uniform manner. 
+We still haven’t shipped any of the work we talked about back in December. I rather think its okay at this point to put it all back now and wait for a more favorable change in the wind. Since the pulled work takes up much space, I have been moving forward with documenting the digital inventory of AARON images we have starting from 1995 with a focus on translating the previously unviewable AARON vector script files. But I would like to put the pulled work back into the racks and so I can finish inventorying the physical work in Kanoko’s room. 
+I would also like at some point to purchase a Windows machine with the intent to set it up as a dedicated machine whose sole function would be to run all the various code we have. I tried setting up some Virtual Machines on the new Macbook but since the Macbook has an Apple M2 processor it won’t run any Intel x86 processor operating systems like Red Hat and Windows. 
+Last week I finished compiling and running all the 2007 code we have. That means I have checked all the code from 2007 to 2016. For a total of 116 version tested. Not all of them run of course. We don’t have any source code from 2006. I would like at some point to start working on 2005. I did try to compile a few of the 2005 AARON versions but apparently the was a big change in Allegro’s compiler between 2005 and 2007 and we don’t have their 2005 compiler. Some of the 2005 ones it compile with a large number of warnings complaining that I don’t have the right compile. In any case, they don't run. I did however find passwords for early versions of Allegro but have not found any earlier compilers yet. 
+I also started looking at the earliest code we have from the 1995/96s. Most of it seems to be standard Common Lisp so maybe some or it can be compiled by the Allegro we have. I do know that some of the code is cut off so I doubt any one version is complete. We may have to use code from other versions and/or make some assumptions to get the oldest ones running.  Unfortunately for these 1990s versions we don’t have any make files and not descriptor files saying how to make AARON from that time. That can be overcome I am sure. 
+Based on your call with Mila, what do you think regarding the shipment? George seems to have been the one spearheading the list. With him out of the picture, shall we hold off until the winds change toward a more favorable direction? If so, I am ok with that.
+Tom
+
+ On Monday, May 12, 2025 at 07:07:27 PM PDT, Paul Cohen <paulrcohen@gmail.com> wrote:

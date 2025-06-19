@@ -1,0 +1,327 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a10:a44c:b0:5ad:6c17:f336 with SMTP id f12csp1648960pxu;
+        Sat, 30 Nov 2024 07:36:48 -0800 (PST)
+X-Received: by 2002:a05:600c:4e8b:b0:432:7c08:d0ff with SMTP id 5b1f17b1804b1-434a9df2683mr128238825e9.23.1732981007915;
+        Sat, 30 Nov 2024 07:36:47 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1732981007; cv=none;
+        d=google.com; s=arc-20240605;
+        b=YVJkxNnK2WkyFqgmMIdx/Isr2lFF1X6jpbyau8S1oZoQGJdO9AU3iuBpFuWwyCKvHw
+         jlrmCB2DLRUFRbRzBJ7n9ig3nChrVv0woot7skC0PhfzcOqZhTMsIe4bMTDTCZS8Jp8Y
+         pMtqWiSCYTrtuE5233M98eYLRXAK1+3AqHqtCyj+s2UIrtG74clNhkuuPmxyEquBbDob
+         bzZPK5nl3a+SStxPSMw8LLahTRL0WNpzjKLPJtrUvJimmtHiZVzcFO1VgUtd44YGL5gV
+         IqcPkToMHixPzeDWop+mwGrx/eDgNs002nUny1ski0BbT9bUitpOTEtatcdtPvtB4ubK
+         PE0Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:in-reply-to:cc:references:message-id:date:subject:mime-version
+         :from:content-transfer-encoding:dkim-signature;
+        bh=S+WH1paRu7+UB8lh94jlFTLc9qPwIYK1J8DLf1FJ6YA=;
+        fh=VBt2eTBhpvvH1OazfOaHPa1R2TBt8CIcBr1eFSEPmRA=;
+        b=YN/3XJZXd6p2YURUPKZcn48mW0uqeL3Fl/ZBQJbAoRWs/GBzZvfDZ9dq+c2QvUx0kD
+         swcjGxmCpfVC0mM9FQT80Fo8+4HnHam6Gs+TbeVb5EgxmVVtJ+NaWe97qE47T83/m/tj
+         7tlLKXUEcpDej2o198hZIhgYl3+A4P+yemnoWhE0oO+VYNdNgnGd6oZdx+cSloeHWNHR
+         vLdSXFjKqsUCV2RD7CruqxWAv60PYlIKXRerfEY8XLZ3TcoL96Luu/XL2NsEmKqCterH
+         9nJxSbG6datvV4+CO+t7lmBsCP7jIDtTmhcIbvr8WiEy//SNt3cSRAqaVlLh3rCbPJOX
+         gbSg==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@gazelliarthouse-com.20230601.gappssmtp.com header.s=20230601 header.b=EFqnJBQV;
+       spf=pass (google.com: domain of m.askarova@gazelliarthouse.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=m.askarova@gazelliarthouse.com;
+       dara=pass header.i=@gmail.com
+Return-Path: <m.askarova@gazelliarthouse.com>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id 5b1f17b1804b1-434b105680asor22722455e9.5.2024.11.30.07.36.47
+        for <paulrcohen@gmail.com>
+        (Google Transport Security);
+        Sat, 30 Nov 2024 07:36:47 -0800 (PST)
+Received-SPF: pass (google.com: domain of m.askarova@gazelliarthouse.com designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@gazelliarthouse-com.20230601.gappssmtp.com header.s=20230601 header.b=EFqnJBQV;
+       spf=pass (google.com: domain of m.askarova@gazelliarthouse.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=m.askarova@gazelliarthouse.com;
+       dara=pass header.i=@gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gazelliarthouse-com.20230601.gappssmtp.com; s=20230601; t=1732981007; x=1733585807; dara=google.com;
+        h=to:in-reply-to:cc:references:message-id:date:subject:mime-version
+         :from:content-transfer-encoding:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=S+WH1paRu7+UB8lh94jlFTLc9qPwIYK1J8DLf1FJ6YA=;
+        b=EFqnJBQVzNnHf2qwXi64VdkcP+8bO5+4FzIKzAIDJDkTVDpin/pFIiUUsHvbhf82/V
+         HD8+CE1tem7UpDNwreCvI3FMg9tBtaRanUmOVyqMD7nKdeKLexpO5dpoTedNWVWEsRsY
+         sxJbEOKi2uYwr62LqRJoQfcMbnBQuCnTgLiJ0pacX421Wp/Iibfkmc20ei2RiOOSRKsk
+         0wMrwRHzGvLFodD2bCwDzS7Mc3y+y7Z+jl5AJIMM7XDZIBI8jtJK0QtgUsx+nnSXlZXx
+         SWKgL6YUEK5f3R57S4pDWMMTBpsftcZZpqdSAcA/cQnDHQwLggawawX53W8sGI0TGtDq
+         1lBw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1732981007; x=1733585807;
+        h=to:in-reply-to:cc:references:message-id:date:subject:mime-version
+         :from:content-transfer-encoding:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=S+WH1paRu7+UB8lh94jlFTLc9qPwIYK1J8DLf1FJ6YA=;
+        b=PbebavXmR8POfI88QwKI6uxWBjkvhV9QmawEfqqvmasSgPBNrRuxVbVfzCBAzmV/Km
+         PnOeZBe07xlrXINJiMrrdcEzgcKKHRPf5Ftgxta78cK7btH7YO2EfKJU+qA+ygpc4lDI
+         JMvBKz1wcZqBJTl0JMba3AbR21Iyq0BvvqdPhPvgOHNAQ5ZKleBx0RjpLuLQVxOY+Aem
+         dgUjl9Owf7KxcX8ijs5ZpCLD4ZhXTGhXVDGCWXnNOOAMeVwNIKgn0h/RKTQ0dgFfF5vq
+         98Pn+S6HootwJ6+AY/xo/nx8O37AHC+dI42KuVvx8CY7KTbicShK+xqeH9y7DrZYH7gt
+         ZPxQ==
+X-Gm-Message-State: AOJu0Yz+7mRinGdcoS+lWILuDv+35WiHMXEnn0Vn3tWxlLlv4TYYxxuh
+	xzK2SmJqKLo2QnCTBTu2Xv22tAgzrM/W5jGA705H++GOMjd0aSM4FJmHwrcY+OZ0jsBLKTX4LZ0
+	o
+X-Gm-Gg: ASbGncsLLlIlFEpD9Q6+9psh3J6Ov9X+mocYlszWjVoQpbo+kTgwsEq2G5iFVNVUwET
+	KzYzFUmoS1MDuT+Rj5HjfPTyXgkcxNTHwF4463fN+r4RPK6udvu7pByADZ2vohi4PVK4PFezWXa
+	dmEsUiTg9F/K8DQL5iNyQC1b42nBZ1wQX31ikIaFUumRnM7pIbFZzCzyEwA8ZcnWz4zLsJ3oC9w
+	Nac0i99VTdSOLJxT6Zx2pky5IL+lc/+g6AZE1zQvtAIB8HNygDwGQZ8V2gGBXWz/1vcVVCgpd+4
+	6wnWHa/r7SGqem5GOwqWXueFCZV7ywW2EImiSjuMvyMXW31HgscH/TEw
+X-Google-Smtp-Source: AGHT+IEhstjALVHFaL0x1NSHR1mGAzpXpOciTfTqdegaSC6fiJMVbkwHt6gQhAecU2ltYG7M8SWGYQ==
+X-Received: by 2002:a05:600c:5253:b0:434:a19a:5965 with SMTP id 5b1f17b1804b1-434a9dbbc40mr144315955e9.6.1732981006867;
+        Sat, 30 Nov 2024 07:36:46 -0800 (PST)
+Return-Path: <m.askarova@gazelliarthouse.com>
+Received: from smtpclient.apple (host81-155-235-7.range81-155.btcentralplus.com. [81.155.235.7])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-434aa78c202sm119779615e9.26.2024.11.30.07.36.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 30 Nov 2024 07:36:45 -0800 (PST)
+Content-Type: multipart/alternative; boundary=Apple-Mail-DEE00DFC-C6AE-4199-BD65-8DF442574D90
+Content-Transfer-Encoding: 7bit
+From: m.askarova@gazelliarthouse.com
+Mime-Version: 1.0 (1.0)
+Subject: Re: Jeu de Paume reproduction request of HC's Colouring Book
+Date: Sat, 30 Nov 2024 15:36:41 +0000
+Message-Id: <94406627-38FC-4F8A-84E2-10046022FB95@gazelliarthouse.com>
+References: <CAAOqD34CzNzJdDR7G3XSPk8pJf9a3bK7FG9iZ4tDbGBUJ8qmSA@mail.gmail.com>
+Cc: Harold Cohen Trust <aaron@aaronshome.com>,
+ Pegah Hoghoughi <pegah@gazelliarthouse.com>, zipnpup <zipnpup@yahoo.com>
+In-Reply-To: <CAAOqD34CzNzJdDR7G3XSPk8pJf9a3bK7FG9iZ4tDbGBUJ8qmSA@mail.gmail.com>
+To: Paul Cohen <paulrcohen@gmail.com>
+X-Mailer: iPhone Mail (22B91)
+
+
+--Apple-Mail-DEE00DFC-C6AE-4199-BD65-8DF442574D90
+Content-Type: text/html;
+	charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
+utf-8"></head><body dir=3D"auto">Would something like this work? :&nbsp;<div=
+><br></div><div>Images from the Drawing Book are limited to only works and d=
+escriptions relating to Harold Cohen. No other artist can be reproduced from=
+ the book.&nbsp;</div><div><br></div><div><font color=3D"#313131" face=3D"-a=
+pple-system, Helvetica Neue" size=3D"3"><span style=3D"caret-color: rgb(49, 4=
+9, 49); word-spacing: 1px; -webkit-text-size-adjust: auto;"><br id=3D"lineBr=
+eakAtBeginningOfSignature"></span></font><div dir=3D"ltr"><div style=3D"font=
+-family: UICTFontTextStyleBody; -webkit-text-size-adjust: auto;">Mila Askaro=
+va&nbsp;</div><div style=3D"font-family: UICTFontTextStyleBody; -webkit-text=
+-size-adjust: auto;"><br></div><div style=3D"font-family: UICTFontTextStyleB=
+ody; -webkit-text-size-adjust: auto;">CEO &amp; Founder&nbsp;</div><div styl=
+e=3D"font-family: UICTFontTextStyleBody; -webkit-text-size-adjust: auto;">Ga=
+zelli Art House&nbsp;</div><div style=3D"font-family: UICTFontTextStyleBody;=
+ -webkit-text-size-adjust: auto;">39 Dover Street&nbsp;</div><div style=3D"f=
+ont-family: UICTFontTextStyleBody; -webkit-text-size-adjust: auto;">W1S 4NN,=
+ London, UK&nbsp;</div><div style=3D"font-family: UICTFontTextStyleBody; -we=
+bkit-text-size-adjust: auto;">M: +44 (0)79 6829 3537</div></div><div dir=3D"=
+ltr"><br><blockquote type=3D"cite">On 30 Nov 2024, at 15:04, Mila Askarova &=
+lt;m.askarova@gazelliarthouse.com&gt; wrote:<br><br></blockquote></div><bloc=
+kquote type=3D"cite"><div dir=3D"ltr">=EF=BB=BF<div dir=3D"auto">Hope you ha=
+d a smooth trip back Paul!&nbsp;</div><div dir=3D"auto">I=E2=80=99ll double c=
+heck and get back to you asap.</div><div dir=3D"auto"><br></div><div dir=3D"=
+auto">My best,&nbsp;</div><div dir=3D"auto">Mila&nbsp;<br clear=3D"all"><br c=
+lear=3D"all"><div dir=3D"auto"><div dir=3D"ltr" class=3D"gmail_signature" da=
+ta-smartmail=3D"gmail_signature">Mila Askarova&nbsp;<br>CEO &amp; Founder&nb=
+sp;<br><br>GAZELLI ART HOUSE<br><br><a href=3D"http://www.gazelliarthouse.co=
+m">www.gazelliarthouse.com</a><br>+44 (0) 207 491 8816 / +994 (0) 12 498 123=
+0<br></div></div></div><div><br></div><div><br><div class=3D"gmail_quote"><d=
+iv dir=3D"ltr" class=3D"gmail_attr">On Fri, 29 Nov 2024 at 19:22, Paul Cohen=
+ &lt;<a href=3D"mailto:paulrcohen@gmail.com">paulrcohen@gmail.com</a>&gt; wr=
+ote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;b=
+order-left:1px #ccc solid;padding-left:1ex"><div dir=3D"auto">Hi all, just l=
+anded in Boston. Great trip thanks toMila! Re the coloring book, penny Nii p=
+assed away last month, so I think that makes the living authors just becky, i=
+s that right? Do we know how many images or how much text they want? P</div>=
+<div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On=
+ Fri, Nov 29, 2024 at 2:17 PM zipnpup &lt;<a href=3D"mailto:zipnpup@yahoo.co=
+m" target=3D"_blank">zipnpup@yahoo.com</a>&gt; wrote:<br></div><blockquote c=
+lass=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px=
+;border-left-style:solid;padding-left:1ex;border-left-color:rgb(204,204,204)=
+"><div dir=3D"auto"><div dir=3D"auto">Dear Mila</div><div dir=3D"auto"><br><=
+/div><div dir=3D"auto">Nice to hear from you.</div><div dir=3D"auto"><br></d=
+iv><div dir=3D"auto">I'm always happy to hear about interest in the colourin=
+g book as it is a treasure that has yet to reveal itself fully.&nbsp;</div><=
+div dir=3D"auto"><br></div><div dir=3D"auto">Earlier this year we scanned th=
+e pages so from a practical stand point we have them. We've had multiple sim=
+ilar requests in the past but we had to decline each not because there are m=
+ultiple authors meaning we do not have the copyright.&nbsp;</div><div dir=3D=
+"auto"><br></div><div dir=3D"auto">I would love for Jeu de Paume to include p=
+ortions of the book. But don't want HCT to get in legal trouble.&nbsp;</div>=
+<div dir=3D"auto"><br></div><div dir=3D"auto"><br></div><div dir=3D"auto">To=
+m</div><div dir=3D"auto"><br></div><div dir=3D"auto"><br></div><div dir=3D"a=
+uto"><br></div><div dir=3D"auto"><br></div><div dir=3D"auto"><br></div><div d=
+ir=3D"auto"><br></div><div dir=3D"auto"><br></div><div id=3D"m_6405937985792=
+816398m_3295778355100509005composer_signature" dir=3D"auto"><div style=3D"fo=
+nt-size:12px;color:rgb(87,87,87)" dir=3D"auto">Sent from my T-Mobile 4G LTE D=
+evice</div></div></div><div dir=3D"auto"><div dir=3D"auto"><br></div><div><b=
+r></div><div align=3D"left" dir=3D"auto" style=3D"font-size:100%;color:rgb(0=
+,0,0)"><div>-------- Original message --------</div><div>From: Mila Askarova=
+ &lt;<a href=3D"mailto:m.askarova@gazelliarthouse.com" target=3D"_blank">m.a=
+skarova@gazelliarthouse.com</a>&gt; </div><div>Date: 11/29/24  10:13 AM  (GM=
+T-08:00) </div><div>To: Thomas Machnik &lt;<a href=3D"mailto:zipnpup@yahoo.c=
+om" target=3D"_blank">zipnpup@yahoo.com</a>&gt; </div><div>Cc: Paul Cohen &l=
+t;<a href=3D"mailto:paulrcohen@gmail.com" target=3D"_blank">paulrcohen@gmail=
+.com</a>&gt;, Pegah Hoghoughi &lt;<a href=3D"mailto:pegah@gazelliarthouse.co=
+m" target=3D"_blank">pegah@gazelliarthouse.com</a>&gt; </div><div>Subject: J=
+eu de Paume reproduction request of HC's Colouring Book </div><div><br></div=
+></div><div dir=3D"ltr"><div>Hi Tom,&nbsp;</div><div><br></div><div>Hope all=
+ is well!&nbsp;</div><div>Excellent time we have spent with Paul this week a=
+nd very productive. George is due to write a note to you shortly too.&nbsp;<=
+/div><div><br></div><div>A quick request from the&nbsp;Spalters -&nbsp;</div=
+><div><br></div><div>A museum in France, <a href=3D"https://jeudepaume.org/e=
+n/about-us/" target=3D"_blank">Jeu de Paume</a>, is asking for the reproduct=
+ion&nbsp;of some pages from Harold Cohen's drawing book to include in their f=
+orthcoming publication as illustrations&nbsp;for a "time capsule" entitled "=
+Generative art", that draws connections between the current developments of A=
+I and earlier artistic endeavours.&nbsp;</div><div><br></div><div>If you agr=
+ee, we would need to send HD files for print along with complete captions , c=
+redits and copyrights to mention&nbsp;to them.&nbsp;</div><div><br></div><di=
+v>Let us know?</div><div><br></div><div>My best,</div><div>Mila&nbsp;</div><=
+div><br></div><div><div dir=3D"auto"><br></div><div dir=3D"auto"><br></div><=
+div dir=3D"auto"><br></div></div><span class=3D"gmail_signature_prefix">-- <=
+/span><br><div data-smartmail=3D"gmail_signature" class=3D"gmail_signature" d=
+ir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"lt=
+r"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div d=
+ir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"lt=
+r"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div d=
+ir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"lt=
+r"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div d=
+ir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"lt=
+r"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div d=
+ir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"lt=
+r"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div d=
+ir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"lt=
+r"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div d=
+ir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"lt=
+r"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div d=
+ir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"lt=
+r"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div>=
+<font style=3D"color:rgb(0,0,0)">Mila Askarova&nbsp;</font></div><div><font s=
+tyle=3D"color:rgb(0,0,0)">CEO &amp; Founder&nbsp;</font></div><div style=3D"=
+color:rgb(80,0,80)"><b><br></b></div><div><div style=3D"font-family:&quot;ti=
+mes new roman&quot;,serif"><div style=3D"font-family:Arial,Helvetica,sans-se=
+rif"><div style=3D"font-family:Arial,Helvetica,sans-serif;color:rgb(34,34,34=
+)"><div dir=3D"ltr" style=3D"font-family:Arial,Helvetica,sans-serif"><div di=
+r=3D"ltr" style=3D"font-family:Arial,Helvetica,sans-serif"><div dir=3D"ltr" s=
+tyle=3D"font-family:Arial,Helvetica,sans-serif"><font style=3D"font-family:A=
+rial,Helvetica,sans-serif;color:rgb(0,0,0)"><b style=3D"font-family:Arial,He=
+lvetica,sans-serif">GAZELLI ART HOUSE</b></font></div><div dir=3D"ltr" style=
+=3D"font-family:Arial,Helvetica,sans-serif"><br></div><div dir=3D"ltr" style=
+=3D"font-family:Arial,Helvetica,sans-serif"><div dir=3D"ltr" style=3D"font-f=
+amily:Arial,Helvetica,sans-serif"><div dir=3D"ltr" style=3D"font-family:Aria=
+l,Helvetica,sans-serif"><div dir=3D"ltr" style=3D"font-family:Arial,Helvetic=
+a,sans-serif"><div dir=3D"ltr" style=3D"font-family:Arial,Helvetica,sans-ser=
+if"><div dir=3D"ltr" style=3D"font-family:Arial,Helvetica,sans-serif"><div d=
+ir=3D"ltr" style=3D"font-family:Arial,Helvetica,sans-serif"><div dir=3D"ltr"=
+ style=3D"font-family:Arial,Helvetica,sans-serif"><span style=3D"font-family=
+:Arial,Helvetica,sans-serif"><div dir=3D"ltr" style=3D"font-family:Arial,Hel=
+vetica,sans-serif"><div dir=3D"ltr" style=3D"font-family:Arial,Helvetica,san=
+s-serif"><div dir=3D"ltr" style=3D"font-family:Arial,Helvetica,sans-serif"><=
+div dir=3D"ltr" style=3D"font-family:Arial,Helvetica,sans-serif"><font face=3D=
+"arial, sans-serif" style=3D"font-family:arial,sans-serif;color:rgb(0,0,0)">=
+LONDON</font></div><div style=3D"font-family:Arial,Helvetica,sans-serif"><fo=
+nt face=3D"arial, sans-serif" style=3D"font-family:arial,sans-serif;color:rg=
+b(34,34,34)"><a style=3D"font-family:arial,sans-serif;color:rgb(17,85,204)" h=
+ref=3D"https://gazelliarthouse.com/exhibitions/185-cipher-pouran-jinchi-ruba=
+-salameh/" target=3D"_blank">Cipher: Pouran Jinchi &amp; Ruba Salameh</a></f=
+ont></div><div style=3D"font-family:Arial,Helvetica,sans-serif"><font face=3D=
+"arial, sans-serif" style=3D"font-family:arial,sans-serif;color:rgb(34,34,34=
+)"><a style=3D"font-family:arial,sans-serif;color:rgb(17,85,204)" href=3D"ht=
+tps://gazelliarthouse.com/exhibitions/186-the-window-aida-mahmudova/" target=
+=3D"_blank">The Window: Aida Mahmudova</a>&nbsp;</font></div><div style=3D"f=
+ont-family:Arial,Helvetica,sans-serif"><font face=3D"arial, sans-serif" styl=
+e=3D"font-family:arial,sans-serif;color:rgb(34,34,34)"><br></font></div><div=
+ style=3D"font-family:Arial,Helvetica,sans-serif"><span style=3D"font-family=
+:arial,sans-serif;color:rgb(0,0,0)">BAKU&nbsp;</span></div><div style=3D"fon=
+t-family:Arial,Helvetica,sans-serif">Upcoming:&nbsp;<a style=3D"font-family:=
+Arial,Helvetica,sans-serif;color:rgb(17,85,204)" href=3D"https://gazelliarth=
+ouse.com/exhibitions/188-parallel-worlds-chris-levine-michael-takeo-magruder=
+-marshmallow-laser-feast/" target=3D"_blank">Parallel Worlds: Chris Levine, M=
+ichael Takeo Magruder, Marshmallow Laser Feast, Elnara Nasirli, Recycle Grou=
+p, Nye Thompson</a></div><div style=3D"font-family:Arial,Helvetica,sans-seri=
+f"><br></div><div dir=3D"ltr" style=3D"font-family:Arial,Helvetica,sans-seri=
+f"><div style=3D"font-family:Arial,Helvetica,sans-serif"><font face=3D"arial=
+, sans-serif" style=3D"font-family:arial,sans-serif;color:rgb(0,0,0)">GAZELL=
+.iO&nbsp;</font></div><div style=3D"font-family:Arial,Helvetica,sans-serif">=
+<font face=3D"arial, sans-serif" style=3D"font-family:arial,sans-serif;color=
+:rgb(34,34,34)">November Resident |&nbsp;<a style=3D"font-family:arial,sans-=
+serif;color:rgb(17,85,204)" href=3D"https://gazell.io/exhibitions/141-lovid/=
+" target=3D"_blank">LoVid</a></font></div></div></div></div></div></span><di=
+v dir=3D"ltr" style=3D"font-family:Arial,Helvetica,sans-serif"><div style=3D=
+"font-family:Arial,Helvetica,sans-serif"><br></div></div></div></div></div><=
+/div></div></div></div></div></div></div><div dir=3D"ltr" style=3D"font-fami=
+ly:Arial,Helvetica,sans-serif"><font face=3D"arial, sans-serif" style=3D"fon=
+t-family:arial,sans-serif;color:rgb(34,34,34)"><div style=3D"font-family:ari=
+al,sans-serif"><a style=3D"font-family:arial,sans-serif;color:rgb(17,85,204)=
+" href=3D"http://www.gazelliarthouse.com/" target=3D"_blank"><font style=3D"=
+font-family:arial,sans-serif;color:rgb(11,83,148)">www.gazelliarthouse.com</=
+font></a></div><div style=3D"font-family:arial,sans-serif">+44 (0) 207 491 8=
+816 / +994 (0) 12 498 1230</div><div style=3D"font-family:arial,sans-serif">=
+<br></div><div style=3D"font-size:x-small;font-family:arial,sans-serif"><div=
+ style=3D"font-family:arial,sans-serif"><font style=3D"font-family:arial,san=
+s-serif;color:rgb(0,0,0)"><a style=3D"display:inline-block;font-family:arial=
+,sans-serif;color:rgb(17,85,204)" href=3D"https://streaklinks.com/BHpVIxJHhz=
+ip8Hm6nAyO2h9O/https%3A%2F%2Fwww.instagram.com%2Fgazelliarthouse%2F" target=3D=
+"_blank"><img style=3D"margin:0.8em 0.2em;padding:0px;letter-spacing:-0.1px;=
+border:0px;vertical-align:middle;max-width:100%;font-family:arial,sans-serif=
+" width=3D"24" src=3D"https://68ef2f69c7787d4078ac-7864ae55ba174c40683f10ab8=
+11d9167.ssl.cf1.rackcdn.com/instagram-icon_24x24.png" data-unique-identifier=
+=3D""><div style=3D"margin:0px;width:0px;height:0px;font-family:arial,sans-s=
+erif"><div style=3D"font-family:arial,sans-serif"></div></div></a><a style=3D=
+"display:inline-block;font-family:arial,sans-serif;color:rgb(17,85,204)" hre=
+f=3D"https://streaklinks.com/BHpVIoEUFPH6ci6Q4QBT8JGr/https%3A%2F%2Ftwitter.=
+com%2FGazelliArtHouse" target=3D"_blank"><img style=3D"margin:0.8em 0.2em;pa=
+dding:0px;letter-spacing:-0.1px;border:0px;vertical-align:middle;max-width:1=
+00%;font-family:arial,sans-serif" width=3D"24" src=3D"https://68ef2f69c7787d=
+4078ac-7864ae55ba174c40683f10ab811d9167.ssl.cf1.rackcdn.com/twitter-icon_24x=
+24.png" data-unique-identifier=3D""><div style=3D"margin:0px;width:0px;heigh=
+t:0px;font-family:arial,sans-serif"><div style=3D"font-family:arial,sans-ser=
+if"></div></div></a>&nbsp;<a style=3D"display:inline-block;font-family:arial=
+,sans-serif;color:rgb(17,85,204)" href=3D"https://streaklinks.com/BHpVIoEeHl=
+RoFY_ETAqPyMXi/https%3A%2F%2Fwww.facebook.com%2FGazelliArtHouse%2F" target=3D=
+"_blank"><img style=3D"margin:0.8em 0.2em;padding:0px;letter-spacing:-0.1px;=
+border:0px;vertical-align:middle;max-width:100%;font-family:arial,sans-serif=
+" width=3D"24" src=3D"https://68ef2f69c7787d4078ac-7864ae55ba174c40683f10ab8=
+11d9167.ssl.cf1.rackcdn.com/facebook-icon_24x24.png" data-unique-identifier=3D=
+""></a></font></div></div><div style=3D"font-size:x-small;font-family:arial,=
+sans-serif"><br></div><div style=3D"font-size:x-small;font-family:arial,sans=
+-serif"><img src=3D"https://ci3.googleusercontent.com/mail-sig/AIorK4w7gKovN=
+ZAR8tYAuQ9hIjEiBgWel9uIDPpW34GyeY595Rek12deHDAlPE9ZZxtPymKBYCzaHBU" height=3D=
+"44" width=3D"96" style=3D"font-family:arial,sans-serif" data-unique-identif=
+ier=3D""></div></font></div></div></div></div></div><div style=3D"color:rgb(=
+80,0,80)"><div style=3D"color:rgb(34,34,34)"><div><font face=3D"times new ro=
+man, serif" style=3D"font-family:&quot;times new roman&quot;,serif;color:rgb=
+(0,0,0)"><br></font></div></div></div><div><div><font size=3D"1" style=3D"co=
+lor:rgb(0,0,0)"><span style=3D"font-family:&quot;times new roman&quot;,serif=
+;color:rgb(0,0,0)">This e-mail message, including all attachments, is for th=
+e&nbsp;sole use of the intended recipient(s) and may contain&nbsp;legally pr=
+ivileged and confidential information. If you are&nbsp;not an intended recip=
+ient, you are hereby notified that&nbsp;you have either received this messag=
+e in error or through&nbsp;interception, and that any&nbsp;</span><span styl=
+e=3D"font-family:&quot;times new roman&quot;,serif;color:rgb(0,0,0)">review<=
+/span><span style=3D"font-family:&quot;times new roman&quot;,serif;color:rgb=
+(0,0,0)">, use, distribution,&nbsp;copying or disclosure of this message and=
+/or its&nbsp;attachments or parts thereof is strictly prohibited and is&nbsp=
+;subject to criminal and civil penalties with appropriate&nbsp;national legi=
+slation.</span></font></div></div></div></div></div></div></div></div></div>=
+</div></div></div></div></div></div></div></div></div></div></div></div></di=
+v></div></div></div></div></div></div></div></div></div></div></div></div></=
+div></div></div></div></div></div></div></div></div></div></div></div></div>=
+</div></div></div></div></div></div></div></div></div></div></div></div></di=
+v></div></div></div></div></div></div></div></div></div></div></div></div></=
+div></div></div>
+</div></blockquote></div></div>-- <br><div dir=3D"ltr" class=3D"gmail_signat=
+ure" data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><div><div dir=3D"lt=
+r"><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div><d=
+iv dir=3D"ltr">______________________________<br><br>Paul Cohen,&nbsp;&nbsp;=
+Professor</div><div dir=3D"ltr">School of Computing and Information</div><di=
+v dir=3D"ltr">University of Pittsburgh</div><div dir=3D"ltr"><a href=3D"http=
+s://paulrcohen.github.io/" target=3D"_blank">personal webpage</a><br>_______=
+_______________________</div></div></div></div></div></div></div></div></div=
+></div></div></div>
+</blockquote></div></div>
+</div></blockquote></div></body></html>=
+
+--Apple-Mail-DEE00DFC-C6AE-4199-BD65-8DF442574D90--

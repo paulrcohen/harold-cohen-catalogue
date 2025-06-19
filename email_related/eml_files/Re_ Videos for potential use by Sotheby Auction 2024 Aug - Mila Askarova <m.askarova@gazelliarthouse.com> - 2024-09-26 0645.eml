@@ -1,0 +1,718 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a11:4819:b0:5ad:6c17:f336 with SMTP id nr25csp941110pxb;
+        Thu, 26 Sep 2024 03:45:33 -0700 (PDT)
+X-Received: by 2002:a05:6a00:2da1:b0:714:28c7:2455 with SMTP id d2e1a72fcca58-71b0aa950fbmr9301658b3a.6.1727347533295;
+        Thu, 26 Sep 2024 03:45:33 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1727347533; cv=none;
+        d=google.com; s=arc-20240605;
+        b=kMdWWy1EJVKF/YD/XO00ct73gDFCJsVbfRM3acVWbqK6jZumnZIvWO0+RUAm0h0OGm
+         qrtUp16Xbx9uvA4rUj28lE+uJFLoD2p8mFC/dwQPk6pIn8cwhl8VJUUzh8qi3nZcnmHy
+         ABK52Fb0+4m4hl8Jn8trBdkpeX3V5Xpxkoq4w7AsjRLlocrI+j4mDjWd8LCLNWWvAjCU
+         f7FF5IYWhY7uy9vQPz0maGh8nV3Sk2WFCAr2Ts4st7leEwnaHpDJM0l0UxI4uv1KRvw0
+         dxflHDonk4xOQtwyZSAVz7E2N3O6DfmTyX2spUJQGUtXxPasgU/LaPc+BkPpOy+k1bGT
+         mt7A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=kp7p3GAHkOwFGa35a1Krg6l/O7iX30YhMOR7m+DGwvg=;
+        fh=mfsKiR2VzgXDu3Kq5WsChFRqSkX9NWIFpk03zovZUDg=;
+        b=g5Ac3hIG/3zov+WBnY7/DFFuvh2A2dbzgrme+TOH58tYaw5K3R97ggvH3QksuV6KUr
+         B0zucg8peLesb78JTLZn2NQifBJuOBYcTzcZELiGyiDNMmkMYTDrpncNfDKRFNdXd16M
+         RBcNLAAvYxabPLX8LlcIbaaA5azt7K0SSVHJQm4N6gl1TkyoJ7ahFspzGmT/bkNmFQbe
+         nmiuLTBaUPR5OHveXtR+ma6RJeeUnmdCO7nD/NM0LiJG5RUzTcY342XeytXsiE9wLJ7k
+         717PnD4jX2Sk3+hXwUENcx1OVSu21335Yo83UGYwyeEFBqJ62YnTvTtj7l16O7o7qoQO
+         /X7Q==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@gazelliarthouse-com.20230601.gappssmtp.com header.s=20230601 header.b=kVob8ksW;
+       spf=pass (google.com: domain of m.askarova@gazelliarthouse.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=m.askarova@gazelliarthouse.com;
+       dara=pass header.i=@gmail.com
+Return-Path: <m.askarova@gazelliarthouse.com>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id d2e1a72fcca58-71afcd586easor615558b3a.8.2024.09.26.03.45.33
+        for <paulrcohen@gmail.com>
+        (Google Transport Security);
+        Thu, 26 Sep 2024 03:45:33 -0700 (PDT)
+Received-SPF: pass (google.com: domain of m.askarova@gazelliarthouse.com designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@gazelliarthouse-com.20230601.gappssmtp.com header.s=20230601 header.b=kVob8ksW;
+       spf=pass (google.com: domain of m.askarova@gazelliarthouse.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=m.askarova@gazelliarthouse.com;
+       dara=pass header.i=@gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gazelliarthouse-com.20230601.gappssmtp.com; s=20230601; t=1727347533; x=1727952333; dara=google.com;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=kp7p3GAHkOwFGa35a1Krg6l/O7iX30YhMOR7m+DGwvg=;
+        b=kVob8ksWvzkZSTL6X7LysQffUnx+Yi3mv7scEMAB/30qp7bZxQ3rThxZ7G1fL3S1Wm
+         hqAwjh5eYvBZgsjSmdZ+N+i0nkpqqGr5nyqI3o4cuacXnsjLIppEraeq/D3dHQfBXAkH
+         h5Sn5ayz4A2vgABrF0/QeWZq2B0UgXEz7/TWsCYcqC6D51/wLkBHG3CT7y6dwAUlM4/9
+         FLmDUR7gvWy7qWxlbCxBJ3uj1kjMIvizSX1onSpKsVcDcaC4zlzxjqdxd7OikfuDSHgP
+         V3OF8met/jWGnLgrwwEXTkOCW+RkNUZNHqWG66Agh/hFIMcC4mXisTwyAJB0GCNZObOe
+         uQSA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727347533; x=1727952333;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=kp7p3GAHkOwFGa35a1Krg6l/O7iX30YhMOR7m+DGwvg=;
+        b=GPEtNQqrPUxm77fsDZZCpAnHjqy/BDCi5jWRT7YYfHtzgesIu0qYmX0Wmw0wb3MchO
+         8J/g+n8dqjWRmWz9rPU09yQ+CpTcqf/fQ0ZI2exH9p7U0idAXb2nKagOGDTJOr8tWqFi
+         a8smXkJH9rP/V1MId7eJGyCTSSyJaIqxBGLdNffFm/CtZ0o/yhMH3Mvz2W9JUXtn7f74
+         2nu7gHuJpwDZAFz/VratdALsVGVA3ShaV2wVijjzPJj+VLdAdAzdSC0BLm7+oFK3kFMu
+         /20Fo/WQsTvE92IfoRWkBgNoSn+kF+H1+rC6lLubM0zVrtM+jjQSWUNkMIqSBAEH+F3j
+         JCig==
+X-Gm-Message-State: AOJu0YzZe5IPueBKTX4fmngK4pg9Rv8D3uZsd84UzNM/68hHHRNnxlg0
+	rN70Jm9wq3hyFr6aAEZieFEzwZok5BQ5NIXLCLIclv71Je932SxsBuOF6c7RiZOEttKTAkyFinz
+	hqEZQmUlE7I/oYvufssSsXgsjs7ePNM5N3MZ2hQ==
+X-Google-Smtp-Source: AGHT+IEiWQwHgVaOJfsi/YLstDJwHYrviQ/v4GAqTc4N2nFQja3ngMjpH5P8QMiJdxjajTLzYtEtrAEW2d/YYKG4AJ4=
+X-Received: by 2002:a05:6a00:10c7:b0:706:a931:20da with SMTP id
+ d2e1a72fcca58-71b0aa94de0mr8434292b3a.3.1727347532551; Thu, 26 Sep 2024
+ 03:45:32 -0700 (PDT)
+MIME-Version: 1.0
+References: <1414353827.6395015.1727242569338.ref@mail.yahoo.com>
+ <1414353827.6395015.1727242569338@mail.yahoo.com> <CAAOqD35E9+=Bp-egCG9P7DGYGsdQVNi_ZmFJPFD27GGgyG+EGw@mail.gmail.com>
+ <CAAOqD37owqgTU=vagOm6gV6hseODLDy5XoyXyrZ681SD8VQfMA@mail.gmail.com> <698613998.6667872.1727334170417@mail.yahoo.com>
+In-Reply-To: <698613998.6667872.1727334170417@mail.yahoo.com>
+From: Mila Askarova <m.askarova@gazelliarthouse.com>
+Date: Thu, 26 Sep 2024 11:45:21 +0100
+Message-ID: <CAAOqD37EzSXtg2FRTTMU9KeiC9NUoJdKu0Vy4ax=5RNqAX2afg@mail.gmail.com>
+Subject: Re: Videos for potential use by Sotheby Auction 2024 Aug
+To: Thomas Machnik <zipnpup@yahoo.com>
+Cc: Paul Cohen <paulrcohen@gmail.com>, Harold Cohen Trust <aaron@aaronshome.com>, 
+	Paul Cohen <team@haroldcohentrust.org>
+Content-Type: multipart/alternative; boundary="00000000000014fad50623037097"
+
+--00000000000014fad50623037097
+Content-Type: text/plain; charset="UTF-8"
+
+Thank you so much Tom
+
+More soon
+Mila
+
+On Thu, 26 Sept 2024 at 08:02, Thomas Machnik <zipnpup@yahoo.com> wrote:
+
+> Dear Mila,
+> I uploaded quite a number of photos of Harold and a few of the the studio.
+> Basically everything I could find from 2000 to 2015. Based on the dates it
+> looks like Harold obtained a digital camera in Spring 2004 and the 35mm
+> slide collection ends in 2000. So there is a gap from 2001 to 2003 and 2003
+> happens to be the year of our focus. I image there must be some
+> photographic prints some where to fill in the gap. I'm just not sure where
+> that might be.
+>
+> In any case there are some photos from 2004 and other years, hopefully you
+> can find something of use at this link,
+>
+> https://drive.google.com/drive/u/1/folders/1FIG8PuAZZ1ckR7jjEZfpf9CYAHYyb2F8
+>
+>
+> Tom
+>
+> On Wednesday, September 25, 2024, 6:07:40 AM PDT, Mila Askarova <
+> m.askarova@gazelliarthouse.com> wrote:
+>
+>
+> Hi again,
+>
+> Do you by any chance have images or studio photos of him working
+> (depicting the selection or some relevant visual)?
+> We have a few but they show a different series (see below).
+>
+> Onwards,
+> Mila
+>
+>
+> https://drive.google.com/drive/folders/1nFkDE0NVAOczLiO2bc0Z120Px8NccLGI?usp=drive_link
+>
+> https://drive.google.com/drive/folders/1SPKDmceMyfCbfiiVG-1TZYyjS2aKGYBJ?usp=sharing
+>
+>
+> On Wed, 25 Sept 2024 at 13:26, Mila Askarova <
+> m.askarova@gazelliarthouse.com> wrote:
+>
+> Thank you very much Tom, all received well and passed on.
+>
+> My best,
+> Mila
+>
+> On Wed, 25 Sept 2024 at 06:36, Thomas Machnik <zipnpup@yahoo.com> wrote:
+>
+> Dear Mila,
+> I am working on some quotes and will send them separately. In this email I
+> have a link to two videos. These are the closest we have time-wise to the
+> date of the artworks. Both are 2004 and both are a few months after all the
+> works have been made.
+>
+> This First one is dated May 5th 2004
+> VHS_09-2004-05-05--Birkbeck-Harold Cohen Interview
+> is an interview format. The beginning is interesting because he give
+> background. This one does not not show any artwork. It is just Harold
+> answering questions in detail.
+>
+>
+> The second one
+> VHS_10A-2004-08-30--CityTV24-San Diego-Profiles Harold Cohen Artist
+> is dated Aug 30th 2004 and was made as part of the show "Untouched by
+> Hands". In the second one, at the beginning you can see the artwork 031135
+> followed by 040502. Then shortly have there is a clip showing AARON
+> generating an artwork onto the monitor. There is also video of him in his
+> studio which shows works from the same time period all the while the
+> narrator does a good job giving background on Cohen.
+>
+> Following this we see all the works hanging in "Untouched by Hands" show
+> five of which are the Sotheby picks including
+> 040502, 031135, 030905, 030906 and 031132
+>
+> Then there is a detailed interview of Cohen. When the camera is focused in
+> on Harold we see 031132 behind him. When the camera is focused on the
+> interviewer we see  031135. Both of these are the largest of the 9 picks.
+> When the camera shows the two of them we can see AARON continually
+> generating works on a monitor between the two of them and we also see
+> artwork 030905 behind them up on the wall.
+>
+>
+>
+>
+> https://drive.google.com/drive/folders/15U-8iLvxcFrro-avAz0M_P2o_mUyPsy_?usp=drive_link
+>
+> I am not sure if permission is required for using the clips. But there is
+> certainly much to pick from and would certainly highlight the works in a
+> very positive light.
+>
+> Tom
+>
+>
+>
+> --
+> Mila Askarova
+> CEO & Founder
+>
+> *GAZELLI ART HOUSE*
+>
+> LONDON
+> Cipher: Pouran Jinchi & Ruba Salameh
+> <https://gazelliarthouse.com/exhibitions/185-cipher-pouran-jinchi-ruba-salameh/>
+> The Window: Aida Mahmudova
+> <https://gazelliarthouse.com/exhibitions/186-the-window-aida-mahmudova/>
+> Project Space & Frieze Sculpture 2024: Libby Heaney
+> <https://nft.gazell.io/collections/libby-heaney-frieze-sculpture-2024>
+>
+> BAKU
+> Group Show
+>
+> GAZELL.iO
+> September Resident | Kate Hollenbach
+> <https://gazell.io/exhibitions/138-kate-hollenbach/>
+>
+> www.gazelliarthouse.com
+> +44 (0) 207 491 8816 / +994 (0) 12 498 1230
+>
+>
+> <https://streaklinks.com/BHpVIxJHhzip8Hm6nAyO2h9O/https%3A%2F%2Fwww.instagram.com%2Fgazelliarthouse%2F>
+>
+> <https://streaklinks.com/BHpVIoEUFPH6ci6Q4QBT8JGr/https%3A%2F%2Ftwitter.com%2FGazelliArtHouse>
+>
+> <https://streaklinks.com/BHpVIoEeHlRoFY_ETAqPyMXi/https%3A%2F%2Fwww.facebook.com%2FGazelliArtHouse%2F>
+>
+>
+> This e-mail message, including all attachments, is for the sole use of the
+> intended recipient(s) and may contain legally privileged and confidential
+> information. If you are not an intended recipient, you are hereby notified
+> that you have either received this message in error or
+> through interception, and that any review, use, distribution, copying or
+> disclosure of this message and/or its attachments or parts thereof is
+> strictly prohibited and is subject to criminal and civil penalties with
+> appropriate national legislation.
+>
+>
+>
+> --
+> Mila Askarova
+> CEO & Founder
+>
+> *GAZELLI ART HOUSE*
+>
+> LONDON
+> Cipher: Pouran Jinchi & Ruba Salameh
+> <https://gazelliarthouse.com/exhibitions/185-cipher-pouran-jinchi-ruba-salameh/>
+> The Window: Aida Mahmudova
+> <https://gazelliarthouse.com/exhibitions/186-the-window-aida-mahmudova/>
+> Project Space & Frieze Sculpture 2024: Libby Heaney
+> <https://nft.gazell.io/collections/libby-heaney-frieze-sculpture-2024>
+>
+> BAKU
+> Group Show
+>
+> GAZELL.iO
+> September Resident | Kate Hollenbach
+> <https://gazell.io/exhibitions/138-kate-hollenbach/>
+>
+> www.gazelliarthouse.com
+> +44 (0) 207 491 8816 / +994 (0) 12 498 1230
+>
+>
+> <https://streaklinks.com/BHpVIxJHhzip8Hm6nAyO2h9O/https%3A%2F%2Fwww.instagram.com%2Fgazelliarthouse%2F>
+>
+> <https://streaklinks.com/BHpVIoEUFPH6ci6Q4QBT8JGr/https%3A%2F%2Ftwitter.com%2FGazelliArtHouse>
+>
+> <https://streaklinks.com/BHpVIoEeHlRoFY_ETAqPyMXi/https%3A%2F%2Fwww.facebook.com%2FGazelliArtHouse%2F>
+>
+>
+> This e-mail message, including all attachments, is for the sole use of the
+> intended recipient(s) and may contain legally privileged and confidential
+> information. If you are not an intended recipient, you are hereby notified
+> that you have either received this message in error or
+> through interception, and that any review, use, distribution, copying or
+> disclosure of this message and/or its attachments or parts thereof is
+> strictly prohibited and is subject to criminal and civil penalties with
+> appropriate national legislation.
+>
+
+
+-- 
+Mila Askarova
+CEO & Founder
+
+*GAZELLI ART HOUSE*
+
+LONDON
+Cipher: Pouran Jinchi & Ruba Salameh
+<https://gazelliarthouse.com/exhibitions/185-cipher-pouran-jinchi-ruba-salameh/>
+The Window: Aida Mahmudova
+<https://gazelliarthouse.com/exhibitions/186-the-window-aida-mahmudova/>
+Project Space & Frieze Sculpture 2024: Libby Heaney
+<https://nft.gazell.io/collections/libby-heaney-frieze-sculpture-2024>
+
+BAKU
+Group Show
+
+GAZELL.iO
+September Resident | Kate Hollenbach
+<https://gazell.io/exhibitions/138-kate-hollenbach/>
+
+www.gazelliarthouse.com
++44 (0) 207 491 8816 / +994 (0) 12 498 1230
+
+<https://streaklinks.com/BHpVIxJHhzip8Hm6nAyO2h9O/https%3A%2F%2Fwww.instagram.com%2Fgazelliarthouse%2F>
+<https://streaklinks.com/BHpVIoEUFPH6ci6Q4QBT8JGr/https%3A%2F%2Ftwitter.com%2FGazelliArtHouse>
+
+<https://streaklinks.com/BHpVIoEeHlRoFY_ETAqPyMXi/https%3A%2F%2Fwww.facebook.com%2FGazelliArtHouse%2F>
+
+
+This e-mail message, including all attachments, is for the sole use of the
+intended recipient(s) and may contain legally privileged and confidential
+information. If you are not an intended recipient, you are hereby notified
+that you have either received this message in error or
+through interception, and that any review, use, distribution, copying or
+disclosure of this message and/or its attachments or parts thereof is
+strictly prohibited and is subject to criminal and civil penalties with
+appropriate national legislation.
+
+--00000000000014fad50623037097
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Thank you so much=C2=A0Tom=C2=A0<div><br></div><div>More s=
+oon</div><div>Mila</div></div><br><div class=3D"gmail_quote"><div dir=3D"lt=
+r" class=3D"gmail_attr">On Thu, 26 Sept 2024 at 08:02, Thomas Machnik &lt;<=
+a href=3D"mailto:zipnpup@yahoo.com">zipnpup@yahoo.com</a>&gt; wrote:<br></d=
+iv><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;bord=
+er-left:1px solid rgb(204,204,204);padding-left:1ex"><div><div style=3D"fon=
+t-family:&quot;Helvetica Neue&quot;,Helvetica,Arial,sans-serif;font-size:16=
+px"><div></div>
+        <div dir=3D"ltr">Dear Mila,</div><div dir=3D"ltr">I uploaded quite =
+a number of photos of Harold and a few of the the studio. Basically everyth=
+ing I could find from 2000 to 2015. Based on the dates it looks like Harold=
+ obtained a digital camera in Spring 2004 and the 35mm slide collection end=
+s in 2000. So there is a gap from 2001 to 2003 and 2003 happens to be the y=
+ear of our focus. I image there must be some photographic prints some where=
+ to fill in the gap. I&#39;m just not sure where that might be. <br></div><=
+div dir=3D"ltr"><br></div><div dir=3D"ltr">In any case there are some photo=
+s from 2004 and other years, hopefully you can find something of use at thi=
+s link,</div><div dir=3D"ltr"><a href=3D"https://drive.google.com/drive/u/1=
+/folders/1FIG8PuAZZ1ckR7jjEZfpf9CYAHYyb2F8" rel=3D"noreferrer noopener" tar=
+get=3D"_blank">https://drive.google.com/drive/u/1/folders/1FIG8PuAZZ1ckR7jj=
+EZfpf9CYAHYyb2F8</a></div><div dir=3D"ltr"><br></div><div dir=3D"ltr"><br><=
+/div><div dir=3D"ltr">Tom<br></div><div><br></div>
+       =20
+        </div><div id=3D"m_238589250766107115ydpa61886fbyahoo_quoted_831993=
+0058">
+            <div style=3D"font-family:&quot;Helvetica Neue&quot;,Helvetica,=
+Arial,sans-serif;font-size:13px;color:rgb(38,40,42)">
+               =20
+                <div>
+                        On Wednesday, September 25, 2024, 6:07:40 AM PDT, M=
+ila Askarova &lt;<a href=3D"mailto:m.askarova@gazelliarthouse.com" target=
+=3D"_blank">m.askarova@gazelliarthouse.com</a>&gt; wrote:
+                    </div>
+                    <div><br></div>
+                    <div><br></div>
+               =20
+               =20
+                <div><div id=3D"m_238589250766107115ydpa61886fbyiv117089991=
+0"><div><div dir=3D"ltr">Hi again,=C2=A0<div><br clear=3D"none"></div><div>=
+Do you by any chance have images or studio photos of him working (depicting=
+ the selection or some relevant visual)?=C2=A0</div><div>We have a few but =
+they show a different=C2=A0series (see below).=C2=A0</div><div><br clear=3D=
+"none"></div><div>Onwards,</div><div>Mila=C2=A0</div><div><br clear=3D"none=
+"></div><div><a shape=3D"rect" href=3D"https://drive.google.com/drive/folde=
+rs/1nFkDE0NVAOczLiO2bc0Z120Px8NccLGI?usp=3Ddrive_link" rel=3D"noreferrer no=
+opener" target=3D"_blank">https://drive.google.com/drive/folders/1nFkDE0NVA=
+OczLiO2bc0Z120Px8NccLGI?usp=3Ddrive_link</a><br clear=3D"none"></div><div><=
+a shape=3D"rect" href=3D"https://drive.google.com/drive/folders/1SPKDmceMyf=
+CbfiiVG-1TZYyjS2aKGYBJ?usp=3Dsharing" rel=3D"noreferrer noopener" target=3D=
+"_blank">https://drive.google.com/drive/folders/1SPKDmceMyfCbfiiVG-1TZYyjS2=
+aKGYBJ?usp=3Dsharing</a><br clear=3D"none"></div><div><br clear=3D"none"></=
+div></div><br clear=3D"none"><div id=3D"m_238589250766107115ydpa61886fbyiv1=
+170899910yqt32168"><div><div dir=3D"ltr">On Wed, 25 Sept 2024 at 13:26, Mil=
+a Askarova &lt;<a shape=3D"rect" href=3D"mailto:m.askarova@gazelliarthouse.=
+com" rel=3D"noreferrer noopener" target=3D"_blank">m.askarova@gazelliarthou=
+se.com</a>&gt; wrote:<br clear=3D"none"></div><blockquote style=3D"margin:0=
+px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><=
+div dir=3D"ltr">Thank you very much Tom, all received well and passed on.<d=
+iv><br clear=3D"none"></div><div>My best,</div><div>Mila=C2=A0</div></div><=
+br clear=3D"none"><div><div dir=3D"ltr">On Wed, 25 Sept 2024 at 06:36, Thom=
+as Machnik &lt;<a shape=3D"rect" href=3D"mailto:zipnpup@yahoo.com" rel=3D"n=
+oreferrer noopener" target=3D"_blank">zipnpup@yahoo.com</a>&gt; wrote:<br c=
+lear=3D"none"></div><blockquote style=3D"margin:0px 0px 0px 0.8ex;border-le=
+ft:1px solid rgb(204,204,204);padding-left:1ex"><div><div style=3D"font-fam=
+ily:Helvetica,Arial,sans-serif;font-size:16px"><div dir=3D"ltr">Dear Mila,<=
+/div><div dir=3D"ltr">I am working on some quotes and will send them separa=
+tely. In this email I have a link to two videos. These are the closest we h=
+ave time-wise to the date of the artworks. Both are 2004 and both are a few=
+ months after all the works have been made. <br clear=3D"none"></div><div d=
+ir=3D"ltr"><br clear=3D"none"></div><div dir=3D"ltr">This First one is date=
+d May 5th 2004 <br clear=3D"none"></div><div dir=3D"ltr"><span>VHS_09-2004-=
+05-05--Birkbeck-Harold Cohen Interview</span><br clear=3D"none"></div><div =
+dir=3D"ltr">is an interview format. The beginning is interesting because he=
+ give background. This one does not not show any artwork. It is just Harold=
+ answering questions in detail. <br clear=3D"none"></div><div dir=3D"ltr"><=
+br clear=3D"none"></div><div dir=3D"ltr"><br clear=3D"none"></div><div dir=
+=3D"ltr">The second one <br clear=3D"none"></div><div dir=3D"ltr"><span><sp=
+an><span>VHS_10A-2004-08-30--CityTV24-San Diego-Profiles Harold Cohen Artis=
+t</span></span></span><br clear=3D"none"></div><div dir=3D"ltr">is dated Au=
+g 30th 2004 and was made as part of the show &quot;Untouched by Hands&quot;=
+. In the second one, at the beginning you can see the artwork 031135 follow=
+ed by 040502. Then shortly have there is a clip showing AARON generating an=
+ artwork onto the monitor. There is also video of him in his studio which s=
+hows works from the same time period all the while the narrator does a good=
+ job giving background on Cohen. <br clear=3D"none"></div><div dir=3D"ltr">=
+<br clear=3D"none"></div><div dir=3D"ltr"><div>Following this we see all th=
+e works hanging in &quot;Untouched by Hands&quot; show five of which are th=
+e Sotheby picks including</div><div>040502, 031135, 030905, 030906 and 0311=
+32</div><div><br clear=3D"none"></div><div dir=3D"ltr">Then there is a deta=
+iled interview of Cohen. When the camera is focused in on Harold we see 031=
+132 behind him. When the camera is focused on the interviewer we see=C2=A0 =
+031135. Both of these are the largest of the 9 picks. When the camera shows=
+ the two of them we can see AARON continually generating works on a monitor=
+ between the two of them and we also see artwork 030905 behind them up on t=
+he wall. <br clear=3D"none"></div></div><div dir=3D"ltr"><br clear=3D"none"=
+></div><div dir=3D"ltr"><br clear=3D"none"></div><div dir=3D"ltr"><br clear=
+=3D"none"></div><div dir=3D"ltr"><a shape=3D"rect" href=3D"https://drive.go=
+ogle.com/drive/folders/15U-8iLvxcFrro-avAz0M_P2o_mUyPsy_?usp=3Ddrive_link" =
+rel=3D"noreferrer noopener" target=3D"_blank">https://drive.google.com/driv=
+e/folders/15U-8iLvxcFrro-avAz0M_P2o_mUyPsy_?usp=3Ddrive_link</a></div><div =
+dir=3D"ltr"><br clear=3D"none"></div><div dir=3D"ltr">I am not sure if perm=
+ission is required for using the clips. But there is certainly much to pick=
+ from and would certainly highlight the works in a very positive light. <br=
+ clear=3D"none"></div><div dir=3D"ltr"><br clear=3D"none"></div><div dir=3D=
+"ltr">Tom<br clear=3D"none"></div></div></div></blockquote></div><br clear=
+=3D"all"><div><br clear=3D"none"></div><span>-- </span><br clear=3D"none"><=
+div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div><font color=3D"#000000">Mila Askarova=C2=A0<=
+/font></div><div><font color=3D"#000000">CEO &amp; Founder=C2=A0</font></di=
+v><div style=3D"color:rgb(80,0,80)"><b><br clear=3D"none"></b></div><div><d=
+iv style=3D"font-family:&quot;new serif&quot;"><div style=3D"font-family:Ar=
+ial,Helvetica,sans-serif"><div style=3D"color:rgb(34,34,34)"><div dir=3D"lt=
+r"><div dir=3D"ltr"><div dir=3D"ltr"><font color=3D"#000000"><b>GAZELLI ART=
+ HOUSE</b></font></div><div dir=3D"ltr"><br clear=3D"none"></div><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><span></span><div dir=
+=3D"ltr"><div dir=3D"ltr"><font face=3D"arial, sans-serif" color=3D"#000000=
+">LONDON</font></div><div><font face=3D"arial, sans-serif"><a shape=3D"rect=
+" href=3D"https://gazelliarthouse.com/exhibitions/185-cipher-pouran-jinchi-=
+ruba-salameh/" style=3D"color:rgb(17,85,204)" rel=3D"noreferrer noopener" t=
+arget=3D"_blank">Cipher: Pouran Jinchi &amp; Ruba Salameh</a></font></div><=
+div><font face=3D"arial, sans-serif"><a shape=3D"rect" href=3D"https://gaze=
+lliarthouse.com/exhibitions/186-the-window-aida-mahmudova/" style=3D"color:=
+rgb(17,85,204)" rel=3D"noreferrer noopener" target=3D"_blank">The Window: A=
+ida Mahmudova</a></font></div><div><font face=3D"arial, sans-serif"><a shap=
+e=3D"rect" href=3D"https://nft.gazell.io/collections/libby-heaney-frieze-sc=
+ulpture-2024" style=3D"color:rgb(17,85,204)" rel=3D"noreferrer noopener" ta=
+rget=3D"_blank">Project Space &amp; Frieze Sculpture 2024: Libby Heaney</a>=
+</font></div><div><br clear=3D"none"></div><div><span style=3D"color:rgb(0,=
+0,0);font-family:arial,sans-serif">BAKU=C2=A0</span></div><div>Group Show</=
+div><div><br clear=3D"none"></div><div dir=3D"ltr"><div><font face=3D"arial=
+, sans-serif" color=3D"#000000">GAZELL.iO=C2=A0</font></div><div><span styl=
+e=3D"font-family:arial,sans-serif">September Resident |=C2=A0<a shape=3D"re=
+ct" href=3D"https://gazell.io/exhibitions/138-kate-hollenbach/" style=3D"co=
+lor:rgb(17,85,204)" rel=3D"noreferrer noopener" target=3D"_blank">Kate Holl=
+enbach</a></span></div></div></div><div dir=3D"ltr"><div><br clear=3D"none"=
+></div></div></div></div></div></div></div></div></div></div></div></div><d=
+iv dir=3D"ltr"><font face=3D"arial, sans-serif"></font><div><a shape=3D"rec=
+t" href=3D"http://www.gazelliarthouse.com/" style=3D"color:rgb(17,85,204)" =
+rel=3D"noreferrer noopener" target=3D"_blank"><font color=3D"#0b5394">www.g=
+azelliarthouse.com</font></a></div><div>+44 (0) 207 491 8816 / +994 (0) 12 =
+498 1230</div><div><br clear=3D"none"></div><div style=3D"font-size:x-small=
+"><div><font color=3D"#000000"><a shape=3D"rect" href=3D"https://streaklink=
+s.com/BHpVIxJHhzip8Hm6nAyO2h9O/https%3A%2F%2Fwww.instagram.com%2Fgazelliart=
+house%2F" style=3D"color:rgb(17,85,204);display:inline-block" rel=3D"norefe=
+rrer noopener" target=3D"_blank"><img src=3D"https://68ef2f69c7787d4078ac-7=
+864ae55ba174c40683f10ab811d9167.ssl.cf1.rackcdn.com/instagram-icon_24x24.pn=
+g" style=3D"margin: 0.8em 0.2em; padding: 0px; letter-spacing: -0.1px; bord=
+er-color: currentcolor; border-style: none; border-width: 0px; vertical-ali=
+gn: middle; max-width: 100%;" width=3D"24"><div style=3D"margin:0px;width:0=
+px;min-height:0px"><div></div></div></a><a shape=3D"rect" href=3D"https://s=
+treaklinks.com/BHpVIoEUFPH6ci6Q4QBT8JGr/https%3A%2F%2Ftwitter.com%2FGazelli=
+ArtHouse" style=3D"color:rgb(17,85,204);display:inline-block" rel=3D"norefe=
+rrer noopener" target=3D"_blank"><img src=3D"https://68ef2f69c7787d4078ac-7=
+864ae55ba174c40683f10ab811d9167.ssl.cf1.rackcdn.com/twitter-icon_24x24.png"=
+ style=3D"margin: 0.8em 0.2em; padding: 0px; letter-spacing: -0.1px; border=
+-color: currentcolor; border-style: none; border-width: 0px; vertical-align=
+: middle; max-width: 100%;" width=3D"24"><div style=3D"margin:0px;width:0px=
+;min-height:0px"><div></div></div></a>=C2=A0<a shape=3D"rect" href=3D"https=
+://streaklinks.com/BHpVIoEeHlRoFY_ETAqPyMXi/https%3A%2F%2Fwww.facebook.com%=
+2FGazelliArtHouse%2F" style=3D"color:rgb(17,85,204);display:inline-block" r=
+el=3D"noreferrer noopener" target=3D"_blank"><img src=3D"https://68ef2f69c7=
+787d4078ac-7864ae55ba174c40683f10ab811d9167.ssl.cf1.rackcdn.com/facebook-ic=
+on_24x24.png" style=3D"margin: 0.8em 0.2em; padding: 0px; letter-spacing: -=
+0.1px; border-color: currentcolor; border-style: none; border-width: 0px; v=
+ertical-align: middle; max-width: 100%;" width=3D"24"></a></font></div></di=
+v><div style=3D"font-size:x-small"><br clear=3D"none"></div><div style=3D"f=
+ont-size:x-small"><img src=3D"https://ci3.googleusercontent.com/mail-sig/AI=
+orK4w7gKovNZAR8tYAuQ9hIjEiBgWel9uIDPpW34GyeY595Rek12deHDAlPE9ZZxtPymKBYCzaH=
+BU" width=3D"96" height=3D"44"></div></div></div></div></div></div><div sty=
+le=3D"color:rgb(80,0,80)"><div style=3D"color:rgb(34,34,34)"><div><font fac=
+e=3D"times new roman, serif" color=3D"#000000"><br clear=3D"none"></font></=
+div></div></div><div><div><font size=3D"1"><span style=3D"font-family:&quot=
+;new serif&quot;;color:rgb(0,0,0)">This e-mail message, including all attac=
+hments, is for the=C2=A0sole use of the intended recipient(s) and may conta=
+in=C2=A0legally privileged and confidential information. If you are=C2=A0no=
+t an intended recipient, you are hereby notified that=C2=A0you have either =
+received this message in error or through=C2=A0interception, and that any=
+=C2=A0</span><span style=3D"font-family:&quot;new serif&quot;;color:rgb(0,0=
+,0)">review</span><span style=3D"font-family:&quot;new serif&quot;;color:rg=
+b(0,0,0)">, use, distribution,=C2=A0copying or disclosure of this message a=
+nd/or its=C2=A0attachments or parts thereof is strictly prohibited and is=
+=C2=A0subject to criminal and civil penalties with appropriate=C2=A0nationa=
+l legislation.</span></font></div></div></div></div></div></div></div></div=
+></div></div></div></div></div></div></div></div></div></div></div></div></=
+div></div></div></div></div></div></div></div></div></div></div></div></div=
+></div></div></div></div></div></div></div></div></div></div></div></div></=
+div></div></div></div></div></div></div></div></div></div></div></div></div=
+></div></div></div></div></div></div></div></div></div></div></div></div></=
+div></div></div></div>
+</blockquote></div></div><br clear=3D"all"><div><br clear=3D"none"></div><s=
+pan>-- </span><br clear=3D"none"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div><font colo=
+r=3D"#000000">Mila Askarova=C2=A0</font></div><div><font color=3D"#000000">=
+CEO &amp; Founder=C2=A0</font></div><div style=3D"color:rgb(80,0,80)"><b><b=
+r clear=3D"none"></b></div><div><div style=3D"font-family:&quot;new serif&q=
+uot;"><div style=3D"font-family:Arial,Helvetica,sans-serif"><div style=3D"c=
+olor:rgb(34,34,34)"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><fon=
+t color=3D"#000000"><b>GAZELLI ART HOUSE</b></font></div><div dir=3D"ltr"><=
+br clear=3D"none"></div><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr">=
+<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div di=
+r=3D"ltr"><span></span><div dir=3D"ltr"><div dir=3D"ltr"><font face=3D"aria=
+l, sans-serif" color=3D"#000000">LONDON</font></div><div><font face=3D"aria=
+l, sans-serif"><a shape=3D"rect" href=3D"https://gazelliarthouse.com/exhibi=
+tions/185-cipher-pouran-jinchi-ruba-salameh/" style=3D"color:rgb(17,85,204)=
+" rel=3D"noreferrer noopener" target=3D"_blank">Cipher: Pouran Jinchi &amp;=
+ Ruba Salameh</a></font></div><div><font face=3D"arial, sans-serif"><a shap=
+e=3D"rect" href=3D"https://gazelliarthouse.com/exhibitions/186-the-window-a=
+ida-mahmudova/" style=3D"color:rgb(17,85,204)" rel=3D"noreferrer noopener" =
+target=3D"_blank">The Window: Aida Mahmudova</a></font></div><div><font fac=
+e=3D"arial, sans-serif"><a shape=3D"rect" href=3D"https://nft.gazell.io/col=
+lections/libby-heaney-frieze-sculpture-2024" style=3D"color:rgb(17,85,204)"=
+ rel=3D"noreferrer noopener" target=3D"_blank">Project Space &amp; Frieze S=
+culpture 2024: Libby Heaney</a></font></div><div><br clear=3D"none"></div><=
+div><span style=3D"color:rgb(0,0,0);font-family:arial,sans-serif">BAKU=C2=
+=A0</span></div><div>Group Show</div><div><br clear=3D"none"></div><div dir=
+=3D"ltr"><div><font face=3D"arial, sans-serif" color=3D"#000000">GAZELL.iO=
+=C2=A0</font></div><div><span style=3D"font-family:arial,sans-serif">Septem=
+ber Resident |=C2=A0<a shape=3D"rect" href=3D"https://gazell.io/exhibitions=
+/138-kate-hollenbach/" style=3D"color:rgb(17,85,204)" rel=3D"noreferrer noo=
+pener" target=3D"_blank">Kate Hollenbach</a></span></div></div></div><div d=
+ir=3D"ltr"><div><br clear=3D"none"></div></div></div></div></div></div></di=
+v></div></div></div></div></div><div dir=3D"ltr"><font face=3D"arial, sans-=
+serif"></font><div><a shape=3D"rect" href=3D"http://www.gazelliarthouse.com=
+/" style=3D"color:rgb(17,85,204)" rel=3D"noreferrer noopener" target=3D"_bl=
+ank"><font color=3D"#0b5394">www.gazelliarthouse.com</font></a></div><div>+=
+44 (0) 207 491 8816 / +994 (0) 12 498 1230</div><div><br clear=3D"none"></d=
+iv><div style=3D"font-size:x-small"><div><font color=3D"#000000"><a shape=
+=3D"rect" href=3D"https://streaklinks.com/BHpVIxJHhzip8Hm6nAyO2h9O/https%3A=
+%2F%2Fwww.instagram.com%2Fgazelliarthouse%2F" style=3D"color:rgb(17,85,204)=
+;display:inline-block" rel=3D"noreferrer noopener" target=3D"_blank"><img s=
+rc=3D"https://68ef2f69c7787d4078ac-7864ae55ba174c40683f10ab811d9167.ssl.cf1=
+.rackcdn.com/instagram-icon_24x24.png" style=3D"margin: 0.8em 0.2em; paddin=
+g: 0px; letter-spacing: -0.1px; border-color: currentcolor; border-style: n=
+one; border-width: 0px; vertical-align: middle; max-width: 100%;" width=3D"=
+24"><div style=3D"margin:0px;width:0px;min-height:0px"><div></div></div></a=
+><a shape=3D"rect" href=3D"https://streaklinks.com/BHpVIoEUFPH6ci6Q4QBT8JGr=
+/https%3A%2F%2Ftwitter.com%2FGazelliArtHouse" style=3D"color:rgb(17,85,204)=
+;display:inline-block" rel=3D"noreferrer noopener" target=3D"_blank"><img s=
+rc=3D"https://68ef2f69c7787d4078ac-7864ae55ba174c40683f10ab811d9167.ssl.cf1=
+.rackcdn.com/twitter-icon_24x24.png" style=3D"margin: 0.8em 0.2em; padding:=
+ 0px; letter-spacing: -0.1px; border-color: currentcolor; border-style: non=
+e; border-width: 0px; vertical-align: middle; max-width: 100%;" width=3D"24=
+"><div style=3D"margin:0px;width:0px;min-height:0px"><div></div></div></a>=
+=C2=A0<a shape=3D"rect" href=3D"https://streaklinks.com/BHpVIoEeHlRoFY_ETAq=
+PyMXi/https%3A%2F%2Fwww.facebook.com%2FGazelliArtHouse%2F" style=3D"color:r=
+gb(17,85,204);display:inline-block" rel=3D"noreferrer noopener" target=3D"_=
+blank"><img src=3D"https://68ef2f69c7787d4078ac-7864ae55ba174c40683f10ab811=
+d9167.ssl.cf1.rackcdn.com/facebook-icon_24x24.png" style=3D"margin: 0.8em 0=
+.2em; padding: 0px; letter-spacing: -0.1px; border-color: currentcolor; bor=
+der-style: none; border-width: 0px; vertical-align: middle; max-width: 100%=
+;" width=3D"24"></a></font></div></div><div style=3D"font-size:x-small"><br=
+ clear=3D"none"></div><div style=3D"font-size:x-small"><img src=3D"https://=
+ci3.googleusercontent.com/mail-sig/AIorK4w7gKovNZAR8tYAuQ9hIjEiBgWel9uIDPpW=
+34GyeY595Rek12deHDAlPE9ZZxtPymKBYCzaHBU" width=3D"96" height=3D"44"></div><=
+/div></div></div></div></div><div style=3D"color:rgb(80,0,80)"><div style=
+=3D"color:rgb(34,34,34)"><div><font face=3D"times new roman, serif" color=
+=3D"#000000"><br clear=3D"none"></font></div></div></div><div><div><font si=
+ze=3D"1"><span style=3D"font-family:&quot;new serif&quot;;color:rgb(0,0,0)"=
+>This e-mail message, including all attachments, is for the=C2=A0sole use o=
+f the intended recipient(s) and may contain=C2=A0legally privileged and con=
+fidential information. If you are=C2=A0not an intended recipient, you are h=
+ereby notified that=C2=A0you have either received this message in error or =
+through=C2=A0interception, and that any=C2=A0</span><span style=3D"font-fam=
+ily:&quot;new serif&quot;;color:rgb(0,0,0)">review</span><span style=3D"fon=
+t-family:&quot;new serif&quot;;color:rgb(0,0,0)">, use, distribution,=C2=A0=
+copying or disclosure of this message and/or its=C2=A0attachments or parts =
+thereof is strictly prohibited and is=C2=A0subject to criminal and civil pe=
+nalties with appropriate=C2=A0national legislation.</span></font></div></di=
+v></div></div></div></div></div></div></div></div></div></div></div></div><=
+/div></div></div></div></div></div></div></div></div></div></div></div></di=
+v></div></div></div></div></div></div></div></div></div></div></div></div><=
+/div></div></div></div></div></div></div></div></div></div></div></div></di=
+v></div></div></div></div></div></div></div></div></div></div></div></div><=
+/div></div></div></div></div></div></div></div></div></div>
+</div></div></div>
+            </div>
+        </div></div></blockquote></div><br clear=3D"all"><div><br></div><sp=
+an class=3D"gmail_signature_prefix">-- </span><br><div dir=3D"ltr" class=3D=
+"gmail_signature"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div d=
+ir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"l=
+tr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><di=
+v dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div><font color=3D"#000000">Mila Askarova=C2=
+=A0</font></div><div><font color=3D"#000000">CEO &amp; Founder=C2=A0</font>=
+</div><div style=3D"color:rgb(80,0,80)"><b><br></b></div><div><div style=3D=
+"font-family:&quot;times new roman&quot;,serif"><div style=3D"font-family:A=
+rial,Helvetica,sans-serif"><div style=3D"color:rgb(34,34,34)"><div dir=3D"l=
+tr"><div dir=3D"ltr"><div dir=3D"ltr"><font color=3D"#000000"><b>GAZELLI AR=
+T HOUSE</b></font></div><div dir=3D"ltr"><br></div><div dir=3D"ltr"><div di=
+r=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"lt=
+r"><div dir=3D"ltr"><div dir=3D"ltr"><span><div dir=3D"ltr"><div dir=3D"ltr=
+"><font face=3D"arial, sans-serif" color=3D"#000000">LONDON</font></div><di=
+v><font face=3D"arial, sans-serif"><a href=3D"https://gazelliarthouse.com/e=
+xhibitions/185-cipher-pouran-jinchi-ruba-salameh/" style=3D"color:rgb(17,85=
+,204)" target=3D"_blank">Cipher: Pouran Jinchi &amp; Ruba Salameh</a></font=
+></div><div><font face=3D"arial, sans-serif"><a href=3D"https://gazelliarth=
+ouse.com/exhibitions/186-the-window-aida-mahmudova/" style=3D"color:rgb(17,=
+85,204)" target=3D"_blank">The Window: Aida Mahmudova</a></font></div><div>=
+<font face=3D"arial, sans-serif"><a href=3D"https://nft.gazell.io/collectio=
+ns/libby-heaney-frieze-sculpture-2024" style=3D"color:rgb(17,85,204)" targe=
+t=3D"_blank">Project Space &amp; Frieze Sculpture 2024: Libby Heaney</a></f=
+ont></div><div><br></div><div><span style=3D"color:rgb(0,0,0);font-family:a=
+rial,sans-serif">BAKU=C2=A0</span></div><div>Group Show</div><div><br></div=
+><div dir=3D"ltr"><div><font color=3D"#000000" face=3D"arial, sans-serif">G=
+AZELL.iO=C2=A0</font></div><div><span style=3D"font-family:arial,sans-serif=
+">September Resident |=C2=A0<a href=3D"https://gazell.io/exhibitions/138-ka=
+te-hollenbach/" style=3D"color:rgb(17,85,204)" target=3D"_blank">Kate Holle=
+nbach</a></span></div></div></div></span><div dir=3D"ltr"><div><br></div></=
+div></div></div></div></div></div></div></div></div></div></div><div dir=3D=
+"ltr"><font face=3D"arial, sans-serif"><div><a href=3D"http://www.gazelliar=
+thouse.com/" style=3D"color:rgb(17,85,204)" target=3D"_blank"><font color=
+=3D"#0b5394">www.gazelliarthouse.com</font></a></div><div>+44 (0) 207 491 8=
+816 / +994 (0) 12 498 1230</div><div><br></div><div style=3D"font-size:x-sm=
+all"><div><font color=3D"#000000"><a href=3D"https://streaklinks.com/BHpVIx=
+JHhzip8Hm6nAyO2h9O/https%3A%2F%2Fwww.instagram.com%2Fgazelliarthouse%2F" st=
+yle=3D"color:rgb(17,85,204);display:inline-block" target=3D"_blank"><img sr=
+c=3D"https://68ef2f69c7787d4078ac-7864ae55ba174c40683f10ab811d9167.ssl.cf1.=
+rackcdn.com/instagram-icon_24x24.png" width=3D"24" style=3D"margin: 0.8em 0=
+.2em; padding: 0px; letter-spacing: -0.1px; border: 0px; vertical-align: mi=
+ddle; max-width: 100%;"><div style=3D"margin:0px;width:0px;height:0px"><div=
+></div></div></a><a href=3D"https://streaklinks.com/BHpVIoEUFPH6ci6Q4QBT8JG=
+r/https%3A%2F%2Ftwitter.com%2FGazelliArtHouse" hspace=3D"streak-track" styl=
+e=3D"color:rgb(17,85,204);display:inline-block" target=3D"_blank"><img src=
+=3D"https://68ef2f69c7787d4078ac-7864ae55ba174c40683f10ab811d9167.ssl.cf1.r=
+ackcdn.com/twitter-icon_24x24.png" width=3D"24" style=3D"margin: 0.8em 0.2e=
+m; padding: 0px; letter-spacing: -0.1px; border: 0px; vertical-align: middl=
+e; max-width: 100%;"><div style=3D"margin:0px;width:0px;height:0px"><div></=
+div></div></a>=C2=A0<a href=3D"https://streaklinks.com/BHpVIoEeHlRoFY_ETAqP=
+yMXi/https%3A%2F%2Fwww.facebook.com%2FGazelliArtHouse%2F" hspace=3D"streak-=
+track" style=3D"color:rgb(17,85,204);display:inline-block" target=3D"_blank=
+"><img src=3D"https://68ef2f69c7787d4078ac-7864ae55ba174c40683f10ab811d9167=
+.ssl.cf1.rackcdn.com/facebook-icon_24x24.png" width=3D"24" style=3D"margin:=
+ 0.8em 0.2em; padding: 0px; letter-spacing: -0.1px; border: 0px; vertical-a=
+lign: middle; max-width: 100%;"></a></font></div></div><div style=3D"font-s=
+ize:x-small"><br></div><div style=3D"font-size:x-small"><img width=3D"96" h=
+eight=3D"44" src=3D"https://ci3.googleusercontent.com/mail-sig/AIorK4w7gKov=
+NZAR8tYAuQ9hIjEiBgWel9uIDPpW34GyeY595Rek12deHDAlPE9ZZxtPymKBYCzaHBU"></div>=
+</font></div></div></div></div></div><div style=3D"color:rgb(80,0,80)"><div=
+ style=3D"color:rgb(34,34,34)"><div><font face=3D"times new roman, serif" c=
+olor=3D"#000000"><br></font></div></div></div><div><div><font size=3D"1"><s=
+pan style=3D"font-family:&quot;times new roman&quot;,serif;color:rgb(0,0,0)=
+">This e-mail message, including all attachments, is for the=C2=A0sole use =
+of the intended recipient(s) and may contain=C2=A0legally privileged and co=
+nfidential information. If you are=C2=A0not an intended recipient, you are =
+hereby notified that=C2=A0you have either received this message in error or=
+ through=C2=A0interception, and that any=C2=A0</span><span style=3D"font-fa=
+mily:&quot;times new roman&quot;,serif;color:rgb(0,0,0)">review</span><span=
+ style=3D"font-family:&quot;times new roman&quot;,serif;color:rgb(0,0,0)">,=
+ use, distribution,=C2=A0copying or disclosure of this message and/or its=
+=C2=A0attachments or parts thereof is strictly prohibited and is=C2=A0subje=
+ct to criminal and civil penalties with appropriate=C2=A0national legislati=
+on.</span></font></div></div></div></div></div></div></div></div></div></di=
+v></div></div></div></div></div></div></div></div></div></div></div></div><=
+/div></div></div></div></div></div></div></div></div></div></div></div></di=
+v></div></div></div></div></div></div></div></div></div></div></div></div><=
+/div></div></div></div></div></div></div></div></div></div></div></div></di=
+v></div></div></div></div></div></div></div></div></div></div></div></div><=
+/div></div>
+
+--00000000000014fad50623037097--

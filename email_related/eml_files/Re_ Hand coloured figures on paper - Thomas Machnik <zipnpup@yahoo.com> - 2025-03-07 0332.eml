@@ -1,0 +1,939 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a11:9904:b0:5c7:f970:fbca with SMTP id mq4csp2055055pxc;
+        Fri, 7 Mar 2025 00:32:17 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IG71M0g0tTaPhF0FhdjDq6MSUssSr3XcBrjRqQ/43nSkieBKKM12Ykkw4ovtKNqDh1xfHX/
+X-Received: by 2002:a05:620a:261d:b0:7b6:cb3c:cb81 with SMTP id af79cd13be357-7c3e3a1caeamr991264585a.18.1741336337683;
+        Fri, 07 Mar 2025 00:32:17 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1741336337; cv=none;
+        d=google.com; s=arc-20240605;
+        b=KlPbZKxizqcsNoRCISKjiOuiSmkUFJhsFl3jjhRnQnwTEbJ40dwdUWV4/hyzRtekFC
+         mEDFXbJjCebTUvXXJGaZel7VWo2lO6oMnohGJSCpzA8/10MvmFhsOPjzU3KKHoNkLMtI
+         upgtbXeVLhG4m7GOf+kJkrQZBX8en47Yv0C52e1I5mVrgVrET0RVykvZbhyMo4nWWl15
+         I3jaUlMvgnKRHm222VU+sLP489pRMuTzOzOe7wanJKbPxyCX6L5XL/MgUSgUIXvXx4ap
+         qAVFAQnV7WmeHA1MG5PEXJJK5EiQ0SITRcpvJkk/Zh7hW1dh9OBHlSKd+JKfDKqlr4Nr
+         VmmQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:subject:references:in-reply-to:message-id:cc:to
+         :reply-to:from:date:dkim-signature;
+        bh=EWp5atVsMGzU6VROaOwAJJXJE3R5nyoC7zZJcyAXHY8=;
+        fh=Tl2xIomM8jiDm1oFCgK8ZZ+LHxaz/YnrtfCxo4tIAuk=;
+        b=X1gntN0pPSsF1z3dS4CdaHNn72x6PWOdA08++4RklUkZW88KZWXGfVuA/WX4TVQF0I
+         tmXjq2USvMQWeDNZQtx63DjwL5gyUung84wcT5lxJZQolskAPzUOYTtpAbTRuwlHAE0f
+         XMdykuVgKSbBh1JHVl9rD+dHF2+vBrX5TV3kCLZX/v+KUMYkYtJE/Qadl1RKBAkrrW9O
+         dm8wYfrIixqZE5Jda2QOCAcF0Dytc6qpkLVB/X95iYoN4W2OovMe/hgD1/qbkjPVTlsa
+         xUbNlaX8/0TGufMk0HGY57ZEYiPQob5v2cpVy+wueRIM2JaZQxxfCwgfbPPu7AgrBlrw
+         Pk9A==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b="qtphFP/g";
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.133.125 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+Return-Path: <zipnpup@yahoo.com>
+Received: from sonic313-15.consmr.mail.bf2.yahoo.com (sonic313-15.consmr.mail.bf2.yahoo.com. [74.6.133.125])
+        by mx.google.com with ESMTPS id af79cd13be357-7c3e533a870si303420085a.53.2025.03.07.00.32.17
+        for <paulrcohen@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 07 Mar 2025 00:32:17 -0800 (PST)
+Received-SPF: pass (google.com: domain of zipnpup@yahoo.com designates 74.6.133.125 as permitted sender) client-ip=74.6.133.125;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b="qtphFP/g";
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.133.125 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1741336337; bh=EWp5atVsMGzU6VROaOwAJJXJE3R5nyoC7zZJcyAXHY8=; h=Date:From:Reply-To:To:Cc:In-Reply-To:References:Subject:From:Subject:Reply-To; b=qtphFP/gPyx3Y+A2S1tScaRM+7I/NEBaO7NqpFoNnpAEtro19dB5jPMqCwGQLN48lZtNmIb2T1SYkgIHBlGT8Jfme0oBF0GJjABhSv3gZ2SLs55L92rdHvZzHZLrpZEjj8dR1XN4fG7vl2jwQvK4dIid2DvaHLHzZZeniqN4h080bV2/6GuD6TnSwB3f8DDVXle/n0vwWmiPxeTxKX+F61wh3O3xJFUag29Vm0DQ7c4a9YhuSgaBrmkzg7Eymuy4lOoZN0bNqU0pwADMB936ATg3uUcK9bKjH1OmdeUd6p/HuM8cy/Z03hZ6K2o3loOaAdycl8fDC9Cj1RK6t84G5g==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1741336337; bh=eMWkIiW6mBEHsaoy2eIbP3tEIHpDbbfG1CltEQ3ltRS=; h=X-Sonic-MF:Date:From:To:Subject:From:Subject; b=RaYrVzlpIYOJSIj23N/aJ1YSiVdoZpKfOCS9Pr6tNuF+U4mVEhEFp9/jaFusZPkxsAXWCMIatQfkjl3761QMkHBtutcfOoaLMSj8XpG9qSh8hR0FSbTRnxnWxE0uQNqF1fPgYz5Xj4o7qQQfX2Mxvr1ZUB95aiHizqgE06d/3v4ymXbnmpRJTJQgpzi+KxnG+NoLbIK/j2FPm1OVGWMsss/MC5SbXd3cP7Fmj6vTPuJnTtT//Lu7o8Rqbi/ds0cbNZ2QR8iclBVosEZWPvzVZap5Ju1+fzZyYq/a1QK3M8zFjJotE6aUZd5Cln9nsY4HvLgDg6Fy9aLjdd4erjmu/w==
+X-YMail-OSG: DjaZCZkVM1mj3ytA9u_R9kfavBPEU5ktm4rz_6fEQdoFjWlrWm7bmLvA760d.Da
+ epGrlAf4ltMcgPFngg_k0frVS2klE2rU6XWLpQsbCIDzwLCj5L6XlnHHHcSl14HN1gR3MXIZa_GH
+ AfS5KjxHHmoY8mezdccwCCEQNknQOjsE6A25IBx0_eNtqNj3hzlFzWHqgJxJdMvPy6wiuDbG9.EX
+ wc8_Kgfug5HLaC59g__KfUUurDlsAqA4KHbKMFy_ngcxfkpeS2vC6nmKSQ.26fpPpR6xGb4kavhG
+ .kHjzEdGsMpSDOhVKdLQ12W2Cx3flNkF0SMqGcNJ0z7fftdXEN9tYpxVSKYChhUFLchqqRINCgWb
+ RkbWGT2hs2dW6dDuXIhLSQ6tgI9qC_a4kntEFeMchj.Oq0.GBl3QZoFHKFttn6Aat0de6oosOBmi
+ x3o2O3iZACHrr1gvIELKopPjm3XHNfkdm5vp_prv0woCdGb_q06gfCFzlmIQ3I5XXA1WdT6BJtg4
+ 8vqnzoW15W4bTUvZEDmrOrRG.Q.QapO0rfQIcAgN.81YHwuHpMhiufTDACQgkE5MQbCbkXlQWDL7
+ bGK3AruKXFQnB15tYcbKHELjnIVXRfCHxPdOeOqQHVgEVcHzpcR.ckseUpAb1eETBotnerCjlLqT
+ yPzRV_k0dr5M6wPjfpLlQ9oYQKwLUMFBCkCckuv6M1e3V_osqB4ZNqpUjxsJfhLm9Jvw2N2TlNa4
+ 99971NWCDFguGwjwbS8ojzNNdaLqRgpFRjj4Umt7vOB31yzVTlVLrOgb9CWXBKJM50HHsy_BJHRY
+ 4EiXGShx4jTeSR75ZK_AE02oDlDkqPMIf5nMLQNLG2M_PXjrlmOyjOzqjkauzm5lXoxhaMyIbjGs
+ sn84ulTwACFB92sFL2BIfCPbiGppClFyTojSw7TeCqcyawFan.APVv3lwtjDhTE5Uby61eEO25R2
+ gMNBjBRkYawUgYbTL9T6vHy1DeCC24wLRD5n8h2mclS_paBIpNG8fuawl3AyWgzLmPUqp3aG.1U6
+ IDc5gk4QoFznZM9i7fvl32..Mv8FZNoMGZVoXP.1k4V.K73gIksfQN1FGGbH.lFcJLPEsKeW5MUP
+ lsr0hkRYQM9lUCSUeW193FU7Ed0_6XP0a7MXsIBdf10T5hqfMs9CAq_FrRY4WkznfLStXGyDugL8
+ u9aDSnrtD1ItiTAbi9ONcNJIMbZU_pOXHt9aGyAxdZNUSO.h.z8GNqj7olAhznwZvSO2b0VgV_CM
+ 8zJGCqMwe1hXz8nZ_tzm78gaZrCoUV6vmm86iw6olMlYgXIHqr6TyolmfFI82st5WdqFNOpxIYDB
+ 5jRL7lLgipvOtKz96YumdHGhVObTA6gVdh6eQL9Jbnx9NDtAWabGg73EptykLIPcaT_8NS_ypSkA
+ pyDBb9n4JBgRRjoPIABsGslp90807HoC3yrc0L.sSczFj5O8k3GB_uRlKdAJqutHVGbllYS1Ef5d
+ VsW7eweQyNqpAJQbRKOGobc6gwCNBzgvqXNS1UlWsOYkf5C98DwgPaONiItLP79hKMUBuclfcsAy
+ c_z5iiwirrcrU1phq8UvhwUr1KOCvKg2qCq1kUAaxCwi7YT4fyqkqPCRntg6ogizRit256aMZkwS
+ AeGXcfgBaBS2rTRN7BQGpa9G1v2.rm3Q.TaCzUX_8eTvovOUojptobR9NjQfP.bQsJwnOLf7BxpT
+ LvZqGs0hEnowTCaRjTx_cCZfW7sjwHyqop_9DFEVrggrHjiBXz5C7PgEEL__4EM8bu7h6NbaiSNm
+ sEjCXgP3lVGhCDbPuWHilrIRqJ.QQSEZRn.MHcsaVS9u3a0I4d9GRsnM79qOyXu4gG_vJ4d9kpCn
+ 7jzcEAewN5YmX_Afmzoh52ujS4Wh21_o_OKF.erL3iRDteQp19MtzVcor4Y.Kl8V1RWpewG6iGqD
+ unRtAy_m7EIjgDh4ZYWoMrRxfRQ5fZfhQwW57h1SSvM8pALbORu4gngm7rVb.WbkFPUp_iwMs2Ll
+ HRXbTN68g5eMackpcdBSS1LIrQZbfJrsN1ODfMYXtnXAqeLxhkfPbtQ22QVXONOynPYi0ok2RjtZ
+ RUshQm8_1GxNlVW.EDJt3RgSvkcjyb9pGWLtZ4F.wxWXVTRnV4mY3Xgu1ldJOGQ.nex4bietrxSo
+ xarvMo1qidvvH36OvDMLbr4LCZMlOultXM5p2DgylSkNXg_BHtvvVJoJw6eC.9C3whCo1_3esIo.
+ qniroTvUlKHujDIU.P6gs43VuDdMU7_yjc0vzPqDv78kMfMxNFU7cS5Tc0DjfFH_rkH8dits4Y3l
+ 24pNgFRwY.e2BnopCelR5ya9EgQ8bfUJlg4ScEQaqhMeR1wfU284rRA6GElfrZ.EM
+X-Sonic-MF: <zipnpup@yahoo.com>
+X-Sonic-ID: a18a53e2-4320-4aa5-abf6-9043d697cf03
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic313.consmr.mail.bf2.yahoo.com with HTTP; Fri, 7 Mar 2025 08:32:17 +0000
+Date: Fri, 7 Mar 2025 08:32:12 +0000 (UTC)
+From: Thomas Machnik <zipnpup@yahoo.com>
+Reply-To: Thomas Machnik <zipnpup@yahoo.com>
+To: George Lionel Barker <george@gazelliarthouse.com>
+Cc: Paul Cohen <paulrcohen@gmail.com>, 
+	Michael Pollard <michael@gazelliarthouse.com>
+Message-ID: <1085026286.673110.1741336332359@mail.yahoo.com>
+In-Reply-To: <CAFoqNjQ5+bmERL5khMY40eJmFxWUcate9LTMc4k7kqv_ztgEXQ@mail.gmail.com>
+References: <CAFoqNjRqUpuseWH+ftUHXGkXNKrsqbw8TKL_vcXr2pu-T_D8+w@mail.gmail.com> <1031829522.69823.1741125512579@mail.yahoo.com> <CAFoqNjQ5+bmERL5khMY40eJmFxWUcate9LTMc4k7kqv_ztgEXQ@mail.gmail.com>
+Subject: Re: Hand coloured figures on paper
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_673109_691125742.1741336332344"
+X-Mailer: WebService/1.1.23435 YMailNovation
+Content-Length: 58258
+
+------=_Part_673109_691125742.1741336332344
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+=20
+Hi George
+
+To answer your question, there are 10 works. See details below. I know it i=
+s a challenge to tell by the photo, but the work on page 7* was previously =
+sent to GAH in 2023. =C2=A0So instead of 11, it is 10. If you include the 3=
+ works we sent to GAH in 2023, then the total is 13. The omitted works are =
+either part of the family collection or misplaced. I might be able to find =
+the misplaced one but it would require an unknown amount of time. I hope th=
+e columns in the table below lines up ok.=C2=A0
+
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 GAH-HC# =C2=A0 =C2=A0i23-number=C2=A0=C2=
+=A0AP-MM =C2=A0Pre2016
+
+p4 =C2=A0 =C2=A0 =C2=A0?HC5060 =C2=A0 =C2=A0 i23-4060=C2=A0 =C2=A0 =C2=A0=
+=C2=A06-2#2=C2=A0=C2=A0 =C2=A0=C2=A0LW13-87
+
+p5=C2=A0 =C2=A0 =C2=A0=C2=A0?HC5061=C2=A0=C2=A0 =C2=A0=C2=A0i23-4061=C2=A0 =
+=C2=A0 =C2=A0=C2=A06-2#3. =C2=A0=C2=A0  LW14-87
+
+p6=C2=A0 =C2=A0 =C2=A0=C2=A0?HC5066=C2=A0=C2=A0 =C2=A0=C2=A0i23-4066=C2=A0 =
+=C2=A0 =C2=A0=C2=A06-2#8=C2=A0 =C2=A0 =C2=A0NK2-89
+
+p7. =C2=A0 =C2=A0 *HC0195=C2=A0 =C2=A0 =C2=A0=C2=A0i23-4065*=C2=A0 =C2=A0=
+=C2=A06-2#7*=C2=A0=C2=A0 =C2=A0LW18-87* *Already in London*
+
+p8=C2=A0 =C2=A0 =C2=A0=C2=A0?HC5064=C2=A0 =C2=A0 =C2=A0i23-4064=C2=A0 =C2=
+=A0 =C2=A0=C2=A06-2#6=C2=A0=C2=A0 =C2=A0=C2=A0LW17-87
+
+p9=C2=A0 =C2=A0 =C2=A0=C2=A0?HC5063=C2=A0 =C2=A0 =C2=A0i23-4063=C2=A0 =C2=
+=A0 =C2=A0=C2=A06-2#5=C2=A0=C2=A0 =C2=A0=C2=A0LW16-87-783
+
+p10=C2=A0 =C2=A0 ?HC5062=C2=A0 =C2=A0 =C2=A0i23-4062=C2=A0 =C2=A0 =C2=A0=C2=
+=A06-2#4=C2=A0=C2=A0 =C2=A0=C2=A0LW15-87-755
+
+=E2=80=94-------------------- =E2=80=94-----  =E2=80=94------------
+
+p11=C2=A0 =C2=A0=C2=A0?HC5068=C2=A0 =C2=A0 =C2=A0i23-4068 =C2=A0=C2=A0 =C2=
+=A0=C2=A06-3#2=C2=A0=C2=A0 =C2=A0=C2=A0LW1-87-718
+
+p12=C2=A0 =C2=A0=C2=A0?HC5070=C2=A0 =C2=A0 =C2=A0i23-4070 =C2=A0=C2=A0 =C2=
+=A0=C2=A06-3#4=C2=A0 =C2=A0 =C2=A0LW9-87
+
+p13=C2=A0 =C2=A0=C2=A0?HC4059=C2=A0 =C2=A0 =C2=A0i23-4069=C2=A0 =C2=A0 =C2=
+=A0=C2=A06-3#3=C2=A0 =C2=A0 =C2=A0LW8-87
+
+p14=C2=A0 =C2=A0=C2=A0?HC4067=C2=A0 =C2=A0 =C2=A0i23-4067=C2=A0 =C2=A0 =C2=
+=A0=C2=A06-3#1=C2=A0=C2=A0 =C2=A0=C2=A0LW2-86
+
+
+Already in London
+
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0HC0193=C2=A0=C2=A0 =C2=A0 =C2=A0i2=
+3-4059=C2=A0=C2=A0 =C2=A0 =C2=A06-2#1=C2=A0 =C2=A0 =C2=A0LW5-87=20
+
+p7=C2=A0 =C2=A0 =C2=A0 =C2=A0HC0195=C2=A0 =C2=A0 =C2=A0 i23-4063=C2=A0 =C2=
+=A0 =C2=A0=C2=A06-2#5=C2=A0 =C2=A0 =C2=A0LW16-87-783
+
+=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0HC0196 =C2=A0=C2=A0 =C2=A0=C2=A0i2=
+3-4071=C2=A0=C2=A0 =C2=A0 =C2=A06-3#5=C2=A0 =C2=A0 =C2=A0LW10-87
+
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+
+If you need something else let me know,
+Tom
+    On Wednesday, March 5, 2025 at 02:33:18 AM PST, George Lionel Barker <g=
+eorge@gazelliarthouse.com> wrote: =20
+=20
+ Thanks Tom, I really appreciate it.=C2=A0
+LONDONLilly Fenichel: Against the Grain
+BAKU=C2=A0Parallel Worlds: Chris Levine, Michael Takeo Magruder, Marshmallo=
+w Laser Feast, Elnara Nasirli, Recycle Group, Nye Thompson
+GAZELL.iO=C2=A0February Resident |=C2=A0Sofia CrespoProject Space |=C2=A000=
+ Zhang: Honey
+www.gazelliarthouse.com+44 (0) 207 491 8816 / +994 (0) 12 498 1230=C2=A0
+
+
+
+This e-mail message, including all attachments, is for the=C2=A0sole use of=
+ the intended recipient(s) and may contain=C2=A0legally privileged and conf=
+idential information. If you are=C2=A0not an intended recipient, you are he=
+reby notified that=C2=A0you have either received this message in error or t=
+hrough=C2=A0interception, and that any=C2=A0review, use, distribution,=C2=
+=A0copying or disclosure of this message and/or its=C2=A0attachments or par=
+ts thereof is strictly prohibited and is=C2=A0subject to criminal and civil=
+ penalties with appropriate=C2=A0national legislation.
+=E1=90=A7
+On Tue, 4 Mar 2025 at 22:05, Thomas Machnik <zipnpup@yahoo.com> wrote:
+
+ Hi George & Michael,
+
+
+
+Let me look into this matter and see what works we can potentially add to t=
+he shipment. Since this is the older inventory, I may need a few days to fi=
+nd all these and to get insurance values for them. =C2=A0
+
+
+
+
+Tom
+
+
+    On Tuesday, March 4, 2025 at 05:28:46 AM PST, George Lionel Barker <geo=
+rge@gazelliarthouse.com> wrote: =20
+=20
+ Hi there Tom,=C2=A0
+I looked through the PDF you sent in an earlier email, and found these 15 h=
+and coloured 'People in the Garden/Athletes' works on paper. Before we get =
+into shipping, can you confirm=C2=A0that you have them all?=C2=A0
+Here's an attached PDF with your folio references. Let me know if you=C2=A0=
+have any questions?=C2=A0
+Best wishes,=C2=A0
+George=C2=A0
+
+LONDONLilly Fenichel: Against the Grain
+BAKU=C2=A0Parallel Worlds: Chris Levine, Michael Takeo Magruder, Marshmallo=
+w Laser Feast, Elnara Nasirli, Recycle Group, Nye Thompson
+GAZELL.iO=C2=A0February Resident |=C2=A0Sofia CrespoProject Space |=C2=A000=
+ Zhang: Honey
+www.gazelliarthouse.com+44 (0) 207 491 8816 / +994 (0) 12 498 1230=C2=A0
+
+
+
+This e-mail message, including all attachments, is for the=C2=A0sole use of=
+ the intended recipient(s) and may contain=C2=A0legally privileged and conf=
+idential information. If you are=C2=A0not an intended recipient, you are he=
+reby notified that=C2=A0you have either received this message in error or t=
+hrough=C2=A0interception, and that any=C2=A0review, use, distribution,=C2=
+=A0copying or disclosure of this message and/or its=C2=A0attachments or par=
+ts thereof is strictly prohibited and is=C2=A0subject to criminal and civil=
+ penalties with appropriate=C2=A0national legislation.=E1=90=A7 =20
+ =20
+------=_Part_673109_691125742.1741336332344
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head></head><body><div class=3D"ydpfd846840yahoo-style-wrap" style=
+=3D"font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px=
+;"><div></div>
+        <div dir=3D"ltr" data-setdir=3D"false"><span id=3D"ydp58529d6adocs-=
+internal-guid-f39a87fb-7fff-99a3-4761-53f04953ac9c" style=3D"color: rgb(0, =
+0, 0);"><p dir=3D"ltr" style=3D"line-height: 1.38; margin-top: 0pt; margin-=
+bottom: 0pt;"><span style=3D"font-size: 11pt; font-family: Arial, sans-seri=
+f; vertical-align: baseline;">Hi George</span></p><br><div><span style=3D"f=
+ont-size: 11pt; font-family: Arial, sans-serif; vertical-align: baseline;">=
+To answer your question, there are 10 works. See details below. I know it i=
+s a challenge to tell by the photo, but the work on page 7* was previously =
+sent to GAH in 2023. &nbsp;So instead of 11, it is 10. If you include the 3=
+ works we sent to GAH in 2023, then the total is 13. The omitted works are =
+either part of the family collection or misplaced. I might be able to find =
+the misplaced one but it would require an unknown amount of time. I hope th=
+e columns in the table below lines up ok.&nbsp;</span></div><br><p dir=3D"l=
+tr" style=3D"line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><span=
+ style=3D"font-size: 11pt; font-family: Arial, sans-serif; vertical-align: =
+baseline;"><span class=3D"ydp58529d6aApple-tab-span"></span></span><span st=
+yle=3D"font-size: 11pt; font-family: Arial, sans-serif; vertical-align: bas=
+eline;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; GAH-HC# &nbsp; &nbsp;</span><spa=
+n style=3D"font-size: 11pt; font-family: Arial, sans-serif; vertical-align:=
+ baseline;">i23-number</span><span style=3D"font-size: 11pt; font-family: A=
+rial, sans-serif; vertical-align: baseline;"><span class=3D"ydp58529d6aAppl=
+e-tab-span">&nbsp;&nbsp;</span></span><span style=3D"font-size: 11pt; font-=
+family: Arial, sans-serif; vertical-align: baseline;">AP-MM &nbsp;</span><s=
+pan style=3D"font-size: 11pt; font-family: Arial, sans-serif; vertical-alig=
+n: baseline;">Pre2016</span></p><p dir=3D"ltr" style=3D"line-height: 1.38; =
+margin-top: 0pt; margin-bottom: 0pt;"><span style=3D"font-size: 11pt; font-=
+family: Arial, sans-serif; vertical-align: baseline;">p4 &nbsp; &nbsp; &nbs=
+p;</span><span style=3D"font-size: 11pt; font-family: Arial, sans-serif; ve=
+rtical-align: baseline;"><span class=3D"ydp58529d6aApple-tab-span"></span><=
+/span><span style=3D"font-size: 11pt; font-family: Arial, sans-serif; verti=
+cal-align: baseline;">?HC5060 &nbsp; &nbsp;</span><span style=3D"font-size:=
+ 11pt; font-family: Arial, sans-serif; vertical-align: baseline;"><span cla=
+ss=3D"ydp58529d6aApple-tab-span">=09</span></span><span style=3D"font-size:=
+ 11pt; font-family: Arial, sans-serif; vertical-align: baseline;">i23-4060<=
+/span><span style=3D"font-size: 11pt; font-family: Arial, sans-serif; verti=
+cal-align: baseline;"><span class=3D"ydp58529d6aApple-tab-span">&nbsp; &nbs=
+p; &nbsp;&nbsp;</span></span><span style=3D"font-size: 11pt; font-family: A=
+rial, sans-serif; vertical-align: baseline;">6-2#2&nbsp;</span><span style=
+=3D"font-size: 11pt; font-family: Arial, sans-serif; vertical-align: baseli=
+ne;"><span class=3D"ydp58529d6aApple-tab-span">&nbsp; &nbsp;&nbsp;</span></=
+span><span style=3D"font-size: 11pt; font-family: Arial, sans-serif; vertic=
+al-align: baseline;"><span class=3D"ydp58529d6aApple-tab-span"></span></spa=
+n><span style=3D"font-size: 11pt; font-family: Arial, sans-serif; vertical-=
+align: baseline;">LW13-87</span></p><p dir=3D"ltr" style=3D"line-height: 1.=
+38; margin-top: 0pt; margin-bottom: 0pt;"><span style=3D"font-size: 11pt; f=
+ont-family: Arial, sans-serif; vertical-align: baseline;">p5</span><span st=
+yle=3D"font-size: 11pt; font-family: Arial, sans-serif; vertical-align: bas=
+eline;"><span class=3D"ydp58529d6aApple-tab-span">&nbsp; &nbsp; &nbsp;&nbsp=
+;</span></span><span style=3D"font-size: 11pt; font-family: Arial, sans-ser=
+if; vertical-align: baseline;">?HC5061&nbsp;</span><span style=3D"font-size=
+: 11pt; font-family: Arial, sans-serif; vertical-align: baseline;"><span cl=
+ass=3D"ydp58529d6aApple-tab-span">&nbsp; &nbsp;&nbsp;</span></span><span st=
+yle=3D"font-size: 11pt; font-family: Arial, sans-serif; vertical-align: bas=
+eline;">i23-4061</span><span style=3D"font-size: 11pt; font-family: Arial, =
+sans-serif; vertical-align: baseline;"><span class=3D"ydp58529d6aApple-tab-=
+span">&nbsp; &nbsp; &nbsp;&nbsp;</span></span><span style=3D"font-size: 11p=
+t; font-family: Arial, sans-serif; vertical-align: baseline;">6-2#3. &nbsp;=
+&nbsp;</span><span style=3D"font-size: 11pt; font-family: Arial, sans-serif=
+; vertical-align: baseline;"><span class=3D"ydp58529d6aApple-tab-span">=09<=
+/span></span><span style=3D"font-size: 11pt; font-family: Arial, sans-serif=
+; vertical-align: baseline;"><span class=3D"ydp58529d6aApple-tab-span">=09<=
+/span></span><span style=3D"font-size: 11pt; font-family: Arial, sans-serif=
+; vertical-align: baseline;">LW14-87</span></p><p dir=3D"ltr" style=3D"line=
+-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><span style=3D"font-si=
+ze: 11pt; font-family: Arial, sans-serif; vertical-align: baseline;">p6</sp=
+an><span style=3D"font-size: 11pt; font-family: Arial, sans-serif; vertical=
+-align: baseline;"><span class=3D"ydp58529d6aApple-tab-span">&nbsp; &nbsp; =
+&nbsp;&nbsp;</span></span><span style=3D"font-size: 11pt; font-family: Aria=
+l, sans-serif; vertical-align: baseline;">?HC5066&nbsp;</span><span style=
+=3D"font-size: 11pt; font-family: Arial, sans-serif; vertical-align: baseli=
+ne;"><span class=3D"ydp58529d6aApple-tab-span">&nbsp; &nbsp;&nbsp;</span></=
+span><span style=3D"font-size: 11pt; font-family: Arial, sans-serif; vertic=
+al-align: baseline;">i23-4066</span><span style=3D"font-size: 11pt; font-fa=
+mily: Arial, sans-serif; vertical-align: baseline;"><span class=3D"ydp58529=
+d6aApple-tab-span">&nbsp; &nbsp; &nbsp;&nbsp;</span></span><span style=3D"f=
+ont-size: 11pt; font-family: Arial, sans-serif; vertical-align: baseline;">=
+6-2#8</span><span style=3D"font-size: 11pt; font-family: Arial, sans-serif;=
+ vertical-align: baseline;"><span class=3D"ydp58529d6aApple-tab-span">&nbsp=
+; &nbsp; &nbsp;</span></span><span style=3D"font-size: 11pt; font-family: A=
+rial, sans-serif; vertical-align: baseline;"><span class=3D"ydp58529d6aAppl=
+e-tab-span"></span></span><span style=3D"font-size: 11pt; font-family: Aria=
+l, sans-serif; vertical-align: baseline;">NK2-89</span></p><p dir=3D"ltr" s=
+tyle=3D"line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><span styl=
+e=3D"font-size: 11pt; font-family: Arial, sans-serif; vertical-align: basel=
+ine;">p7. &nbsp; &nbsp; *</span><span style=3D"font-size: 11pt; font-family=
+: Arial, sans-serif; vertical-align: baseline;">HC0195</span><span style=3D=
+"font-size: 11pt; font-family: Arial, sans-serif; vertical-align: baseline;=
+"><span class=3D"ydp58529d6aApple-tab-span">&nbsp; &nbsp; &nbsp;&nbsp;</spa=
+n></span><span style=3D"font-size: 11pt; font-family: Arial, sans-serif; ve=
+rtical-align: baseline;">i23-4065*</span><span style=3D"font-size: 11pt; fo=
+nt-family: Arial, sans-serif; vertical-align: baseline;"><span class=3D"ydp=
+58529d6aApple-tab-span">&nbsp; &nbsp;&nbsp;</span></span><span style=3D"fon=
+t-size: 11pt; font-family: Arial, sans-serif; vertical-align: baseline;">6-=
+2#7*&nbsp;</span><span style=3D"font-size: 11pt; font-family: Arial, sans-s=
+erif; vertical-align: baseline;"><span class=3D"ydp58529d6aApple-tab-span">=
+&nbsp; &nbsp;</span></span><span style=3D"font-size: 11pt; font-family: Ari=
+al, sans-serif; vertical-align: baseline;"><span class=3D"ydp58529d6aApple-=
+tab-span"></span></span><span style=3D"font-size: 11pt; font-family: Arial,=
+ sans-serif; vertical-align: baseline;">LW18-87*</span><span style=3D"font-=
+size: 11pt; font-family: Arial, sans-serif; vertical-align: baseline;"><spa=
+n class=3D"ydp58529d6aApple-tab-span">=09</span></span><span style=3D"font-=
+size: 11pt; font-family: Arial, sans-serif; vertical-align: baseline;">*Alr=
+eady in London*</span></p><p dir=3D"ltr" style=3D"line-height: 1.38; margin=
+-top: 0pt; margin-bottom: 0pt;"><span style=3D"font-size: 11pt; font-family=
+: Arial, sans-serif; vertical-align: baseline;">p8</span><span style=3D"fon=
+t-size: 11pt; font-family: Arial, sans-serif; vertical-align: baseline;"><s=
+pan class=3D"ydp58529d6aApple-tab-span">&nbsp; &nbsp; &nbsp;&nbsp;</span></=
+span><span style=3D"font-size: 11pt; font-family: Arial, sans-serif; vertic=
+al-align: baseline;">?HC5064</span><span style=3D"font-size: 11pt; font-fam=
+ily: Arial, sans-serif; vertical-align: baseline;"><span class=3D"ydp58529d=
+6aApple-tab-span">&nbsp; &nbsp; &nbsp;</span></span><span style=3D"font-siz=
+e: 11pt; font-family: Arial, sans-serif; vertical-align: baseline;">i23-406=
+4</span><span style=3D"font-size: 11pt; font-family: Arial, sans-serif; ver=
+tical-align: baseline;"><span class=3D"ydp58529d6aApple-tab-span">&nbsp; &n=
+bsp; &nbsp;&nbsp;</span></span><span style=3D"font-size: 11pt; font-family:=
+ Arial, sans-serif; vertical-align: baseline;">6-2#6&nbsp;</span><span styl=
+e=3D"font-size: 11pt; font-family: Arial, sans-serif; vertical-align: basel=
+ine;"><span class=3D"ydp58529d6aApple-tab-span">&nbsp; &nbsp;&nbsp;</span><=
+/span><span style=3D"font-size: 11pt; font-family: Arial, sans-serif; verti=
+cal-align: baseline;"><span class=3D"ydp58529d6aApple-tab-span"></span></sp=
+an><span style=3D"font-size: 11pt; font-family: Arial, sans-serif; vertical=
+-align: baseline;">LW17-87</span></p><p dir=3D"ltr" style=3D"line-height: 1=
+.38; margin-top: 0pt; margin-bottom: 0pt;"><span style=3D"font-size: 11pt; =
+font-family: Arial, sans-serif; vertical-align: baseline;">p9</span><span s=
+tyle=3D"font-size: 11pt; font-family: Arial, sans-serif; vertical-align: ba=
+seline;"><span class=3D"ydp58529d6aApple-tab-span">&nbsp; &nbsp; &nbsp;&nbs=
+p;</span></span><span style=3D"font-size: 11pt; font-family: Arial, sans-se=
+rif; vertical-align: baseline;">?HC5063</span><span style=3D"font-size: 11p=
+t; font-family: Arial, sans-serif; vertical-align: baseline;"><span class=
+=3D"ydp58529d6aApple-tab-span">&nbsp; &nbsp; &nbsp;</span></span><span styl=
+e=3D"font-size: 11pt; font-family: Arial, sans-serif; vertical-align: basel=
+ine;">i23-4063</span><span style=3D"font-size: 11pt; font-family: Arial, sa=
+ns-serif; vertical-align: baseline;"><span class=3D"ydp58529d6aApple-tab-sp=
+an">&nbsp; &nbsp; &nbsp;&nbsp;</span></span><span style=3D"font-size: 11pt;=
+ font-family: Arial, sans-serif; vertical-align: baseline;">6-2#5&nbsp;</sp=
+an><span style=3D"font-size: 11pt; font-family: Arial, sans-serif; vertical=
+-align: baseline;"><span class=3D"ydp58529d6aApple-tab-span">&nbsp; &nbsp;&=
+nbsp;</span></span><span style=3D"font-size: 11pt; font-family: Arial, sans=
+-serif; vertical-align: baseline;"><span class=3D"ydp58529d6aApple-tab-span=
+"></span></span><span style=3D"font-size: 11pt; font-family: Arial, sans-se=
+rif; vertical-align: baseline;">LW16-87-783</span></p><p dir=3D"ltr" style=
+=3D"line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><span style=3D=
+"font-size: 11pt; font-family: Arial, sans-serif; vertical-align: baseline;=
+">p10</span><span style=3D"font-size: 11pt; font-family: Arial, sans-serif;=
+ vertical-align: baseline;"><span class=3D"ydp58529d6aApple-tab-span">&nbsp=
+; &nbsp; </span></span><span style=3D"font-size: 11pt; font-family: Arial, =
+sans-serif; vertical-align: baseline;">?HC5062</span><span style=3D"font-si=
+ze: 11pt; font-family: Arial, sans-serif; vertical-align: baseline;"><span =
+class=3D"ydp58529d6aApple-tab-span">&nbsp; &nbsp; &nbsp;</span></span><span=
+ style=3D"font-size: 11pt; font-family: Arial, sans-serif; vertical-align: =
+baseline;">i23-4062</span><span style=3D"font-size: 11pt; font-family: Aria=
+l, sans-serif; vertical-align: baseline;"><span class=3D"ydp58529d6aApple-t=
+ab-span">&nbsp; &nbsp; &nbsp;&nbsp;</span></span><span style=3D"font-size: =
+11pt; font-family: Arial, sans-serif; vertical-align: baseline;">6-2#4&nbsp=
+;</span><span style=3D"font-size: 11pt; font-family: Arial, sans-serif; ver=
+tical-align: baseline;"><span class=3D"ydp58529d6aApple-tab-span">&nbsp; &n=
+bsp;&nbsp;</span></span><span style=3D"font-size: 11pt; font-family: Arial,=
+ sans-serif; vertical-align: baseline;"><span class=3D"ydp58529d6aApple-tab=
+-span"></span></span><span style=3D"font-size: 11pt; font-family: Arial, sa=
+ns-serif; vertical-align: baseline;">LW15-87-755</span></p><p dir=3D"ltr" s=
+tyle=3D"line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><span styl=
+e=3D"font-size: 11pt; font-family: Arial, sans-serif; vertical-align: basel=
+ine;">=E2=80=94--------------------</span><span style=3D"font-size: 11pt; f=
+ont-family: Arial, sans-serif; vertical-align: baseline;"><span class=3D"yd=
+p58529d6aApple-tab-span">=09</span></span><span style=3D"font-size: 11pt; f=
+ont-family: Arial, sans-serif; vertical-align: baseline;">=E2=80=94-----</s=
+pan><span style=3D"font-size: 11pt; font-family: Arial, sans-serif; vertica=
+l-align: baseline;"><span class=3D"ydp58529d6aApple-tab-span">=09</span></s=
+pan><span style=3D"font-size: 11pt; font-family: Arial, sans-serif; vertica=
+l-align: baseline;"><span class=3D"ydp58529d6aApple-tab-span">=09</span></s=
+pan><span style=3D"font-size: 11pt; font-family: Arial, sans-serif; vertica=
+l-align: baseline;">=E2=80=94------------</span></p><p dir=3D"ltr" style=3D=
+"line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><span style=3D"fo=
+nt-size: 11pt; font-family: Arial, sans-serif; vertical-align: baseline;">p=
+11</span><span style=3D"font-size: 11pt; font-family: Arial, sans-serif; ve=
+rtical-align: baseline;"><span class=3D"ydp58529d6aApple-tab-span">&nbsp; &=
+nbsp;&nbsp;</span></span><span style=3D"font-size: 11pt; font-family: Arial=
+, sans-serif; vertical-align: baseline;">?HC5068</span><span style=3D"font-=
+size: 11pt; font-family: Arial, sans-serif; vertical-align: baseline;"><spa=
+n class=3D"ydp58529d6aApple-tab-span">&nbsp; &nbsp; &nbsp;</span></span><sp=
+an style=3D"font-size: 11pt; font-family: Arial, sans-serif; vertical-align=
+: baseline;">i23-4068 &nbsp;</span><span style=3D"font-size: 11pt; font-fam=
+ily: Arial, sans-serif; vertical-align: baseline;"><span class=3D"ydp58529d=
+6aApple-tab-span">&nbsp; &nbsp;&nbsp;</span></span><span style=3D"font-size=
+: 11pt; font-family: Arial, sans-serif; vertical-align: baseline;">6-3#2&nb=
+sp;</span><span style=3D"font-size: 11pt; font-family: Arial, sans-serif; v=
+ertical-align: baseline;"><span class=3D"ydp58529d6aApple-tab-span">&nbsp; =
+&nbsp;&nbsp;</span></span><span style=3D"font-size: 11pt; font-family: Aria=
+l, sans-serif; vertical-align: baseline;"><span class=3D"ydp58529d6aApple-t=
+ab-span"></span></span><span style=3D"font-size: 11pt; font-family: Arial, =
+sans-serif; vertical-align: baseline;">LW1-87-718</span></p><p dir=3D"ltr" =
+style=3D"line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><span sty=
+le=3D"font-size: 11pt; font-family: Arial, sans-serif; vertical-align: base=
+line;">p12</span><span style=3D"font-size: 11pt; font-family: Arial, sans-s=
+erif; vertical-align: baseline;"><span class=3D"ydp58529d6aApple-tab-span">=
+&nbsp; &nbsp;&nbsp;</span></span><span style=3D"font-size: 11pt; font-famil=
+y: Arial, sans-serif; vertical-align: baseline;">?HC5070</span><span style=
+=3D"font-size: 11pt; font-family: Arial, sans-serif; vertical-align: baseli=
+ne;"><span class=3D"ydp58529d6aApple-tab-span">&nbsp; &nbsp; &nbsp;</span><=
+/span><span style=3D"font-size: 11pt; font-family: Arial, sans-serif; verti=
+cal-align: baseline;">i23-4070 &nbsp;</span><span style=3D"font-size: 11pt;=
+ font-family: Arial, sans-serif; vertical-align: baseline;"><span class=3D"=
+ydp58529d6aApple-tab-span">&nbsp; &nbsp;&nbsp;</span></span><span style=3D"=
+font-size: 11pt; font-family: Arial, sans-serif; vertical-align: baseline;"=
+>6-3#4</span><span style=3D"font-size: 11pt; font-family: Arial, sans-serif=
+; vertical-align: baseline;"><span class=3D"ydp58529d6aApple-tab-span">&nbs=
+p; &nbsp; &nbsp;</span></span><span style=3D"font-size: 11pt; font-family: =
+Arial, sans-serif; vertical-align: baseline;"><span class=3D"ydp58529d6aApp=
+le-tab-span"></span></span><span style=3D"font-size: 11pt; font-family: Ari=
+al, sans-serif; vertical-align: baseline;">LW9-87</span></p><p dir=3D"ltr" =
+style=3D"line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><span sty=
+le=3D"font-size: 11pt; font-family: Arial, sans-serif; vertical-align: base=
+line;">p13</span><span style=3D"font-size: 11pt; font-family: Arial, sans-s=
+erif; vertical-align: baseline;"><span class=3D"ydp58529d6aApple-tab-span">=
+&nbsp; &nbsp;&nbsp;</span></span><span style=3D"font-size: 11pt; font-famil=
+y: Arial, sans-serif; vertical-align: baseline;">?HC4059</span><span style=
+=3D"font-size: 11pt; font-family: Arial, sans-serif; vertical-align: baseli=
+ne;"><span class=3D"ydp58529d6aApple-tab-span">&nbsp; &nbsp; &nbsp;</span><=
+/span><span style=3D"font-size: 11pt; font-family: Arial, sans-serif; verti=
+cal-align: baseline;">i23-4069</span><span style=3D"font-size: 11pt; font-f=
+amily: Arial, sans-serif; vertical-align: baseline;"><span class=3D"ydp5852=
+9d6aApple-tab-span">&nbsp; &nbsp; &nbsp;&nbsp;</span></span><span style=3D"=
+font-size: 11pt; font-family: Arial, sans-serif; vertical-align: baseline;"=
+>6-3#3</span><span style=3D"font-size: 11pt; font-family: Arial, sans-serif=
+; vertical-align: baseline;"><span class=3D"ydp58529d6aApple-tab-span">&nbs=
+p; &nbsp; &nbsp;</span></span><span style=3D"font-size: 11pt; font-family: =
+Arial, sans-serif; vertical-align: baseline;"><span class=3D"ydp58529d6aApp=
+le-tab-span"></span></span><span style=3D"font-size: 11pt; font-family: Ari=
+al, sans-serif; vertical-align: baseline;">LW8-87</span></p><p dir=3D"ltr" =
+style=3D"line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><span sty=
+le=3D"font-size: 11pt; font-family: Arial, sans-serif; vertical-align: base=
+line;">p14</span><span style=3D"font-size: 11pt; font-family: Arial, sans-s=
+erif; vertical-align: baseline;"><span class=3D"ydp58529d6aApple-tab-span">=
+&nbsp; &nbsp;&nbsp;</span></span><span style=3D"font-size: 11pt; font-famil=
+y: Arial, sans-serif; vertical-align: baseline;">?HC4067</span><span style=
+=3D"font-size: 11pt; font-family: Arial, sans-serif; vertical-align: baseli=
+ne;"><span class=3D"ydp58529d6aApple-tab-span">&nbsp; &nbsp; &nbsp;</span><=
+/span><span style=3D"font-size: 11pt; font-family: Arial, sans-serif; verti=
+cal-align: baseline;">i23-4067</span><span style=3D"font-size: 11pt; font-f=
+amily: Arial, sans-serif; vertical-align: baseline;"><span class=3D"ydp5852=
+9d6aApple-tab-span">&nbsp; &nbsp; &nbsp;&nbsp;</span></span><span style=3D"=
+font-size: 11pt; font-family: Arial, sans-serif; vertical-align: baseline;"=
+>6-3#1&nbsp;</span><span style=3D"font-size: 11pt; font-family: Arial, sans=
+-serif; vertical-align: baseline;"><span class=3D"ydp58529d6aApple-tab-span=
+">&nbsp; &nbsp;&nbsp;</span></span><span style=3D"font-size: 11pt; font-fam=
+ily: Arial, sans-serif; vertical-align: baseline;"><span class=3D"ydp58529d=
+6aApple-tab-span"></span></span><span style=3D"font-size: 11pt; font-family=
+: Arial, sans-serif; vertical-align: baseline;">LW2-86</span></p><br><p dir=
+=3D"ltr" style=3D"line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;">=
+<span style=3D"font-size: 11pt; font-family: Arial, sans-serif; vertical-al=
+ign: baseline;">Already in London</span></p><p dir=3D"ltr" style=3D"line-he=
+ight: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><span style=3D"font-size:=
+ 11pt; font-family: Arial, sans-serif; vertical-align: baseline;"><span cla=
+ss=3D"ydp58529d6aApple-tab-span"></span></span><span style=3D"font-size: 11=
+pt; font-family: Arial, sans-serif; vertical-align: baseline;">&nbsp; &nbsp=
+; &nbsp; &nbsp; &nbsp; &nbsp;HC0193&nbsp;</span><span style=3D"font-size: 1=
+1pt; font-family: Arial, sans-serif; vertical-align: baseline;"><span class=
+=3D"ydp58529d6aApple-tab-span">&nbsp; &nbsp; &nbsp;</span></span><span styl=
+e=3D"font-size: 11pt; font-family: Arial, sans-serif; vertical-align: basel=
+ine;">i23-4059&nbsp;</span><span style=3D"font-size: 11pt; font-family: Ari=
+al, sans-serif; vertical-align: baseline;"><span class=3D"ydp58529d6aApple-=
+tab-span">&nbsp; &nbsp; &nbsp;</span></span><span style=3D"font-size: 11pt;=
+ font-family: Arial, sans-serif; vertical-align: baseline;">6-2#1</span><sp=
+an style=3D"font-size: 11pt; font-family: Arial, sans-serif; vertical-align=
+: baseline;"><span class=3D"ydp58529d6aApple-tab-span">&nbsp; &nbsp; &nbsp;=
+</span></span><span style=3D"font-size: 11pt; font-family: Arial, sans-seri=
+f; vertical-align: baseline;">LW5-87</span><span style=3D"font-size: 11pt; =
+font-family: Arial, sans-serif; vertical-align: baseline;"><span class=3D"y=
+dp58529d6aApple-tab-span">=09</span></span></p><p dir=3D"ltr" style=3D"line=
+-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><span style=3D"font-si=
+ze: 11pt; font-family: Arial, sans-serif; vertical-align: baseline;">p7</sp=
+an><span style=3D"font-size: 11pt; font-family: Arial, sans-serif; vertical=
+-align: baseline;"><span class=3D"ydp58529d6aApple-tab-span">&nbsp; &nbsp; =
+&nbsp; &nbsp;</span></span><span style=3D"font-size: 11pt; font-family: Ari=
+al, sans-serif; vertical-align: baseline;">HC0195</span><span style=3D"font=
+-size: 11pt; font-family: Arial, sans-serif; vertical-align: baseline;"><sp=
+an class=3D"ydp58529d6aApple-tab-span">&nbsp; &nbsp; &nbsp; </span></span><=
+span style=3D"font-size: 11pt; font-family: Arial, sans-serif; vertical-ali=
+gn: baseline;">i23-4063</span><span style=3D"font-size: 11pt; font-family: =
+Arial, sans-serif; vertical-align: baseline;"><span class=3D"ydp58529d6aApp=
+le-tab-span">&nbsp; &nbsp; &nbsp;&nbsp;</span></span><span style=3D"font-si=
+ze: 11pt; font-family: Arial, sans-serif; vertical-align: baseline;">6-2#5<=
+/span><span style=3D"font-size: 11pt; font-family: Arial, sans-serif; verti=
+cal-align: baseline;"><span class=3D"ydp58529d6aApple-tab-span">&nbsp; &nbs=
+p; &nbsp;</span></span><span style=3D"font-size: 11pt; font-family: Arial, =
+sans-serif; vertical-align: baseline;"><span class=3D"ydp58529d6aApple-tab-=
+span"></span></span><span style=3D"font-size: 11pt; font-family: Arial, san=
+s-serif; vertical-align: baseline;">LW16-87-783</span></p><p dir=3D"ltr" st=
+yle=3D"line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><span style=
+=3D"font-size: 11pt; font-family: Arial, sans-serif; vertical-align: baseli=
+ne;"><span class=3D"ydp58529d6aApple-tab-span"></span></span><span style=3D=
+"font-size: 11pt; font-family: Arial, sans-serif; vertical-align: baseline;=
+">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;HC0196 &nbsp;</span><span style=
+=3D"font-size: 11pt; font-family: Arial, sans-serif; vertical-align: baseli=
+ne;"><span class=3D"ydp58529d6aApple-tab-span">&nbsp; &nbsp;&nbsp;</span></=
+span><span style=3D"font-size: 11pt; font-family: Arial, sans-serif; vertic=
+al-align: baseline;">i23-4071&nbsp;</span><span style=3D"font-size: 11pt; f=
+ont-family: Arial, sans-serif; vertical-align: baseline;"><span class=3D"yd=
+p58529d6aApple-tab-span">&nbsp; &nbsp; &nbsp;</span></span><span style=3D"f=
+ont-size: 11pt; font-family: Arial, sans-serif; vertical-align: baseline;">=
+6-3#5</span><span style=3D"font-size: 11pt; font-family: Arial, sans-serif;=
+ vertical-align: baseline;"><span class=3D"ydp58529d6aApple-tab-span">&nbsp=
+; &nbsp; &nbsp;</span></span><span style=3D"font-size: 11pt; font-family: A=
+rial, sans-serif; vertical-align: baseline;">LW10-87</span></p><p dir=3D"lt=
+r" style=3D"line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><span =
+style=3D"font-size: 11pt; font-family: Arial, sans-serif; vertical-align: b=
+aseline;">=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</span=
+></p><br>If you need something else let me know,<br><div><span style=3D"fon=
+t-size: 11pt; font-family: Arial, sans-serif; vertical-align: baseline;">To=
+m</span></div></span></div><div><br></div>
+       =20
+        <div id=3D"ydpfd846840yahoo_quoted_1833407070" class=3D"ydpfd846840=
+yahoo_quoted">
+            <div style=3D"font-family:'Helvetica Neue', Helvetica, Arial, s=
+ans-serif;font-size:13px;">
+               =20
+                <div>
+                    On Wednesday, March 5, 2025 at 02:33:18 AM PST, George =
+Lionel Barker &lt;george@gazelliarthouse.com&gt; wrote:
+                </div>
+                <div><br></div>
+                <div><br></div>
+                <div><div id=3D"ydpfd846840yiv6574516210"><div><div dir=3D"=
+ltr"><div>Thanks Tom, I really appreciate it.&nbsp;</div><div><br clear=3D"=
+none"></div><div><div dir=3D"ltr" class=3D"ydpfd846840yiv6574516210gmail_si=
+gnature"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div style=3D"padding-top: 0px; padding-right: 0px; padding-=
+left: 0px;"><div style=3D"margin:0px;padding:0px 0px 20px;width:1116px;"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div><div dir=3D"ltr"><div dir=3D"ltr">=
+<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div di=
+r=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"lt=
+r"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div=
+ dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D=
+"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><=
+div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr" style=3D"color:rgb(34,34,34);"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div style=3D"padding-top: 0px; padding-right: 0px; padding-left: 0px;=
+ font-family: Roboto, RobotoDraft, Helvetica, Arial, sans-serif;"><div styl=
+e=3D"margin:0px;min-width:0px;padding:0px 0px 20px;width:initial;"><div sty=
+le=3D"margin:8px 0px 0px;padding:0px;"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr" style=3D"=
+font-family:Arial, Helvetica, sans-serif;"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><span></span><div dir=3D"ltr"><div dir=3D"ltr"=
+><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div d=
+ir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"l=
+tr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><di=
+v dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><font face=3D"arial, s=
+ans-serif" color=3D"#000000">LONDON</font></div><div dir=3D"ltr"><a shape=
+=3D"rect" href=3D"https://886b17ba.streaklinks.com/CViq1HjJSYBkHP6-9AbX6-xh=
+/https%3A%2F%2Fgazelliarthouse.com%2Fexhibitions%2F191-against-the-grain-li=
+lly-fenichel%2F" style=3D"font-family:arial, sans-serif;color:rgb(17,85,204=
+);" target=3D"_blank" rel=3D"noreferrer noopener">Lilly Fenichel: Against t=
+he Grain</a></div><div><span style=3D"color:rgb(0,0,0);font-family:arial, s=
+ans-serif;"><br clear=3D"none"></span></div><div><span style=3D"color:rgb(0=
+,0,0);font-family:arial, sans-serif;">BAKU&nbsp;</span></div><div><a shape=
+=3D"rect" href=3D"https://886b17ba.streaklinks.com/CViq1HjmJuncapsnyAH_ZPGQ=
+/https%3A%2F%2Fgazelliarthouse.com%2Fexhibitions%2F188-parallel-worlds-chri=
+s-levine-michael-takeo-magruder-marshmallow-laser-feast%2F" style=3D"color:=
+rgb(17,85,204);" target=3D"_blank" rel=3D"noreferrer noopener">Parallel Wor=
+lds: Chris Levine, Michael Takeo Magruder, Marshmallow Laser Feast, Elnara =
+Nasirli, Recycle Group, Nye Thompson</a></div><div dir=3D"ltr"><div><font c=
+olor=3D"#000000" face=3D"arial, sans-serif"><br clear=3D"none"></font></div=
+><div><font color=3D"#000000" face=3D"arial, sans-serif">GAZELL.iO&nbsp;</f=
+ont></div><div><span style=3D"font-family:arial, sans-serif;">February Resi=
+dent |&nbsp;</span><a shape=3D"rect" href=3D"https://886b17ba.streaklinks.c=
+om/CViq1HfPz3K4ok0tIQZsfjoo/https%3A%2F%2Fgazell.io%2Fpages%2Fsofia-crespo"=
+ style=3D"color:rgb(17,85,204);font-family:arial, sans-serif;" target=3D"_b=
+lank" rel=3D"noreferrer noopener">Sofia Crespo</a></div><div><span style=3D=
+"font-family:arial, sans-serif;">Project Space |&nbsp;</span><font color=3D=
+"#1155cc" face=3D"arial, sans-serif"><a shape=3D"rect" href=3D"https://886b=
+17ba.streaklinks.com/CViq1HjMTM2bpSUtpwguH0mP/https%3A%2F%2Fgazell.io%2Fcol=
+lections%2F00-zhang-honey" style=3D"color:rgb(17,85,204);" target=3D"_blank=
+" rel=3D"noreferrer noopener">00 Zhang: Honey</a></font></div></div><div><b=
+r clear=3D"none"></div></div></div></div></div></div></div></div></div></di=
+v></div></div></div></div></div><div dir=3D"ltr"><font face=3D"arial, sans-=
+serif"></font><div><a shape=3D"rect" href=3D"http://www.gazelliarthouse.com=
+/" style=3D"color:rgb(17,85,204);" target=3D"_blank" rel=3D"noreferrer noop=
+ener"><font color=3D"#0b5394">www.gazelliarthouse.com</font></a></div><div>=
++44 (0) 207 491 8816 / +994 (0) 12 498 1230</div></div></div></div></div></=
+div></div></div><div dir=3D"ltr"><font face=3D"arial, sans-serif"></font><d=
+iv><div><font color=3D"#000000"><a shape=3D"rect" href=3D"https://886b17ba.=
+streaklinks.com/CViq1Hj7e2AJBx_JVAV_M-8P/https%3A%2F%2Fwww.instagram.com%2F=
+gazelliarthouse%2F" style=3D"color:rgb(17,85,204);display:inline-block;" ta=
+rget=3D"_blank" rel=3D"noreferrer noopener"><img src=3D"https://68ef2f69c77=
+87d4078ac-7864ae55ba174c40683f10ab811d9167.ssl.cf1.rackcdn.com/instagram-ic=
+on_24x24.png" width=3D"24" style=3D"margin: 0.8em 0.2em; padding: 0px; lett=
+er-spacing: -0.1px; border-width: 0px; border-style: none; border-color: cu=
+rrentcolor; vertical-align: middle; max-width: 100%;" data-inlineimagemanip=
+ulating=3D"true"><div style=3D"margin:0px;width:0px;min-height:0px;"><div><=
+/div></div></a><a shape=3D"rect" href=3D"https://886b17ba.streaklinks.com/C=
+Viq1H7i4vIcExZDLg76xqWc/https%3A%2F%2Ftwitter.com%2FGazelliArtHouse" style=
+=3D"color:rgb(17,85,204);display:inline-block;" target=3D"_blank" rel=3D"no=
+referrer noopener"><img src=3D"https://68ef2f69c7787d4078ac-7864ae55ba174c4=
+0683f10ab811d9167.ssl.cf1.rackcdn.com/twitter-icon_24x24.png" width=3D"24" =
+style=3D"margin: 0.8em 0.2em; padding: 0px; letter-spacing: -0.1px; border-=
+width: 0px; border-style: none; border-color: currentcolor; vertical-align:=
+ middle; max-width: 100%;" data-inlineimagemanipulating=3D"true"><div style=
+=3D"margin:0px;width:0px;min-height:0px;"><div></div></div></a>&nbsp;<a sha=
+pe=3D"rect" href=3D"https://886b17ba.streaklinks.com/CViq1HnPT2bOazyLRgDQZ0=
+ok/https%3A%2F%2Fwww.facebook.com%2FGazelliArtHouse%2F" style=3D"color:rgb(=
+17,85,204);display:inline-block;" target=3D"_blank" rel=3D"noreferrer noope=
+ner"><img src=3D"https://68ef2f69c7787d4078ac-7864ae55ba174c40683f10ab811d9=
+167.ssl.cf1.rackcdn.com/facebook-icon_24x24.png" width=3D"24" style=3D"marg=
+in: 0.8em 0.2em; padding: 0px; letter-spacing: -0.1px; border-width: 0px; b=
+order-style: none; border-color: currentcolor; vertical-align: middle; max-=
+width: 100%;" data-inlineimagemanipulating=3D"true"></a></font></div></div>=
+<div><br clear=3D"none"></div><div><img width=3D"96" height=3D"44" src=3D"h=
+ttps://ci3.googleusercontent.com/mail-sig/AIorK4w7gKovNZAR8tYAuQ9hIjEiBgWel=
+9uIDPpW34GyeY595Rek12deHDAlPE9ZZxtPymKBYCzaHBU" data-inlineimagemanipulatin=
+g=3D"true"><br clear=3D"none"></div><div><br clear=3D"none"></div><div><br =
+clear=3D"none"></div><div><font color=3D"#000000">This e-mail message, incl=
+uding all attachments, is for the&nbsp;sole use of the intended recipient(s=
+) and may contain&nbsp;legally privileged and confidential information. If =
+you are&nbsp;not an intended recipient, you are hereby notified that&nbsp;y=
+ou have either received this message in error or through&nbsp;interception,=
+ and that any&nbsp;review, use, distribution,&nbsp;copying or disclosure of=
+ this message and/or its&nbsp;attachments or parts thereof is strictly proh=
+ibited and is&nbsp;subject to criminal and civil penalties with appropriate=
+&nbsp;national legislation.</font></div></div></div></div></div></div></div=
+></div></div></div></div></div></div></div></div></div></div></div></div></=
+div></div></div></div></div></div></div></div></div></div></div></div></div=
+></div></div></div></div></div></div></div></div></div></div></div></div></=
+div></div></div></div></div><div style=3D"color:rgb(34,34,34);"><div dir=3D=
+"ltr"><div dir=3D"ltr"><div><div></div></div></div></div></div></div></div>=
+</div></div></div></div></div></div></div></div></div></div></div></div></d=
+iv></div></div></div></div></div></div></div></div></div></div></div></div>=
+</div></div></div></div><div style=3D"color:rgb(34,34,34);"><div dir=3D"ltr=
+"><div dir=3D"ltr"></div></div></div></div></div></div></div></div></div></=
+div></div></div></div></div></div></div></div></div></div></div></div></div=
+></div></div></div></div></div></div></div></div></div></div></div></div></=
+div></div></div></div></div></div></div></div></div></div></div></div></div=
+></div></div></div></div></div></div></div></div></div></div></div></div></=
+div></div></div></div></div></div></div></div></div></div></div></div></div=
+></div></div></div></div></div></div></div></div></div></div></div></div></=
+div></div></div></div></div></div></div></div></div></div></div></div></div=
+></div></div></div></div></div><div style=3D"margin:8px 0px 0px;padding:0px=
+;"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div=
+ dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D=
+"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><=
+div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div><div dir=3D"ltr"><di=
+v dir=3D"ltr"><div></div></div></div></div><div><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><span></span></div></div></div></div></div></div></div></div></div></div>=
+</div></div></div></div></div></div></div></div></div></div></div></div></d=
+iv></div></div></div></div></div></div></div></div></div></div></div></div>=
+</div></div></div></div></div></div></div></div></div></div></div><br clear=
+=3D"none"></div><div style=3D"min-height: 1px;"><img alt=3D"" style=3D"widt=
+h: 0px;" src=3D"https://mailfoogae.appspot.com/t?sender=3DaZ2VvcmdlQGdhemVs=
+bGlhcnRob3VzZS5jb20%3D&amp;type=3Dzerocontent&amp;guid=3D203d6406-046e-4d03=
+-859c-1ecbc1f99b57" data-inlineimagemanipulating=3D"true" data-id=3D"174133=
+4772116"><font color=3D"#ffffff" size=3D"1">=E1=90=A7</font></div><br clear=
+=3D"none"><div id=3D"ydpfd846840yiv6574516210yqt91279" class=3D"ydpfd846840=
+yiv6574516210yqt4548491422"><div class=3D"ydpfd846840yiv6574516210gmail_quo=
+te ydpfd846840yiv6574516210gmail_quote_container"><div dir=3D"ltr" class=3D=
+"ydpfd846840yiv6574516210gmail_attr">On Tue, 4 Mar 2025 at 22:05, Thomas Ma=
+chnik &lt;<a shape=3D"rect" href=3D"mailto:zipnpup@yahoo.com" target=3D"_bl=
+ank" rel=3D"noreferrer noopener">zipnpup@yahoo.com</a>&gt; wrote:<br clear=
+=3D"none"></div><blockquote style=3D"margin:0px 0px 0px 0.8ex;border-left:1=
+px solid rgb(204,204,204);padding-left:1ex;" class=3D"ydpfd846840yiv6574516=
+210gmail_quote"><div><div style=3D"font-family:Helvetica, Arial, sans-serif=
+;font-size:16px;"><div></div>
+        <div dir=3D"ltr"><span style=3D"font-family:Helvetica;font-size:12p=
+x;">Hi George &amp; Michael,</span></div><div dir=3D"ltr">
+<p style=3D"margin:0px;font-stretch:normal;font-size:12px;line-height:norma=
+l;font-family:Helvetica;font-size-adjust:none;min-height:14px;"><br clear=
+=3D"none"></p>
+<p style=3D"margin:0px;font-stretch:normal;font-size:12px;line-height:norma=
+l;font-family:Helvetica;font-size-adjust:none;">Let me look into this matte=
+r and see what works we can potentially add to the shipment. Since this is =
+the older inventory, I may need a few days to find all these and to get ins=
+urance values for them. &nbsp;</p>
+<p style=3D"margin:0px;font-stretch:normal;font-size:12px;line-height:norma=
+l;font-family:Helvetica;font-size-adjust:none;min-height:14px;"><br clear=
+=3D"none"></p>
+<p style=3D"margin:0px;font-stretch:normal;font-size:12px;line-height:norma=
+l;font-family:Helvetica;font-size-adjust:none;">Tom</p><div><br clear=3D"no=
+ne"></div></div><div><br clear=3D"none"></div>
+       =20
+        <div id=3D"ydpfd846840yiv6574516210m_4837805228548537682ydp5a891f6b=
+yahoo_quoted_1452174037">
+            <div style=3D"font-family:Helvetica, Arial, sans-serif;font-siz=
+e:13px;">
+               =20
+                <div>
+                    On Tuesday, March 4, 2025 at 05:28:46 AM PST, George Li=
+onel Barker &lt;<a shape=3D"rect" href=3D"mailto:george@gazelliarthouse.com=
+" target=3D"_blank" rel=3D"noreferrer noopener">george@gazelliarthouse.com<=
+/a>&gt; wrote:
+                </div>
+                <div><br clear=3D"none"></div>
+                <div><br clear=3D"none"></div>
+                <div><div id=3D"ydpfd846840yiv6574516210m_48378052285485376=
+82ydp5a891f6byiv1684486857"><div dir=3D"ltr"><div>Hi there Tom,&nbsp;</div>=
+<div><br clear=3D"none"></div><div>I looked through the PDF you sent in an =
+earlier email, and found these 15 hand coloured 'People in the Garden/Athle=
+tes' works on paper. Before we get into shipping, can you confirm&nbsp;that=
+ you have them all?&nbsp;</div><div><br clear=3D"none"></div><div>Here's an=
+ attached PDF with your folio references. Let me know if you&nbsp;have any =
+questions?&nbsp;</div><div><br clear=3D"none"></div><div>Best wishes,&nbsp;=
+</div><div><br clear=3D"none"></div><div>George&nbsp;</div><div><br clear=
+=3D"none"></div><div><br clear=3D"none"></div><div><div dir=3D"ltr"><div di=
+r=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"lt=
+r"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div=
+ dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D=
+"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><=
+div style=3D"padding-top:0px;padding-right:0px;padding-left:0px;"><div styl=
+e=3D"margin:0px;padding:0px 0px 20px;width:1116px;"><div dir=3D"ltr"><div d=
+ir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"l=
+tr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><di=
+v dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div=
+ dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D=
+"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><=
+div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"lt=
+r"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div=
+ dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D=
+"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><=
+div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr" style=3D=
+"color:rgb(34,34,34);"><div dir=3D"ltr"><div dir=3D"ltr"><div style=3D"padd=
+ing-top:0px;padding-right:0px;padding-left:0px;font-family:Roboto, RobotoDr=
+aft, Helvetica, Arial, sans-serif;"><div style=3D"margin:0px;min-width:0px;=
+padding:0px 0px 20px;width:initial;"><div style=3D"margin:8px 0px 0px;paddi=
+ng:0px;"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr" style=3D"font-family:Arial, Helvetica, =
+sans-serif;"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D=
+"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><=
+span></span><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><font face=3D"arial, sans-serif" color=3D"#000000">LO=
+NDON</font></div><div dir=3D"ltr"><a shape=3D"rect" href=3D"https://886b17b=
+a.streaklinks.com/CVeJZDPdHR6pmjVMngPPyIEH/https%3A%2F%2Fgazelliarthouse.co=
+m%2Fexhibitions%2F191-against-the-grain-lilly-fenichel%2F" style=3D"font-fa=
+mily:arial, sans-serif;color:rgb(17,85,204);" target=3D"_blank" rel=3D"nore=
+ferrer noopener">Lilly Fenichel: Against the Grain</a></div><div><span styl=
+e=3D"color:rgb(0,0,0);font-family:arial, sans-serif;"><br clear=3D"none"></=
+span></div><div><span style=3D"color:rgb(0,0,0);font-family:arial, sans-ser=
+if;">BAKU&nbsp;</span></div><div><a shape=3D"rect" href=3D"https://886b17ba=
+.streaklinks.com/CVeJZDTtbUsfU0fxsQoAWEva/https%3A%2F%2Fgazelliarthouse.com=
+%2Fexhibitions%2F188-parallel-worlds-chris-levine-michael-takeo-magruder-ma=
+rshmallow-laser-feast%2F" style=3D"color:rgb(17,85,204);" target=3D"_blank"=
+ rel=3D"noreferrer noopener">Parallel Worlds: Chris Levine, Michael Takeo M=
+agruder, Marshmallow Laser Feast, Elnara Nasirli, Recycle Group, Nye Thomps=
+on</a></div><div dir=3D"ltr"><div><font color=3D"#000000" face=3D"arial, sa=
+ns-serif"><br clear=3D"none"></font></div><div><font color=3D"#000000" face=
+=3D"arial, sans-serif">GAZELL.iO&nbsp;</font></div><div><span style=3D"font=
+-family:arial, sans-serif;">February Resident |&nbsp;</span><a shape=3D"rec=
+t" href=3D"https://886b17ba.streaklinks.com/CVeJZDbAAFh_HRkqqw3Y02bN/https%=
+3A%2F%2Fgazell.io%2Fpages%2Fsofia-crespo" style=3D"color:rgb(17,85,204);fon=
+t-family:arial, sans-serif;" target=3D"_blank" rel=3D"noreferrer noopener">=
+Sofia Crespo</a></div><div><span style=3D"font-family:arial, sans-serif;">P=
+roject Space |&nbsp;</span><font color=3D"#1155cc" face=3D"arial, sans-seri=
+f"><a shape=3D"rect" href=3D"https://886b17ba.streaklinks.com/CVeJZDTRUb0i3=
+e31mgSw7UNX/https%3A%2F%2Fgazell.io%2Fcollections%2F00-zhang-honey" style=
+=3D"color:rgb(17,85,204);" target=3D"_blank" rel=3D"noreferrer noopener">00=
+ Zhang: Honey</a></font></div></div><div><br clear=3D"none"></div></div></d=
+iv></div></div></div></div></div></div></div></div></div></div></div></div>=
+<div dir=3D"ltr"><font face=3D"arial, sans-serif"></font><div><a shape=3D"r=
+ect" href=3D"http://www.gazelliarthouse.com/" style=3D"color:rgb(17,85,204)=
+;" target=3D"_blank" rel=3D"noreferrer noopener"><font color=3D"#0b5394">ww=
+w.gazelliarthouse.com</font></a></div><div>+44 (0) 207 491 8816 / +994 (0) =
+12 498 1230</div></div></div></div></div></div></div></div><div dir=3D"ltr"=
+><font face=3D"arial, sans-serif"></font><div><div><font color=3D"#000000">=
+<a shape=3D"rect" href=3D"https://886b17ba.streaklinks.com/CVeJZDTy8gNY2mGr=
+pQccxFJY/https%3A%2F%2Fwww.instagram.com%2Fgazelliarthouse%2F" style=3D"col=
+or:rgb(17,85,204);display:inline-block;" target=3D"_blank" rel=3D"noreferre=
+r noopener"><img src=3D"https://68ef2f69c7787d4078ac-7864ae55ba174c40683f10=
+ab811d9167.ssl.cf1.rackcdn.com/instagram-icon_24x24.png" width=3D"24" style=
+=3D"margin:0.8em 0.2em;padding:0px;letter-spacing:-0.1px;border-width:0px;b=
+order-style:none;border-color:currentcolor;vertical-align:middle;max-width:=
+100%;" data-inlineimagemanipulating=3D"true"><div style=3D"margin:0px;width=
+:0px;min-height:0px;"><div></div></div></a><a shape=3D"rect" href=3D"https:=
+//886b17ba.streaklinks.com/CVeJZDb29iAUKYzo8A4Keytx/https%3A%2F%2Ftwitter.c=
+om%2FGazelliArtHouse" style=3D"color:rgb(17,85,204);display:inline-block;" =
+target=3D"_blank" rel=3D"noreferrer noopener"><img src=3D"https://68ef2f69c=
+7787d4078ac-7864ae55ba174c40683f10ab811d9167.ssl.cf1.rackcdn.com/twitter-ic=
+on_24x24.png" width=3D"24" style=3D"margin:0.8em 0.2em;padding:0px;letter-s=
+pacing:-0.1px;border-width:0px;border-style:none;border-color:currentcolor;=
+vertical-align:middle;max-width:100%;" data-inlineimagemanipulating=3D"true=
+"><div style=3D"margin:0px;width:0px;min-height:0px;"><div></div></div></a>=
+&nbsp;<a shape=3D"rect" href=3D"https://886b17ba.streaklinks.com/CVeJZDTHBw=
+y3rn3cgglHf7Bn/https%3A%2F%2Fwww.facebook.com%2FGazelliArtHouse%2F" style=
+=3D"color:rgb(17,85,204);display:inline-block;" target=3D"_blank" rel=3D"no=
+referrer noopener"><img src=3D"https://68ef2f69c7787d4078ac-7864ae55ba174c4=
+0683f10ab811d9167.ssl.cf1.rackcdn.com/facebook-icon_24x24.png" width=3D"24"=
+ style=3D"margin:0.8em 0.2em;padding:0px;letter-spacing:-0.1px;border-width=
+:0px;border-style:none;border-color:currentcolor;vertical-align:middle;max-=
+width:100%;" data-inlineimagemanipulating=3D"true"></a></font></div></div><=
+div><br clear=3D"none"></div><div><img width=3D"96" height=3D"44" src=3D"ht=
+tps://ci3.googleusercontent.com/mail-sig/AIorK4w7gKovNZAR8tYAuQ9hIjEiBgWel9=
+uIDPpW34GyeY595Rek12deHDAlPE9ZZxtPymKBYCzaHBU" data-inlineimagemanipulating=
+=3D"true"><br clear=3D"none"></div><div><br clear=3D"none"></div><div><br c=
+lear=3D"none"></div><div><font color=3D"#000000">This e-mail message, inclu=
+ding all attachments, is for the&nbsp;sole use of the intended recipient(s)=
+ and may contain&nbsp;legally privileged and confidential information. If y=
+ou are&nbsp;not an intended recipient, you are hereby notified that&nbsp;yo=
+u have either received this message in error or through&nbsp;interception, =
+and that any&nbsp;review, use, distribution,&nbsp;copying or disclosure of =
+this message and/or its&nbsp;attachments or parts thereof is strictly prohi=
+bited and is&nbsp;subject to criminal and civil penalties with appropriate&=
+nbsp;national legislation.</font></div></div></div></div></div></div></div>=
+</div></div></div></div></div></div></div></div></div></div></div></div></d=
+iv></div></div></div></div></div></div></div></div></div></div></div></div>=
+</div></div></div></div></div></div></div></div></div></div></div></div></d=
+iv></div></div></div></div><div style=3D"color:rgb(34,34,34);"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div><div></div></div></div></div></div></div></div><=
+/div></div></div></div></div></div></div></div></div></div></div></div></di=
+v></div></div></div></div></div></div></div></div></div></div></div></div><=
+/div></div></div></div><div style=3D"color:rgb(34,34,34);"><div dir=3D"ltr"=
+><div dir=3D"ltr"></div></div></div></div></div></div></div></div></div></d=
+iv></div></div></div></div></div></div></div></div></div></div></div></div>=
+</div></div></div></div></div></div></div></div></div></div></div></div></d=
+iv></div></div></div></div></div></div></div></div></div></div></div></div>=
+</div></div></div></div></div></div></div></div></div></div></div></div></d=
+iv></div></div></div></div></div></div></div></div></div></div></div></div>=
+</div></div></div></div></div></div></div></div></div></div></div></div></d=
+iv></div></div></div></div></div></div></div></div></div></div></div></div>=
+</div></div></div></div></div><div style=3D"margin:8px 0px 0px;padding:0px;=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div><div dir=3D"ltr"><div=
+ dir=3D"ltr"><div></div></div></div></div><div><div dir=3D"ltr"><div dir=3D=
+"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><=
+span></span></div></div></div></div></div></div></div></div></div></div></d=
+iv></div></div></div></div></div></div></div></div></div></div></div></div>=
+</div></div></div></div></div></div></div></div></div></div></div></div></d=
+iv></div></div></div></div></div></div></div></div></div></div></div><div s=
+tyle=3D"min-height:1px;"><img alt=3D"" style=3D"width:0px;" src=3D"https://=
+mailfoogae.appspot.com/t?sender=3DaZ2VvcmdlQGdhemVsbGlhcnRob3VzZS5jb20%3D&a=
+mp;type=3Dzerocontent&amp;guid=3D55fe57aa-76ca-4ee0-9105-51a583f62ff9" data=
+-inlineimagemanipulating=3D"true" data-id=3D"1741334772116"><font color=3D"=
+#ffffff" size=3D"1">=E1=90=A7</font></div>
+</div></div>
+            </div>
+        </div></div></div></blockquote></div></div>
+</div></div></div>
+            </div>
+        </div></div></body></html>
+------=_Part_673109_691125742.1741336332344--

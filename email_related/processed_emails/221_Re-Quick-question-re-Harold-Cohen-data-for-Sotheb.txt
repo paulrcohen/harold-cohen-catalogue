@@ -1,0 +1,37 @@
+Subject: Re: Quick question re Harold Cohen data for Sothebys
+From: Thomas Machnik <zipnpup@yahoo.com>
+To: Robert Norton <robert@verisart.com>
+Date: 2024-10-10 07:31:05
+Message-ID: <1565338113.93777.1728545465695@mail.yahoo.com>
+--------------------------------------------------------------------------------
+
+Hi Robert,
+Well, we have a dilemma. I actual see two additional options. I don't necessarily have the final word as we should get Paul's input. In order of my preference from most preferred to least, I list them below. Just want to note that knowing what I now know, I would not have sent this one. 
+
+Preference from most preferred to least1) Pull the work from the auction2) Sell the print but without the NFT or sell NFT without print
+3) Use your 2nd option with a minor changeYour second option is to leave the certificate as is but add a note. I suggest changing the note on the certificate to, "this is the earliest known file the estate has for this work."  I would leave out, "the descriptor file was not saved until 2003". We might consider, "the earliest known descriptor file for this work has a 2003 timestamp."
+4) is the one about changing the certificate to 2003. This is probably the most appropriate thing to do because it reflects reality. But we are concerned about the implications for the collectors. And because of this, I included the option of pulling the work from the auction or selling the print but not the NFT with it. 
+
+Honestly, except for #1 I am a bit uncomfortable with all of them. Maybe in general an auction is not the proper venue for selling works that include signing errors. Maybe in those cases it would be better to have a one-on-one conversation with the collector on the reality and provide a more complete story of the work. And maybe this is what we should do regarding this work.
+
+I do have an additional concern regarding this work (with respect to generating a certificate) in that we have some evidence that a 2/3 and 3/3 might have been made and as of yet, I do not know how they were signed. I do know that in our 2002 - 2004 catalog (the one I showed you when you visited)... in there the work is documented as being 2003. So again everything points to the work being 2003 and that Harold made an error. 
+
+If we keep the claim of the print as being signed as 2002 without explanation, internally we will have implications as well. And these implications may actually out way the concern of the implications related to collectors. For example, if we want to make our 2002 - 2004 catalog in its current or expanded form more widely available, the catalog will not jive with the certificate. And in any other instance whereby Harold referred to this work (this includes multiple Powerpoint presentations, speeches and the like) the confusion is only exasperated due to that one number in pencil being written as a 2 and not a 3.
+I know this is on the eve of the auction and I would have preferred I didn't send this one. And like you mention though not in these exact terms, this work belongs to the misfits group. I don't know we can pull this work on the eve of the auction but that is my preference. But I am open to hear what Paul things about all this.
+Tom
+
+ On Wednesday, October 9, 2024, 8:52:46 AM PDT, Robert Norton <robert@verisart.com> wrote: 
+
+ Thanks Tom for double checking all this.  Appreciate that all this takes time and it’s sometimes hard to determine what happened so long ago.
+Regarding this work, we now have two options:
+1) We create a new certificate for the print and change the date from 2002 to 2003.  The problem with this is that the collector would receive the print and may then ask why the year says 2002 whereas the record says 2003 and this may create further confusion and invite further scrutiny regarding dates written on other prints.  I think we would want to avoid this as we are looking to build a trusted market for this works.  We would also need to destroy the already minted NFT which states a production year of 2002 which is what is supplied although the file metadata does say 2003.
+2) We leave the certificate for the print as it stands which states it was produced in 2002.  We add a note to the certificate for the NFT to say this is the earliest known file the estate has for this work and say that the descriptor file was not saved until 2003.  The benefit with this is we don't have to re-mint or re-issue the NFT or the certificate and we can simply amend the certificate for the NFT to reflect the above.
+I suspect there may be other cases we come across when we put together the catalog raisonne and it may be better to include all works together in a series of changes the estate agrees upon than to introduce all this know on the eve, so to speak, of the selling exhibition with Sotheby’s.
+We will do whatever you think is best but from our perspective we think Option 2 is preferable at this stage.
+Grateful for your thoughts and guidance on this.
+Best
+Robert
+Robert NortonCEO & co-founderVerisart
+
+
+ Dear Robert,

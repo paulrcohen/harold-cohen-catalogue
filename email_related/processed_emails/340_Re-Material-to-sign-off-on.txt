@@ -1,0 +1,47 @@
+Subject: Re: Material to sign off on
+From: Paul Cohen <paulrcohen@gmail.com>
+To: Mila Askarova <m.askarova@gazelliarthouse.com>
+Date: 2024-09-26 19:29:46
+Message-ID: <CAKjPZkFGwmodMxa827CphwJeenLLqgo0cP9vsubWi280PXEu3w@mail.gmail.com>
+--------------------------------------------------------------------------------
+
+Mila, the viability of your suggestion depends on the definition of
+edition. As I understand the terms, works and editions are different. An
+edition is k>1 identical works. So I don't know what your assertion "Each
+work is a unique, signed edition...." means. "A work is an edition" can be
+true only if the edition is of size 1, which defies the ordinary meaning of
+edition.
+
+So what is Sotheby's really asking for? Let X be a work that is part of
+edition E of at least two identical works. Are they asking for X to be
+unique? If so, then they are asking us to assert that X is not part of E,
+which is a known falsehood. Are they asking that E be unique but X need
+not be unique? This is more interesting. Suppose E1 is an edition of three
+identical prints and E2 is an edition of the same three prints. Are E1 and
+E2 *unique* editions? Perhaps E1 was printed on Tuesday and E2 was printed
+on Wednesday, and to an expert eye the works in E1 look very slightly
+different than the works in E2. Then we could assert that E1 and E2 are
+unique, in which case your phrase "E1 is a unique signed edition with no
+other editions" would be false because there are two discernably different
+editions of "the same" work. But if we have only one edition, then it is
+by definition a unique edition with no other editions.
+
+In short, we cannot assert that any work is unique, as we know that (for
+some or perhaps all the works) they belong to editions. We can assert that
+the *editions* are unique, in the sense that we printed edition E1 on
+Tuesday and we did not print another edition on Wednesday or ever. However
+we can not say, as you suggest, *Each work is a unique, signed edition with
+no other editions available with an accompanying ERC-721 token* because we
+cannot say a work is an edition.
+
+We *can* say, *Each work is from a unique, signed edition with no other
+editions available with an accompanying ERC-721 token. *However, if we say
+this then we will never be allowed to make another edition of a work, as we
+hoped to do.
+
+The annoying thing is that we thought all this through carefully several
+weeks ago and now, at the last minute, people who really ought to
+understand editioning, and who never put anything about it in a contract,
+and who seem not to understand that this is supposed to be an NFT sale,
+have imposed an impossible or at least highly disadvantageous restriction
+upon us.

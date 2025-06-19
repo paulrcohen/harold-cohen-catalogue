@@ -1,0 +1,144 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a10:6d08:b0:5c7:f970:fbca with SMTP id gq8csp3355980pxb;
+        Tue, 28 Jan 2025 09:21:59 -0800 (PST)
+X-Forwarded-Encrypted: i=2; AJvYcCX0DK/u1TL3/QWBa3SZOo2I7+Umv1jHhpOZj2xsEVLSBsNAyOlksqvgI+8sk3qcu8pchNXlrzKftH84@gmail.com
+X-Received: by 2002:a05:651c:993:b0:300:4d77:6b7e with SMTP id 38308e7fff4ca-30796839927mr730301fa.10.1738084918766;
+        Tue, 28 Jan 2025 09:21:58 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1738084918; cv=none;
+        d=google.com; s=arc-20240605;
+        b=iDOyYnVeQ6MCC8RqFZVaH6aWl8Gr59yj8bpbJ8h7weSYzpQ580STFLC2mCzMz61GWT
+         e6duY5sHGuGxGDVcFatOqDq5Lx9OmfttCro/UPhHvMPpd7qNbLGiFXjqlW1lg8tNX8lm
+         X+Zc86B/Mb2jnWvCLsooSi7sF6mezcqEe6jx8H3QLRFZhesaIpNf39lqlFnZiXvjls8w
+         H+F5jTVH1cBjM1/OnOrfDwVoMJ9jXnlCuIqC/gZ3hibG6X0JHkAHXVEpTuM47CIxOJWz
+         d/vo5lGZrwE6QZxKQwRWFX17gj+9KPaY3bewPL1l1vXkgN9Mp8cg406cIUCqzeZp0JIY
+         fSRw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=j5bMHABA+dFwRLr9q6nTkOQa+WlhO+pnNqvGVoBJ188=;
+        fh=o+PgxfBVBYrPjOPmX/aY2mJXA3skeGerOwvKQlNkoDs=;
+        b=TmEc1I/KBb3q72dCQdzf+/+1qFdHN3HnmM4yX2r34aTf6t/wm3/+T2smhC4tlWdReB
+         WjpAlJGxSbK1dffklKuTP1a/3d53w/IpDX3wMv30C0NcCWl7H3yXdjR1Xq8Zvgcu5J4b
+         fXp5KE9LJ2O6LF5/hT12lXis+E0yPI8qQ7XQ5zV7a0q5XenXNfDJZz7yRBCLk0O6nVfL
+         qmXqIC4u22hrpeDWeyJf0FPHP+jKX+eescMqkCYTkKhBhQ2EDIQFsaR+gBe+NjRZjeMc
+         K4sZ5yYRbJZt6XtHxgYEKbrPA6aN0ZgwQAQp4/ptbjWiKjk+DJKkt+HqmEHWC6vOO/UA
+         ICcQ==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@neilmendoza.com header.s=google header.b=GBd8BtL9;
+       spf=pass (google.com: domain of neil@neilmendoza.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=neil@neilmendoza.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=neilmendoza.com;
+       dara=pass header.i=@gmail.com
+Return-Path: <neil@neilmendoza.com>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id 38308e7fff4ca-3079643116dsor345101fa.7.2025.01.28.09.21.58
+        for <paulrcohen@gmail.com>
+        (Google Transport Security);
+        Tue, 28 Jan 2025 09:21:58 -0800 (PST)
+Received-SPF: pass (google.com: domain of neil@neilmendoza.com designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@neilmendoza.com header.s=google header.b=GBd8BtL9;
+       spf=pass (google.com: domain of neil@neilmendoza.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=neil@neilmendoza.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=neilmendoza.com;
+       dara=pass header.i=@gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=neilmendoza.com; s=google; t=1738084918; x=1738689718; dara=google.com;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=j5bMHABA+dFwRLr9q6nTkOQa+WlhO+pnNqvGVoBJ188=;
+        b=GBd8BtL9N82g5rD/ohIU+mNUl9PnylDij1c1tm/3KEtezbq2k0Du4ed99eb1ovfZdJ
+         nN7tSIPK+s5tOmiqF5cUB2DwXt98z2xzdZaGmhXDOxwMhfBOQmBi+naYcdpMxvE3ooJc
+         W4ZcSPaxnKZbaXTzdPv5Yeg3pFViv4SBM7rzpPp8SKznb0JHCAg++K0vURJbzJvbm+CV
+         MVGQKUP3s3viR3qhPQWXVZ7z1NqTvM1GvIHFjjWHr6uviIHasdFMr89SaZyLnG9e4KV9
+         QgQ0jX6BwFbHUmwEY6bwe81UiqCmhvE0VaI/N8MnFG7DhC+vZL8jDxjvBkISQBwI7SMF
+         SVpQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1738084918; x=1738689718;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=j5bMHABA+dFwRLr9q6nTkOQa+WlhO+pnNqvGVoBJ188=;
+        b=l1QuNfePl7eUxm60F7rWO5jQ4+O2Tl8vSTi1PQZQD54HQegTp959ixYojP3lzO/tau
+         RcE3vv8vUmDx8kTykinQVs1iMtAfR06RpRbadXvQpIE2Otfa5NvgBalExsClcU2SqS8/
+         X8qZUKbrAM0aQR5uI6BgWbNwwnpXssGpkYlQOyt1SbTFZzPbrzTJj8IpdRSnf/KKgc5a
+         sGAuIWKxUK3iFk793/WpJTaq/yHfbfSkdRkNgZ8bGF55InBAYT6yhuQZ2vquoMmWGXCo
+         kDXxdeacjdYDFAW427S/lSPQkyT3lqru74JAx7JyCVX58+V0dRegkg8YhASLSPU4mTOb
+         A7dA==
+X-Forwarded-Encrypted: i=1; AJvYcCX8UHLmDbYt2is5ojtyKsF5wvbkKl+lBWmA5a1VhdrjqU8JD75S5FWWMkAI/BOdhN8FmEBMyOaY4Eke@gmail.com
+X-Gm-Message-State: AOJu0YxD2zPFTITInZNwIRLdvso9CclCxy7gt8O+nfwfsBOrbntN2QCP
+	FQDxxmtMZ51mlv4OUoCTiWUrPlQ+crSO8rL0jRGuJ1jvFBmVbz90c9/jXl6mbQUDK2+aisczm37
+	Z
+X-Gm-Gg: ASbGncscbfDR8PyYhV9NQfsoEKG8qX5C97Gto5T94AAn1Lbqj+MjQg1fIVWMRJ1MzXa
+	Xlo9WreRNo1ahCMMf+Q9UOfux3iBYiYuKTl7GujLj4nAYH8H4HLPlZn8FejW4T7BYxJoGrTuHeo
+	Zc6L54FiOjMc6f3cbRbC29KohNTPthrDs44pbTzU8fuF5uqf5mVjlgmm67L6d3EpU1yMmsLzpnx
+	C9lfAmkXhd+f5lnxIH7a68scZLKPFSDs8MW6zedal078DxScBJJuFkgS645u71IQwldOzf9L7If
+	7GvZMtLK3C+GgoClWl1NzWDN48J3nsBJLaRTqxynzQDJGY9Vyh0ZjX4rNw==
+X-Google-Smtp-Source: AGHT+IE+qmHPOaeF++2hJ5iDkQVOdj5jrGWOCFocSOAncb+IUDLAnt8JFmIq0xYRO+cLCuSQaatiAw==
+X-Received: by 2002:a05:651c:b14:b0:307:2aea:5594 with SMTP id 38308e7fff4ca-30796857105mr591741fa.18.1738084917697;
+        Tue, 28 Jan 2025 09:21:57 -0800 (PST)
+Return-Path: <neil@neilmendoza.com>
+Received: from mail-lj1-f179.google.com (mail-lj1-f179.google.com. [209.85.208.179])
+        by smtp.gmail.com with ESMTPSA id 38308e7fff4ca-3076ba66a72sm19015771fa.13.2025.01.28.09.21.57
+        for <paulrcohen@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 28 Jan 2025 09:21:57 -0800 (PST)
+Received: by mail-lj1-f179.google.com with SMTP id 38308e7fff4ca-303548a933aso54131171fa.3
+        for <paulrcohen@gmail.com>; Tue, 28 Jan 2025 09:21:57 -0800 (PST)
+X-Forwarded-Encrypted: i=1; AJvYcCVpmkdtEMLXXHIxslF2YI2vdDn/QfbUMs06xT5mnnaCWdDwV31oGLRUPA8EnQ8+CJ2oCQ+QTBSrGjf3@gmail.com
+X-Received: by 2002:a2e:be1b:0:b0:306:188f:c0b3 with SMTP id
+ 38308e7fff4ca-307968fc754mr214911fa.35.1738084916560; Tue, 28 Jan 2025
+ 09:21:56 -0800 (PST)
+MIME-Version: 1.0
+From: Neil Mendoza <neil@neilmendoza.com>
+Date: Tue, 28 Jan 2025 10:21:44 -0700
+X-Gmail-Original-Message-ID: <CAPpmcQgvAAMvEmN-p9fR392Z52Du+YpH1M-N5B_fYAw6i5x_NA@mail.gmail.com>
+X-Gm-Features: AWEUYZnn1r73_UTis3IWKs3D3BT2YzI327FQUl-ynpFBNlxkv8D9eM7Ds8ZNyck
+Message-ID: <CAPpmcQgvAAMvEmN-p9fR392Z52Du+YpH1M-N5B_fYAw6i5x_NA@mail.gmail.com>
+Subject: Showing Harold Cohen's Work in LA
+To: prcohen@pitt.edu, "paulrcohen@gmail.com" <paulrcohen@gmail.com>
+Content-Type: multipart/alternative; boundary="0000000000000a9778062cc76e52"
+
+--0000000000000a9778062cc76e52
+Content-Type: text/plain; charset="UTF-8"
+
+Hi Paul,
+
+My name is Neil Mendoza, I'm an artist working with technology. I saw you
+teach at Pitt. Coincidentally, I actually have a few pieces installed at
+the Children's Museum there including a drawing machine.
+
+I'm helping a friend curate a show for Ctrl Gallery, a new pop up in LA.
+The show will open on February 15th for three weeks so it will be open
+during Frieze week when a lot of the art world is in town. The show is
+based around machine imagination and I think your father's work would be a
+perfect fit if there is anything available. I was just in London and really
+enjoyed seeing his work at Electric Dreams at the Tate modern!
+
+Let me know what you think.
+
+Thanks!
+
+Neil
+--
+www.neilmendoza.com
+@neilmendoza <http://instagram.com/neilmendoza>
+
+--0000000000000a9778062cc76e52
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Hi Paul,<br><br>My name is Neil Mendoza, I&#39;m an a=
+rtist working with technology. I saw you teach at Pitt. Coincidentally, I a=
+ctually have a few pieces installed at the Children&#39;s Museum there incl=
+uding a drawing machine.<br><br>I&#39;m helping a friend curate a show for =
+Ctrl Gallery, a new pop up in LA. The show will open on February=C2=A015th =
+for three weeks so it will be=C2=A0open during Frieze week when a lot=C2=A0=
+of the art world is in town. The show is based around machine=C2=A0imaginat=
+ion and I think your father&#39;s work would be a perfect fit if there is a=
+nything available. I was just in London and really enjoyed seeing his work =
+at Electric Dreams at the Tate modern!</div><div><br></div><div>Let me know=
+ what you think.<br><br>Thanks!<br><br>Neil</div><div><div dir=3D"ltr" clas=
+s=3D"gmail_signature" data-smartmail=3D"gmail_signature"><div dir=3D"ltr">-=
+-<div><a href=3D"http://www.neilmendoza.com" target=3D"_blank">www.neilmend=
+oza.com</a><div><a href=3D"http://instagram.com/neilmendoza" target=3D"_bla=
+nk">@neilmendoza</a></div></div></div></div></div></div>
+
+--0000000000000a9778062cc76e52--

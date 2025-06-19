@@ -1,0 +1,722 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a10:b092:b0:5c7:f970:fbca with SMTP id y18csp1855594pxa;
+        Thu, 6 Feb 2025 15:33:15 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHmq0H9n8aroCKXsN54eVYj6BJ33iqjUTo+VmElFyz3fZcwm6A0lOA78dQpI2mJlNqb5McS
+X-Received: by 2002:a05:622a:1356:b0:46e:2a18:939d with SMTP id d75a77b69052e-4716880caeemr14163601cf.11.1738884795107;
+        Thu, 06 Feb 2025 15:33:15 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1738884795; cv=none;
+        d=google.com; s=arc-20240605;
+        b=LfK2Mn3l0Ky0FCkkF8FK+i2hfVHWGx2XxxA+wfulhCQJdu9QhBX7bnwSNqdGVYJAAl
+         vovoyAMcvAU5x414BrfrB+ijhrPohE99gZQCz/1slGrD8N3oGqoZFRQJrvsN1nNDVtOM
+         eqx5hFdMa+WZqGLtCX05efCj9M1uPGTmDFKf6VUWWUgD/cow12dBEBX5WdAjoqi8CNme
+         2SDwC/EIk1gPORdHRAcrwx9diGPa1hZ95BT7MCuoZ162OUFxxWURymuBOU0mBc1hWTyV
+         EFsBuci3PbxF2ezIkfJShm8QBTOPaTgnnCu3A/4y7JobfPuBTMeGaBCrO7YTsCD1l4ft
+         zyMA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-language:in-reply-to:mime-version:user-agent:date
+         :message-id:from:references:cc:to:subject:dkim-signature;
+        bh=KUmv16YRVV2MJi9nx8xtjfTMQd2upbpcMaSpEXUO6us=;
+        fh=S6HrsyS+HFHVGh5u5XXVKuG7qv+tSQkGDnMG/S+0J34=;
+        b=K0XQzp1H6qGg5jFaaB+R6hAZZ5CMhRR63dfoowXAMZwybEXULlnEdq741E/YXSapck
+         KH2LiS3TEzB9pYSuVguMVDAR3knmPp5x4+3x+WQUX/C6pTyWjYy1AEO5KJQ+sgAYTLfH
+         i9OcNf8F1ib+bLpc3V16I53ySl0+BxSyjxl4e6WUbDVsjhJ3Hwaq+cO7sknzu/qv+BYY
+         umWeAvllx6ikfdW2nffROrg4mgOY1OFbhMcTF7qDJlHfzktlThyRq5suvgNBMS1QsBpC
+         wKb8c+W8APi0VFiE4Ce1MKjtXW4tih6EzQl2UU5V7lNRiBfl/p6e4+hjqn20yUO4soyj
+         4e7A==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=OqHIJVbR;
+       spf=none (google.com: aaron@aaronshome.com does not designate permitted sender hosts) smtp.mailfrom=aaron@aaronshome.com
+Return-Path: <aaron@aaronshome.com>
+Received: from sonic306-9.consmr.mail.bf2.yahoo.com (sonic306-9.consmr.mail.bf2.yahoo.com. [74.6.132.48])
+        by mx.google.com with ESMTPS id d75a77b69052e-47153b906cfsi20034401cf.371.2025.02.06.15.33.14
+        for <paulrcohen@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 06 Feb 2025 15:33:15 -0800 (PST)
+Received-SPF: none (google.com: aaron@aaronshome.com does not designate permitted sender hosts) client-ip=74.6.132.48;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=OqHIJVbR;
+       spf=none (google.com: aaron@aaronshome.com does not designate permitted sender hosts) smtp.mailfrom=aaron@aaronshome.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1738884794; bh=KUmv16YRVV2MJi9nx8xtjfTMQd2upbpcMaSpEXUO6us=; h=Subject:To:Cc:References:From:Date:In-Reply-To:From:Subject:Reply-To; b=OqHIJVbRhjLqXWLPB6D3E+C5qAHo/DmCgYV0cp6e1QevRG9XQkUyLnvsdnZoYc20Jv7rQcQ1yuI4uGrbBK5Q31VgGinwJRgRFd9TNqvioukJHndADdZRyIYgtJ3itBX9GGBhMhH4WSVD+Oe7DMhk51/AvrW5HkMcGFan3oFcp0TZD+KlFk+bhfRVTb6pJzM0/6BT4xMQvrcA2ZxktKzxs8dYymnCDTE9PYIvXG4YtjwCeeDlL654pEPQ/tNXK1HexsXi1EVBfss6jGZgKsE871g8HOyHfwlV0yEpGZKXEkb3UMxH0bJrWDlAneK77332dSQafBHk+2WX+o/SlQAzBQ==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1738884794; bh=PMixbcp+fxGkf4NTVdrjl03a4k9HVCGUjHbH6iAK2aD=; h=X-Sonic-MF:Subject:To:From:Date:From:Subject; b=U69El0LWZpX3ub6GnOV4+XsP83jto0sJail1qT/2N/UGm/iqKNeO98nwtx7vdMempaAi7TCdahynXZDnh7IzhJF42wIi1cY8bCASbTckuJUV1yv9dZuQN5Yz6Y1ub5vR7pw0TdhJAskvCIsLbfxwLIEKAPtsvNMwf5X62Xm3vy6MN/2BhV8+ejtmB8QC4+x0dQwDXeDL4L7/zaDMfnoyo9dDSzi0gr5oATpUi4q/inYYVUAgkKZJ3SuLsKyrqYiod3kNtI1nbQtQqrPRgIRae8uaZSoM1Thm6zYY9pUIV9/CtHyG2yOMDjBi2cgdysokR9645Eyb/0mf00q3cGuIgw==
+X-YMail-OSG: PWxWcIAVM1lSswG0n3tQFbv23kB9uKuLW4UF7j9VzPguyzBdFNgzd5x_QZ.eB4y
+ tnse.P.c0c3ELpD8CyLlgpPXopXx5HUaDgf5c4UyQaaDCJUxugi3tNmKDNczANZ_9SokiMEw2fU7
+ A0CruD27Z32xKh3CwQXYdkCmBAWksuN9w7YIeYRmqe9Z95toXcpV_hk7B9A6TASMkwbhxkknCn0w
+ QzhIOle7Dmc0Ttv7d.FqiDcC8Zm.uspMAp4Rkuxz2RAUlNJqGc1vEp_sw34lN.oyH4QLMdFDXY4t
+ qH.IuUSwjsXC5dBgcUj7X87rlqcXHm1xXsYMQRl8ou6wtM0cqScYknZQV4XksRr6SXVo4BT22RUw
+ 5oCSiX8bbaNFhghzjDQnJHFNJbcNGGKPPZJNcfbjiJ6ctTt6BkBgv74cFoaKkpG8aN4.NkUkcCuM
+ LXWynM0Efe.Y1Xazx7kCjV6jqoPx4nTsc6bkDMf28A7v_Sk4SoyqSZxMzNpN0sz1JopsI81i44x3
+ sgSM3VHCGSwBA9fzUlMyO8sEql2IKA6YRTv58tEugggG3i0QzsWzBvQ0mOFM4cQRrIVwu_rwFH_y
+ KtkIPxIrTv4zajcnx2T8YyPA5bijZb6XVzpeHy88DPZzZh58ACC6fSDnYY6ptkpNUK7dAAIMHugJ
+ Mq2ZtXneF0FqsEZQZcImWEdzYi7Z8Q6EA3YWnN6.Ja6MfvelqUm34249_VBxXOAtGX_tkL34xeLx
+ Qz7p029fBGyXl15UFRkvZOilEFCAlTOO9G.QN0yp5vn0A3h8pHt7HTuAh.SvTtCJepHQtzw_H23L
+ gGkkBQAmMVurT_gprfgMIZZp4z8Lk.G.k2Mwb9tWEdSvj3k85o_tumSqcmIquZ4bAbcsrqD0nDtT
+ OjKN684eeEmAWhz4Ce7AE6xhe6swyuv.Ld0Cfx0UeaqzZFRQATnhJUUyzfu5KI2Krp47xkz9_lsP
+ HgCgJXA60nBZ_5krq7ivRY0p3q4pRsdxfFR7c7WBvbMVqNng1iG7MQqdDl49KjakLCxjC1dWr1c3
+ 3o1fP3v2hjX9C5tfzcE4f1vbshwny6m0_di3qgmV8CRABS_G3lc71lYI18t1HvXWGkxEaOLkIeGr
+ uG3v.U5Q88jx4AF.TIxqfAxTgs_ibINYr8R_2haj5RkdlngZpKnlyUtAPEZBnv5ZjXgG4ng6G50k
+ rkZtaV1EDr_whx1dLwSYEQFGemiSvM.5TStxXADnnBGXSI5b0bpwaRgmfJ57qsyng33gykkXSqst
+ c_ZBHUcYrnfs1XdUcL4EQHKnYNTUzOQfZ_Yml6OUJzsmjtZffwe8CNowPknka4eCdnNk5Yr9E0XU
+ 8jPs.IZn1.Tcttf9xmA6gYvOpQhzoh.Cz5i1yBASolqY9y9X2OFVSqJ4moyHoASUZntKwL_RO7H5
+ FrcmA264NnS7N1eSeZGeDzCbubrowPsdNJa5HNR7j_Rwzj3mCFqOTR8yTsCx5z32r_fmiZnQy9Rg
+ 6OXPeyqVgRKp66Dr3X9VX7yrL4rvyGuQES1rUabXhDGHSahuqNgZeVRCTWB_UzTpGHOxOrJlLEMC
+ WsOL5dFIU21vgkrEhWbg2InpGW6CL3SuT_IAdY5H.F1KoUdgd6QeyKR3LuIqPFRVx2CVKpvXzuJ8
+ riTZoQgaWhwKqKS.hdfnMvPwIPA1iaI_SxVrR1DSAxLIu3wHhPcTVz_90u3GgNzBXNTOiukklwo.
+ F7U8EsXH6zTldws6KVapCt31Ej4CkSVnjHPUkyue9eLESonMjvVs7Tw2YYOSB7rUhmZXrO00sxzS
+ j2Dmn5rjhCxA.zqSZxCmrE1JTJtjckZ.dz3EF5BURXeRtBF0lhzbp7LDB7Re5A7Ecuf0D3ocmh3R
+ KAi0zJ5GLN_7gsnOD39uZKOSkLFj9l6BSWRDPLaMvfN8eUAyoG6.oM_0U0oUHePm22DSlmfsIo7T
+ zzitNsEreEJWLjyvu9DRIGfIxK27KvCXoXSWwEXhLf4JtoSBFW4Jo8WHhzij5VB0we.3THZrm4UP
+ iKPicD_c6Uz1BwzhUoJqFsZrRXuQxG4.SdyI4gUOtLCk9MyhbrDDfAQ6NxaF4.0MzJebRSMJ68ll
+ Y47xoLO0cW5NSy3tbhbTjsXy7aGXuB5U8ziEgJLlsquLfFuZgiRl9cciaslksYdOhRNB8w7C6fET
+ y58y0eDAt57edcYR1gSFTeLEDBGCYJhDLZNt0MuoPWIdjmQMG9WXpwW31LJktt7rIEX7AaVw7wcs
+ mdiVT.PDpfMB_UujDqQ3MSaYH_Qud7KfMTCM2OtIwFH45mKzA1kF65LlQvPKL9Zgs_B6QYTpHaun
+ X2nu1Fgtno3HTQHNUbuxaPqEF1_cG7IM4lFk7F1pW5g--
+X-Sonic-MF: <aaron@aaronshome.com>
+X-Sonic-ID: 2ab92165-bb35-48ac-a4d0-56e07e5bfaa5
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic306.consmr.mail.bf2.yahoo.com with HTTP; Thu, 6 Feb 2025 23:33:14 +0000
+Received: by hermes--production-gq1-5dd4b47f46-pfhh2 (Yahoo Inc. Hermes SMTP Server) with ESMTPA ID 995053cf1b9a18f0e11acb7f9c2c58c6;
+          Thu, 06 Feb 2025 23:33:10 +0000 (UTC)
+Subject: Re: AARON painting appraisal recommendation request
+To: Brigham Bell <brigham.bell@gmail.com>,
+ George Lionel Barker <george@gazelliarthouse.com>,
+ Thomas Machnik <zipnpup@yahoo.com>
+Cc: Paul Cohen <paulrcohen@gmail.com>
+References: <CANeY__+pCF1KkzWQffeHaVjQWpQ01cQYUBsXnzYJBK4hPEr1HQ@mail.gmail.com>
+ <F70ABECC-9B66-48A1-8684-EEC647F511A4@gmail.com>
+From: Harold Cohen Trust <aaron@aaronshome.com>
+Message-ID: <8662927a-8177-38cd-2b71-2f7ad7661eb3@aaronshome.com>
+Date: Thu, 6 Feb 2025 15:33:09 -0800
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:78.0)
+ Gecko/20100101 Thunderbird/78.13.0
+MIME-Version: 1.0
+In-Reply-To: <F70ABECC-9B66-48A1-8684-EEC647F511A4@gmail.com>
+Content-Type: multipart/alternative;
+ boundary="------------93B5300F3B4249E396BEE5E1"
+Content-Language: en-US
+X-Mailer: WebService/1.1.23187 mail.backend.jedi.jws.acl:role.jedi.acl.token.atz.jws.hermes.yahoo
+Content-Length: 29659
+
+This is a multi-part message in MIME format.
+--------------93B5300F3B4249E396BEE5E1
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+Hi Brig and Paul,
+
+Sometimes you get lucky. I am looking at Harold's digital files from 
+Quickbooks that go back to Jan 1988. Unfortunately, we don't have 
+Quickbooks to open it properly. But, using a text editor I believe I 
+found the entry we are looking for.
+
+900125__o>h_ch_ich_10000.00_gordon bell_ptg "on gauguin's beach"_
+
+The way I read the entry is that he sold the ptg (painting) to Gordon 
+Bell and received a check for $10,000. The entry of the date is 
+1/25/1990 and the amount is close to what Paul recalled.
+
+In quick books a few days earlier I see these additional entries that 
+seem to be related to the delivery,
+900108__mcc>o_mc_tra_46.76_harris ranch_lunch, taking ptg to Bells. corp 
+to repay_
+900107__mch>o_mc_tra_24.51_harris ranch_lunch, bell delivery_
+900108__mch>o_mc_tra_19.79_harris ranch_lunch, bell delivery_
+
+I feel confident that we could generate a bill of sale for you based on 
+this historical information. I will, however, also now look into the 
+hard files for further confirmation.
+
+Tom
+
+On 2/6/25 2:47 PM, Brigham Bell wrote:
+> Hi George,
+>
+> Would you be able to appraise Meeting on Gauguin's Beach 
+> <https://www.computerhistory.org/revolution/computer-graphics-music-and-art/15/231/745> for 
+> insurance purposes?
+>
+> Tom,
+>
+> I don’t have the invoice for this painting. I inherited it from Gordon 
+> and Gwen Bell, who were its original owners. Do you have a copy of the 
+> invoice for this? It would be from 1988 or possibly a year or two later.
+>
+> Thanks everyone for all your help.
+>
+> Regards,
+> Brig
+>
+>
+>
+>> On Feb 6, 2025, at 12:26 PM, Paul Cohen <team@haroldcohentrust.org> 
+>> wrote:
+>>
+>> ﻿
+>> Hi both,
+>> I received a quote from Michael Maloney and have attached it below. I 
+>> rather think working with George Barker is the way to go. It's nice 
+>> to have Maloney's quote as a reference for the future.
+>>
+>> Tom Machnik -- Art Studio Manager -- The Harold Cohen Trust
+>>
+>> --- --- ---
+>> Hello, Tom.
+>> Yes, this is something I can take care of for your client's insurance 
+>> appraisal.
+>> Is it just the one painting?  The project will fall within my 
+>> 3-hour-minimum for a review of the current value of the painting and 
+>> document preparation.  The cost will be $1200. ($400 per hour x 3).
+>>
+>> If your client would like me to proceed, I will need the following:
+>>
+>>   * an image of the painting, the title, medium & size.
+>>   * A copy of the original invoice, which I am guessing you may have
+>>     on file.
+>>   * The client's name and address.
+>>   * The location of the artwork
+>>
+>> Attached is a basic overview of fees and procedures.
+>> If I can be of assistance, I trust you or your client will let me know.
+>> Michael Maloney
+>> Fine Art Appraiser
+>> MALONEY FINE ART APPRAISAL SERVICES
+>> 6121 Sunset Boulevard
+>> Los Angeles, CA 90028
+>> 1310.570.6420
+>>
+>> On Thu, Feb 6, 2025 at 8:57 AM Paul Cohen <paulrcohen@gmail.com 
+>> <mailto:paulrcohen@gmail.com>> wrote:
+>>
+>>     Hi Brig, actually the email was from Tom Machnik, not me; thanks Tom!
+>>
+>>     Michael Maloney appraised Harold's estate right after he died for
+>>     tax purposes so the appraisals were low and the recent increase
+>>     in prices wasn't reflected.  It might be more accurate to ask the
+>>     Gazelli Art House, which represents the Harold Cohen Trust, for a
+>>     reference for an appraiser.  I've cc'd George Barker, there.  --P
+>>
+>>     ______________________________
+>>
+>>     Paul Cohen,  Professor
+>>     School of Computing and Information
+>>     University of Pittsburgh
+>>     personal webpage <https://paulrcohen.github.io/>
+>>     ______________________________
+>>
+>>
+>>     On Thu, Feb 6, 2025 at 9:56 AM Brigham Bell
+>>     <brigham.bell@gmail.com <mailto:brigham.bell@gmail.com>> wrote:
+>>
+>>         Hi Paul,
+>>
+>>         Thanks so much!
+>>
+>>         I’ll check in with them Michael Maloney, too.
+>>
+>>         Regards,
+>>         Brig
+>>
+>>>         On Feb 6, 2025, at 2:14 AM, Paul Cohen
+>>>         <team@haroldcohentrust.org
+>>>         <mailto:team@haroldcohentrust.org>> wrote:
+>>>
+>>>         ﻿
+>>>         Dear Brigham
+>>>         Thank-you for your inquiry. It is nice to know one of
+>>>         Harold's more important works is alive, appreciated and well
+>>>         cared for. On your behalf, I have reached out to an
+>>>         appraiser we have used in the past and I am awaiting a
+>>>         reply. If you prefer, you are welcome to reach out to him as
+>>>         well. Here is his contact information:
+>>>         Michael Maloney
+>>>         MALONEY FINE ART
+>>>         2680 South La Cienega Blvd
+>>>         Los Angeles, CA 90034
+>>>         1310.570.6420
+>>>
+>>>
+>>>         Tom Machnik -- Art Studio Manager -- The Harold Cohen Trust
+>>>
+>>>         On Wed, Feb 5, 2025 at 9:01 AM Brigham Bell
+>>>         <brigham.bell@gmail.com <mailto:brigham.bell@gmail.com>> wrote:
+>>>
+>>>             Need advice on appraisal. I asked Sotheby’s, but they
+>>>             don’t have an idea on whether to appraise it as art or
+>>>             technology. Should I ask an auction house, or is there
+>>>             an AARON appraisal specialist somewhere?
+>>>
+>>>             Any suggestions are welcome.
+>>>
+>>>             Again, not planning on selling this anytime soon, as it
+>>>             is considered important to our whole family.
+>>>
+>>>>             On Jan 30, 2025, at 3:59 PM, Brig
+>>>>             <brigham.bell@gmail.com
+>>>>             <mailto:brigham.bell@gmail.com>> wrote:
+>>>>
+>>>>             ﻿
+>>>>
+>>>>             Hi,
+>>>>
+>>>>
+>>>>             Do you know the best place to get an appraisal of AARON
+>>>>             paintings?
+>>>>
+>>>>
+>>>>             Most importantly, I need an appraisal of /Meeting on
+>>>>             Gauguin's Beach
+>>>>             <https://www.computerhistory.org/revolution/computer-graphics-music-and-art/15/231/745>/,
+>>>>             so that I know how much to insure it for when shipping
+>>>>             it from California to Colorado.
+>>>>
+>>>>
+>>>>             Thanks in advance for any help,
+>>>>
+>>>>             Brigham Bell
+>>>>
+>>>>             1-720-339-6103
+>>>>
+
+
+--------------93B5300F3B4249E396BEE5E1
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    Hi Brig and Paul,<br>
+    <br>
+    Sometimes you get lucky. I am looking at Harold's digital files from
+    Quickbooks that go back to Jan 1988. Unfortunately, we don't have
+    Quickbooks to open it properly. But, using a text editor I believe I
+    found the entry we are looking for. <br>
+    <br>
+    900125__o&gt;h_ch_ich_10000.00_gordon bell_ptg "on gauguin's beach"_<br>
+    <br>
+    The way I read the entry is that he sold the ptg (painting) to
+    Gordon Bell and received a check for $10,000. The entry of the date
+    is 1/25/1990 and the amount is close to what Paul recalled. <br>
+     <br>
+    In quick books a few days earlier I see these additional entries
+    that seem to be related to the delivery,<br>
+    900108__mcc&gt;o_mc_tra_46.76_harris ranch_lunch, taking ptg to
+    Bells. corp to repay_<br>
+    900107__mch&gt;o_mc_tra_24.51_harris ranch_lunch, bell delivery_<br>
+    900108__mch&gt;o_mc_tra_19.79_harris ranch_lunch, bell delivery_<br>
+    <br>
+    I feel confident that we could generate a bill of sale for you based
+    on this historical information. I will, however, also now look into
+    the hard files for further confirmation.<br>
+    <br>
+    Tom<br>
+    <br>
+    <div class="moz-cite-prefix">On 2/6/25 2:47 PM, Brigham Bell wrote:<br>
+    </div>
+    <blockquote type="cite"
+      cite="mid:F70ABECC-9B66-48A1-8684-EEC647F511A4@gmail.com">
+      <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+      <div dir="ltr"><font style="font-size: 21px;" face="Verdana"
+          color="#38571a">Hi George,</font></div>
+      <div dir="ltr"><font style="font-size: 21px;" face="Verdana"
+          color="#38571a"><br>
+        </font></div>
+      <div dir="ltr"><span style="font-size: 21px;"><font face="Verdana"
+            color="#38571a">Would you be able to appraise</font> </span><span
+          style="color: rgb(39, 78, 19); font-family: verdana,
+          sans-serif;"><a
+href="https://www.computerhistory.org/revolution/computer-graphics-music-and-art/15/231/745"
+            target="_blank" style="font-style: italic;"
+            moz-do-not-send="true">Meeting on Gauguin's Beach</a> for
+          insurance purposes?</span></div>
+      <div dir="ltr"><span style="color: rgb(39, 78, 19); font-family:
+          verdana, sans-serif;"><br>
+        </span></div>
+      <div dir="ltr"><span style="color: rgb(39, 78, 19); font-family:
+          verdana, sans-serif;">Tom,</span></div>
+      <div dir="ltr"><span style="color: rgb(39, 78, 19); font-family:
+          verdana, sans-serif;"><br>
+        </span></div>
+      <div dir="ltr"><font face="verdana, sans-serif" color="#274e13">I
+          don’t have the invoice for this painting. I inherited it from
+          Gordon and Gwen Bell, who were <span style="caret-color:
+            rgb(39, 78, 19);">its</span> original owners. Do you have a
+          copy of the invoice for this? It would be from 1988 or
+          possibly a year or two later.</font></div>
+      <div dir="ltr"><font face="verdana, sans-serif" color="#274e13"><br>
+        </font></div>
+      <div dir="ltr"><font face="verdana, sans-serif" color="#274e13">Thanks
+          everyone for all your help.</font></div>
+      <div dir="ltr"><font face="verdana, sans-serif" color="#274e13"><br>
+        </font></div>
+      <div dir="ltr"><font face="verdana, sans-serif" color="#274e13">Regards,</font></div>
+      <div dir="ltr"><font face="verdana, sans-serif" color="#274e13">Brig</font></div>
+      <div dir="ltr"><br>
+      </div>
+      <div dir="ltr"><br>
+      </div>
+      <div dir="ltr"><br>
+        <blockquote type="cite">On Feb 6, 2025, at 12:26 PM, Paul Cohen
+          <a class="moz-txt-link-rfc2396E" href="mailto:team@haroldcohentrust.org">&lt;team@haroldcohentrust.org&gt;</a> wrote:<br>
+          <br>
+        </blockquote>
+      </div>
+      <blockquote type="cite">
+        <div dir="ltr">﻿
+          <div dir="ltr">Hi both, 
+            <div>I received a quote from Michael Maloney and have
+              attached it below. I rather think working with George
+              Barker is the way to go. It's nice to have Maloney's quote
+              as a reference for the future.</div>
+            <div><br>
+            </div>
+            <div>Tom Machnik -- Art Studio Manager -- The Harold Cohen
+              Trust</div>
+            <div><br>
+            </div>
+            <div>--- --- ---</div>
+            <div><span
+                style="color:rgb(29,29,29);font-family:&quot;Helvetica
+                Neue&quot;,Helvetica,Arial,sans-serif;font-size:13px">Hello,
+                Tom.</span>
+              <div
+                style="line-height:1.5;color:rgb(29,29,29);font-family:&quot;Helvetica
+                Neue&quot;,Helvetica,Arial,sans-serif;font-size:13px">Yes,
+                this is something I can take care of for your client's
+                insurance appraisal.</div>
+              <div
+                style="line-height:1.5;color:rgb(29,29,29);font-family:&quot;Helvetica
+                Neue&quot;,Helvetica,Arial,sans-serif;font-size:13px">Is
+                it just the one painting?  The project will fall within
+                my 3-hour-minimum for a review of the current value of
+                the painting and document preparation.  The cost will be
+                $1200. ($400 per hour x 3).</div>
+              <div
+                style="line-height:1.5;color:rgb(29,29,29);font-family:&quot;Helvetica
+                Neue&quot;,Helvetica,Arial,sans-serif;font-size:13px"><br
+                  clear="none">
+              </div>
+              <div
+                style="line-height:1.5;color:rgb(29,29,29);font-family:&quot;Helvetica
+                Neue&quot;,Helvetica,Arial,sans-serif;font-size:13px">If
+                your client would like me to proceed, I will need the
+                following:</div>
+              <div
+                style="line-height:1.5;color:rgb(29,29,29);font-family:&quot;Helvetica
+                Neue&quot;,Helvetica,Arial,sans-serif;font-size:13px">
+                <ul style="margin-block-start: 1em;">
+                  <li style="margin-bottom:4px">an image of the
+                    painting, the title, medium &amp; size.<br
+                      clear="none">
+                  </li>
+                  <li style="margin-bottom:4px">A copy of the original
+                    invoice, which I am guessing you may have on file.<br
+                      clear="none">
+                  </li>
+                  <li style="margin-bottom:4px">The client's name and
+                    address.<br clear="none">
+                  </li>
+                  <li>The location of the artwork</li>
+                </ul>
+                <div style="line-height:1.5">Attached is a basic
+                  overview of fees and procedures.</div>
+              </div>
+              <div
+                style="line-height:1.5;color:rgb(29,29,29);font-family:&quot;Helvetica
+                Neue&quot;,Helvetica,Arial,sans-serif;font-size:13px">If
+                I can be of assistance, I trust you or your client will
+                let me know.</div>
+              <div
+                style="line-height:1.5;color:rgb(29,29,29);font-family:&quot;Helvetica
+                Neue&quot;,Helvetica,Arial,sans-serif;font-size:13px">
+                <div dir="ltr" style="line-height:1.5">Michael Maloney<br
+                    clear="none">
+                </div>
+                <div style="line-height:1.5"><font size="2">Fine Art
+                    Appraiser</font></div>
+                <div style="line-height:1.5"><font size="2">MALONEY FINE
+                    ART APPRAISAL SERVICES</font></div>
+                <div style="line-height:1.5"><font size="2">6121 Sunset
+                    Boulevard</font></div>
+                <div style="line-height:1.5"><font size="2">Los Angeles,
+                    CA 90028</font></div>
+                <div style="line-height:1.5"><font size="2">1310.570.6420</font></div>
+              </div>
+            </div>
+          </div>
+          <br>
+          <div class="gmail_quote gmail_quote_container">
+            <div dir="ltr" class="gmail_attr">On Thu, Feb 6, 2025 at
+              8:57 AM Paul Cohen &lt;<a
+                href="mailto:paulrcohen@gmail.com"
+                moz-do-not-send="true">paulrcohen@gmail.com</a>&gt;
+              wrote:<br>
+            </div>
+            <blockquote class="gmail_quote" style="margin:0px 0px 0px
+0.8ex;border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);padding-left:1ex">
+              <div dir="ltr">
+                <div>
+                  <div style="font-size:small" class="gmail_default">Hi
+                    Brig, actually the email was from Tom Machnik, not
+                    me; thanks Tom!<br>
+                    <br>
+                  </div>
+                  <div style="font-size:small" class="gmail_default">Michael
+                    Maloney appraised Harold's estate right after he
+                    died for tax purposes so the appraisals were low and
+                    the recent increase in prices wasn't reflected.  It
+                    might be more accurate to ask the Gazelli Art House,
+                    which represents the Harold Cohen Trust, for a
+                    reference for an appraiser.  I've cc'd George
+                    Barker, there.  --P<br>
+                  </div>
+                  <br clear="all">
+                </div>
+                <div>
+                  <div dir="ltr" class="gmail_signature">
+                    <div dir="ltr">
+                      <div>
+                        <div dir="ltr">
+                          <div>
+                            <div dir="ltr">
+                              <div>
+                                <div dir="ltr">
+                                  <div>
+                                    <div dir="ltr">
+                                      <div>
+                                        <div dir="ltr">______________________________<br>
+                                          <br>
+                                          Paul Cohen,  Professor</div>
+                                        <div dir="ltr">School of
+                                          Computing and Information</div>
+                                        <div dir="ltr">University of
+                                          Pittsburgh</div>
+                                        <div dir="ltr"><a
+                                            href="https://paulrcohen.github.io/"
+                                            target="_blank"
+                                            moz-do-not-send="true">personal
+                                            webpage</a><br>
+                                          ______________________________</div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <br>
+              </div>
+              <br>
+              <div class="gmail_quote">
+                <div dir="ltr" class="gmail_attr">On Thu, Feb 6, 2025 at
+                  9:56 AM Brigham Bell &lt;<a
+                    href="mailto:brigham.bell@gmail.com" target="_blank"
+                    moz-do-not-send="true">brigham.bell@gmail.com</a>&gt;
+                  wrote:<br>
+                </div>
+                <blockquote class="gmail_quote" style="margin:0px 0px
+                  0px
+0.8ex;border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);padding-left:1ex">
+                  <div dir="auto">
+                    <div dir="ltr">Hi Paul,</div>
+                    <div dir="ltr"><br>
+                    </div>
+                    <div dir="ltr">Thanks so much!</div>
+                    <div dir="ltr"><br>
+                    </div>
+                    <div dir="ltr">I’ll check in with them Michael
+                      Maloney, too.</div>
+                    <div dir="ltr"><br>
+                    </div>
+                    <div dir="ltr">Regards,</div>
+                    <div dir="ltr">Brig</div>
+                    <div dir="ltr"><br>
+                      <blockquote type="cite">On Feb 6, 2025, at
+                        2:14 AM, Paul Cohen &lt;<a
+                          href="mailto:team@haroldcohentrust.org"
+                          target="_blank" moz-do-not-send="true">team@haroldcohentrust.org</a>&gt;
+                        wrote:<br>
+                        <br>
+                      </blockquote>
+                    </div>
+                    <blockquote type="cite">
+                      <div dir="ltr">﻿
+                        <div dir="ltr">Dear Brigham 
+                          <div>Thank-you for your inquiry. It is nice to
+                            know one of Harold's more important works is
+                            alive, appreciated and well cared for. On
+                            your behalf, I have reached out to an
+                            appraiser we have used in the past and I am
+                            awaiting a reply. If you prefer, you are
+                            welcome to reach out to him as well. Here is
+                            his contact information:</div>
+                          <div><span
+                              style="color:rgb(29,29,29);font-family:&quot;Helvetica
+Neue&quot;,Helvetica,Arial,sans-serif;font-size:x-small">Michael Maloney</span><br
+style="color:rgb(29,29,29);font-family:&quot;Helvetica
+                              Neue&quot;,Helvetica,Arial,sans-serif"
+                              clear="none">
+                            <span
+                              style="color:rgb(29,29,29);font-family:&quot;Helvetica
+Neue&quot;,Helvetica,Arial,sans-serif;font-size:x-small">MALONEY FINE
+                              ART</span><br
+                              style="color:rgb(29,29,29);font-family:&quot;Helvetica
+                              Neue&quot;,Helvetica,Arial,sans-serif"
+                              clear="none">
+                            <span
+                              style="color:rgb(29,29,29);font-family:&quot;Helvetica
+Neue&quot;,Helvetica,Arial,sans-serif;font-size:x-small">2680 South La
+                              Cienega Blvd</span><br
+                              style="color:rgb(29,29,29);font-family:&quot;Helvetica
+                              Neue&quot;,Helvetica,Arial,sans-serif"
+                              clear="none">
+                            <span
+                              style="color:rgb(29,29,29);font-family:&quot;Helvetica
+Neue&quot;,Helvetica,Arial,sans-serif;font-size:x-small">Los Angeles, CA
+                              90034</span><br
+                              style="color:rgb(29,29,29);font-family:&quot;Helvetica
+                              Neue&quot;,Helvetica,Arial,sans-serif"
+                              clear="none">
+                            <span
+                              style="color:rgb(29,29,29);font-family:&quot;Helvetica
+Neue&quot;,Helvetica,Arial,sans-serif;font-size:x-small">1310.570.6420</span><br>
+                          </div>
+                          <div><br>
+                          </div>
+                          <div><br>
+                          </div>
+                          <div>Tom Machnik -- Art Studio Manager -- The
+                            Harold Cohen Trust</div>
+                        </div>
+                        <br>
+                        <div class="gmail_quote">
+                          <div dir="ltr" class="gmail_attr">On Wed, Feb
+                            5, 2025 at 9:01 AM Brigham Bell &lt;<a
+                              href="mailto:brigham.bell@gmail.com"
+                              target="_blank" moz-do-not-send="true">brigham.bell@gmail.com</a>&gt;
+                            wrote:<br>
+                          </div>
+                          <blockquote class="gmail_quote"
+                            style="margin:0px 0px 0px
+0.8ex;border-left-width:1px;border-left-style:solid;border-left-color:rgb(204,204,204);padding-left:1ex">
+                            <div dir="auto">
+                              <div dir="ltr">Need advice on appraisal. I
+                                asked Sotheby’s, but they don’t have an
+                                idea on whether to appraise it as art or
+                                technology. Should I ask an auction
+                                house, or is there an AARON appraisal
+                                specialist somewhere?</div>
+                              <div dir="ltr"><br>
+                              </div>
+                              <div dir="ltr">Any suggestions are
+                                welcome.</div>
+                              <div dir="ltr"><br>
+                              </div>
+                              <div dir="ltr">Again, not planning on
+                                selling this anytime soon, as it is
+                                considered important to our whole
+                                family.</div>
+                              <div dir="ltr"><br>
+                                <blockquote type="cite">On Jan 30, 2025,
+                                  at 3:59 PM, Brig &lt;<a
+                                    href="mailto:brigham.bell@gmail.com"
+                                    target="_blank"
+                                    moz-do-not-send="true">brigham.bell@gmail.com</a>&gt;
+                                  wrote:<br>
+                                  <br>
+                                </blockquote>
+                              </div>
+                              <blockquote type="cite">
+                                <div dir="ltr">﻿
+                                  <div dir="ltr">
+                                    <div dir="ltr">
+                                      <div dir="ltr">
+                                        <div class="gmail_default">
+                                          <div>
+                                            <p class="MsoNormal"
+                                              style="color:rgb(34,34,34)"><span
+style="color:rgb(39,78,19)"><font face="verdana, sans-serif">Hi,</font></span></p>
+                                            <p class="MsoNormal"
+                                              style="color:rgb(34,34,34)"><font
+                                                face="verdana,
+                                                sans-serif"><br>
+                                              </font></p>
+                                            <p class="MsoNormal"><font
+                                                face="verdana,
+                                                sans-serif"><span
+                                                  style="color:rgb(39,78,19)">Do
+                                                  you know the best
+                                                  place to get
+                                                  an appraisal of AARON
+                                                  paintings?</span><br>
+                                              </font></p>
+                                            <p class="MsoNormal"><font
+                                                face="verdana,
+                                                sans-serif"
+                                                color="#274e13"><br>
+                                              </font></p>
+                                            <p class="MsoNormal"><font
+                                                face="verdana,
+                                                sans-serif"
+                                                color="#274e13">Most
+                                                importantly, I need an
+                                                appraisal of <i><a
+href="https://www.computerhistory.org/revolution/computer-graphics-music-and-art/15/231/745"
+                                                    target="_blank"
+                                                    moz-do-not-send="true">Meeting
+                                                    on Gauguin's Beach</a></i>,
+                                                so that I know how much
+                                                to insure it for when
+                                                shipping it from
+                                                California to Colorado.</font></p>
+                                            <p class="MsoNormal"><span
+                                                style="color:rgb(39,78,19)"><font
+                                                  face="verdana,
+                                                  sans-serif"><br>
+                                                </font></span></p>
+                                            <p class="MsoNormal"><span
+                                                style="color:rgb(39,78,19)"><font
+                                                  face="verdana,
+                                                  sans-serif">Thanks in
+                                                  advance for any help,</font></span></p>
+                                            <p class="MsoNormal"><span
+                                                style="color:rgb(39,78,19)"><font
+                                                  face="verdana,
+                                                  sans-serif">Brigham
+                                                  Bell</font></span></p>
+                                            <p class="MsoNormal"><span
+                                                style="color:rgb(39,78,19)"><font
+                                                  face="verdana,
+                                                  sans-serif">1-720-339-6103<br>
+                                                </font></span></p>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </blockquote>
+                            </div>
+                          </blockquote>
+                        </div>
+                      </div>
+                    </blockquote>
+                  </div>
+                </blockquote>
+              </div>
+            </blockquote>
+          </div>
+        </div>
+      </blockquote>
+    </blockquote>
+    <br>
+  </body>
+</html>
+
+--------------93B5300F3B4249E396BEE5E1--

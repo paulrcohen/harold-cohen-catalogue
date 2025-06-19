@@ -1,0 +1,208 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a10:688f:b0:5c7:f970:fbca with SMTP id e15csp844533pxw;
+        Wed, 26 Feb 2025 04:11:50 -0800 (PST)
+X-Received: by 2002:a05:6a21:920d:b0:1f1:459:523d with SMTP id adf61e73a8af0-1f10ad35714mr4940568637.20.1740571910269;
+        Wed, 26 Feb 2025 04:11:50 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1740571909; cv=none;
+        d=google.com; s=arc-20240605;
+        b=giV1c74qMTcirf/bApQL1q+1zNQtI/uw8Sr+H548TMX8mI+MSfiJC17P2OwoCYN6Mh
+         0Ki2fEXuShXalV7ksjipOBS8QrCsrwudBXVu/2TEUekIm1mNW5Y+zD9xOVvgc57qHXLU
+         WGAEhApdd++tzFlozKxG9zOONLDT2dXDaBFc9G83TUfhy+eas+J4StZDw6kNnjX/HBbS
+         wgkeYymPpgoKUiVIo6MS8oE49FlzPW10gFAFhQxYB4LMwnzr7JiWhW0mO/cS5q1ETpnE
+         nOQsM8PQmBvVVNKDPoHF1DX6nAmaRhLWFpwokuLC0AcOQKGcgwsE4vbmWWFIeW6KHuW2
+         ZXZw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=9QIVHrBVLnMSIejtDkx2NtrSs0+ND8q0BC0UgdPQAKs=;
+        fh=nyb3Zzc/5q13AmGz68ollfJIWrSjlCs6UrmkOPftKZ4=;
+        b=HumrlNJIdSxITXzV5wjIBgsvFoEqoTITWlUoVdNBoIiNSPrlbdsfOGOMcYT+F4d4N+
+         Jbg0SyRO9A/Xa8htrE3ZDUeZqz9+MB/DhO8yGwy3MBRnPqhQqElY/Ptki8Q4QAcnRM5n
+         +B4xjuEmMAjQFsAH3u5fHu97RNIoSMlV3Hd0SgGToTRdVk5J/KypcY1xSCl9UYlySEZN
+         hqvBHRBv96/N3hQLraKvi+FIJkls4aBPhr4k+GEv8RtYtSAMWspe5NjPKtF+iHDbs0WI
+         QSSt3E4DjDpQLpGzy2o7yCeU0RO3CpvhhGJ/7QWVxGUa9J7NmgCgbkP1VMsk3tuqsdwN
+         HBkg==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20230601 header.b=lEbTx12O;
+       spf=pass (google.com: domain of brepettis@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=brepettis@gmail.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com;
+       dara=pass header.i=@gmail.com
+Return-Path: <brepettis@gmail.com>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id 41be03b00d2f7-aeda4984802sor2754892a12.0.2025.02.26.04.11.49
+        for <paulrcohen@gmail.com>
+        (Google Transport Security);
+        Wed, 26 Feb 2025 04:11:49 -0800 (PST)
+Received-SPF: pass (google.com: domain of brepettis@gmail.com designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20230601 header.b=lEbTx12O;
+       spf=pass (google.com: domain of brepettis@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=brepettis@gmail.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com;
+       dara=pass header.i=@gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1740571909; x=1741176709; dara=google.com;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=9QIVHrBVLnMSIejtDkx2NtrSs0+ND8q0BC0UgdPQAKs=;
+        b=lEbTx12OfarznoQMN2jkG8nJIBVQl6UEMIcxaziB0EYufXsKONIPnZZYU6fpkGvvM6
+         vc/uoZdgvRuVWuCo6sNpbhXQfYqnFXKLhitfqmDgY4XU1wZ2PySlzbusr7LukiDxCR4j
+         orpUsRyB2dCmeAL08fqa2ugaU6Ps+afg6TCW9Mfm1j/7qZAS66GCer2brhlBMxiG0YNm
+         OzbRwjFnScT3ddD6BQoV+ydk/NaSO18l1o7wVslLA5JSg8TikoR1Ar1pcZja/sHolvgX
+         JmSywkPgCnYOwkQnDPii3ephKss8T1lpk41M3UHSDyliK/AXsgNZjACKKHphlUyXz8Eh
+         GvKg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740571909; x=1741176709;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=9QIVHrBVLnMSIejtDkx2NtrSs0+ND8q0BC0UgdPQAKs=;
+        b=MAuUJiX5+vEWG/E+2GWrMyvFMDW5QoydSL3AhWUdwLY+Gfaqpsnmwsld0MD8qU/l0H
+         kHtnLsYj4hR8Nso6Z3NRKNUU+sngpFjfgUjCNbfvB5IMG9KjMAwDrP15LEz9gX81bZyB
+         km1AqJISl2TtnAbw0EboGpkPYPGMJa0PIbN1NMYUjL6QFyagaZDZYxMfu6yCihKfbulR
+         unGdwOz4Ukop+yNq4lRqCkvEYNSbvCesQV6OvRlkA/VIianHeo9FB7+k0bATaE8n0VCO
+         otkDRbtK6j/PSdKhvbRBIocQPTaKdJfBBZU3QEBFOZjWwnoaQjVEDdDLVsavfK09opIe
+         xjKA==
+X-Gm-Message-State: AOJu0YwOTn+XHDc3WkEmZ4LgbqAiCwL5wjBMvzLXVnz7mUmz8MPsBD8u
+	xlKgwfyfKOzMvqybInTe+SOjE5VZ4gvOAXDc1fXQhf7BVDnHIT7tpp3PLLV/P/z1u0xKdhJrdkh
+	qBoZf3wXRxcIvtfFZYrHtV4YWOKHPRw==
+X-Gm-Gg: ASbGncsm1DlXqgY/tjMe/xrHjM+dP4/mhbRrQwdKmj1dj5B403WbiRgsl0QqZI+SWac
+	BhtW3K3NtLFQuuaL7GCd88YNNzUuRrk4wCGandv+2D4sRM4AayTCkfvCB+HAfrGWp1LGdjOZ3nD
+	0svmt+sgk=
+X-Google-Smtp-Source: AGHT+IGB+BoK7SGQQmg1IklsEoB+PmRkPFG9XAKdGZ8vjFPCJT4KlMqArnmiHl3WuobYI+bfbIfttEMbC7PVTw+oSxM=
+X-Received: by 2002:a17:90b:2dc2:b0:2ee:44ec:e524 with SMTP id
+ 98e67ed59e1d1-2fe7e3b3240mr4951572a91.35.1740571909441; Wed, 26 Feb 2025
+ 04:11:49 -0800 (PST)
+MIME-Version: 1.0
+References: <468444384.2543004.1740547504119.ref@mail.yahoo.com> <468444384.2543004.1740547504119@mail.yahoo.com>
+In-Reply-To: <468444384.2543004.1740547504119@mail.yahoo.com>
+From: bre pettis <brepettis@gmail.com>
+Date: Wed, 26 Feb 2025 07:11:38 -0500
+X-Gm-Features: AQ5f1JofCwYafbOi2jjcHVXr9pDFUktfOiPnVrftcZ7byG56PG7tSO2sJ-IaBlI
+Message-ID: <CAFhPk_x7MVk-WeTHQs7ZE_aX5HdsFDRzs8DZf9-NBpONMZT0fw@mail.gmail.com>
+Subject: Re: KCAT Files
+To: Thomas Machnik <zipnpup@yahoo.com>
+Cc: Paul Cohen <paulrcohen@gmail.com>, Harold Cohen Trust <aaron@aaronshome.com>
+Content-Type: multipart/alternative; boundary="0000000000005e4f02062f0a7a1d"
+
+--0000000000005e4f02062f0a7a1d
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Tim,
+
+We generated thousands of drawings and converted them to gcode for the
+show. The are like 20gigs of drawings. The gcode isn=E2=80=99t easy to peru=
+se, but
+if you organize them from big to small then you can find all the plants
+because they are much bigger files. When you visit, I can give you a usb
+stick with all of them.
+
+I=E2=80=99ve been running KCAT in my office for about a year and a half now=
+ on a
+windows xp machine and if you take a pic of the drawing I can tell you if
+I=E2=80=99ve seen anything like that.
+
+In other news, I=E2=80=99ve got a magazine about Machine Arts coming out in=
+ about a
+month and it has an article about the Harold Cohen Aaron show. Send me your
+address and I=E2=80=99ll send you some for you and the trust. Also finally =
+getting
+around to having an editor look at the footage we shot of the show and
+interviews we did with Christiane and Paul and you are missing from it,
+once we start to see a story and start to pull a storyline together, I
+reach out and we can record something on zoom.
+
+Bre
+
+Sent from my mobile communicator. This e-mail and any files transmitted
+with it are intended solely for the use of the individual or entity to whom
+they are addressed. If the reader of this e-mail is not the intended
+recipient or the employee or agent responsible for delivering the message
+to the intended recipient, you are hereby notified that any use
+dissemination, forwarding, printing or copying of this e-mail is strictly
+prohibited.
+
+
+On Wed, Feb 26, 2025 at 12:25=E2=80=AFAM Thomas Machnik <zipnpup@yahoo.com>=
+ wrote:
+
+> Hi Bre,
+> It=E2=80=99s rather late but happy New Year! Hope all is well there. I am=
+ working
+> on identifying some of Harold Cohen=E2=80=99s prints here in the studio. =
+And I have
+> this outlier for it has an unusual characteristic I have never seen in an
+> AARON print. I looked through everything we have that is photographed. I
+> still have plenty to look through that is not photographed but that would
+> take sometime. I recalled that you had generated a rather large body of
+> AARON KCAT drawings in prep of the Whitney. Any chance you still have the=
+m?
+> And if so, could I somehow peruse them? If they have color that=E2=80=99s=
+ ok but
+> for what I am doing, I really don=E2=80=99t need the coloring just the li=
+nes.
+>
+> Hard to believe a year has already spun by since we were all there at the
+> Whitney watching your machines run. I=E2=80=99m looking forward to visiti=
+ng your
+> shop sometime in the future.
+>
+> Sincerely
+> Tom
+>
+
+--0000000000005e4f02062f0a7a1d
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto">Hi Tim,</div><div dir=3D"auto"><br></div><div dir=3D"auto=
+">We generated thousands of drawings and converted them to gcode for the sh=
+ow. The are like 20gigs of drawings. The gcode isn=E2=80=99t easy to peruse=
+, but if you organize them from big to small then you can find all the plan=
+ts because they are much bigger files. When you visit, I can give you a usb=
+ stick with all of them.=C2=A0</div><div dir=3D"auto"><br></div><div dir=3D=
+"auto">I=E2=80=99ve been running KCAT in my office for about a year and a h=
+alf now on a windows xp machine and if you take a pic of the drawing I can =
+tell you if I=E2=80=99ve seen anything like that.=C2=A0</div><div dir=3D"au=
+to"><br></div><div dir=3D"auto">In other news, I=E2=80=99ve got a magazine =
+about Machine Arts coming out in about a month and it has an article about =
+the Harold Cohen Aaron show. Send me your address and I=E2=80=99ll send you=
+ some for you and the trust. Also finally getting around to having an edito=
+r look at the footage we shot of the show and interviews we did with Christ=
+iane and Paul and you are missing from it, once we start to see a story and=
+ start to pull a storyline together, I reach out and we can record somethin=
+g on zoom.=C2=A0</div><div dir=3D"auto"><br></div><div dir=3D"auto">Bre</di=
+v><div dir=3D"auto"><br clear=3D"all"><div dir=3D"auto"><div dir=3D"ltr" cl=
+ass=3D"gmail_signature" data-smartmail=3D"gmail_signature">Sent from my mob=
+ile communicator.
+
+This e-mail and any files transmitted with it are intended solely for the u=
+se of the individual or entity to whom they are addressed. If the reader of=
+ this e-mail is not the intended recipient or the employee or agent respons=
+ible for delivering the message to the intended recipient, you are hereby n=
+otified that any use dissemination, forwarding, printing or copying of this=
+ e-mail is strictly prohibited.</div></div></div><div><br></div><div><br><d=
+iv class=3D"gmail_quote gmail_quote_container"><div dir=3D"ltr" class=3D"gm=
+ail_attr">On Wed, Feb 26, 2025 at 12:25=E2=80=AFAM Thomas Machnik &lt;<a hr=
+ef=3D"mailto:zipnpup@yahoo.com">zipnpup@yahoo.com</a>&gt; wrote:<br></div><=
+blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px=
+ #ccc solid;padding-left:1ex"><div><div style=3D"font-family:Helvetica Neue=
+,Helvetica,Arial,sans-serif;font-size:16px"><div dir=3D"ltr">Hi Bre,</div><=
+div dir=3D"ltr">It=E2=80=99s rather late but happy New Year! Hope all is we=
+ll there. I am working on identifying some of Harold Cohen=E2=80=99s prints=
+ here in the studio. And I have this outlier for it has an unusual characte=
+ristic I have never seen in an AARON print. I looked through everything we =
+have that is photographed. I still have plenty to look through that is not =
+photographed but that would take sometime. I recalled that you had generate=
+d a rather large body of AARON KCAT drawings in prep of the Whitney. Any ch=
+ance you still have them? And if so, could I somehow peruse them? If they h=
+ave color that=E2=80=99s ok but for what I am doing, I really don=E2=80=99t=
+ need the coloring just the lines.=C2=A0</div><div dir=3D"ltr"><br></div><d=
+iv dir=3D"ltr">Hard to believe a year has already spun by since we were all=
+ there at the Whitney watching your machines run. I=E2=80=99m looking forwa=
+rd to visiting your shop sometime in the future.=C2=A0</div><div dir=3D"ltr=
+"><br></div><div dir=3D"ltr">Sincerely</div><div dir=3D"ltr">Tom</div></div=
+></div></blockquote></div></div>
+
+--0000000000005e4f02062f0a7a1d--

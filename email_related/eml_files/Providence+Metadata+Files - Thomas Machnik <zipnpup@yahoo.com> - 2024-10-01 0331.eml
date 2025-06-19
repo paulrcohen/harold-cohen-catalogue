@@ -1,0 +1,193 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a10:4ea9:b0:5ad:6c17:f336 with SMTP id up41csp82781pxb;
+        Tue, 1 Oct 2024 00:31:32 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IGkA0algY2lPxDWNR1aV0AByvIpTCIWFwT6NegM+jG6waLUi+oC90EC3vqUnQRQ4hGYdCBl
+X-Received: by 2002:a05:6102:dca:b0:4a3:c218:5f89 with SMTP id ada2fe7eead31-4a3c2189766mr3814249137.24.1727767892226;
+        Tue, 01 Oct 2024 00:31:32 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1727767892; cv=none;
+        d=google.com; s=arc-20240605;
+        b=BVtDRZsbNqhFH0OZStK4K5WCU3pb2ppyDBQjEaOhXaJLTvG2tCnHVt1bF76ygPTo3M
+         FpL0LbcKG/UsJ+qg8+RXLyt6Gsajz848+GGJp8ZbeqEf0EDTsBhyxJxakAA30h7zyZ3l
+         DdLXr57OCY+2oUm9QzSUN7VoI7Msee9aCzTMAHktdSE4hAfR3QD6jcK8XC05t4m2Qaf2
+         6dL6aLs+vhGAaVJJqYubrqU+mSu7ruX4gPj4R6OhwhrYWlOwyIi729t8mVHFHi4dCIoe
+         QqK3GD7iMLFcmqo1OMJXTNNDVDC47joA2G5/vO6k8u70RbcLy2yKAAdQYtdbPwCS4p2a
+         1cpw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=references:mime-version:subject:message-id:to:reply-to:from:date
+         :dkim-signature;
+        bh=uxegOsGW3+YZJZ7QSYYqFro1YfCyAdT0PaeBeRllFWk=;
+        fh=aaM4L8e/pQ7CPCLd9nqOJU0ceWLffpm3acKZ4DbcMPg=;
+        b=iR+gCSPzhYbOJSORLHhMV5eiFsgnfUIYTEjlRI+aT/fp/OlyJQOxYUFQ25w92rKVLc
+         BviN6Ne7/wfVRKV8FrsmSgkmzsI7ExvGdM//iBv0/kPlCtlZwjLWfUtZhFNpg0Qi9B6a
+         gwrw61k1AryrxjrMLXUS3bpWU26CILaTOGj4fDJ+d565du4WEDQb6sSdQVNp4D/1kA5p
+         A8BQaSlkP6cY7eMPlV55NLb3SOVIP5C2BatL8Mn14XUOC1qGtUqbiYHlCSxmt984WUqi
+         Vy79Np8iI9qsfikT53dm3gnSD5T0bY2pplDzsKiFlwwZKQoS5XzNFViJzF0UBGYDoGkg
+         Hsgw==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=ZBQdGjrb;
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.134.125 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+Return-Path: <zipnpup@yahoo.com>
+Received: from sonic315-15.consmr.mail.bf2.yahoo.com (sonic315-15.consmr.mail.bf2.yahoo.com. [74.6.134.125])
+        by mx.google.com with ESMTPS id 6a1803df08f44-6cb3b6196ddsi74633226d6.129.2024.10.01.00.31.31
+        for <paulrcohen@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 01 Oct 2024 00:31:32 -0700 (PDT)
+Received-SPF: pass (google.com: domain of zipnpup@yahoo.com designates 74.6.134.125 as permitted sender) client-ip=74.6.134.125;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=ZBQdGjrb;
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.134.125 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1727767891; bh=uxegOsGW3+YZJZ7QSYYqFro1YfCyAdT0PaeBeRllFWk=; h=Date:From:Reply-To:To:Subject:References:From:Subject:Reply-To; b=ZBQdGjrbPFgoJA0s0ElZ7nNbK2gDcIVNyOAhfLjcDhYc90lPw2aRFQFDujJCu6x7542rTszunlkuaWNxB2ASiT5a5BtA1E/0R9OVUKO2y93C+6hNb9KqQED+dRRB5/EtZB1nIwRy2hgmfiKVSmTbUeI96rExCqtbdH4OeU70V1XE4v7BU8yfwthAWlxiMDRd8qTuA956lwDnXGjDEpFgf+gvXtUV2+LAxeBVpf6L06IMoO5ZjkhYzmMLduUleF/G3PmfHHFuRK/eTXC1nU8R9JzXENeIwl2w0/0Hbb5ufAnKyy9SRPSPCHA6oKLbBcjoWWilhsBY/Cb3EAaXO+iOBQ==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1727767891; bh=NcWiPI1mnFmn2aJ4EDVJ2krwjVq/FbHYGQEYKf9nItY=; h=X-Sonic-MF:Date:From:To:Subject:From:Subject; b=PkIdNo3WwIGp4ae3tq/GBFVGTS8Qbf/FCDjrIC7ea5GDzZLmnsuFaXuBHaBVNoIe/XPLBPNQfTLyEHKRw/3BW5LKta2/+laN2rHtOVKdp6yHrdEnHNQXSOjzh5gMvkbQlfxMZ5FhGauV5/hGBnUKODUwtRSF+P9j3fXLNerl1+ZbVmMEZlSNciNoJxgIDpAwUHBqgDk9nO/zQUFRWRXTq8VcaSSAa942omzUBFzTuvhDE23GByCTg1EH73XhqKhEVVJcqT6OKQ7QqFp0LUk5jRGiJCHT4B0X8Uh3DnK5yAdYLrF9sbkr79G7ktU6Osz816PUTNYVzZ/MtK4sc9RQCQ==
+X-YMail-OSG: 4B21SjoVM1mYS0WGVJiaMs0y6ed8dHBth2BNmhXCKkuZ9j6CiLW8V3s.QXNYwyK
+ xyauEgXy_IwcJOZNnArvirNs.5Xq_11C5FWS5MoSpcqJt1ityJ594Kb9vDtxeE.GIt6U4PLPmW77
+ Zvz_RmMc56.F2iLQwY6o2kXdhXyqIQte5ebShk0PGA1TGEIQvbUlN0fUZi31wke_dcteLwLf_wDC
+ JEkum2lHCBX0irWhbgecqG1B_7f2wRwFSHxR7DL_1y33PafFbRLeVmx0QQ4urmm58Aq87mJKhjmB
+ imTduChP37inxiHYNk_qJ47eFAAE7UjLPcEe6SUqXFVTw9Gm59QREryVKbO8vV1VY2LwcFum.Skf
+ PcXTwVxOhLUnGIUy8_NhloSNCZjwhLmCLAp4iZzAg1CGDyfj9hI9hO8Afl0Aw3jcDaw6JFHL3elR
+ MxUDo8SW6s1b7L_RS.NEJN4YBIpvmHuNy8v.s.2hxQapAU4chsrDFfSc8ew3Ihi508BhTsT3ONNw
+ nChrbKELmKoQMlGv0AWiyLrhOkG0PbUFNvuC_yQh07Yr7BK5gj4kGTAjlEw.BH8znymnTvDbS1ef
+ 60vRW4GT3ptGSCe1cwPF_ZnMz4Ud240X1m7rckgqSb_E1idSXD981mSV9L7ODG7QjYKaVDppFV58
+ T3_dfhqTszqoSvMkqYjdhjmPGqK8EOrUzhUQ93gkrzh4I8NoUTZrxu2JmLQ5qayEWbs3gdZFKJGB
+ 6XHD6zeQsqvbR1kmaIhbGGyre9yKpYX38f3YemmyT50QsPz9WNvYFzpcfjql6AW2jrgxIW7wkuBk
+ ki_EJTqw7h3udTm.S0ANTwOk9fUCMrCRyg0cTzje2o4Gh04Yp7jAuCI2dRKxAEESYrI1Wn4wwINm
+ sh0ZmKp2q1Zz.JA5NQ5Ktq4Ay61uObEOr0dy_XcHwn6WBmey88K5UUuhCOvF5cpRex_XYihKvWcd
+ wK3VbiyJtKXZkjry6BDems9s0t.Cwc4pWQjnYdmRJMqlT1anSyzSQbXbB04OB7msbry1011XKxoT
+ LGNJgp96NWkkQTzS3BhlV3t3_QHFXsTQFNwgeBq.hC5_2i5q4BJ9w_dGR1JumATc9ByIwlOxnzSA
+ 3cwyBiOUhIJp_uQyeK7gHSjUZJ1KsAYEJbYf2XiWdZLQNb16w96B0pKYiDKkdUWKyghmp3SrLYeK
+ _dmcZJ7M5AxeqC2VQ0tfiL8K8WKcsBcGld7932_Yg4g9ceYIJowjPfH3Mt7_IaUNeX5coibf7qW.
+ wNzKaT1yeJ_LB9IkXtd89iQBIeWTH2zxxxLqrzjlSbS9k5AW.uM13ODt6iukVLkndVbR0K60eN2u
+ zRIeNM95i_eoxygBWKgbDBtj_wqbnjVVxiIX3LBoVhxj6K0ucB_iNp9oex91IfjFmBORjvQ5TnYs
+ uY4XZpHrDYh7VVPMdKKtSvExsZ78QNZM16Yyp5cx.wdjgOWohOgBu4Pi.H2KGIsAduI65MVYAhZt
+ lwCWB8CYNf2GblQQRe0P4lTS9rOqKXTOIX3OJ2ZDZbxHfFafqpYvz8wq0BQC0OkkezJ99hHv9Rps
+ 8HNBFGiPpcn0.cmgTSvLE1gQ8BSze18Mq5KDKwQXIrJRuW.UveD3EUHVaY3NWuDJDmLEy2ZvFG9u
+ LeCk027jAHEQXRRHG3QLZAcVEzQeH_qpdJ_kZU9Kcg2VscQA6r0WWJA3Rn881_eLfJw3ZU_dbdm0
+ OIFn0sIc8BcZ3Q0Ea7bgYl0hEpGb3qoBqBD2587zcj9qZ6a2UpJr0Q0AD4jd7_eEJKsBm7QEGzv3
+ ZZbyc5xZXZXIlb4jDwfOsx_1aUyvsnv55TjRmC9coUFSmPJK35ilpe2Fff5EHYPiSCaydyBi9ZKC
+ tqvABKKk2iLsEES5ZUWU0LQUR6PUqjuLaJa45XjryNUranK69i2uAtTPC3ebtm_l06tr1kRIby_j
+ lyixOsbKy0m0E1sZf4GC_Sc9o9g9gYU2bwEHc7KgY_lyDPduRFO2EMy4y5wIDJguF0bLR7h409Lj
+ DYn5yEcJePa4xuDIKsw3WkWXA06_8V3bHbnwegxU3C9VsM3l0SmeJt1LQwo26ODQ5v5JSz45VB7S
+ e8LbUbYUCayoS0nQ4999cAR_PDQppcdGIv1dPyjoU3FHJV0xTwdUikolBvNvFu7UVDmaFKrE3b5Z
+ ZDHUDCDoyBrJwADfMR9amuxw0pvdqGfyeoStM1DvIkXccJ8ist2bALnAu9pYVg_PRhy3zczvcs6f
+ 2AowJmwdi1eil9NWeEwn4ww7vYAHFSDbtiLrhlnEiWsHtWRbVhCptOpR7BDktGPAV7_iLNA_OdfJ
+ 5iByJJCf3.FEfUJPKnf4FYIwugLeiu1bQEPE63VSu17kCOvJH6GNGLDaLOHwjVwdrFm7jJ1MWpfI
+ 1g0Su0wAhduZsJZMTZn_bjUpUX.rr_ScSvJaFvQhB9AYc
+X-Sonic-MF: <zipnpup@yahoo.com>
+X-Sonic-ID: 7c72230d-e5f5-4df4-bfe3-e69b304cf300
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic315.consmr.mail.bf2.yahoo.com with HTTP; Tue, 1 Oct 2024 07:31:31 +0000
+Date: Tue, 1 Oct 2024 07:31:00 +0000 (UTC)
+From: Thomas Machnik <zipnpup@yahoo.com>
+Reply-To: Thomas Machnik <zipnpup@yahoo.com>
+To: Paul Cohen <paulrcohen@gmail.com>, 
+	Paul Cohen <team@haroldcohentrust.org>, 
+	Mila Askarova <m.askarova@gazelliarthouse.com>, 
+	Harold Cohen Trust <aaron@aaronshome.com>
+Message-ID: <546203494.7701311.1727767860344@mail.yahoo.com>
+Subject:  Providence+Metadata+Files
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_7701310_214114130.1727767860343"
+References: <546203494.7701311.1727767860344.ref@mail.yahoo.com>
+X-Mailer: WebService/1.1.22645 YMailNorrin
+Content-Length: 8686
+
+------=_Part_7701310_214114130.1727767860343
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+Dear Paul & Mila,
+Below are two links. One is to the Providence + Metadata document. The other is a link to the file folder to make the NFTs. I know that previously I sent the files for the NFTs but if possible please use these because I used these files to extract the metadata. While most of them are the same, there are some slight differences. So if possible, please use the ones in the link below.
+
+I was not sure how to word some of the Providence events so if necessary you can change it so long as the events are intact. I was not sure how to word what "aa" files are. Internally, I typically refer to them as AARON Vector files but the more I thought about it the more I realized that AARON vector files are really the generation before where the vector (black line drawing file) and color file were two different files. The aa files have additional information on how to make the artwork besides just vectors. Keeping that in mind I used "AARON Artwork descriptor file" instead of AARON Artwork vector file. I would prefer to reserve the term AARON Artwork vector file for the drawing files that truly are lists of vectors.
+As mentioned earlier, all of the jpegs were made by Harold at a later date. I found those dates and included them on the second line. The last line I listed that the file name was changed. We don't exactly know how he created the jpegs so I had to be vague about the process and simply put the date followed by, "Harold Cohen completes jpeg conversion, names file" then put the file name.
+There was one jpeg that was corrupted. We currently do not have a way to convert aa files into jpegs. Fortunately, we have a Postscript file of the same work that was generated within one minute of the original aa file. I used the postscript file to make a jpeg file. So in this instance, there is no aa file listed since it was not directly involved in the making the jpg. I included my name as the one who made the conversion in case that is relevant. But can be removed with no skin off my back. In the case of the file name changes, I simply put HCT changed the names.
+Regarding the Metadata, some files have much more metadata available than others. I chose to limit some of the metadata so as to keep the group basically the same. 
+
+There was much data to enter by hand. I have checked it multiple times but after a good night sleep will check it one last time. If you find any inconsistencies, feel free to correct or ask me about it, Tom
+
+Link to files to be used as NFTs
+https://drive.google.com/drive/folders/1k-i05lGnEvYi8SNKzi3MAITAVvzMeTAQ?usp=sharing
+Link to the Providence+Metadatahttps://docs.google.com/document/d/10tf9F58P1qk--fFN9RD2hzqyJV4x8_VsKE3pCn8nRaY/edit?usp=sharing 
+
+
+------=_Part_7701310_214114130.1727767860343
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head></head><body><div class=3D"yahoo-style-wrap" style=3D"font-fami=
+ly:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px;"><div dir=
+=3D"ltr" data-setdir=3D"false">Dear Paul &amp; Mila,</div><div dir=3D"ltr" =
+data-setdir=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"false">Belo=
+w are two links. One is to the Providence + Metadata document. The other is=
+ a link to the file folder to make the NFTs. I know that previously I sent =
+the files for the NFTs but if possible please use these because I used thes=
+e files to extract the metadata. While most of them are the same, there are=
+ some slight differences. So if possible, please use the ones in the link b=
+elow.<br></div><div dir=3D"ltr" data-setdir=3D"false"><br></div><div dir=3D=
+"ltr" data-setdir=3D"false">I was not sure how to word some of the Providen=
+ce events so if necessary you can change it so long as the events are intac=
+t. I was not sure how to word what "aa" files are. Internally, I typically =
+refer to them as AARON Vector files but the more I thought about it the mor=
+e I realized that AARON vector files are really the generation before where=
+ the vector (black line drawing file) and color file were two different fil=
+es. The aa files have additional information on how to make the artwork bes=
+ides just vectors. Keeping that in mind I used "<span><span style=3D"font-s=
+ize: 11pt; font-family: Arial, sans-serif; color: rgb(0, 0, 0); background-=
+color: transparent; font-weight: 400; font-style: normal; text-decoration-l=
+ine: none; text-decoration-style: solid; text-decoration-color: currentcolo=
+r; vertical-align: baseline; white-space: pre-wrap;" id=3D"ydpacb3874docs-i=
+nternal-guid-41fc874a-7fff-dcc7-4fde-c4b5f48faead">AARON Artwork descriptor=
+ file</span></span>" instead of AARON Artwork vector file. I would prefer t=
+o reserve the term AARON Artwork vector file for the drawing files that tru=
+ly are lists of vectors.</div><div dir=3D"ltr" data-setdir=3D"false"><br></=
+div><div dir=3D"ltr" data-setdir=3D"false">As mentioned earlier, all of the=
+ jpegs were made by Harold at a later date. I found those dates and include=
+d them on the second line. The last line I listed that the file name was ch=
+anged. We don't exactly know how he created the jpegs so I had to be vague =
+about the process and simply put the date<span><span style=3D"font-size: 11=
+pt; font-family: Arial, sans-serif; color: rgb(0, 0, 0); background-color: =
+transparent; font-weight: 400; font-style: normal; text-decoration-line: no=
+ne; text-decoration-style: solid; text-decoration-color: currentcolor; vert=
+ical-align: baseline; white-space: pre-wrap;" id=3D"ydpf1752080docs-interna=
+l-guid-f3b987c7-7fff-5b76-835e-b3fb1bc50239"> followed by, "Harold Cohen co=
+mpletes jpeg conversion, names file" then put the file name</span><span sty=
+le=3D"font-size: 11pt; font-family: Arial, sans-serif; color: rgb(0, 0, 0);=
+ background-color: transparent; font-weight: 700; font-style: normal; text-=
+decoration-line: none; text-decoration-style: solid; text-decoration-color:=
+ currentcolor; vertical-align: baseline; white-space: pre-wrap;">.</span></=
+span><div dir=3D"ltr" data-setdir=3D"false"><span><span style=3D"font-size:=
+ 11pt; font-family: Arial, sans-serif; color: rgb(0, 0, 0); background-colo=
+r: transparent; font-weight: 700; font-style: normal; text-decoration-line:=
+ none; text-decoration-style: solid; text-decoration-color: currentcolor; v=
+ertical-align: baseline; white-space: pre-wrap;"><br></span></span></div></=
+div><div dir=3D"ltr" data-setdir=3D"false">There was one jpeg that was corr=
+upted. We currently do not have a way to convert aa files into jpegs. Fortu=
+nately, we have a Postscript file of the same work that was generated withi=
+n one minute of the original aa file. I used the postscript file to make a =
+jpeg file. So in this instance, there is no aa file listed since it was not=
+ directly involved in the making the jpg. I included my name as the one who=
+ made the conversion in case that is relevant. But can be removed with no s=
+kin off my back. In the case of the file name changes, I simply put HCT cha=
+nged the names.</div><div dir=3D"ltr" data-setdir=3D"false"><br></div><div =
+dir=3D"ltr" data-setdir=3D"false">Regarding the Metadata, some files have m=
+uch more metadata available than others. I chose to limit some of the metad=
+ata so as to keep the group basically the same. <br></div><div dir=3D"ltr" =
+data-setdir=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"false">Ther=
+e was much data to enter by hand. I have checked it multiple times but afte=
+r a good night sleep will check it one last time. If you find any inconsist=
+encies, feel free to correct or ask me about it, Tom<br></div><div dir=3D"l=
+tr" data-setdir=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"false">=
+Link to files to be used as NFTs<br></div><div dir=3D"ltr" data-setdir=3D"f=
+alse"><a href=3D"https://drive.google.com/drive/folders/1k-i05lGnEvYi8SNKzi=
+3MAITAVvzMeTAQ?usp=3Dsharing" rel=3D"nofollow" target=3D"_blank">https://dr=
+ive.google.com/drive/folders/1k-i05lGnEvYi8SNKzi3MAITAVvzMeTAQ?usp=3Dsharin=
+g</a></div><div dir=3D"ltr" data-setdir=3D"false"><br></div><div dir=3D"ltr=
+" data-setdir=3D"false">Link to the Providence+Metadata</div><div dir=3D"lt=
+r" data-setdir=3D"false"><a href=3D"https://docs.google.com/document/d/10tf=
+9F58P1qk--fFN9RD2hzqyJV4x8_VsKE3pCn8nRaY/edit?usp=3Dsharing" rel=3D"nofollo=
+w" target=3D"_blank">https://docs.google.com/document/d/10tf9F58P1qk--fFN9R=
+D2hzqyJV4x8_VsKE3pCn8nRaY/edit?usp=3Dsharing</a> <br></div><div dir=3D"ltr"=
+ data-setdir=3D"false"><br></div></div></body></html>
+------=_Part_7701310_214114130.1727767860343--

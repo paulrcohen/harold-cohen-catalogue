@@ -1,0 +1,18 @@
+Subject: Re: found some of Harold's code in my "Perfume" code from 1982
+From: George Legrady <glegrady@ucsb.edu>
+To: Paul Cohen <paulrcohen@gmail.com>
+Date: 2024-10-06 21:11:16
+Message-ID: <8AF566F8-0246-44DD-B71D-073DB788BD56@ucsb.edu>
+--------------------------------------------------------------------------------
+
+Download full resolution images
+Available until Nov 5, 2024
+ <https://www.icloud.com/attachment/?u=https%3A%2F%2Fcvws.icloud-content.com%2FB%2FAeMRD-Hjb4N2BMaIlNEA4zhOz-ZrARxOtJGdeuFvYMVVFDAHt9R0yhx5%2F%24%7Bf%7D%3Fo%3DAt1_ciKFnveFVy8ae7dqTzPYDLUVkkUOrtBmIMlaZstT%26v%3D1%26x%3D3%26a%3DCAog0Iwj2SkB_audFC0iNdJ2IDXr42RuVnJSl8e00uGgYhsSdBDwvrKppjIY8M6t_a8yIgEAKgkC6AMA_1GkgoZSBE7P5mtaBHTKHHlqJAmAj2ROyO2CaBwQOKQOgj4t_nZ-pLYtof6intFSX5BPC6nG4HIkwzxfhokWX2id9iwGbtaKUxFHruivfWijQRvpa2MjI2oTaAHd%26e%3D1730866276%26fl%3D%26r%3D020B47DF-7FAC-4DA5-B3B2-7131AD7EFDC6-1%26k%3D%24%7Buk%7D%26ckc%3Dcom.apple.largeattachment%26ckz%3D91201F11-413D-4D72-AA70-A477D42F98FD%26p%3D57%26s%3Du0eigWhHodW1f7AZDaWLimirzvs&uk=LkROZIu537EJ8Stsf2qgCg&f=Images.zip&sz=286969>hi Paul and everyone, 
+
+Sorry it took so long to scan the printed code pages. To give a background. I met Harold in August 1981 through his studio assistant Jeff Greenberg. Harold generously gave me access to his computer and studio and I was in the studio from around September 1981 to possibly 1984 but in-between in 1982 desktop computers appeared so by 1984 I had access to desktop computing. I learned C language and Berkeley Unix on Harold’s system. I am not sure but I may have been the only artist who was given access. In the studio there were multiple terminals and I was assigned to one. Harold had his, and Jeff had his. During this period, I was visiting faculty in the art / photography program at Cal Arts, and at some point Becky arranged to have me teach a photography course at MiraCosta College. (thank you Becky)
+
+So I learned C and Unix starting in the fall of 1981 and throughout 1982. It took me a while to figure out how to create an artwork on the system (PDP-11 with vector drawn data sent to a Tecktronix 4014). The printout has a date of June 17, 1982 but I must have completed the visualization somewhat earlier. So interestingly this printout is the only remaining documentation of this visual project of mine. 
+
+I came across a visualization opportunity reading an article in Scientific American about thermodynamic diffusion of perfume molecular particles which when released from a perfume bottle (limited concentration) eventually are evenlly distributed in the next large surrounding space. Surprisingly I was fortunate to pick this topic as its the basis for how generative AI image synthesis are modelled on today. My animation visualization is the only one I wrote on Harold’s computer, and it took some time. As I was learning C, Jeff gave me so technical guidance.
+
+The attached code can be of interest to Harold’s legacy as it documents the interface between writing the code on the PDP-11 and how it is then visualized on the Tektronics vector-base green phosfor screen. I have included some of my own code, but left out a number of pages to reduce the clutter. Here is a description of the some of the pages:

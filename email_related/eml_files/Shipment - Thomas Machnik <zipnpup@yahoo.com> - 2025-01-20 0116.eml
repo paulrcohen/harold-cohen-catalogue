@@ -1,0 +1,106 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a10:e88f:b0:5c7:f970:fbca with SMTP id gl15csp1804382pxb;
+        Sun, 19 Jan 2025 22:16:38 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IGRV40I0q7+15vwzCL2IH7oZR3XACyvHa/MRTfi7Y5hgBhyYmzzrvE5mFnGn0TXRhQtzby1
+X-Received: by 2002:ac8:598f:0:b0:467:1e96:6462 with SMTP id d75a77b69052e-46e12c2ce6emr152251481cf.0.1737353798680;
+        Sun, 19 Jan 2025 22:16:38 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1737353798; cv=none;
+        d=google.com; s=arc-20240605;
+        b=a/tSMyoCCxk9oUxDxHewABMVDdo/mcOLSBWmSPO9SbHYAfldyqpXN7z15KMXDn7qKw
+         tNmrgJ7TVxb7yh2pntedOH7B8yvm44OclbT2NhKx+D5ufEAU+aqRc0SXePdc8UXqYKE2
+         BglPBwXD/J1YXugSnZ6/K6bCAHugMX7SqE9b0vZ3NrlJuJ7CbUAsERBhUUNvH48Hk+zL
+         fDKyJgE5qLsS4Y5TjIudQC68aLHk+ctsSMh1ubjYas+PGkxeNz1JcP/28JFuHmN9EvA5
+         0OOL7glM/TuWdzhnrBhLB1+2m1l7TeC6uWGxQEiS2xm7LnLFYg+gJXyPd6H2Q75cX+Mo
+         8MCg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=references:mime-version:subject:message-id:cc:to:reply-to:from:date
+         :dkim-signature;
+        bh=GmsRFUzaArG+2ga0wqbCaWVatDgN3w9P9TT3Cp8tkmc=;
+        fh=wTdhKqiOkCBVCfx41VgSM2lZgrZwO3H0Us+KAEks5z0=;
+        b=cOuRkPA2zy6ZBjok/UWPK2X+rNhS0mxUVIPnqIsSWv+cAp6SJUDcrcDoLYNr8eX0sG
+         yC1hyZNNrRC6dgKHNVBcpniae5BdVn9/0Ax0shv2YOC1Kjea7HkbgiNunaEYrUfIdt4U
+         2YoDDVsgZcMFDdqGn1snjOOIuIROkFsKGa9yJL2hvM4spKBlp5FO5xmqs/Uji7wqf3b8
+         imkQX0OKcjxjg5qmt0fTqW8aCFmRjhQSxEUfcwsWQccsW2eo5j5haJONv/PzOKTW4WPD
+         ww+EOqX50dShCIeessE/maX1PmxaWj8oOOrZ96VjXIzEHR1Nya2Mi9OkIczOWaxVjbdA
+         nLNw==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=R2zZA2fz;
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.133.40 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+Return-Path: <zipnpup@yahoo.com>
+Received: from sonic305-1.consmr.mail.bf2.yahoo.com (sonic305-1.consmr.mail.bf2.yahoo.com. [74.6.133.40])
+        by mx.google.com with ESMTPS id d75a77b69052e-46e10409f43si91862531cf.255.2025.01.19.22.16.38
+        for <paulrcohen@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 19 Jan 2025 22:16:38 -0800 (PST)
+Received-SPF: pass (google.com: domain of zipnpup@yahoo.com designates 74.6.133.40 as permitted sender) client-ip=74.6.133.40;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=R2zZA2fz;
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.133.40 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1737353798; bh=GmsRFUzaArG+2ga0wqbCaWVatDgN3w9P9TT3Cp8tkmc=; h=Date:From:Reply-To:To:Cc:Subject:References:From:Subject:Reply-To; b=R2zZA2fztXHp8x0Bsx8VMDejOWq3sIzmiXYpFK2LQoaV0eiggeylZ/sGvzmhWwR7Bg1vjmjr07aJIXxwjDv3TCXG74IrO/GCorg+NClwE/qIBMK5uv1KwYm/DtlbeV6lwMBvrfvNS51CE710Bwd/mH/mQrFS2j/bpG1SAQrKr7DI8DB6CLAS3zvbB0w5bOL2aONpOh5oMEtoVCa48JrfIixF1SW2scyawF5A191/lsWyy/waYZybHQLS3b/D24eel3QYcrCHPYardykSR3jhH5ZBt9GniM1tQ6YZBiVy4NU4Nzl4QpQikw3lh44GsEDcESQyqPf6QmXmrR8OMMbMfA==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1737353798; bh=zqrfruM0Dem66aETcAP/MAsU+ZAJmWM8EJFNwIeMEbp=; h=X-Sonic-MF:Date:From:To:Subject:From:Subject; b=oIPBLQhrqPYW2ml7Ummp1bu1S4+L+k9MAelBeG798jLBkWuL4tHKIY05SARhfauXcXT4KyJc80evcyLtIQ1SEJzslTeX37y07oUuNqc4j7QwTs13Yk2nx/xTgMY33JtSJH11ZnldUFLnv6qLCO8eJ8TN/62v/z0kEpnQvgagawVQSX0zmGANorYFg49T9kEj934ZXT+7LQvV610UQdSK2moG4ZacOqRPsNllD8OHJKW6KIwQ6lXi8EE9/nMcAbjrl+EbhKKpiIOSQPfAs7dVddkhY3YSX4AwSicjzrfDsHxTm8cp8IffFrRxm35cZSMOAIfkde9xBeisM9YsoB65Rg==
+X-YMail-OSG: ziSvxDoVM1nuv_OlppwBQYPRE.ljaoiWVy.le_dCMT2vTBZKH1V7NjjCnTAEqk6
+ grkx1glT3DONDHWyBquQRnpyuPpuc6mgET0Ig36zczIMw9DtOzftHoARy3_ewjxCHMMb.gMdNuDg
+ Jig5.QoQP1yX2lhU1pfUvp_IPRRkaCabPtfFre.3CJBVDDOnrBektnMFSRMd4wKCp4QqooNJhKKT
+ _drb3JAvKyzAxedcvdndg2vC9GvmKeBY6B3icLVziVZ2AY6P8hBtqWXPKcI08AxlX7U4NxZ9arMo
+ ncnknWzld1mu03p_mbkgz70_Bx7pR4kOCWZ2zKCg1otuyoulMgR1cMWlMqRxY4xSwXuq4VI452SZ
+ XF.llIbBt4bfV78MGYGoZkMa3DZ7ovat0tcg0WuotTLinwrP9mlYAVX7Iq1zhb8Gn_6gLpkFogw_
+ sf59voOpU5buAIsYpBowXSq.RIYfHoKBZoHRIxuPh_BBGj5J692ZiBJ4dmL9zJ8TlIhC8mC9llv3
+ lEi0MsSliO9JVbkFAmNVUYsrn3WkzOUj6vJANdwltHfQaU1tNsBJtvvluTROaCgeklG9JAm7pcj9
+ pcZKz2bfoT6tqnoble.cCuYtg2GLoB9bFK1.nOH6rb6QDqksysJ1xrE3GdLpGAALLI8OH.Rg9X0l
+ L5zd0ROHF5twV8yTxMN2t6cLn1S2UojtiERnnbYKvySQ_iYoHrs0Sso0l_Wvjv1RPBDcIWUVidk6
+ _hNqyGMGSoDZ2KLYz0F0sKw4Jws49ONFrVbW.TDEkrRex6DEB8COwvMppmrf9iwSRtgZCrcndYoo
+ aK8hIeL7nrecJ7TSmvmDQWX_M1hwTiSsdzWqxPVdv4vSyWH22WdkgVunEB31kGFHdDcYdkZqfgOv
+ 3NrVrKA9JPBWQru3Br10rqDEZKBI8Q_zQm6iTCVm5N_armiNdnwh4pGVrLHoE3aKsz5qPW4MhYfy
+ P1H3xzKHUIpoVWUv0ucsXwIktBU0JK9S1SIGvhV7hRADCAo4QD9d2MzNwc6WcECHKn.4ktHAOWMi
+ tKVGxKHLdKSjvSKrg.b3EeBygEoK6eB26orU2.9f1gMH0nuOLXDgZecAJK.twBvtkVymsHtsJo_a
+ ND6hr_8w7PihSFmUNrq4VftgIR4op.RCO2Vxgc9SfddJ5_1J8CzJMviBJKnZK_01zdfb5SpVnVfU
+ AyeHEHWV.2qN2Fe57XocfoEQEN6YbtqQ8oEHUDLi87kp5DqXTipvsyRWgh.Hf4_cAiKe8Bj8pJse
+ rqJUG_rTupsK13oAmswJ99DmOaWFWztnTDF.iib5rR7pichq1gga5tcm9p.4yPUSs9s1n1fpERan
+ pmw7hp6Gu3ZFuO75.iAOgyL1aaHiTQa0OUYivAbmiX5BQUaR6Yf7emkQf4je3PhGc2RWfxL8uZLT
+ mMBSADCL8ELc4MEf9YQbWHnQcuBb751y5mLITcWU61ttGjGErrYhJ1T6rZJ_AcVjiw9Yj9Zki0lQ
+ WzWpHlemyciNBdEf2ioPhEQJKjxoZy5QkvWuPXdzGibfiOwvsxXofVuvU0XyMBj60zbfisY8qtXP
+ foXLJ9oAiAwcKEif1kV22Pz5sfYtqyoalUB6O99ksRQjhFjfv0GlgzeY741ADUxJSTZo8HYdYUgK
+ LsSUIHIxc23W.kuA0G1GYcDDUuI1jTLC2eAOpQ0xhHBsFox.rZgTCb6pWuw2wrVl3WV1.lIpcRNM
+ 89wyM3ZRdtuPvi0_yfM_PqB_St7.Ky60WkDPjgkWI89w2b48xvWEzQPNvhEfN1wsq8BXVA0HzuUb
+ _zb8s7xyJFEjPVwuQkM3X0nSCO9i3pe40kc2XyARgCRG4ixxLutDi4EdQbgJFMZepEAZ6uVX_4nE
+ DZELeLe3i9GhogLmMSvePDgtEFeCUTejuKCXKaADXwn4b3KarzYhzIvGfVeI3CJgLPMibdO5p7ji
+ 1PddEhtZsfOdEQFGaNRYpFXyxRetCsbCX4ewIQV7KNt2szs1vVU_HBfh0jI5qMj5XP.vnuNLKybQ
+ qHSskvseClBkW1oz3po5fxl1qer_2KoolgdhKnEVs96WghzQftDvbErguJqZqYb2yavgKKaPVJkK
+ 5oIkmQiCSVDsYP8EfDZqSJS8UvgBTDxms0KycAA42uE9YZC0ECGt7pfM2pntMYpcriLEs91RFe97
+ xHNSNJwfD3QhFVa3ZcTJj2MBIGAQS.9w0eD_KYRLkbgeDx4iHWxRoxwgMqOzKLc3K0hgawupAfzQ
+ r4VLDXAy6v8shNG17nn_gAOvWu9aUCgMwK5VpoFC38AZBaPMrgQUa.l4XPLEu6JunPbV4FKuPyo.
+ _v2glFiImyRZ1dBU6LhCQZupA3yJD
+X-Sonic-MF: <zipnpup@yahoo.com>
+X-Sonic-ID: 159134cb-e191-4935-9919-cddd030ec337
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic305.consmr.mail.bf2.yahoo.com with HTTP; Mon, 20 Jan 2025 06:16:38 +0000
+Date: Mon, 20 Jan 2025 06:16:37 +0000 (UTC)
+From: Thomas Machnik <zipnpup@yahoo.com>
+Reply-To: Thomas Machnik <zipnpup@yahoo.com>
+To: Michael Pollard <michael@gazelliarthouse.com>, 
+	Mila Askarova <m.askarova@gazelliarthouse.com>
+Cc: Paul Cohen <paulrcohen@gmail.com>, 
+	Harold Cohen Trust <aaron@aaronshome.com>
+Message-ID: <824129209.1079150.1737353797730@mail.yahoo.com>
+Subject: Shipment
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_1079149_1169580690.1737353797729"
+References: <824129209.1079150.1737353797730.ref@mail.yahoo.com>
+X-Mailer: WebService/1.1.23187 YMailNovation
+Content-Length: 1378
+
+------=_Part_1079149_1169580690.1737353797729
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+Hi Michael,If you are ready, you are welcome to connect me with the shipper. I know typically the shipper would like to come and check it all out before sending the pickup crew. I have all the work staged in the studio for them at this time. There is a question about a few works that may or may not be sent. But that will be resolved soon. So basically everything is ready to go.
+Tom
+------=_Part_1079149_1169580690.1737353797729
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<html><head></head><body><div class="yahoo-style-wrap" style="font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px;"><div dir="ltr" data-setdir="false">Hi Michael,</div><div dir="ltr" data-setdir="false">If you are ready, you are welcome to connect me with the shipper. I know typically the shipper would like to come and check it all out before sending the pickup crew. I have all the work staged in the studio for them at this time. There is a question about a few works that may or may not be sent. But that will be resolved soon. So basically everything is ready to go.</div><div dir="ltr" data-setdir="false"><br></div><div dir="ltr" data-setdir="false">Tom</div></div></body></html>
+------=_Part_1079149_1169580690.1737353797729--

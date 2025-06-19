@@ -1,0 +1,428 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a10:d1d0:b0:5ad:6c17:f336 with SMTP id m16csp2270004pxv;
+        Mon, 7 Oct 2024 16:09:18 -0700 (PDT)
+X-Forwarded-Encrypted: i=2; AJvYcCUmHK5BAWW0Rhy0xXVHjK0HyjdcXhzHlkaey0K2BniG1u56fSBRDSuuYfj10AKJmWx7znQ1LrpBDgeb@gmail.com
+X-Google-Smtp-Source: AGHT+IEpnOtEU5/36baV5NVOrjeahygt/iRExE+5yvNZQES2O7rCm6sv/APrrDN8A9jZBOCHlu0p
+X-Received: by 2002:a05:620a:4713:b0:7a9:b814:4aa4 with SMTP id af79cd13be357-7ae6f48ba14mr2246817785a.43.1728342558377;
+        Mon, 07 Oct 2024 16:09:18 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1728342558; cv=none;
+        d=google.com; s=arc-20240605;
+        b=GFoqUWSdOhHWk1HR9SsQAVwjMpLyDXxPAWr3BrVqhf0ZbqmZ9WGdt1CqOQy6PnYAh6
+         BIO0AtcoFvHrCpH1ENaEwz7Q4TTl7UL8X1H2cgLy7GICqoN3ACyn/suD2ql7XBax5Q93
+         zqI4MdMLVIyARqLVczHM3fMnAkh5GcRXC6MCv8dbqNf82b+/b1aQ/CXu4cE94UQvS/Mb
+         AKDU+z1SvZGiEGHBfXRlV6ohUs7zcV21YZxjq+7FO5AuhZjAAnuGHr09TcTkie/Ym7iW
+         TuoH/o9A/cJqZ7C1/Z05ScMpTxle85jwCKi8QAv3CCYtKak2sR8K/NEVgz9D9Aa4oBKx
+         oUEg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:subject:references:in-reply-to:message-id:cc:to
+         :reply-to:from:date:dkim-signature;
+        bh=jK/5QWI6AapOYd2+nPj+tXjmCqlOVKwBeqPvq7czlmQ=;
+        fh=/kS2EJH4Pj2fXJ8xIz0n4b402bgUlDNo4XInWjaaucE=;
+        b=UxBfzyB2eM6JU8isuu8kFnfuB4XRugm33CKrf2H6DlORrSTjY1S2uQenc7E14DlsTX
+         8S349wrX12FXdoWDG6MKuipa3fyZGyRKOnFQTOl7rwxfv4F4oeFmhKEF/lp5DYmmdQEg
+         nVl/zCEPQEB8wM/W4ngrlklbRd78/ZjF4+s65OZEGAglVfP/h1hPV2z8I2Sx8TU58wq7
+         kMEjlOjs6Jk5G0aCGEX9x2qWxmgnJdXxiCVlu7xND3Nxpq44O3EqMiwoWPFYSfolbTPG
+         8QDPMqA43IeFwGwkdZuibvtjhyIrJkBUECXj9rlo8H3Gtxy5G5HdzCtTwGubD3gxaCyM
+         4kjg==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=ZbIid23f;
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.134.124 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+Return-Path: <zipnpup@yahoo.com>
+Received: from sonic315-14.consmr.mail.bf2.yahoo.com (sonic315-14.consmr.mail.bf2.yahoo.com. [74.6.134.124])
+        by mx.google.com with ESMTPS id af79cd13be357-7ae75774355si695490785a.682.2024.10.07.16.09.18
+        for <paulrcohen@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 07 Oct 2024 16:09:18 -0700 (PDT)
+Received-SPF: pass (google.com: domain of zipnpup@yahoo.com designates 74.6.134.124 as permitted sender) client-ip=74.6.134.124;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=ZbIid23f;
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.134.124 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1728342557; bh=jK/5QWI6AapOYd2+nPj+tXjmCqlOVKwBeqPvq7czlmQ=; h=Date:From:Reply-To:To:Cc:In-Reply-To:References:Subject:From:Subject:Reply-To; b=ZbIid23fNacOHj97NEEUqkyiBtuQ0QglfNZg88EhhwOLwmy0rkx+bau+hxETZCX+ESec0ZBL2epYiVtWLEvM7qg2ISbguK58hDFPd5lu8wFiLqJKG0eBHulimKr1DMUJb4ma71k4ORxPR2gbyjlaBB/Axg9mfkwFU9V+pk4IE7uZckIenKKabGBwp4/nVXthIW7Scy75AW1s1+fCRyA8WH4DKjYHnO9qbyWf3V78iogwbhMBIMxIAhvr1sEKJEv0tIwzQJJ8rIVjfZ/AEB0M5cu3TIY9qcqPoxGZux5jF7+JwrMvQERy41VzmBO1DCYXZ4sXffqUf61x2u1Y3/V6EA==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1728342557; bh=qQLSMj9ZhKQOIz5InWa1Sa3fAE9CVWlU1tQrlYsD9yq=; h=X-Sonic-MF:Date:From:To:Subject:From:Subject; b=IWyj6VQO5BRPsIXRRPagImFAdfntyD+43x6T2HYAuz46Z6bK1PIAqlRTjDXubqq2u2ve0WVFqVMwT9e5hu+5NNnlib6ZIBfNo1cnOMQ1Qx4B5/oaRM5/vqn5HCJpEFpbgAXZfmzSo0TIx8/ZpgvrJNKfLSNdYWGE9qQkigXNZX9js08NaYVje05aVrz9vPgHmSk4ZMCSandH26g8BdaCBhBk4c2smS53nP0xCE3HRbvP+0hFr/YKhyKLhREtv8kBPBMK8RWelZTK6c9LsJ3D+mIZv2ajtrl/7RS3dKaK4vpTJGMw1Sej+sS2qnabxJ7BVYdWxsUGwd7saKNwmU3dQQ==
+X-YMail-OSG: pb8DwPsVM1mkHCXDmHKvlOSD87c9Fv9_cJGUPasOOUD7qIbKEKI3gkpCzjag.DK
+ YgvPMDAq8.DZTa4shSTWAGuQY9SHIxOB6TFbE7losoVeaO63uPhJvzc9iGrV4niGY32TGCEQ91Dv
+ aiVAn7ZrlymUvmDyICc5ul_kEDBIFlVbIZ.tl31JYPymjt6rzqbwA7FWTe4GcRzMd45QNL7EOHXh
+ r3A9FP8imFyWj4L5FQJ6wSN5tm_bLtlCoyESc6zp1tgMUxjUeauU9rhOhgnGepV1iYUT0uQjMId_
+ BXmbKXikA.hvaXrbdfUvjx39HKUTbwy_H8lwW11lHkzevQF3qfoOfh0ZUcfyALTXbabT46xkdKuY
+ 2L2D9zH7Ao4ECFmecqhpUF1Q8IcOlpFob1eI9lx6zGdYCFbDvjlOqHke50yVLbuTuyvwpnpvgaiB
+ YjB8n6D9aubV_4gE4jI6DcxcH4zlkw2JA2HwEF0prO9pJrHnWZomEwSFM4xnH7xsWpB8xZb4FHXQ
+ Wyh5TOg5lCjrDai21d7wCyQ7w6AsMrH5z6_RoLAz_ROAs5sPIHglf_WL0LLfnc5gGqLO9iNo68kx
+ 3JJCLCK9o6Rb5h2oCJt5tzs8UytWNM8ihq9kVOvcC0V3apDkvgTcwR5Rj0yGYoo_UJzGIiRKZ7F5
+ HV3PKjm03XFWXjxIveiqXsEs3blExq8X92S.vGekjXBiuOAxEsQZT_qBTNUjevSHJMhPiD9aNz6s
+ Oj3baIcTDMurVi.oAUH6kI3BLoTgPVDw8ZdNUXKkxDvoudUWvQbKtUwsJ4NLzFQ8d3YOV2jayq9i
+ uN5xI4ZnQxSTxOGA8lCYcQPe2hPeHM00AM0nIY2sNcH67P8YVcsHV7AnyHPG7tCZJPd8xIkv9Git
+ CWkERJHXH2FQhGtELB8oiaN_5ii.vkERN8GSENvol6hYbdra_PhOxxGjBwQizSNhXig1yqbr7ipR
+ _SbKRllQnTZ_HKG78qb.WW9S7QLe3zYeFzUwHnjf_f6i0m._Y6O6gHLnWuRVeLxh6h0f4u04vN39
+ KdnlMRwh5c29avxcEQmI1d4_27DzQdi17NIz8RBrCTahrQ8khWpw1wz0m7fCLoaG70NmqE4MJY8T
+ bMXMGj.gpyl0oOF2nVPr_g1TkvANasi7Ckjxc8NrJ5My4DhlZFDvxw7GuiVx1sJf.T_Q8agvhRgH
+ 4wqqppTY8KA7AKXj5aQdcDGirD6uZ3gN20bXB6dpDrXGtLwVmJifjnStUD1noWKRPPeDpoIhin5W
+ FfKW2EW8RcaVykkSIkeVSBFeIz.lMiFIYLD3u8TCz738Oa.YY9MoE9KZfyOzhAtyPs1EEDG9Vshv
+ WvW2KA4ukgncXoHM5oHUC9fP0rs3tf4AiCjPf1iGN14IEJB8nFs1.g83ueEg_qzm8gVi85GCzY_5
+ ynW.p7eBFHnD3GLfdtxHTmfuPkTfhE7hSn7jrHewcSWJ_9XFyLj6GfJLXdObtB4x7.TWOkzo527w
+ ZpkBMVFNkC_TL1dpepujD12jq1cGUDzWRsLLBIlEzeVUmo0OL9VaLGZKBKcw819H3Gdz4nsV_689
+ 7v_Of_qigppGZ2XKUhlR16zTJ6TbGSmqBggXttQzd1eN7JrZ..0yCj3XSW8wiBM67VZoBne53rfx
+ bqCQpg4LSeY91MeblOTae_LPkehohNB6eptTKcsnvsVIDZQOMkcZd39Zm3VZbq9CmqlYZBr_Pqq6
+ XQLOvQyfQejPPW21rBanAecsysF1EfiUDszs.qPNspgL4c9y9GQFf0cCHe0NqQ7vztEwn5F0EY8s
+ R0zk3MeOBvp_cGFOIMAgOz6IKhvoLrdf7pptlOioWmoj1b.gkOBpDvHKxpRXf4JNsYNiuvGgWAsF
+ fLhJK6rV2Z_PQBRcpYKUr50DKrc4kphYgEJ6c1iF0wZ9XT8B96vvnNCLzT6Fk05w0NhHpdOxc3Zz
+ 9u4YSVLba5KZYFe7CzE6Wqhg0ap2eCUqK_AgUSgjYgI1bBgS1bWjtO2pfdTDz2gq5B7twBTV5vUn
+ 88KRpgzjHT87yz98ULhpLFjWrcdItx3zn8z0boBKYServov4Ps9qtVjGb_Cz9X1isZEvBcpqn5yA
+ bIoxfZID4O8S_li39NSmvPQjiABqXgss3zTlctSOhRuNYNtWay4ViYtnfWClBhidS8j22.DSwFNA
+ M.5Ip3IuTKXsJyKiU8O4UBcqhot1epvNGgDZl4t6cTHr3VFAzehPGx7LembJ7kpXrmGKLUoIFIe.
+ f1Qn4XqsZyKPgNmMiDYs6PNw6gdTQ_KO9xZPUh66ut.1RHsyaRUG_m405ghtUDeKYcz.7jVCA4.U
+ UUm5BMfjhBejuszLnTJj8Rcj.
+X-Sonic-MF: <zipnpup@yahoo.com>
+X-Sonic-ID: dcf145ea-d30e-4067-b8c4-d512c75fd524
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic315.consmr.mail.bf2.yahoo.com with HTTP; Mon, 7 Oct 2024 23:09:17 +0000
+Date: Mon, 7 Oct 2024 23:09:15 +0000 (UTC)
+From: Thomas Machnik <zipnpup@yahoo.com>
+Reply-To: Thomas Machnik <zipnpup@yahoo.com>
+To: George Legrady <glegrady@ucsb.edu>
+Cc: Harold Cohen Trust <aaron@aaronshome.com>, 
+	Paul Cohen <paulrcohen@gmail.com>
+Message-ID: <1353524331.9266903.1728342555621@mail.yahoo.com>
+In-Reply-To: <7F5AEFED-D15C-451B-978B-09927C204CEA@ucsb.edu>
+References: <927700306.459957.1728281645767@yahoo.com> <3426084A-6DFE-44ED-97E1-4AD5830CC67F@ucsb.edu> <573647726.9176629.1728324086808@mail.yahoo.com> <7F5AEFED-D15C-451B-978B-09927C204CEA@ucsb.edu>
+Subject: Re: found some of Harold's code in my "Perfume" code from 1982
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_9266902_869205876.1728342555619"
+X-Mailer: WebService/1.1.22645 YMailNorrin
+Content-Length: 20861
+
+------=_Part_9266902_869205876.1728342555619
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+ Thanks clarifying George.
+
+BTW I have a package that I need to ship to you. What would be the best add=
+ress at this time for me to ship the package to?
+Tom
+
+    On Monday, October 7, 2024, 11:41:23 AM PDT, George Legrady <glegrady@u=
+csb.edu> wrote: =20
+=20
+ hi Tom,=C2=A0
+Codes from Harold:=C2=A0
+gmac.hplotpak.cutils.c
+
+
+
+
+On Oct 7, 2024, at 11:01=E2=80=AFAM, Thomas Machnik <zipnpup@yahoo.com> wro=
+te:
+Hi George=C2=A0Thanks so much for the extra code. This plotting=C2=A0routin=
+e is very interesting. Helps to answer some=C2=A0questions.=C2=A0Do you rec=
+all whether or not the .h header files are your making or Harold=E2=80=99s.=
+ =C2=A0I ask because it seems like some of the definitions and macros were =
+made in such a way that the Harold=E2=80=99s=C2=A0older SAIL code or even F=
+ortran=C2=A0could be used with out completely translate=C2=A0each line manu=
+ally=C2=A0into c. Not sure this is true but just a thought based on observa=
+tion.
+Very helpful thanks againTom
+
+Sent from Yahoo Mail for iPad
+
+
+On Monday, October 7, 2024, 9:38 AM, George Legrady <glegrady@ucsb.edu> wro=
+te:
+
+Apologies, I should have included the plot() function. Here it is on page 6=
+0 and describes how it connects with the Tektronix. You can see some bit op=
+erations. Page 59 has the function to draw to the printer.=C2=A0
+
+
+
+On Oct 6, 2024, at 11:13=E2=80=AFPM, zipnpup <zipnpup@yahoo.com> wrote:
+Hi GeorgeThanks for taking the time to scan and send this to us. I was able=
+ to take a quick glance at it and found it quite interesting. We have some =
+older code with this mysterious call to a routine named "plot" but no code =
+definition for plot. In the code you sent, plot seems to be used to send co=
+mmands to the Tektronix display. This could provide clues on how and what t=
+hese commands were used needed in the earlier code.=C2=A0
+Thanks so much!
+Tom
+
+
+Sent from my T-Mobile 4G LTE Device
+
+-------- Original message --------From: George Legrady <glegrady@ucsb.edu> =
+Date: 10/6/24 9:11 PM (GMT-08:00) To: Paul Cohen <paulrcohen@gmail.com> Cc:=
+ "Christiane Paul, Curatorial" <christiane_paul@whitney.org>, Becky Cohen <=
+beckycohenphotographer@gmail.com>, Thomas Machnik <zipnpup@yahoo.com> Subje=
+ct: Re: found some of Harold's code in my "Perfume" code from 1982=20
+Download full resolution imagesAvailable until Nov 5, 2024hi Paul and every=
+one,=C2=A0
+Sorry it took so long to scan the printed code pages. To give a background.=
+ I met Harold in August 1981 through his studio assistant Jeff Greenberg. H=
+arold generously gave me access to his computer and studio and I was in the=
+ studio from around September 1981 to possibly 1984 but in-between in 1982 =
+desktop computers appeared so by 1984 I had access to desktop computing. I =
+learned C language and Berkeley Unix on Harold=E2=80=99s system. I am not s=
+ure but I may have been the only artist who was given access. In the studio=
+ there were multiple terminals and I was assigned to one. Harold had his, a=
+nd Jeff had his. During this period, I was visiting faculty in the art / ph=
+otography program at Cal Arts, and at some point Becky arranged to have me =
+teach a photography course at MiraCosta College. (thank you Becky)
+So I learned C and Unix starting in the fall of 1981 and throughout 1982. I=
+t took me a while to figure out how to create an artwork on the system (PDP=
+-11 with vector drawn data sent to a Tecktronix 4014). The printout has a d=
+ate of June 17, 1982 but I must have completed the visualization somewhat e=
+arlier. So interestingly this printout is the only remaining documentation =
+of this visual project of mine.=C2=A0
+I came across a visualization opportunity reading an article in Scientific =
+American about thermodynamic diffusion of perfume molecular particles which=
+ when released from a perfume bottle (limited concentration) eventually are=
+ evenlly distributed in the next large surrounding space. Surprisingly I wa=
+s fortunate to pick this topic as its the basis for how generative AI image=
+ synthesis are modelled on today. My animation visualization is the only on=
+e I wrote on Harold=E2=80=99s computer, and it took some time. As I was lea=
+rning C, Jeff gave me so technical guidance.
+The attached code can be of interest to Harold=E2=80=99s legacy as it docum=
+ents the interface between writing the code on the PDP-11 and how it is the=
+n visualized on the Tektronics vector-base green phosfor screen. I have inc=
+luded some of my own code, but left out a number of pages to reduce the clu=
+tter. Here is a description of the some of the pages:=C2=A0
+P.48 Gives a list of the various ways by which a dot or line would be sent =
+from the PDP-11 to the TekTronix 4014 vector screen
+P.49  Has some ways by which to send the data to the TekTronix.=C2=A0
+P.50-60 Code that draws some of my visualization to the TekTronix.=C2=A0
+P.61-62 Include functions that were written by Harold that I was given to u=
+se. Interesting is how the random function was further randomized by dividi=
+ng the returned rand() value with the prime number=C2=A0https://en.wikipedi=
+a.org/wiki/2,147,483,647.=C2=A0
+Other useful functions where the xpolar, ypolar, and the dist().
+P.63 was the =E2=80=9Cmake=E2=80=9D function by which to compile all the fi=
+les to generate the visualization.=C2=A0
+------
+The Noise-Signal series I produced between 1986-1990 were the next C langua=
+ge code-based works I created starting in 1986, when the pixel / raster bas=
+ed AT&T Targa based system became available. Most of these were printed on =
+a unique Fuji Inkjet printer located near UCLA:=C2=A0https://www.mat.ucsb.e=
+du/~g.legrady/glWeb/Projects/noise/noisesignal.pdf
+Patrick Frank, an art historian recently published a book =E2=80=9CArt of t=
+he 1980s: As if the Digital Mattered=E2=80=9D in which he discusses these w=
+orks of mine.=C2=A0
+The Centre Pompidou just acquired a few, and there will be an exhibition of=
+ them opening December 12 at RCM Gallery in Paris.=C2=A0
+Very best,=C2=A0
+George
+
+Click to DownloadperfumeSample.pdf20.9 MB
+
+
+
+
+
+
+ =20
+------=_Part_9266902_869205876.1728342555619
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head></head><body><div class=3D"ydp18706b45yahoo-style-wrap" style=
+=3D"font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px=
+;"><div></div>
+        <div dir=3D"ltr" data-setdir=3D"false">Thanks clarifying George.<br=
+></div><div dir=3D"ltr" data-setdir=3D"false"><br></div><div dir=3D"ltr" da=
+ta-setdir=3D"false">BTW I have a package that I need to ship to you. What w=
+ould be the best address at this time for me to ship the package to?</div><=
+div dir=3D"ltr" data-setdir=3D"false"><br></div><div dir=3D"ltr" data-setdi=
+r=3D"false">Tom<br></div><div><br></div>
+       =20
+        </div><div id=3D"ydp6868793fyahoo_quoted_9042806989" class=3D"ydp68=
+68793fyahoo_quoted">
+            <div style=3D"font-family:'Helvetica Neue', Helvetica, Arial, s=
+ans-serif;font-size:13px;color:#26282a;">
+               =20
+                <div>
+                        On Monday, October 7, 2024, 11:41:23 AM PDT, George=
+ Legrady &lt;glegrady@ucsb.edu&gt; wrote:
+                    </div>
+                    <div><br></div>
+                    <div><br></div>
+               =20
+               =20
+                <div><div id=3D"ydp6868793fyiv2217091375"><div>hi Tom,&nbsp=
+;<div><br clear=3D"none"></div><div>Codes from Harold:&nbsp;</div><div><br =
+clear=3D"none"></div><div>gmac.h</div><div>plotpak.c</div><div>utils.c<br c=
+lear=3D"none"><div><br clear=3D"none"></div><div id=3D"ydp6868793fyiv221709=
+1375yqt68211" class=3D"ydp6868793fyiv2217091375yqt9643114088"><div><br id=
+=3D"ydp6868793fyiv2217091375lineBreakAtBeginningOfMessage" clear=3D"none"><=
+div><br clear=3D"none"><blockquote type=3D"cite"><div>On Oct 7, 2024, at 11=
+:01=E2=80=AFAM, Thomas Machnik &lt;zipnpup@yahoo.com&gt; wrote:</div><br cl=
+ass=3D"ydp6868793fyiv2217091375Apple-interchange-newline" clear=3D"none"><d=
+iv><div>
+Hi George&nbsp;<div>Thanks so much for the extra code. This plotting&nbsp;r=
+outine is very interesting. Helps to answer some&nbsp;questions.&nbsp;Do yo=
+u recall whether or not the .h header files are your making or Harold=E2=80=
+=99s. &nbsp;I ask because it seems like some of the definitions and macros =
+were made in such a way that the Harold=E2=80=99s&nbsp;older SAIL code or e=
+ven Fortran&nbsp;could be used with out completely translate&nbsp;each line=
+ manually&nbsp;into c. Not sure this is true but just a thought based on ob=
+servation.</div><div><br clear=3D"none"></div><div>Very helpful thanks agai=
+n</div><div>Tom</div><div><br clear=3D"none"><br clear=3D"none"><div class=
+=3D"ydp6868793fyiv2217091375yahoo-signature"><a shape=3D"rect" style=3D"fon=
+t-size:12px;" href=3D"https://mail.onelink.me/107872968?pid=3Dnativeplaceme=
+nt&amp;c=3DGlobal_Acquisition_YMktg_315_Internal_EmailSignature&amp;af_sub1=
+=3DAcquisition&amp;af_sub2=3DGlobal_YMktg&amp;af_sub3=3D&amp;af_sub4=3D1000=
+00604&amp;af_sub5=3DEmailSignature__Static_" rel=3D"nofollow" target=3D"_bl=
+ank">Sent from Yahoo Mail for iPad</a><br clear=3D"none"></div><br clear=3D=
+"none"><p style=3D"font-size:15px;color:rgb(132, 115, 255);padding-top:15px=
+;margin-top:0px;" class=3D"ydp6868793fyiv2217091375yahoo-quoted-begin">On M=
+onday, October 7, 2024, 9:38 AM, George Legrady &lt;glegrady@ucsb.edu&gt; w=
+rote:</p><blockquote class=3D"ydp6868793fyiv2217091375iosymail"><div id=3D"=
+ydp6868793fyiv2217091375"><div>Apologies, I should have included the plot()=
+ function. Here it is on page 60 and describes how it connects with the Tek=
+tronix. You can see some bit operations. Page 59 has the function to draw t=
+o the printer.&nbsp;<div><br clear=3D"none"></div><div></div></div></div><d=
+iv id=3D"ydp6868793fyiv2217091375"><div><div><br id=3D"ydp6868793fyiv221709=
+1375lineBreakAtBeginningOfMessage" clear=3D"none"><div><br clear=3D"none"><=
+blockquote type=3D"cite"><div>On Oct 6, 2024, at 11:13=E2=80=AFPM, zipnpup =
+&lt;zipnpup@yahoo.com&gt; wrote:</div><br class=3D"ydp6868793fyiv2217091375=
+Apple-interchange-newline" clear=3D"none"><div><div><div>Hi George</div><di=
+v>Thanks for taking the time to scan and send this to us. I was able to tak=
+e a quick glance at it and found it quite interesting. We have some older c=
+ode with this mysterious call to a routine named "plot" but no code definit=
+ion for plot. In the code you sent, plot seems to be used to send commands =
+to the Tektronix display. This could provide clues on how and what these co=
+mmands were used needed in the earlier code.&nbsp;</div><div><br clear=3D"n=
+one"></div><div>Thanks so much!</div><div><br clear=3D"none"></div><div>Tom=
+</div><div><br clear=3D"none"></div><div><br clear=3D"none"></div><div><br =
+clear=3D"none"></div><div id=3D"ydp6868793fyiv2217091375composer_signature"=
+><div style=3D"font-size:12px;color:#575757;">Sent from my T-Mobile 4G LTE =
+Device</div></div><div><br clear=3D"none"></div><div><br clear=3D"none"></d=
+iv><div style=3D"font-size:100%;" align=3D"left"><div>-------- Original mes=
+sage --------</div><div>From: George Legrady &lt;glegrady@ucsb.edu&gt; </di=
+v><div>Date: 10/6/24  9:11 PM  (GMT-08:00) </div><div>To: Paul Cohen &lt;pa=
+ulrcohen@gmail.com&gt; </div><div>Cc: "Christiane Paul, Curatorial" &lt;chr=
+istiane_paul@whitney.org&gt;, Becky Cohen &lt;beckycohenphotographer@gmail.=
+com&gt;, Thomas Machnik &lt;zipnpup@yahoo.com&gt; </div><div>Subject: Re: f=
+ound some of Harold's code in my "Perfume" code from 1982 </div><div><br cl=
+ear=3D"none"></div></div><a shape=3D"rect" style=3D"font-style: normal; fon=
+t-stretch: normal; font-size: 13px; line-height: normal; font-family: Helve=
+tica Neue, sans-serif; font-size-adjust: none; color: rgb(128, 128, 128); f=
+ont-weight: 300;" href=3D"https://www.icloud.com/attachment/?u=3Dhttps%3A%2=
+F%2Fcvws.icloud-content.com%2FB%2FAeMRD-Hjb4N2BMaIlNEA4zhOz-ZrARxOtJGdeuFvY=
+MVVFDAHt9R0yhx5%2F%24%7Bf%7D%3Fo%3DAt1_ciKFnveFVy8ae7dqTzPYDLUVkkUOrtBmIMla=
+ZstT%26v%3D1%26x%3D3%26a%3DCAog0Iwj2SkB_audFC0iNdJ2IDXr42RuVnJSl8e00uGgYhsS=
+dBDwvrKppjIY8M6t_a8yIgEAKgkC6AMA_1GkgoZSBE7P5mtaBHTKHHlqJAmAj2ROyO2CaBwQOKQ=
+Ogj4t_nZ-pLYtof6intFSX5BPC6nG4HIkwzxfhokWX2id9iwGbtaKUxFHruivfWijQRvpa2MjI2=
+oTaAHd%26e%3D1730866276%26fl%3D%26r%3D020B47DF-7FAC-4DA5-B3B2-7131AD7EFDC6-=
+1%26k%3D%24%7Buk%7D%26ckc%3Dcom.apple.largeattachment%26ckz%3D91201F11-413D=
+-4D72-AA70-A477D42F98FD%26p%3D57%26s%3Du0eigWhHodW1f7AZDaWLimirzvs&amp;uk=
+=3DLkROZIu537EJ8Stsf2qgCg&amp;f=3DImages.zip&amp;sz=3D286969" class=3D"ydp6=
+868793fyiv2217091375x-apple-maildropbanner" rel=3D"nofollow" target=3D"_bla=
+nk"><div style=3D"min-height:0px;border-top:1px solid #ececec;"></div><div>=
+<div style=3D"float:left;margin-right:62px;"><div style=3D"min-height:25px;=
+display:table-cell;vertical-align:bottom;">Download full resolution images<=
+/div><div></div><div style=3D"min-height:19px;display:table-cell;vertical-a=
+lign:bottom;">Available until Nov 5, 2024</div></div><div style=3D"float:ri=
+ght;width:62px;"><div class=3D"ydp6868793fyiv2217091375maildrop_icon"></div=
+></div></div><div style=3D"min-height:0px;border-top:1px solid #ececec;marg=
+in-bottom:15px;"></div></a>hi Paul and everyone,&nbsp;<div><br clear=3D"non=
+e"></div><div>Sorry it took so long to scan the printed code pages. To give=
+ a background. I met Harold in August 1981 through his studio assistant Jef=
+f Greenberg. Harold generously gave me access to his computer and studio an=
+d I was in the studio from around September 1981 to possibly 1984 but in-be=
+tween in 1982 desktop computers appeared so by 1984 I had access to desktop=
+ computing. I learned C language and Berkeley Unix on Harold=E2=80=99s syst=
+em. I am not sure but I may have been the only artist who was given access.=
+ In the studio there were multiple terminals and I was assigned to one. Har=
+old had his, and Jeff had his. During this period, I was visiting faculty i=
+n the art / photography program at Cal Arts, and at some point Becky arrang=
+ed to have me teach a photography course at MiraCosta College. (thank you B=
+ecky)</div><div><br clear=3D"none"></div><div>So I learned C and Unix start=
+ing in the fall of 1981 and throughout 1982. It took me a while to figure o=
+ut how to create an artwork on the system (PDP-11 with vector drawn data se=
+nt to a Tecktronix 4014). The printout has a date of June 17, 1982 but I mu=
+st have completed the visualization somewhat earlier. So interestingly this=
+ printout is the only remaining documentation of this visual project of min=
+e.&nbsp;</div><div><br clear=3D"none"></div><div>I came across a visualizat=
+ion opportunity reading an article in Scientific American about thermodynam=
+ic diffusion of perfume molecular particles which when released from a perf=
+ume bottle (limited concentration) eventually are evenlly distributed in th=
+e next large surrounding space. Surprisingly I was fortunate to pick this t=
+opic as its the basis for how generative AI image synthesis are modelled on=
+ today. My animation visualization is the only one I wrote on Harold=E2=80=
+=99s computer, and it took some time. As I was learning C, Jeff gave me so =
+technical guidance.</div><div><br clear=3D"none"></div><div>The attached co=
+de can be of interest to Harold=E2=80=99s legacy as it documents the interf=
+ace between writing the code on the PDP-11 and how it is then visualized on=
+ the Tektronics vector-base green phosfor screen. I have included some of m=
+y own code, but left out a number of pages to reduce the clutter. Here is a=
+ description of the some of the pages:&nbsp;</div><div><br clear=3D"none"><=
+/div><div>P.48<span style=3D"white-space: pre-wrap;" class=3D"ydp6868793fyi=
+v2217091375Apple-tab-span">=09=09</span>Gives a list of the various ways by=
+ which a dot or line would be sent from the PDP-11 to the TekTronix 4014 ve=
+ctor screen</div><div><br clear=3D"none"></div><div>P.49 <span style=3D"whi=
+te-space: pre-wrap;" class=3D"ydp6868793fyiv2217091375Apple-tab-span">=09</=
+span>Has some ways by which to send the data to the TekTronix.&nbsp;</div><=
+div><br clear=3D"none"></div><div>P.50-60<span style=3D"white-space: pre-wr=
+ap;" class=3D"ydp6868793fyiv2217091375Apple-tab-span">=09</span>Code that d=
+raws some of my visualization to the TekTronix.&nbsp;</div><div><br clear=
+=3D"none"></div><div>P.61-62<span style=3D"white-space: pre-wrap;" class=3D=
+"ydp6868793fyiv2217091375Apple-tab-span">=09</span>Include functions that w=
+ere written by Harold that I was given to use. Interesting is how the rando=
+m function was further randomized by dividing the returned rand() value wit=
+h the prime number&nbsp;<a shape=3D"rect" href=3D"https://en.wikipedia.org/=
+wiki/2,147,483,647" rel=3D"nofollow" target=3D"_blank">https://en.wikipedia=
+.org/wiki/2,147,483,647</a>.&nbsp;</div><div><br clear=3D"none"></div><div>=
+Other useful functions where the xpolar, ypolar, and the dist().</div><div>=
+<br clear=3D"none"></div><div>P.63 was the =E2=80=9Cmake=E2=80=9D function =
+by which to compile all the files to generate the visualization.&nbsp;</div=
+><div><br clear=3D"none"></div><div>------</div><div><br clear=3D"none"></d=
+iv><div>The Noise-Signal series I produced between 1986-1990 were the next =
+C language code-based works I created starting in 1986, when the pixel / ra=
+ster based AT&amp;T Targa based system became available. Most of these were=
+ printed on a unique Fuji Inkjet printer located near UCLA:&nbsp;<a shape=
+=3D"rect" href=3D"https://www.mat.ucsb.edu/~g.legrady/glWeb/Projects/noise/=
+noisesignal.pdf" rel=3D"nofollow" target=3D"_blank">https://www.mat.ucsb.ed=
+u/~g.legrady/glWeb/Projects/noise/noisesignal.pdf</a></div><div><br clear=
+=3D"none"></div><div>Patrick Frank, an art historian recently published a b=
+ook =E2=80=9CArt of the 1980s: As if the Digital Mattered=E2=80=9D in which=
+ he discusses these works of mine.&nbsp;</div><div><br clear=3D"none"></div=
+><div>The Centre Pompidou just acquired a few, and there will be an exhibit=
+ion of them opening December 12 at RCM Gallery in Paris.&nbsp;</div><div><b=
+r clear=3D"none"></div><div>Very best,&nbsp;</div><div><br clear=3D"none"><=
+/div><div>George</div><div><br clear=3D"none"></div><div><br clear=3D"none"=
+></div><div><div style=3D"margin: 15px; border-color: rgb(202, 202, 202); b=
+order-style: solid; border-width: 1px; border-radius: 15px; min-height: 134=
+px; display: inline-block; min-width: 159px; font-family: Helvetica Neue, s=
+ans-serif;" data-size=3D"20892422" data-url=3D"https://cvws.icloud-content.=
+com/B/AQJzx1MsqJx5z6QZt4vYqOfPWgACAUdWGBmLrBq-ZQNByV_QVb7bxXb6/perfumeSampl=
+e.pdf?o=3DAgxtoOzsJnpEkYk331FuKh1VH7g_y1UMl83tZbyER3Dn&amp;v=3D1&amp;x=3D3&=
+amp;a=3DCAogr_9_6_zsdWxXynHDS7c4mQbMYd6zCB-AHuhhE6L4WBsSdBDGwLKppjIYxtCt_a8=
+yIgEAKgkC6AMA_yZnbDpSBM9aAAJaBNvFdvpqJDbCU2js8wvX0xqn6BG89sZP20cr7xRFMYL2fO=
+IA56TuOuEX7HIk6lPvPPKjcWMNpQxIHGezsd1uzaWZwZ7F3sY0k28nEdyMOiGL&amp;e=3D1730=
+866276&amp;fl=3D&amp;r=3DCDA0FFC5-8F6B-4189-9177-C53BF3AB122E-1&amp;k=3Dz6h=
+fFW_MHKQfN6Kuc0YDVQ&amp;ckc=3Dcom.apple.largeattachment&amp;ckz=3D91201F11-=
+413D-4D72-AA70-A477D42F98FD&amp;p=3D57&amp;s=3DTD0A1dN4PXJJm-mnR5aotadxfME"=
+ class=3D"ydp6868793fyiv2217091375x-apple-maildrop"><a shape=3D"rect" style=
+=3D"text-align: center; text-decoration-line: none; text-decoration-style: =
+solid; text-decoration-color: currentcolor; font-size: 14px; color: rgb(0, =
+122, 255); display: block; margin: 40px 10px 0px;" href=3D"https://www.iclo=
+ud.com/attachment/?u=3Dhttps%3A%2F%2Fcvws.icloud-content.com%2FB%2FAQJzx1Ms=
+qJx5z6QZt4vYqOfPWgACAUdWGBmLrBq-ZQNByV_QVb7bxXb6%2F%24%7Bf%7D%3Fo%3DAs7tKCs=
+-wlrPQltf-W3jOMWv41XHmzRbt-xGgRl7Jn2A%26v%3D1%26x%3D3%26a%3DCAogG_kofUjYnOJ=
+hX4UEjsyzvp2jFlh8-je_1SZcUDMu5skSdBCjwbKppjIYo9Gt_a8yIgEAKgkC6AMA_wHZNp1SBM=
+9aAAJaBNvFdvpqJJyKo7JzbJdA3oqpm6GWbk7r5rO_2Hwz1lhhNiuPFnTt0bc88nIkj4bmg67lh=
+BehyukJBqoOclaKmQf5jfqyFn8OIs2tPV5_kHIZ%26e%3D1730866276%26fl%3D%26r%3DA835=
+C165-DAB9-40AE-A263-F6DCE750E16F-1%26k%3D%24%7Buk%7D%26ckc%3Dcom.apple.larg=
+eattachment%26ckz%3D91201F11-413D-4D72-AA70-A477D42F98FD%26p%3D57%26s%3D1WJ=
+c5gGmnNNkUxXu5Th97hcOZJQ&amp;uk=3Dz6hfFW_MHKQfN6Kuc0YDVQ&amp;f=3DperfumeSam=
+ple.pdf&amp;sz=3D20892422" rel=3D"nofollow" target=3D"_blank">Click to Down=
+load</a><div style=3D"text-align:center;font-size:12px;color:rgb(98, 99, 99=
+);"><div style=3D"margin:4px 10px 0px;">perfumeSample.pdf</div><div style=
+=3D"margin:3px 10px 0px;">20.9 MB</div></div></div></div></div></div></bloc=
+kquote></div><br clear=3D"none"></div></div></div><blockquote></blockquote>=
+</blockquote></div>
+</div></div></blockquote></div><br clear=3D"none"></div></div></div></div><=
+/div></div>
+            </div>
+        </div></body></html>
+------=_Part_9266902_869205876.1728342555619--

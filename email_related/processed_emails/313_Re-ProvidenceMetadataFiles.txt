@@ -1,0 +1,38 @@
+Subject: Re: Providence+Metadata+Files
+From: Thomas Machnik <zipnpup@yahoo.com>
+To: Mila Askarova <m.askarova@gazelliarthouse.com>
+Date: 2024-10-01 16:12:17
+Message-ID: <598198690.7800374.1727799137051@mail.yahoo.com>
+--------------------------------------------------------------------------------
+
+Hi Mila, looks like I missed a call from London. If it was some one there, I am available. I am review the document you sent, Tom
+
+ On Tuesday, October 1, 2024, 2:42:31 AM PDT, Mila Askarova <m.askarova@gazelliarthouse.com> wrote: 
+
+ Hi Tom, 
+Thank you so much for this. 
+Can you please also cast your eye over the attached provenance and let us know if everything is correct on there? 
+My best,Mila 
+
+Mila Askarova 
+CEO & Founder 
+
+GAZELLI ART HOUSE
+
+www.gazelliarthouse.com
++44 (0) 207 491 8816 / +994 (0) 12 498 1230
+
+
+
+Dear Paul & Mila,
+Below are two links. One is to the Providence + Metadata document. The other is a link to the file folder to make the NFTs. I know that previously I sent the files for the NFTs but if possible please use these because I used these files to extract the metadata. While most of them are the same, there are some slight differences. So if possible, please use the ones in the link below.
+
+I was not sure how to word some of the Providence events so if necessary you can change it so long as the events are intact. I was not sure how to word what "aa" files are. Internally, I typically refer to them as AARON Vector files but the more I thought about it the more I realized that AARON vector files are really the generation before where the vector (black line drawing file) and color file were two different files. The aa files have additional information on how to make the artwork besides just vectors. Keeping that in mind I used "AARON Artwork descriptor file" instead of AARON Artwork vector file. I would prefer to reserve the term AARON Artwork vector file for the drawing files that truly are lists of vectors.
+As mentioned earlier, all of the jpegs were made by Harold at a later date. I found those dates and included them on the second line. The last line I listed that the file name was changed. We don't exactly know how he created the jpegs so I had to be vague about the process and simply put the date followed by, "Harold Cohen completes jpeg conversion, names file" then put the file name.
+There was one jpeg that was corrupted. We currently do not have a way to convert aa files into jpegs. Fortunately, we have a Postscript file of the same work that was generated within one minute of the original aa file. I used the postscript file to make a jpeg file. So in this instance, there is no aa file listed since it was not directly involved in the making the jpg. I included my name as the one who made the conversion in case that is relevant. But can be removed with no skin off my back. In the case of the file name changes, I simply put HCT changed the names.
+Regarding the Metadata, some files have much more metadata available than others. I chose to limit some of the metadata so as to keep the group basically the same. 
+
+There was much data to enter by hand. I have checked it multiple times but after a good night sleep will check it one last time. If you find any inconsistencies, feel free to correct or ask me about it, Tom
+
+Link to files to be used as NFTs
+https://drive.google.com/drive/folders/1k-i05lGnEvYi8SNKzi3MAITAVvzMeTAQ?usp=sharing

@@ -1,0 +1,190 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a11:ae0a:b0:5ad:6c17:f336 with SMTP id ju10csp553246pxc;
+        Wed, 4 Dec 2024 12:44:34 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IG49ai/Yr2v6aVQLU7nnrxBOAqi7klHRe7rwjmPrmLL9MTf6MKuNSNZWy1eMDGxAGrsEB1H
+X-Received: by 2002:a05:620a:191f:b0:7b6:b19b:e56 with SMTP id af79cd13be357-7b6b19b10e3mr298606485a.29.1733345074202;
+        Wed, 04 Dec 2024 12:44:34 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1733345074; cv=none;
+        d=google.com; s=arc-20240605;
+        b=aUJaO5WH47kFoL7FSSyFsJ/+uowU3Z8KeMfmpMYBzhjeb/uM+SLD0pyqYP0FDZLmGo
+         nRe6M4XGh2XkkUyxl69H4nk+3FFNCRZBA8z1oZUZA8zKocF2+kB4g7rL/nVOumT3E+PH
+         pnaL+dv4KzAPll6Iw8OJEk+18968mnKdwVuffFWqNewGW+dhXbfsE1lWCUfPPY6CFb2Q
+         f2Q5dlxlcBPYD/InI+kbVvZmXKczvhQJ3/Q1oeQCEoUBg8Yw3Cp1twPCXARdfPm9g88a
+         GVIDnTLImsr7zSa2UBh+QmDeaFgcar+fVzMkP+Zx4G6Q9cVwYQtUk96lZhVsB+zJCsbd
+         ePoA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:subject:references:in-reply-to:message-id:to:from:date
+         :dkim-signature;
+        bh=GwgGXu5dwRGEC4KKhtSmvHHK4RrYhjGFuu4D1sF/QAA=;
+        fh=Updq7xbkwlQeDaoo7LHFF4ZC4mEHqD3YZcQ69YgdwTI=;
+        b=ER/xWfe1Ux2dnXZ+Vi/DyRYSxpYr/PGs3biV2PkE+g75GN8hvsOKW07bdGwY9Zgqd+
+         uWQAm7QQHqX/3gMU92YIvlCdyRlokOTnRo4jg/5h+6Qw7USVvNp5QuggKiNTMPbbDz6N
+         roHxpfX0e4E3VROjkuunYAS6Cpero93uUZkxSkSOIpKbJtPapEuLnQacOlN//yiqBDl4
+         nK94Xr5cerU6VIsQhw+tg5ablfP7/qL8AnslQeccSWqFu3gxJ+3nDl5PczomxtJ69m1M
+         GQhZdoeWVBVK/+K8N4oXzqA80Cjwowa8MmPtzF6SOTkrijqRON168b2Ney3nMqEhI6wr
+         nnkA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=XwfCvz2A;
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.130.41 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+Return-Path: <zipnpup@yahoo.com>
+Received: from sonic308-2.consmr.mail.bf2.yahoo.com (sonic308-2.consmr.mail.bf2.yahoo.com. [74.6.130.41])
+        by mx.google.com with ESMTPS id af79cd13be357-7b6849c24e7si1730191685a.414.2024.12.04.12.44.33
+        for <paulrcohen@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 04 Dec 2024 12:44:34 -0800 (PST)
+Received-SPF: pass (google.com: domain of zipnpup@yahoo.com designates 74.6.130.41 as permitted sender) client-ip=74.6.130.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=XwfCvz2A;
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.130.41 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1733345073; bh=GwgGXu5dwRGEC4KKhtSmvHHK4RrYhjGFuu4D1sF/QAA=; h=Date:From:To:In-Reply-To:References:Subject:From:Subject:Reply-To; b=XwfCvz2AzzqAYvrJpqGcvmYYQrw4tfDPBclKO8nwWnYc/wtbufh6bH4xpiCgLl+98KINlDmozphWl/DdGZ7VDViaBHGWcWa7V9Qy/wPemP5oY037gO/+w5Jv15E7QkO8aiCds4taK4sz334FMBkNxPLRZh3D7by/YNPBDjcitcq+YA/fZjeTLbIbiGXiEfzPeZ+t3i827wgN9fa+uEoUQDLH02wlDsEJGTQ433TfRkXphmHmtU/Kdp8IgFju+qKpIGpNzPf/GrD7n9+Oa0ERwhulzl67lVVES9ivz61GeGSW7PTPR+j+9M11psVDGn4bcpc5sq7h8C01sKLqY7RPFg==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1733345073; bh=boYO8EmoEeuVp9vZzf2/u7R/TlI6uT1kYp8YjDasqHW=; h=X-Sonic-MF:Date:From:To:Subject:From:Subject; b=pExX1EkMu5hkjMIwfFUS3tHWk04p7u0/TnwyEiCGlEgOlBE9W3ELElsJfmNnOhl+LzQbsjwcDT9QlwNMwhSaypYdTz3BOMZLnCxgxeat/HT/0Pq9kopx37WAbSZOdQDQrq9QUrwVEna87TeYlIaXKWF5Jec3ajFmyR57bWZHerZcqi3VVRze/ixKtmVeXhTj+bLU7NAb/Qjfzxz/Pnxq59+Yr1MRd/aw5e8h+z/0GKgg+sJ3/7fcEIT/9bFQxQ38stsgAc+6L64rsb+oE/xC14Hc+qH+aleDbYXaS0qgpz/il3WTAXyk9PxOLZvVMFj2J9sKrVwC3gkCmb7m1E+Lvw==
+X-YMail-OSG: AeAoQw8VM1mAdK.aP5wKb_mLPN2PhZxe7q0UZLzQ5WXVKBzO3HLBhBCxwyQkfGU
+ fJpJC.NAKFLpTBRkXLxr9gMjc9wehXwCMeXVqv5opmXN2L9PuV0jAifJ.toug7rdx.CA.cxY3saO
+ JuLOv9CltKgNgGc63mJL.tfsoJVoOjPSE0WSNSRJ.sMC3g.MPPlQupGX4f0ELn.EXYNalr3MBky5
+ LFkR..wMHu70.hbVyKwisq9IuZ_9u3UJ_WA3dcXQwzodCR2iAoaS2Zn7h5t2ASrqjJLB_RoC_P3z
+ BO0pBOwWj.nrBeIbKfxA9JfkttuumRv4H90mFRRzvhF31WaZYStmkdazbgYEVkgF6vh3pEHd9B_j
+ IulccvniLqd46CZWA2sW2sg03DPiq89.0us3ICtl.c5o8Iy9xLQnqkU0Vn3E5hky0kptxkyky4xU
+ rZG5Ua4cjmdpqNDyUYpmn9NJ2n7XM5YAGkBzYbIznPZ7ZjJNa4wEg.EffwNjlaCBzboZxYF3.dea
+ IFfp_JfdhACCdM1shdHsD2NT485XXUHd8gYBApERG5UV4TiCcZKyMJEO7R2fBv1uEZbbWlsw0Xaq
+ BSTx38PpdwUiEXJGuUR0kdZieq6g87z5JDndsJliwf1W8a1IuTUApgZJR9ks9qNYgXKRxeH9qXMJ
+ h3rUw7RygQJ84wD0sjpCEjFXLUv7LWRihguN1aJNGeI_UOZp6CIswKAdttPAjj414bLcJ3FLMXVx
+ SK6fsROjBPSw2yM4X4ORMX9sq8Gq_yZvK2B4IZKTrwFxd61Nq_Ci2RTQp8erCTeKoOuAoH_gWNXX
+ DXGPrAFuirgeMLKKfee5n4cw6TP5RXgfCHZirJW7om7kLZ7.DPVuE7_Z576Tb6L865tNMDyAADT.
+ ZUwrC05EJwDBXjvJP5GbD3etUrikqKwV.zcd1BBIF0sT9gsC34U2OwShiBTfLRhNwoTZlD15TgIi
+ Fw_S2OSl_OPKH.h4IuLtAPguMNrWctQ2.lpIpuhTpNLz3fdUbu.PMscIN.FHcPtp4N44GLqQjRSM
+ yIYScLQ3ckkONrCiKWnG8EcfALGhcdIsujpoplEbCgcV5uvP.lct9Cn1CPoewDtNH972PBZ17wGK
+ iUa6XAmSgc1DybUP9Dc9xCtPxR.pnq31gmYSAVy5YXwYE0Qw9wlyayaPBUE_tyR2IS2R56Zdko7d
+ r8BWekOwm77ZVS9Tcs.6l7OepZXRa1oM_pZwbNnC171AGaMii6mQV9I.DxW4GONX3YksDldHsBIY
+ HJ7A8PU2hb18TkHkQxLOeHqclLAD8TDvi766nouBFx2AwqXQlbiUgliJEG.DpAvx4_1_VgQ_lJfY
+ QlEaTJcvYoyjyUPtrIfS5Y_Ar8iBQEV2zzw7xRaGlGT5cKyjSTcAnQUg_TTh1RddEOZSD3i0YAeR
+ o5mATOumWlOKy2a4kKiAiThoQvauVpU5sNiv.5ODUsCrFskCgTMJh.Yrb1Hq5kVjJW6DpFSXquI1
+ sqVNNJiuo2AG7sORp.MTUdKHeR1.ESWVvJZXYkyOwQOGmJyEkjwRnhpG2MveaQSAWLIYoJWhTOAZ
+ GZvu_g2w9pQ9J4T.HUcogX9SpkKOCfB7eD00f0bYdrL.wHeRhl8T28c8pXhHDFJy7Okl0BYn2fjN
+ .06BU4qjt8fAfJQE4i9CzdiBViAc5dCFemcrj0SU2x6oaErYqSGg9TMaSN62W9XLPaWVampPrU0B
+ AnnNZra5bj2U8hq9fMeFkTLTPoo1GR7NePB0V7kJ91w9tKHlJOZs7IgLChdiy__8Ts.f4sJ8E2TQ
+ kdKsfQC8YbXHHLgnHGIK3.mmsI4vpzTmOSHObTUOyLQokj0gdXVGytoM4bpA8H_k_9ThBN04SMOp
+ LR3nLFtjAtqkdyvz1lhhgO0f1aGYeh844fB3doYtIYkD9sCFhoN7P6dZ10hre_GZHFONX6RNlGQF
+ A3rMPyZDnQj0nsGlfaSAjV2q2DvsphtvhtaKk90ZmdtRrvFrllovD_DndiWAxykD_TkpGM7h0iyJ
+ Zsyc3QjBT8eeuJiA3Pv8U.eHTBuPJub_KeGddVXI6m.kEzz6HcpPyGygC2FW4DOwGDE8roacM3iD
+ ykbVK6Avle_ACNySWS73XQiRzzm7NIZLvCHW4SJR4AnUtZ2AjDL6MJoSxJHFJ6HMb3VFPZ2QrZ0n
+ PMeFQlgMuzqaSf_MBWaAYu8548Tsav2cHWRdvFhGojfxoWiyrqSCQnMpkXjXHon7wZNnzJkxZTsN
+ _9Pf6bAfBriP.wENWXs_HbsyQC.Rb7nLwLppNAWznp2NQLczUTA4uLCMMTu7Pn2xuSxY9oA.lGVH
+ aJEdBckUYzB5AUQ.rAxGILrwdfQ--
+X-Sonic-MF: <zipnpup@yahoo.com>
+X-Sonic-ID: 2b527977-cc0e-42cd-8c62-9bc23a62f5ba
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic308.consmr.mail.bf2.yahoo.com with HTTP; Wed, 4 Dec 2024 20:44:33 +0000
+Date: Wed, 4 Dec 2024 20:44:25 +0000 (UTC)
+From: Thomas Machnik <zipnpup@yahoo.com>
+To: Paul Cohen <paulrcohen@gmail.com>, 
+	George Lionel Barker <george@gazelliarthouse.com>, 
+	Michael Pollard <michael@gazelliarthouse.com>
+Message-ID: <1225095637.3355691.1733345065070@mail.yahoo.com>
+In-Reply-To: <CAKjPZkFaPratFK8U9mqGykdFAov7T1Mk8Vyks+4ZGhizRUJgGQ@mail.gmail.com>
+References: <CAKjPZkFaPratFK8U9mqGykdFAov7T1Mk8Vyks+4ZGhizRUJgGQ@mail.gmail.com>
+Subject: Re: a favor
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_3355690_155435448.1733345065069"
+X-Mailer: WebService/1.1.22941 YahooMailIosMobile
+Content-Length: 5442
+
+------=_Part_3355690_155435448.1733345065069
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Sounds good, =C2=A0looking forward to seeing their efforts, Tom
+
+
+Sent from Yahoo Mail for iPad
+
+
+On Wednesday, December 4, 2024, 12:39 PM, Paul Cohen <paulrcohen@gmail.com>=
+ wrote:
+
+Guys, I am writing to ask a favor.=C2=A0 A couple of months back, I agreed =
+to supervise a class project for three undergrads here at Pitt.=C2=A0 The c=
+lass is a web development thing where they have to design a web front end a=
+nd back end.=C2=A0 I suggested that they build something for Harold's inven=
+tory and sent them a csv file that contains a fraction of Harold's stuff on=
+ Art Logic.=C2=A0 To get a grade in the class, they need the work to be eva=
+luated by professionals in the field.=C2=A0 It would require you to sit thr=
+ough a short demo and (probably) write a very short evaluation, just a few =
+sentences.=C2=A0=20
+
+I haven't seen the project yet because they are undergraduates who have lef=
+t everything to the last minute.=C2=A0 They are hoping to show it to you --=
+ if you are willing -- next Monday or Tuesday.=20
+
+My guess is that the work is pretty rudimentary, partly because they are un=
+dergraduates and partly because they are from China and Korea and communica=
+ting with them has been very difficult.=C2=A0
+So I don't expect this to be an uplifting experience for any of us, but the=
+y did the work and I'd like them to get a fair evaluation.=C2=A0=20
+
+Thanks, --Paul
+
+______________________________
+
+Paul Cohen,=C2=A0=C2=A0ProfessorSchool of Computing and InformationUniversi=
+ty of Pittsburghpersonal webpage
+______________________________
+
+
+
+------=_Part_3355690_155435448.1733345065069
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns=3D"http://www.w3.org/1999/xhtml" xmlns:v=3D"urn:schemas-microso=
+ft-com:vml" xmlns:o=3D"urn:schemas-microsoft-com:office:office"><head><!--[=
+if gte mso 9]><xml><o:OfficeDocumentSettings><o:AllowPNG/><o:PixelsPerInch>=
+96</o:PixelsPerInch></o:OfficeDocumentSettings></xml><![endif]--></head><bo=
+dy>
+Sounds good, &nbsp;looking forward to seeing their efforts, Tom<br><br><br>=
+<div class=3D"yahoo-signature"><a style=3D"font-size:12px" href=3D"https://=
+mail.onelink.me/107872968?pid=3Dnativeplacement&amp;c=3DGlobal_Acquisition_=
+YMktg_315_Internal_EmailSignature&amp;af_sub1=3DAcquisition&amp;af_sub2=3DG=
+lobal_YMktg&amp;af_sub3=3D&amp;af_sub4=3D100000604&amp;af_sub5=3DEmailSigna=
+ture__Static_">Sent from Yahoo Mail for iPad</a><br></div><br><p class=3D"y=
+ahoo-quoted-begin" style=3D"font-size: 15px; color: rgb(132, 115, 255); pad=
+ding-top: 15px; margin-top: 0px;">On Wednesday, December 4, 2024, 12:39 PM,=
+ Paul Cohen &lt;paulrcohen@gmail.com&gt; wrote:</p><blockquote class=3D"ios=
+ymail"><div id=3D"yiv8788163985"><div dir=3D"ltr"><div><div style=3D"font-s=
+ize:small;" class=3D"yiv8788163985gmail_default">Guys, I am writing to ask =
+a favor.&nbsp; A couple of months back, I agreed to supervise a class proje=
+ct for three undergrads here at Pitt.&nbsp; The class is a web development =
+thing where they have to design a web front end and back end.&nbsp; I sugge=
+sted that they build something for Harold's inventory and sent them a csv f=
+ile that contains a fraction of Harold's stuff on Art Logic.&nbsp; To get a=
+ grade in the class, they need the work to be evaluated by professionals in=
+ the field.&nbsp; It would require you to sit through a short demo and (pro=
+bably) write a very short evaluation, just a few sentences.&nbsp; <br><br><=
+/div><div style=3D"font-size:small;" class=3D"yiv8788163985gmail_default">I=
+ haven't seen the project yet because they are undergraduates who have left=
+ everything to the last minute.&nbsp; They are hoping to show it to you -- =
+if you are willing -- next Monday or Tuesday. <br></div><div style=3D"font-=
+size:small;" class=3D"yiv8788163985gmail_default"><br></div><div style=3D"f=
+ont-size:small;" class=3D"yiv8788163985gmail_default">My guess is that the =
+work is pretty rudimentary, partly because they are undergraduates and part=
+ly because they are from China and Korea and communicating with them has be=
+en very difficult.&nbsp;</div><div style=3D"font-size:small;" class=3D"yiv8=
+788163985gmail_default"><br></div><div style=3D"font-size:small;" class=3D"=
+yiv8788163985gmail_default">So I don't expect this to be an uplifting exper=
+ience for any of us, but they did the work and I'd like them to get a fair =
+evaluation.&nbsp; <br></div></div><div><br></div><div><div style=3D"font-si=
+ze:small;" class=3D"yiv8788163985gmail_default">Thanks, --Paul<br></div><br=
+ clear=3D"all"></div><div><div dir=3D"ltr" class=3D"yiv8788163985gmail_sign=
+ature"><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div><d=
+iv dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr">________________=
+______________<br><br>Paul Cohen,&nbsp;&nbsp;Professor</div><div dir=3D"ltr=
+">School of Computing and Information</div><div dir=3D"ltr">University of P=
+ittsburgh</div><div dir=3D"ltr"><a rel=3D"nofollow noopener noreferrer" tar=
+get=3D"_blank" href=3D"https://paulrcohen.github.io/">personal webpage</a><=
+br>______________________________</div></div></div></div></div></div></div>=
+</div></div></div></div></div></div></div>
+</div><blockquote></blockquote></blockquote>
+</body></html>
+------=_Part_3355690_155435448.1733345065069--

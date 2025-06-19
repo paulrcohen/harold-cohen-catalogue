@@ -1,0 +1,380 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a10:cc17:b0:5ad:6c17:f336 with SMTP id gd23csp1943000pxb;
+        Mon, 21 Oct 2024 07:03:30 -0700 (PDT)
+X-Received: by 2002:a05:6a20:b58b:b0:1d9:2453:433e with SMTP id adf61e73a8af0-1d92c49b0a7mr15585273637.4.1729519409917;
+        Mon, 21 Oct 2024 07:03:29 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1729519409; cv=none;
+        d=google.com; s=arc-20240605;
+        b=PEW7s1YeRBt71AkWM2MteZ+61CeF+COF/ACSQ40xKjDTf25Mjghxi0wz/nFx5DVy+P
+         Y9N2WCnReXTwJvwkKi14CeTdWxpsagXbdxJRQOojJLr5e1sp1Q7CaQ07nJ8sFqLENHoo
+         KMvtRdD0Ba6I+AbLejDAwrtDrqsmFNxIYRkl1nwUf1Gn+hofKXtRDZqpWzCExdUl9dt8
+         CwmEJ4e9MTEv2FBbZVKYoKUkyyAHZ5nJMih6C9ok1HHxgqOuMeihJYd2QBbsGP4UDko2
+         nGrGS/rHrl84mR/SaYeVSIUbfmIH6QgnSgUqpaNC8+B97qN8XHsnCKVIBPb8Jml8WjVz
+         Hrgg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :dkim-signature;
+        bh=cN3035b7M/7FK4ash1NQJkjGJiACu3ayY9Tjk95iNqU=;
+        fh=+ZSZzLtrqjYAnpssQkgK417RpHpTSSzuH+J6PqTYzzs=;
+        b=hGQqeCs89gKxShGIZm+TauZsQC9PkRnotPxOKoyj+W6E0evgFy8W2PIJhDkfiht06r
+         5OeA5ZqWJRbN9USxLymuJeVwIYlF5uFbVMma709XmReb1HkrgAnGqqiwS5Z+KVww3PPI
+         ZJHoJ3nmKrLL0heEBvR8nLFuMyr19h+jxhlnRwaoLdqNsYABw4nLO2p67P787CyzD9VF
+         W1oPltxtSjDoB+QuwbtPxvHm37K7TEpIim1P39adMIA0I3wPPa6DWE3hK8ESOo7+Eign
+         XWs0oCq8EDhvwK/haOyPC70PCFwE+JnzIoHQkuK/xB5Zt94FCUI/IMlPTvP2Kryq7i9v
+         mh8Q==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@gazelliarthouse-com.20230601.gappssmtp.com header.s=20230601 header.b=RO5tx51W;
+       spf=pass (google.com: domain of m.askarova@gazelliarthouse.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=m.askarova@gazelliarthouse.com;
+       dara=pass header.i=@gmail.com
+Return-Path: <m.askarova@gazelliarthouse.com>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id d2e1a72fcca58-71ec13797a8sor2110413b3a.4.2024.10.21.07.03.29
+        for <paulrcohen@gmail.com>
+        (Google Transport Security);
+        Mon, 21 Oct 2024 07:03:29 -0700 (PDT)
+Received-SPF: pass (google.com: domain of m.askarova@gazelliarthouse.com designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@gazelliarthouse-com.20230601.gappssmtp.com header.s=20230601 header.b=RO5tx51W;
+       spf=pass (google.com: domain of m.askarova@gazelliarthouse.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=m.askarova@gazelliarthouse.com;
+       dara=pass header.i=@gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gazelliarthouse-com.20230601.gappssmtp.com; s=20230601; t=1729519409; x=1730124209; dara=google.com;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=cN3035b7M/7FK4ash1NQJkjGJiACu3ayY9Tjk95iNqU=;
+        b=RO5tx51WVVhtMbByyn3O7I+u8SyiGAaatJa7gQG1n1ztGD92pOzyJefAuOCLj+snKy
+         +5otKeiMv+IUrlV+TTvZC+9qEhPNR4rnp/7TZL5l9hqMK6AW15jEqohK0AZvl4MhukRP
+         jVRx1FiXGFZvqnIymRWARTnUXlnvM632Zm+SU/91lNi/85K3G0wW9i9n+5sr7qCWA8Fa
+         svqAg7RgA8+YQZiAFquySgmybU3i/uLGTngIVWSNPfhmYl/+5iC2zD7TGddxf3D5f/zY
+         9FbboB49+x1tPdqhjKUx4rIrC6GR0DnXQLaLF9wws7+OiGlaf00ulM4v/wZAIYFhc4Um
+         aPKQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729519409; x=1730124209;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=cN3035b7M/7FK4ash1NQJkjGJiACu3ayY9Tjk95iNqU=;
+        b=s7PP3ntG01Fi8jdqUZcZY02QphQKO1SLCwJ7WF38inNluUiUfLsvqPnWDgYnPGcg4K
+         Ip7kiaA82Bh0HIpcdmRRzW00itjZNRglC2kF5eXu1jrF4JxeTUFdSsa9EXIRaV8FoohW
+         Yt3lK5Sl3SbrprL5k+AAbN53TLPzWXdSzs6sT6MOGJPXukpTX4N/9KjMfbI5tLthfwWN
+         M4X7wvteEZVGjxZtYuM64nIPSDirLVSBVwknq/Ds3SA0kHeucIIio+0sePorpaRoT4mU
+         5XdiGIjfQxavgbeuvxaKcCKPx1iWigICnETVcK+bUkINLbQqCyoKKz7brepd8OH9ohi4
+         bvlw==
+X-Gm-Message-State: AOJu0YzKsxxk+O8Ib+GvfiYbPfSu/nVYCkMwa3lmY0GsiG6Hs1ldyYWX
+	gKGBzr7TrIXeS2X9/A/54wQ9hFbqJK7jk45qypCM5ZtXLWwIM/f9sADYwh8sfXrm63c4LxfUQCe
+	zndb/PnsEYaDRJonrEJuoWUE+tnvcDDGFWMifcwuHJDHCvRrd
+X-Google-Smtp-Source: AGHT+IFaOGz9oNw+wjQ4UKr08iiLk/VhYidjxAfwIcRLlw3UlZ0UL9W1U5W1LttTdAve5wTDYaje+BKHTPHN4o5HM/8=
+X-Received: by 2002:a05:6a00:22c4:b0:71e:4414:eb21 with SMTP id
+ d2e1a72fcca58-71ea3306c12mr15631811b3a.17.1729519408863; Mon, 21 Oct 2024
+ 07:03:28 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAAOqD37ALaDgKdEkkhPWfC_U3Uke+OCiw2z3QEVBi8g5C5gcZg@mail.gmail.com>
+ <CAKjPZkFx89o+Are=rqyCYeOYCk8iwTM6WwUF0JxfZcUB1HfnYA@mail.gmail.com> <CAAOqD34=iBpiXwUkJ9REqpEzr-m9_OsSAYx0kYdGQucxXxTF6w@mail.gmail.com>
+In-Reply-To: <CAAOqD34=iBpiXwUkJ9REqpEzr-m9_OsSAYx0kYdGQucxXxTF6w@mail.gmail.com>
+From: Mila Askarova <m.askarova@gazelliarthouse.com>
+Date: Mon, 21 Oct 2024 15:03:17 +0100
+Message-ID: <CAAOqD34LecuipiE2hD36aDKHBSQEDD2f6P8k8isx_Wo5SoT1cw@mail.gmail.com>
+Subject: =?UTF-8?Q?Re=3A_Sotheby=E2=80=99s_sale_update?=
+To: Paul Cohen <paulrcohen@gmail.com>
+Content-Type: multipart/alternative; boundary="000000000000ff7e740624fd1d83"
+
+--000000000000ff7e740624fd1d83
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Paul! Just getting myself 20th cup of coffee :) be with you in a jiffy
+
+On Sun, 20 Oct 2024 at 21:47, Mila Askarova <m.askarova@gazelliarthouse.com=
+>
+wrote:
+
+> No problem , looking forward to our chat!
+>
+> Have a good rest of the day/eve,
+> Mila
+>
+> Mila Askarova
+> CEO & Founder
+>
+> GAZELLI ART HOUSE
+>
+> www.gazelliarthouse.com
+> +44 (0) 207 491 8816 / +994 (0) 12 498 1230
+>
+>
+> On Sun, 20 Oct 2024 at 21:33, Paul Cohen <paulrcohen@gmail.com> wrote:
+>
+>> Hi Mila, let=E2=80=99s talk tomorrow re the collector and what might be
+>> interesting.  I=E2=80=99m drawing a blank right now.  Also let=E2=80=99s=
+ catch up re
+>> November trip.  I can do it for sure but there=E2=80=99s a chance I=E2=
+=80=99ll have to come
+>> back two weeks later so I=E2=80=99m thinking about wear and tear.  Also =
+software
+>> and anthropic and catalog raisonne etc
+>>
+>> On Sat, Oct 19, 2024 at 2:48 PM Mila Askarova <
+>> m.askarova@gazelliarthouse.com> wrote:
+>>
+>>> Hi both,
+>>>
+>>> Hope all is well!
+>>> Paul, looking forward to our catch up Monday but in the meantime wanted
+>>> to touch base to let you know that the exhibition is up and open and
+>>> getting a lot of interest.
+>>>
+>>> 2 works have now been sold with another 3 being considered. Once the
+>>> physical exhibition is over on Tuesday, the sale will continue online.
+>>>
+>>> There was an enquiry from one of the top NFT collectors re the actual
+>>> program producing these (some technical questions). Is there anything w=
+e
+>>> can share in addition to what has already been communicated ? Perhaps s=
+ome
+>>> images of Harold=E2=80=99s sketchbook or anything you might think would=
+ be
+>>> relevant.
+>>>
+>>> Some images here:
+>>>
+>>> https://x.com/sothebysverse/status/1847327303132451073?s=3D46&t=3DMQotE=
+jrmgi3F1ivLDzYr4g
+>>>
+>>> And the link to the online sale here:
+>>>
+>>> https://www.sothebys.com/en/digital-catalogues/aaron-the-earliest-ai-pr=
+ogram-for-artmaking
+>>>
+>>> My best,
+>>> Mila
+>>>
+>>>
+>>>
+>>>
+>>> Mila Askarova
+>>> CEO & Founder
+>>>
+>>> GAZELLI ART HOUSE
+>>>
+>>> www.gazelliarthouse.com
+>>> +44 (0) 207 491 8816 / +994 (0) 12 498 1230
+>>>
+>> --
+>> ______________________________
+>>
+>> Paul Cohen,  Professor
+>> School of Computing and Information
+>> University of Pittsburgh
+>> personal webpage <https://paulrcohen.github.io/>
+>> ______________________________
+>>
+>
+
+--=20
+Mila Askarova
+CEO & Founder
+
+*GAZELLI ART HOUSE*
+
+LONDON
+Cipher: Pouran Jinchi & Ruba Salameh
+<https://gazelliarthouse.com/exhibitions/185-cipher-pouran-jinchi-ruba-sala=
+meh/>
+The Window: Aida Mahmudova
+<https://gazelliarthouse.com/exhibitions/186-the-window-aida-mahmudova/>
+Project Space & Frieze Sculpture 2024: Libby Heaney
+<https://nft.gazell.io/collections/libby-heaney-frieze-sculpture-2024>
+
+BAKU
+Group Show
+
+GAZELL.iO
+October Resident | Liliana Farber
+<https://gazell.io/exhibitions/139-liliana-farber/>
+
+www.gazelliarthouse.com
++44 (0) 207 491 8816 / +994 (0) 12 498 1230
+
+<https://streaklinks.com/BHpVIxJHhzip8Hm6nAyO2h9O/https%3A%2F%2Fwww.instagr=
+am.com%2Fgazelliarthouse%2F>
+<https://streaklinks.com/BHpVIoEUFPH6ci6Q4QBT8JGr/https%3A%2F%2Ftwitter.com=
+%2FGazelliArtHouse>
+
+<https://streaklinks.com/BHpVIoEeHlRoFY_ETAqPyMXi/https%3A%2F%2Fwww.faceboo=
+k.com%2FGazelliArtHouse%2F>
+
+
+This e-mail message, including all attachments, is for the sole use of the
+intended recipient(s) and may contain legally privileged and confidential
+information. If you are not an intended recipient, you are hereby notified
+that you have either received this message in error or
+through interception, and that any review, use, distribution, copying or
+disclosure of this message and/or its attachments or parts thereof is
+strictly prohibited and is subject to criminal and civil penalties with
+appropriate national legislation.
+
+--000000000000ff7e740624fd1d83
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi Paul! Just getting myself 20th cup of coffee :) be with=
+ you in a jiffy=C2=A0<br></div><br><div class=3D"gmail_quote"><div dir=3D"l=
+tr" class=3D"gmail_attr">On Sun, 20 Oct 2024 at 21:47, Mila Askarova &lt;<a=
+ href=3D"mailto:m.askarova@gazelliarthouse.com">m.askarova@gazelliarthouse.=
+com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"marg=
+in:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1e=
+x"><div dir=3D"auto">No problem , looking forward to our chat!=C2=A0</div><=
+div dir=3D"auto"><br></div><div dir=3D"auto">Have a good rest of the day/ev=
+e,</div><div dir=3D"auto">Mila=C2=A0</div><div dir=3D"auto"><br clear=3D"al=
+l"><div dir=3D"auto"><div dir=3D"ltr" class=3D"gmail_signature">Mila Askaro=
+va=C2=A0<br>CEO &amp; Founder=C2=A0<br><br>GAZELLI ART HOUSE<br><br><a href=
+=3D"http://www.gazelliarthouse.com" target=3D"_blank">www.gazelliarthouse.c=
+om</a><br>+44 (0) 207 491 8816 / +994 (0) 12 498 1230<br></div></div></div>=
+<div><br></div><div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
+=3D"gmail_attr">On Sun, 20 Oct 2024 at 21:33, Paul Cohen &lt;<a href=3D"mai=
+lto:paulrcohen@gmail.com" target=3D"_blank">paulrcohen@gmail.com</a>&gt; wr=
+ote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px=
+ 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D=
+"auto">Hi Mila, let=E2=80=99s talk tomorrow re the collector and what might=
+ be interesting.=C2=A0 I=E2=80=99m drawing a blank right now.=C2=A0 Also le=
+t=E2=80=99s catch up re November trip.=C2=A0 I can do it for sure but there=
+=E2=80=99s a chance I=E2=80=99ll have to come back two weeks later so I=E2=
+=80=99m thinking about wear and tear.=C2=A0 Also software and anthropic and=
+ catalog raisonne etc</div><div><br><div class=3D"gmail_quote"><div dir=3D"=
+ltr" class=3D"gmail_attr">On Sat, Oct 19, 2024 at 2:48 PM Mila Askarova &lt=
+;<a href=3D"mailto:m.askarova@gazelliarthouse.com" target=3D"_blank">m.aska=
+rova@gazelliarthouse.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail=
+_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204=
+,204);padding-left:1ex"><div dir=3D"auto">Hi both,=C2=A0</div><div dir=3D"a=
+uto"><br></div><div dir=3D"auto">Hope all is well!=C2=A0</div><div dir=3D"a=
+uto">Paul, looking forward to our catch up Monday but in the meantime wante=
+d to touch base to let you know that the exhibition is up and open and gett=
+ing a lot of interest.=C2=A0</div><div dir=3D"auto"><br></div><div dir=3D"a=
+uto">2 works have now been sold with another 3 being considered. Once the p=
+hysical exhibition is over on Tuesday, the sale will continue online.=C2=A0=
+</div><div dir=3D"auto"><br></div><div dir=3D"auto">There was an enquiry fr=
+om one of the top NFT collectors re the actual program producing these (som=
+e technical questions). Is there anything we can share in addition to what =
+has already been communicated ? Perhaps some images of Harold=E2=80=99s ske=
+tchbook or anything you might think would be relevant.=C2=A0</div><div dir=
+=3D"auto"><br></div><div dir=3D"auto">Some images here:</div><div dir=3D"au=
+to"><div><a href=3D"https://x.com/sothebysverse/status/1847327303132451073?=
+s=3D46&amp;t=3DMQotEjrmgi3F1ivLDzYr4g" target=3D"_blank">https://x.com/soth=
+ebysverse/status/1847327303132451073?s=3D46&amp;t=3DMQotEjrmgi3F1ivLDzYr4g<=
+/a></div><br></div><div dir=3D"auto">And the link to the online sale here:<=
+/div><div dir=3D"auto"><div><a href=3D"https://www.sothebys.com/en/digital-=
+catalogues/aaron-the-earliest-ai-program-for-artmaking" target=3D"_blank">h=
+ttps://www.sothebys.com/en/digital-catalogues/aaron-the-earliest-ai-program=
+-for-artmaking</a></div></div><div dir=3D"auto"><br></div><div dir=3D"auto"=
+>My best,=C2=A0</div><div dir=3D"auto">Mila=C2=A0</div><div dir=3D"auto"><b=
+r></div><div dir=3D"auto"><br></div><div dir=3D"auto"><br></div><div dir=3D=
+"auto"><br clear=3D"all"><div dir=3D"auto"><div dir=3D"ltr" class=3D"gmail_=
+signature">Mila Askarova=C2=A0<br>CEO &amp; Founder=C2=A0<br><br>GAZELLI AR=
+T HOUSE<br><br><a href=3D"http://www.gazelliarthouse.com" target=3D"_blank"=
+>www.gazelliarthouse.com</a><br>+44 (0) 207 491 8816 / +994 (0) 12 498 1230=
+<br></div></div></div>
+</blockquote></div></div>-- <br><div dir=3D"ltr" class=3D"gmail_signature">=
+<div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=
+=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr">______________________=
+________<br><br>Paul Cohen,=C2=A0=C2=A0Professor</div><div dir=3D"ltr">Scho=
+ol of Computing and Information</div><div dir=3D"ltr">University of Pittsbu=
+rgh</div><div dir=3D"ltr"><a href=3D"https://paulrcohen.github.io/" target=
+=3D"_blank">personal webpage</a><br>______________________________</div></d=
+iv></div></div></div></div></div></div></div></div></div></div>
+</blockquote></div></div>
+</blockquote></div><br clear=3D"all"><div><br></div><span class=3D"gmail_si=
+gnature_prefix">-- </span><br><div dir=3D"ltr" class=3D"gmail_signature"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div><font color=3D"#000000">Mila Askarova=C2=A0</font></div><div>=
+<font color=3D"#000000">CEO &amp; Founder=C2=A0</font></div><div style=3D"c=
+olor:rgb(80,0,80)"><b><br></b></div><div><div style=3D"font-family:&quot;ti=
+mes new roman&quot;,serif"><div style=3D"font-family:Arial,Helvetica,sans-s=
+erif"><div style=3D"color:rgb(34,34,34)"><div dir=3D"ltr"><div dir=3D"ltr">=
+<div dir=3D"ltr"><font color=3D"#000000"><b>GAZELLI ART HOUSE</b></font></d=
+iv><div dir=3D"ltr"><br></div><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D=
+"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><=
+div dir=3D"ltr"><span><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><f=
+ont face=3D"arial, sans-serif" color=3D"#000000">LONDON</font></div><div><f=
+ont face=3D"arial, sans-serif"><a href=3D"https://gazelliarthouse.com/exhib=
+itions/185-cipher-pouran-jinchi-ruba-salameh/" style=3D"color:rgb(17,85,204=
+)" target=3D"_blank">Cipher: Pouran Jinchi &amp; Ruba Salameh</a></font></d=
+iv><div><font face=3D"arial, sans-serif"><a href=3D"https://gazelliarthouse=
+.com/exhibitions/186-the-window-aida-mahmudova/" style=3D"color:rgb(17,85,2=
+04)" target=3D"_blank">The Window: Aida Mahmudova</a></font></div><div><fon=
+t face=3D"arial, sans-serif"><a href=3D"https://nft.gazell.io/collections/l=
+ibby-heaney-frieze-sculpture-2024" style=3D"color:rgb(17,85,204)" target=3D=
+"_blank">Project Space &amp; Frieze Sculpture 2024: Libby Heaney</a></font>=
+</div><div><br></div><div><span style=3D"color:rgb(0,0,0);font-family:arial=
+,sans-serif">BAKU=C2=A0</span></div><div>Group Show</div><div><br></div><di=
+v dir=3D"ltr"><div><font color=3D"#000000" face=3D"arial, sans-serif">GAZEL=
+L.iO=C2=A0</font></div><div><span style=3D"font-family:arial,sans-serif">Oc=
+tober Resident |=C2=A0<a href=3D"https://gazell.io/exhibitions/139-liliana-=
+farber/" style=3D"color:rgb(17,85,204)" target=3D"_blank">Liliana Farber</a=
+></span></div></div></div></div></span><div dir=3D"ltr"><div><br></div></di=
+v></div></div></div></div></div></div></div></div></div></div><div dir=3D"l=
+tr"><font face=3D"arial, sans-serif"><div><a href=3D"http://www.gazelliarth=
+ouse.com/" style=3D"color:rgb(17,85,204)" target=3D"_blank"><font color=3D"=
+#0b5394">www.gazelliarthouse.com</font></a></div><div>+44 (0) 207 491 8816 =
+/ +994 (0) 12 498 1230</div><div><br></div><div style=3D"font-size:x-small"=
+><div><font color=3D"#000000"><a href=3D"https://streaklinks.com/BHpVIxJHhz=
+ip8Hm6nAyO2h9O/https%3A%2F%2Fwww.instagram.com%2Fgazelliarthouse%2F" style=
+=3D"color:rgb(17,85,204);display:inline-block" target=3D"_blank"><img src=
+=3D"https://68ef2f69c7787d4078ac-7864ae55ba174c40683f10ab811d9167.ssl.cf1.r=
+ackcdn.com/instagram-icon_24x24.png" width=3D"24" style=3D"margin: 0.8em 0.=
+2em; padding: 0px; letter-spacing: -0.1px; border: 0px; vertical-align: mid=
+dle; max-width: 100%;"><div style=3D"margin:0px;width:0px;height:0px"><div>=
+</div></div></a><a href=3D"https://streaklinks.com/BHpVIoEUFPH6ci6Q4QBT8JGr=
+/https%3A%2F%2Ftwitter.com%2FGazelliArtHouse" hspace=3D"streak-track" style=
+=3D"color:rgb(17,85,204);display:inline-block" target=3D"_blank"><img src=
+=3D"https://68ef2f69c7787d4078ac-7864ae55ba174c40683f10ab811d9167.ssl.cf1.r=
+ackcdn.com/twitter-icon_24x24.png" width=3D"24" style=3D"margin: 0.8em 0.2e=
+m; padding: 0px; letter-spacing: -0.1px; border: 0px; vertical-align: middl=
+e; max-width: 100%;"><div style=3D"margin:0px;width:0px;height:0px"><div></=
+div></div></a>=C2=A0<a href=3D"https://streaklinks.com/BHpVIoEeHlRoFY_ETAqP=
+yMXi/https%3A%2F%2Fwww.facebook.com%2FGazelliArtHouse%2F" hspace=3D"streak-=
+track" style=3D"color:rgb(17,85,204);display:inline-block" target=3D"_blank=
+"><img src=3D"https://68ef2f69c7787d4078ac-7864ae55ba174c40683f10ab811d9167=
+.ssl.cf1.rackcdn.com/facebook-icon_24x24.png" width=3D"24" style=3D"margin:=
+ 0.8em 0.2em; padding: 0px; letter-spacing: -0.1px; border: 0px; vertical-a=
+lign: middle; max-width: 100%;"></a></font></div></div><div style=3D"font-s=
+ize:x-small"><br></div><div style=3D"font-size:x-small"><img width=3D"96" h=
+eight=3D"44" src=3D"https://ci3.googleusercontent.com/mail-sig/AIorK4w7gKov=
+NZAR8tYAuQ9hIjEiBgWel9uIDPpW34GyeY595Rek12deHDAlPE9ZZxtPymKBYCzaHBU"></div>=
+</font></div></div></div></div></div><div style=3D"color:rgb(80,0,80)"><div=
+ style=3D"color:rgb(34,34,34)"><div><font face=3D"times new roman, serif" c=
+olor=3D"#000000"><br></font></div></div></div><div><div><font size=3D"1"><s=
+pan style=3D"font-family:&quot;times new roman&quot;,serif;color:rgb(0,0,0)=
+">This e-mail message, including all attachments, is for the=C2=A0sole use =
+of the intended recipient(s) and may contain=C2=A0legally privileged and co=
+nfidential information. If you are=C2=A0not an intended recipient, you are =
+hereby notified that=C2=A0you have either received this message in error or=
+ through=C2=A0interception, and that any=C2=A0</span><span style=3D"font-fa=
+mily:&quot;times new roman&quot;,serif;color:rgb(0,0,0)">review</span><span=
+ style=3D"font-family:&quot;times new roman&quot;,serif;color:rgb(0,0,0)">,=
+ use, distribution,=C2=A0copying or disclosure of this message and/or its=
+=C2=A0attachments or parts thereof is strictly prohibited and is=C2=A0subje=
+ct to criminal and civil penalties with appropriate=C2=A0national legislati=
+on.</span></font></div></div></div></div></div></div></div></div></div></di=
+v></div></div></div></div></div></div></div></div></div></div></div></div><=
+/div></div></div></div></div></div></div></div></div></div></div></div></di=
+v></div></div></div></div></div></div></div></div></div></div></div></div><=
+/div></div></div></div></div></div></div></div></div></div></div></div></di=
+v></div></div></div></div></div></div></div></div></div></div></div></div><=
+/div></div>
+
+--000000000000ff7e740624fd1d83--

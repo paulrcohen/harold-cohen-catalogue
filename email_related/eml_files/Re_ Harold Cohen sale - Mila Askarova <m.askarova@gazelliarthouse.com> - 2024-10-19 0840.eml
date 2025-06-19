@@ -1,0 +1,370 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a10:cc17:b0:5ad:6c17:f336 with SMTP id gd23csp1398622pxb;
+        Sat, 19 Oct 2024 05:44:26 -0700 (PDT)
+X-Received: by 2002:a05:6a00:98d:b0:71e:1201:636a with SMTP id d2e1a72fcca58-71ea31a5886mr7734822b3a.1.1729341866680;
+        Sat, 19 Oct 2024 05:44:26 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1729341866; cv=none;
+        d=google.com; s=arc-20240605;
+        b=LDgEBpq2vKvPvX932+pJ6QrQFxkEhEiIVoxHZNtDlIV1MBj7I8QR4T+A0o8qAMCfax
+         f028Uq/1ZBAyUV3G0wOF//m6EmJxjYSrh2WA/fF8eSQCl7Mm/tFpt/d1HCmUcPEY+ou1
+         Efh3zsnORSUs7b/21vhO8cpbsVhQtMXAHVvoAm+UN37POPgpTl4SaPmL0VKAuPPU4zah
+         dqN/DNGUeBtdurJbYQYq/lR2l0myfjXCSanTYBUkyyeLev/AKz0VJlm+dJVzqZ9XKdRa
+         NFWleQYPLkn8kciRJNvCgUfjj7+WTdrioBRq++jhg8nKvx0I1rV2w2mJp0/4x/TbrxJa
+         u2vA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=tpfdKJCuaQREY9PIkVF4vfyXkj/RYvgZ9GMkGI/0vcw=;
+        fh=kQwDJEGrcXDpyQNUohbEgHKUTqboi8iA5C735zhn3wg=;
+        b=d0QF1E9+BhM2g8eV880PBxl6/4HsuReoydAUopB3WMDw2edY5fmcB251XHFn5DbGH3
+         2OziMe5rgDTajXvQjToIoymMrS0tDCBc5+t3GWzC3GDI+RKHX8PkvnleJX4V/IDCPG6E
+         uc7STgtzr6i8FfmVdpNs6V+5p7RPkeAPexKDsZcPPwXaDAGp5GvWitXOWxsWfEob5E34
+         Z1YBd1dYl0scczbAM4KF2quTruExhdy7QCMULPUMtijUyN0AJOS6bGPceEYO1O8N2bOC
+         nYI0wNWt/IGd/heq7iTcGBiwWy0XlNvnbE7oRMxj8SppAvd4Oa2qGaPCi0+E7b//zXzG
+         4v+Q==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@gazelliarthouse-com.20230601.gappssmtp.com header.s=20230601 header.b=pTLBYKwU;
+       spf=pass (google.com: domain of m.askarova@gazelliarthouse.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=m.askarova@gazelliarthouse.com;
+       dara=pass header.i=@gmail.com
+Return-Path: <m.askarova@gazelliarthouse.com>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id d2e1a72fcca58-71ea4816357sor2225551b3a.1.2024.10.19.05.44.26
+        for <paulrcohen@gmail.com>
+        (Google Transport Security);
+        Sat, 19 Oct 2024 05:44:26 -0700 (PDT)
+Received-SPF: pass (google.com: domain of m.askarova@gazelliarthouse.com designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@gazelliarthouse-com.20230601.gappssmtp.com header.s=20230601 header.b=pTLBYKwU;
+       spf=pass (google.com: domain of m.askarova@gazelliarthouse.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=m.askarova@gazelliarthouse.com;
+       dara=pass header.i=@gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gazelliarthouse-com.20230601.gappssmtp.com; s=20230601; t=1729341866; x=1729946666; dara=google.com;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=tpfdKJCuaQREY9PIkVF4vfyXkj/RYvgZ9GMkGI/0vcw=;
+        b=pTLBYKwUAkapqHoHNwPEXnrAqAFbElex4GjmKVHg7TzJVXMapn0/vIkZ5F+6Y6b788
+         DpE8y4W0y+BNmEK1bZzb1yQNXkn1rDQahzh5jH1CERmnX4+tdYyICBEqKKUuxeOJYoUK
+         4gW/UjnZaZNi/ZNDBXBMOwTnGpVpyZz2qo/fDW6f+ROzsoBg9s+VPIY7QN+sdQrVLjF8
+         xtIGSm3lVPsnD0ND/77ENElimHJId7iigrGaQaUXpAdxCjNJtQJuew6kf6i7mmUUXtNr
+         95XsPp+D0Eq8w/PzlS156jvoMtst2iLLgVj+tCZtrcmOdcrRHiQVwcO/98tpFMsn7r1x
+         mflA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729341866; x=1729946666;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=tpfdKJCuaQREY9PIkVF4vfyXkj/RYvgZ9GMkGI/0vcw=;
+        b=Vvx2SsnT8T7SMxgp6ETDwYavsFd8mvWQnHQ5/7avoJIsLgmDXo13D9Q1lSMxmGLvIx
+         uSSDrs3uF2mvz1eZ7ZQv8i5wh+ePO3O2J252hYexQfB0CkNaedfUZkL1SjdkPNAC/39u
+         zKLpwlZAZTMxhDFt8WAMHYQCBPLyuizLa7zNRwPf6118/LcyNLNFLPeYgOXGZbig/Oco
+         foK+ecBFe5OEiq6Blcc4N0QhDFS77+/rqPseMDag6LHuqi10ogJFYa7qWkf4QX2fdAZJ
+         ab552mvhSUdpfnK3fp0pLjLiTInHG+gjdAP6XgUL0jJhk2M4MThdmTleOsaNvSaQg/xO
+         AgUA==
+X-Gm-Message-State: AOJu0Yy5gZjs8Qz4kqga44AtmiwRhZ0HBA0/5la5Y2W381NdBew9guhl
+	L4ifG2uUUsSn2ruwsBXMeIHwH6xW0dMU8G74kmyet93eWbnubOaA7LUmIwHkZ/eKhrtMdzixSQp
+	0js5x1qNO2nkJXlASq4dRC2E0o+GGmHMJjEnmOhuRHotUedRO
+X-Google-Smtp-Source: AGHT+IFZMlJl/Gas5CCCYWoDRoIBkP3ZYx6fHfn1+LuKcPwGq+49mf7Ama402/Op2yzwxgWCxlaQ4pHjevlv/mOkWF0=
+X-Received: by 2002:a05:6a21:2d88:b0:1d2:ef5c:13f6 with SMTP id
+ adf61e73a8af0-1d92c597d59mr8424436637.34.1729341865932; Sat, 19 Oct 2024
+ 05:44:25 -0700 (PDT)
+MIME-Version: 1.0
+References: <LO2P123MB560675A7DC713ED104C0FA878F402@LO2P123MB5606.GBRP123.PROD.OUTLOOK.COM>
+In-Reply-To: <LO2P123MB560675A7DC713ED104C0FA878F402@LO2P123MB5606.GBRP123.PROD.OUTLOOK.COM>
+From: Mila Askarova <m.askarova@gazelliarthouse.com>
+Date: Sat, 19 Oct 2024 13:40:08 +0100
+Message-ID: <CAAOqD36mPxS9zeS+ywDC4VQhM2YBrjp95_EjGE=0vXKX8w=0kg@mail.gmail.com>
+Subject: Re: Harold Cohen sale
+To: Douglas Dodds <douglas_dodds@hotmail.com>
+Cc: "paulrcohen@gmail.com" <paulrcohen@gmail.com>
+Content-Type: multipart/alternative; boundary="0000000000009d53800624d3c7e2"
+
+--0000000000009d53800624d3c7e2
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hello Doug,
+
+Lovely to hear from you and thank you for your note on this.
+It was indeed a cataloguing error on behalf of Sotheby=E2=80=99s. We=E2=80=
+=99ll rectify the
+rest where appropriate asap.
+
+Best,
+Mila
+
+Mila Askarova
+CEO & Founder
+
+GAZELLI ART HOUSE
+
+www.gazelliarthouse.com
++44 (0) 207 491 8816 / +994 (0) 12 498 1230
+
+
+On Fri, 18 Oct 2024 at 21:14, Douglas Dodds <douglas_dodds@hotmail.com>
+wrote:
+
+> Hello both
+>
+> Hope you're keeping well. I've just seen the Sotheby's catalogue for the
+> Harold Cohen sale and thought I should get in touch.
+>
+>  I see that they've now updated the online description for 0305-08, which
+> was incorrect until recently. For information I acquired a copy of this f=
+or
+> the museum in 2005, along with a copy of 0305-03 (no. 2 of 5 - not in the
+> Sotheby's catalogue).
+>
+> https://collections.vam.ac.uk/item/O114804/0305-08-print-cohen-harold/
+>
+>
+> <https://collections.vam.ac.uk/item/O114804/0305-08-print-cohen-harold/>
+> 0305-08 | Cohen, Harold | V&A Explore The Collections
+> <https://collections.vam.ac.uk/item/O114804/0305-08-print-cohen-harold/>
+> Digital inkjet print, abstracted floral imagery in yellow and green, by
+> Harold Cohen, printed United States, 2003
+> collections.vam.ac.uk
+> *=EE=9C=91*
+> https://collections.vam.ac.uk/item/O114802/0305-03-print-cohen-harold/
+> <https://collections.vam.ac.uk/item/O114802/0305-03-print-cohen-harold/>
+> 0305-03 | Cohen, Harold | V&A Explore The Collections
+> <https://collections.vam.ac.uk/item/O114802/0305-03-print-cohen-harold/>
+> Digital inkjet print, abstracted floral imagery in pink and blue, by
+> Harold Cohen, printed United States, 2003
+> collections.vam.ac.uk
+>
+>
+> Both are illustrated in the small Digital Pioneers catalogue produced for
+> the V&A's show in 2009 (nos. 41-42). 0305-03 was also exhibited in a V&A
+> exhibition entitled Prints Now and is illustrated in the accompanying boo=
+k,
+> p. 11.
+>
+> Several of the other works in the Sotheby's sale have appeared in print o=
+r
+> online too, but I don't know whether copies of any of them were ever
+> acquired by anyone.
+>
+> Best wishes
+>
+> Doug
+>
+> www.douglasdodds.org
+>
+
+--0000000000009d53800624d3c7e2
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto">Hello Doug,=C2=A0</div><div dir=3D"auto"><br></div><div d=
+ir=3D"auto">Lovely to hear from you and thank you for your note on this.</d=
+iv><div dir=3D"auto">It was indeed a cataloguing error on behalf of Sotheby=
+=E2=80=99s. We=E2=80=99ll rectify the rest where appropriate asap.</div><di=
+v dir=3D"auto"><br></div><div dir=3D"auto">Best,=C2=A0</div><div dir=3D"aut=
+o">Mila=C2=A0<br clear=3D"all"><br clear=3D"all"><div dir=3D"auto"><div dir=
+=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"gmail_signature">Mila =
+Askarova=C2=A0<br>CEO &amp; Founder=C2=A0<br><br>GAZELLI ART HOUSE<br><br><=
+a href=3D"http://www.gazelliarthouse.com">www.gazelliarthouse.com</a><br>+4=
+4 (0) 207 491 8816 / +994 (0) 12 498 1230<br></div></div></div><div><br></d=
+iv><div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr=
+">On Fri, 18 Oct 2024 at 21:14, Douglas Dodds &lt;<a href=3D"mailto:douglas=
+_dodds@hotmail.com">douglas_dodds@hotmail.com</a>&gt; wrote:<br></div><bloc=
+kquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border-left:1px #cc=
+c solid;padding-left:1ex">
+
+
+
+
+<div dir=3D"ltr">
+<div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
+:rgb(0,0,0)">
+Hello both</div>
+<div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
+:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
+:rgb(0,0,0)">
+Hope you&#39;re keeping well. I&#39;ve just seen the Sotheby&#39;s catalogu=
+e for the Harold Cohen sale and thought I should get in touch.</div>
+<div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
+:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
+:rgb(0,0,0)">
+=C2=A0I see that they&#39;ve now updated the online description for 0305-08=
+, which was incorrect until recently. For information I acquired a copy of =
+this for the museum in 2005, along with a copy of 0305-03 (no. 2 of 5 - not=
+ in the Sotheby&#39;s catalogue).=C2=A0=C2=A0</div>
+<div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
+:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
+:rgb(0,0,0)">
+<a href=3D"https://collections.vam.ac.uk/item/O114804/0305-08-print-cohen-h=
+arold/" id=3D"m_-6831400320742470671LPlnk" style=3D"margin:0px;text-align:l=
+eft" target=3D"_blank">https://collections.vam.ac.uk/item/O114804/0305-08-p=
+rint-cohen-harold/</a></div>
+<div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
+:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
+:rgb(0,0,0)">
+<br>
+</div>
+<div>
+<div id=3D"m_-6831400320742470671LPBorder_GTaHR0cHM6Ly9jb2xsZWN0aW9ucy52YW0=
+uYWMudWsvaXRlbS9PMTE0ODA0LzAzMDUtMDgtcHJpbnQtY29oZW4taGFyb2xkLw.." style=3D=
+"width:100%;margin-top:16px;margin-bottom:16px;max-width:800px;min-width:42=
+4px">
+<table id=3D"m_-6831400320742470671LPContainer619521" role=3D"presentation"=
+ style=3D"padding:12px 36px 12px 12px;width:100%;border-width:1px;border-st=
+yle:solid;border-color:rgb(200,200,200);border-radius:2px">
+<tbody>
+<tr valign=3D"top" style=3D"border-spacing:0px">
+<td>
+<div id=3D"m_-6831400320742470671LPImageContainer619521" style=3D"margin-ri=
+ght:12px;height:160px;overflow:hidden;width:240px">
+<a id=3D"m_-6831400320742470671LPImageAnchor619521" href=3D"https://collect=
+ions.vam.ac.uk/item/O114804/0305-08-print-cohen-harold/" target=3D"_blank">=
+<img id=3D"m_-6831400320742470671LPThumbnailImageId619521" alt=3D"" height=
+=3D"160" width=3D"112" style=3D"display:block" src=3D"https://framemark.vam=
+.ac.uk/collections/2010EL6972/full/!600,/0/default.jpg"></a></div>
+</td>
+<td style=3D"width:100%">
+<div id=3D"m_-6831400320742470671LPTitle619521" style=3D"font-size:21px;fon=
+t-weight:300;margin-right:8px;font-family:wf_segoe-ui_light,&quot;Segoe UI =
+Light&quot;,&quot;Segoe WP Light&quot;,&quot;Segoe UI&quot;,&quot;Segoe WP&=
+quot;,Tahoma,Arial,sans-serif;margin-bottom:12px">
+<a id=3D"m_-6831400320742470671LPUrlAnchor619521" href=3D"https://collectio=
+ns.vam.ac.uk/item/O114804/0305-08-print-cohen-harold/" style=3D"text-decora=
+tion:none;color:var(--themePrimary)" target=3D"_blank">0305-08 | Cohen, Har=
+old | V&amp;A Explore The Collections</a></div>
+<div id=3D"m_-6831400320742470671LPDescription619521" style=3D"font-size:14=
+px;max-height:100px;color:rgb(102,102,102);font-family:wf_segoe-ui_normal,&=
+quot;Segoe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif;margin-bot=
+tom:12px;margin-right:8px;overflow:hidden">
+Digital inkjet print, abstracted floral imagery in yellow and green, by Har=
+old Cohen, printed United States, 2003</div>
+<div id=3D"m_-6831400320742470671LPMetadata619521" style=3D"font-size:14px;=
+font-weight:400;color:rgb(166,166,166);font-family:wf_segoe-ui_normal,&quot=
+;Segoe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif">
+<a href=3D"http://collections.vam.ac.uk" target=3D"_blank">collections.vam.=
+ac.uk</a></div>
+</td>
+</tr>
+</tbody>
+</table>
+<div id=3D"m_-6831400320742470671LPCloseButtonContainer619521" title=3D"Rem=
+ove link preview" role=3D"button">
+<i aria-hidden=3D"true" id=3D"m_-6831400320742470671LPCloseButton619521">=
+=EE=9C=91</i></div>
+</div>
+</div>
+<div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
+:rgb(0,0,0)">
+<a href=3D"https://collections.vam.ac.uk/item/O114802/0305-03-print-cohen-h=
+arold/" id=3D"m_-6831400320742470671LPlnk" style=3D"margin:0px;text-align:l=
+eft" target=3D"_blank">https://collections.vam.ac.uk/item/O114802/0305-03-p=
+rint-cohen-harold/</a></div>
+<div>
+<div id=3D"m_-6831400320742470671LPBorder_GTaHR0cHM6Ly9jb2xsZWN0aW9ucy52YW0=
+uYWMudWsvaXRlbS9PMTE0ODAyLzAzMDUtMDMtcHJpbnQtY29oZW4taGFyb2xkLw.." style=3D=
+"width:100%;margin-top:16px;margin-bottom:16px;max-width:800px;min-width:42=
+4px">
+<table id=3D"m_-6831400320742470671LPContainer177261" role=3D"presentation"=
+ style=3D"padding:12px 36px 12px 12px;width:100%;border-width:1px;border-st=
+yle:solid;border-color:rgb(200,200,200);border-radius:2px">
+<tbody>
+<tr valign=3D"top" style=3D"border-spacing:0px">
+<td>
+<div id=3D"m_-6831400320742470671LPImageContainer177261" style=3D"margin-ri=
+ght:12px;height:160px;overflow:hidden;width:240px">
+<a id=3D"m_-6831400320742470671LPImageAnchor177261" href=3D"https://collect=
+ions.vam.ac.uk/item/O114802/0305-03-print-cohen-harold/" target=3D"_blank">=
+<img id=3D"m_-6831400320742470671LPThumbnailImageId177261" alt=3D"" height=
+=3D"160" width=3D"112" style=3D"display:block" src=3D"https://framemark.vam=
+.ac.uk/collections/2010EL6973/full/!600,/0/default.jpg"></a></div>
+</td>
+<td style=3D"width:100%">
+<div id=3D"m_-6831400320742470671LPTitle177261" style=3D"font-size:21px;fon=
+t-weight:300;margin-right:8px;font-family:wf_segoe-ui_light,&quot;Segoe UI =
+Light&quot;,&quot;Segoe WP Light&quot;,&quot;Segoe UI&quot;,&quot;Segoe WP&=
+quot;,Tahoma,Arial,sans-serif;margin-bottom:12px">
+<a id=3D"m_-6831400320742470671LPUrlAnchor177261" href=3D"https://collectio=
+ns.vam.ac.uk/item/O114802/0305-03-print-cohen-harold/" style=3D"text-decora=
+tion:none;color:var(--themePrimary)" target=3D"_blank">0305-03 | Cohen, Har=
+old | V&amp;A Explore The Collections</a></div>
+<div id=3D"m_-6831400320742470671LPDescription177261" style=3D"font-size:14=
+px;max-height:100px;color:rgb(102,102,102);font-family:wf_segoe-ui_normal,&=
+quot;Segoe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif;margin-bot=
+tom:12px;margin-right:8px;overflow:hidden">
+Digital inkjet print, abstracted floral imagery in pink and blue, by Harold=
+ Cohen, printed United States, 2003</div>
+<div id=3D"m_-6831400320742470671LPMetadata177261" style=3D"font-size:14px;=
+font-weight:400;color:rgb(166,166,166);font-family:wf_segoe-ui_normal,&quot=
+;Segoe UI&quot;,&quot;Segoe WP&quot;,Tahoma,Arial,sans-serif">
+<a href=3D"http://collections.vam.ac.uk" target=3D"_blank">collections.vam.=
+ac.uk</a></div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
+:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
+:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
+:rgb(0,0,0)">
+Both are illustrated in the small Digital Pioneers catalogue produced for t=
+he V&amp;A&#39;s show in 2009 (nos. 41-42). 0305-03 was also exhibited in a=
+ V&amp;A exhibition entitled Prints Now and is illustrated in the accompany=
+ing book, p. 11.=C2=A0</div>
+<div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
+:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
+:rgb(0,0,0)">
+Several of the other works in the Sotheby&#39;s sale have appeared in print=
+ or online too, but I don&#39;t know whether copies of any of them were eve=
+r acquired by anyone.</div>
+<div id=3D"m_-6831400320742470671Signature">
+<div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
+:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
+:rgb(0,0,0)">
+Best wishes</div>
+<div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
+:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
+:rgb(0,0,0)">
+Doug</div>
+<div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
+:rgb(0,0,0)">
+<br>
+</div>
+<div style=3D"font-family:Calibri,Helvetica,sans-serif;font-size:12pt;color=
+:rgb(0,0,0)">
+<a href=3D"http://www.douglasdodds.org" target=3D"_blank">www.douglasdodds.=
+org</a></div>
+</div>
+</div>
+
+</blockquote></div></div>
+
+--0000000000009d53800624d3c7e2--

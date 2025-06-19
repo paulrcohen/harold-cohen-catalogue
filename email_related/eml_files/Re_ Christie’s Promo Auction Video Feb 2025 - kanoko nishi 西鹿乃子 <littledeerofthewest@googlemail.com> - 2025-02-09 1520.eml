@@ -1,0 +1,171 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a10:e821:b0:5c7:f970:fbca with SMTP id gk33csp1345010pxb;
+        Sun, 9 Feb 2025 12:20:30 -0800 (PST)
+X-Received: by 2002:a05:690c:4c10:b0:6f9:9cd3:7f97 with SMTP id 00721157ae682-6f9b284618fmr91972217b3.13.1739132430540;
+        Sun, 09 Feb 2025 12:20:30 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1739132430; cv=none;
+        d=google.com; s=arc-20240605;
+        b=IUlfN8ymQpYBXpg+OOOSg7r2wgxVMue2q1fx5TWGRbtYsEBJ9eR+2aSdCL2rjhs4c7
+         iaTi8mxZcFMCVC++HwHSu4sMIQ1bmWYrzH5QEoS6HY7ceRR7zPk8Qoqke2/aqEw/lvYS
+         3Zuix9qTEj3ayccQ7Dij+TpfVL3YkldqorPq2FwrjGHhDE5KAE4SNQxnnMSTlg/wRnqY
+         myrIPE5uaEymjyFsBUo2k4CjT6E/MVDVF5/vP4jgazIcK1OYBsKS/McdnnHxSkvajooY
+         48iEBgCrV1IkRUuNTczqxwlOZMHoUj94bq00FtRuFV7JMQZpOGZC93wvaV8R/GKQdlzj
+         A4fw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=wOiFPY6w+6WEY0+nl+6ESi3XOAHqKUHW5yVYZSGNESs=;
+        fh=twKC0cBjpAwJmBDkVnw4mTC5YqGqgelaMkAiZ6s2u3U=;
+        b=P2eTkBsHRA56KwDuGRCuG7Y2ze7OaKg3OU0J5F4hQo9ce0N8gahd3kt7To60nf8ZjC
+         p/+rXNL0kP5Om9qwK+vbAAFwxk6ZcwlwO6410Mty2xDWmxDT94YHsWEKNNQ0OQduXfD7
+         nAf0DXIpwtrM7I64Vhf+1bTP/5/Asnn6+TIDhiFwCJ30d/Aqi2XZ0GbIuSC5GAa69K8h
+         l4M9Zn7/YCSyzPA/Mtclw7rH7ViAF1lY5EwypxGWGoLstbW/FOnCS5FAgwWgH6NkSfp8
+         oeX4BoPOKK2rBWM/PL5R6fiSpwhqOTOP7vinKljVZ7oGUgTdmnvGLmRV8jL3mAYYozwu
+         Ti6A==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@googlemail.com header.s=20230601 header.b=FP5aulZZ;
+       spf=pass (google.com: domain of littledeerofthewest@googlemail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=littledeerofthewest@googlemail.com;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=googlemail.com;
+       dara=pass header.i=@gmail.com
+Return-Path: <littledeerofthewest@googlemail.com>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id 00721157ae682-6f99fbe8552sor45817707b3.3.2025.02.09.12.20.30
+        (Google Transport Security);
+        Sun, 09 Feb 2025 12:20:30 -0800 (PST)
+Received-SPF: pass (google.com: domain of littledeerofthewest@googlemail.com designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@googlemail.com header.s=20230601 header.b=FP5aulZZ;
+       spf=pass (google.com: domain of littledeerofthewest@googlemail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=littledeerofthewest@googlemail.com;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=googlemail.com;
+       dara=pass header.i=@gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20230601; t=1739132430; x=1739737230; dara=google.com;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=wOiFPY6w+6WEY0+nl+6ESi3XOAHqKUHW5yVYZSGNESs=;
+        b=FP5aulZZe+l1IVaBVmSODgX8Fm13F6119eMV702wTDdnjc5s4zRZIPL4w2rUijW9BX
+         L5oCY4Ohk2oHQ7QUAC3VJz2RU2NKCWoCaC15t3MDIY2m8XbGR991DyqprcGJCKbiqFb+
+         SUQM2BQbsh2BSZGOfXshFZ25ysvtqXZA0CpuhO3O9lKRQTXZ21BphxH/EV3trsTP0x8J
+         qFyLeJtD0JaYIcSJleHAXHM75JRV9Mms30XqyxVFx/ZTuJwlAZSjj9vmSKabNy0QJlTF
+         5KU8QCmsWoIp4mTvkD30JoHHNAHDqJwkk/Dw1nqSlDrsDkqreM25Dzb4uMhRuhLzUz/L
+         EpUg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1739132430; x=1739737230;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=wOiFPY6w+6WEY0+nl+6ESi3XOAHqKUHW5yVYZSGNESs=;
+        b=w1phe+WuAQmwLEJ9MelYLF+ZRvGgoym5y8rqqxQRy7sjdDIba78v2JMhjDF/K2vxJL
+         zvDTt8UIFSi9CMxCPqlX2YxyyHHsFgtBZEHjGvn9BAGhJETJAWLJo474LTe5ilwMq/bN
+         6bAUSlfPXh/7y3wLwvudndEzBiej7rGFgeu/moKz3RAUDWkRKxb3eo4vfBC3L8lp8mrE
+         Ji3ebV2VhBhnuZiVJPH2Jsy08oJgsdgBSqw0BcTue152jRmC6pgsV9Sh2lp0ZTqnTuId
+         uvr1a3RCoRp3by50zn3dwjSYOeX9TUPb1P1jHIgL4mZjGG30q3vlywaF7wwcYjqHXHJY
+         aTFw==
+X-Forwarded-Encrypted: i=1; AJvYcCWrWdN2KSJJm61CRLRx0vMI/HRCPpWwOLLMg2SkVgyCFgpiL8qqs2ntr+K8j/7Gw9WCdzupzKQ21no=@gmail.com
+X-Gm-Message-State: AOJu0YyXbmx3sw5bCTADTOFO3m0+akKk/gRkbQO5lR1MCRC2qmecnYfQ
+	lUFE3n+nsaaCnGK8jDCAhhSuLrMgb89U63ooE0KbsjCdkA4+ihF/aiX+Xuwyov3i3XNZUwr2MaE
+	faSmCyoKpnKopvAyeJC2xN57IrfU=
+X-Gm-Gg: ASbGncsLshOqARGEoeGjEeNKbXpBoJVvsUeM4D/hAxSCVVpfSrZjRPlg+L9Vk0KKz1d
+	g+jGUl4qxJRnXmg4R774L1j5gCKJR9cSH3mI3wmVE0NEG8+D8vPcTYyGXGQSqV8HC1XJ94uecm5
+	hNTybs8w3Yvz+aimYGIvS11MKLL+4xkQ==
+X-Google-Smtp-Source: AGHT+IFDiLsOYbgaC6HzTG1snSAE4wHd2eu8qEyt/87Xlqn0g22B9DfiVMyCmmbYM+iMjRiokDhN/+uU8U0r5kLSaGk=
+X-Received: by 2002:a05:690c:6f8c:b0:6f5:3bb1:7b7f with SMTP id
+ 00721157ae682-6f9b29d8062mr94930537b3.26.1739132429869; Sun, 09 Feb 2025
+ 12:20:29 -0800 (PST)
+MIME-Version: 1.0
+References: <1097043545.5697713.1739130962277.ref@mail.yahoo.com> <1097043545.5697713.1739130962277@mail.yahoo.com>
+In-Reply-To: <1097043545.5697713.1739130962277@mail.yahoo.com>
+From: =?UTF-8?B?a2Fub2tvIG5pc2hpIOilv+m5v+S5g+WtkA==?= <littledeerofthewest@googlemail.com>
+Date: Sun, 9 Feb 2025 12:20:20 -0800
+X-Gm-Features: AWEUYZl_sZymJEKxm6WTxzwHe0nyF1DMIXVReC3esvjk8iEjrnQsi7VelJGiefI
+Message-ID: <CAFAU3LMyz8Y6amfFzpvSVXjop5QWDp9z00cUAKDTbiHD8wmV4Q@mail.gmail.com>
+Subject: =?UTF-8?Q?Re=3A_Christie=E2=80=99s_Promo_Auction_Video_Feb_2025?=
+To: Thomas Machnik <zipnpup@yahoo.com>
+Cc: Paul Cohen <paulrcohen@gmail.com>, Mila Askarova <m.askarova@gazelliarthouse.com>, 
+	Paul Cohen <team@haroldcohentrust.org>, Harold Cohen Trust <aaron@aaronshome.com>, 
+	George Lionel Barker <george@gazelliarthouse.com>, 
+	Anastasia Shapovalova <anastasia@gazelliarthouse.com>, Sara Nishi <nishisara@gmail.com>
+Content-Type: multipart/alternative; boundary="000000000000b32ae5062dbb5242"
+
+--000000000000b32ae5062dbb5242
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Thank you so much for the update, Tom! Very exciting! I am hoping for its
+success.
+
+"The phenomenon called =E2=80=9CI=E2=80=9D
+is a blue illumination
+of the hypothesized, organic alternating current lamp" - Miyazawa Kenji
+
+
+On Sun, Feb 9, 2025 at 11:56=E2=80=AFAM Thomas Machnik <zipnpup@yahoo.com> =
+wrote:
+
+> Hi Everyone,
+> Here is a link to quick fast-paced promo video for the upcoming
+> Chrisitie=E2=80=99s online auction Feb 20 to Mar 5, 2025. It has a brief =
+mention of
+> Harold along with the other AI-artist participants. Interestingly, in the
+> blurb below the video, Harold is the first one mentioned.
+> https://www.youtube.com/watch?v=3DjCa0Sao01BY&t=3D70s
+>
+> Also here is a detailed article from Christies regarding the upcoming
+> auction for those interested. This article shows Harold=E2=80=99s work an=
+d has text
+> about him.
+>
+> https://www.christies.com/stories/what-is-ai-art-augmented-intelligence-3=
+6dc0897d3584268b5102468a3bf8a8c?cid=3DEM_SM_O_YT_Inc_CON____________
+>
+> Tom
+>
+
+--000000000000b32ae5062dbb5242
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto">Thank you so much for the update, Tom! Very exciting! I a=
+m hoping for its success.=C2=A0<br clear=3D"all"><br clear=3D"all"><div><di=
+v dir=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"gmail_signature">=
+&quot;The phenomenon called =E2=80=9CI=E2=80=9D <br>is a blue illumination =
+<br>of the hypothesized, organic alternating current lamp&quot; - Miyazawa =
+Kenji</div></div></div><div><br></div><div><br><div class=3D"gmail_quote gm=
+ail_quote_container"><div dir=3D"ltr" class=3D"gmail_attr">On Sun, Feb 9, 2=
+025 at 11:56=E2=80=AFAM Thomas Machnik &lt;<a href=3D"mailto:zipnpup@yahoo.=
+com">zipnpup@yahoo.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_q=
+uote" style=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px;border-left-s=
+tyle:solid;padding-left:1ex;border-left-color:rgb(204,204,204)"><div><div s=
+tyle=3D"font-family:&quot;Helvetica Neue&quot;,Helvetica,Arial,sans-serif;f=
+ont-size:16px"><div dir=3D"ltr" style=3D"font-family:&quot;Helvetica Neue&q=
+uot;,Helvetica,Arial,sans-serif">Hi Everyone,</div><div dir=3D"ltr" style=
+=3D"font-family:&quot;Helvetica Neue&quot;,Helvetica,Arial,sans-serif">Here=
+ is a link to quick fast-paced promo video for the upcoming Chrisitie=E2=80=
+=99s online auction Feb 20 to Mar 5, 2025. It has a brief mention of Harold=
+ along with the other AI-artist participants. Interestingly, in the blurb b=
+elow the video, Harold is the first one mentioned.=C2=A0</div><div dir=3D"l=
+tr" style=3D"font-family:&quot;Helvetica Neue&quot;,Helvetica,Arial,sans-se=
+rif"><span style=3D"font-family:&quot;Helvetica Neue&quot;,Helvetica,Arial,=
+sans-serif"><a href=3D"https://www.youtube.com/watch?v=3DjCa0Sao01BY&amp;t=
+=3D70s" rel=3D"nofollow" target=3D"_blank" style=3D"font-family:&quot;Helve=
+tica Neue&quot;,Helvetica,Arial,sans-serif">https://www.youtube.com/watch?v=
+=3DjCa0Sao01BY&amp;t=3D70s</a></span><br></div><div dir=3D"ltr" style=3D"fo=
+nt-family:&quot;Helvetica Neue&quot;,Helvetica,Arial,sans-serif"><br></div>=
+<div dir=3D"ltr" style=3D"font-family:&quot;Helvetica Neue&quot;,Helvetica,=
+Arial,sans-serif">Also here is a detailed article from Christies regarding =
+the upcoming auction for those interested. This article shows Harold=E2=80=
+=99s work and has text about him.</div><div dir=3D"ltr" style=3D"font-famil=
+y:&quot;Helvetica Neue&quot;,Helvetica,Arial,sans-serif"><span style=3D"fon=
+t-family:&quot;Helvetica Neue&quot;,Helvetica,Arial,sans-serif"><a href=3D"=
+https://www.christies.com/stories/what-is-ai-art-augmented-intelligence-36d=
+c0897d3584268b5102468a3bf8a8c?cid=3DEM_SM_O_YT_Inc_CON____________" rel=3D"=
+nofollow" target=3D"_blank" style=3D"font-family:&quot;Helvetica Neue&quot;=
+,Helvetica,Arial,sans-serif">https://www.christies.com/stories/what-is-ai-a=
+rt-augmented-intelligence-36dc0897d3584268b5102468a3bf8a8c?cid=3DEM_SM_O_YT=
+_Inc_CON____________</a></span><br></div><div dir=3D"ltr" style=3D"font-fam=
+ily:&quot;Helvetica Neue&quot;,Helvetica,Arial,sans-serif"><br></div><div d=
+ir=3D"ltr" style=3D"font-family:&quot;Helvetica Neue&quot;,Helvetica,Arial,=
+sans-serif">Tom</div></div></div></blockquote></div></div>
+
+--000000000000b32ae5062dbb5242--

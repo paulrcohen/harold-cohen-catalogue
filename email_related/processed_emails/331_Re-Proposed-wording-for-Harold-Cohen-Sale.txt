@@ -1,0 +1,30 @@
+Subject: Re: Proposed wording for Harold Cohen Sale
+From: Paul Cohen <paulrcohen@gmail.com>
+To: Robert Norton <robert@verisart.com>
+Date: 2024-09-30 15:08:06
+Message-ID: <CAKjPZkFaaS09SdSwayqU5zWAddmpKMAcGGb+k9OPqoyQxgZSdw@mail.gmail.com>
+--------------------------------------------------------------------------------
+
+Hi Robert, thanks for all this good material. I'm not sure what the
+"powered by Verisart" one was intended to be. It says it's a gif, but this
+is what I see when I open it. Is this right?
+
+[image: Screenshot 2024-09-30 at 2.51.50 PM.png]
+
+The printed certificate mockup looks good, thanks. I scanned the QR code
+and was taken to Verisart (abeit a private record) so that works. The
+traits for the opensea NFT mockup are as we discussed. For Tom's benefit,
+the traits describe the NFT, not the physical print. Traits do however
+include the fact that a print is included. Traits are searchable.
+
+I'm not sure of the purpose of the pdfs, two of them look like they are
+parts of a contractual agreement w Sotheby's. For the one that deals with
+NFTs, I assume this is where you will add the provenance/metadata material
+you'll be getting from Tom? WRT the final doc, which includes the
+certificate of authenticity, the NFT and the Configuration, I have a couple
+of observations: 1) the second paragraph of the NFT will be slightly
+different for most of the NFTs because the dates will be different and so
+will the jpeg metadata, and because in one case we need to that the jpeg
+was made by Tom in 2024. 2) In "professional bio" under "opensea
+configuration" the first three paragraphs are separated by blank lines but
+the fourth is not.

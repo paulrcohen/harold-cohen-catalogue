@@ -1,0 +1,854 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a10:7751:b0:61d:d881:fa02 with SMTP id yp17csp1737593pxc;
+        Mon, 9 Jun 2025 14:19:44 -0700 (PDT)
+X-Forwarded-Encrypted: i=2; AJvYcCWM9kB5If8t/AIpCrM2TJ/jeRXVZO3yXk2lc1lHv37G3jykAKL/SorIqIpblqxC6v9eb6rd+hNOULu/@gmail.com
+X-Google-Smtp-Source: AGHT+IFyJ40I1JiktgeufWz3VbBgUGmg8jV9nmMpsPicjjVUL0izrCHil/q3Gzyjlky+WP+O411P
+X-Received: by 2002:a05:6a00:2e86:b0:742:a02e:dd8d with SMTP id d2e1a72fcca58-74827f36224mr21453104b3a.20.1749503984057;
+        Mon, 09 Jun 2025 14:19:44 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1749503984; cv=none;
+        d=google.com; s=arc-20240605;
+        b=KXtUc09yl9LzanTCC6/mkwZ0+fL0MBknM0HncoW3UoC15tdgGO2pxu86ZEGyTiXUIU
+         wIL7ly/sLBc/vXo1OmkKS60lJ0AwcyaFt6F9SFwUV2BuQ1koh7s5jfLNA7zxSc24tiEG
+         QPsrXzTrPCV2DBrvGqJuoIbvQDx2IW9QzrRfI/Q3hL8MW9U4RvsAayte1WTlv7M90Vqz
+         YRKYYbDl6xRmgYQFBEdTEI6oGneGyqxbxxwvPUYzClAFrBLgyjSnAODi4P/wTDpHO7j8
+         65MjARUNFiWrod2VxVLLfyPJEbNx7A+654mrGSs561USZOf4C0mmLGQwDZj6RYzF38dq
+         5gnQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:subject:references:in-reply-to:message-id:cc:to
+         :reply-to:from:date:dkim-signature;
+        bh=KAlaaAx2+DGkEqmB+n0u7Abl35k3klqFZOWFMefhWhM=;
+        fh=dLdI0qB4s8AE+EudAdhYug2ZXyBSVh70SJEVKPGh528=;
+        b=O3Ov2YL2qVxedWSZsXrE7h0LEcbIGWuS0QYdF1KmmEvbct6xjm/sTfNDM+H57I1Ld7
+         zInP/QCqN8UzVg10nCf4v1p3UGAevEALwblNcyC7rYtWsn54BNuFmUAF3qxT0F9DdtSK
+         VOEYCF+NmpDtGwW8QNeJAGMauLTXGvXubEFyQVM6JHL+SzbPX2hl53v55Va3pg68bdDJ
+         Jk0+asRdS909ob+2paiHZyrsiQ04sgroVi0zcwrd9EcbFY4P+FRsMiKhrtsu/3xKIdsj
+         W2AwupP+HhzcHjyN6cW9QQxUY2AEpSJk+baKfd7bjffyxjs/BFnE7OWBBI6a+8neXXr7
+         3oIg==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=YGG95Jx8;
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.128.205 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+Return-Path: <zipnpup@yahoo.com>
+Received: from sonic320-24.consmr.mail.bf2.yahoo.com (sonic320-24.consmr.mail.bf2.yahoo.com. [74.6.128.205])
+        by mx.google.com with ESMTPS id 41be03b00d2f7-b2f5f791bd8si10497691a12.471.2025.06.09.14.19.43
+        for <paulrcohen@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 09 Jun 2025 14:19:44 -0700 (PDT)
+Received-SPF: pass (google.com: domain of zipnpup@yahoo.com designates 74.6.128.205 as permitted sender) client-ip=74.6.128.205;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=YGG95Jx8;
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.128.205 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1749503983; bh=KAlaaAx2+DGkEqmB+n0u7Abl35k3klqFZOWFMefhWhM=; h=Date:From:Reply-To:To:Cc:In-Reply-To:References:Subject:From:Subject:Reply-To; b=YGG95Jx8xlTxrd+SlJcTNgBu+ltqjv4a8+oMABT0mqT3Pu9C19A9OAa66TIr9+Q1TW+lpQTNjwv2xBjMsGuyVT2XrnPBzdU5HfWGdDLDxrQorVNywf+zrekt2lCEf6Ipj+VSgo0d9qW+ZafpnaefGBXMPdAYnDMo1RRPtWjZtQb56A3lDbSbVT5B4p919iVq0P2sMxx4Qx15IImsbCb33Jt5QFfrXNGBQAQgzeM5H6j694v4rrTv/ZY5T632vY5e0SS4iotEhOlUO6L6HQ47CRyP69gjChxCkV/3CtWOruJLcpZMdwH2bfPCL3MaonHzXMsMyjsWxtZ5ht7fc9a5EQ==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1749503983; bh=Vl27HcUNxckHLthSEQPzCrv3qCfNg2hN18AqQeAX+cl=; h=X-Sonic-MF:Date:From:To:Subject:From:Subject; b=RWg6RWhcodKL8GjZ98FrgL6Llv79InKsEmwhYOyWh4n10sVglEjDhZjgmYRMKT5QdSFU71rpmW0QCczNtGaCx2n1FRPUBTvmFYuCvWfa84LpLZwoTzeD79k553xWJV6ze2gIAGa63QwRSBlTCDYXPptJLo8dH1BKiU0dRTiRE787cfMzHawDzf5MFMVMnjbNemQwYvfeF9IiHhHJ8XacwVxKmfBTsFa7gf762iafNv5Y2iqx5oaBOB8I4z2biQUXCg5g0/N4UfgfnIebTugI22pKVt82YpenW9GsCwGknLDpQZnHkOwmPbSarzm2JOdiLKfjfTC+6h6+76vZ1Hf6Vg==
+X-YMail-OSG: HzF8mBgVM1m2JRjjehUVzydFYAHTUyqxlH23N_tivLjv6nbfTjHu3IozZgN7oyM
+ wD5jvOjfvI283Q7ukUX6n.giCSinb0gNn41YxlK.rS2OZPguZAqLw88Cgf2W0PMNXWQ1jr2kKbME
+ oQUC4ILV_S3mPztgn.io7whYXXimGKogbd1GKQnnxiCMX9XPQXLcs6Q4VnvCydF9JodxnKG2V_PT
+ cmyFPrAvlnQuH6TSd2RJgd9.wgH13a0oYe8.M7iPEVVFpxXlbU9wcyk2lCdmWLwMFVQ9Bjgf7uEY
+ 6meADm9m5bct1vVnUnOHol1gYp7j8LcDNTLfrKMlJlKgRKyav_PuYcihY10mO4V7AP6FZlb.6v7u
+ ZhZYiH9LZBLWX1hh6UQmZ4inL6YNEei8tj6p2VGVXIbXZ44lce18xEOYnrMjkMgee4ml6K7I5Awp
+ 9GrQjRFVv.YstGMMOiCOMNuqVRD1eFZzSnEaLKi6m8lOEUouFL9IqIh5ExNha.tBLQ0CLmco9oFZ
+ LZabQgoo0Wq4xDGa39BX04o.qcfZ6RNbui9R6xbH4YP6GOZYoezHggAifb8kkyeBOC1FoYXW73Pd
+ WfhrEtmwAkI2cLUw9Nv46Vo_ZxduZjleJTpLt_IwfCWh.gC2UGZ8xoTpa17z4FKStkKuOmGAVgZd
+ OVQaoZzNj5BQ8vtUZCU8NV6wMisEvyqo9UIntFH72TD.WZO8nV80MCXDDsS6Q4MWK905y9mE053G
+ AtFNKgYdX1BY6WjURoORPeWWzQprkdu2nJR2YrozxzQ89nRxNQfKlgeg8qxiAjlUXQJ0vuwgxaOt
+ WCLMzy4VNxKLPmE7sMgAUReAN6E2T4Qfktw1OB5RrAAIvGj4.FhGecP_o.Rc7_72DPJlHibu5g17
+ fNYzGT62_43ZhOxhaHvWzn218RnSxeRGRFvgTeH7kpk8A7UicDvpdN8s09rJxcaFzJGuVoI38qg8
+ WVzvA8bXc0HPkFfScyGBFO9dxd8tha2cxvSTvRawroU4Jy3_rTqHM_Ic_ryN5LjqsrMU_4lHaUWT
+ 7JGXmiIdX0GBlTmE1dsZ2lrS4NIB5JfmJjy_WRroBPpvtm6.ID9wzFspkGEcKyM5AIVaANVo0vr6
+ 2aS4cMspc6SyvMmCiKJZIEcfktznIIhJcQhcAMI68NxubP54R_SFfKsW_r46JanqBA_xFJptaZqQ
+ 1ObiPJsUrfHbT0_EuctIRYgyoPTNbkArkYPVesB90_bGbDvpAfgF.chA5cJjJEkgxR40FrTYsUuL
+ PpMZki2rVTD2Lk8mPsbuxf3qAaNpnx8q4eCBk5zN2Sney06MQ1RW_TC6vssZSuC4MwG2pnwqpqox
+ gM1d4Ih6VT8MpLZcc0PKXEQFOBUVxZdmsjs4XcQJ3J_4JI.DL8m2UFoQgL4Xc7ZGAGdHbW6Quku3
+ B9grfG0Xs_TvH2pDtZEvk0MWTNNfyHJ6t0AhoERGd5j1IxHtK8I3OSEM6Ts1UHsqq0XO7_A_pupN
+ kO0_eCx.GwqhOeYTPidN8E0HaF6t1PbU1flDh9DJKI4XA217npkhoQYtrn0CEgpw0_A4rd54rT48
+ TgFOV_rI94t5ko6Qx.nnQN0.oSiU5lchv7uypNIIFXhsFjMZipohLHekNusxx9CSYTvmrrttKTyr
+ OxLmDoUxEEXHNEC.ERrnF4w2DAA0AWlODQo82rUCRirMJxy6EIcKim3BTPLDmWRKQBVm4N4LAR1c
+ Bw7Lei0IJraSxO2sIvmjnbelCuXMWunyU9jIEiRT4RmHzSRlm1qNJn69NXDUF26RUZ7evQ.9Sl5v
+ zeoQZdcGsg9yKQR_ri4qZxwztRTE93vNb6Dyl0UqqiWuN.9O8zOcjj3emy5yP5h5FvFAH_f4Abw.
+ quEL2qquOnv2RtdtQ8.6idEPRQGoJoeb.E2BlMTAbzo7cAMBHXOBdo57Hh0zJf8r_qqNVQ9vA1Fc
+ rqhz6WkWVH8YRRCZVrbXRSOAqLTNhxdmmlLssGc3Lm8rlIHUorkEn3KvhFdmWsTr5H2YQ.gHbV8H
+ VtzF4ZjxVcTZ82GpSzxOy_01p1HDhTTe8Op.YOM.b_bcCaha.JHr0Z1BM_gzJtwsaigwa42nM0j2
+ bl4ea5VunzWTI4.1KT3VajqKhXgBaZQm1F1FzYOrz5HmAzlsRaFrha9byAvazLEOYTW5acDcYZ9x
+ Exc.FcbC2nZEJtgJpYkKElW.ugwlUZl1rIu_3HGJqXRfXhyWwz3B.Tx.WrXFkE0GnXfAd7w1q0n4
+ jJXVfj7gIrJzJbGgvVplRhkCzq4Mvs5MLKXuHeIfJ5QEc.p.f8OPF2FySh2pnRW.Rkca7ZEIv8EP
+ ey7J1Xdh0PY6ahexLrl3bL3bLlbjpV8zRTEkuh9.bjXpruSEH9aPHtw--
+X-Sonic-MF: <zipnpup@yahoo.com>
+X-Sonic-ID: 9a12642d-2ead-4c11-b2f4-eb9a19631e29
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic320.consmr.mail.bf2.yahoo.com with HTTP; Mon, 9 Jun 2025 21:19:43 +0000
+Date: Mon, 9 Jun 2025 21:19:42 +0000 (UTC)
+From: Thomas Machnik <zipnpup@yahoo.com>
+Reply-To: Thomas Machnik <zipnpup@yahoo.com>
+To: Jeremy Yoder <jeremy.yoder@dietl.com>
+Cc: Michael Pollard <michael@gazelliarthouse.com>, 
+	Paul Cohen <paulrcohen@gmail.com>
+Message-ID: <1429470237.914822.1749503982440@mail.yahoo.com>
+In-Reply-To: <DS7PR10MB514959DD98BC26C11B180C6C826EA@DS7PR10MB5149.namprd10.prod.outlook.com>
+References: <CAGxUL8tctHNKYC9T8421_ARue4eHuSvvKA9RL0eUmdQwVhEy9Q@mail.gmail.com> <DS7PR10MB5149DD4CAC8CBDD354AB64F882E82@DS7PR10MB5149.namprd10.prod.outlook.com> <78730446.3873853.1738370981064@mail.yahoo.com> <DS7PR10MB5149F1E8BCFD59A739EA81EE82F52@DS7PR10MB5149.namprd10.prod.outlook.com> <DS7PR10MB514959DD98BC26C11B180C6C826EA@DS7PR10MB5149.namprd10.prod.outlook.com>
+Subject: Re: Harold Cohen Trust / E-277635 / DTL-905698
+MIME-Version: 1.0
+Content-Type: multipart/mixed; 
+	boundary="----=_Part_914821_872468611.1749503982440"
+X-Mailer: WebService/1.1.23956 YMailNovation
+Content-Length: 38898
+
+------=_Part_914821_872468611.1749503982440
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_914820_1967422703.1749503982388"
+
+------=_Part_914820_1967422703.1749503982388
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+ Dear Jeremy,
+Regarding a date, will you be sending someone prior to collection to assess=
+ the care requirements? For example we have a number of large dye on paper =
+works that or loose and will need pre-packing before shipping. We have othe=
+r works that are order an in need of pre-packing TLC. =C2=A0The studio is b=
+ehind the home of family that is part of the Trust. We need to limit the ti=
+me between 9:30 am and 4:00 pm. If you are able to do pre-packing onsite an=
+d complete the work all on one day between those times Monday June 16th is =
+available.=C2=A0
+Sincerely,Thomas Machnik =E2=80=94 Art Studio Manager =E2=80=94 The Harold =
+Cohen Trust
+    On Friday, June 6, 2025 at 04:46:27 PM PDT, Jeremy Yoder <jeremy.yoder@=
+dietl.com> wrote: =20
+=20
+ Hello Thomas,
+I understand that we're finally ready to proceed with the shipment to Gazel=
+li Art House.=C2=A0 We'd like to set a date for the collection.=C2=A0 Would=
+ any of the following work for you: June 12-13, 16, 17, 18?
+Best regards,Jeremy
+
+|=20
+|=20
+|=20
+|=20
+| Jeremy=C2=A0Yoder |
+| Operations=C2=A0Coordinator |
+|=20
+| Los=C2=A0Angeles | ,=C2=A0 | CA |
+
+ |
+
+ |
+|=20
+|=20
+| Office:=C2=A01=C2=A0310=C2=A0981=C2=A02300 | =C2=A0 | Cell:=C2=A01=C2=A03=
+10=C2=A0648=C2=A02795 |
+
+ |
+
+ |
+
+ |
+
+ |
+
+ |
+
+=C2=A0=C2=A0=C2=A0=C2=A0
+On February 3, 2025 at 3:48 PM PST jeremy.yoder@dietl.com wrote:
+
+Hi Thomas,
+Please let me know if you have any questions.
+Best,Jeremy
+
+On January 31, 2025 at 4:50 PM PST zipnpup@yahoo.com wrote:
+
+Dear Jeremy,
+Thank-you for Terms & Conditions. We will review them shortly and if we hav=
+e any questions, we will get back with you.
+Thomas Machnik =E2=80=94 Art Studio Manager =E2=80=94 The Harold Cohen Trus=
+t
+On Friday, January 31, 2025 at 11:36:16 AM PST, Jeremy Yoder <jeremy.yoder@=
+dietl.com> wrote:
+
+Hello Tom,
+I look forward to working with you on this shipment.=C2=A0 As the Exporter =
+of Record, we need the trust to fill out and return the attached Terms & Co=
+nditions form.=C2=A0 Please let me know if you have any questions.
+Best regards,Jeremy
+
+|=20
+|=20
+|=20
+|=20
+|=20
+Jeremy=C2=A0Yoder
+ |
+|=20
+Operations=C2=A0Coordinator
+ |
+|=20
+|=20
+Los=C2=A0Angeles
+ |=20
+,=C2=A0
+ |=20
+CA
+ |
+
+ |
+
+ |
+|=20
+|=20
+|=20
+Office:=C2=A01=C2=A0310=C2=A0981=C2=A02300
+ |=20
+=C2=A0
+ |=20
+Cell:=C2=A01=C2=A0310=C2=A0648=C2=A02795
+ |
+
+ |
+
+ |
+
+ |
+
+ |
+
+ |
+
+
+|=20
+|=20
+
+ |
+
+ |
+
+
+|=20
+|=20
+Dietl International conducts all business transactions in accordance with i=
+ts standard trading=E2=80=8B=E2=80=8B=E2=80=8B=E2=80=8Bterms and conditions=
+. Use of our services constitutes acceptance of such terms and conditions a=
+nd acknowledgment of the limits of liability contained therein. A copy of t=
+he terms and conditions is available upon request from the office handling =
+your shipment or using the link above. The information in this email and an=
+y attachments is solely for business purposes, is confidential, and intende=
+d for the addressee only. Any unauthorized use, distribution, copying or di=
+sclosure of this email is strictly prohibited. If you have received this em=
+ail in error, please contact the sender immediately and delete all copies. =
+No responsibility is accepted for personal or non-business related emails
+
+ |
+|=20
+e2idBeDNBqfIf8nl8HCN8o28KhYScEQD
+
+ |
+
+ |
+
+
+On January 23, 2025 at 3:48 AM PST michael@gazelliarthouse.com wrote:
+
+Good day Tom,
+I'm copying you in with Jeremy from Dietl.They would like to arrange a day =
+/ time to visit and see the works that are being collected so that they can=
+ provide accurate costs, and get an idea=C2=A0as to the logistics required =
+to collect and return the works to their warehouse.
+Would=C2=A0you be able to work with Jeremy to schedule a time / day that's =
+convenient for you to review the works with them?
+I've attached the original, provisional=C2=A0list of works for reference, b=
+ut appreciate this may change slightly.
+Michael.
+--=20
+Michael PollardSenior Registrar
+GAZELLI ART HOUSE
+
+LONDON=C2=A0=C2=A0
+
+
+ =20
+------=_Part_914820_1967422703.1749503982388
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head></head><body><div class=3D"ydpbb0263fbyahoo-style-wrap" style=
+=3D"font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px=
+;"><div></div>
+        <div dir=3D"ltr" data-setdir=3D"false">Dear Jeremy,</div><div dir=
+=3D"ltr" data-setdir=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"fa=
+lse">Regarding a date, will you be sending someone prior to collection to a=
+ssess the care requirements? For example we have a number of large dye on p=
+aper works that or loose and will need pre-packing before shipping. We have=
+ other works that are order an in need of pre-packing TLC. &nbsp;The studio=
+ is behind the home of family that is part of the Trust. We need to limit t=
+he time between 9:30 am and 4:00 pm. If you are able to do pre-packing onsi=
+te and complete the work all on one day between those times Monday June 16t=
+h is available.&nbsp;</div><div dir=3D"ltr" data-setdir=3D"false"><br></div=
+><div dir=3D"ltr" data-setdir=3D"false">Sincerely,</div><div dir=3D"ltr" da=
+ta-setdir=3D"false">Thomas Machnik =E2=80=94 Art Studio Manager =E2=80=94 T=
+he Harold Cohen Trust</div><div><br></div>
+       =20
+        <div id=3D"ydpbb0263fbyahoo_quoted_9879214005" class=3D"ydpbb0263fb=
+yahoo_quoted">
+            <div style=3D"font-family:'Helvetica Neue', Helvetica, Arial, s=
+ans-serif;font-size:13px;">
+               =20
+                <div>
+                    On Friday, June 6, 2025 at 04:46:27 PM PDT, Jeremy Yode=
+r &lt;jeremy.yoder@dietl.com&gt; wrote:
+                </div>
+                <div><br></div>
+                <div><br></div>
+                <div><div id=3D"ydpbb0263fbyiv7536472473"><div>
+<div class=3D"ydpbb0263fbyiv7536472473main-style-e1f9f2af163499c53490">
+<div>Hello Thomas,</div>
+<div><br clear=3D"none">
+</div>
+<div>I understand that we're finally ready to proceed with the shipment to =
+Gazelli Art House.&nbsp; We'd like to set a date for the collection.&nbsp; =
+Would any of the following work for you: June 12-13, 16, 17, 18?</div>
+<div><br clear=3D"none">
+</div>
+<div>Best regards,</div>
+<div>Jeremy</div>
+</div>
+<img alt=3D"Sent from Front" style=3D"width:1px;min-height:1px;" src=3D"htt=
+ps://app.frontapp.com/api/1/noauth/companies/f4e8d0457b995e150ab4/seen/msg_=
+2gwxm5qs/0/d8847dda.gif" data-inlineimagemanipulating=3D"true" draggable=3D=
+"false"><br clear=3D"none">
+<div dir=3D"ltr" style=3D"font-size:1px;direction:ltr;"><table dir=3D"ltr" =
+cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"width:100%;direct=
+ion:ltr;border-collapse:collapse;font-size:1px;"><tbody><tr style=3D"font-s=
+ize:0;"><td align=3D"left" colspan=3D"1" rowspan=3D"1" style=3D"vertical-al=
+ign:top;"><table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"=
+border-collapse:collapse;font-size:0;"><tbody><tr style=3D"font-size:0;"><t=
+d align=3D"left" colspan=3D"1" rowspan=3D"1" style=3D"padding:10px 0 0;vert=
+ical-align:top;"><table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" st=
+yle=3D"width:100%;border-collapse:collapse;font-size:0;"><tbody><tr style=
+=3D"font-size:0;"><td align=3D"left" colspan=3D"1" rowspan=3D"1" style=3D"p=
+adding:0 0 5px;vertical-align:top;"><table cellpadding=3D"0" cellspacing=3D=
+"0" border=3D"0" style=3D"width:100%;border-collapse:collapse;font-size:0;"=
+><tbody><tr style=3D"font-size:0;"><td align=3D"left" colspan=3D"1" rowspan=
+=3D"1" style=3D"vertical-align:top;"><table cellpadding=3D"0" cellspacing=
+=3D"0" border=3D"0" style=3D"width: 100%; border-collapse: collapse; font-s=
+ize: 0px; color: rgb(0, 0, 1); font-style: normal; font-weight: 700;"><tbod=
+y><tr style=3D"font-size:14.67px;"><td align=3D"left" colspan=3D"1" rowspan=
+=3D"1" style=3D"vertical-align:top;font-family:Calibri, Arial, sans-serif;"=
+>Jeremy&nbsp;Yoder</td></tr><tr style=3D"font-size:14.67px;font-style:itali=
+c;font-weight:400;"><td align=3D"left" colspan=3D"1" rowspan=3D"1" style=3D=
+"vertical-align:top;font-family:Calibri, Arial, sans-serif;">Operations&nbs=
+p;Coordinator</td></tr><tr style=3D"font-size:0;"><td align=3D"left" colspa=
+n=3D"1" rowspan=3D"1" style=3D"vertical-align:top;"><table cellpadding=3D"0=
+" cellspacing=3D"0" border=3D"0" style=3D"border-collapse: collapse; font-s=
+ize: 0px; color: rgb(0, 0, 1); font-style: normal; font-weight: 400;"><tbod=
+y><tr style=3D"font-size:14.67px;"><td align=3D"left" colspan=3D"1" rowspan=
+=3D"1" style=3D"vertical-align:top;font-family:Calibri, Arial, sans-serif;"=
+>Los&nbsp;Angeles</td><td align=3D"left" colspan=3D"1" rowspan=3D"1" style=
+=3D"vertical-align:top;font-family:Calibri, Arial, sans-serif;">,&nbsp;</td=
+><td align=3D"left" colspan=3D"1" rowspan=3D"1" style=3D"vertical-align:top=
+;font-family:Calibri, Arial, sans-serif;">CA</td></tr></tbody></table></td>=
+</tr></tbody></table></td></tr><tr style=3D"font-size:0;"><td align=3D"left=
+" colspan=3D"1" rowspan=3D"1" style=3D"vertical-align:top;"><table cellpadd=
+ing=3D"0" cellspacing=3D"0" border=3D"0" style=3D"border-collapse:collapse;=
+font-size:0;"><tbody><tr style=3D"font-size:0;"><td align=3D"left" colspan=
+=3D"1" rowspan=3D"1" style=3D"vertical-align:top;"><table cellpadding=3D"0"=
+ cellspacing=3D"0" border=3D"0" style=3D"border-collapse: collapse; font-si=
+ze: 0px; color: rgb(0, 0, 1); font-style: normal; font-weight: 400;"><tbody=
+><tr style=3D"font-size:14.67px;"><td align=3D"left" colspan=3D"1" rowspan=
+=3D"1" style=3D"vertical-align:top;font-family:Calibri, Arial, sans-serif;"=
+>Office:&nbsp;<a shape=3D"rect" id=3D"ydpbb0263fbyiv7536472473LPlnk689713" =
+style=3D"text-decoration:none;color:#000001;" target=3D"_blank" rel=3D"nore=
+ferrer noopener">1&nbsp;310&nbsp;981&nbsp;2300</a></td><td align=3D"left" c=
+olspan=3D"1" rowspan=3D"1" style=3D"vertical-align:top;font-family:Calibri,=
+ Arial, sans-serif;">&nbsp;</td><td align=3D"left" colspan=3D"1" rowspan=3D=
+"1" style=3D"vertical-align:top;font-family:Calibri, Arial, sans-serif;">Ce=
+ll:&nbsp;<a shape=3D"rect" id=3D"ydpbb0263fbyiv7536472473LPlnk689713" style=
+=3D"text-decoration:none;color:#000001;" target=3D"_blank" rel=3D"noreferre=
+r noopener">1&nbsp;310&nbsp;648&nbsp;2795</a></td></tr></tbody></table></td=
+></tr></tbody></table></td></tr></tbody></table></td></tr></tbody></table><=
+/td></tr></tbody></table></td></tr></tbody></table><span style=3D"font-fami=
+ly:remialcxesans;">&nbsp;<span style=3D"font-family:'template-T891ullTEe6ZN=
+2BFvdGWSA';">&nbsp;</span><span style=3D"font-family:'zone-1';">&nbsp;</spa=
+n><span style=3D"font-family:'zones-AQ';">&nbsp;</span></span></div><blockq=
+uote type=3D"cite" style=3D"margin:0px 0px 0px 0.8ex;padding-left:1ex;" cla=
+ss=3D"ydpbb0263fbyiv7536472473front-blockquote">
+On February 3, 2025 at 3:48 PM PST <a shape=3D"rect" href=3D"mailto:jeremy.=
+yoder@dietl.com" target=3D"_blank" rel=3D"noreferrer noopener">
+jeremy.yoder@dietl.com</a> wrote:<div id=3D"ydpbb0263fbyiv7536472473yqtfd42=
+311" class=3D"ydpbb0263fbyiv7536472473yqt0546883478"><br clear=3D"none">
+<br clear=3D"none">
+<div id=3D"ydpbb0263fbyiv7536472473fae_2gwxm5qsnbd10l">
+<div>Hi Thomas,</div>
+<div><br clear=3D"none">
+</div>
+<div>Please let me know if you have any questions.</div>
+<div><br clear=3D"none">
+</div>
+<div>Best,</div>
+<div>Jeremy</div>
+<br clear=3D"none">
+<blockquote style=3D"margin:0px 0px 0px 0.8ex;padding-left:1ex;" type=3D"ci=
+te" class=3D"ydpbb0263fbyiv7536472473front-blockquote">
+On January 31, 2025 at 4:50 PM PST <a shape=3D"rect" href=3D"mailto:zipnpup=
+@yahoo.com" target=3D"_blank" rel=3D"noreferrer noopener">
+zipnpup@yahoo.com</a> wrote:<br clear=3D"none">
+<br clear=3D"none">
+<div id=3D"ydpbb0263fbyiv7536472473fae_2gwxm5qs-cavv89">
+<div>
+<div></div>
+<div class=3D"ydpbb0263fbyiv7536472473faursfik ydpbb0263fbyiv7536472473fron=
+t-email-body">
+<div style=3D"font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font=
+-size:16px;" class=3D"ydpbb0263fbyiv7536472473fa-207bgx">
+<div></div>
+<div dir=3D"ltr">Dear Jeremy,</div>
+<div dir=3D"ltr"><br clear=3D"none">
+</div>
+<div dir=3D"ltr">Thank-you for Terms &amp; Conditions. We will review them =
+shortly and if we have any questions, we will get back with you.</div>
+<div dir=3D"ltr"><br clear=3D"none">
+</div>
+<div dir=3D"ltr">Thomas Machnik =E2=80=94 Art Studio Manager =E2=80=94 The =
+Harold Cohen Trust</div>
+<div><br clear=3D"none">
+</div>
+<div id=3D"ydpbb0263fbyiv7536472473ydpcddb0f70yahoo_quoted_8469314652" clas=
+s=3D"ydpbb0263fbyiv7536472473fa361xf3">
+<div style=3D"font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;fo=
+nt-size:13px;">
+<div>On Friday, January 31, 2025 at 11:36:16 AM PST, Jeremy Yoder &lt;<a sh=
+ape=3D"rect" href=3D"mailto:jeremy.yoder@dietl.com" target=3D"_blank" rel=
+=3D"noreferrer noopener">jeremy.yoder@dietl.com</a>&gt; wrote:
+</div>
+<div><br clear=3D"none">
+</div>
+<div><br clear=3D"none">
+</div>
+<div>
+<div id=3D"ydpbb0263fbyiv7536472473ydpcddb0f70yiv5332523993">
+<div>
+<div class=3D"ydpbb0263fbyiv7536472473fa-ga4lqv">
+<div>Hello Tom,</div>
+<div><br clear=3D"none">
+</div>
+<div>I look forward to working with you on this shipment.&nbsp; As the Expo=
+rter of Record, we need the trust to fill out and return the attached Terms=
+ &amp; Conditions form.&nbsp; Please let me know if you have any questions.=
+</div>
+<div><br clear=3D"none">
+</div>
+<div>Best regards,</div>
+<div>Jeremy</div>
+</div>
+<img alt=3D"Sent from Front" style=3D"width:1px;min-height:1px;" src=3D"htt=
+ps://app.frontapp.com/api/1/noauth/companies/f4e8d0457b995e150ab4/seen/msg_=
+2ci8apjo/0/e373836b.gif" data-inlineimagemanipulating=3D"true" draggable=3D=
+"false"><br clear=3D"none">
+<div dir=3D"ltr" style=3D"font-size:1px;direction:ltr;">
+<table dir=3D"ltr" cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=
+=3D"width:100%;direction:ltr;border-collapse:collapse;font-size:1px;"><tbod=
+y><tr style=3D"font-size:0;"><td align=3D"left" colspan=3D"1" rowspan=3D"1"=
+ style=3D"vertical-align:top;">
+<table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"border-col=
+lapse:collapse;font-size:0;"><tbody><tr style=3D"font-size:0;"><td align=3D=
+"left" colspan=3D"1" rowspan=3D"1" style=3D"padding:10px 0 0;vertical-align=
+:top;">
+<table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"width:100%=
+;border-collapse:collapse;font-size:0;"><tbody><tr style=3D"font-size:0;"><=
+td align=3D"left" colspan=3D"1" rowspan=3D"1" style=3D"padding:0 0 5px;vert=
+ical-align:top;">
+<table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"width:100%=
+;border-collapse:collapse;font-size:0;"><tbody><tr style=3D"font-size:0;"><=
+td align=3D"left" colspan=3D"1" rowspan=3D"1" style=3D"vertical-align:top;"=
+>
+<table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"width:100%=
+;border-collapse:collapse;font-size:0px;color:rgb(0, 0, 1);font-style:norma=
+l;font-weight:700;"><tbody><tr style=3D"font-size:14.67px;"><td align=3D"le=
+ft" colspan=3D"1" rowspan=3D"1" style=3D"vertical-align:top;font-family:Cal=
+ibri, Arial, sans-serif;">
+<p style=3D"margin-top:0px;margin-bottom:0px;">Jeremy&nbsp;Yoder</p>
+</td></tr><tr style=3D"font-size:14.67px;font-style:italic;font-weight:400;=
+"><td align=3D"left" colspan=3D"1" rowspan=3D"1" style=3D"vertical-align:to=
+p;font-family:Calibri, Arial, sans-serif;">
+<p style=3D"margin-top:0px;margin-bottom:0px;">Operations&nbsp;Coordinator<=
+/p>
+</td></tr><tr style=3D"font-size:0;"><td align=3D"left" colspan=3D"1" rowsp=
+an=3D"1" style=3D"vertical-align:top;">
+<table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"border-col=
+lapse:collapse;font-size:0px;color:rgb(0, 0, 1);font-style:normal;font-weig=
+ht:400;"><tbody><tr style=3D"font-size:14.67px;"><td align=3D"left" colspan=
+=3D"1" rowspan=3D"1" style=3D"vertical-align:top;font-family:Calibri, Arial=
+, sans-serif;">
+<p style=3D"margin-top:0px;margin-bottom:0px;">Los&nbsp;Angeles</p>
+</td><td align=3D"left" colspan=3D"1" rowspan=3D"1" style=3D"vertical-align=
+:top;font-family:Calibri, Arial, sans-serif;">
+<p style=3D"margin-top:0px;margin-bottom:0px;">,&nbsp;</p>
+</td><td align=3D"left" colspan=3D"1" rowspan=3D"1" style=3D"vertical-align=
+:top;font-family:Calibri, Arial, sans-serif;">
+<p style=3D"margin-top:0px;margin-bottom:0px;">CA</p>
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+</td></tr><tr style=3D"font-size:0;"><td align=3D"left" colspan=3D"1" rowsp=
+an=3D"1" style=3D"vertical-align:top;">
+<table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"border-col=
+lapse:collapse;font-size:0;"><tbody><tr style=3D"font-size:0;"><td align=3D=
+"left" colspan=3D"1" rowspan=3D"1" style=3D"vertical-align:top;">
+<table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"border-col=
+lapse:collapse;font-size:0px;color:rgb(0, 0, 1);font-style:normal;font-weig=
+ht:400;"><tbody><tr style=3D"font-size:14.67px;"><td align=3D"left" colspan=
+=3D"1" rowspan=3D"1" style=3D"vertical-align:top;font-family:Calibri, Arial=
+, sans-serif;">
+<p style=3D"margin-top:0px;margin-bottom:0px;">Office:&nbsp;<a shape=3D"rec=
+t" id=3D"ydpbb0263fbyiv7536472473ydpcddb0f70yiv5332523993LPlnk689713" style=
+=3D"text-decoration:none;color:#000001;" target=3D"_blank" rel=3D"noreferre=
+r noopener">1&nbsp;310&nbsp;981&nbsp;2300</a></p>
+</td><td align=3D"left" colspan=3D"1" rowspan=3D"1" style=3D"vertical-align=
+:top;font-family:Calibri, Arial, sans-serif;">
+<p style=3D"margin-top:0px;margin-bottom:0px;">&nbsp;</p>
+</td><td align=3D"left" colspan=3D"1" rowspan=3D"1" style=3D"vertical-align=
+:top;font-family:Calibri, Arial, sans-serif;">
+<p style=3D"margin-top:0px;margin-bottom:0px;">Cell:&nbsp;<a shape=3D"rect"=
+ id=3D"ydpbb0263fbyiv7536472473ydpcddb0f70yiv5332523993LPlnk689713" style=
+=3D"text-decoration:none;color:#000001;" target=3D"_blank" rel=3D"noreferre=
+r noopener">1&nbsp;310&nbsp;648&nbsp;2795</a></p>
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+</div>
+<div dir=3D"ltr" style=3D"font-size:1px;direction:ltr;">
+<table dir=3D"ltr" cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=
+=3D"width:100%;direction:ltr;border-collapse:collapse;font-size:1px;"><tbod=
+y><tr style=3D"font-size:0;"><td align=3D"left" colspan=3D"1" rowspan=3D"1"=
+ style=3D"vertical-align:top;">
+<table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"border-col=
+lapse:collapse;font-size:0;line-height:normal;"><tbody><tr style=3D"font-si=
+ze:0;"><td align=3D"left" colspan=3D"1" rowspan=3D"1" style=3D"padding:0 0 =
+5px;vertical-align:top;">
+<p style=3D"margin-top:0px;margin-bottom:0px;"><a shape=3D"rect" id=3D"ydpb=
+b0263fbyiv7536472473ydpcddb0f70yiv5332523993LPlnk689713" href=3D"https://di=
+etl.com/" style=3D"text-decoration:none;" target=3D"_blank" rel=3D"noreferr=
+er noopener"><img border=3D"0" alt=3D"" style=3D"width:500px;min-width:500p=
+x;max-width:500px;font-size:0px;" src=3D"cid:utquaQhsvS1jSLvvD06L" data-inl=
+ineimagemanipulating=3D"true" draggable=3D"false"></a></p>
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+</div>
+<div dir=3D"ltr" style=3D"font-size:1px;direction:ltr;">
+<table dir=3D"ltr" cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=
+=3D"width:100%;direction:ltr;border-collapse:collapse;font-size:1px;"><tbod=
+y><tr style=3D"font-size:0;"><td align=3D"left" colspan=3D"1" rowspan=3D"1"=
+ style=3D"vertical-align:top;">
+<table cellpadding=3D"0" cellspacing=3D"0" border=3D"0" style=3D"border-col=
+lapse:collapse;font-size:0px;color:rgb(153, 153, 153);font-style:normal;fon=
+t-weight:400;"><tbody><tr style=3D"font-size:10.67px;"><td align=3D"left" c=
+olspan=3D"1" rowspan=3D"1" style=3D"padding:10px 0 0;vertical-align:top;fon=
+t-family:Calibri, Arial, sans-serif;">
+<p style=3D"margin-top:0px;margin-bottom:0px;">Dietl International conducts=
+ all business transactions in accordance with its standard trading
+<span style=3D"font-family:remialcxesans;font-size:1px;color:#FFFFFF;line-h=
+eight:1px;">
+=E2=80=8B<span style=3D"font-family:'template-aCaB-sf0Ee2KrsxgyLIpxg';">=E2=
+=80=8B</span><span style=3D"font-family:'zone-1';">=E2=80=8B</span><span st=
+yle=3D"font-family:'zones-AQ';">=E2=80=8B</span></span><a shape=3D"rect" id=
+=3D"ydpbb0263fbyiv7536472473ydpcddb0f70yiv5332523993LPlnk689713" href=3D"ht=
+tps://dietl.com/wp-content/uploads/2023/01/DIETL_Terms_and_Conditions.pdf" =
+style=3D"text-decoration:none;color:#999999;" target=3D"_blank" rel=3D"nore=
+ferrer noopener">terms
+ and conditions</a>. Use of our services constitutes acceptance of such ter=
+ms and conditions and acknowledgment of the limits of liability contained t=
+herein. A copy of the terms and conditions is available upon request from t=
+he office handling your shipment
+ or using the link above. The information in this email and any attachments=
+ is solely for business purposes, is confidential, and intended for the add=
+ressee only. Any unauthorized use, distribution, copying or disclosure of t=
+his email is strictly prohibited.
+ If you have received this email in error, please contact the sender immedi=
+ately and delete all copies. No responsibility is accepted for personal or =
+non-business related emails<br clear=3D"none">
+</p>
+</td></tr><tr style=3D"font-size:1px;color:rgb(255, 255, 255);"><td align=
+=3D"left" colspan=3D"1" rowspan=3D"1" style=3D"padding:0;vertical-align:top=
+;font-family:Calibri, Arial, sans-serif;">
+<p style=3D"margin-top:0px;margin-bottom:0px;">e2idBeDNBqfIf8nl8HCN8o28KhYS=
+cEQD<br clear=3D"none">
+</p>
+</td></tr></tbody></table>
+</td></tr></tbody></table>
+</div>
+<div id=3D"ydpbb0263fbyiv7536472473ydpcddb0f70yiv5332523993yqt05924" class=
+=3D"ydpbb0263fbyiv7536472473fag5ti7l">
+<blockquote type=3D"cite" style=3D"margin:0px 0px 0px 0.8ex;padding-left:1e=
+x;" class=3D"ydpbb0263fbyiv7536472473faw6ezzf ydpbb0263fbyiv7536472473front=
+-blockquote">
+On January 23, 2025 at 3:48 AM PST <a shape=3D"rect" href=3D"mailto:michael=
+@gazelliarthouse.com" target=3D"_blank" rel=3D"noreferrer noopener">
+michael@gazelliarthouse.com</a> wrote:<br clear=3D"none">
+<br clear=3D"none">
+<div id=3D"ydpbb0263fbyiv7536472473ydpcddb0f70yiv5332523993fae_2ci8apjo-l2x=
+dag">
+<div>
+<div></div>
+<div class=3D"ydpbb0263fbyiv7536472473fa-brh19u ydpbb0263fbyiv7536472473fag=
+4m8kb">
+<div dir=3D"ltr">
+<div dir=3D"ltr">
+<div>Good day Tom,</div>
+<div><br clear=3D"none">
+</div>
+<div>I'm copying you in with Jeremy from Dietl.</div>
+<div>They would like to arrange a day / time to visit and see the works tha=
+t are being collected so that they can provide accurate costs, and get an i=
+dea&nbsp;as to the logistics required to collect and return the works to th=
+eir warehouse.</div>
+<div><br clear=3D"none">
+</div>
+<div>Would&nbsp;you be able to work with Jeremy to schedule a time / day th=
+at's convenient for you to review the works with them?</div>
+<div><br clear=3D"none">
+</div>
+<div>I've attached the original, provisional&nbsp;list of works for referen=
+ce, but appreciate this may change slightly.</div>
+<div><br clear=3D"none">
+</div>
+<div>Michael.</div>
+<div><br clear=3D"none">
+</div>
+<span class=3D"ydpbb0263fbyiv7536472473fa-fom2gv">-- </span><br clear=3D"no=
+ne">
+<div dir=3D"ltr" class=3D"ydpbb0263fbyiv7536472473fa-chbr1p">
+<div dir=3D"ltr">
+<div style=3D"color:rgb(34,34,34);">
+<div dir=3D"ltr">
+<div dir=3D"ltr"><font size=3D"1"><b>Michael Pollard</b></font></div>
+<div dir=3D"ltr"><font size=3D"1"><b>Senior Registrar</b></font></div>
+<div dir=3D"ltr"><font size=3D"1"><b><br clear=3D"none">
+</b></font></div>
+<div dir=3D"ltr"><font size=3D"1"><b>GAZELLI ART HOUSE<br clear=3D"none">
+<br clear=3D"none">
+LONDON&nbsp;&nbsp;</b></font></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</blockquote>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</blockquote>
+</div>
+</div></blockquote><div id=3D"ydpbb0263fbyiv7536472473yqtfd17461" class=3D"=
+ydpbb0263fbyiv7536472473yqt0546883478">
+</div></div></div></div>
+            </div>
+        </div></div></body></html>
+------=_Part_914820_1967422703.1749503982388--
+
+------=_Part_914821_872468611.1749503982440
+Content-Type: image/jpeg
+Content-Transfer-Encoding: base64
+Content-Disposition: inline; filename="image957114.jpg"
+Content-ID: <utquaQhsvS1jSLvvD06L>
+
+/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcU
+FhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgo
+KCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCABCAfQDASIA
+AhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQA
+AAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3
+ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWm
+p6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEA
+AwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSEx
+BhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElK
+U1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3
+uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDqPAfh
+J/FaXrf2k1p9mKD/AFXmbt2f9oY6V1f/AAqN/wDoPt/4C/8A2dHwH/1Otf70P8np3iz4j6joviK9
+0+CztJI4GCqz7snKg9j714VGlho4eNWst/XzPtMVicxqY6ph8JLSNna0ey7ruxv/AAqN/wDoPt/4
+C/8A2dH/AAqN/wDoPt/4C/8A2dZf/C29W/58LH8n/wAadH8XNSDfvdOs2X0VmU/zNHPl/b8wdPPf
+5l/5L/kaX/Co3/6D7f8AgL/9nR/wqN/+g+3/AIC//Z1ueF/iRpmsTpbXUbWF05wodtyMfQNxz9QK
+7quulhMHWXNBX+b/AMzysTmma4WfJWlZ+kf8jyn/AIVG/wD0H2/8Bf8A7Oj/AIVG/wD0H2/8Bf8A
+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
+Yw/8OJ//2Q==
+
+------=_Part_914821_872468611.1749503982440--

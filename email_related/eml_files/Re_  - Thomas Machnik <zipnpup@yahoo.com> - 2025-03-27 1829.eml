@@ -1,0 +1,231 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a10:5c8:b0:5ec:db95:1ae4 with SMTP id p8csp366985pxt;
+        Thu, 27 Mar 2025 15:29:47 -0700 (PDT)
+X-Forwarded-Encrypted: i=2; AJvYcCV9kXPzy7V0e4uSVF+zJKDcRX8JuCvcyyLDeq5SVRqthdclt8UH3q6wL7WQXq7tI3J4sEA+C0eHO1E2@gmail.com
+X-Google-Smtp-Source: AGHT+IG59hIaBp0PH9ld1FXkAqkH6zJUCyEbqA9R03OEWlOmJMelOWXhPgHtLwhVsaJ08Vbv/PGz
+X-Received: by 2002:a17:902:ccc2:b0:223:f9a4:3f9c with SMTP id d9443c01a7336-228048239e5mr73916195ad.9.1743114587303;
+        Thu, 27 Mar 2025 15:29:47 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1743114587; cv=none;
+        d=google.com; s=arc-20240605;
+        b=JKvndIHH6GYr1MLibuhz9Jc+A7mtSqglGI4xc0ekALnhDaveEwmLX90BwYDpYZPLje
+         ACBORfxmOHVqp4ZC/sRx4RFVxzDM6c9bKNX4JilTnwuM1wAxwgU+Ev072I2vOWstwFQ8
+         HHzRMn7xS+fFwBDM5nfT/DCRGiWZgStp8Mi68zpmHhhyA7rlc05/TdPAC2ynjSLc0acw
+         20khILxZTr4kHIVq4kUBmtMwzyUX25DqOrCPPAIUYJHhjEgImXc0/98LEiLrFz+5Oclw
+         OFn2rn9jB/OWTiVx7QbsUEYq0UNEPlowZGvlS+NSMKTRHtjmdFBV/ET0pxAjRrDmJ39K
+         mHbQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:subject:references:in-reply-to:message-id:to:reply-to
+         :from:date:dkim-signature;
+        bh=oe50BeDcmoO1HwKI5l6HfpLoRjUHFgOOl4W8M3o9olc=;
+        fh=OAYkmjsE0a3PdnuRysygfV96BhPlwrHD6Gbw5Vnbjq8=;
+        b=A/ScOZIGKXfHiDg2DPKpk0WoCQ4qKov/sY4r3duISKpO/h9jwB6mFwQ8Sku3iz7zVC
+         0rFVrtCo1HoiQZ0sttn6OqNRVuRD2upbfEsyNPjdcd8UhC7Ynhq/Ija7qnzntFTDSQ5i
+         YNAWYzbqxtVIzcAMuRH+Tiqw0UPc2i97Bhz7LozfC+srt5TWmNvFm8FdV/h+ZtZMtJW1
+         se0u+1UkqdJqsonIVxR9JXhOKJBnHrn6Kmjl2/kNkypZ71mL2SPfOs5hnefPgRAF2M3B
+         RNczJuV18Frh0HyN+lbQmebGCMEp6Di49JICR9lIG2PQ2Tg47bc5Wz1j/txpFGzThHXL
+         7yYQ==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=tb45zWJ4;
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.132.42 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+Return-Path: <zipnpup@yahoo.com>
+Received: from sonic306-3.consmr.mail.bf2.yahoo.com (sonic306-3.consmr.mail.bf2.yahoo.com. [74.6.132.42])
+        by mx.google.com with ESMTPS id 98e67ed59e1d1-30516d5a18bsi1060367a91.68.2025.03.27.15.29.47
+        for <paulrcohen@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 27 Mar 2025 15:29:47 -0700 (PDT)
+Received-SPF: pass (google.com: domain of zipnpup@yahoo.com designates 74.6.132.42 as permitted sender) client-ip=74.6.132.42;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=tb45zWJ4;
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.132.42 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1743114586; bh=oe50BeDcmoO1HwKI5l6HfpLoRjUHFgOOl4W8M3o9olc=; h=Date:From:Reply-To:To:In-Reply-To:References:Subject:From:Subject:Reply-To; b=tb45zWJ4kl9/FDBjvj/cSw2Uktxws/7o9jErJPTC4Hg4xZ2K6PBfpZ1xO68BwdFt1zgt9fbCgaJVKSVAdZh4fFd0Nnwci7cywmXF3A2/vINGn4CV00bfCEonQ8FWhgCC36oxCYFVGWwyIA8EYvfehNSVtKFSs63Fg03osnWym1uyZ9eSQC8Wc9HkSAjtWmfOoofAVVQ4OWYJIUid2vvIKNRLTfDgQ8c4hr3Uib6ojKLxw9+SGACT+QOzn4hSE7t401QxOfZ4rnU80JS2vfACUKpG8/kGZOksDGlcUuwZC0Wsz5ZCVnFbuOqlvXtyjbGUiHn8wT0gqG7b2pUML6P3EQ==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1743114586; bh=HrmZqIyVL1oj2eFXiv/6hn47Om3RnCgIixR9IzAIaJv=; h=X-Sonic-MF:Date:From:To:Subject:From:Subject; b=FD+zQRHXBesieUEpNP1zTfoGyovfCqk3hikYzC1Pf0a1vywKAf4kkER4NiDnltepCJEcFFeCkCgfixeGjXD13POI54k7aN6PIDxpc5fnc85UoaChms2vSuHUg3TubjH1/Y5J49wz27k/q3LUZooMU4J8kPOe4L2gRdvQNlwhsqzHuk0KI4pfXn9zci+0t3LaKKsloWTx1DpBA7u/l3xVqr0poO9a/dy0RoKYJVh+L1sjeibsrLiYGoASyV9W8tq/kmFaCmqreFgtcTDX7Mk35/pwiGBWyxUh69TlhhTlBQf3dCDLx3egTriR7/h2ZcuIiktNXzlRd2CBRIHHyK52Kw==
+X-YMail-OSG: iJGCi50VM1ljQMi1X2E7hnfb9cGVyBh.cfCLQFmmBeija8UOS6_8.pUL6m5VcmZ
+ ShVu6b010IqxpHqbdUPE.OgKK6MZR5RLQajAk0YYqCVUDjcpVrOlrxiNtf008vvKJlzV1Ni_pKge
+ csikaILUVC_PAinIFnA1qnGpBVM2Pzc.KhdcZoLCXfzCURpBy3I3PKHlzETdgg.0y0yXJTRmKARv
+ uN5ZI2JKSbcMofAFg0NhZtbcqM_OZ3iqEHdC_ziqF7_tj_EgV17jGjx07SYQetXgqp_M56do.ACL
+ FobGYTmBpd_fdhq0sCyyMy04qIxuTMvEs9_Clv3TAhAo.nETFdwKwkpxBfl2Q9ulsJ1KiT.F_uIp
+ 5XMQ5b3qNauAtApVA8_FDd0YldV.iw1_tBPKdFSDJoGoblBFJVgLPBWbNU6_P.MFYVC4s3du8bfG
+ EE_v_wMjtDwtG4e5qAbfile2Gg.RKmclrs1sEewOJ7sPj.RBV7UTCkZJvcCMFUxwL8zyX3JLgGL_
+ YtM7GAbQzkQ9KmKfS92IVjTbIjMJQ2jgklsjCJ96P8cBvLar7Le7.lctEM.fa3AoLtHIsmoCslbY
+ qojAOsA9MP4rxuJjGK_CpPSTG5zU3rzbfiGZTNEsomiGt1beU6WVBVSVBHovSGCpiKG2s4_ApzvR
+ KrzUK1MIrWvWffEFc5QQsLyfte9lH8iNcUDCUF08Jam1ojQSENhnifS9MGZJXo2uq224aQh.BWmy
+ 3sj7BwdVZB_xxKqR0E9WrHs.E98yPfT2gzivQFd4gx03szTz27bj.09gjrn1gCjZkfvSV8IskwbE
+ 5AmlstPyNENyLKZ670QPRV1Y3claognNk3hcpmQBerPFitllOHEkroO.MRg.dXd7empSyGSOz.5a
+ rw2a0x6kBqUfAfpNKKfBKeSvNMerKd5AZ6EyJDU_nhsliilvRZ0nBMuLJKJTBrE3m.tAo6pi.Btx
+ as11SYBElvow6mXjIY4567fp13T4zsVJAnRICqbqP6Davzkke33pWDytHqQgog46p7RsDwoy_ID_
+ RNYn_KgTDeCEkWHNboFWm53A.95Sp.VqPl0q3.JjNCkyF9CqdHYsjnoLmkphVe7SYU3_beswgaTs
+ MAZfhDNYsLUi7SSibsuLyFlwe8sY9Yu76sUSaUnTMk4pPu6VWYjBC8YGoNWTdVIX9DZNbRsadt_c
+ b27u0Ip6qDn8GlZkRtQfp3NJXeJd_x5HGGswzGsheHllCbKz9ermGMHbyL5FPi6FchCxGtt7Lbdl
+ _HSl3eIwhReUAuUC6iRyq224VL6jheTRXx5sH1zwHOOHFIKRlYI1ooyTHOGWkJicvGY23S8G4cwp
+ qhlys.RnPWmlsmMa5vvh4AGceKzr7Cd46eIjj1.06XNSfbay3zvhvtWZFQgzerJEzXpVZZOluzuB
+ e76hDM8KVy_0MTqaZ.6z_c2ciw.gNblYC4qUVnwKbPWZs7TqddHh.byF73iHFr3mdcjuUzvMUkrx
+ lZ1E57VSeqDVxml7WndJDTwVatQkHaYR84Ru4U1C.FcaokYfUsERWbH7NUPjYjDztagDdrohmfM6
+ 5wVIQtxxPLcbBPIJhlYakeAW_d.cXsumTzfFVAj_hOWDzy_NT6OfzxUxSsjoAT.TW1VpXvKcxZ9f
+ ljo9Xfkh3mJ1BhCMgPsLKWvXWwT5SVVpMxiRwNc1MAyk22bPG8K3vtnAdy4abdLjmTp.D039dVh3
+ OYoSMHsG.2gpcNrXCUmhmDj88CAmOH6jCUxrkMCu_.dLnrKopGD82mjcHiZN4KaC0AFa05RJExOU
+ rvjVw6LKBMp2poUCl9D9Q4gGBYRQpTOfW7xv_6mOvqyCP3U.YW2mUguY0Mu3utaYkHWe8HoXGU7O
+ mZfT.hCEDdHKDAfiV7a9xQpIbfrK5DCv5tbHWN40DJU2OJoq4yG5TNVGs6B1B45gKaaq4P_g1y3t
+ rtLY_L9gmdWZQBuBKKQZWERZ2lXpcNXiF9UqrLyxvh4eLNWrJq1C4vZuBTMhaGI.DGHqkkLJ5hyH
+ Bc9PFTMQEMQ_eGJ9Ugy.5w2FFogAx_heo47_Mj7xYZP5TIocU7gh9ZFSciB8cRMOSXtqxQMroctE
+ f1StTwBiN2QkGL8WYxn_fM6e0TwOBHHvcmRvwqfO5BvYrcg1dZ_LwpiYeGhS0gJRLfTHtovpZIHs
+ URInueWMeylhDd88S4enrB8u_lXAxDx6YONZ0cudKCoO93LIYO0uC7U1i9zylrJu4lmw5jqDT1Vu
+ k67cYLPWRULYPWY2Sdkr.FCorFGIUHjam_fXVo3NhwwA43RCEgSP4c3WenzLvnkpDAhCbgnJlKqK
+ BkbfnjNELfNogzQ3exH0xFutfbf6ojJgt2RKdd9VSvMNqT.YkaAfT_HkIcN1AfTujwrW06g--
+X-Sonic-MF: <zipnpup@yahoo.com>
+X-Sonic-ID: 58d1e8fb-5ba9-492e-b45b-f87ea78ce08f
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic306.consmr.mail.bf2.yahoo.com with HTTP; Thu, 27 Mar 2025 22:29:46 +0000
+Date: Thu, 27 Mar 2025 22:29:45 +0000 (UTC)
+From: Thomas Machnik <zipnpup@yahoo.com>
+Reply-To: Thomas Machnik <zipnpup@yahoo.com>
+To: Sara Nishi <nishisara@gmail.com>, Paul Cohen <paulrcohen@gmail.com>
+Message-ID: <969449665.1499155.1743114585193@mail.yahoo.com>
+In-Reply-To: <CAKjPZkFuOLkyPtiVt1AQmTnYkVX9JTNiEXDWCUvnDD3eVeWz3Q@mail.gmail.com>
+References: <CAKjPZkG1mtU16eYLKx-ify6-6dK6pzJzOi4dZsL-UmZV0Sa=8w@mail.gmail.com> <CAB5T6BknE8OHDZx8gLDAyskQK+v=OoBqoa0tFBa+sATppzjKOA@mail.gmail.com> <CAKjPZkFuOLkyPtiVt1AQmTnYkVX9JTNiEXDWCUvnDD3eVeWz3Q@mail.gmail.com>
+Subject: Re: Re:
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_1499154_599578827.1743114585192"
+X-Mailer: WebService/1.1.23533 YMailNovation
+Content-Length: 7882
+
+------=_Part_1499154_599578827.1743114585192
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+ Hi Paul,=C2=A0I don=E2=80=99t see a record of us receiving this. I also do=
+ not see any FEDEX/shipping tracking number and any of the emails I have ac=
+cess to.=C2=A0Tom
+    On Thursday, March 27, 2025 at 07:35:18 AM PDT, Paul Cohen <paulrcohen@=
+gmail.com> wrote: =20
+=20
+ Hi Sara and Tom, just following up on this:=C2=A0 Did we ever receive nega=
+tives from Sasaki-san?=C2=A0 Thanks, --P
+______________________________
+
+Paul Cohen,=C2=A0=C2=A0ProfessorSchool of Computing and InformationUniversi=
+ty of Pittsburghpersonal webpage
+______________________________
+
+On Sun, Jun 5, 2022 at 7:42=E2=80=AFPM Sara Nishi <nishisara@gmail.com> wro=
+te:
+
+That's great!
+I'll let you know once they arrive.=C2=A0It looks like Mr. Sasaki speaks ve=
+ry good English, but if you think it would be more appropriate to thank him=
+ in Japanese, I'd be happy to prepare a letter!=C2=A0
+
+Sara
+
+On Sun, Jun 5, 2022 at 12:28 PM Paul Cohen <paulrcohen@gmail.com> wrote:
+
+A friend of Ed's found what looks like the color separation negatives for p=
+rinting the First AI Coloring Book.=C2=A0 No idea how they ended up in Japa=
+n, but Ed thinks it happened around the Tskuba exhibition.=C2=A0 Sasaki, Ed=
+'s friend, somehow got them and has kept them, and is now I suppose getting=
+ on and downsizing. So he's going to send them to us.
+Sara, I might need your help writing the right kind of thank you note.=20
+
+Thanks, --P
+______________________________
+
+Paul Cohen,=C2=A0=C2=A0ProfessorSchool of Computing and InformationUniversi=
+ty of Pittsburghpersonal webpage
+______________________________
+
+ =20
+------=_Part_1499154_599578827.1743114585192
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head></head><body><div class=3D"ydp3d5d5ae5yahoo-style-wrap" style=
+=3D"font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px=
+;"><div id=3D"ydp3d5d5ae5yiv4522234724"><div><div style=3D"font-family:Helv=
+etica Neue, Helvetica, Arial, sans-serif;font-size:16px;" class=3D"ydp3d5d5=
+ae5yiv4522234724ydpafc13261yahoo-style-wrap"><div></div>
+        <div dir=3D"ltr">Hi Paul,&nbsp;</div><div dir=3D"ltr" data-setdir=
+=3D"false">I don=E2=80=99t see a record of us receiving this. I also do not=
+ see any FEDEX/shipping tracking number and any of the emails I have access=
+ to.&nbsp;</div><div dir=3D"ltr">Tom</div><div><br clear=3D"none"></div>
+       =20
+        <div id=3D"ydp3d5d5ae5yiv4522234724yqt79550" class=3D"ydp3d5d5ae5yi=
+v4522234724yqt3421337329"><div id=3D"ydp3d5d5ae5yiv4522234724ydpafc13261yah=
+oo_quoted_3495618114" class=3D"ydp3d5d5ae5yiv4522234724ydpafc13261yahoo_quo=
+ted">
+            <div style=3D"font-family:'Helvetica Neue', Helvetica, Arial, s=
+ans-serif;font-size:13px;">
+               =20
+                <div>
+                    On Thursday, March 27, 2025 at 07:35:18 AM PDT, Paul Co=
+hen &lt;paulrcohen@gmail.com&gt; wrote:
+                </div>
+                <div><br clear=3D"none"></div>
+                <div><br clear=3D"none"></div>
+                <div><div id=3D"ydp3d5d5ae5yiv4522234724ydpafc13261yiv71856=
+72208"><div><div dir=3D"ltr"><div><div style=3D"font-size:small;" class=3D"=
+ydp3d5d5ae5yiv4522234724ydpafc13261yiv7185672208gmail_default">Hi Sara and =
+Tom, just following up on this:&nbsp; Did we ever receive negatives from Sa=
+saki-san?&nbsp; Thanks, --P</div><br clear=3D"all"></div><div><div dir=3D"l=
+tr" class=3D"ydp3d5d5ae5yiv4522234724ydpafc13261yiv7185672208gmail_signatur=
+e"><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div d=
+ir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr">____________________=
+__________<br clear=3D"none"><br clear=3D"none">Paul Cohen,&nbsp;&nbsp;Prof=
+essor</div><div dir=3D"ltr">School of Computing and Information</div><div d=
+ir=3D"ltr">University of Pittsburgh</div><div dir=3D"ltr"><a shape=3D"rect"=
+ href=3D"https://paulrcohen.github.io/" rel=3D"nofollow" target=3D"_blank">=
+personal webpage</a><br clear=3D"none">______________________________</div>=
+</div></div></div></div></div></div></div></div></div></div></div></div><br=
+ clear=3D"none"></div><br clear=3D"none"><div id=3D"ydp3d5d5ae5yiv452223472=
+4ydpafc13261yiv7185672208yqt77580" class=3D"ydp3d5d5ae5yiv4522234724ydpafc1=
+3261yiv7185672208yqt0766451340"><div class=3D"ydp3d5d5ae5yiv4522234724ydpaf=
+c13261yiv7185672208gmail_quote ydp3d5d5ae5yiv4522234724ydpafc13261yiv718567=
+2208gmail_quote_container"><div dir=3D"ltr" class=3D"ydp3d5d5ae5yiv45222347=
+24ydpafc13261yiv7185672208gmail_attr">On Sun, Jun 5, 2022 at 7:42=E2=80=AFP=
+M Sara Nishi &lt;<a shape=3D"rect" href=3D"mailto:nishisara@gmail.com" rel=
+=3D"nofollow" target=3D"_blank">nishisara@gmail.com</a>&gt; wrote:<br clear=
+=3D"none"></div><blockquote style=3D"margin:0px 0px 0px 0.8ex;border-left:1=
+px solid rgb(204,204,204);padding-left:1ex;" class=3D"ydp3d5d5ae5yiv4522234=
+724ydpafc13261yiv7185672208gmail_quote"><div dir=3D"ltr">That's great!<br c=
+lear=3D"none">I'll let you know once they arrive.&nbsp;<div>It looks like M=
+r. Sasaki speaks very good English, but if you think it would be more appro=
+priate to thank him in Japanese, I'd be happy to prepare a letter!&nbsp;<br=
+ clear=3D"none"><br clear=3D"none"><div>Sara</div><div><br clear=3D"none"><=
+/div></div></div><br clear=3D"none"><div class=3D"ydp3d5d5ae5yiv4522234724y=
+dpafc13261yiv7185672208gmail_quote"><div dir=3D"ltr" class=3D"ydp3d5d5ae5yi=
+v4522234724ydpafc13261yiv7185672208gmail_attr">On Sun, Jun 5, 2022 at 12:28=
+ PM Paul Cohen &lt;<a shape=3D"rect" href=3D"mailto:paulrcohen@gmail.com" r=
+el=3D"nofollow" target=3D"_blank">paulrcohen@gmail.com</a>&gt; wrote:<br cl=
+ear=3D"none"></div><blockquote style=3D"margin:0px 0px 0px 0.8ex;border-lef=
+t:1px solid rgb(204,204,204);padding-left:1ex;" class=3D"ydp3d5d5ae5yiv4522=
+234724ydpafc13261yiv7185672208gmail_quote"><div dir=3D"ltr"><div style=3D"f=
+ont-size:small;" class=3D"ydp3d5d5ae5yiv4522234724ydpafc13261yiv7185672208g=
+mail_default">A friend of Ed's found what looks like the color separation n=
+egatives for printing the First AI Coloring Book.&nbsp; No idea how they en=
+ded up in Japan, but Ed thinks it happened around the Tskuba exhibition.&nb=
+sp; Sasaki, Ed's friend, somehow got them and has kept them, and is now I s=
+uppose getting on and downsizing. So he's going to send them to us.</div><d=
+iv style=3D"font-size:small;" class=3D"ydp3d5d5ae5yiv4522234724ydpafc13261y=
+iv7185672208gmail_default"><br clear=3D"none"></div><div style=3D"font-size=
+:small;" class=3D"ydp3d5d5ae5yiv4522234724ydpafc13261yiv7185672208gmail_def=
+ault">Sara, I might need your help writing the right kind of thank you note=
+. <br clear=3D"none"></div><div style=3D"font-size:small;" class=3D"ydp3d5d=
+5ae5yiv4522234724ydpafc13261yiv7185672208gmail_default"><br clear=3D"none">=
+</div><div style=3D"font-size:small;" class=3D"ydp3d5d5ae5yiv4522234724ydpa=
+fc13261yiv7185672208gmail_default">Thanks, --P<br clear=3D"all"></div><div>=
+<div dir=3D"ltr"><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"lt=
+r"><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr">______=
+________________________<br clear=3D"none"><br clear=3D"none">Paul Cohen,&n=
+bsp;&nbsp;Professor</div><div dir=3D"ltr">School of Computing and Informati=
+on</div><div dir=3D"ltr">University of Pittsburgh</div><div dir=3D"ltr"><a =
+shape=3D"rect" href=3D"http://www.pitt.edu/~prcohen/" rel=3D"nofollow" targ=
+et=3D"_blank">personal webpage</a><br clear=3D"none">______________________=
+________</div></div></div></div></div></div></div></div></div></div></div><=
+/div></div></div>
+</blockquote></div>
+</blockquote></div></div>
+</div></div></div>
+            </div>
+        </div></div></div></div></div></div></body></html>
+------=_Part_1499154_599578827.1743114585192--

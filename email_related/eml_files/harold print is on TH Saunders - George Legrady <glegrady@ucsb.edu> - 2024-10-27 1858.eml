@@ -1,0 +1,95 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a10:27b4:b0:5ad:6c17:f336 with SMTP id ia52csp1148409pxb;
+        Sun, 27 Oct 2024 15:58:52 -0700 (PDT)
+X-Received: by 2002:a17:902:f60d:b0:20c:ad30:6b97 with SMTP id d9443c01a7336-210c6c6c57cmr93868785ad.38.1730069932605;
+        Sun, 27 Oct 2024 15:58:52 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1730069932; cv=none;
+        d=google.com; s=arc-20240605;
+        b=ORziZPupWycxK51lRemUZoMNsk6DWqo1+2anIMgSrmrKLwxqn/1oZyZRoeYyleCNkk
+         0XrPccHesE5sCWH67GqOf+IpsbMvDami33imeJu8JleBtz1waJDO6sh+f7EzpA60hmCV
+         XdGS0ZIaomj+wFEoC452QD1MxCVbtdDZLpIQoaXensgwMGIfJWuXLFTkVrJRplNKTmH2
+         GadUPHMQCkL/vQBR6k+UmJR//1MhRDkkR01Idw9uTAloQIlhxMF2+ZZCraToXqcy/D+h
+         ZtPWVBtVLf71NKqUIPOFqVahuaEPWvcQiGNb8tdZr+s15/K3kkwSdBz8SyUJd8A/+VRY
+         S4hA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:message-id:subject:date:mime-version:content-transfer-encoding
+         :from:dkim-signature;
+        bh=5rfHnabmSbBH782WVD3BwI6vB7lxDZN0w4KaxbDvo3A=;
+        fh=mA22uDRYE079rjPITdWFVDLmPfMsyhgds+K7QyPyjXg=;
+        b=MA2gP9mGQKZAfpR5LifrMuSdaKNEpoWHwrBKp5kU+VfINPPxPY/Ouoc530vjaK19Ou
+         iC1MpfZCM/8Nwz9ae/cL6Is3DZwiO6+WZeQwQFd2gB3eG1zaRopo6RyKTbghP2BGVa3w
+         DHXRVoaX01syXCO6fu9edAi065izoYHQVx6KvM4SUZUQ9klQs17/dRioRJ+WM47C3EPj
+         8zCTk9ZYocKkesvc3tmI2+3Ouf4VVBlcGQgSMwL7gbc8Vh/V8Kqhfm+gjFFy3baeD7+6
+         g0YWW8gKcTCPMZdqvgHKKT+FrQxajwWZyq5BF/OvCDdivoWmrYVyueGh4O1DmmimPn6m
+         uXjA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@ucsb.edu header.s=google header.b=HS2n2KdY;
+       spf=pass (google.com: domain of glegrady@ucsb.edu designates 209.85.220.41 as permitted sender) smtp.mailfrom=glegrady@ucsb.edu;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=ucsb.edu;
+       dara=pass header.i=@gmail.com
+Return-Path: <glegrady@ucsb.edu>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id d9443c01a7336-210bbf235ecsor33934495ad.4.2024.10.27.15.58.52
+        for <paulrcohen@gmail.com>
+        (Google Transport Security);
+        Sun, 27 Oct 2024 15:58:52 -0700 (PDT)
+Received-SPF: pass (google.com: domain of glegrady@ucsb.edu designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@ucsb.edu header.s=google header.b=HS2n2KdY;
+       spf=pass (google.com: domain of glegrady@ucsb.edu designates 209.85.220.41 as permitted sender) smtp.mailfrom=glegrady@ucsb.edu;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=ucsb.edu;
+       dara=pass header.i=@gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ucsb.edu; s=google; t=1730069932; x=1730674732; dara=google.com;
+        h=to:message-id:subject:date:mime-version:content-transfer-encoding
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=5rfHnabmSbBH782WVD3BwI6vB7lxDZN0w4KaxbDvo3A=;
+        b=HS2n2KdYxL7GSg12r31Q2lUbP7ndmZzH9GnRX2tAeQrp5nHK54c+BQZhNUsKzQmh1g
+         E4xvTH4kNjbDUxkBcotsnYxdpo5HQDDpZtYft5CDQGx08bBauVL4DyYsyVX+83CNSvn6
+         A++8fuuB59jCB5nsIsejM6jbFnZZ1aaY5A4hNAELPKQpMsZ33cSQvDdF2vyqt7NSDtA9
+         bbx2sQvBZBAvBqx45g0PiCcMFMBi0sx0F8Z830hqYJe7FdYdYizVgByzAzsJIahfgVeQ
+         lD8DtZzIXyAF1oLt+0izOMiuW2uxs8PEJRXUSpUDMPSUUDuPQ9rq9IqTmxpwDCsPQ/w9
+         j0XA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1730069932; x=1730674732;
+        h=to:message-id:subject:date:mime-version:content-transfer-encoding
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=5rfHnabmSbBH782WVD3BwI6vB7lxDZN0w4KaxbDvo3A=;
+        b=qkJhulZjEV29GXOzx1HWEUXPp9zrwp7RV+KhCx8rfeFfVHN7Vl80V3MPitMWKBXMWk
+         9+PytPlNGlMq3NuVunoB/s/0oP5SAO/KB4OYi+CaamykJteBN40Pg7ajo3Hbvegm81zU
+         DR7dmhmZMZdrzIff1TPItQvWuUkrw25JUOiFz7uC7P9B4z/bJBW+FcNafvDEC9g5QVMO
+         PY+vR/TKuAcZxVdOptDK060yiLsFAz9/RvDRLVBcvQPhn99/hA9upyeY5Eb3lrRGKTH3
+         /k7315DPZyaARR5MhxHL9PB7ebwxnKZfeVmlwYZPTPONmHK3fRFh0wW04q8/q9Bp+KBc
+         wdnw==
+X-Gm-Message-State: AOJu0Yw7nKPGU2oO2jjybEXMA+OhnrEOAjg/x8fZLEb/0nESvSFxaDt6
+	jMNdyHj3c2PyTQyaHj6lSZHh9TgLhmH22bB4CFtC9o+1ThrY2E84DfdHv5xcOyrPPihv6NuYky7
+	z
+X-Google-Smtp-Source: AGHT+IGk+KsdVzVWpghavHYuT09l643YmHec5kj+ypJW0Tv4Do8sPy/dczpOh2TarWIAJfG9SZduMw==
+X-Received: by 2002:a17:902:e5c2:b0:20c:a174:f77 with SMTP id d9443c01a7336-210c6c1cf0amr85305315ad.32.1730069931841;
+        Sun, 27 Oct 2024 15:58:51 -0700 (PDT)
+Return-Path: <glegrady@ucsb.edu>
+Received: from smtpclient.apple (ip68-6-95-119.sb.sd.cox.net. [68.6.95.119])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-210bbf6dd23sm40036295ad.92.2024.10.27.15.58.50
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Sun, 27 Oct 2024 15:58:51 -0700 (PDT)
+From: George Legrady <glegrady@ucsb.edu>
+Content-Type: text/plain;
+	charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3776.700.51\))
+Date: Sun, 27 Oct 2024 15:58:39 -0700
+Subject: harold print is on TH Saunders
+Message-Id: <791272D9-B77F-4F95-9B77-A88CE58D1AE9@ucsb.edu>
+To: Paul Cohen <paulrcohen@gmail.com>,
+ Thomas Machnik <zipnpup@yahoo.com>
+X-Mailer: Apple Mail (2.3776.700.51)
+
+hi Pal and Tom,
+
+Maybe you already know this but the paper that Harold=E2=80=99s image =
+was printed on is made by Th Saunders, a beautiful material: =20
+
+=
+https://www.stcuthbertsmill.com/st-cuthberts-mill-paper/saunders-waterford=
+-watercolour/range.asp=

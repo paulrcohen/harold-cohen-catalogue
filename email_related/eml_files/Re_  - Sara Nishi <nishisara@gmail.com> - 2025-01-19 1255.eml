@@ -1,0 +1,156 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a10:e88f:b0:5c7:f970:fbca with SMTP id gl15csp1570091pxb;
+        Sun, 19 Jan 2025 09:55:21 -0800 (PST)
+X-Received: by 2002:a05:620a:2485:b0:7b6:d435:ccf7 with SMTP id af79cd13be357-7be6328903amr1851013585a.50.1737309320973;
+        Sun, 19 Jan 2025 09:55:20 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1737309320; cv=none;
+        d=google.com; s=arc-20240605;
+        b=B4HK+7F7E0KoL6zlOgpxO1u/0FynIRRKqTUfTZTqCLKrGvF0JqongrChlRGcrRB24G
+         x+bhGx46Fn8kSXzBZpXSlXgCwP5XQghPGBLmGe7F5Xnxn2MieiPvhSW+7poBMWeKSlF6
+         2LSRv1ks6qU4xrhD+8tMEnmc+CALIUVhk5Q1SRL3nWa9pyV5lParuXg04VlSEmushg4B
+         TntplybZTDNzBjbZ/ZZMhnUL+8CTbCBBPOfpA6p3nfJppbp5L+5kSQr/dee0aSAlmmUL
+         BOXiFE7rcBQSQKyNBos0GmVcbp3UszmclWaRA/JiUbHpnkz5vmqYLMXAJqnTzIhF4+jK
+         FXYg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=Wibs5yrkBcG01LIZ0k7LEOYgkp+z3wWcJ+NFN2YxFQE=;
+        fh=JMOXRmlXu4SCOxOwddNRpSsdR76rxQriS+ObO5ozOn0=;
+        b=ARPNZokwu2nrRexlZDqCpGKyEYfLK3W4XlTvmM7xDp/sKeRWYMqqNLaaBFDBvrzUGV
+         IBYqbveisnXC8/3GgyLjLwBN+UcpjT2LbGfTk8l6R0yi4M15k5CT4e9zv58r69iWNJy+
+         iM/HTP4ONJRTVvKIn8BwX+4ISHUL6/6lmQrEsKkXOD+Ye0gEsa70VZpTzXg70oh3mHu6
+         xPaDwMi3QPAZUcJT9VBTZm1nKPg+zzPIhgIDsnDOrHm0Mjgoc1D1mk84XVMVHt700Asp
+         I6EiCX9Ev3v0SUaNESITqs+r5nVXCnhqY8J70rzQcZl76bUFvnXzyJbtwQPqePnbMgZR
+         hroQ==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20230601 header.b=gHt4O+C7;
+       spf=pass (google.com: domain of nishisara@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=nishisara@gmail.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com;
+       dara=pass header.i=@gmail.com
+Return-Path: <nishisara@gmail.com>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id af79cd13be357-7be614db46csor560463585a.16.2025.01.19.09.55.20
+        for <paulrcohen@gmail.com>
+        (Google Transport Security);
+        Sun, 19 Jan 2025 09:55:20 -0800 (PST)
+Received-SPF: pass (google.com: domain of nishisara@gmail.com designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20230601 header.b=gHt4O+C7;
+       spf=pass (google.com: domain of nishisara@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=nishisara@gmail.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com;
+       dara=pass header.i=@gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1737309320; x=1737914120; dara=google.com;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=Wibs5yrkBcG01LIZ0k7LEOYgkp+z3wWcJ+NFN2YxFQE=;
+        b=gHt4O+C7hcfQtLa3/pZgbF49szDIrgR9ifArGgEJDamZYUdj9ysUfyIZBgpN8Zl0r3
+         nUTMSTxXjvXfhOMrKWm1UHtqXq1LiHHU/Xb2iB2Z4OK0fdRFtmLl22euXtZtPXoQw79l
+         yC7JY736OHnLNMW2wYBtSxZw3+mqMJ/An38kBBn2Lk5YSz4i/iUq8cSoZOqxOkkVCZtb
+         QerffuONZQ7D2x+mjpy0bBoIuGN6UnlMLI4eljaXQVeMAp1XB04gKUIYYzL/CYbTB70I
+         M4571CehvO57CEKu78me8fSab68nHtZykozFbqK8iqCE7tkZsP0DDiY6ZlUsUpf5Fvl/
+         bmXg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1737309320; x=1737914120;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Wibs5yrkBcG01LIZ0k7LEOYgkp+z3wWcJ+NFN2YxFQE=;
+        b=Al7u+pL/Cgm5b7NWOHwZyBtlLM+ZU0gwzPsgKlcUkT7Fn5MTsWBmTQzbZWnl50vQxJ
+         pfYqLHDWn/iPqMl6Fqn+3CxzzYhB4BTG2sS3P9ul1OFli5R70BWP6Uajjcp1osq+xR7Y
+         zFD++KE4Fiv9Ksu5YbPFIGfUopedjtHdLsMdBPlcEj5xFOPxGnWgSBSE3sh9cB71ICEL
+         h7KuDGqaTumETQrUQBBVHRQeEuC50WqR8U2kXYQC7szxofMofjbSVw2Ni9xJQLnjGJiP
+         WDGjGJv1lQe8NPj5iCpMduVcsbLIR+7rvGOhuEux7PvP3aq+ADt4hTmq3ZMvZPXYM2wu
+         gMNQ==
+X-Gm-Message-State: AOJu0YyTpjeKO++QIf9VxM0GdpT9M9G/Tpmyt7uvBz0jIa34GPPoR+0i
+	fL0IJU9Xv+cEghR2bT8Pj87trpSiPIJFPCXfuyPWaTvi7HDNRyBeLRIL3RSGkueO3cEAUPpPuk1
+	ayD9Ec2+UBBXapI92KUJjBPQ0PzRyAQ==
+X-Gm-Gg: ASbGnctCZ7rxBstKcgkjjpmIqFlWufszKLYRDsxUJlEGGzuWC94+dLD7GblWTkcMROE
+	RQoQEi91wQ2iy6sUWN/cIEWe7/HaALMqfjAKVDFcRY19Ux1w139/RRgcYrEBWQfbN+KCcWG1GKv
+	lIv/0UtrVJ
+X-Google-Smtp-Source: AGHT+IGwRwKmbvH41gXaYe+AqpRbREEknj2g1xiLUgbPdr4AJhG4VKUq7ATZ3WfgP6tbcqFJ4q1h5/Ayom/RHueysNg=
+X-Received: by 2002:a05:622a:18a6:b0:46c:77bc:ce57 with SMTP id
+ d75a77b69052e-46e12b7646bmr152132481cf.36.1737309320197; Sun, 19 Jan 2025
+ 09:55:20 -0800 (PST)
+MIME-Version: 1.0
+References: <CAKjPZkG8WVUAWQ90DrBJ7_sKQcTN+4VbgDg+UB462=fWOmt+Cg@mail.gmail.com>
+In-Reply-To: <CAKjPZkG8WVUAWQ90DrBJ7_sKQcTN+4VbgDg+UB462=fWOmt+Cg@mail.gmail.com>
+From: Sara Nishi <nishisara@gmail.com>
+Date: Sun, 19 Jan 2025 09:55:10 -0800
+X-Gm-Features: AbW1kvbAJZWGL9ml0MPPu8IfCbd91DEYNio3QeL9VFrjufPLlZRZyTAGOEUwJjU
+Message-ID: <CAB5T6B=31i+xYi9+KoXJ3y6e4U05TM2yCtz2Jg4Qmo2U65ZSSQ@mail.gmail.com>
+Subject: Re:
+To: Paul Cohen <paulrcohen@gmail.com>
+Cc: Thomas Machnik <zipnpup@yahoo.com>
+Content-Type: multipart/alternative; boundary="000000000000e53a9a062c12d83d"
+
+--000000000000e53a9a062c12d83d
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Happy New Year, Paul!
+Hope 2025 is off to a good start for you despite everything that's about to
+happen.
+
+Thank you for the card information. I adjusted the payment info on the
+Verisart account.
+I regret to say I have not been keeping up with HCT business, and I am not
+sure if the Verisart account for the trust is serving any purpose at this
+point.
+It is still charging $29.99 per month.
+
+Please let me know if there is anything I should do (like send you the
+password to access the account)!
+
+Best,
+Sara
+
+
+On Mon, Jan 13, 2025 at 7:31=E2=80=AFAM Paul Cohen <paulrcohen@gmail.com> w=
+rote:
+
+> Hi Tom and Sara, Fidelity sent me a new card for the Trust account.  The
+> following three messages contain all the relevant info.  Thanks!  --P
+>
+> ______________________________
+>
+> Paul Cohen,  Professor
+> School of Computing and Information
+> University of Pittsburgh
+> personal webpage <https://paulrcohen.github.io/>
+> ______________________________
+>
+
+--000000000000e53a9a062c12d83d
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Happy New Year, Paul!<div>Hope 2025 is off to a good start=
+ for you despite everything that&#39;s about to happen.</div><div><br></div=
+><div>Thank you for the card information. I adjusted the payment info on th=
+e Verisart account.</div><div>I regret to say I have not been keeping up wi=
+th HCT business, and I am not sure if the Verisart account for the trust is=
+ serving any purpose at this point.=C2=A0</div><div>It is still charging $2=
+9.99 per month.=C2=A0</div><div><br></div><div>Please let me know if there =
+is anything I should do (like send you the password to access the account)!=
+</div><div><br></div><div>Best,</div><div>Sara</div><div><br></div></div><b=
+r><div class=3D"gmail_quote gmail_quote_container"><div dir=3D"ltr" class=
+=3D"gmail_attr">On Mon, Jan 13, 2025 at 7:31=E2=80=AFAM Paul Cohen &lt;<a h=
+ref=3D"mailto:paulrcohen@gmail.com">paulrcohen@gmail.com</a>&gt; wrote:<br>=
+</div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;b=
+order-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><d=
+iv><div style=3D"font-size:small" class=3D"gmail_default">Hi Tom and Sara, =
+Fidelity sent me a new card for the Trust account.=C2=A0 The following thre=
+e messages contain all the relevant info.=C2=A0 Thanks!=C2=A0 --P<br></div>=
+<br clear=3D"all"></div><div><div dir=3D"ltr" class=3D"gmail_signature"><di=
+v dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"=
+ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr">__________________________=
+____<br><br>Paul Cohen,=C2=A0=C2=A0Professor</div><div dir=3D"ltr">School o=
+f Computing and Information</div><div dir=3D"ltr">University of Pittsburgh<=
+/div><div dir=3D"ltr"><a href=3D"https://paulrcohen.github.io/" target=3D"_=
+blank">personal webpage</a><br>______________________________</div></div></=
+div></div></div></div></div></div></div></div></div></div></div></div>
+</blockquote></div>
+
+--000000000000e53a9a062c12d83d--

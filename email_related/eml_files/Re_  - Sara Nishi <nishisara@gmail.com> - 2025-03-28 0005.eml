@@ -1,0 +1,248 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a10:5c8:b0:5ec:db95:1ae4 with SMTP id p8csp483583pxt;
+        Thu, 27 Mar 2025 21:05:42 -0700 (PDT)
+X-Received: by 2002:a05:622a:4c0a:b0:477:c89:3813 with SMTP id d75a77b69052e-4776e0726bbmr78633081cf.9.1743134742529;
+        Thu, 27 Mar 2025 21:05:42 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1743134742; cv=none;
+        d=google.com; s=arc-20240605;
+        b=Hr8uL/DqgFKWTy5CtH0Xmyyg6hxtD5/7hxQPaQP35k2BQBs2nzMumy1ioeXSCnUksP
+         dRq+C4Rtm+3b8Z4GZnnng2Qb387428m6JIE/Sv2M+MKX+Y7i2BE6iMEPJAbcG5GSNRJI
+         NahYO4p+q39A7n0oHzk0I91poEb5M1vQvNZKPpRMdHqvNuNutagUMEpLqn7aqVL6LqxK
+         y1YMC8Tinqv4/E6/SJCHDrAgfQ6n0vPPXMlsRFqsb0rD3NJesHUeXxuN+AmKfkvDP3co
+         O3CYkjxe/hY0U922nj42DHthp/YQqyUUUngsnkx19iaKXW7XHibj/7rzfOcxa83PWtWG
+         1saA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=v+HgXj+BNhqrwRLBnTvTTqjFl3sFpOgPi4y26UG7/Zk=;
+        fh=3msxlB5Rblv9jjqEdsabgib1afL6bm1FbmGjCbPN4XM=;
+        b=Wb7LIFKNHOKVulOtGIl0d2OZ9Ea7UJr2N7gROjYvpaXaBdeoFURYxQMXkcmQcq+U9k
+         BH9WF/QOpCGgzxKdJi1p4PX0m1yhfzxzT9efAAnVesaY1HWyveadLQxuE60cpENb7vqC
+         8Iv6jn1bJHSCg05nsMWPIUq26nGcC/6a3JAxkZFsDfTAPRhai6nKTO13mpsRJ7BGX4v2
+         LBTBjsrlyx38f1Eh6phEw2g1DqnFF0OTNwxERr5Zi41+BinQv1QZTs4Wkw9nlhoDKEgm
+         24cePjA26pJLu22Aw5R99jjhlw49QRkvGbSKCo2/UuijSWZXZNZ66Qu1tT1VAPUsLnri
+         jFuQ==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20230601 header.b=bdMGr9vU;
+       spf=pass (google.com: domain of nishisara@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=nishisara@gmail.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com;
+       dara=pass header.i=@gmail.com
+Return-Path: <nishisara@gmail.com>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id d75a77b69052e-4778219247fsor12374801cf.0.2025.03.27.21.05.42
+        for <paulrcohen@gmail.com>
+        (Google Transport Security);
+        Thu, 27 Mar 2025 21:05:42 -0700 (PDT)
+Received-SPF: pass (google.com: domain of nishisara@gmail.com designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20230601 header.b=bdMGr9vU;
+       spf=pass (google.com: domain of nishisara@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=nishisara@gmail.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com;
+       dara=pass header.i=@gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1743134742; x=1743739542; dara=google.com;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=v+HgXj+BNhqrwRLBnTvTTqjFl3sFpOgPi4y26UG7/Zk=;
+        b=bdMGr9vU28Dt0XXnC08KOivFZzPKJfyYbvaMagHhgT8aZrW4Cz/qcOyNBBzyM364wS
+         NxSEpdIK3mh8fuptRXQoYEmNG21j7vGfQ9Y8UZkgrSTQe8oe0FQYOSO/epZUJ1RxkYfI
+         xqvvApWjC+w9cb2P6E4y8HSv3Rnp+KPS8a2gKZlJ08C68E53YSwkGHEO/gbqKJ9oyUt/
+         RpulsG+dLNRQJoAaS8vEgh8j1+M+N9TLfMUl9QRyDM/ia2qVuwC/+vgyYNosOtoy/Pfi
+         4uh4ZpzoHYwajHIr7g14YjAfAnHiLmwNq+bRD7GwQUzJodYj1yB0U31sQV/6/3NJXr9o
+         +J4g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1743134742; x=1743739542;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=v+HgXj+BNhqrwRLBnTvTTqjFl3sFpOgPi4y26UG7/Zk=;
+        b=qPzn7YRoQ9s5Jr0OffYQRbhH0lK4Og9z7NpTVP+sQ+4Fif8FI80efWYnNiAwULRd2C
+         /l8ArRnv+QsRYYiY/mzU6VOUujEnURn5len0hNSVkLcKcNki21YcgzlooFByJcGFq+/e
+         zd04FIrSLgFI6/Bcm1YdNG8AZq5BcKwRDoEdteQ2nE0mTUH4F2CLZFKOoxtQViZUAwle
+         ANIzvuQWdKMs0aYlL9HQ2q07aIHva+bbAOsIKlPvfR6mPgcqgt5zI5toT8pYA23nyd7y
+         VIdpOtHzuJKWwINJ//CCAYaOxUBxHlMVCUz0sxgOOUwosFC+yspydpZIcjTVKTCCziIM
+         jqRw==
+X-Gm-Message-State: AOJu0Yx+h3LZTa3jk9+MU0R9mtAbYqPvjxJkUxFu69g5yv3TiCqNIsHV
+	CA9iwtCsPXLM9F+6P5QLISvt2y4kY44lRsodKBMsfHgH7rmbzKePK4j/mYTPz3E6es27wCsFGZG
+	TLgT7NwHc/l+q0rc4WM33wNI+4ekDSQ==
+X-Gm-Gg: ASbGnculeJx/dyjNUIbgRAsxFlVeIijuod7PUg8NnQqN+NLKUpXqlU5Ssb/ieHMv4bd
+	+jx5//oG/fqqqt06HDdb+KB4GiKhH3VHp9iKaztALFMrJ3NvpTDUogmot94Pt98YY+HSsrUEYKm
+	WZNbE9cRnQv548QRMSovA3b+vRS4Y=
+X-Google-Smtp-Source: AGHT+IGTQJl2+mV2MANKof0E7dMobHI/X4t4FWiOTSmBj96Omuoitl7aK41APW4ZtJ8UKYnF3Rm+OlZeBHtkisaEa4A=
+X-Received: by 2002:a05:622a:4c07:b0:476:653d:5aea with SMTP id
+ d75a77b69052e-4776e0723e6mr109384681cf.4.1743134741847; Thu, 27 Mar 2025
+ 21:05:41 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAKjPZkG1mtU16eYLKx-ify6-6dK6pzJzOi4dZsL-UmZV0Sa=8w@mail.gmail.com>
+ <CAB5T6BknE8OHDZx8gLDAyskQK+v=OoBqoa0tFBa+sATppzjKOA@mail.gmail.com>
+ <CAKjPZkFuOLkyPtiVt1AQmTnYkVX9JTNiEXDWCUvnDD3eVeWz3Q@mail.gmail.com> <969449665.1499155.1743114585193@mail.yahoo.com>
+In-Reply-To: <969449665.1499155.1743114585193@mail.yahoo.com>
+From: Sara Nishi <nishisara@gmail.com>
+Date: Thu, 27 Mar 2025 21:05:31 -0700
+X-Gm-Features: AQ5f1Jqy80ecsCpzk0ektrQPMMOQ8yREnJ1Wde68lKGvj5pFmziTW9b8qT_7iVk
+Message-ID: <CAB5T6Bkq75NdVfpb6c8sxm7pX6b9UbGQMTzC33Ns-WfB06OBzA@mail.gmail.com>
+Subject: Re: Re:
+To: Thomas Machnik <zipnpup@yahoo.com>
+Cc: Paul Cohen <paulrcohen@gmail.com>
+Content-Type: multipart/alternative; boundary="00000000000015634206315f2fd5"
+
+--00000000000015634206315f2fd5
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Paul,
+
+Hope you are doing well!
+I also do not recall receiving any updates regarding this or an actual
+package.
+
+Sara
+
+On Thu, Mar 27, 2025 at 3:29=E2=80=AFPM Thomas Machnik <zipnpup@yahoo.com> =
+wrote:
+
+> Hi Paul,
+> I don=E2=80=99t see a record of us receiving this. I also do not see any
+> FEDEX/shipping tracking number and any of the emails I have access to.
+> Tom
+>
+> On Thursday, March 27, 2025 at 07:35:18 AM PDT, Paul Cohen <
+> paulrcohen@gmail.com> wrote:
+>
+>
+> Hi Sara and Tom, just following up on this:  Did we ever receive negative=
+s
+> from Sasaki-san?  Thanks, --P
+>
+> ______________________________
+>
+> Paul Cohen,  Professor
+> School of Computing and Information
+> University of Pittsburgh
+> personal webpage <https://paulrcohen.github.io/>
+> ______________________________
+>
+>
+> On Sun, Jun 5, 2022 at 7:42=E2=80=AFPM Sara Nishi <nishisara@gmail.com> w=
+rote:
+>
+> That's great!
+> I'll let you know once they arrive.
+> It looks like Mr. Sasaki speaks very good English, but if you think it
+> would be more appropriate to thank him in Japanese, I'd be happy to prepa=
+re
+> a letter!
+>
+> Sara
+>
+>
+> On Sun, Jun 5, 2022 at 12:28 PM Paul Cohen <paulrcohen@gmail.com> wrote:
+>
+> A friend of Ed's found what looks like the color separation negatives for
+> printing the First AI Coloring Book.  No idea how they ended up in Japan,
+> but Ed thinks it happened around the Tskuba exhibition.  Sasaki, Ed's
+> friend, somehow got them and has kept them, and is now I suppose getting =
+on
+> and downsizing. So he's going to send them to us.
+>
+> Sara, I might need your help writing the right kind of thank you note.
+>
+> Thanks, --P
+> ______________________________
+>
+> Paul Cohen,  Professor
+> School of Computing and Information
+> University of Pittsburgh
+> personal webpage <http://www.pitt.edu/~prcohen/>
+> ______________________________
+>
+>
+
+--00000000000015634206315f2fd5
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi Paul,<br><div><br></div><div>Hope you are doing well!</=
+div><div>I also do not recall receiving any updates regarding this or an ac=
+tual package.</div><div><br></div><div>Sara</div></div><br><div class=3D"gm=
+ail_quote gmail_quote_container"><div dir=3D"ltr" class=3D"gmail_attr">On T=
+hu, Mar 27, 2025 at 3:29=E2=80=AFPM Thomas Machnik &lt;<a href=3D"mailto:zi=
+pnpup@yahoo.com">zipnpup@yahoo.com</a>&gt; wrote:<br></div><blockquote clas=
+s=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid r=
+gb(204,204,204);padding-left:1ex"><div><div style=3D"font-family:&quot;Helv=
+etica Neue&quot;,Helvetica,Arial,sans-serif;font-size:16px"><div id=3D"m_24=
+28336748469006723ydp3d5d5ae5yiv4522234724"><div><div style=3D"font-family:&=
+quot;Helvetica Neue&quot;,Helvetica,Arial,sans-serif;font-size:16px"><div><=
+/div>
+        <div dir=3D"ltr">Hi Paul,=C2=A0</div><div dir=3D"ltr">I don=E2=80=
+=99t see a record of us receiving this. I also do not see any FEDEX/shippin=
+g tracking number and any of the emails I have access to.=C2=A0</div><div d=
+ir=3D"ltr">Tom</div><div><br clear=3D"none"></div>
+       =20
+        <div id=3D"m_2428336748469006723ydp3d5d5ae5yiv4522234724yqt79550"><=
+div id=3D"m_2428336748469006723ydp3d5d5ae5yiv4522234724ydpafc13261yahoo_quo=
+ted_3495618114">
+            <div style=3D"font-family:&quot;Helvetica Neue&quot;,Helvetica,=
+Arial,sans-serif;font-size:13px">
+               =20
+                <div>
+                    On Thursday, March 27, 2025 at 07:35:18 AM PDT, Paul Co=
+hen &lt;<a href=3D"mailto:paulrcohen@gmail.com" target=3D"_blank">paulrcohe=
+n@gmail.com</a>&gt; wrote:
+                </div>
+                <div><br clear=3D"none"></div>
+                <div><br clear=3D"none"></div>
+                <div><div id=3D"m_2428336748469006723ydp3d5d5ae5yiv45222347=
+24ydpafc13261yiv7185672208"><div><div dir=3D"ltr"><div><div style=3D"font-s=
+ize:small">Hi Sara and Tom, just following up on this:=C2=A0 Did we ever re=
+ceive negatives from Sasaki-san?=C2=A0 Thanks, --P</div><br clear=3D"all"><=
+/div><div><div dir=3D"ltr"><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div=
+ dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"l=
+tr">______________________________<br clear=3D"none"><br clear=3D"none">Pau=
+l Cohen,=C2=A0=C2=A0Professor</div><div dir=3D"ltr">School of Computing and=
+ Information</div><div dir=3D"ltr">University of Pittsburgh</div><div dir=
+=3D"ltr"><a shape=3D"rect" href=3D"https://paulrcohen.github.io/" rel=3D"no=
+follow" target=3D"_blank">personal webpage</a><br clear=3D"none">__________=
+____________________</div></div></div></div></div></div></div></div></div><=
+/div></div></div></div><br clear=3D"none"></div><br clear=3D"none"><div id=
+=3D"m_2428336748469006723ydp3d5d5ae5yiv4522234724ydpafc13261yiv7185672208yq=
+t77580"><div><div dir=3D"ltr">On Sun, Jun 5, 2022 at 7:42=E2=80=AFPM Sara N=
+ishi &lt;<a shape=3D"rect" href=3D"mailto:nishisara@gmail.com" rel=3D"nofol=
+low" target=3D"_blank">nishisara@gmail.com</a>&gt; wrote:<br clear=3D"none"=
+></div><blockquote style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid =
+rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">That&#39;s great!<br cl=
+ear=3D"none">I&#39;ll let you know once they arrive.=C2=A0<div>It looks lik=
+e Mr. Sasaki speaks very good English, but if you think it would be more ap=
+propriate to thank him in Japanese, I&#39;d be happy to prepare a letter!=
+=C2=A0<br clear=3D"none"><br clear=3D"none"><div>Sara</div><div><br clear=
+=3D"none"></div></div></div><br clear=3D"none"><div><div dir=3D"ltr">On Sun=
+, Jun 5, 2022 at 12:28 PM Paul Cohen &lt;<a shape=3D"rect" href=3D"mailto:p=
+aulrcohen@gmail.com" rel=3D"nofollow" target=3D"_blank">paulrcohen@gmail.co=
+m</a>&gt; wrote:<br clear=3D"none"></div><blockquote style=3D"margin:0px 0p=
+x 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div d=
+ir=3D"ltr"><div style=3D"font-size:small">A friend of Ed&#39;s found what l=
+ooks like the color separation negatives for printing the First AI Coloring=
+ Book.=C2=A0 No idea how they ended up in Japan, but Ed thinks it happened =
+around the Tskuba exhibition.=C2=A0 Sasaki, Ed&#39;s friend, somehow got th=
+em and has kept them, and is now I suppose getting on and downsizing. So he=
+&#39;s going to send them to us.</div><div style=3D"font-size:small"><br cl=
+ear=3D"none"></div><div style=3D"font-size:small">Sara, I might need your h=
+elp writing the right kind of thank you note. <br clear=3D"none"></div><div=
+ style=3D"font-size:small"><br clear=3D"none"></div><div style=3D"font-size=
+:small">Thanks, --P<br clear=3D"all"></div><div><div dir=3D"ltr"><div dir=
+=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr">=
+<div><div dir=3D"ltr"><div><div dir=3D"ltr">______________________________<=
+br clear=3D"none"><br clear=3D"none">Paul Cohen,=C2=A0=C2=A0Professor</div>=
+<div dir=3D"ltr">School of Computing and Information</div><div dir=3D"ltr">=
+University of Pittsburgh</div><div dir=3D"ltr"><a shape=3D"rect" href=3D"ht=
+tp://www.pitt.edu/~prcohen/" rel=3D"nofollow" target=3D"_blank">personal we=
+bpage</a><br clear=3D"none">______________________________</div></div></div=
+></div></div></div></div></div></div></div></div></div></div></div>
+</blockquote></div>
+</blockquote></div></div>
+</div></div></div>
+            </div>
+        </div></div></div></div></div></div></div></blockquote></div>
+
+--00000000000015634206315f2fd5--

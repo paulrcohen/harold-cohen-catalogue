@@ -1,0 +1,122 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a10:a44c:b0:5ad:6c17:f336 with SMTP id f12csp4027040pxu;
+        Tue, 3 Dec 2024 09:44:03 -0800 (PST)
+X-Received: by 2002:a05:6902:160d:b0:e2b:d131:f293 with SMTP id 3f1490d57ef6-e39de29c3b0mr1464176276.51.1733247843111;
+        Tue, 03 Dec 2024 09:44:03 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1733247843; cv=none;
+        d=google.com; s=arc-20240605;
+        b=C++bWYGROcf3FlEaNzGt0rBzwWOUXICBkIQOqMJO3qcmO9LQk4jVdesmupTVmBLlzH
+         8iuMGF+4G/DkB+CMwGSWw0ZXZdXGL8IhCjxxIwX1d2nfEhfRe1//nkE2v6UyiicC1gUd
+         l/3q8PsR6myV4SzkopCTMT26NRQRS7ZDpUpmeoge144OKAZijiOPSJh+PMVvtC5WXNeQ
+         zlydYQ49TEDT8ccPoFsT5L3jkZQUKInSPlJSpPff5cHaycO7fOFWNlbwhZXz7aKFoAlt
+         sooZsWtm9nhUG2/w0UYvAuIbmSsSSReYLhXhOlrwMXuF4mXCFhUkeHtSjBu25V5mFuf8
+         bhew==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=PNtMNIZJMipiNIulkDEwBpD2xf2CH/iBIjpmSc3vSn8=;
+        fh=+ZSZzLtrqjYAnpssQkgK417RpHpTSSzuH+J6PqTYzzs=;
+        b=dx97FXzwBLT/pQYHlft7tnxoJT657GMzL0XWiasGO1UocHsgp9+WjW56kbUkGh1un5
+         JEnODvuxoMiHzgaW4hIvLjin5UjV7dP2aLa/QN0W3hbV+GnMv/wXU08jxWlDbgLNLu8M
+         /1Oub3dmqVO5B98GknLS32brU32+OMeV/mJT9SZkmdHXY53Ln97Ed1LNBXnwsVtezjGf
+         z/juGYVUJicIxIwxbpm/epxsrcpxTbcWQXEBHSO3mB5oYEQ5Sq0YcG8jguiFHHvLnhfn
+         2ssUcJ67BQa12SWS9knS1ZwFhuZPfKeevODRTOSRGq2nxpVeEqQeqjmG5C5HxDwrO2Iu
+         07EA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20230601 header.b=RxDwxbkQ;
+       spf=pass (google.com: domain of rahendel@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=rahendel@gmail.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com;
+       dara=pass header.i=@gmail.com
+Return-Path: <rahendel@gmail.com>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id 3f1490d57ef6-e39768c3ff9sor5310679276.1.2024.12.03.09.44.02
+        for <paulrcohen@gmail.com>
+        (Google Transport Security);
+        Tue, 03 Dec 2024 09:44:03 -0800 (PST)
+Received-SPF: pass (google.com: domain of rahendel@gmail.com designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20230601 header.b=RxDwxbkQ;
+       spf=pass (google.com: domain of rahendel@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=rahendel@gmail.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com;
+       dara=pass header.i=@gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1733247842; x=1733852642; dara=google.com;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=PNtMNIZJMipiNIulkDEwBpD2xf2CH/iBIjpmSc3vSn8=;
+        b=RxDwxbkQiEDcy4YQSSnNLQpPclAFcFpfKVHI0gS0UYGrxphcLDEKNsFA1+0DZFD3PB
+         j0ulphO1YXVUNl5vUg8EwTW8q4mBrGwTfirrv43LfJV+6ua3NIPiKAs/yzwUWNg3ZiSI
+         IErtxaJchnDNqC13XOMay3I2Nckxg9k2vv27gV9lL7F1ELH2BBrUKiaZNSV+nI9o2vB7
+         xdSNeM9s+BJO1I2mx7z+RV5HnKq7hXxbQKssufiWbBmCSo/UTex6YcKF5ypLFZMI0pEb
+         GSXumj+BykdaNJP4EJe0AfmPiUoc89SPY5ABV1SahLo749PY1daH0iyzDhbIrsfZcbGn
+         SDIQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733247842; x=1733852642;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=PNtMNIZJMipiNIulkDEwBpD2xf2CH/iBIjpmSc3vSn8=;
+        b=A/4Vzrq/tTSse3kiPIuZdxQ0FjV1fza1tm900AIaT0zapqLD8XrRgFl42NV7SkVxQb
+         2ydCnoUtZgT00ISUHZCpDW796iWRz6CTwj8fc2MEROKknklRUaz/9avSSo79/6MILNJD
+         XLZAT2LMrTmLOOGZ4Pjy2aB4VTnwiwtsPscQW/mEE5HYcxrLCg9Gau8sQO5eSFgGlDPW
+         g1HvgX5MhodDxtQF40o/4X5GefeFl8zTA6zpONkLUL4zEflfQ91OV1nYhjunLlsP6sAr
+         cHATFTC7cWP0PjCQ+uVjPgxXfFqvJhH1MZ0MtHOoxTqKgdG+2cP5uKWHv2jixJ4v7PU2
+         cekA==
+X-Gm-Message-State: AOJu0YxzHNXIkucv8iO620NgfxzK4kO5F4YKV/4eOrehqMU1vkRvpPI/
+	Bo0mPaZpMm0Ge7uVKskCcuG9Jmm2IiXzkR/MQjG3n6mSQeGmNzBvuz5aYI3UCF7qCGVxM7UUhpj
+	htfWQV0sQwZtkqgVLxOTq74+ybn+v/w==
+X-Gm-Gg: ASbGncttgRRy3vyRtyf4UpefejXNqUXpUiuwgtgI6qXIrcEjwFz8Y1RAq6oJWB8lTAI
+	JDwOXMonH7/qsPF8TGfoudy6lma0NMZw=
+X-Google-Smtp-Source: AGHT+IHQ7Ept4rKM3ue3n/JPehhLYNd2uBLA+W4qoU7ToZsF0vRJXZ91DWJ3sbNmU0g8TvMoVAu3C/QUiUDaMJ63IZA=
+X-Received: by 2002:a05:6902:2d03:b0:e29:6571:e25e with SMTP id
+ 3f1490d57ef6-e39de229134mr1495261276.27.1733247842411; Tue, 03 Dec 2024
+ 09:44:02 -0800 (PST)
+MIME-Version: 1.0
+From: Bob Hendel <rahendel@gmail.com>
+Date: Tue, 3 Dec 2024 12:43:51 -0500
+Message-ID: <CAHisCj7_6rFw4T+7y2BLQnszebLcPapc6P7gaOaMTE3F1tmyHw@mail.gmail.com>
+Subject: Just touching base
+To: Paul Cohen <paulrcohen@gmail.com>
+Content-Type: multipart/alternative; boundary="000000000000f46cd506286135e2"
+
+--000000000000f46cd506286135e2
+Content-Type: text/plain; charset="UTF-8"
+
+Hi Paul!
+
+It's been awhile since we've chatted.
+Debbie and I still have not come down to earth since the exhibit. We've now
+completed all the photo books, distributed all the t-shirts and postcards
+and organized all other memorabilia.
+
+Any new exciting developments with the Estate?
+
+Did you attend the Electric Dreams exhibit at the Tate? Harold's artwork at
+the Tate is terrific.
+
+Did the Whitney send you the drawings from the exhibit? We were hoping that
+we might get some to add to our collection.
+
+Take care,
+
+Bob & Debbie
+
+--000000000000f46cd506286135e2
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto">Hi Paul!=C2=A0<div dir=3D"auto"><br></div><div dir=3D"aut=
+o">It&#39;s been awhile since we&#39;ve chatted.=C2=A0</div><div dir=3D"aut=
+o">Debbie and I still have not come down to earth since the exhibit. We&#39=
+;ve now completed all the photo books, distributed all the t-shirts and pos=
+tcards and organized all other memorabilia.</div><div dir=3D"auto"><br></di=
+v><div dir=3D"auto">Any new exciting developments with the Estate?=C2=A0</d=
+iv><div dir=3D"auto"><br></div><div dir=3D"auto">Did you attend the Electri=
+c Dreams exhibit=C2=A0at the Tate? Harold&#39;s artwork at the Tate is terr=
+ific.</div><div dir=3D"auto"><br></div><div dir=3D"auto">Did the Whitney se=
+nd you the drawings from the exhibit? We were hoping that we might get some=
+ to add to our collection.</div><div dir=3D"auto"><br></div><div dir=3D"aut=
+o">Take care,</div><div dir=3D"auto"><br></div><div dir=3D"auto">Bob &amp; =
+Debbie</div><div dir=3D"auto"><br></div><div dir=3D"auto"></div><div dir=3D=
+"auto"><br></div><div dir=3D"auto"><br></div></div>
+
+--000000000000f46cd506286135e2--

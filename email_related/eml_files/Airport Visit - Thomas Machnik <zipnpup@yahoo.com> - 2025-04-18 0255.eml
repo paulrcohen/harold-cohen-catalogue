@@ -1,0 +1,264 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a10:1699:b0:5ec:db95:1ae4 with SMTP id gp25csp70337pxb;
+        Thu, 17 Apr 2025 23:56:28 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHezHdOo2zfrHTlyu1QZGEvN+jSn0kJ96o7mhU8WbAdpnuYbpWuPbdufr/eoaKFNGxvXRMY
+X-Received: by 2002:ac8:594f:0:b0:47a:e1b1:c6c9 with SMTP id d75a77b69052e-47aec4b2998mr25399441cf.42.1744959388027;
+        Thu, 17 Apr 2025 23:56:28 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1744959388; cv=none;
+        d=google.com; s=arc-20240605;
+        b=jAwt+Q7xpqON31015hmKAMMoKP+bSgXLDKUbatovXc6q85nv+nL86LiYERRbfdYzDC
+         FDy74P9Bnsb9hSQ1+cPM/KwPNqbHTblNejwQorrNr7Fd5c/JaktQ68L8aA8dLTAwhXTc
+         zgB1qXzPhAnMTF/MLA3qAU0bI9Yk8JEvpxHT4aVRwZfnx6pGb/QYh6tlEZpYLjogUwQ2
+         sRiGxl4+dFrPo5GRpLDoyDI43dF4n7CDHGw9EZrkdlMVdv9EtujMbm2vpYQgMMESgUfW
+         FJCmKT/WHhD+kzyVW9ql51G76OaIhG0W6cMRib4Yv2wZJOwyJGaBUh4fckKUeSkPenpi
+         gtoA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=references:mime-version:subject:message-id:cc:to:reply-to:from:date
+         :dkim-signature;
+        bh=u2+dmiZSiB9UTUv13w7MkXKG3ccZOh4wZ1qQ38Fdh9I=;
+        fh=+yw8hlx1oz0S9AGSiseA/Ib9B7NuMgdjIf+FVn0DkVo=;
+        b=GrmKUsZocTeiAPo4trVPASldX3sdZB2ohTTpQiCSIrcLFMANIvUtDJWKRM91Muss0H
+         hdR3zxACUk25ytL+E0WqLjtz3yX8lAXorAamacfKIqsbuc9T4MFnCuAIaa+xPLtH/Mj0
+         P3ah1zZ195CM3HovzGrRMw8cCPTspRuOgWGulcF8mE4Bog6AGBba/oTAevrks7KIq4r+
+         liv95OctOwhZhdRslyMJLgd08hslu1Iyc1VikxXy6FXgdHD6LkMdOiMHj3OAXGe3hAa6
+         pQK0kyquvkaJms42zF+SZoj8D+oVfKSAP4tBRXsVrz571pfbLZkJi0KDH3H0SYYESdI3
+         dnbw==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=iA5ZJCeo;
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.131.82 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+Return-Path: <zipnpup@yahoo.com>
+Received: from sonic319-27.consmr.mail.bf2.yahoo.com (sonic319-27.consmr.mail.bf2.yahoo.com. [74.6.131.82])
+        by mx.google.com with ESMTPS id d75a77b69052e-47ae9ca440dsi15678561cf.219.2025.04.17.23.56.27
+        for <paulrcohen@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 17 Apr 2025 23:56:28 -0700 (PDT)
+Received-SPF: pass (google.com: domain of zipnpup@yahoo.com designates 74.6.131.82 as permitted sender) client-ip=74.6.131.82;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=iA5ZJCeo;
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.131.82 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1744959387; bh=u2+dmiZSiB9UTUv13w7MkXKG3ccZOh4wZ1qQ38Fdh9I=; h=Date:From:Reply-To:To:Cc:Subject:References:From:Subject:Reply-To; b=iA5ZJCeoFB/H1bQj9mWBbclAZNg+86t1SrmCeVSsu/RcnSgFWt7+hRfPWXpaSWONHD9062cycmD2LvOKT/IrKP81Jxw8m63yZIIcH7gOXKe/VuPhjb8I1j+ka8aNMr3wOOZqnUxo8/QNWjg7SKuCF+BRPk71X27GAhpE9YvXucj2RjmOI8MGV8YVlUijf8P53xvkr7xMntPaXV7oEFTzNZ5NrLEh3RQiRp/GAJcZlabn7K7OzjEEc83F//qeJ5jSGmEFg9/njH/OTk3Wy4wJjhXG6nJK8+ZmJz96v8MOYfQzUDLsPYerTQkto8qbXijykOHYDrZUeWaYymZL8c2mSg==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1744959387; bh=lzcTuKJy7nIAS1uc2XBaBuOBxqznPCe26p5fkvQj4nR=; h=X-Sonic-MF:Date:From:To:Subject:From:Subject; b=YocYJVQunoMZklLNyOeejt2scNccpZULaAZCUZS4JYJ/1XUVSBdIwW+A0O2UINflJPczClQ9YIAuwzcQUiuzdROhAP3iMo30FHrtBYWT+wiyRKlni2Gi91LoHfN/MnmW2fcYjS/bjKZKyZoeBLVHvX+ubhX9G66xtsp6zieVjM5bmtE8THjFesajOW80WtZV1jd64h9bRwRIoqscNrLc3/+eVpHk7OQ3C8wnF3y3V9WsAE+riVm4brvrzZAznZXjbnjwC5nWIxTJUEAFUmO+dLYb3YAm0uWxefBaVxj5Ls3bjnJ7FpJ+P5gpzk/f9LVQuq+mUoUf3C5OqlMywYUZIQ==
+X-YMail-OSG: OVb.vJsVM1lXjmHoTTm2s35SA.IPGteNeifjsGILeMDFjBfCCGpt4FQ4rTFplZT
+ gWukg5_l10jHhdsoQu4te6nqb.G3TPGgwbmdz7wHBsmtjAcke7EFRwEOrAP.IqBH_LamSIgLyqq1
+ kopv_kxeMG6JHLj.jlJXHYBrpbTSTezDwt83Wvc01iORpToX9IAmdTA_676LltPuDBQAZ8Jj8.mF
+ uZLK6VqlDHYSCM.TTYE3xWw2Hm4Iw3QETO9Mre3FumP_Uiv6V.Q8CqJ8X5EkU6gQD5nu2iSgDK9S
+ 1wVB9dvOtAnFotGjDuHy8XNAr1K1Ter3QKwSFLAQxkwQXaf2r3SxgtKMdOrWbafurNbR41IkQTBN
+ NmWNhRSzmymyIdYaBMUYRVO7a61SA4rBPwgqt9kMoFPVvpLkvM7WR_9.gfB7Le7DgTz6rvzjVwGb
+ wXoiWJOeOk6U6gOUO5RbeEhUZUQE1EFmosJ7y3eijv_9qSno2B2hRy.yHRdRq.awGSoCnXwFskMG
+ fJPJhWFpaVfK5og8XH_Bd7qVAMe2AYO5MNCRqt3T92o9ezrL9xqxxD4tZ3_OCb6p1kTfCIc5s97g
+ xw2UpzC9SZgFzNiXaVKfSFAcJ8K5YlOWzAngHR6pU2ycOOmi.gJ_fQfV_mbtiNpGsAejxEakk.Yk
+ 50eNRESlNBgEVvWkUfYntI_97jVHEjj1dkmcIKccyT45LQNvPyQMbMB3Rm2J4_5vOpzPs32G7v59
+ YOKII0Tw6FbqgdHEqccxZM3WDI96aGArksiy08qJC52z7To0k9rmlXglGwZ10vwRuWhglJ84Hcti
+ 3LhsW5fb2qx9NTD8qQwzTTujOhmhC9ubA_pDKB0rgRKtbcjqg8H9XO9xvSfVJlM.l_lw5nrscOuB
+ i6UXCKgUtwFjHU_7vC4oroc7Eoi5ssO0buhTQSvHPA5NPlUUBFtYgIS_56bURogpeHIPIbxNnhya
+ Yo7PvecSYpKyX3LScCQEoVplJxKwFexfDpXvkjPbNpNFDuybckT6thAXaoRQ7pk8melxInUFKPPx
+ Bf1ZP64LCu1GUoszryDtHyZKc81lSuVvjqT1zr7.Fa90_R1q5rWpFXWjzXBmczu0Gudptcbx8_b_
+ 2v83AAs08li69qzpjjctGmb7rnbmadpGTO8HDSsr5Zk175gXPTFmu8ypBgfGfHA1.wGV7PLSYF8E
+ zFx7f5fFVMYns2QxrdP3jLr23blZy2qs9DyoIEYlLcVC37XP4gCTf1C0135b4CdLqXFvveZh19Fs
+ JtAEnT.roQESoVGt2fxp0.gsoJzCs905NuCv.oybhkez3z1.Tyr4K5Vir8E6OPcw9x.h0KlMkFcp
+ WVSXvKiPjMaqLVEruelovEPrODOUcA6DhbvILc4Wx_cjIJ8cJW35uC3xciEMVlOm8Unka8YQXzNK
+ 3WdpXK.eS1qCemo_JF4pZdI3DWOTs7Q_nOxsQjIyNtANFFwseRRlPFcsI1ypSIIe0JlifCNfQa_L
+ NYtuQ8F2EZjxRHO0LcWqQ2zQ0sKAUND1qk8ngltaObqcIoFNMSkQZjk0HLklkBT1cDkx7cAbJJu0
+ Vt6QGA_UVpcH5nCiHaiL4.7nw25FStcEZP1ywlimCfCHoQjXu.s8DW4GC8kX1FgvRWBs5rCYyvM5
+ j1U_0wjBo_tp_lN9ipB6Rh8FJ.Ueug4LMxgdYmPi3kWAPonzTE5Q598P3y5KREtSVK9fm3t_SXyg
+ CdD8U9l_o5rcQyyRkkVPrt7xbjzEDnNd1fMbi9JFrTKTPXEhrm.gdjW0DcZ9MZzSgugk59MJTPLZ
+ mX0JRJogZvSSyZzds_POKbzC543OcD2E_m8P1qQ5fZVnfNHaCD9WxXZD60N.xHFfMdqvPS1Bz_U4
+ yquSxQw_cOzeSk6bYbQVOF.UzYLU0CF8ygv2j.QTttja.5jv3TVhnZNIIqFsqMFIExlCy9.iH5Tr
+ i0Vez9vvZRxCBj1zsuLD53jdFv2rNBooDsCHuqHi_nNy__I_7NK5LrVr072h7BR_3YWmduLtUg9s
+ 7lRs3pr91FbvXD4a4yVf50qfBFkng1S3ABf30Ak5SpjyGLD_Iw931ZISYfplXjMqClnTUh1gbW14
+ ib9ZC6OK7rjzU6rmpYSqZNe4wXw1Z45JWVvenEi9UbExw38KDUQfvIxJVp0.nEJ8AQaIXQDxktPq
+ 6.xNcCMuj4_70y62_J2KVzqqCd_bOCdFx7XKOY8Fp7t0qthSaT8hwdbXhrUSGq52UigDcoQfXpw3
+ OQGC8sToeR0HQclpUgqPRAa.ew2FnfUTQL2olK2tQ98_T_uQUzysevPv9uIMQkat_bbCqhffxEMl
+ s3akUByRlhKV2G7lt864-
+X-Sonic-MF: <zipnpup@yahoo.com>
+X-Sonic-ID: 3d63acb3-c085-48da-a1e1-8381e73260ec
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic319.consmr.mail.bf2.yahoo.com with HTTP; Fri, 18 Apr 2025 06:56:27 +0000
+Date: Fri, 18 Apr 2025 06:55:59 +0000 (UTC)
+From: Thomas Machnik <zipnpup@yahoo.com>
+Reply-To: Thomas Machnik <zipnpup@yahoo.com>
+To: Paul Cohen <paulrcohen@gmail.com>
+Cc: Harold Cohen Trust <aaron@aaronshome.com>, 
+	Paul Cohen <team@haroldcohentrust.org>
+Message-ID: <1764430685.1728259.1744959359280@mail.yahoo.com>
+Subject: Airport Visit
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_1728258_181276269.1744959359278"
+References: <1764430685.1728259.1744959359280.ref@mail.yahoo.com>
+X-Mailer: WebService/1.1.23665 YMailNovation
+Content-Length: 11985
+
+------=_Part_1728258_181276269.1744959359278
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Paul,I was able to meet with Daniel at the San Diego Airport today and h=
+e took me on a tour showing me the spaces. I took some photos which I will =
+upload tomorrow. In general there are two different kind of spaces. One bei=
+ng flat walls =E2=80=94 or nearly flat =E2=80=94 and the other being big gl=
+ass cases set into the wall space. The flat spaces could possibly accommoda=
+te projection but I am not quite sure because people would be walking by. D=
+aniel seems to think it would be doable so maybe it is. The glass cases are=
+ approximately 8 ft high although one might be a bit shorter. The width var=
+ies with the biggest around 16 ft. There is one space that people would see=
+ as there are going through the TSA queue. This is one of the glass spaces.=
+ The remaining spaces are all on the other side after going through TSA. On=
+ the way toward the international terminal area is one of the flat wall spa=
+ces. Daniel was concerned about using this as a projection space because th=
+ere tend to be ambient light and shadows on the space. It is quite a good s=
+ize space though. We don=E2=80=99t have measurement but I suspect it is 20 =
+ft long and the height 6-8ft. Continuing down the hallway into the terminal=
+ area there is a seating area with 3 walls surrounding the space. Each wall=
+ has glass cases. Electricity is available in each of the cases if necessar=
+y. Then down on the opposite side of the terminal there is another flat spa=
+ce and for the current show they had multiple canvas pieces. This space has=
+ a low ceiling compared to the others spaces.=C2=A0
+In additional to showing the spaces, Daniel talked about the stipend and be=
+cause it is quite low he prepared me in advance. He said the stipend would =
+$1,500. However, he said that they would handle all the shipping, handling =
+logistics and insurance. He also said that normally there is a proposal sub=
+mission process but that he would talk legal to try to get that waved.=C2=
+=A0
+I also asked about timelines and basically whatever would be shown would be=
+ picked up sometime in December. And the decision on what would be shown ha=
+s to be decided by August.=C2=A0
+We did talk about an active plotter. Based on what I saw, any plotter would=
+ have to be vertical. And with respect loading paper a roll or some other m=
+ethod would need to be implemented to minimize having to have a person inte=
+ract with the plotter. I ask Daniel what he thought the maximum interaction=
+ with plotter would be. He thought that a maximum of once every two weeks. =
+Although, if the staff at the airport were not involved, he seemed to think=
+ it could be more often.=C2=A0
+So that is kind of the summary.=C2=A0
+I am =C2=A0putting on my thinking cap. At this time, I would prefer the gla=
+ss cases. Unfortunately having a traditional projection in the cases would =
+not be practical. However, I do see Samsung has interesting solution whereb=
+y the image is projected from the floor onto a rolled screen (see link belo=
+w). Nice idea, but I rather think a more narrow system would be required fo=
+r the airport cases. If we want to go that route of we=E2=80=99d need a sol=
+ution that fits inside the case. I do think a mechanical machine would be m=
+ore engaging. The projections are nice but with the nature of the world tod=
+ay with screens everywhere I wonder if another screen would just be another=
+ screen and would get lost. I know we don=E2=80=99t have much time, but I=
+=E2=80=99m wondering if an unconventional solution can be found. A plotter =
+that is more like a etch-a-sketch that doesn=E2=80=99t require paper. =C2=
+=A0Or one that plots on a white board that can then be erased or something =
+similar. I=E2=80=99m also wondering how we might implement a way for people=
+ to have an image as a take-away. I know we don=E2=80=99t have much time, b=
+ut what if we had an app that worked only in proximity of the display. And =
+if they like the image being generated they could capture it on with the ap=
+p in some way maybe. Thereby having their own NFT of sorts. An NFT that we =
+would still have control over.=C2=A0
+We could just go with static pieces too.=C2=A0
+=C2=A0If you want to talk more about it we can.=C2=A0
+Tom
+https://www.samsung.com/us/televisions-home-theater/television-home-theater=
+-accessories/televisions/the-premiere-rollable-screen-2022-vg-prsp120s-za/?=
+cid=3Dsem-mktg-pfs-tv-us-bing-na-06202023-141500-&ds_e=3DMICROSOFT-cr:0-pl:=
+294818637-&ds_c=3DCN~Premiere+NB_ID~n_PR~premi_SB~tv_PH~on_KS~gc_MK~us_OB~c=
+onv_FS~lo_FF~bing_BS~vd_KM~phrase-&ds_ag=3DID~n_AG~Premiere+Large_AE~mul_AT=
+~stads_MD~h_PK~roah_PB~bing_PL~sa360_CH~search_FF~gc+phrase-&ds_k=3Dlarge+r=
+oom+projector&&msclkid=3D409a6dba89cb1e5ed9a605bb6e31d5e5&gclid=3D409a6dba8=
+9cb1e5ed9a605bb6e31d5e5&gclsrc=3D3p.ds&gad_source=3D7
+
+
+
+
+------=_Part_1728258_181276269.1744959359278
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head></head><body><div class=3D"yahoo-style-wrap" style=3D"font-fami=
+ly:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px;"><div dir=
+=3D"ltr" data-setdir=3D"false">Hi Paul,</div><div dir=3D"ltr" data-setdir=
+=3D"false">I was able to meet with Daniel at the San Diego Airport today an=
+d he took me on a tour showing me the spaces. I took some photos which I wi=
+ll upload tomorrow. In general there are two different kind of spaces. One =
+being flat walls =E2=80=94 or nearly flat =E2=80=94 and the other being big=
+ glass cases set into the wall space. The flat spaces could possibly accomm=
+odate projection but I am not quite sure because people would be walking by=
+. Daniel seems to think it would be doable so maybe it is. The glass cases =
+are approximately 8 ft high although one might be a bit shorter. The width =
+varies with the biggest around 16 ft. There is one space that people would =
+see as there are going through the TSA queue. This is one of the glass spac=
+es. The remaining spaces are all on the other side after going through TSA.=
+ On the way toward the international terminal area is one of the flat wall =
+spaces. Daniel was concerned about using this as a projection space because=
+ there tend to be ambient light and shadows on the space. It is quite a goo=
+d size space though. We don=E2=80=99t have measurement but I suspect it is =
+20 ft long and the height 6-8ft. Continuing down the hallway into the termi=
+nal area there is a seating area with 3 walls surrounding the space. Each w=
+all has glass cases. Electricity is available in each of the cases if neces=
+sary. Then down on the opposite side of the terminal there is another flat =
+space and for the current show they had multiple canvas pieces. This space =
+has a low ceiling compared to the others spaces.&nbsp;</div><div dir=3D"ltr=
+" data-setdir=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"false">In=
+ additional to showing the spaces, Daniel talked about the stipend and beca=
+use it is quite low he prepared me in advance. He said the stipend would $1=
+,500. However, he said that they would handle all the shipping, handling lo=
+gistics and insurance. He also said that normally there is a proposal submi=
+ssion process but that he would talk legal to try to get that waved.&nbsp;<=
+/div><div dir=3D"ltr" data-setdir=3D"false"><br></div><div dir=3D"ltr" data=
+-setdir=3D"false">I also asked about timelines and basically whatever would=
+ be shown would be picked up sometime in December. And the decision on what=
+ would be shown has to be decided by August.&nbsp;</div><div dir=3D"ltr" da=
+ta-setdir=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"false">We did=
+ talk about an active plotter. Based on what I saw, any plotter would have =
+to be vertical. And with respect loading paper a roll or some other method =
+would need to be implemented to minimize having to have a person interact w=
+ith the plotter. I ask Daniel what he thought the maximum interaction with =
+plotter would be. He thought that a maximum of once every two weeks. Althou=
+gh, if the staff at the airport were not involved, he seemed to think it co=
+uld be more often.&nbsp;</div><div dir=3D"ltr" data-setdir=3D"false"><br></=
+div><div dir=3D"ltr" data-setdir=3D"false">So that is kind of the summary.&=
+nbsp;</div><div dir=3D"ltr" data-setdir=3D"false"><br></div><div dir=3D"ltr=
+" data-setdir=3D"false">I am &nbsp;putting on my thinking cap. At this time=
+, I would prefer the glass cases. Unfortunately having a traditional projec=
+tion in the cases would not be practical. However, I do see Samsung has int=
+eresting solution whereby the image is projected from the floor onto a roll=
+ed screen (see link below). Nice idea, but I rather think a more narrow sys=
+tem would be required for the airport cases. If we want to go that route of=
+ we=E2=80=99d need a solution that fits inside the case. I do think a mecha=
+nical machine would be more engaging. The projections are nice but with the=
+ nature of the world today with screens everywhere I wonder if another scre=
+en would just be another screen and would get lost. I know we don=E2=80=99t=
+ have much time, but I=E2=80=99m wondering if an unconventional solution ca=
+n be found. A plotter that is more like a etch-a-sketch that doesn=E2=80=99=
+t require paper. &nbsp;Or one that plots on a white board that can then be =
+erased or something similar. I=E2=80=99m also wondering how we might implem=
+ent a way for people to have an image as a take-away. I know we don=E2=80=
+=99t have much time, but what if we had an app that worked only in proximit=
+y of the display. And if they like the image being generated they could cap=
+ture it on with the app in some way maybe. Thereby having their own NFT of =
+sorts. An NFT that we would still have control over.&nbsp;</div><div dir=3D=
+"ltr" data-setdir=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"false=
+">We could just go with static pieces too.&nbsp;</div><div dir=3D"ltr" data=
+-setdir=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"false">&nbsp;If=
+ you want to talk more about it we can.&nbsp;</div><div dir=3D"ltr" data-se=
+tdir=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"false">Tom</div><d=
+iv dir=3D"ltr" data-setdir=3D"false"><br></div><div dir=3D"ltr" data-setdir=
+=3D"false"><span class=3D"ydpe410ca6pasted-link"><a href=3D"https://www.sam=
+sung.com/us/televisions-home-theater/television-home-theater-accessories/te=
+levisions/the-premiere-rollable-screen-2022-vg-prsp120s-za/?cid=3Dsem-mktg-=
+pfs-tv-us-bing-na-06202023-141500-&amp;ds_e=3DMICROSOFT-cr:0-pl:294818637-&=
+amp;ds_c=3DCN~Premiere+NB_ID~n_PR~premi_SB~tv_PH~on_KS~gc_MK~us_OB~conv_FS~=
+lo_FF~bing_BS~vd_KM~phrase-&amp;ds_ag=3DID~n_AG~Premiere+Large_AE~mul_AT~st=
+ads_MD~h_PK~roah_PB~bing_PL~sa360_CH~search_FF~gc+phrase-&amp;ds_k=3Dlarge+=
+room+projector&amp;&amp;msclkid=3D409a6dba89cb1e5ed9a605bb6e31d5e5&amp;gcli=
+d=3D409a6dba89cb1e5ed9a605bb6e31d5e5&amp;gclsrc=3D3p.ds&amp;gad_source=3D7"=
+ rel=3D"nofollow" target=3D"_blank">https://www.samsung.com/us/televisions-=
+home-theater/television-home-theater-accessories/televisions/the-premiere-r=
+ollable-screen-2022-vg-prsp120s-za/?cid=3Dsem-mktg-pfs-tv-us-bing-na-062020=
+23-141500-&amp;ds_e=3DMICROSOFT-cr:0-pl:294818637-&amp;ds_c=3DCN~Premiere+N=
+B_ID~n_PR~premi_SB~tv_PH~on_KS~gc_MK~us_OB~conv_FS~lo_FF~bing_BS~vd_KM~phra=
+se-&amp;ds_ag=3DID~n_AG~Premiere+Large_AE~mul_AT~stads_MD~h_PK~roah_PB~bing=
+_PL~sa360_CH~search_FF~gc+phrase-&amp;ds_k=3Dlarge+room+projector&amp;&amp;=
+msclkid=3D409a6dba89cb1e5ed9a605bb6e31d5e5&amp;gclid=3D409a6dba89cb1e5ed9a6=
+05bb6e31d5e5&amp;gclsrc=3D3p.ds&amp;gad_source=3D7</a></span><br></div><div=
+ dir=3D"ltr" data-setdir=3D"false"><br></div><div dir=3D"ltr" data-setdir=
+=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"false"><br></div></div=
+></body></html>
+------=_Part_1728258_181276269.1744959359278--

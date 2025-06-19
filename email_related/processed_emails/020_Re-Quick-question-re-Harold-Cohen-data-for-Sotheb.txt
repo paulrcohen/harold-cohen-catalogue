@@ -1,0 +1,34 @@
+Subject: Re: Quick question re Harold Cohen data for Sothebys
+From: Robert Norton <robert@verisart.com>
+To: Thomas Machnik <zipnpup@yahoo.com>
+Date: 2024-10-09 16:52:31
+Message-ID: <7D8A5AB9-788A-40DA-AF7A-A2EDE733A0BC@verisart.com>
+--------------------------------------------------------------------------------
+
+Thanks Tom for double checking all this. Appreciate that all this takes time and it’s sometimes hard to determine what happened so long ago.
+
+Regarding this work, we now have two options:
+
+1) We create a new certificate for the print and change the date from 2002 to 2003. The problem with this is that the collector would receive the print and may then ask why the year says 2002 whereas the record says 2003 and this may create further confusion and invite further scrutiny regarding dates written on other prints. I think we would want to avoid this as we are looking to build a trusted market for this works. We would also need to destroy the already minted NFT which states a production year of 2002 which is what is supplied although the file metadata does say 2003.
+
+2) We leave the certificate for the print as it stands which states it was produced in 2002. We add a note to the certificate for the NFT to say this is the earliest known file the estate has for this work and say that the descriptor file was not saved until 2003. The benefit with this is we don't have to re-mint or re-issue the NFT or the certificate and we can simply amend the certificate for the NFT to reflect the above.
+
+I suspect there may be other cases we come across when we put together the catalog raisonne and it may be better to include all works together in a series of changes the estate agrees upon than to introduce all this know on the eve, so to speak, of the selling exhibition with Sotheby’s.
+
+We will do whatever you think is best but from our perspective we think Option 2 is preferable at this stage.
+
+Grateful for your thoughts and guidance on this.
+
+Best
+
+Robert
+
+Robert Norton
+CEO & co-founder
+Verisart <http://www.verisart.com/>
+
+￼
+
+> On Oct 9, 2024, at 07:37, Thomas Machnik <zipnpup@yahoo.com> wrote:
+> 
+> Dear Robert,

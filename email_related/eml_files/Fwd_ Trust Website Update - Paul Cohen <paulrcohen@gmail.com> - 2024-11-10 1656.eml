@@ -1,0 +1,318 @@
+MIME-Version: 1.0
+Date: Sun, 10 Nov 2024 16:56:12 -0500
+References: <CAGUP2nwAbTgKuM1FO4jLGjz31OjZBbeeS3BA5nJ17jhQ2UyCnA@mail.gmail.com>
+	<CAFAU3LNp3rtKkaeGNSq0pXC3m73eDwc7nB35qcnDAfKqPLLOvA@mail.gmail.com>
+	<CAFAU3LMRwkr-yKwN5h9S9U4TA2RO2BfSuUsR3n4sBaQYK-2o5g@mail.gmail.com>
+	<CAGUP2nxvyFxNBQEiYTvQnJANtyTBpAb5xGONCA7Mhh8gG7dMHg@mail.gmail.com>
+	<CAKjPZkFZiwHpF6VW-HFnNaYkJJhWaTSYCibpnB1PWG+7T+fSqQ@mail.gmail.com>
+In-Reply-To: <CAKjPZkFZiwHpF6VW-HFnNaYkJJhWaTSYCibpnB1PWG+7T+fSqQ@mail.gmail.com>
+Message-ID: <CAKjPZkE4Lvp_+8CcV_=H_z+eHmVsB-wbo9QYLS3qW6-+0WmJMQ@mail.gmail.com>
+Subject: Fwd: Trust Website Update
+From: Paul Cohen <paulrcohen@gmail.com>
+To: Daniel Maxwell <maxwellgraphics@gmail.com>
+Content-Type: multipart/alternative; boundary="000000000000700da20626960dc5"
+
+--000000000000700da20626960dc5
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Daniel, sorry to bug you about this.  I'm heading to London on the 24th
+and I'd like to make some progress on the catalog raisonne discussions when
+I'm at Gazelli/Verisart.  Also, a group of undergrads want to build a
+search engine for the inventory that we might incorporate into the web
+site, but they'd need your guidance about APIs for the site.  Sooo, could
+we chat this week?  Thanks, --P
+
+
+______________________________
+
+Paul Cohen,  Professor
+School of Computing and Information
+University of Pittsburgh
+personal webpage <https://paulrcohen.github.io/>
+______________________________
+
+
+---------- Forwarded message ---------
+From: Paul Cohen <paulrcohen@gmail.com>
+Date: Tue, Oct 15, 2024 at 4:02=E2=80=AFPM
+Subject: Re: Trust Website Update
+To: Daniel Maxwell <maxwellgraphics@gmail.com>, Thomas Machnik <
+zipnpup@yahoo.com>
+Cc: kanoko nishi =E8=A5=BF=E9=B9=BF=E4=B9=83=E5=AD=90 <littledeerofthewest@=
+googlemail.com>, Allegra Cohen <
+allegra.ab.cohen@gmail.com>
+
+
+Hi Daniel, it looks great!  I look forward to iterating with you on little
+adjustments but overall I think Harold would be thrilled and proud of it.
+
+Can I ask two things, please.  First, please invoice the HCT for the work.
+Second, if you are willing to continue on the project, then I'd like to
+have a zoom call with you and Sascha, who is CTO at Verisart.  Briefly the
+idea is to publish two catalogs raisonne, one a handsome print volume that
+doesn't include everything, the other an exhaustive, searchable listing
+accessible from the HCT web site.  The question is whether Verisart can
+serve records to the web site easily.  If so, then 1) everything can be on
+chain, 2) we can augment Verisart records with information they cannot
+currently handle, such as Tom's provenance notes or facsimiles of
+exhibition catalogs.  I think we should run a little experiment to see
+whether Verisart can serve a record when requested from the HCT website
+client.  I might also be totally off-base about the right way to get the
+functionality we want!  If you are interested, can you suggest some times
+we might chat with Sascha, keeping in mind the eight-hour time difference.
+
+Beautiful work, thank you!
+
+--P
+______________________________
+
+Paul Cohen,  Professor
+School of Computing and Information
+University of Pittsburgh
+personal webpage <https://paulrcohen.github.io/>
+______________________________
+
+
+On Tue, Oct 15, 2024 at 3:45=E2=80=AFPM Daniel Maxwell <maxwellgraphics@gma=
+il.com>
+wrote:
+
+> So the site is technically live but it does seem to pop up that coming
+> soon page on some devices. It works for me on desktop but not mobile. Not
+> sure if there is a cache issue on the host/device end, something with the
+> domain name pointing/DNS, indexing or what. If go to a subpage on the sit=
+e
+> it seems to work fine:
+> https://haroldcohentrust.org/about/
+> Can navigate the whole site except the home page page, which leads me to
+> think it is something with the hosting/WordPress...
+>
+> Anyway, I will keep working on it and let you know when resolved.
+>
+> On Sat, Oct 12, 2024, 9:42 PM kanoko nishi =E8=A5=BF=E9=B9=BF=E4=B9=83=E5=
+=AD=90 <
+> littledeerofthewest@googlemail.com> wrote:
+>
+>> Hi all!
+>>
+>> it still saying =E2=80=9CComing Soon=E2=80=9D currently, right?
+>>
+>> "The phenomenon called =E2=80=9CI=E2=80=9D
+>> is a blue illumination
+>> of the hypothesized, organic alternating current lamp" - Miyazawa Kenji
+>>
+>>
+>> On Sun, Oct 6, 2024 at 4:03=E2=80=AFPM kanoko nishi =E8=A5=BF=E9=B9=BF=
+=E4=B9=83=E5=AD=90 <
+>> littledeerofthewest@googlemail.com> wrote:
+>>
+>>> This is great, thanks a lot, Daniel! I will try it too tonight!
+>>>
+>>> On Sun, Oct 6, 2024, 3:42 PM Daniel Maxwell <maxwellgraphics@gmail.com>
+>>> wrote:
+>>>
+>>>> Hi all, sorry for the long delay but the trust website should be up an=
+d
+>>>> live soon. I was able to point the current URL (haroldcohentrust.org)
+>>>> to the new site however it will take up to 72 hours for the DNS record=
+s to
+>>>> be updated and propagate across the internet. I will keep an eye on it=
+ to
+>>>> see when the site is actually live.
+>>>>
+>>>> It is a little confusing but there are currently 3 services involved:
+>>>>
+>>>>    1. *Google Workspaces* (manages the .org domain, email etc.)
+>>>>    2. *SquareSpace* acquired all Google hosted domains so they are now
+>>>>    the registrar for the .org domain. This is where we can manage what=
+ site
+>>>>    the domain points to.
+>>>>    3. *HostGator* is the actual host of the website as well as
+>>>>    managing the .com domain (just to have with the .org). The .com wil=
+l just
+>>>>    forward to the .org once it is live.
+>>>>
+>>>> Once the site is live and accessible there will probably be a little
+>>>> more tidying up to do and we will want to start updating with recents =
+news
+>>>> and whatnot.
+>>>>
+>>>> Please let me know if you have any issues with Google Workspaces and
+>>>> email, they should be unaffected but just want to make sure.
+>>>>
+>>>> --
+>>>> Daniel Maxwell
+>>>> E-Mail : maxwellgraphics@gmail.com
+>>>> Phone : 954.448.2340
+>>>>
+>>>>
+>>>> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>>>> CONFIDENTIALITY NOTICE: This email and any files transmitted with it
+>>>> are confidential and intended solely for the use of the individual or
+>>>> entity to which they are addressed. If you are not the intended recipi=
+ent,
+>>>> you may not review, copy or distribute this message. If you have recei=
+ved
+>>>> this email in error, please notify the sender immediately and delete t=
+he
+>>>> original message. Neither the sender nor the company for which he or s=
+he
+>>>> works accepts any liability for any damage caused by any virus transmi=
+tted
+>>>> by this email.
+>>>>
+>>>> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>>>>
+>>>
+
+--000000000000700da20626960dc5
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div><br clear=3D"all"></div><div><div dir=3D"ltr" class=
+=3D"gmail_signature" data-smartmail=3D"gmail_signature"><div dir=3D"ltr"><d=
+iv><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div d=
+ir=3D"ltr"><div><div dir=3D"ltr"><div style=3D"font-size:small" class=3D"gm=
+ail_default">Hi Daniel, sorry to bug you about this.=C2=A0 I&#39;m heading =
+to London on the 24th and I&#39;d like to make some progress on the catalog=
+ raisonne discussions when I&#39;m at Gazelli/Verisart.=C2=A0 Also, a group=
+ of undergrads want to build a search engine for the inventory that we migh=
+t incorporate into the web site, but they&#39;d need your guidance about AP=
+Is for the site.=C2=A0 Sooo, could we chat this week?=C2=A0 Thanks, --P<br>=
+</div><br></div><div dir=3D"ltr"><br></div><div dir=3D"ltr">_______________=
+_______________<br><br>Paul Cohen,=C2=A0=C2=A0Professor</div><div dir=3D"lt=
+r">School of Computing and Information</div><div dir=3D"ltr">University of =
+Pittsburgh</div><div dir=3D"ltr"><a href=3D"https://paulrcohen.github.io/" =
+target=3D"_blank">personal webpage</a><br>______________________________</d=
+iv></div></div></div></div></div></div></div></div></div></div></div></div>=
+<br><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">--=
+-------- Forwarded message ---------<br>From: <b class=3D"gmail_sendername"=
+ dir=3D"auto">Paul Cohen</b> <span dir=3D"auto">&lt;<a href=3D"mailto:paulr=
+cohen@gmail.com">paulrcohen@gmail.com</a>&gt;</span><br>Date: Tue, Oct 15, =
+2024 at 4:02=E2=80=AFPM<br>Subject: Re: Trust Website Update<br>To: Daniel =
+Maxwell &lt;<a href=3D"mailto:maxwellgraphics@gmail.com">maxwellgraphics@gm=
+ail.com</a>&gt;, Thomas Machnik &lt;<a href=3D"mailto:zipnpup@yahoo.com">zi=
+pnpup@yahoo.com</a>&gt;<br>Cc: kanoko nishi =E8=A5=BF=E9=B9=BF=E4=B9=83=E5=
+=AD=90 &lt;<a href=3D"mailto:littledeerofthewest@googlemail.com">littledeer=
+ofthewest@googlemail.com</a>&gt;, Allegra Cohen &lt;<a href=3D"mailto:alleg=
+ra.ab.cohen@gmail.com">allegra.ab.cohen@gmail.com</a>&gt;<br></div><br><br>=
+<div dir=3D"ltr"><div style=3D"font-size:small">Hi Daniel, it looks great!=
+=C2=A0 I look forward to iterating with you on little adjustments but overa=
+ll I think Harold would be thrilled and proud of it.=C2=A0 <br></div><div s=
+tyle=3D"font-size:small"><br></div><div style=3D"font-size:small">Can I ask=
+ two things, please.=C2=A0 First, please invoice the HCT for the work. Seco=
+nd, if you are willing to continue on the project, then I&#39;d like to hav=
+e a zoom call with you and Sascha, who is CTO at Verisart.=C2=A0 Briefly th=
+e idea is to publish two catalogs raisonne, one a handsome print volume tha=
+t doesn&#39;t include everything, the other an exhaustive, searchable listi=
+ng accessible from the HCT web site.=C2=A0 The question is whether Verisart=
+ can serve records to the web site easily.=C2=A0 If so, then 1) everything =
+can be on chain, 2) we can augment Verisart records with information they c=
+annot currently handle, such as Tom&#39;s provenance notes or facsimiles of=
+ exhibition catalogs.=C2=A0 I think we should run a little experiment to se=
+e whether Verisart can serve a record when requested from the HCT website c=
+lient.=C2=A0 I might also be totally off-base about the right way to get th=
+e functionality we want!=C2=A0 If you are interested, can you suggest some =
+times we might chat with Sascha, keeping in mind the eight-hour time differ=
+ence.</div><div style=3D"font-size:small"><br></div><div style=3D"font-size=
+:small">Beautiful work, thank you!=C2=A0 <br></div><div style=3D"font-size:=
+small"><br></div><div style=3D"font-size:small">--P<br clear=3D"all"></div>=
+<div><div dir=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"gmail_sig=
+nature"><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div><=
+div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr">_______________=
+_______________<br><br>Paul Cohen,=C2=A0=C2=A0Professor</div><div dir=3D"lt=
+r">School of Computing and Information</div><div dir=3D"ltr">University of =
+Pittsburgh</div><div dir=3D"ltr"><a href=3D"https://paulrcohen.github.io/" =
+target=3D"_blank">personal webpage</a><br>______________________________</d=
+iv></div></div></div></div></div></div></div></div></div></div></div></div>=
+<br></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_at=
+tr">On Tue, Oct 15, 2024 at 3:45=E2=80=AFPM Daniel Maxwell &lt;<a href=3D"m=
+ailto:maxwellgraphics@gmail.com" target=3D"_blank">maxwellgraphics@gmail.co=
+m</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin=
+:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"=
+><p dir=3D"ltr">So the site is technically live but it does seem to pop up =
+that coming soon page on some devices. It works for me on desktop but not m=
+obile. Not sure if there is a cache issue on the host/device end, something=
+ with the domain name pointing/DNS, indexing or what. If go to a subpage on=
+ the site it seems to work fine:<br>
+<a href=3D"https://haroldcohentrust.org/about/" target=3D"_blank">https://h=
+aroldcohentrust.org/about/</a><br>
+Can navigate the whole site except the home page page, which leads me to th=
+ink it is something with the hosting/WordPress...</p>
+<p dir=3D"ltr">Anyway, I will keep working on it and let you know when reso=
+lved.</p>
+<br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Sat=
+, Oct 12, 2024, 9:42 PM kanoko nishi =E8=A5=BF=E9=B9=BF=E4=B9=83=E5=AD=90 &=
+lt;<a href=3D"mailto:littledeerofthewest@googlemail.com" target=3D"_blank">=
+littledeerofthewest@googlemail.com</a>&gt; wrote:<br></div><blockquote clas=
+s=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid r=
+gb(204,204,204);padding-left:1ex"><div><div dir=3D"auto">Hi all!=C2=A0</div=
+><div dir=3D"auto"><br></div><div dir=3D"auto">it still saying =E2=80=9CCom=
+ing Soon=E2=80=9D currently, right?=C2=A0<br clear=3D"all"><br clear=3D"all=
+"><div dir=3D"auto"><div dir=3D"ltr" class=3D"gmail_signature">&quot;The ph=
+enomenon called =E2=80=9CI=E2=80=9D <br>is a blue illumination <br>of the h=
+ypothesized, organic alternating current lamp&quot; - Miyazawa Kenji</div><=
+/div></div></div><div><div><br></div><div><br><div class=3D"gmail_quote"><d=
+iv dir=3D"ltr" class=3D"gmail_attr">On Sun, Oct 6, 2024 at 4:03=E2=80=AFPM =
+kanoko nishi =E8=A5=BF=E9=B9=BF=E4=B9=83=E5=AD=90 &lt;<a href=3D"mailto:lit=
+tledeerofthewest@googlemail.com" rel=3D"noreferrer" target=3D"_blank">littl=
+edeerofthewest@googlemail.com</a>&gt; wrote:<br></div><blockquote class=3D"=
+gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(20=
+4,204,204);padding-left:1ex"><p dir=3D"ltr">This is great, thanks a lot, Da=
+niel! I will try it too tonight! </p>
+<br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Sun=
+, Oct 6, 2024, 3:42 PM Daniel Maxwell &lt;<a href=3D"mailto:maxwellgraphics=
+@gmail.com" rel=3D"noreferrer" target=3D"_blank">maxwellgraphics@gmail.com<=
+/a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0=
+px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><=
+div dir=3D"ltr">Hi all, sorry for the long delay but the trust website shou=
+ld be up and live soon. I was able to point the current URL (<a href=3D"htt=
+p://haroldcohentrust.org" rel=3D"noreferrer noreferrer" target=3D"_blank">h=
+aroldcohentrust.org</a>) to the new site however it will take up to 72 hour=
+s for the DNS records=C2=A0to be updated and propagate=C2=A0across the inte=
+rnet. I will keep an eye on it to see when the site is actually live.<div><=
+br></div><div>It is a little confusing but there are currently 3 services i=
+nvolved:</div><div><ol><li><b>Google Workspaces</b> (manages the .org domai=
+n, email etc.)</li><li><b>SquareSpace</b> acquired=C2=A0all Google hosted d=
+omains so they are now the registrar for the .org domain. This is where we =
+can manage what site the domain points to.</li><li><b>HostGator</b> is the =
+actual host of the website as well as managing the .com domain (just to hav=
+e with the .org). The .com will just forward to the .org once it is live.</=
+li></ol></div><div>Once=C2=A0the site is live and accessible there will pro=
+bably be a little more tidying up to do and we will want to start updating =
+with recents news and whatnot.<br></div><div><br></div><div>Please let me k=
+now if you have any issues with Google Workspaces and email, they should be=
+ unaffected but just want to make sure.</div><div><div><br></div><span clas=
+s=3D"gmail_signature_prefix">-- </span><br><div dir=3D"ltr" class=3D"gmail_=
+signature">Daniel Maxwell<br>E-Mail : <a href=3D"mailto:maxwellgraphics@gma=
+il.com" rel=3D"noreferrer noreferrer" target=3D"_blank">maxwellgraphics@gma=
+il.com</a><br>Phone : 954.448.2340<br><br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>CONFI=
+DENTIALITY NOTICE: This email and any files transmitted with it are confide=
+ntial and intended solely for the use of the individual or entity to which =
+they are addressed. If you are not the intended recipient, you may not revi=
+ew, copy or distribute this message. If you have received this email in err=
+or, please notify the sender immediately and delete the original message. N=
+either the sender nor the company for which he or she works accepts any lia=
+bility for any damage caused by any virus transmitted by this email.<br>=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D</div></div></div>
+</blockquote></div>
+</blockquote></div></div>
+</div>
+</blockquote></div>
+</blockquote></div>
+</div></div>
+
+--000000000000700da20626960dc5--

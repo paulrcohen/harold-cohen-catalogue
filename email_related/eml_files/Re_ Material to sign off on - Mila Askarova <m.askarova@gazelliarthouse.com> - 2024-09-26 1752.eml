@@ -1,0 +1,516 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a10:a141:b0:5ad:6c17:f336 with SMTP id r1csp4164pxc;
+        Thu, 26 Sep 2024 14:52:38 -0700 (PDT)
+X-Received: by 2002:a17:90a:8d10:b0:2d2:453:12cb with SMTP id 98e67ed59e1d1-2e0b8879624mr1333253a91.2.1727387557839;
+        Thu, 26 Sep 2024 14:52:37 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1727387557; cv=none;
+        d=google.com; s=arc-20160816;
+        b=xP4ynBsZp3OZAUZvcDRRW/uLsdnbNTQfUnUq9sNHTuZOwe7PwC1Utgs829Pa7O7jOZ
+         8whyMdON9BmR1HSId7KJsk6efpRe1gNcdO+aV7OFsPH/+PBP4TEwLX3s+EcqL9ATXF0Y
+         9EAEStl5YSFUIHSx9ovkQ6jy0f+RNQ9vp2A2amSIbMERNDq4sUtqdTA4FNki2qMec22m
+         SlbMGyvv8EpxDCVeq0vtT4cTb3MSTIGF1y+DmbJF5+c2iNrIfulfRRgfFNA9NynJ+xZ1
+         GIQb1AyHgMijmMejDON1WGCHUXjySGkHLe+qWVS6itmgvdXtQZ+IZFkqLQ0ftLCoJ1z/
+         e4Hg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=MzciTyZcrvREs/yqb3a2Ap1VNhdzK0oFPC1YcesI+eA=;
+        fh=bjDDIuykoylc4nXy1xeXKP96bvbrQMuJ5Vc0RvH3e6o=;
+        b=cYIbpzF+hNtz9oU7dspSTOCK0Uc9vDn5HS3wdbCBJs2b+8n89YZL9S2uvP1Tg3dsR8
+         QogBhJlDha4waP1c/ZiQjE6AoPi9CImeHB8fAvWx5e5ATRw1jWngfsab77pxOKolNirK
+         SZuIn7+aLZ/yj5VLeRTZcn2yzDwSQa12mYasjFP0CF68udG9+zuFNlBU2lkB49Ew75OG
+         Ah3b4mIw0hiYE+PQaDdNNy1JiZay60zdf2HTFO+1sFFXw0+PAe1YIiurByOPjT+y9BFd
+         BHp8NaJDwbmOgSbn/vlz6zIACl7xvvATYbRPTpLIYynwmFn5JFbbtlz/mtfWBuVorj6I
+         1Z9Q==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@gazelliarthouse-com.20230601.gappssmtp.com header.s=20230601 header.b=Ti51h2he;
+       spf=pass (google.com: domain of m.askarova@gazelliarthouse.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=m.askarova@gazelliarthouse.com;
+       dara=pass header.i=@gmail.com
+Return-Path: <m.askarova@gazelliarthouse.com>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id 98e67ed59e1d1-2e0b7511b3bsor438705a91.6.2024.09.26.14.52.37
+        for <paulrcohen@gmail.com>
+        (Google Transport Security);
+        Thu, 26 Sep 2024 14:52:37 -0700 (PDT)
+Received-SPF: pass (google.com: domain of m.askarova@gazelliarthouse.com designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@gazelliarthouse-com.20230601.gappssmtp.com header.s=20230601 header.b=Ti51h2he;
+       spf=pass (google.com: domain of m.askarova@gazelliarthouse.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=m.askarova@gazelliarthouse.com;
+       dara=pass header.i=@gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gazelliarthouse-com.20230601.gappssmtp.com; s=20230601; t=1727387557; x=1727992357; dara=google.com;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=MzciTyZcrvREs/yqb3a2Ap1VNhdzK0oFPC1YcesI+eA=;
+        b=Ti51h2heXkLyKAk7klMQnoPwcdChbggL7wTzMVXHYNsGzOc+n03Ip/X4f4GbFEure4
+         GBSeMxbe2zIsdbb/VrAMu++3IBztpFWNVh575d6Uc37Ijr7yVTvW9DW20imYn9K3HbSw
+         uJCipBdnbrz7J/F5nIbku0UXnI26a32YxQ8JLiILa0VI4ihf2sE+s5saPXSsfBhQHyEj
+         P0pElBGyo8XGeFs6JPkAM3dN7L9b+kNRpQSQ9H0L4Br4Y+xbmz3eV0VmORkLyEzmihcA
+         C/kKD5DlAzdLxD4tX6bDGAGypOXrXgauXcXl67jdSPHkt7VCJ88e0KlwNG8ewXNSTXuT
+         +50w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727387557; x=1727992357;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=MzciTyZcrvREs/yqb3a2Ap1VNhdzK0oFPC1YcesI+eA=;
+        b=bpdDHJJpde9nrIhtFEKYJ+eWjj157ixko7IdD8U2yAoCcWeq2IoA/wPzTigNMkeftC
+         ybyIMldjEnn2jm/Cz0B61guWfO0j9ArIp9Od9Mr/LU/8XmFZ2drdU2q197QCHlRBUPRE
+         OvFary4aCVz7xnUGmeMLHuFdIvl/aBdp9gimZNmtQ96i4yb03AXZys79HvbnHiRzGoUh
+         Uq65W4jXVSQ5aWTdD6sUdILO2z/P+uYa7Yk0xs/92V2alO1hly9ZO4ojRtPGwbVMxWrW
+         YTgVHHRZPjaQmWIJqpEgtHX6/1DF4jfRAd+DshuUsQKGj6eXI9hQD96pb98wIjgY3HYL
+         54iA==
+X-Gm-Message-State: AOJu0YwqMITGJLDHCgWbjgPEwW/xtBnNmHa/2/veh5x8fOWFflypXbYV
+	Aw7WyG1/UlM2tqd23kaud6CGcJsok2OKXuOxxssganjA45ro9W0dkSrKzMbh0khD3+mb90BO0Vi
+	HF18srYd3M3xubeqIYxJw+gBm7HpO348XldUStMXR/IaKhaeX
+X-Google-Smtp-Source: AGHT+IGS4xUtFsZ7sm4OtrBiyBJP59q0oYEwKnQHDo0dDzWk3zekLBNwizh9UwiBcXfOjgie7PpGU6OwQgBaLJm3tNU=
+X-Received: by 2002:a17:90a:e147:b0:2d8:a672:186d with SMTP id
+ 98e67ed59e1d1-2e0b8b1bd0amr1443058a91.20.1727387557021; Thu, 26 Sep 2024
+ 14:52:37 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAAOqD368w=KU_L4MZ-3EqUTid7jTrwDPkt_8sLbB27_VrB_VwA@mail.gmail.com>
+ <881498203.3447875.1727366220909@yahoo.com>
+In-Reply-To: <881498203.3447875.1727366220909@yahoo.com>
+From: Mila Askarova <m.askarova@gazelliarthouse.com>
+Date: Thu, 26 Sep 2024 22:52:26 +0100
+Message-ID: <CAAOqD37Q8zMoC5Jn9PL43KBHMJ6Uf1u617yqKX=wRfhCAqKp5g@mail.gmail.com>
+Subject: Re: Material to sign off on
+To: zipnpup <zipnpup@yahoo.com>
+Cc: Paul Cohen <paulrcohen@gmail.com>, Harold Cohen Trust <aaron@aaronshome.com>, 
+	Paul Cohen <team@haroldcohentrust.org>
+Content-Type: multipart/alternative; boundary="000000000000b9e8d806230cc172"
+
+--000000000000b9e8d806230cc172
+Content-Type: text/plain; charset="UTF-8"
+
+Hi Tom,
+
+Thank you so much for this.
+
+If none of the images are exactly the same, then why do you think he
+editioned them?
+I've mentioned this in the other email just now too, do we know if any of
+the other 'editions' of the 9 works selected were/are signed?
+Paul, let me have a chat with Michael as I mentioned, will report back with
+how we can navigate this as I think it is a matter of getting the wording
+right so it is not misleading but also comforts both parties.
+Will have a think about it but in the meantime, might something like this
+be more in line with what we are trying to say? :
+*Each work is a unique, signed edition with no other editions available
+with an accompanying ERC-721 token.*
+
+My best,
+Mila
+
+On Thu, 26 Sept 2024 at 16:57, zipnpup <zipnpup@yahoo.com> wrote:
+
+> Hi Mila
+> It is difficult to describe what it is that AARON does/did. The imagery
+> generated is unique. The print is 1 of x and there was a 2 of x and 3 of x
+> in some cases. So there maybe x of x instances of this uniqueness. Each
+> work AARON generates is certainly unique in that AARON by Cohen's coded
+> design does not generate the same work more once. It is unique in that it
+> is signed 1 of x whereas no other print is signed 1 of x. The series is
+> special in that we have never sold the digital image let alone the digital
+> + print together. I'm not sure if including AARON in the text is
+> appropriate but like I mentioned Harold's coded design of AARON assures us
+> that AARON did not and cannot generate the same likeness of this same image
+> even we ran it billions of times it would not generate this image again.
+> The wording is a bit tricky because we may another print produced in his
+> lifetime but it is certainly not signed as 1 of x.
+>
+> I am not in a disagreement of the use of unique as that is an inherent
+> feature if AARON. I would like a slightly different wording with "only
+> known" as all of our picks were chosen specifically because they were not
+> the only known one. I do agree with the uniqueness use I am just not sure
+> how to resolve the conflicting message in such a short sentence. But I will
+> think about it.
+>
+>
+> Tom
+>
+>
+>
+> Sent from my T-Mobile 4G LTE Device
+>
+>
+> -------- Original message --------
+> From: Mila Askarova <m.askarova@gazelliarthouse.com>
+> Date: 9/26/24 5:35 AM (GMT-08:00)
+> To: Thomas Machnik <zipnpup@yahoo.com>
+> Cc: Paul Cohen <paulrcohen@gmail.com>, Harold Cohen Trust <
+> aaron@aaronshome.com>, Paul Cohen <team@haroldcohentrust.org>
+> Subject: Material to sign off on
+>
+> Hi,
+>
+> Sharing with you the material for final sign off!
+> (Please note this is being reviewed by Sotheby's too so there might be
+> some tweaks made to it)
+>
+> Their main concern was the uniqueness of the work. It has to be identified
+> as unique, despite the physical print saying otherwise. The way around
+> this, we suggest the wording that is found both in the press release (at
+> the bottom) and the description of the NFT: "Unique, signed edition and the
+> only known one that has been produced during the artist's lifetime."
+> Are you happy with this?
+>
+> - press release
+> - description of the NFT
+> - mock NFT visual
+>
+> [image: MOCK NFT- Opensea View.png]
+>
+>
+> - mock COA
+> [image: Digital COA.png]
+>
+> My best,
+> Mila
+>
+>
+>
+>
+>
+> --
+> Mila Askarova
+> CEO & Founder
+>
+> *GAZELLI ART HOUSE*
+>
+> LONDON
+> Cipher: Pouran Jinchi & Ruba Salameh
+> <https://gazelliarthouse.com/exhibitions/185-cipher-pouran-jinchi-ruba-salameh/>
+> The Window: Aida Mahmudova
+> <https://gazelliarthouse.com/exhibitions/186-the-window-aida-mahmudova/>
+> Project Space & Frieze Sculpture 2024: Libby Heaney
+> <https://nft.gazell.io/collections/libby-heaney-frieze-sculpture-2024>
+>
+> BAKU
+> Group Show
+>
+> GAZELL.iO
+> September Resident | Kate Hollenbach
+> <https://gazell.io/exhibitions/138-kate-hollenbach/>
+>
+> www.gazelliarthouse.com
+> +44 (0) 207 491 8816 / +994 (0) 12 498 1230
+>
+>
+> <https://streaklinks.com/BHpVIxJHhzip8Hm6nAyO2h9O/https%3A%2F%2Fwww.instagram.com%2Fgazelliarthouse%2F>
+>
+> <https://streaklinks.com/BHpVIoEUFPH6ci6Q4QBT8JGr/https%3A%2F%2Ftwitter.com%2FGazelliArtHouse>
+>
+> <https://streaklinks.com/BHpVIoEeHlRoFY_ETAqPyMXi/https%3A%2F%2Fwww.facebook.com%2FGazelliArtHouse%2F>
+>
+>
+> This e-mail message, including all attachments, is for the sole use of the
+> intended recipient(s) and may contain legally privileged and confidential
+> information. If you are not an intended recipient, you are hereby notified
+> that you have either received this message in error or
+> through interception, and that any review, use, distribution, copying or
+> disclosure of this message and/or its attachments or parts thereof is
+> strictly prohibited and is subject to criminal and civil penalties with
+> appropriate national legislation.
+>
+
+
+-- 
+Mila Askarova
+CEO & Founder
+
+*GAZELLI ART HOUSE*
+
+LONDON
+Cipher: Pouran Jinchi & Ruba Salameh
+<https://gazelliarthouse.com/exhibitions/185-cipher-pouran-jinchi-ruba-salameh/>
+The Window: Aida Mahmudova
+<https://gazelliarthouse.com/exhibitions/186-the-window-aida-mahmudova/>
+Project Space & Frieze Sculpture 2024: Libby Heaney
+<https://nft.gazell.io/collections/libby-heaney-frieze-sculpture-2024>
+
+BAKU
+Group Show
+
+GAZELL.iO
+September Resident | Kate Hollenbach
+<https://gazell.io/exhibitions/138-kate-hollenbach/>
+
+www.gazelliarthouse.com
++44 (0) 207 491 8816 / +994 (0) 12 498 1230
+
+<https://streaklinks.com/BHpVIxJHhzip8Hm6nAyO2h9O/https%3A%2F%2Fwww.instagram.com%2Fgazelliarthouse%2F>
+<https://streaklinks.com/BHpVIoEUFPH6ci6Q4QBT8JGr/https%3A%2F%2Ftwitter.com%2FGazelliArtHouse>
+
+<https://streaklinks.com/BHpVIoEeHlRoFY_ETAqPyMXi/https%3A%2F%2Fwww.facebook.com%2FGazelliArtHouse%2F>
+
+
+This e-mail message, including all attachments, is for the sole use of the
+intended recipient(s) and may contain legally privileged and confidential
+information. If you are not an intended recipient, you are hereby notified
+that you have either received this message in error or
+through interception, and that any review, use, distribution, copying or
+disclosure of this message and/or its attachments or parts thereof is
+strictly prohibited and is subject to criminal and civil penalties with
+appropriate national legislation.
+
+--000000000000b9e8d806230cc172
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr">Hi Tom,<div><br></div><div>Thank you so m=
+uch for this.</div><div><br></div><div>If none of the images are exactly th=
+e same, then why do you think he editioned them?=C2=A0</div><div>I&#39;ve m=
+entioned this in the other=C2=A0email just now too, do we know if any of th=
+e other &#39;editions&#39; of the 9 works selected were/are signed?</div><d=
+iv>Paul, let me have a chat with Michael as I mentioned, will report back w=
+ith how we can navigate this as I think=C2=A0it is a matter of getting the =
+wording right so it is not misleading but also comforts=C2=A0both parties.=
+=C2=A0</div><div>Will have=C2=A0a think about it but in the meantime, might=
+=C2=A0something like this be more in line with what we are trying to say? :=
+</div><div><i>Each work is a unique, signed edition with no other editions =
+available with an accompanying ERC-721 token.</i><br></div><div><br></div><=
+div>My best,</div><div>Mila</div></div><br><div class=3D"gmail_quote"><div =
+dir=3D"ltr" class=3D"gmail_attr">On Thu, 26 Sept 2024 at 16:57, zipnpup &lt=
+;<a href=3D"mailto:zipnpup@yahoo.com" target=3D"_blank">zipnpup@yahoo.com</=
+a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0p=
+x 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><d=
+iv dir=3D"auto"><div dir=3D"auto">Hi Mila</div><div dir=3D"auto">It is diff=
+icult to describe what it is that AARON does/did. The imagery generated is =
+unique. The print is 1 of x and there was a 2 of x and 3 of x in some cases=
+. So there maybe x of x instances of this uniqueness. Each work AARON gener=
+ates is certainly unique in that AARON by Cohen&#39;s coded design does not=
+ generate the same work more once. It is unique in that it is signed 1 of x=
+ whereas no other print is signed 1 of x. The series is special in that we =
+have never sold the digital image let alone the digital + print together. I=
+&#39;m not sure if including AARON in the text is appropriate but like I me=
+ntioned Harold&#39;s coded design of AARON assures us that AARON did not an=
+d cannot generate the same likeness of this same image even we ran it billi=
+ons of times it would not generate this image again. The wording is a bit t=
+ricky because we may another print produced in his lifetime but it is certa=
+inly not signed as 1 of x.=C2=A0</div><div dir=3D"auto"><br></div><div dir=
+=3D"auto">I am not in a disagreement of the use of unique as that is an inh=
+erent feature if AARON. I would like a slightly different wording with &quo=
+t;only known&quot; as all of our picks were chosen specifically because the=
+y were not the only known one. I do agree with the uniqueness use I am just=
+ not sure how to resolve the conflicting message in such a short sentence. =
+But I will think about it.</div><div dir=3D"auto"><br></div><div dir=3D"aut=
+o"><br></div><div dir=3D"auto">Tom</div><div dir=3D"auto"><br></div><div di=
+r=3D"auto"><br></div><div dir=3D"auto"><br></div><div id=3D"m_4680701912097=
+36935m_2715851522674919696composer_signature" dir=3D"auto"><div style=3D"fo=
+nt-size:12px;color:rgb(87,87,87)" dir=3D"auto">Sent from my T-Mobile 4G LTE=
+ Device</div></div><div dir=3D"auto"><br></div><div><br></div><div align=3D=
+"left" dir=3D"auto" style=3D"font-size:100%;color:rgb(0,0,0)"><div>--------=
+ Original message --------</div><div>From: Mila Askarova &lt;<a href=3D"mai=
+lto:m.askarova@gazelliarthouse.com" target=3D"_blank">m.askarova@gazelliart=
+house.com</a>&gt; </div><div>Date: 9/26/24  5:35 AM  (GMT-08:00) </div><div=
+>To: Thomas Machnik &lt;<a href=3D"mailto:zipnpup@yahoo.com" target=3D"_bla=
+nk">zipnpup@yahoo.com</a>&gt; </div><div>Cc: Paul Cohen &lt;<a href=3D"mail=
+to:paulrcohen@gmail.com" target=3D"_blank">paulrcohen@gmail.com</a>&gt;, Ha=
+rold Cohen Trust &lt;<a href=3D"mailto:aaron@aaronshome.com" target=3D"_bla=
+nk">aaron@aaronshome.com</a>&gt;, Paul Cohen &lt;<a href=3D"mailto:team@har=
+oldcohentrust.org" target=3D"_blank">team@haroldcohentrust.org</a>&gt; </di=
+v><div>Subject: Material to sign off on </div><div><br></div></div><div dir=
+=3D"ltr">Hi,=C2=A0<div><br></div><div>Sharing with you the material for fin=
+al sign off!=C2=A0</div><div>(Please note this is being reviewed by Sotheby=
+&#39;s too so there might be some tweaks made to it)</div><div><br></div><d=
+iv>Their main concern was the uniqueness of the work. It has to be identifi=
+ed as unique, despite the physical print saying otherwise. The way around t=
+his, we suggest the wording that is found both in the press release=C2=A0(a=
+t the bottom) and the description of the NFT: &quot;Unique, signed edition =
+and the only known one that has been produced=C2=A0during the artist&#39;s =
+lifetime.&quot;=C2=A0</div><div>Are you happy with=C2=A0this?=C2=A0</div><d=
+iv><br></div><div>- press release</div><div>- description of the NFT=C2=A0<=
+/div><div>- mock NFT visual=C2=A0</div><div><br></div><div><img height=3D"5=
+42" width=3D"524" alt=3D"MOCK NFT- Opensea View.png"><br></div><div><br></d=
+iv><div><br></div><div>- mock COA=C2=A0</div><div><img height=3D"542" width=
+=3D"411" alt=3D"Digital COA.png"><br></div><div><br></div><div>My best,</di=
+v><div>Mila=C2=A0</div><div><br></div><div><div><br></div><div><br></div><d=
+iv><br></div><div><br></div><span class=3D"gmail_signature_prefix">-- </spa=
+n><br><div class=3D"gmail_signature" dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div><font colo=
+r=3D"#000000">Mila Askarova=C2=A0</font></div><div><font color=3D"#000000">=
+CEO &amp; Founder=C2=A0</font></div><div style=3D"color:rgb(80,0,80)"><b><b=
+r></b></div><div><div style=3D"font-family:&quot;times new roman&quot;,seri=
+f"><div style=3D"font-family:Arial,Helvetica,sans-serif"><div style=3D"colo=
+r:rgb(34,34,34)"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><font c=
+olor=3D"#000000"><b>GAZELLI ART HOUSE</b></font></div><div dir=3D"ltr"><br>=
+</div><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><=
+div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><span><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><font color=3D"#000000" face=3D"arial, sans=
+-serif">LONDON</font></div><div><font face=3D"arial, sans-serif"><a style=
+=3D"color:rgb(17,85,204)" href=3D"https://gazelliarthouse.com/exhibitions/1=
+85-cipher-pouran-jinchi-ruba-salameh/" target=3D"_blank">Cipher: Pouran Jin=
+chi &amp; Ruba Salameh</a></font></div><div><font face=3D"arial, sans-serif=
+"><a style=3D"color:rgb(17,85,204)" href=3D"https://gazelliarthouse.com/exh=
+ibitions/186-the-window-aida-mahmudova/" target=3D"_blank">The Window: Aida=
+ Mahmudova</a></font></div><div><font face=3D"arial, sans-serif"><a style=
+=3D"color:rgb(17,85,204)" href=3D"https://nft.gazell.io/collections/libby-h=
+eaney-frieze-sculpture-2024" target=3D"_blank">Project Space &amp; Frieze S=
+culpture 2024: Libby Heaney</a></font></div><div><br></div><div><span style=
+=3D"color:rgb(0,0,0);font-family:arial,sans-serif">BAKU=C2=A0</span></div><=
+div>Group Show</div><div><br></div><div dir=3D"ltr"><div><font face=3D"aria=
+l, sans-serif" color=3D"#000000">GAZELL.iO=C2=A0</font></div><div><span sty=
+le=3D"font-family:arial,sans-serif">September Resident |=C2=A0<a style=3D"c=
+olor:rgb(17,85,204)" href=3D"https://gazell.io/exhibitions/138-kate-hollenb=
+ach/" target=3D"_blank">Kate Hollenbach</a></span></div></div></div></span>=
+<div dir=3D"ltr"><div><br></div></div></div></div></div></div></div></div><=
+/div></div></div></div><div dir=3D"ltr"><font face=3D"arial, sans-serif"><d=
+iv><a style=3D"color:rgb(17,85,204)" href=3D"http://www.gazelliarthouse.com=
+/" target=3D"_blank"><font color=3D"#0b5394">www.gazelliarthouse.com</font>=
+</a></div><div>+44 (0) 207 491 8816 / +994 (0) 12 498 1230</div><div><br></=
+div><div style=3D"font-size:x-small"><div><font color=3D"#000000"><a style=
+=3D"color:rgb(17,85,204);display:inline-block" href=3D"https://streaklinks.=
+com/BHpVIxJHhzip8Hm6nAyO2h9O/https%3A%2F%2Fwww.instagram.com%2Fgazelliartho=
+use%2F" target=3D"_blank"><img style=3D"margin:0.8em 0.2em;padding:0px;lett=
+er-spacing:-0.1px;border:0px;vertical-align:middle;max-width:100%" width=3D=
+"24" src=3D"https://68ef2f69c7787d4078ac-7864ae55ba174c40683f10ab811d9167.s=
+sl.cf1.rackcdn.com/instagram-icon_24x24.png"><div style=3D"margin:0px;width=
+:0px;height:0px"><div></div></div></a><a style=3D"color:rgb(17,85,204);disp=
+lay:inline-block" href=3D"https://streaklinks.com/BHpVIoEUFPH6ci6Q4QBT8JGr/=
+https%3A%2F%2Ftwitter.com%2FGazelliArtHouse" target=3D"_blank"><img style=
+=3D"margin:0.8em 0.2em;padding:0px;letter-spacing:-0.1px;border:0px;vertica=
+l-align:middle;max-width:100%" width=3D"24" src=3D"https://68ef2f69c7787d40=
+78ac-7864ae55ba174c40683f10ab811d9167.ssl.cf1.rackcdn.com/twitter-icon_24x2=
+4.png"><div style=3D"margin:0px;width:0px;height:0px"><div></div></div></a>=
+=C2=A0<a style=3D"color:rgb(17,85,204);display:inline-block" href=3D"https:=
+//streaklinks.com/BHpVIoEeHlRoFY_ETAqPyMXi/https%3A%2F%2Fwww.facebook.com%2=
+FGazelliArtHouse%2F" target=3D"_blank"><img style=3D"margin:0.8em 0.2em;pad=
+ding:0px;letter-spacing:-0.1px;border:0px;vertical-align:middle;max-width:1=
+00%" width=3D"24" src=3D"https://68ef2f69c7787d4078ac-7864ae55ba174c40683f1=
+0ab811d9167.ssl.cf1.rackcdn.com/facebook-icon_24x24.png"></a></font></div><=
+/div><div style=3D"font-size:x-small"><br></div><div style=3D"font-size:x-s=
+mall"><img src=3D"https://ci3.googleusercontent.com/mail-sig/AIorK4w7gKovNZ=
+AR8tYAuQ9hIjEiBgWel9uIDPpW34GyeY595Rek12deHDAlPE9ZZxtPymKBYCzaHBU" height=
+=3D"44" width=3D"96"></div></font></div></div></div></div></div><div style=
+=3D"color:rgb(80,0,80)"><div style=3D"color:rgb(34,34,34)"><div><font color=
+=3D"#000000" face=3D"times new roman, serif"><br></font></div></div></div><=
+div><div><font size=3D"1"><span style=3D"font-family:&quot;times new roman&=
+quot;,serif;color:rgb(0,0,0)">This e-mail message, including all attachment=
+s, is for the=C2=A0sole use of the intended recipient(s) and may contain=C2=
+=A0legally privileged and confidential information. If you are=C2=A0not an =
+intended recipient, you are hereby notified that=C2=A0you have either recei=
+ved this message in error or through=C2=A0interception, and that any=C2=A0<=
+/span><span style=3D"font-family:&quot;times new roman&quot;,serif;color:rg=
+b(0,0,0)">review</span><span style=3D"font-family:&quot;times new roman&quo=
+t;,serif;color:rgb(0,0,0)">, use, distribution,=C2=A0copying or disclosure =
+of this message and/or its=C2=A0attachments or parts thereof is strictly pr=
+ohibited and is=C2=A0subject to criminal and civil penalties with appropria=
+te=C2=A0national legislation.</span></font></div></div></div></div></div></=
+div></div></div></div></div></div></div></div></div></div></div></div></div=
+></div></div></div></div></div></div></div></div></div></div></div></div></=
+div></div></div></div></div></div></div></div></div></div></div></div></div=
+></div></div></div></div></div></div></div></div></div></div></div></div></=
+div></div></div></div></div></div></div></div></div></div></div></div></div=
+></div></div></div></div></div></div></div></div>
+</div></blockquote></div><br clear=3D"all"><div><br></div><span class=3D"gm=
+ail_signature_prefix">-- </span><br><div dir=3D"ltr" class=3D"gmail_signatu=
+re"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><di=
+v dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div><font color=3D"#000000">Mila Askarova=C2=A0</font></div=
+><div><font color=3D"#000000">CEO &amp; Founder=C2=A0</font></div><div styl=
+e=3D"color:rgb(80,0,80)"><b><br></b></div><div><div style=3D"font-family:&q=
+uot;times new roman&quot;,serif"><div style=3D"font-family:Arial,Helvetica,=
+sans-serif"><div style=3D"color:rgb(34,34,34)"><div dir=3D"ltr"><div dir=3D=
+"ltr"><div dir=3D"ltr"><font color=3D"#000000"><b>GAZELLI ART HOUSE</b></fo=
+nt></div><div dir=3D"ltr"><br></div><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><span><div dir=3D"ltr"><div dir=3D"ltr"><font face=3D=
+"arial, sans-serif" color=3D"#000000">LONDON</font></div><div><font face=3D=
+"arial, sans-serif"><a href=3D"https://gazelliarthouse.com/exhibitions/185-=
+cipher-pouran-jinchi-ruba-salameh/" style=3D"color:rgb(17,85,204)" target=
+=3D"_blank">Cipher: Pouran Jinchi &amp; Ruba Salameh</a></font></div><div><=
+font face=3D"arial, sans-serif"><a href=3D"https://gazelliarthouse.com/exhi=
+bitions/186-the-window-aida-mahmudova/" style=3D"color:rgb(17,85,204)" targ=
+et=3D"_blank">The Window: Aida Mahmudova</a></font></div><div><font face=3D=
+"arial, sans-serif"><a href=3D"https://nft.gazell.io/collections/libby-hean=
+ey-frieze-sculpture-2024" style=3D"color:rgb(17,85,204)" target=3D"_blank">=
+Project Space &amp; Frieze Sculpture 2024: Libby Heaney</a></font></div><di=
+v><br></div><div><span style=3D"color:rgb(0,0,0);font-family:arial,sans-ser=
+if">BAKU=C2=A0</span></div><div>Group Show</div><div><br></div><div dir=3D"=
+ltr"><div><font color=3D"#000000" face=3D"arial, sans-serif">GAZELL.iO=C2=
+=A0</font></div><div><span style=3D"font-family:arial,sans-serif">September=
+ Resident |=C2=A0<a href=3D"https://gazell.io/exhibitions/138-kate-hollenba=
+ch/" style=3D"color:rgb(17,85,204)" target=3D"_blank">Kate Hollenbach</a></=
+span></div></div></div></span><div dir=3D"ltr"><div><br></div></div></div><=
+/div></div></div></div></div></div></div></div></div><div dir=3D"ltr"><font=
+ face=3D"arial, sans-serif"><div><a href=3D"http://www.gazelliarthouse.com/=
+" style=3D"color:rgb(17,85,204)" target=3D"_blank"><font color=3D"#0b5394">=
+www.gazelliarthouse.com</font></a></div><div>+44 (0) 207 491 8816 / +994 (0=
+) 12 498 1230</div><div><br></div><div style=3D"font-size:x-small"><div><fo=
+nt color=3D"#000000"><a href=3D"https://streaklinks.com/BHpVIxJHhzip8Hm6nAy=
+O2h9O/https%3A%2F%2Fwww.instagram.com%2Fgazelliarthouse%2F" style=3D"color:=
+rgb(17,85,204);display:inline-block" target=3D"_blank"><img src=3D"https://=
+68ef2f69c7787d4078ac-7864ae55ba174c40683f10ab811d9167.ssl.cf1.rackcdn.com/i=
+nstagram-icon_24x24.png" width=3D"24" style=3D"margin:0.8em 0.2em;padding:0=
+px;letter-spacing:-0.1px;border:0px;vertical-align:middle;max-width:100%"><=
+div style=3D"margin:0px;width:0px;height:0px"><div></div></div></a><a href=
+=3D"https://streaklinks.com/BHpVIoEUFPH6ci6Q4QBT8JGr/https%3A%2F%2Ftwitter.=
+com%2FGazelliArtHouse" hspace=3D"streak-track" style=3D"color:rgb(17,85,204=
+);display:inline-block" target=3D"_blank"><img src=3D"https://68ef2f69c7787=
+d4078ac-7864ae55ba174c40683f10ab811d9167.ssl.cf1.rackcdn.com/twitter-icon_2=
+4x24.png" width=3D"24" style=3D"margin:0.8em 0.2em;padding:0px;letter-spaci=
+ng:-0.1px;border:0px;vertical-align:middle;max-width:100%"><div style=3D"ma=
+rgin:0px;width:0px;height:0px"><div></div></div></a>=C2=A0<a href=3D"https:=
+//streaklinks.com/BHpVIoEeHlRoFY_ETAqPyMXi/https%3A%2F%2Fwww.facebook.com%2=
+FGazelliArtHouse%2F" hspace=3D"streak-track" style=3D"color:rgb(17,85,204);=
+display:inline-block" target=3D"_blank"><img src=3D"https://68ef2f69c7787d4=
+078ac-7864ae55ba174c40683f10ab811d9167.ssl.cf1.rackcdn.com/facebook-icon_24=
+x24.png" width=3D"24" style=3D"margin:0.8em 0.2em;padding:0px;letter-spacin=
+g:-0.1px;border:0px;vertical-align:middle;max-width:100%"></a></font></div>=
+</div><div style=3D"font-size:x-small"><br></div><div style=3D"font-size:x-=
+small"><img width=3D"96" height=3D"44" src=3D"https://ci3.googleusercontent=
+.com/mail-sig/AIorK4w7gKovNZAR8tYAuQ9hIjEiBgWel9uIDPpW34GyeY595Rek12deHDAlP=
+E9ZZxtPymKBYCzaHBU"></div></font></div></div></div></div></div><div style=
+=3D"color:rgb(80,0,80)"><div style=3D"color:rgb(34,34,34)"><div><font face=
+=3D"times new roman, serif" color=3D"#000000"><br></font></div></div></div>=
+<div><div><font size=3D"1"><span style=3D"font-family:&quot;times new roman=
+&quot;,serif;color:rgb(0,0,0)">This e-mail message, including all attachmen=
+ts, is for the=C2=A0sole use of the intended recipient(s) and may contain=
+=C2=A0legally privileged and confidential information. If you are=C2=A0not =
+an intended recipient, you are hereby notified that=C2=A0you have either re=
+ceived this message in error or through=C2=A0interception, and that any=C2=
+=A0</span><span style=3D"font-family:&quot;times new roman&quot;,serif;colo=
+r:rgb(0,0,0)">review</span><span style=3D"font-family:&quot;times new roman=
+&quot;,serif;color:rgb(0,0,0)">, use, distribution,=C2=A0copying or disclos=
+ure of this message and/or its=C2=A0attachments or parts thereof is strictl=
+y prohibited and is=C2=A0subject to criminal and civil penalties with appro=
+priate=C2=A0national legislation.</span></font></div></div></div></div></di=
+v></div></div></div></div></div></div></div></div></div></div></div></div><=
+/div></div></div></div></div></div></div></div></div></div></div></div></di=
+v></div></div></div></div></div></div></div></div></div></div></div></div><=
+/div></div></div></div></div></div></div></div></div></div></div></div></di=
+v></div></div></div></div></div></div></div></div></div></div></div></div><=
+/div></div></div></div></div></div></div></div>
+
+--000000000000b9e8d806230cc172--

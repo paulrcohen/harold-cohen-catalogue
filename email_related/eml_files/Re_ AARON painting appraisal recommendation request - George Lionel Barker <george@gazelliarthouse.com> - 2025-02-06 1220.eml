@@ -1,0 +1,504 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a10:b092:b0:5c7:f970:fbca with SMTP id y18csp1687225pxa;
+        Thu, 6 Feb 2025 09:20:37 -0800 (PST)
+X-Received: by 2002:a05:6402:240a:b0:5d3:bc1d:e56d with SMTP id 4fb4d7f45d1cf-5de4508fa74mr251127a12.31.1738862436707;
+        Thu, 06 Feb 2025 09:20:36 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1738862436; cv=none;
+        d=google.com; s=arc-20240605;
+        b=aiSCYsCU5hT06UjiicYIo+1VyRk1fJAf4CN2LQAEHlix0d1hEwWvOaGzqOrwvbvNSK
+         hxRvUusyymzkKfjFiKHMPSzDFERHZ2XF+71u42RJcmUItxPMgBYQJ9M0cZGW4MoqcWO3
+         f8zMYZQ8y+3AKHMN2HOu1Y3QFCCorKSanweRc2Linv6R5CnftsMfOLunt0v2h5MfPQh0
+         dMezIRZtQW4zEW7hfCsSYvCEm22LVWYG+CWhdVFXIJ46pBqAuaTlPWgDj1XPg8bQCSoj
+         UrnsL7rBSzqcuVIaEnLRAhw06R3jvFKKejTplYXMsa8fODff/W78uh6Iy6U7Kls8toRx
+         gaKQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=lgAeH0QrHR99RLZ95r+fIebIjhRF3GAjy4AoG0A7lW8=;
+        fh=1zbsHN/LlciH14P1N9/2P1OaojVdPIEDAOgUFC1LJNs=;
+        b=XFMHT32utbZwwphEVymwsRcrGCYc79LD27GlNJQEVjERnTQfdVwiO96E+p5N0GN2on
+         +8/j6IqBnM3FuQukvm9iWBVxd4n4N2kYygxpBy7XuascxE1BE3CxE6GQFf6SlQHUoP2Y
+         kBOEwXje/03zpN2fWlyySFdZRZywrKuhC3uB0NXSJxsDqfVYjqzqRgTDqRmCsqY1HGrI
+         hReCO5fWBJE6GtCH41g/9rp3eyby7jlyBbAfDmpWS27JtENLJHXr+hdP3P36gwrXJ11O
+         J7mcXlFBGI4hnQnGvnmodBNDqXwBGKdKN2POKx9Njg4JAT059gonCNM2Yco4x0ory7I0
+         gpPQ==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@gazelliarthouse-com.20230601.gappssmtp.com header.s=20230601 header.b=ya8pqocY;
+       spf=pass (google.com: domain of george@gazelliarthouse.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=george@gazelliarthouse.com;
+       dara=pass header.i=@gmail.com
+Return-Path: <george@gazelliarthouse.com>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id 4fb4d7f45d1cf-5dcf61fb54dsor876816a12.6.2025.02.06.09.20.36
+        for <paulrcohen@gmail.com>
+        (Google Transport Security);
+        Thu, 06 Feb 2025 09:20:36 -0800 (PST)
+Received-SPF: pass (google.com: domain of george@gazelliarthouse.com designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@gazelliarthouse-com.20230601.gappssmtp.com header.s=20230601 header.b=ya8pqocY;
+       spf=pass (google.com: domain of george@gazelliarthouse.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=george@gazelliarthouse.com;
+       dara=pass header.i=@gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gazelliarthouse-com.20230601.gappssmtp.com; s=20230601; t=1738862436; x=1739467236; dara=google.com;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=lgAeH0QrHR99RLZ95r+fIebIjhRF3GAjy4AoG0A7lW8=;
+        b=ya8pqocYf+ncIRcjtgUsCo+kFzBHFEY2ymOHrpHHeYj8Xz/UmH1x+VNfKLlaX0zJxF
+         vz3w34vytaJ5i15NaPmIFSq3ckYrXO4wD6eUiIx8RloyrzBMvLVWJGbejgsZmeGOQPLY
+         a1tbnLX2jMRm2GEMoHfCxkDVGthKRX5DtUJCk82xpRBAttuVVDb4bHokoA0IzOGojajT
+         41rqaM1Z1Wt8SRh36/E4ce1E/xk5SzAsPOsyaYDtXGOg1JNktMd9X92PGcCzx5CEr7ux
+         UyYxtTbBE1aLL6URvsJKqYPqaET41vwCGgRHUwIDaYcYTvoiOvRu5ixQTv5hvz2g9oT/
+         STiw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1738862436; x=1739467236;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=lgAeH0QrHR99RLZ95r+fIebIjhRF3GAjy4AoG0A7lW8=;
+        b=hDmBfa/oPDlyrsiXrCOgnUX45+mKRnEbWblmKxi9Q/lrhTUht3VyHR/kQahKs8Sr1p
+         wVpe8KTZ96A2VUKvZcUE11Hww1SzzApgQWqiBBnkRgiT2FJocAuDTA9dx6jRoTr11M9q
+         IpBez76K0kIXLLRSZeRtaYqzb6lLngUkW+ovsVyJKYA5KhJNW9Xz41+hJGM3Ymkham9N
+         0AoVxXgKgo3esXjdqAZX6SYiL1unUvWvus0fWwM9TJ9V8wdY+mSwjESyl2MMPkjH9eIa
+         wjZps21d6RzoV+vqf+3vr3lW/Svkn3mtzoEqAy8CTfhy6WFNShkzA8xm+MH6mKm/q/a8
+         ig0w==
+X-Gm-Message-State: AOJu0Yw60JlKVakfILb6R/PNUhGHIbMg8QWE8Eeu7IyQSK6nAmkR1n+0
+	VR2IoSmLq/tQObFR1Sa0tG7BR9Ew/sqxJmhu7/ZCAMgQ4Z688ezkeVu+rUwctovLbvnXMUuHqzC
+	jjk3BBnNaluBE8WjpSxKT/2dH+DSeKIyzQ4oSiLKakQS4FY4=
+X-Gm-Gg: ASbGncvP1kaCpkSlSBItWi1jSVPKJDEAi9Q6rXFrZ5A33qqE9JFStPHL9VHWOVmHfKD
+	wPSldTv8kd9TPJ5SJECC79U6wY4VMDsRj/uHcEuJfccA/A5OHK08pTloSQ5fOkU6tpuccpmcErA
+	==
+X-Google-Smtp-Source: AGHT+IGUB6SDExfzbgOMT072XixgyEiSdUfJhQnOX2lJj6Dt2KIQL8csaqSi5b+JuW/9Ih3adS/Dn6KGtbR/pv81l44=
+X-Received: by 2002:a05:6402:4612:b0:5d0:b7c5:c3fc with SMTP id
+ 4fb4d7f45d1cf-5de44fea92fmr331298a12.3.1738862435669; Thu, 06 Feb 2025
+ 09:20:35 -0800 (PST)
+MIME-Version: 1.0
+References: <CANeY__Kbcx01cgFxgxHztOA7NDiDiYbgwDxcrQp5qnZdnyCffA@mail.gmail.com>
+ <3B255137-49AE-4B65-8A05-B3E54065A16C@gmail.com> <CAKjPZkH=u8u1tvHGY_+=yC-HCRnmsoOzHVbRLz1NbhR414y+kA@mail.gmail.com>
+In-Reply-To: <CAKjPZkH=u8u1tvHGY_+=yC-HCRnmsoOzHVbRLz1NbhR414y+kA@mail.gmail.com>
+From: George Lionel Barker <george@gazelliarthouse.com>
+Date: Thu, 6 Feb 2025 17:20:24 +0000
+X-Gm-Features: AWEUYZkidk6qo3xW9OILjnUww-hyIWfp7LkYYq2ZJp-F5mAM4J9yBo4fzqIV1kE
+Message-ID: <CAFoqNjTWET985DcJKeh-Eij5tNzuhyYcK7kFSSig0+sV5rGyFw@mail.gmail.com>
+Subject: Re: AARON painting appraisal recommendation request
+To: Paul Cohen <paulrcohen@gmail.com>
+Cc: Brigham Bell <brigham.bell@gmail.com>, Paul Cohen <team@haroldcohentrust.org>, 
+	aaron@aaronshome.com, Thomas Machnik <zipnpup@yahoo.com>
+Content-Type: multipart/alternative; boundary="000000000000cab51f062d7c752c"
+
+--000000000000cab51f062d7c752c
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Brig,
+
+It's great to e-meet you.
+
+I'd be delighted to provide an appraisal for you. Can you please let me
+know the measurements? I can't see them on the link.
+
+It might also be a good idea to organise a call, at your convenience.
+
+Look forward to hearing from you,
+
+George Barker
+
+
+LONDON
+Lilly Fenichel: Against the Grain
+<https://886b17ba.streaklinks.com/CTZFItBs7AzBjON1JQNo4tkZ/https%3A%2F%2Fga=
+zelliarthouse.com%2Fexhibitions%2F191-against-the-grain-lilly-fenichel%2F>
+
+BAKU
+Parallel Worlds: Chris Levine, Michael Takeo Magruder, Marshmallow Laser
+Feast, Elnara Nasirli, Recycle Group, Nye Thompson
+<https://886b17ba.streaklinks.com/CTZFItNNjZ8PFpY-2ACohKPe/https%3A%2F%2Fga=
+zelliarthouse.com%2Fexhibitions%2F188-parallel-worlds-chris-levine-michael-=
+takeo-magruder-marshmallow-laser-feast%2F>
+
+GAZELL.iO
+February Resident | Sofia Crespo
+<https://886b17ba.streaklinks.com/CTZFItFf38NlviMoGgqnInID/https%3A%2F%2Fga=
+zell.io%2Fpages%2Fsofia-crespo>
+Project Space | 00 Zhang: Honey
+<https://886b17ba.streaklinks.com/CTZFItFkZGuUOMQ3GArVZta0/https%3A%2F%2Fga=
+zell.io%2Fcollections%2F00-zhang-honey>
+
+www.gazelliarthouse.com
++44 (0) 207 491 8816 / +994 (0) 12 498 1230
+<https://886b17ba.streaklinks.com/CTZFItFubgc5nOuPuwyTYeR4/https%3A%2F%2Fww=
+w.instagram.com%2Fgazelliarthouse%2F>
+<https://886b17ba.streaklinks.com/CTZFItN__9l9aLz0UQrE9XbM/https%3A%2F%2Ftw=
+itter.com%2FGazelliArtHouse>
+
+<https://886b17ba.streaklinks.com/CTZFItFExP5_qNOOJAeNz2i0/https%3A%2F%2Fww=
+w.facebook.com%2FGazelliArtHouse%2F>
+
+
+
+
+This e-mail message, including all attachments, is for the sole use of the
+intended recipient(s) and may contain legally privileged and confidential
+information. If you are not an intended recipient, you are hereby notified
+that you have either received this message in error or
+through interception, and that any review, use, distribution, copying or
+disclosure of this message and/or its attachments or parts thereof is
+strictly prohibited and is subject to criminal and civil penalties with
+appropriate national legislation.
+
+=E1=90=A7
+
+On Thu, 6 Feb 2025 at 16:57, Paul Cohen <paulrcohen@gmail.com> wrote:
+
+> Hi Brig, actually the email was from Tom Machnik, not me; thanks Tom!
+>
+> Michael Maloney appraised Harold's estate right after he died for tax
+> purposes so the appraisals were low and the recent increase in prices
+> wasn't reflected.  It might be more accurate to ask the Gazelli Art House=
+,
+> which represents the Harold Cohen Trust, for a reference for an appraiser=
+.
+> I've cc'd George Barker, there.  --P
+>
+> ______________________________
+>
+> Paul Cohen,  Professor
+> School of Computing and Information
+> University of Pittsburgh
+> personal webpage <https://paulrcohen.github.io/>
+> ______________________________
+>
+>
+> On Thu, Feb 6, 2025 at 9:56=E2=80=AFAM Brigham Bell <brigham.bell@gmail.c=
+om>
+> wrote:
+>
+>> Hi Paul,
+>>
+>> Thanks so much!
+>>
+>> I=E2=80=99ll check in with them Michael Maloney, too.
+>>
+>> Regards,
+>> Brig
+>>
+>> On Feb 6, 2025, at 2:14=E2=80=AFAM, Paul Cohen <team@haroldcohentrust.or=
+g> wrote:
+>>
+>> =EF=BB=BF
+>> Dear Brigham
+>> Thank-you for your inquiry. It is nice to know one of Harold's more
+>> important works is alive, appreciated and well cared for. On your behalf=
+, I
+>> have reached out to an appraiser we have used in the past and I am await=
+ing
+>> a reply. If you prefer, you are welcome to reach out to him as well. Her=
+e
+>> is his contact information:
+>> Michael Maloney
+>> MALONEY FINE ART
+>> 2680 South La Cienega Blvd
+>> Los Angeles, CA 90034
+>> 1310.570.6420
+>>
+>>
+>> Tom Machnik -- Art Studio Manager -- The Harold Cohen Trust
+>>
+>> On Wed, Feb 5, 2025 at 9:01=E2=80=AFAM Brigham Bell <brigham.bell@gmail.=
+com>
+>> wrote:
+>>
+>>> Need advice on appraisal. I asked Sotheby=E2=80=99s, but they don=E2=80=
+=99t have an idea
+>>> on whether to appraise it as art or technology. Should I ask an auction
+>>> house, or is there an AARON appraisal specialist somewhere?
+>>>
+>>> Any suggestions are welcome.
+>>>
+>>> Again, not planning on selling this anytime soon, as it is considered
+>>> important to our whole family.
+>>>
+>>> On Jan 30, 2025, at 3:59=E2=80=AFPM, Brig <brigham.bell@gmail.com> wrot=
+e:
+>>>
+>>> =EF=BB=BF
+>>>
+>>> Hi,
+>>>
+>>>
+>>> Do you know the best place to get an appraisal of AARON paintings?
+>>>
+>>>
+>>> Most importantly, I need an appraisal of *Meeting on Gauguin's Beach
+>>> <https://www.computerhistory.org/revolution/computer-graphics-music-and=
+-art/15/231/745>*,
+>>> so that I know how much to insure it for when shipping it from Californ=
+ia
+>>> to Colorado.
+>>>
+>>>
+>>> Thanks in advance for any help,
+>>>
+>>> Brigham Bell
+>>>
+>>> 1-720-339-6103
+>>>
+>>>
+
+--000000000000cab51f062d7c752c
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div>Hi Brig,=C2=A0</div><div><br></div><div>It&#39;s grea=
+t to e-meet you.</div><div><br></div><div>I&#39;d be delighted to provide a=
+n appraisal for you. Can you please let me know the measurements? I can&#39=
+;t see them on the link.=C2=A0</div><div><br></div><div>It might also be a =
+good idea to organise a call, at your=C2=A0convenience.=C2=A0</div><div><br=
+></div><div>Look forward to hearing from you,=C2=A0</div><div><br></div><di=
+v>George Barker=C2=A0</div><div><br></div><div><br></div><div><div dir=3D"l=
+tr" class=3D"gmail_signature" data-smartmail=3D"gmail_signature"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv style=3D"padding-top:0px;padding-right:0px;padding-left:0px;display:flex=
+"><div style=3D"margin:0px;padding:0px 0px 20px;width:1116px"><div dir=3D"l=
+tr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><di=
+v dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr">=
+<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div di=
+r=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"lt=
+r"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div=
+ dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D=
+"ltr" style=3D"color:rgb(34,34,34)"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+style=3D"padding-top:0px;padding-right:0px;padding-left:0px;display:flex;fo=
+nt-family:&quot;Google Sans&quot;,Roboto,RobotoDraft,Helvetica,Arial,sans-s=
+erif"><div style=3D"margin:0px;min-width:0px;padding:0px 0px 20px;width:ini=
+tial"><div style=3D"margin:8px 0px 0px;padding:0px;overflow-x:hidden"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr" style=3D"font-family:Arial,Helvetica,sans-serif"><div=
+ dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D=
+"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><span><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><f=
+ont face=3D"arial, sans-serif" color=3D"#000000">LONDON</font></div><div di=
+r=3D"ltr"><a href=3D"https://886b17ba.streaklinks.com/CTZFItBs7AzBjON1JQNo4=
+tkZ/https%3A%2F%2Fgazelliarthouse.com%2Fexhibitions%2F191-against-the-grain=
+-lilly-fenichel%2F" style=3D"font-family:arial,sans-serif;color:rgb(17,85,2=
+04)" target=3D"_blank">Lilly Fenichel: Against the Grain</a></div><div><spa=
+n style=3D"color:rgb(0,0,0);font-family:arial,sans-serif"><br></span></div>=
+<div><span style=3D"color:rgb(0,0,0);font-family:arial,sans-serif">BAKU=C2=
+=A0</span></div><div><a href=3D"https://886b17ba.streaklinks.com/CTZFItNNjZ=
+8PFpY-2ACohKPe/https%3A%2F%2Fgazelliarthouse.com%2Fexhibitions%2F188-parall=
+el-worlds-chris-levine-michael-takeo-magruder-marshmallow-laser-feast%2F" s=
+tyle=3D"color:rgb(17,85,204)" target=3D"_blank">Parallel Worlds: Chris Levi=
+ne, Michael Takeo Magruder, Marshmallow Laser Feast, Elnara Nasirli, Recycl=
+e Group, Nye Thompson</a></div><div dir=3D"ltr"><div><font color=3D"#000000=
+" face=3D"arial, sans-serif"><br></font></div><div><font color=3D"#000000" =
+face=3D"arial, sans-serif">GAZELL.iO=C2=A0</font></div><div><span style=3D"=
+font-family:arial,sans-serif">February Resident |=C2=A0</span><a href=3D"ht=
+tps://886b17ba.streaklinks.com/CTZFItFf38NlviMoGgqnInID/https%3A%2F%2Fgazel=
+l.io%2Fpages%2Fsofia-crespo" style=3D"color:rgb(17,85,204);font-family:aria=
+l,sans-serif" target=3D"_blank">Sofia Crespo</a></div><div><span style=3D"f=
+ont-family:arial,sans-serif">Project Space |=C2=A0</span><font color=3D"#11=
+55cc" face=3D"arial, sans-serif"><a href=3D"https://886b17ba.streaklinks.co=
+m/CTZFItFkZGuUOMQ3GArVZta0/https%3A%2F%2Fgazell.io%2Fcollections%2F00-zhang=
+-honey" style=3D"color:rgb(17,85,204)" target=3D"_blank">00 Zhang: Honey</a=
+></font></div></div><div><br></div></div></div></div></div></div></div></di=
+v></div></div></div></div></div></div></div><div dir=3D"ltr"><font face=3D"=
+arial, sans-serif"><div><a href=3D"http://www.gazelliarthouse.com/" style=
+=3D"color:rgb(17,85,204)" target=3D"_blank"><font color=3D"#0b5394">www.gaz=
+elliarthouse.com</font></a></div><div>+44 (0) 207 491 8816 / +994 (0) 12 49=
+8 1230</div></font></div></div></div></div></div></div></div><div dir=3D"lt=
+r"><font face=3D"arial, sans-serif"><div><div><font color=3D"#000000"><a hr=
+ef=3D"https://886b17ba.streaklinks.com/CTZFItFubgc5nOuPuwyTYeR4/https%3A%2F=
+%2Fwww.instagram.com%2Fgazelliarthouse%2F" style=3D"color:rgb(17,85,204);di=
+splay:inline-block" target=3D"_blank"><img src=3D"https://68ef2f69c7787d407=
+8ac-7864ae55ba174c40683f10ab811d9167.ssl.cf1.rackcdn.com/instagram-icon_24x=
+24.png" width=3D"24" style=3D"margin:0.8em 0.2em;padding:0px;letter-spacing=
+:-0.1px;border:0px;vertical-align:middle;max-width:100%"><div style=3D"marg=
+in:0px;width:0px;height:0px"><div></div></div></a><a href=3D"https://886b17=
+ba.streaklinks.com/CTZFItN__9l9aLz0UQrE9XbM/https%3A%2F%2Ftwitter.com%2FGaz=
+elliArtHouse" style=3D"color:rgb(17,85,204);display:inline-block" target=3D=
+"_blank"><img src=3D"https://68ef2f69c7787d4078ac-7864ae55ba174c40683f10ab8=
+11d9167.ssl.cf1.rackcdn.com/twitter-icon_24x24.png" width=3D"24" style=3D"m=
+argin:0.8em 0.2em;padding:0px;letter-spacing:-0.1px;border:0px;vertical-ali=
+gn:middle;max-width:100%"><div style=3D"margin:0px;width:0px;height:0px"><d=
+iv></div></div></a>=C2=A0<a href=3D"https://886b17ba.streaklinks.com/CTZFIt=
+FExP5_qNOOJAeNz2i0/https%3A%2F%2Fwww.facebook.com%2FGazelliArtHouse%2F" sty=
+le=3D"color:rgb(17,85,204);display:inline-block" target=3D"_blank"><img src=
+=3D"https://68ef2f69c7787d4078ac-7864ae55ba174c40683f10ab811d9167.ssl.cf1.r=
+ackcdn.com/facebook-icon_24x24.png" width=3D"24" style=3D"margin:0.8em 0.2e=
+m;padding:0px;letter-spacing:-0.1px;border:0px;vertical-align:middle;max-wi=
+dth:100%"></a></font></div></div><div><br></div><div><img width=3D"96" heig=
+ht=3D"44" src=3D"https://ci3.googleusercontent.com/mail-sig/AIorK4w7gKovNZA=
+R8tYAuQ9hIjEiBgWel9uIDPpW34GyeY595Rek12deHDAlPE9ZZxtPymKBYCzaHBU"><br></div=
+><div><br></div><div><br></div><div><font color=3D"#000000">This e-mail mes=
+sage, including all attachments, is for the=C2=A0sole use of the intended r=
+ecipient(s) and may contain=C2=A0legally privileged and confidential inform=
+ation. If you are=C2=A0not an intended recipient, you are hereby notified t=
+hat=C2=A0you have either received this message in error or through=C2=A0int=
+erception, and that any=C2=A0review, use, distribution,=C2=A0copying or dis=
+closure of this message and/or its=C2=A0attachments or parts thereof is str=
+ictly prohibited and is=C2=A0subject to criminal and civil penalties with a=
+ppropriate=C2=A0national legislation.</font></div></font></div></div></div>=
+</div></div></div></div></span></div></div></div></div></div></div></div></=
+div></div></div></div></div></div></div></div></div></div></div></div></div=
+></div></div></div></div></div></div></div></div></div></div></div></div></=
+div></div></div></div></div></div></div></div></div><div style=3D"color:rgb=
+(34,34,34)"><div dir=3D"ltr"><div dir=3D"ltr"><div><div></div></div></div><=
+/div></div></div></div></div></div></div></div></div></div></div></div></di=
+v></div></div></div></div></div></div></div></div></div></div></div></div><=
+/div></div></div></div></div></div></div></div><div style=3D"color:rgb(34,3=
+4,34)"><div dir=3D"ltr"><div dir=3D"ltr"></div></div></div></div></div></di=
+v></div></div></div></div></div></div></div></div></div></div></div></div><=
+/div></div></div></div></div></div></div></div></div></div></div></div></di=
+v></div></div></div></div></div></div></div></div></div></div></div></div><=
+/div></div></div></div></div></div></div></div></div></div></div></div></di=
+v></div></div></div></div></div></div></div></div></div></div></div></div><=
+/div></div></div></div></div></div></div></div></div></div></div></div></di=
+v></div></div></div></div></div></div></div></div></div></div></div></div><=
+/div></div></div></div></div></div></div></div></div><div style=3D"margin:8=
+px 0px 0px;padding:0px"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr">=
+<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div di=
+r=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"lt=
+r"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div=
+><div dir=3D"ltr"><div dir=3D"ltr"><div></div></div></div></div><div><div d=
+ir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"l=
+tr"><div dir=3D"ltr"><span></span></div></div></div></div></div></div></div=
+></div></div></div></div></div></div></div></div></div></div></div></div></=
+div></div></div></div></div></div></div></div></div></div></div></div></div=
+></div></div></div></div></div></div></div></div></div></div></div></div></=
+div></div><br></div><div hspace=3D"streak-pt-mark" style=3D"max-height:1px"=
+><img alt=3D"" style=3D"width:0px;max-height:0px;overflow:hidden" src=3D"ht=
+tps://mailfoogae.appspot.com/t?sender=3DaZ2VvcmdlQGdhemVsbGlhcnRob3VzZS5jb2=
+0%3D&amp;type=3Dzerocontent&amp;guid=3D8f3d6de5-5924-4b50-a39c-618c85625248=
+"><font color=3D"#ffffff" size=3D"1">=E1=90=A7</font></div><br><div class=
+=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, 6 Feb 2025 a=
+t 16:57, Paul Cohen &lt;<a href=3D"mailto:paulrcohen@gmail.com" target=3D"_=
+blank">paulrcohen@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gm=
+ail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,=
+204,204);padding-left:1ex"><div dir=3D"ltr"><div><div style=3D"font-size:sm=
+all" class=3D"gmail_default">Hi Brig, actually the email was from Tom Machn=
+ik, not me; thanks Tom!<br><br></div><div style=3D"font-size:small" class=
+=3D"gmail_default">Michael Maloney appraised Harold&#39;s estate right afte=
+r he died for tax purposes so the appraisals were low and the recent increa=
+se in prices wasn&#39;t reflected.=C2=A0 It might be more accurate to ask t=
+he Gazelli Art House, which represents the Harold Cohen Trust, for a refere=
+nce for an appraiser.=C2=A0 I&#39;ve cc&#39;d George Barker, there.=C2=A0 -=
+-P<br></div><br clear=3D"all"></div><div><div dir=3D"ltr" class=3D"gmail_si=
+gnature"><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div>=
+<div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr">______________=
+________________<br><br>Paul Cohen,=C2=A0=C2=A0Professor</div><div dir=3D"l=
+tr">School of Computing and Information</div><div dir=3D"ltr">University of=
+ Pittsburgh</div><div dir=3D"ltr"><a href=3D"https://paulrcohen.github.io/"=
+ target=3D"_blank">personal webpage</a><br>______________________________</=
+div></div></div></div></div></div></div></div></div></div></div></div></div=
+><br></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_a=
+ttr">On Thu, Feb 6, 2025 at 9:56=E2=80=AFAM Brigham Bell &lt;<a href=3D"mai=
+lto:brigham.bell@gmail.com" target=3D"_blank">brigham.bell@gmail.com</a>&gt=
+; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px=
+ 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div di=
+r=3D"auto"><div dir=3D"ltr">Hi Paul,</div><div dir=3D"ltr"><br></div><div d=
+ir=3D"ltr">Thanks so much!</div><div dir=3D"ltr"><br></div><div dir=3D"ltr"=
+>I=E2=80=99ll check in with them Michael Maloney, too.</div><div dir=3D"ltr=
+"><br></div><div dir=3D"ltr">Regards,</div><div dir=3D"ltr">Brig</div><div =
+dir=3D"ltr"><br><blockquote type=3D"cite">On Feb 6, 2025, at 2:14=E2=80=AFA=
+M, Paul Cohen &lt;<a href=3D"mailto:team@haroldcohentrust.org" target=3D"_b=
+lank">team@haroldcohentrust.org</a>&gt; wrote:<br><br></blockquote></div><b=
+lockquote type=3D"cite"><div dir=3D"ltr">=EF=BB=BF<div dir=3D"ltr">Dear Bri=
+gham=C2=A0<div>Thank-you for your inquiry. It is nice to know one of Harold=
+&#39;s more important works is alive, appreciated and well cared for. On yo=
+ur behalf, I have reached out to an appraiser we have used in the past and =
+I am awaiting a reply. If you prefer, you are welcome to reach out to him a=
+s well. Here is his contact information:</div><div><span style=3D"color:rgb=
+(29,29,29);font-family:&quot;Helvetica Neue&quot;,Helvetica,Arial,sans-seri=
+f;font-size:x-small">Michael Maloney</span><br clear=3D"none" style=3D"colo=
+r:rgb(29,29,29);font-family:&quot;Helvetica Neue&quot;,Helvetica,Arial,sans=
+-serif"><span style=3D"color:rgb(29,29,29);font-family:&quot;Helvetica Neue=
+&quot;,Helvetica,Arial,sans-serif;font-size:x-small">MALONEY FINE ART</span=
+><br clear=3D"none" style=3D"color:rgb(29,29,29);font-family:&quot;Helvetic=
+a Neue&quot;,Helvetica,Arial,sans-serif"><span style=3D"color:rgb(29,29,29)=
+;font-family:&quot;Helvetica Neue&quot;,Helvetica,Arial,sans-serif;font-siz=
+e:x-small">2680 South La Cienega Blvd</span><br clear=3D"none" style=3D"col=
+or:rgb(29,29,29);font-family:&quot;Helvetica Neue&quot;,Helvetica,Arial,san=
+s-serif"><span style=3D"color:rgb(29,29,29);font-family:&quot;Helvetica Neu=
+e&quot;,Helvetica,Arial,sans-serif;font-size:x-small">Los Angeles, CA 90034=
+</span><br clear=3D"none" style=3D"color:rgb(29,29,29);font-family:&quot;He=
+lvetica Neue&quot;,Helvetica,Arial,sans-serif"><span style=3D"color:rgb(29,=
+29,29);font-family:&quot;Helvetica Neue&quot;,Helvetica,Arial,sans-serif;fo=
+nt-size:x-small">1310.570.6420</span><br></div><div><br></div><div><br></di=
+v><div>Tom Machnik -- Art Studio Manager -- The Harold Cohen Trust</div></d=
+iv><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On =
+Wed, Feb 5, 2025 at 9:01=E2=80=AFAM Brigham Bell &lt;<a href=3D"mailto:brig=
+ham.bell@gmail.com" target=3D"_blank">brigham.bell@gmail.com</a>&gt; wrote:=
+<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8=
+ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"aut=
+o"><div dir=3D"ltr">Need advice on appraisal. I asked Sotheby=E2=80=99s, bu=
+t they don=E2=80=99t have an idea on whether to appraise it as art or techn=
+ology. Should I ask an auction house, or is there an AARON appraisal specia=
+list somewhere?</div><div dir=3D"ltr"><br></div><div dir=3D"ltr">Any sugges=
+tions are welcome.</div><div dir=3D"ltr"><br></div><div dir=3D"ltr">Again, =
+not planning on selling this anytime soon, as it is considered important to=
+ our whole family.</div><div dir=3D"ltr"><br><blockquote type=3D"cite">On J=
+an 30, 2025, at 3:59=E2=80=AFPM, Brig &lt;<a href=3D"mailto:brigham.bell@gm=
+ail.com" target=3D"_blank">brigham.bell@gmail.com</a>&gt; wrote:<br><br></b=
+lockquote></div><blockquote type=3D"cite"><div dir=3D"ltr">=EF=BB=BF<div di=
+r=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div class=3D"gmail_default"><d=
+iv><p class=3D"MsoNormal" style=3D"color:rgb(34,34,34)"><span style=3D"colo=
+r:rgb(39,78,19)"><font face=3D"verdana, sans-serif">Hi,</font></span></p><p=
+ class=3D"MsoNormal" style=3D"color:rgb(34,34,34)"><font face=3D"verdana, s=
+ans-serif"><br></font></p><p class=3D"MsoNormal"><font face=3D"verdana, san=
+s-serif"><span style=3D"color:rgb(39,78,19)">Do you know the best place to =
+get an=C2=A0appraisal of AARON paintings?</span><br></font></p><p class=3D"=
+MsoNormal"><font color=3D"#274e13" face=3D"verdana, sans-serif"><br></font>=
+</p><p class=3D"MsoNormal"><font color=3D"#274e13" face=3D"verdana, sans-se=
+rif">Most importantly, I need an appraisal of <i><a href=3D"https://www.com=
+puterhistory.org/revolution/computer-graphics-music-and-art/15/231/745" tar=
+get=3D"_blank">Meeting on Gauguin&#39;s Beach</a></i>, so that I know how m=
+uch to insure it for when shipping it from California to Colorado.</font></=
+p><p class=3D"MsoNormal"><span style=3D"color:rgb(39,78,19)"><font face=3D"=
+verdana, sans-serif"><br></font></span></p><p class=3D"MsoNormal"><span sty=
+le=3D"color:rgb(39,78,19)"><font face=3D"verdana, sans-serif">Thanks in adv=
+ance for any help,</font></span></p><p class=3D"MsoNormal"><span style=3D"c=
+olor:rgb(39,78,19)"><font face=3D"verdana, sans-serif">Brigham Bell</font><=
+/span></p><p class=3D"MsoNormal"><span style=3D"color:rgb(39,78,19)"><font =
+face=3D"verdana, sans-serif">1-720-339-6103<br></font></span></p></div></di=
+v></div>
+</div>
+</div>
+</div></blockquote></div></blockquote></div>
+</div></blockquote></div></blockquote></div>
+</blockquote></div>
+
+--000000000000cab51f062d7c752c--

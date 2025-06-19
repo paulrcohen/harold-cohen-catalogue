@@ -1,0 +1,315 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a11:111:b0:5c7:f970:fbca with SMTP id x17csp1037605pxu;
+        Sat, 22 Feb 2025 16:16:16 -0800 (PST)
+X-Received: by 2002:a05:6a20:8426:b0:1ee:d2d9:351f with SMTP id adf61e73a8af0-1eef3db751fmr15026329637.42.1740269776573;
+        Sat, 22 Feb 2025 16:16:16 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1740269776; cv=none;
+        d=google.com; s=arc-20240605;
+        b=EF0riRWag7Hq+ZuuOLx3zp75dF3xk8CXm/IjtPFnIgBlhd7NQ1f+jRn4zczxjnfrtm
+         oIQgIOLqpHxmoe/XV6xg6PlYFiodi53YrcrUe5yCYtzdE8z1YN20Ng5U5406xpU7Yl0q
+         HUlA1G5Xzdb0+w7JONhq+mUl4plE1/nDJALbi5448ii6wY0NU1sgV95Xqtxr9LEnb03q
+         wHa9hnGhwOXSs8v51pLCaoCQgBWrNkA7y4gY7ftLMcGlWu7S3a8hm8Z2kMPV4B2jYn6F
+         woGZJNhNo1ElV+OMuOzMkYPo7dDHhpeVGZav59JievM26f14uwjDnhN6yG4cqmiIDQjC
+         1u/A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :dkim-signature;
+        bh=ReJ5pak+T/2CwTDz8O3x4oyOPd5OMSz0bv659C5EuOA=;
+        fh=+ZSZzLtrqjYAnpssQkgK417RpHpTSSzuH+J6PqTYzzs=;
+        b=G4XezrKzXJOZ/j+DVwU60IQg9f4GZ45L4acUlCmUo3v5WYCqykXb6PnadG57v4aaOk
+         6D09/+uH3EIaEVcsfXtHBiOI/rpneG8sQYDHG9EXe0KwbYssOc/ZVoxMCUDXoBAvT56i
+         XhHQDUgfuzmOX6lLI5b1hLvBkWUKVWkrBgNBZslivDsrlm5c8obgHRhucHmvx70qXFAl
+         F29ZiP3u5pKadzgITvmFgrtjsl+RjDyQVzNJKMlZFnXXv9am2v6NUhTghDJ1fPY9cH+e
+         p9IP7+E5GTvGVX5tXeXuAJacdc5KWh8H1+TXkEwlUfdP8f41hWoOxFRI1ZOzZ7AYhGVm
+         SGhw==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@haroldcohentrust.org header.s=google header.b=JiRufu4a;
+       spf=pass (google.com: domain of team@haroldcohentrust.org designates 209.85.220.41 as permitted sender) smtp.mailfrom=team@haroldcohentrust.org;
+       dara=pass header.i=@gmail.com
+Return-Path: <team@haroldcohentrust.org>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id 41be03b00d2f7-ade2ff977b4sor7986108a12.5.2025.02.22.16.16.16
+        for <paulrcohen@gmail.com>
+        (Google Transport Security);
+        Sat, 22 Feb 2025 16:16:16 -0800 (PST)
+Received-SPF: pass (google.com: domain of team@haroldcohentrust.org designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@haroldcohentrust.org header.s=google header.b=JiRufu4a;
+       spf=pass (google.com: domain of team@haroldcohentrust.org designates 209.85.220.41 as permitted sender) smtp.mailfrom=team@haroldcohentrust.org;
+       dara=pass header.i=@gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=haroldcohentrust.org; s=google; t=1740269776; x=1740874576; dara=google.com;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ReJ5pak+T/2CwTDz8O3x4oyOPd5OMSz0bv659C5EuOA=;
+        b=JiRufu4a9zebka8PHxMx2Qakq9ludygXpQXNxR+Pk/tCilEM9W6CPwg4b8Y8dOuYFB
+         08KVLSAjzLAD4VRwilgb5iKVc5awT7e8UNfxRZmjeSBJae9sA18revxI4X2Sk0Lj2q0n
+         9Dg7xpbvsmpmBo/YCVJ7LfCOGT6nXwN6oCv5w9oebiBKCfjg/PjFj29Pez0FsmQNdUgO
+         nZrtiGpydCtuDBIrBpV50pw9Suz1H/SR0qPfXkz0t5VVTb4wuuW3/H51W27yTktDGgcP
+         cYTprCYVUuyuW3MY+0+3ww2Y9bYhSGa4ajuydE24uNoBG2cZx34YHretuOfHa0jWD11D
+         QeiQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1740269776; x=1740874576;
+        h=to:subject:message-id:date:from:in-reply-to:references:mime-version
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ReJ5pak+T/2CwTDz8O3x4oyOPd5OMSz0bv659C5EuOA=;
+        b=hTSf6hxr2idQLcE5Be8JOyneItXknCMk9DeQ4E18zTZHm9nrO2o2voSmRWnxgLsFYB
+         DI6lnRKfgNILMYJ5j2L5/kOaeFB+QowBPKmEVcr3VY1r9MI7GFiBtP1YZzLVo9EYTqOv
+         iu+plidLD3hAeKt0qxQm/e1FJrPELUcWB8fb7jkHP6C7d9n80Evo9OJbGnojRdjcyvS5
+         EW0UNVcRfM1Ad0XMQ+3B7n8Y5r2BJipNehKty9Jtq7tDZamj4RorFStJAYprsGU+A3mo
+         dMfsMOLer1icTdj3kbNf9iFaXYFb7g8tLUYIuArQxpbv9ViVx939vW9bSt0KeXo16EpF
+         R5+w==
+X-Gm-Message-State: AOJu0YwEy2Veyr6vP9o5iajGbJDxD1r09V6KOMlkkyaJ8Nx2cmiIyI26
+	4hEnmrN1ggteZfzv6vCFNTMWGbJpYGanWKsTcq4wmlqObWgYx6ebw0hr+TJFFa8S34jeVpx5AfR
+	lTPF/RqLTXmX1axsqlSfmHLsLLNd0tYGAARoMhGulkd5tYCXi
+X-Gm-Gg: ASbGncscuSyzxP7IvN8SY7S0VYUORz/RRLXG6xAV1Bcvf58D1xrB0cp5DhbBAJExTuR
+	bNgPZowb6BWjkajo0ZF5BA/5Wy1lf3ZYTlWZjWqNFGKU3N8v8l+XR+FR6gCYZ9+ErgMmCSOEJKm
+	qYF7QUFyFTneC73YjM/MUa2ohL4L7s3Ibx7ZrOG16lHg==
+X-Google-Smtp-Source: AGHT+IFEeZBvb+7bBOVSq5AOTE8BHtezS1ij9GfzZCgv05mhEeHXQxvFuyTS7xXOm0vbQnUohu8zyGKxGn0g2uSSKtI=
+X-Received: by 2002:a17:90a:ec8d:b0:2ee:f677:aa14 with SMTP id
+ 98e67ed59e1d1-2fce78b05b0mr14059727a91.13.1740269775654; Sat, 22 Feb 2025
+ 16:16:15 -0800 (PST)
+MIME-Version: 1.0
+References: <PH7PR14MB65478AAED6C9A35DCC0B6B27D7C52@PH7PR14MB6547.namprd14.prod.outlook.com>
+ <CANeY__JbGs3J6Ya=UDHugKwD12ay+wZmRRm2_MA02WuJkKKm7w@mail.gmail.com> <CAKjPZkF7cLFO=uknCMaxcgtffoRM_5f05GxZR88ZtidK=NcRYg@mail.gmail.com>
+In-Reply-To: <CAKjPZkF7cLFO=uknCMaxcgtffoRM_5f05GxZR88ZtidK=NcRYg@mail.gmail.com>
+From: Paul Cohen <team@haroldcohentrust.org>
+Date: Sat, 22 Feb 2025 16:16:04 -0800
+X-Gm-Features: AWEUYZn2pK0Tkwc91Hd2gVgl9kKQaqHFCQKq3nZhJhC9dIICMv4rUWIlP43Gvjc
+Message-ID: <CANeY__+0MY7TsdeNVbUx7tU3_=zbZREwPSjUgr7iz9xUO4CmXg@mail.gmail.com>
+Subject: Re: NBC News interview request about AI art
+To: Paul Cohen <paulrcohen@gmail.com>
+Content-Type: multipart/alternative; boundary="000000000000cab229062ec4218d"
+
+--000000000000cab229062ec4218d
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+I'd appreciate it if you could handle NBC this go round, and thanks for
+taking care of the invoice, Tom
+
+On Sat, Feb 22, 2025 at 4:07=E2=80=AFPM Paul Cohen <paulrcohen@gmail.com> w=
+rote:
+
+> Ps I got your invoice and I=E2=80=99ll take care of it tomorrow. P
+>
+> On Sat, Feb 22, 2025 at 7:04 PM Paul Cohen <team@haroldcohentrust.org>
+> wrote:
+>
+>> Hi Paul,
+>>
+>>
+>> Not sure what to do about this email from NBC or future emails like this=
+.
+>> Previous to us having the haroldcohentrust account, media requests would
+>> have gone to GAH first. I am now in the habit of checking this email wee=
+kly
+>> but that may not be often enough.
+>>
+>>
+>> They were or may still be looking for an interview with respect to this
+>> month=E2=80=99s Christie=E2=80=99s AI Auction. The email may be a form t=
+ype letter as it
+>> sounds like they don=E2=80=99t know Harold has passed. I know there is c=
+ontroversy
+>> surrounding some of the works at auction. Especially programs scanning
+>> previous works and then not crediting the artists who created them. In
+>> my view, AARON seems to be on the opposite spectrum.
+>>
+>>
+>> Anyway, how should we respond?
+>>
+>>
+>> Tom
+>>
+>>
+>>
+>> ---------- Forwarded message ---------
+>> From: Crowley1, Sean (NBCUniversal) <Sean.Crowley1@nbcuni.com>
+>> Date: Tue, Feb 18, 2025 at 4:51=E2=80=AFPM
+>> Subject: NBC News interview request about AI art
+>> To: team@haroldcohentrust.org <team@haroldcohentrust.org>
+>>
+>>
+>> Hello!
+>>
+>>
+>>
+>> I'm Sean Crowley, a producer with NBC News. I'm reaching out to see if
+>> you'd be available for a remote interview about your upcoming works in
+>> Christie's AI Auction.
+>>
+>> We'd love to chat about:
+>>
+>>    - Your creative process for these new AI-driven pieces.
+>>    - How they differ from your previous work.
+>>    - The feedback you've received so far.
+>>
+>>
+>>
+>> We're looking to conduct interviews on Thursday, February 20th between
+>> noon-5pm ET. Let me know if you are interested.
+>>
+>>
+>>
+>> Sean Crowley
+>>
+>> Producer, *Stay Tuned Now
+>> <https://www.youtube.com/playlist?list=3DPL0tDb4jw6kPxNQtIAs4Ici-OxwKMpQ=
+A9d>** with
+>> Gadi Schwartz*
+>>
+>> (646) 275-2913
+>>
+>> NBC News NOW
+>>
+>>
+>>
+>>
+>>
+>>
+>>
+> --
+> ______________________________
+>
+> Paul Cohen,  Professor
+> School of Computing and Information
+> University of Pittsburgh
+> personal webpage <https://paulrcohen.github.io/>
+> ______________________________
+>
+
+--000000000000cab229062ec4218d
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">I&#39;d appreciate it if you could handle NBC this go roun=
+d, and thanks for taking=C2=A0care of the invoice, Tom</div><br><div class=
+=3D"gmail_quote gmail_quote_container"><div dir=3D"ltr" class=3D"gmail_attr=
+">On Sat, Feb 22, 2025 at 4:07=E2=80=AFPM Paul Cohen &lt;<a href=3D"mailto:=
+paulrcohen@gmail.com">paulrcohen@gmail.com</a>&gt; wrote:<br></div><blockqu=
+ote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left-wid=
+th:1px;border-left-style:solid;border-left-color:rgb(204,204,204);padding-l=
+eft:1ex"><div dir=3D"auto">Ps I got your invoice and I=E2=80=99ll take care=
+ of it tomorrow. P</div><div><br><div class=3D"gmail_quote"><div dir=3D"ltr=
+" class=3D"gmail_attr">On Sat, Feb 22, 2025 at 7:04 PM Paul Cohen &lt;<a hr=
+ef=3D"mailto:team@haroldcohentrust.org" target=3D"_blank">team@haroldcohent=
+rust.org</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D=
+"margin:0px 0px 0px 0.8ex;border-left-width:1px;border-left-style:solid;pad=
+ding-left:1ex;border-left-color:rgb(204,204,204)"><div dir=3D"ltr"><p style=
+=3D"margin:0px;font-stretch:normal;font-size:12px;line-height:normal;font-f=
+amily:Helvetica;font-size-adjust:none;font-kerning:auto;font-variant-altern=
+ates:normal;font-variant-ligatures:normal;font-variant-numeric:normal;font-=
+variant-east-asian:normal;font-feature-settings:normal">Hi Paul,</p>
+<p style=3D"margin:0px;font-stretch:normal;font-size:12px;line-height:norma=
+l;font-family:Helvetica;font-size-adjust:none;font-kerning:auto;font-varian=
+t-alternates:normal;font-variant-ligatures:normal;font-variant-numeric:norm=
+al;font-variant-east-asian:normal;font-feature-settings:normal;min-height:1=
+4px"><br></p>
+<p style=3D"margin:0px;font-stretch:normal;font-size:12px;line-height:norma=
+l;font-family:Helvetica;font-size-adjust:none;font-kerning:auto;font-varian=
+t-alternates:normal;font-variant-ligatures:normal;font-variant-numeric:norm=
+al;font-variant-east-asian:normal;font-feature-settings:normal">Not sure wh=
+at to do about this email from NBC or future emails like this. Previous to =
+us having the haroldcohentrust account, media requests would have gone to G=
+AH first. I am now in the habit of checking this email weekly but that may =
+not be often enough.<span style=3D"font-family:Helvetica">=C2=A0</span></p>
+<p style=3D"margin:0px;font-stretch:normal;font-size:12px;line-height:norma=
+l;font-family:Helvetica;font-size-adjust:none;font-kerning:auto;font-varian=
+t-alternates:normal;font-variant-ligatures:normal;font-variant-numeric:norm=
+al;font-variant-east-asian:normal;font-feature-settings:normal;min-height:1=
+4px"><br></p>
+<p style=3D"margin:0px;font-stretch:normal;font-size:12px;line-height:norma=
+l;font-family:Helvetica;font-size-adjust:none;font-kerning:auto;font-varian=
+t-alternates:normal;font-variant-ligatures:normal;font-variant-numeric:norm=
+al;font-variant-east-asian:normal;font-feature-settings:normal">They were o=
+r may still be looking for an interview with respect to this month=E2=80=99=
+s Christie=E2=80=99s AI Auction. The email may be a form type letter as it =
+sounds like they don=E2=80=99t know Harold has passed. I know there is cont=
+roversy surrounding some of the works at auction. Especially programs scann=
+ing previous works and then not crediting the artists who created them. In =
+my=C2=A0view, AARON seems to be on the opposite spectrum.=C2=A0</p>
+<p style=3D"margin:0px;font-stretch:normal;font-size:12px;line-height:norma=
+l;font-family:Helvetica;font-size-adjust:none;font-kerning:auto;font-varian=
+t-alternates:normal;font-variant-ligatures:normal;font-variant-numeric:norm=
+al;font-variant-east-asian:normal;font-feature-settings:normal;min-height:1=
+4px"><br></p>
+<p style=3D"margin:0px;font-stretch:normal;font-size:12px;line-height:norma=
+l;font-family:Helvetica;font-size-adjust:none;font-kerning:auto;font-varian=
+t-alternates:normal;font-variant-ligatures:normal;font-variant-numeric:norm=
+al;font-variant-east-asian:normal;font-feature-settings:normal">Anyway, how=
+ should we respond?</p>
+<p style=3D"margin:0px;font-stretch:normal;font-size:12px;line-height:norma=
+l;font-family:Helvetica;font-size-adjust:none;font-kerning:auto;font-varian=
+t-alternates:normal;font-variant-ligatures:normal;font-variant-numeric:norm=
+al;font-variant-east-asian:normal;font-feature-settings:normal;min-height:1=
+4px"><br></p>
+<p style=3D"margin:0px;font-stretch:normal;font-size:12px;line-height:norma=
+l;font-family:Helvetica;font-size-adjust:none;font-kerning:auto;font-varian=
+t-alternates:normal;font-variant-ligatures:normal;font-variant-numeric:norm=
+al;font-variant-east-asian:normal;font-feature-settings:normal">Tom</p><br>=
+<div><br></div><div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=
+=3D"gmail_attr">---------- Forwarded message ---------<br>From: <strong cla=
+ss=3D"gmail_sendername" dir=3D"auto">Crowley1, Sean (NBCUniversal)</strong>=
+ <span dir=3D"auto">&lt;<a href=3D"mailto:Sean.Crowley1@nbcuni.com" target=
+=3D"_blank">Sean.Crowley1@nbcuni.com</a>&gt;</span><br>Date: Tue, Feb 18, 2=
+025 at 4:51=E2=80=AFPM<br>Subject: NBC News interview request about AI art<=
+br>To: <a href=3D"mailto:team@haroldcohentrust.org" target=3D"_blank">team@=
+haroldcohentrust.org</a> &lt;<a href=3D"mailto:team@haroldcohentrust.org" t=
+arget=3D"_blank">team@haroldcohentrust.org</a>&gt;<br></div><br><br><div>
+
+
+
+
+
+<div lang=3D"EN-US">
+<div>
+<p class=3D"MsoNormal">Hello!<u></u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">I&#39;m Sean Crowley, a producer with NBC News. I&#3=
+9;m reaching out to see if you&#39;d be available for a remote interview ab=
+out your upcoming works in Christie&#39;s AI Auction.<u></u><u></u></p>
+<p class=3D"MsoNormal">We&#39;d love to chat about:<u></u><u></u></p>
+<ul style=3D"margin-top:0in" type=3D"disc">
+<li class=3D"MsoNormal">Your creative process for these new AI-driven piece=
+s.<u></u><u></u></li><li class=3D"MsoNormal">How they differ from your prev=
+ious work.<u></u><u></u></li><li class=3D"MsoNormal">The feedback you&#39;v=
+e received so far.<u></u><u></u></li></ul>
+<p class=3D"MsoNormal" style=3D"margin-left:0.5in"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal">We&#39;re looking to conduct interviews on Thursday,=
+ February 20th between noon-5pm ET. Let me know if you are interested.<u></=
+u><u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal"><span style=3D"color:black">Sean Crowley</span><span=
+ style=3D"color:black"><u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:black">Producer,</span><span st=
+yle=3D"color:black">
+<i><a href=3D"https://www.youtube.com/playlist?list=3DPL0tDb4jw6kPxNQtIAs4I=
+ci-OxwKMpQA9d" title=3D"https://www.youtube.com/playlist?list=3DPL0tDb4jw6k=
+PxNQtIAs4Ici-OxwKMpQA9d" target=3D"_blank"><span style=3D"color:blue">Stay =
+Tuned Now</span></a></i></span><i><span style=3D"color:black">=C2=A0with
+ Gadi Schwartz</span></i><span style=3D"color:black"><u></u><u></u></span><=
+/p>
+<p class=3D"MsoNormal"><span style=3D"color:black">(646) 275-2913</span><sp=
+an style=3D"color:black"><u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:black">NBC News NOW</span><span=
+ style=3D"color:black"><u></u><u></u></span></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+</div>
+
+</div></div></div></div>
+</blockquote></div></div>-- <br><div dir=3D"ltr" class=3D"gmail_signature">=
+<div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=
+=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr">______________________=
+________<br><br>Paul Cohen,=C2=A0=C2=A0Professor</div><div dir=3D"ltr">Scho=
+ol of Computing and Information</div><div dir=3D"ltr">University of Pittsbu=
+rgh</div><div dir=3D"ltr"><a href=3D"https://paulrcohen.github.io/" target=
+=3D"_blank">personal webpage</a><br>______________________________</div></d=
+iv></div></div></div></div></div></div></div></div></div></div>
+</blockquote></div>
+
+--000000000000cab229062ec4218d--

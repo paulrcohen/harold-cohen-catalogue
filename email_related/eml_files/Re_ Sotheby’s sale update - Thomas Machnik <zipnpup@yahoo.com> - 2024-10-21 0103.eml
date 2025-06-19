@@ -1,0 +1,324 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a10:cc17:b0:5ad:6c17:f336 with SMTP id gd23csp1815946pxb;
+        Sun, 20 Oct 2024 22:04:14 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IH+DOK+1D4YdZbpr29efHLmwiEAFrDS+w3zQF0oGr4cTCoQJXvUyNildM33t8cxYs6rdi9J
+X-Received: by 2002:a05:6214:2dc4:b0:6cb:27e6:393f with SMTP id 6a1803df08f44-6cde15deb69mr185314896d6.36.1729487054222;
+        Sun, 20 Oct 2024 22:04:14 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1729487054; cv=none;
+        d=google.com; s=arc-20240605;
+        b=FXhsM2VdUoRSE0oQH0dhtACx3/09WpaIHSVcgbDItPzlnNupevhH1SMyKqzORrq9Xr
+         lrRjTh4ngASq86kgVqajsusljqOXBg5i6x51o2Lo9SQfa1GI9+6vUQrCINaRVad5DHTH
+         V7DKqhALFomq2a2VO0hHj1lz4Q9jbItZDXKDj8zMKuDDl7TAOOf3i43UDrUAh2QFgyUy
+         wzSQBhVwra/g9latWMYqdplWnDCYWsXscbcSHS75nihsHQQLmFth4epOSJW5v1Ww0nTX
+         Kan0urfS7a5ymHCoPejm3OY0Kr1mY/Kjn0bndaEHnTRAkgki11larNPUBRs2Ez+C+qxD
+         mYyw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:subject:references:in-reply-to:message-id:cc:to
+         :reply-to:from:date:dkim-signature;
+        bh=wgavPS1J3HFG6n5OUNFQC7L4mYJbZGZgQmPHGq+/jHE=;
+        fh=8C7QlUSbxc0TCKmLpRBfentKyl/mkDbGaSmZ65fZpes=;
+        b=kHpRw2YRabHTcCf5XEIMqau29DuNViJrVUQWFMIEUkcoz03+WyNPHt/WQjBypnwiTC
+         MHV24hRbs3CMMenA3ei8tdv9xiTVU/22vKuAH3NZ0AL1kIKqSmyYltozkIocs5+wnxOE
+         4kN07uitU1UTTeGdDRasToOehYWH9ubgNcm5a0C0vUdZveX1UgR/oDEV702+lRX2yepq
+         k4eEec1Adk57XUpd0VByejfRuecIa95kKBa9pV9JXlVe9Mdl6NTC3vCraJAry1ytJcGO
+         OBY0fuG1pBqDx9vTE0hw3m7wZ4Nea9WBRqoRDvuDKh03f5U15a/n3zfejkBD+WHdMZ6Y
+         zI5A==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=CbYXQWXC;
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.134.42 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+Return-Path: <zipnpup@yahoo.com>
+Received: from sonic307-3.consmr.mail.bf2.yahoo.com (sonic307-3.consmr.mail.bf2.yahoo.com. [74.6.134.42])
+        by mx.google.com with ESMTPS id 6a1803df08f44-6ce0089e7b9si31944516d6.102.2024.10.20.22.04.13
+        for <paulrcohen@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 20 Oct 2024 22:04:14 -0700 (PDT)
+Received-SPF: pass (google.com: domain of zipnpup@yahoo.com designates 74.6.134.42 as permitted sender) client-ip=74.6.134.42;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=CbYXQWXC;
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.134.42 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1729487053; bh=wgavPS1J3HFG6n5OUNFQC7L4mYJbZGZgQmPHGq+/jHE=; h=Date:From:Reply-To:To:Cc:In-Reply-To:References:Subject:From:Subject:Reply-To; b=CbYXQWXCBG7WDcynZjpWm+pBqDW+QYZ1HWrsUGp0B5hCCreMnhJge707D6EiqMIA1iszZh7lngx94WOuEm8rZqxTFa4zUx2b0aMXADKqMManGdgzRT3Cp8zfRqmCOoxBxvIjBjOQ33V36PDAplADJrmkODkA0Nwwj9UqX9687RGqPCuQV/11NeDLI3PCymk/IawpCMA4WrQrAsFelkNs0KdjkPZ8G067RmTOOdqanmyFc0R1w2hN6AGovh+pvS8rnznlI/VgMTUqJ99prIp3Sy37Rp4klnYwFJaVGERQEuRCDgAdtW52+9b9P+8m1wa8jHGNlL7NEXA1e5L8+7Pssg==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1729487053; bh=UvmVeY3S+/TgnOnkh3jnekpf316op0lheGPcInaYYqo=; h=X-Sonic-MF:Date:From:To:Subject:From:Subject; b=cwhZ0Dbkzzb4mM6NXxs7eOOj5z5Ya0S/525fwiGgLgAPNR0TsEbG24cBLUue5O4taZuRGhHs5pJscYjQQ6HtbmhKc8+dgjWEFA/rxq44C0FZBIzkgMUNPCvV/LZHZfVCKrxW4J1pVz0dbT2HsuaII2g8d8Cluno0OHJHKb4jmY9+e8rVKwyhyxrkNRi6F1w8JFc0GTzWiNrtHa+WikqFYqH1O5uLcyJV/PBReKLd0ngldOfUHoZyYH87R3zQrRWsRXc+KfwWU44Cjw+csI3H2w107dDL0UIVWzZnkYP8Pv/bZ0sdNyBIqKu+clkoDI3hRLgWhhqLJdGqbX7r+PxZsQ==
+X-YMail-OSG: VU2zn18VM1nmjA9OpprZ1a_wd2Do.DpZSXknJ8mWu0huchUE0kUmcui6_ALRn0e
+ gfgmWSYWGs55ngwT5oSGGNbpNj7n3sMjPIM6j2lRA35E9I_w4NQ6Wmg3D6hfNGjaak5ldxjNqUAN
+ bd4hXfbgjcyFrEAshuoHABrwiMktteQpHpKw_O1JlmlxMmBpyIfykT_1lmjsyhCB3Ln54Pe7ltTA
+ JhPxhdeSy93Xxox.fNbER9F4XjfLahlEHfhEMzH_KzwfpOYQmQaZ1OSIUyM.dw0xAje7zV8mqDbt
+ Hy46oquZZp0zR5n4UHShhqHWpUVJIKmt4V8tCVhqdFSJsm3ZzkJkx2cWJfsvLfvsPSKQny1i2VVL
+ FHVlzSqHOQUrT_LI1P_W5dScjAiCoGmxsZX.ZGtIWQMJnZ11xS2Gl8Tex8sC.kdjDmH.l7BZZHXt
+ D8rN_2_ehxfnmWUzVPVi5IzygGUC6w43W4nFd5JNfkTEXKuzldnwTQIByhBcDMJL3xw6uFwPzaEY
+ q2OXmCnXpXa1CvEGgw74w7maE8RAehPekjbvvB_8o8T3dP39sZBswsOIdyys4rpAwVBYNHjfTQVS
+ F11KWGAu3lg9NFkjmiTLANR2CAzF7Jm_gmdQWYltkqmDzKiC8D_aC0D.P9Cn6qgT5G8hAzuTsesw
+ yQdhJY6Pk1D7G01kc0zqidVUn6WeaBM2bFth2q_Gw33xLHY1SKdvVryu9ePDe4amuW4BBsxefNe8
+ hM_Ne3vrVLdiFsRLKw5fCqlrGUc8ER5CUhoGArGhGcJIq_cyMoGK.ujz4X5H9Gghcg3qlJXNR7gq
+ tJQRR.q.zFjZPuHgve5YahUrnpOjBndpn8sf0fsoNJYE.8jet37LHuvtBwKVG9NAVnrlLQYN2Mr3
+ MWtvbrzWtaxTHuoGNDf8WrEjky3MRvMHkulUvG8q4wQ.SrcJqGpGGZY0PioaoQ.dGWONs7uI6o1N
+ JWti5rrCeAlhuZrKSK0N8lpzk9qCgH8lrg4PI0CFBM6dAan8Pj.jiqdRQL8Z.YicgLyVs.0P6mDr
+ 4sWNtY4ungvpGWXUfSIz1.VWJh0cCG5zrSn4MNFKDMxxmkqz1mIWNWIfzqa68XvFEoNjJa8qKHKl
+ AufXMoDAN3Lhyab2DPjTxslZtXsDkl.vAU0nzBGm8B1r527eKg2La.ZA6Wu0dVzrvLQ03h0gsCZm
+ 47PcbgmTG3YuXIWuIQFPz9mhdkHXAteQTZ815QREFQIsjuhYWQOlZ9BIFe_LiNd7bTgCT3qzJzaJ
+ Z4bbAXJ1M5m.RuhmhU8.7JvdffAjtjHYjMHJJbTEdoFb6F1xlZWKgP63QU1GhTFxR5AuUKG7CYTb
+ u8yovWoqRzspLpBKKezxPvCfTRo4ed0h1ZlXZSVOJF1g4noEEwgdm0dB9JDblwmRTeVHzKl8s8hJ
+ A1FgByrtEkl6wzsmA.jb5mgwQ8GmHdhN_JdFIyzS_UygnYa72VbPb.5Nsts_3GunNr7KrJy2qtxQ
+ RMrbuvmRT8tiGFAIKh2MbYJQPKEeVqnlN4XJAKSgAIy66hg6sTtlR_RCg9BxRwue5aNjFa119qp7
+ zZsTkII_6i3XjvUwY4ZOW5xGHVN_O1PYGrMA_QF6Xzm.vJUNoJKPl.wmGLxHsYkndYgFTBSzMOlh
+ iCw53.wstO8G5RN3d2JFONl4xAQv97dhrF5UCqwmA2wMxY62.Sk5lekl9mktupAADMTzF.PlY7.0
+ BYw.MOde9cVBwYkiC2cxbCoMVUINMGVPPVkiusph5tDExwEzkocILoMZ00RDdKRtZin6t7cpgfcE
+ f6nCX8EhT6reFUJkxssoUX3nGNal7uBGGEp5tOsEkuV2SkGE6JoTbqUPrkrrAYE3RhCRyMdgVXq9
+ .uoBn6kHf0svn665mYz.6hYjhmMm7qCPenlFYI9.aIywLLbXIVn0zg0J581Xjaoq7bNbXaS1Qd58
+ pC8IpZGt2MLJFlz0cIivej4ObNnOlAGdHf820qKC5eRY7jvNfG6GvudCLxVbkxMnpvZv5X1mqpJ1
+ TPb41FykRrFe_2VNPccDSWYI4.Ce5rs3UfAzijUc9cHPl8P1JHcdk4Netcm_r8KaYIjvNIj.Wcat
+ 1C9a.Ro6LUo._gtAQC6wz6Er.OttfmJDrWZtf825C_FMFHcBZFO4qRJy_SQb2_CueSWkWFj7esSD
+ 1ZZ0UcyJ012Vvo5nAuwclpl8APOka0Lo6D4_cBQMMoLjz.mrYRGxi4bwOmmd2Vu4UTEo3xiC51H2
+ ylmQUV0cdHmFI78h9.lle0cD9MliIA9h5sE1dCHCgJl_x_c0Lcsmtufxk.IiYRjCPadJCqZmmABg
+ zlNzlEHc.E1xYKjw3hevO65rmF29nrJ5Hv04ptA81ogdTLxHUWhq9Pi1B
+X-Sonic-MF: <zipnpup@yahoo.com>
+X-Sonic-ID: 104bd1cb-c82a-4a64-b07e-42623022e3d1
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic307.consmr.mail.bf2.yahoo.com with HTTP; Mon, 21 Oct 2024 05:04:13 +0000
+Date: Mon, 21 Oct 2024 05:03:59 +0000 (UTC)
+From: Thomas Machnik <zipnpup@yahoo.com>
+Reply-To: Thomas Machnik <zipnpup@yahoo.com>
+To: Mila Askarova <m.askarova@gazelliarthouse.com>
+Cc: Paul Cohen <paulrcohen@gmail.com>, 
+	Harold Cohen Trust <aaron@aaronshome.com>
+Message-ID: <1795953263.2268612.1729487039721@mail.yahoo.com>
+In-Reply-To: <CAAOqD37ALaDgKdEkkhPWfC_U3Uke+OCiw2z3QEVBi8g5C5gcZg@mail.gmail.com>
+References: <CAAOqD37ALaDgKdEkkhPWfC_U3Uke+OCiw2z3QEVBi8g5C5gcZg@mail.gmail.com>
+Subject: =?UTF-8?Q?Re:_Sotheby=E2=80=99s_sale_update?=
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_2268611_135951969.1729487039719"
+X-Mailer: WebService/1.1.22806 YMailNorrin
+Content-Length: 14100
+
+------=_Part_2268611_135951969.1729487039719
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+ Hi Mila,Thanks for the links to the works showing them hanging and for the=
+ update. Regarding NFT Collector's enquiry, I am currently piecing together=
+ the source code history. But currently I only have a rudimentary outline a=
+nd information. I do have additional details but probably not necessarily p=
+ertinent. Of course if the collector has specific questions we can address =
+those one by one.=20
+
+But as a general response,
+
+The main groups (which are subject to change) are:(1995 to 2006) People+Pla=
+nts to Plants with No People
+(2007 to 2009) Plants to No Gravity(2009 to 2013) No Gravity to No Backgrou=
+nds(2013 to 2016) Fingerpainting
+The works in the show belong to the first group (1995 to 2006) People+Plant=
+s to Plants with No People.The area of focus for the show was 2002-2003 wit=
+h 2003 being the main focus. 2003 is important because the 20 year effort t=
+o include people breathed its last breath that year so too did the table al=
+ong with a cube, bowls, vases, bottles and goblets. The last iteration that=
+ included these elements also included shadows cast on the table. It is the=
+ shadow feature that Harold carried forward and let the others ones go. The=
+ shadow element is important for over time it morphs and he transformed its=
+ function. Another element he continued with was the potted plant. However,=
+ the pots are not necessarily always visible sometimes they are out of the =
+frame and or there existence only implied. He seems to have a couple trains=
+ of thought at that time. One is to continue to include the pot and showcas=
+e that it is still in a room with or without tiles and/or shadows.=C2=A0 Th=
+e another was to focus on the foliage in the upper canopy along with stems =
+and branches. It took time but ultimately the latter won out.=20
+
+As for technical details. We have currently do not have any AARON versions =
+from 2002 or 2003 that run. We do have saved source code versions from 2002=
+ and 2003 though. And based on dates of the files in the source we can gues=
+s which version was used to generate the works that are in the show. Depend=
+ing on which work we are referring to it could have been aaron5, aaron6 or =
+aaron7. Of course, ideally we get these versions running and see what AARON=
+ was actually generated to be absolutely sure.=20
+
+The 2002/2003 code was written in Lisp on a Windows based machine most like=
+ly running Windows 2000 but I don't have enough information to confirm this=
+. It might have been Windows XP Professional-64. I can however, say that AA=
+RON was compiled with Franz Allegro and most likely compiled with version a=
+cl62w. He would have run the program from within the Allegro integrated env=
+ironment as he rarely made executable versions. The executable versions wer=
+e typically only made for exhibitions and unfortunately we do not have a kn=
+own executable ones from this time period. Because we do not have any known=
+ executables we can't say how big the program was. However, I did look at o=
+ne of the aaron6 versions. It consisted of 1.1MB of typed code in 79 source=
+ code files. Unfortunately, Harold rarely used comments so this 1.1MB is al=
+most all hand typed Lisp source code. Because we no longer have the compute=
+r that he used to created the works shown at the show, we can't say for sur=
+e how long it took AARON to generated a particular image but it is believed=
+ to have been 1 to 7 minutes or so depending on complexity.=20
+
+As for notebooks, Harold seemed to have stopped using paper notebooks on a =
+regular basis sometime in the 1990s which is prior to these works. However,=
+ Harold did continue to write for publications. I don't see any written in =
+2003 but the following two were written in 2002.
+Leonardo: Journal of the International
+Society for the Arts,Sciences and
+Technology (Volume 35, No. 1, 2002)
+Here is a link to another 2002 publication which links to our website. Alth=
+ough it is written in 2002, starting on page 29 he does dive into some deta=
+ils that maybe be of interest
+https://aaronshome.com/aaron/publications/changingworld.doc
+On Monday, I will look to see if we have any additional computer note files=
+ from 2003 in our archives.=20
+
+Tom
+
+
+    On Saturday, October 19, 2024, 11:48:15 AM PDT, Mila Askarova <m.askaro=
+va@gazelliarthouse.com> wrote: =20
+=20
+ Hi both,=C2=A0
+Hope all is well!=C2=A0Paul, looking forward to our catch up Monday but in =
+the meantime wanted to touch base to let you know that the exhibition is up=
+ and open and getting a lot of interest.=C2=A0
+2 works have now been sold with another 3 being considered. Once the physic=
+al exhibition is over on Tuesday, the sale will continue online.=C2=A0
+There was an enquiry from one of the top NFT collectors re the actual progr=
+am producing these (some technical questions). Is there anything we can sha=
+re in addition to what has already been communicated ? Perhaps some images =
+of Harold=E2=80=99s sketchbook or anything you might think would be relevan=
+t.=C2=A0
+Some images here:https://x.com/sothebysverse/status/1847327303132451073?s=
+=3D46&t=3DMQotEjrmgi3F1ivLDzYr4g
+And the link to the online sale here:https://www.sothebys.com/en/digital-ca=
+talogues/aaron-the-earliest-ai-program-for-artmaking
+My best,=C2=A0Mila=C2=A0
+
+
+
+Mila Askarova=C2=A0
+CEO & Founder=C2=A0
+
+GAZELLI ART HOUSE
+
+www.gazelliarthouse.com
++44 (0) 207 491 8816 / +994 (0) 12 498 1230
+ =20
+------=_Part_2268611_135951969.1729487039719
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head></head><body><div class=3D"ydp525f1e29yahoo-style-wrap" style=
+=3D"font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px=
+;"><div></div>
+        <div dir=3D"ltr" data-setdir=3D"false">Hi Mila,</div><div dir=3D"lt=
+r" data-setdir=3D"false">Thanks for the links to the works showing them han=
+ging and for the update. Regarding NFT Collector's enquiry, I am currently =
+piecing together the source code history. But currently I only have a rudim=
+entary outline and information. I do have additional details but probably n=
+ot necessarily pertinent. Of course if the collector has specific questions=
+ we can address those one by one. <br></div><div dir=3D"ltr" data-setdir=3D=
+"false"><br></div><div dir=3D"ltr" data-setdir=3D"false">But as a general r=
+esponse,<br></div><div dir=3D"ltr" data-setdir=3D"false"><br></div><div dir=
+=3D"ltr" data-setdir=3D"false">The main groups (which are subject to change=
+) are:</div><div dir=3D"ltr" data-setdir=3D"false">(1995 to 2006) People+Pl=
+ants to Plants with No People<br></div><div dir=3D"ltr" data-setdir=3D"fals=
+e">(2007 to 2009) Plants to No Gravity</div><div dir=3D"ltr" data-setdir=3D=
+"false">(2009 to 2013) No Gravity to No Backgrounds</div><div dir=3D"ltr" d=
+ata-setdir=3D"false">(2013 to 2016) Fingerpainting</div><div dir=3D"ltr" da=
+ta-setdir=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"false">The wo=
+rks in the show belong to the first group (1995 to 2006) <span>People+Plant=
+s to Plants with No People.</span></div><div dir=3D"ltr" data-setdir=3D"fal=
+se"><span>The area of focus for the show was 2002-2003 with 2003 being the =
+main focus. 2003 is important because the 20 year effort to include people =
+breathed its last breath that year so too did the table along with a cube, =
+bowls, vases, bottles and goblets. The last iteration that included these e=
+lements also included shadows cast on the table. It is the shadow feature t=
+hat Harold carried forward and let the others ones go. The shadow element i=
+s important for over time it morphs and he transformed its function. Anothe=
+r element he continued with was the potted plant. However, the pots are not=
+ necessarily always visible sometimes they are out of the frame and or ther=
+e existence only implied. He seems to have a couple trains of thought at th=
+at time. One is to continue to include the pot and showcase that it is stil=
+l in a room with or without tiles and/or shadows.&nbsp; The another was to =
+focus on the foliage in the upper canopy along with stems and branches. It =
+took time but ultimately the latter won out. <br></span></div><br><div dir=
+=3D"ltr" data-setdir=3D"false">As for technical details. We have currently =
+do not have any AARON versions from 2002 or 2003 that run. We do have saved=
+ source code versions from 2002 and 2003 though. And based on dates of the =
+files in the source we can guess which version was used to generate the wor=
+ks that are in the show. Depending on which work we are referring to it cou=
+ld have been aaron5, aaron6 or aaron7. Of course, ideally we get these vers=
+ions running and see what AARON was actually generated to be absolutely sur=
+e. <br></div><div dir=3D"ltr" data-setdir=3D"false"><br></div><div dir=3D"l=
+tr" data-setdir=3D"false">The 2002/2003 code was written in Lisp on a Windo=
+ws based machine most likely running Windows 2000 but I don't have enough i=
+nformation to confirm this. It might have been Windows XP Professional-64. =
+I can however, say that AARON was compiled with Franz Allegro and most like=
+ly compiled with version acl62w. He would have run the program from within =
+the Allegro integrated environment as he rarely made executable versions. T=
+he executable versions were typically only made for exhibitions and unfortu=
+nately we do not have a known executable ones from this time period. Becaus=
+e we do not have any known executables we can't say how big the program was=
+. However, I did look at one of the aaron6 versions. It consisted of 1.1MB =
+of typed code in 79 source code files. Unfortunately, Harold rarely used co=
+mments so this 1.1MB is almost all hand typed Lisp source code. Because we =
+no longer have the computer that he used to created the works shown at the =
+show, we can't say for sure how long it took AARON to generated a particula=
+r image but it is believed to have been 1 to 7 minutes or so depending on c=
+omplexity. <br></div><div dir=3D"ltr" data-setdir=3D"false"><br></div><div =
+dir=3D"ltr" data-setdir=3D"false">As for notebooks, Harold seemed to have s=
+topped using paper notebooks on a regular basis sometime in the 1990s which=
+ is prior to these works. However, Harold did continue to write for publica=
+tions. I don't see any written in 2003 but the following two were written i=
+n 2002.<br></div><div dir=3D"ltr" data-setdir=3D"false"><div>Leonardo: Jour=
+nal of the International<br>Society for the Arts,Sciences and<br>Technology=
+ (Volume 35, No. 1, 2002)</div><div><br></div><div dir=3D"ltr" data-setdir=
+=3D"false">Here is a link to another 2002 publication which links to our we=
+bsite. Although it is written in 2002, starting on page 29 he does dive int=
+o some details that maybe be of interest<br></div><div dir=3D"ltr" data-set=
+dir=3D"false"><a href=3D"https://aaronshome.com/aaron/publications/changing=
+world.doc" rel=3D"nofollow" target=3D"_blank">https://aaronshome.com/aaron/=
+publications/changingworld.doc</a></div><div dir=3D"ltr" data-setdir=3D"fal=
+se"><br></div><div dir=3D"ltr" data-setdir=3D"false"><span>On Monday, I wil=
+l look to see if we have any additional computer note files from 2003 in ou=
+r archives. <br></span></div><div dir=3D"ltr" data-setdir=3D"false"><span><=
+br></span></div><div dir=3D"ltr" data-setdir=3D"false"><span>Tom<br></span>=
+</div></div><div dir=3D"ltr" data-setdir=3D"false"><br></div><div><br></div=
+>
+       =20
+        </div><div id=3D"ydpc220a119yahoo_quoted_0284659846" class=3D"ydpc2=
+20a119yahoo_quoted">
+            <div style=3D"font-family:'Helvetica Neue', Helvetica, Arial, s=
+ans-serif;font-size:13px;color:#26282a;">
+               =20
+                <div>
+                        On Saturday, October 19, 2024, 11:48:15 AM PDT, Mil=
+a Askarova &lt;m.askarova@gazelliarthouse.com&gt; wrote:
+                    </div>
+                    <div><br></div>
+                    <div><br></div>
+               =20
+               =20
+                <div><div id=3D"ydpc220a119yiv3428444447"><div>Hi both,&nbs=
+p;</div><div><br></div><div>Hope all is well!&nbsp;</div><div>Paul, looking=
+ forward to our catch up Monday but in the meantime wanted to touch base to=
+ let you know that the exhibition is up and open and getting a lot of inter=
+est.&nbsp;</div><div><br></div><div>2 works have now been sold with another=
+ 3 being considered. Once the physical exhibition is over on Tuesday, the s=
+ale will continue online.&nbsp;</div><div><br></div><div>There was an enqui=
+ry from one of the top NFT collectors re the actual program producing these=
+ (some technical questions). Is there anything we can share in addition to =
+what has already been communicated ? Perhaps some images of Harold=E2=80=99=
+s sketchbook or anything you might think would be relevant.&nbsp;</div><div=
+><br></div><div>Some images here:</div><div><div><a href=3D"https://x.com/s=
+othebysverse/status/1847327303132451073?s=3D46&amp;t=3DMQotEjrmgi3F1ivLDzYr=
+4g" rel=3D"nofollow" target=3D"_blank">https://x.com/sothebysverse/status/1=
+847327303132451073?s=3D46&amp;t=3DMQotEjrmgi3F1ivLDzYr4g</a></div><br></div=
+><div>And the link to the online sale here:</div><div><div><a href=3D"https=
+://www.sothebys.com/en/digital-catalogues/aaron-the-earliest-ai-program-for=
+-artmaking" rel=3D"nofollow" target=3D"_blank">https://www.sothebys.com/en/=
+digital-catalogues/aaron-the-earliest-ai-program-for-artmaking</a></div></d=
+iv><div><br></div><div>My best,&nbsp;</div><div>Mila&nbsp;</div><div><br></=
+div><div><br></div><div><br></div><div><br clear=3D"all"><div><div dir=3D"l=
+tr" class=3D"ydpc220a119yiv3428444447gmail_signature">Mila Askarova&nbsp;<b=
+r>CEO &amp; Founder&nbsp;<br><br>GAZELLI ART HOUSE<br><br><a href=3D"http:/=
+/www.gazelliarthouse.com" rel=3D"nofollow" target=3D"_blank">www.gazelliart=
+house.com</a><br>+44 (0) 207 491 8816 / +994 (0) 12 498 1230<br></div></div=
+></div>
+</div></div>
+            </div>
+        </div></body></html>
+------=_Part_2268611_135951969.1729487039719--

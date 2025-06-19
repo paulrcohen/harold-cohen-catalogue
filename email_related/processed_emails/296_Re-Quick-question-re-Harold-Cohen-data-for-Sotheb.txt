@@ -1,0 +1,18 @@
+Subject: Re: Quick question re Harold Cohen data for Sothebys
+From: Paul Cohen <paulrcohen@gmail.com>
+To: Robert Norton <robert@verisart.com>
+Date: 2024-10-11 10:06:42
+Message-ID: <CAKjPZkFAV0pk_m+cT-b=BPi46rpn-nKy4j2p0LkDJk6rXkcnhQ@mail.gmail.com>
+--------------------------------------------------------------------------------
+
+Robert, I'm sorry it's a pain but yes, I think our best path is the one
+you suggest.
+
+This has been a surprisingly rich learning experience (how's that for a
+positive spin!) particularly this most recent issue. It is sure to happen
+again, or something similar that could cause a token to be withdrawn, so I
+wonder whether there's any general method to deal with these cases. For
+example, is there any notion of a provisional NFT or does that undermine
+the whole idea of NFTs. When I buy a house, I sign one contract saying
+that I intend to buy it, but this isn't the contract that formalizes
+ownership. That comes later, after various inspections are passed.

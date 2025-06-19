@@ -1,0 +1,641 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a10:7751:b0:61d:d881:fa02 with SMTP id yp17csp85771pxc;
+        Fri, 6 Jun 2025 12:19:13 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHc60JRE7K8ko/5FUQJOBCjOBMVndDljam02VSPPfKqwYlIt5jAOreUqXgVZoMXlTqFmFwV
+X-Received: by 2002:a05:6102:2b9a:b0:4e5:97e3:a89 with SMTP id ada2fe7eead31-4e7728bab7bmr5362637137.8.1749237553338;
+        Fri, 06 Jun 2025 12:19:13 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1749237553; cv=none;
+        d=google.com; s=arc-20240605;
+        b=lvAo2H/Q1u3zu3HaUUfJ9+T10P4081r76V14hIflwQXDzAf6YVWSrJVBWcmJak0hCd
+         pCl3L74IoRmrJ241jLikMO5MXeKrpq8HDpyjXOUDtMFQ3HL9QK9GzBGpWKSAFX7D6UFA
+         Nk31c0NGAq6wJb8NQe08wy3IW+tVIH3bpmx041kP7HG/gpCpaD5NDaXz0ON9mY7zLNkC
+         EZZ6D+teGA5PGwDIUddVs1NCyk8Qqrs6ifyOzJasESQqPITM4GByLGik5vs5b5Y/TtQH
+         0PHxIaFj2Ap4HmOa1CCd1wC8h8X3mEFoMeLxWqmtVeRTxOEM0kQV15qDRAxfs/RERc17
+         SzQw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:subject:references:in-reply-to:message-id:cc:to
+         :reply-to:from:date:dkim-signature;
+        bh=r+9Op6IxTc+AqnhpnZ6yT/D9/soV8MYAx1sknTyXTY4=;
+        fh=PzZdWeo1UnggDULkqboE7bPwys0MVofuAXgFVh+houg=;
+        b=QpsJ0qAqEBY1OhVKgz3dqeI15pYUI9r/La4D7qbq4MXtt99gnx9GE/3BT7AExk2qks
+         oXzR58OXgqDlFqv5+6CB07iFfZ4R0SX0bzjyqlKCz6vYsYr4uSyJWRHsIQVBQ+hrX2J3
+         VKQHEGEKE2yy8hURI/gLiCkuWNVLvBJNrcBSgXrCMFP5WqYsgHu24Lb7pqNK7AN3ktq+
+         VKHBSthcghKCroS3Tw7iB/NxV3dWQmItTI2aOmrMvXjeBLGspsBDJ1xzvcs545JlPC0P
+         ouTZMK69L9tH/wh4G29OEVUF8Pb1NOrnTfvnqObLIKPt5CKGyvnNd5DbTOfAYg2PF+FZ
+         eS3g==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=IfJg6RBH;
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.132.41 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+Return-Path: <zipnpup@yahoo.com>
+Received: from sonic306-2.consmr.mail.bf2.yahoo.com (sonic306-2.consmr.mail.bf2.yahoo.com. [74.6.132.41])
+        by mx.google.com with ESMTPS id ada2fe7eead31-4e7739957f8si844586137.226.2025.06.06.12.19.13
+        for <paulrcohen@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 06 Jun 2025 12:19:13 -0700 (PDT)
+Received-SPF: pass (google.com: domain of zipnpup@yahoo.com designates 74.6.132.41 as permitted sender) client-ip=74.6.132.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=IfJg6RBH;
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.132.41 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1749237552; bh=r+9Op6IxTc+AqnhpnZ6yT/D9/soV8MYAx1sknTyXTY4=; h=Date:From:Reply-To:To:Cc:In-Reply-To:References:Subject:From:Subject:Reply-To; b=IfJg6RBHLgrrEItVUYnSK2EshztVAGRTY36xvWLg32VEeDt/113xeRvjDwgMfbwdvhSq7sq2oeD64paRxTOqRu3jVpcpG8XFZetnq5EKCRitNL6w4uktQ5ABMX+C5HUT2ga2IkIwMgyld+XdAX+zW0dwZYCu3IIuu5pW0timfmkBWu7eVv+HaZF51j/4MDXd4KceImwMma+vstzeTlaTBs0ygXeuDtpe0bOtNVJwKVoSM6653Y46OF7tdEhfBKRP0kU5hw94ESPMyTRlMZwQr2vKCFHx+ES06FjoHl4whqSNUlirui2XOVDUEpW2mv4cZQbAH9ONh++kcou8JlukSg==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1749237552; bh=EeXl5jg+JHL3YvPIrBZ/w00PRFaJUg6E3yTOOpluuwW=; h=X-Sonic-MF:Date:From:To:Subject:From:Subject; b=gk0W/RWUL1mV7U5geIzE9mwyjGEeQ5NChXa6egg4VHTog2CCLfiEb5S8ZK74qk6e1T35Gjxyb4ZEcThFtCGQUXzYLE8rkAj602GqWHda3jyqDPB5N6CGs1FiAwAK+LYFt9AyvT1k6TWciSPFL7iiaqRmaBkuvvQoc9qMfMgL+subwV5Y72g9FSZocHEDZqtstSQKjz3uST155X2zagqqxy9QhiI/v1QMfyfBIKzag0kYaOWw8hTOxc+6MXrI2H99NjBsBXMHHn9ZMJL4EaCOy8sg4rPvKmajUhw/bA3QZ23o9qrTRXNzcu71QlQbRyozKTnHTvnf9jhZFME9yfwaaA==
+X-YMail-OSG: 6kLM2YkVM1kgUB7Z4UUnJLOaitUIoKP4DtdUdiJlVLlMue1TZbDE2Qw46wzmk7v
+ f1BsZ_8kflhG_alBV0gYtrQaXUqAyaFTSKszycATTSuAJTKkGMUw8tF19xV_UyKv1BA1nvCt37fo
+ NT6wOGPK0ANKsbyKEC2OnvI5WrWWXwkEqTVUiRDYdUYbElPLZm0CSTbBhlI7cjxYrd_trbEGg1yi
+ Mw.VmQboz_wnOzTElcvjTCGkmmpbSYlvS6UvqgW9SJnHBYVgMDWwCq8E7.lWHV0rleqF14vo6M_v
+ 28t6K8aauDczJAMoMrFpxSNeXnN.8_F9ULTRRsIIe2Wcm5tQKhPGSARzRBnG7Q4n1TdBnLuF0i_g
+ HJKZeXVjRlh12Mf_9gJWijoFHzsYv6IrimhYCpZSp80rzWsTpylh8G39veG1BXcTS7sAD_M_paAk
+ bdvU8yNnvEl.SD9ZKFPoVy.0TyNxcCc1FSo9P0qhJmYj.p1EfCmYdKpTF8mgRoGVuv8kOYo8bC2t
+ X.lrqiAr3QKP3slPDtbpqmUd8z948heGWgfmrVTIvydPVMQjLi5TwP8PKltGWu1cnTQjh6XkF2rx
+ hSHpF.5u_M_fDrZNZAtArGVBYWv3vasuuoa1O5u1udKch3zbsc.qoGVai0YoDFA1ouwrUWuTvkhd
+ WjNFlf93.BoM6XKoLf00K4zQlWgbrQiMsWcHFNc_MVnDuN7f8VC7gG6qL6b6o44GvhZKDLt1xLH0
+ R5XZIM87XCS5u2f90MprEELrkjTdcpg3EZYiisG6FNbnD0wazvwphNuQDtDfNvep80D5mhGyBjaR
+ kjj0hW0xYAYuJLztmneXELFbesTt9KhocZGhoF2hauSrhJQE4BeEU8oiQY.Zh8C3EXwUp2bXRiMG
+ UIWZSOENgnCzq9b5Yw0xciUAxgXKRKhOPMAyL0z5nsGWlP68qpWTADl9_rljfBFmPqH9pTLfoiK_
+ CdKto8VRQIq5Scqqx_vMX1SRkg5ecPyKpNJ.osJK7R9OtrRFy4vaCTaCmzCdDF4lQodeXazs4RUQ
+ aQdhKmw3aPAucFsYgJ2efyuZbvrXpL6Yrj0PUbFa7WJGMqx3OgezOp_HW.jjKiyzSJCJDq72sZpx
+ Ctp3XXNfwXk3t38x9lI11jOC4y4Xxz8y8ChgldVGUqJOQADAF56X45iqK83qNN6YGoM2SezoUaqH
+ ZCe0TePMtfkBVqn6T0N8pMPeygvysPazlnS9LI92DiYPMwxzChD9d6cbj5vid1P4Iuf1jKJaMAsk
+ Ajx5emASMkRmOyAzHPvsU5TGMZSV6gUOS.B2EI1hGPB4J00kpcvv8a_hb3O.hPcmlA3kMJoGEkNw
+ a1dxvl05QzAwtA.mZpHZEr40SSF9Uf4Ug3_jIkudLXQFQ6M8s4BOreTgv7hQ7_8MNuLtM97OM.NJ
+ WTH2_nyF2syGtKO0IIMbDFjDnkmIRQczochtn4Co7FD7X6938BvPD4OsZgkMafwKWd1XkASe6QQU
+ ycqjdfQFmjboMRsPOsKOF8yAsedlYhtYqkYa41oK_3OCtAWdZ4a9S7QYrd0bA80zBM3bzb5BigEN
+ tks.OZYYn9P3BEMQ_3.VD.e.ERQwQXfeazt08vYO6CGN7kfFfKYq7brqarP0EZ8KFKFQbdwUjSXl
+ rOJU5kcUBSYfgA5PtenQu.b_1M8Nqs8eOkC0MBUL2U6192rA8opIhVF3A52iJKWzF2hsIiY1ZaDD
+ oJFI71qUxnImCnzm9vATjngJbPtdID6Q9eAg6rGWnaEcy6CMfdWBJrGV52DbdlG4JtNpas5NhVsq
+ hhaLJscCNzORJEi9ztPND5AQo583eWMzTW0hTMkOs38uGpjnQTjJ367slkwarYDuRmPDEHf6m4OE
+ G0bwq1ydQdxoyH5EkC13FioRGRU2CN0DmAEEFurqFBO58nWaGojbK.YRtr4r3eChH.PNVkVzvh.M
+ mA2ReXGkb.kJGPCbD_vvdt0QqZtC.7QOjHxpQiGdcK1ER3EPHqIksHV9_WYTjInkWmwszIS8r_Xt
+ jGDhEVD9qA.Vjsc0VSdrxIV2DCgBuzymZ8am6DV.DuN.m38EeQjQGp_cTNbfACiK5fVleBJp0QZ4
+ 20u9s.blraijkTjvhj8.c3WCmKVUrPj4f10BhdhPQbD83Od4OFUmJn6Q3Sr5HEuReN7xChHsqM.s
+ YjabM6vVoPpDaAqkQdILyk4OUKQQC_C.TWlEScwAhTZkQfjQYP7n8vwWslS4ssQCj1C47MW2MnTJ
+ CyRS_K6va9q1tQewdpRlyP3OT5NeWQ2NtevcGuJyDPpoaJpjlzfxnP2O_642lKZraq_KNqCyCGGV
+ ToME38yk7ooPZdyFP.LaF7O5_nPTEV..FughCm2ZBGJaAnz_U79KHMA3px39P
+X-Sonic-MF: <zipnpup@yahoo.com>
+X-Sonic-ID: 0591971a-19bc-46b3-80a7-e4577e317d79
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic306.consmr.mail.bf2.yahoo.com with HTTP; Fri, 6 Jun 2025 19:19:12 +0000
+Date: Fri, 6 Jun 2025 19:19:11 +0000 (UTC)
+From: Thomas Machnik <zipnpup@yahoo.com>
+Reply-To: Thomas Machnik <zipnpup@yahoo.com>
+To: George Lionel Barker <george@gazelliarthouse.com>
+Cc: Paul Cohen <paulrcohen@gmail.com>, 
+	Mila Askarova <m.askarova@gazelliarthouse.com>
+Message-ID: <1442242322.444742.1749237551213@mail.yahoo.com>
+In-Reply-To: <CAFoqNjRO_G=YfvOcJtt9ju_ehWkCA=sTf2mCKMMMunRXqHeqYQ@mail.gmail.com>
+References: <CAFoqNjSB-p2LOGGHRXtmPN=hqX0Qs+rQA2b6VD=ruojNrkO5OA@mail.gmail.com> <1889116426.176969.1749137716107@mail.yahoo.com> <CAFoqNjRO_G=YfvOcJtt9ju_ehWkCA=sTf2mCKMMMunRXqHeqYQ@mail.gmail.com>
+Subject: Re: Cohen canvases 1991-1999
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_444741_1432051640.1749237551206"
+X-Mailer: WebService/1.1.23956 YMailNovation
+Content-Length: 38154
+
+------=_Part_444741_1432051640.1749237551206
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+ Hi George,I did not find any 1991-1999 works placed in a museum besides th=
+e ones we already know about.
+Tom
+    On Thursday, June 5, 2025 at 09:01:15 AM PDT, George Lionel Barker <geo=
+rge@gazelliarthouse.com> wrote: =20
+=20
+ Hey Tom,=C2=A0
+Thanks so=C2=A0much for getting back to me, I appreciate it.=C2=A0
+Is the good friend of Harold you spoke to interested in selling? It's impor=
+tant for us to try and avoid the risk of Cohen's work appearing in public a=
+uction, and we'd be delighted to have a conversation with them about a poss=
+ible sale. Either way, it's great that you've had the chance to look throug=
+h the inventory, and discovered one of the panels from 'The Age of Intellig=
+ent=C2=A0Machines'!=C2=A0
+It has been a real=C2=A0pleasure working with you all over the past few=C2=
+=A0years. It's been a personal point of pride=C2=A0to have been involved in=
+ helping expand=C2=A0the audience for Harold's work.=C2=A0
+Thanks again Tom, and everyone :)=C2=A0
+
+
+GAZELLI ART HOUSE
+LONDONThe Way Forward: Derek Boshier and the Sixties
+BAKU=C2=A0Spring Flow
+GAZELL.iO=C2=A0April Resident & Project Space |=C2=A0Morehshin Allahyari
+www.gazelliarthouse.com+44 (0) 207 491 8816 / +994 (0) 12 498 1230=C2=A0
+
+
+
+This e-mail message, including all attachments, is for the=C2=A0sole use of=
+ the intended recipient(s) and may contain=C2=A0legally privileged and conf=
+idential information. If you are=C2=A0not an intended recipient, you are he=
+reby notified that=C2=A0you have either received this message in error or t=
+hrough=C2=A0interception, and that any=C2=A0review, use, distribution,=C2=
+=A0copying or disclosure of this message and/or its=C2=A0attachments or par=
+ts thereof is strictly prohibited and is=C2=A0subject to criminal and civil=
+ penalties with appropriate=C2=A0national legislation.
+=E1=90=A7
+On Thu, 5 Jun 2025 at 16:35, Thomas Machnik <zipnpup@yahoo.com> wrote:
+
+ Hi George,Good to hear from you. Sorry about the delay. Yesterday, I was a=
+t a good friend of Harold=E2=80=99s yesterday doing inventory of their coll=
+ection of Cohen/AARON works which turns out the collection spans the time p=
+eriod from 1971 to 2012. The 1971 work is one of the original LACMA Maze dr=
+awings that were executed and mail out as invitations to the 1972 show. Ano=
+ther important discovery is that they have one of the panels from an import=
+ant piece titled =E2=80=9CThe Age of Intelligent Machines (1986).=E2=80=9D =
+We have two of the panels in the studio but I have long wondered why one wa=
+s missing. Now I know where that is!=C2=A0
+In any case, you are interested in more recent works. The only information =
+I have of 1991-1999 works being in collections is for Robert Hendel and Fra=
+nk Dictrich. You are right "Stephanie and Friend=E2=80=9D is with Whitney n=
+ow but originally was with Robert Hendel=E2=80=99s collection. In addition =
+to Stephanie and Friend, Hendel has or had multiple works from this time pe=
+riod. My understanding is that he was ok with the Whitney taking the other =
+Cohen/AARON works in his collection but the Whitney does not accept entire =
+private collections or something to that effect. So it is possible that add=
+itional works from this time period in his collection were sent to other mu=
+seums.=C2=A0 Dictrich seems to have had only one work a 1997 piece and I do=
+n=E2=80=99t have any info on who he is yet. I don=E2=80=99t see any museums=
+ listed. I will look some more today but want to get this to you sooner tha=
+n later,
+I understand, your last official day is tomorrow. Feel free to keep in touc=
+h beyond that time. I wish you much luck in your future and look forward to=
+ the time with our paths will cross again.
+Tom
+    On Wednesday, June 4, 2025 at 04:54:13 AM PDT, George Lionel Barker <ge=
+orge@gazelliarthouse.com> wrote: =20
+=20
+ Hey Tom,=C2=A0
+I've been looking back on your fantastic research, and there is so much use=
+ful information there - specifically about the murals and the painting mach=
+ine series. Thank you so much! The resources are invaluable.=C2=A0
+I've got what will hopefully be a quick question. Do you know which museums=
+=C2=A0have AARON/Cohen's figurative works on canvas=C2=A0in their=C2=A0coll=
+ection? Similar series and period as this one in the Whitney collection (St=
+ephanie and Friends)=C2=A0https://whitney.org/collection/works/67981=C2=A0
+I don't think there are many, but please=C2=A0let me know?=C2=A0
+Looking=C2=A0forward to hearing from you,=C2=A0
+George Barker=C2=A0
+
+GAZELLI ART HOUSE
+LONDONThe Way Forward: Derek Boshier and the Sixties
+BAKU=C2=A0Spring Flow
+GAZELL.iO=C2=A0April Resident & Project Space |=C2=A0Morehshin Allahyari
+www.gazelliarthouse.com+44 (0) 207 491 8816 / +994 (0) 12 498 1230=C2=A0
+
+
+
+This e-mail message, including all attachments, is for the=C2=A0sole use of=
+ the intended recipient(s) and may contain=C2=A0legally privileged and conf=
+idential information. If you are=C2=A0not an intended recipient, you are he=
+reby notified that=C2=A0you have either received this message in error or t=
+hrough=C2=A0interception, and that any=C2=A0review, use, distribution,=C2=
+=A0copying or disclosure of this message and/or its=C2=A0attachments or par=
+ts thereof is strictly prohibited and is=C2=A0subject to criminal and civil=
+ penalties with appropriate=C2=A0national legislation.=E1=90=A7 =20
+ =20
+------=_Part_444741_1432051640.1749237551206
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head></head><body><div class=3D"ydp9b1cef7yahoo-style-wrap" style=3D=
+"font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px;">=
+<div></div>
+        <div dir=3D"ltr" data-setdir=3D"false">Hi George,</div><div dir=3D"=
+ltr" data-setdir=3D"false">I did not find any 1991-1999 works placed in a m=
+useum besides the ones we already know about.</div><div dir=3D"ltr" data-se=
+tdir=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"false">Tom</div><d=
+iv><br></div>
+       =20
+        <div id=3D"ydp9b1cef7yahoo_quoted_9655012004" class=3D"ydp9b1cef7ya=
+hoo_quoted">
+            <div style=3D"font-family:'Helvetica Neue', Helvetica, Arial, s=
+ans-serif;font-size:13px;">
+               =20
+                <div>
+                    On Thursday, June 5, 2025 at 09:01:15 AM PDT, George Li=
+onel Barker &lt;george@gazelliarthouse.com&gt; wrote:
+                </div>
+                <div><br></div>
+                <div><br></div>
+                <div><div id=3D"ydp9b1cef7yiv6990131439"><div><div dir=3D"l=
+tr"><div>Hey Tom,&nbsp;</div><div><br clear=3D"none"></div><div>Thanks so&n=
+bsp;much for getting back to me, I appreciate it.&nbsp;</div><div><br clear=
+=3D"none"></div><div>Is the good friend of Harold you spoke to interested i=
+n selling? It's important for us to try and avoid the risk of Cohen's work =
+appearing in public auction, and we'd be delighted to have a conversation w=
+ith them about a possible sale. Either way, it's great that you've had the =
+chance to look through the inventory, and discovered one of the panels from=
+ 'The Age of Intelligent&nbsp;Machines'!&nbsp;</div><div><br clear=3D"none"=
+></div><div>It has been a real&nbsp;pleasure working with you all over the =
+past few&nbsp;years. It's been a personal point of pride&nbsp;to have been =
+involved in helping expand&nbsp;the audience for Harold's work.&nbsp;</div>=
+<div><br clear=3D"none"></div><div>Thanks again Tom, and everyone :)&nbsp;<=
+/div><div><br clear=3D"none"></div><div><br clear=3D"none"></div><div><br c=
+lear=3D"none"></div><div><div dir=3D"ltr" class=3D"ydp9b1cef7yiv6990131439g=
+mail_signature"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div style=3D"padding-top: 0px; padding-right: 0px; p=
+adding-left: 0px;"><div style=3D"margin:0px;padding:0px 0px 20px;width:1116=
+px;"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div><div dir=3D"ltr"><div dir=3D"ltr">=
+<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div di=
+r=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"lt=
+r"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div=
+ dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D=
+"ltr"><div dir=3D"ltr" style=3D"color:rgb(34,34,34);"><div dir=3D"ltr"><div=
+ dir=3D"ltr"><div style=3D"padding-top: 0px; padding-right: 0px; padding-le=
+ft: 0px;"><div style=3D"margin:0px;min-width:0px;padding:0px 0px 20px;width=
+:initial;"><div style=3D"margin:8px 0px 0px;padding:0px;"><div dir=3D"ltr">=
+<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div di=
+r=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"lt=
+r"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div=
+ dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D=
+"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><=
+div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr" style=3D"font-family:A=
+rial, Helvetica, sans-serif;"><b style=3D"color:rgb(0,0,0);">GAZELLI ART HO=
+USE</b></div><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D=
+"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><=
+div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr" style=3D"font-family:Arial, Helvetica, sans-serif=
+;"><div dir=3D"ltr"><br clear=3D"none"></div><div dir=3D"ltr"><div dir=3D"l=
+tr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><di=
+v dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><font face=3D"arial, sans-serif" color=3D"#000000">LONDON</font></div><di=
+v><font face=3D"arial, sans-serif"><a shape=3D"rect" href=3D"https://886b17=
+ba.streaklinks.com/Cc9oJyKBQWB5M5qYNQ5k7z-E/https%3A%2F%2Fgazelliarthouse.c=
+om%2Fexhibitions%2F194-the-way-forward-derek-boshier-and-the-sixties-with-w=
+orks-by-peter-blake-derek-boshier-pauline%2F" style=3D"color:rgb(17,85,204)=
+;" target=3D"_blank" rel=3D"noreferrer noopener">The Way Forward: Derek Bos=
+hier and the Sixties</a></font></div><div><br clear=3D"none"></div><div><sp=
+an style=3D"color:rgb(0,0,0);font-family:arial, sans-serif;">BAKU&nbsp;</sp=
+an></div><div><a shape=3D"rect" href=3D"https://886b17ba.streaklinks.com/Cc=
+9oJyOBAbCQ8nFyhgAKHRbO/https%3A%2F%2Fgazelliarthouse.com%2Fexhibitions%2F19=
+5-spring-flow%2F" style=3D"color:rgb(17,85,204);" target=3D"_blank" rel=3D"=
+noreferrer noopener">Spring Flow</a></div><div><br clear=3D"none"></div><di=
+v dir=3D"ltr"><div><font color=3D"#000000" face=3D"arial, sans-serif">GAZEL=
+L.iO&nbsp;</font></div><div><div><span style=3D"font-family:arial, sans-ser=
+if;">April Resident &amp; Project Space |&nbsp;<a shape=3D"rect" href=3D"ht=
+tps://886b17ba.streaklinks.com/Cc9oJyKWljYZNyV7qA4yGUhj/https%3A%2F%2Fgazel=
+l.io%2Fcollections%2Fspeculations-on-capture" style=3D"color:rgb(17,85,204)=
+;" target=3D"_blank" rel=3D"noreferrer noopener">Morehshin Allahyari</a></s=
+pan></div></div><div><br clear=3D"none"></div></div></div></div></div></div=
+></div></div></div></div></div></div></div></div></div></div></div></div></=
+div></div></div></div></div></div></div></div></div></div></div></div></div=
+></div></div></div></div></div></div></div></div></div></div></div></div></=
+div></div><div dir=3D"ltr" style=3D"font-family:Arial, Helvetica, sans-seri=
+f;"><font face=3D"arial, sans-serif"></font><div><a shape=3D"rect" href=3D"=
+http://www.gazelliarthouse.com/" style=3D"color:rgb(17,85,204);" target=3D"=
+_blank" rel=3D"noreferrer noopener"><font color=3D"#0b5394">www.gazelliarth=
+ouse.com</font></a></div><div>+44 (0) 207 491 8816 / +994 (0) 12 498 1230</=
+div></div></div></div></div></div></div></div></div></div></div></div></div=
+></div></div></div></div></div></div></div></div></div></div><div dir=3D"lt=
+r" style=3D"font-family:Arial, Helvetica, sans-serif;"><font face=3D"arial,=
+ sans-serif"></font><div><div><font color=3D"#000000"><a shape=3D"rect" hre=
+f=3D"https://886b17ba.streaklinks.com/Cc9oJyKhYcTd5oLLwQor97nj/https%3A%2F%=
+2Fwww.instagram.com%2Fgazelliarthouse%2F" style=3D"color:rgb(17,85,204);dis=
+play:inline-block;" target=3D"_blank" rel=3D"noreferrer noopener"><img src=
+=3D"https://68ef2f69c7787d4078ac-7864ae55ba174c40683f10ab811d9167.ssl.cf1.r=
+ackcdn.com/instagram-icon_24x24.png" width=3D"24" style=3D"margin: 0.8em 0.=
+2em; padding: 0px; letter-spacing: -0.1px; border-width: 0px; border-style:=
+ none; border-color: currentcolor; vertical-align: middle; max-width: 100%;=
+" data-inlineimagemanipulating=3D"true"><div style=3D"margin:0px;width:0px;=
+min-height:0px;"><div></div></div></a><a shape=3D"rect" href=3D"https://886=
+b17ba.streaklinks.com/Cc9oJyOODgaW16lUFAeJac1P/https%3A%2F%2Ftwitter.com%2F=
+GazelliArtHouse" style=3D"color:rgb(17,85,204);display:inline-block;" targe=
+t=3D"_blank" rel=3D"noreferrer noopener"><img src=3D"https://68ef2f69c7787d=
+4078ac-7864ae55ba174c40683f10ab811d9167.ssl.cf1.rackcdn.com/twitter-icon_24=
+x24.png" width=3D"24" style=3D"margin: 0.8em 0.2em; padding: 0px; letter-sp=
+acing: -0.1px; border-width: 0px; border-style: none; border-color: current=
+color; vertical-align: middle; max-width: 100%;" data-inlineimagemanipulati=
+ng=3D"true"><div style=3D"margin:0px;width:0px;min-height:0px;"><div></div>=
+</div></a>&nbsp;<a shape=3D"rect" href=3D"https://886b17ba.streaklinks.com/=
+Cc9oJyOGRojWL58J1Ql4jZRn/https%3A%2F%2Fwww.facebook.com%2FGazelliArtHouse%2=
+F" style=3D"color:rgb(17,85,204);display:inline-block;" target=3D"_blank" r=
+el=3D"noreferrer noopener"><img src=3D"https://68ef2f69c7787d4078ac-7864ae5=
+5ba174c40683f10ab811d9167.ssl.cf1.rackcdn.com/facebook-icon_24x24.png" widt=
+h=3D"24" style=3D"margin: 0.8em 0.2em; padding: 0px; letter-spacing: -0.1px=
+; border-width: 0px; border-style: none; border-color: currentcolor; vertic=
+al-align: middle; max-width: 100%;" data-inlineimagemanipulating=3D"true"><=
+/a></font></div></div><div><br clear=3D"none"></div><div><img width=3D"96" =
+height=3D"44" src=3D"https://ci3.googleusercontent.com/mail-sig/AIorK4w7gKo=
+vNZAR8tYAuQ9hIjEiBgWel9uIDPpW34GyeY595Rek12deHDAlPE9ZZxtPymKBYCzaHBU" data-=
+inlineimagemanipulating=3D"true"><br clear=3D"none"></div><div><br clear=3D=
+"none"></div><div><br clear=3D"none"></div><div><font color=3D"#000000">Thi=
+s e-mail message, including all attachments, is for the&nbsp;sole use of th=
+e intended recipient(s) and may contain&nbsp;legally privileged and confide=
+ntial information. If you are&nbsp;not an intended recipient, you are hereb=
+y notified that&nbsp;you have either received this message in error or thro=
+ugh&nbsp;interception, and that any&nbsp;review, use, distribution,&nbsp;co=
+pying or disclosure of this message and/or its&nbsp;attachments or parts th=
+ereof is strictly prohibited and is&nbsp;subject to criminal and civil pena=
+lties with appropriate&nbsp;national legislation.</font></div></div></div><=
+/div></div></div></div></div></div></div></div></div></div></div></div></di=
+v></div></div></div></div></div></div></div></div></div></div></div></div><=
+/div></div></div></div></div></div></div></div></div></div></div></div></di=
+v></div></div></div></div></div></div></div></div><div style=3D"color:rgb(3=
+4,34,34);"><div dir=3D"ltr"><div dir=3D"ltr"><div><div></div></div></div></=
+div></div></div></div></div></div></div></div></div></div></div></div></div=
+></div></div></div></div></div></div></div></div></div></div></div></div></=
+div></div></div></div></div></div></div></div><div style=3D"color:rgb(34,34=
+,34);"><div dir=3D"ltr"><div dir=3D"ltr"></div></div></div></div></div></di=
+v></div></div></div></div></div></div></div></div></div></div></div></div><=
+/div></div></div></div></div></div></div></div></div></div></div></div></di=
+v></div></div></div></div></div></div></div></div></div></div></div></div><=
+/div></div></div></div></div></div></div></div></div></div></div></div></di=
+v></div></div></div></div></div></div></div></div></div></div></div></div><=
+/div></div></div></div></div></div></div></div></div></div></div></div></di=
+v></div></div></div></div></div></div></div></div></div></div></div></div><=
+/div></div></div></div></div></div></div></div></div><div style=3D"margin:8=
+px 0px 0px;padding:0px;"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"=
+><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div d=
+ir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"l=
+tr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><di=
+v><div dir=3D"ltr"><div dir=3D"ltr"><div></div></div></div></div><div><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><span></span></div></div></div></div></div></div></di=
+v></div></div></div></div></div></div></div></div></div></div></div></div><=
+/div></div></div></div></div></div></div></div></div></div></div></div></di=
+v></div></div></div></div></div></div></div></div></div></div></div></div><=
+/div></div><br clear=3D"none"></div><div style=3D"min-height: 1px;"><img al=
+t=3D"" style=3D"width: 0px;" src=3D"https://mailfoogae.appspot.com/t?sender=
+=3DaZ2VvcmdlQGdhemVsbGlhcnRob3VzZS5jb20%3D&amp;type=3Dzerocontent&amp;guid=
+=3D32e2c6bb-66e5-4cc5-a780-e56d985ec3c4" data-id=3D"1749163093520" class=3D=
+""><font color=3D"#ffffff" size=3D"1">=E1=90=A7</font></div><br clear=3D"no=
+ne"><div id=3D"ydp9b1cef7yiv6990131439yqt53559" class=3D"ydp9b1cef7yiv69901=
+31439yqt0684567818"><div class=3D"ydp9b1cef7yiv6990131439gmail_quote"><div =
+dir=3D"ltr" class=3D"ydp9b1cef7yiv6990131439gmail_attr">On Thu, 5 Jun 2025 =
+at 16:35, Thomas Machnik &lt;<a shape=3D"rect" href=3D"mailto:zipnpup@yahoo=
+.com" target=3D"_blank" rel=3D"noreferrer noopener">zipnpup@yahoo.com</a>&g=
+t; wrote:<br clear=3D"none"></div><blockquote style=3D"margin:0px 0px 0px 0=
+.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex;" class=3D"ydp=
+9b1cef7yiv6990131439gmail_quote"><div><div style=3D"font-family:Helvetica, =
+Arial, sans-serif;font-size:16px;"><div></div>
+        <div dir=3D"ltr">Hi George,</div><div dir=3D"ltr">Good to hear from=
+ you. Sorry about the delay. Yesterday, I was at a good friend of Harold=E2=
+=80=99s yesterday doing inventory of their collection of Cohen/AARON works =
+which turns out the collection spans the time period from 1971 to 2012. The=
+ 1971 work is one of the original LACMA Maze drawings that were executed an=
+d mail out as invitations to the 1972 show. Another important discovery is =
+that they have one of the panels from an important piece titled =E2=80=9CTh=
+e Age of Intelligent Machines (1986).=E2=80=9D We have two of the panels in=
+ the studio but I have long wondered why one was missing. Now I know where =
+that is!&nbsp;</div><div dir=3D"ltr"><br clear=3D"none"></div><div dir=3D"l=
+tr">In any case, you are interested in more recent works. The only informat=
+ion I have of 1991-1999 works being in collections is for Robert Hendel and=
+ Frank Dictrich. You are right "Stephanie and Friend=E2=80=9D is with Whitn=
+ey now but originally was with Robert Hendel=E2=80=99s collection. In addit=
+ion to Stephanie and Friend, Hendel has or had multiple works from this tim=
+e period. My understanding is that he was ok with the Whitney taking the ot=
+her Cohen/AARON works in his collection but the Whitney does not accept ent=
+ire private collections or something to that effect. So it is possible that=
+ additional works from this time period in his collection were sent to othe=
+r museums.&nbsp; Dictrich seems to have had only one work a 1997 piece and =
+I don=E2=80=99t have any info on who he is yet. I don=E2=80=99t see any mus=
+eums listed. I will look some more today but want to get this to you sooner=
+ than later,</div><div dir=3D"ltr"><br clear=3D"none"></div><div dir=3D"ltr=
+">I understand, your last official day is tomorrow. Feel free to keep in to=
+uch beyond that time. I wish you much luck in your future and look forward =
+to the time with our paths will cross again.</div><div dir=3D"ltr"><br clea=
+r=3D"none"></div><div dir=3D"ltr">Tom</div><div><br clear=3D"none"></div>
+       =20
+        <div id=3D"ydp9b1cef7yiv6990131439m_-7235494572146068698m_194407699=
+4462933108m_-6345293526551772997ydp69cb9affyahoo_quoted_9994112495">
+            <div style=3D"font-family:Helvetica, Arial, sans-serif;font-siz=
+e:13px;">
+               =20
+                <div>
+                    On Wednesday, June 4, 2025 at 04:54:13 AM PDT, George L=
+ionel Barker &lt;<a shape=3D"rect" href=3D"mailto:george@gazelliarthouse.co=
+m" target=3D"_blank" rel=3D"noreferrer noopener">george@gazelliarthouse.com=
+</a>&gt; wrote:
+                </div>
+                <div><br clear=3D"none"></div>
+                <div><br clear=3D"none"></div>
+                <div><div id=3D"ydp9b1cef7yiv6990131439m_-72354945721460686=
+98m_1944076994462933108m_-6345293526551772997ydp69cb9affyiv7817739316"><div=
+ dir=3D"ltr"><div>Hey Tom,&nbsp;</div><div><br clear=3D"none"></div><div>I'=
+ve been looking back on your fantastic research, and there is so much usefu=
+l information there - specifically about the murals and the painting machin=
+e series. Thank you so much! The resources are invaluable.&nbsp;</div><div>=
+<br clear=3D"none"></div><div>I've got what will hopefully be a quick quest=
+ion. Do you know which museums&nbsp;have AARON/Cohen's figurative <u>works =
+on canvas</u>&nbsp;in their&nbsp;collection? Similar series and period as t=
+his one in the Whitney collection (Stephanie and Friends)&nbsp;<a shape=3D"=
+rect" href=3D"https://whitney.org/collection/works/67981" target=3D"_blank"=
+ rel=3D"noreferrer noopener">https://whitney.org/collection/works/67981&nbs=
+p;</a></div><div><br clear=3D"none"></div><div>I don't think there are many=
+, but please&nbsp;let me know?&nbsp;</div><div><br clear=3D"none"></div><di=
+v>Looking&nbsp;forward to hearing from you,&nbsp;</div><div><br clear=3D"no=
+ne"></div><div>George Barker&nbsp;</div><div><br clear=3D"none"></div><div>=
+<br clear=3D"none"></div><div><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D=
+"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><=
+div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div style=3D"padding-=
+top:0px;padding-right:0px;padding-left:0px;"><div style=3D"margin:0px;paddi=
+ng:0px 0px 20px;width:1116px;"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div>=
+<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div di=
+r=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"lt=
+r"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div=
+ dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D=
+"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><=
+div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr" style=3D"color:rgb(34,34,3=
+4);"><div dir=3D"ltr"><div dir=3D"ltr"><div style=3D"padding-top:0px;paddin=
+g-right:0px;padding-left:0px;"><div style=3D"margin:0px;min-width:0px;paddi=
+ng:0px 0px 20px;width:initial;"><div style=3D"margin:8px 0px 0px;padding:0p=
+x;"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><di=
+v dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+" style=3D"font-family:Arial, Helvetica, sans-serif;"><b style=3D"color:rgb=
+(0,0,0);">GAZELLI ART HOUSE</b></div><div dir=3D"ltr"><div dir=3D"ltr"><div=
+ dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D=
+"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><=
+div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr" style=3D"font-family:Aria=
+l, Helvetica, sans-serif;"><div dir=3D"ltr"><br clear=3D"none"></div><div d=
+ir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"l=
+tr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><di=
+v dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><font face=3D"arial, sans-serif" color=3D"#000000=
+">LONDON</font></div><div><font face=3D"arial, sans-serif"><a shape=3D"rect=
+" href=3D"https://886b17ba.streaklinks.com/Cc3mCAoMjOMaQSs27wII-CFx/https%3=
+A%2F%2Fgazelliarthouse.com%2Fexhibitions%2F194-the-way-forward-derek-boshie=
+r-and-the-sixties-with-works-by-peter-blake-derek-boshier-pauline%2F" style=
+=3D"color:rgb(17,85,204);" target=3D"_blank" rel=3D"noreferrer noopener">Th=
+e Way Forward: Derek Boshier and the Sixties</a></font></div><div><br clear=
+=3D"none"></div><div><span style=3D"color:rgb(0,0,0);font-family:arial, san=
+s-serif;">BAKU&nbsp;</span></div><div><a shape=3D"rect" href=3D"https://886=
+b17ba.streaklinks.com/Cc3mCAoAwAQj2GCj6wfyKQPm/https%3A%2F%2Fgazelliarthous=
+e.com%2Fexhibitions%2F195-spring-flow%2F" style=3D"color:rgb(17,85,204);" t=
+arget=3D"_blank" rel=3D"noreferrer noopener">Spring Flow</a></div><div><br =
+clear=3D"none"></div><div dir=3D"ltr"><div><font color=3D"#000000" face=3D"=
+arial, sans-serif">GAZELL.iO&nbsp;</font></div><div><div><span style=3D"fon=
+t-family:arial, sans-serif;">April Resident &amp; Project Space |&nbsp;<a s=
+hape=3D"rect" href=3D"https://886b17ba.streaklinks.com/Cc3mCAoW1tNhUNC_fwUR=
+o7EH/https%3A%2F%2Fgazell.io%2Fcollections%2Fspeculations-on-capture" style=
+=3D"color:rgb(17,85,204);" target=3D"_blank" rel=3D"noreferrer noopener">Mo=
+rehshin Allahyari</a></span></div></div><div><br clear=3D"none"></div></div=
+></div></div></div></div></div></div></div></div></div></div></div></div></=
+div></div></div></div></div></div></div></div></div></div></div></div></div=
+></div></div></div></div></div></div></div></div></div></div></div></div></=
+div></div></div></div></div></div><div dir=3D"ltr" style=3D"font-family:Ari=
+al, Helvetica, sans-serif;"><font face=3D"arial, sans-serif"></font><div><a=
+ shape=3D"rect" href=3D"http://www.gazelliarthouse.com/" style=3D"color:rgb=
+(17,85,204);" target=3D"_blank" rel=3D"noreferrer noopener"><font color=3D"=
+#0b5394">www.gazelliarthouse.com</font></a></div><div>+44 (0) 207 491 8816 =
+/ +994 (0) 12 498 1230</div></div></div></div></div></div></div></div></div=
+></div></div></div></div></div></div></div></div></div></div></div></div></=
+div></div><div dir=3D"ltr" style=3D"font-family:Arial, Helvetica, sans-seri=
+f;"><font face=3D"arial, sans-serif"></font><div><div><font color=3D"#00000=
+0"><a shape=3D"rect" href=3D"https://886b17ba.streaklinks.com/Cc3mCAsXl7ULW=
+T1HzwBto685/https%3A%2F%2Fwww.instagram.com%2Fgazelliarthouse%2F" style=3D"=
+color:rgb(17,85,204);display:inline-block;" target=3D"_blank" rel=3D"norefe=
+rrer noopener"><img src=3D"https://68ef2f69c7787d4078ac-7864ae55ba174c40683=
+f10ab811d9167.ssl.cf1.rackcdn.com/instagram-icon_24x24.png" width=3D"24" st=
+yle=3D"margin:0.8em 0.2em;padding:0px;letter-spacing:-0.1px;border-width:0p=
+x;border-style:none;border-color:currentcolor;vertical-align:middle;max-wid=
+th:100%;" data-inlineimagemanipulating=3D"true"><div style=3D"margin:0px;wi=
+dth:0px;min-height:0px;"><div></div></div></a><a shape=3D"rect" href=3D"htt=
+ps://886b17ba.streaklinks.com/Cc3mCAo_v6v888CdyQiagSPW/https%3A%2F%2Ftwitte=
+r.com%2FGazelliArtHouse" style=3D"color:rgb(17,85,204);display:inline-block=
+;" target=3D"_blank" rel=3D"noreferrer noopener"><img src=3D"https://68ef2f=
+69c7787d4078ac-7864ae55ba174c40683f10ab811d9167.ssl.cf1.rackcdn.com/twitter=
+-icon_24x24.png" width=3D"24" style=3D"margin:0.8em 0.2em;padding:0px;lette=
+r-spacing:-0.1px;border-width:0px;border-style:none;border-color:currentcol=
+or;vertical-align:middle;max-width:100%;" data-inlineimagemanipulating=3D"t=
+rue"><div style=3D"margin:0px;width:0px;min-height:0px;"><div></div></div><=
+/a>&nbsp;<a shape=3D"rect" href=3D"https://886b17ba.streaklinks.com/Cc3mCAs=
+8PLyp-g4-KAJYTTqe/https%3A%2F%2Fwww.facebook.com%2FGazelliArtHouse%2F" styl=
+e=3D"color:rgb(17,85,204);display:inline-block;" target=3D"_blank" rel=3D"n=
+oreferrer noopener"><img src=3D"https://68ef2f69c7787d4078ac-7864ae55ba174c=
+40683f10ab811d9167.ssl.cf1.rackcdn.com/facebook-icon_24x24.png" width=3D"24=
+" style=3D"margin:0.8em 0.2em;padding:0px;letter-spacing:-0.1px;border-widt=
+h:0px;border-style:none;border-color:currentcolor;vertical-align:middle;max=
+-width:100%;" data-inlineimagemanipulating=3D"true"></a></font></div></div>=
+<div><br clear=3D"none"></div><div><img width=3D"96" height=3D"44" src=3D"h=
+ttps://ci3.googleusercontent.com/mail-sig/AIorK4w7gKovNZAR8tYAuQ9hIjEiBgWel=
+9uIDPpW34GyeY595Rek12deHDAlPE9ZZxtPymKBYCzaHBU" data-inlineimagemanipulatin=
+g=3D"true"><br clear=3D"none"></div><div><br clear=3D"none"></div><div><br =
+clear=3D"none"></div><div><font color=3D"#000000">This e-mail message, incl=
+uding all attachments, is for the&nbsp;sole use of the intended recipient(s=
+) and may contain&nbsp;legally privileged and confidential information. If =
+you are&nbsp;not an intended recipient, you are hereby notified that&nbsp;y=
+ou have either received this message in error or through&nbsp;interception,=
+ and that any&nbsp;review, use, distribution,&nbsp;copying or disclosure of=
+ this message and/or its&nbsp;attachments or parts thereof is strictly proh=
+ibited and is&nbsp;subject to criminal and civil penalties with appropriate=
+&nbsp;national legislation.</font></div></div></div></div></div></div></div=
+></div></div></div></div></div></div></div></div></div></div></div></div></=
+div></div></div></div></div></div></div></div></div></div></div></div></div=
+></div></div></div></div></div></div></div></div></div></div></div></div></=
+div></div></div></div></div><div style=3D"color:rgb(34,34,34);"><div dir=3D=
+"ltr"><div dir=3D"ltr"><div><div></div></div></div></div></div></div></div>=
+</div></div></div></div></div></div></div></div></div></div></div></div></d=
+iv></div></div></div></div></div></div></div></div></div></div></div></div>=
+</div></div></div></div><div style=3D"color:rgb(34,34,34);"><div dir=3D"ltr=
+"><div dir=3D"ltr"></div></div></div></div></div></div></div></div></div></=
+div></div></div></div></div></div></div></div></div></div></div></div></div=
+></div></div></div></div></div></div></div></div></div></div></div></div></=
+div></div></div></div></div></div></div></div></div></div></div></div></div=
+></div></div></div></div></div></div></div></div></div></div></div></div></=
+div></div></div></div></div></div></div></div></div></div></div></div></div=
+></div></div></div></div></div></div></div></div></div></div></div></div></=
+div></div></div></div></div></div></div></div></div></div></div></div></div=
+></div></div></div></div></div><div style=3D"margin:8px 0px 0px;padding:0px=
+;"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div=
+ dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D=
+"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><=
+div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div><div dir=3D"ltr"><di=
+v dir=3D"ltr"><div></div></div></div></div><div><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><span></span></div></div></div></div></div></div></div></div></div></div>=
+</div></div></div></div></div></div></div></div></div></div></div></div></d=
+iv></div></div></div></div></div></div></div></div></div></div></div></div>=
+</div></div></div></div></div></div></div></div></div></div></div></div><di=
+v style=3D"min-height:1px;"><img alt=3D"" style=3D"width:0px;" src=3D"https=
+://mailfoogae.appspot.com/t?sender=3DaZ2VvcmdlQGdhemVsbGlhcnRob3VzZS5jb20%3=
+D&amp;type=3Dzerocontent&amp;guid=3D7c9e4d8c-d6d7-4551-8cc7-3341e493692e" d=
+ata-id=3D"1749163093520" class=3D""><font color=3D"#ffffff" size=3D"1">=E1=
+=90=A7</font></div>
+</div></div>
+            </div>
+        </div></div></div></blockquote></div></div>
+</div></div></div>
+            </div>
+        </div></div></body></html>
+------=_Part_444741_1432051640.1749237551206--

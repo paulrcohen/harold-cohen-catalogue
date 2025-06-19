@@ -1,0 +1,514 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a11:111:b0:5c7:f970:fbca with SMTP id x17csp1494159pxu;
+        Sun, 23 Feb 2025 17:55:29 -0800 (PST)
+X-Forwarded-Encrypted: i=3; AJvYcCX4MjEYbfTnd5tolbBqCfMAJOmfuk+v7+pyShaARqrpGZM6iDADFOsNMSXgoa+j/2K0q/o3WUcCMkp2@gmail.com
+X-Google-Smtp-Source: AGHT+IGb2IqThqmjCAmBzJyY6kG9LwJ9rc6NY+lE8P7xo6k6OoCyBRIqtQVj8ptK5tFOVo3m26Rx
+X-Received: by 2002:a05:620a:4456:b0:7c0:b5ad:4e96 with SMTP id af79cd13be357-7c0cef682d8mr1525711085a.58.1740362128943;
+        Sun, 23 Feb 2025 17:55:28 -0800 (PST)
+ARC-Seal: i=2; a=rsa-sha256; t=1740362128; cv=pass;
+        d=google.com; s=arc-20240605;
+        b=glDuzKiNCimfMMJrO+nwFv64yUoS5U6Mrt7CQIuLVkb4KAjX4LvtUWqku8mqNawMmp
+         92Q/0HqxMlZtcVK5XFZNRPaQlHtty1G1KCbNg8g582XmmRGWvhsSOIZR97W6k3CcnOXc
+         aNvZtIW/USgvaqi+MRVeq2MCfQN8ZNZxgD7fSTw2r0kgASeO5yhWa9P9Stc0TuGWUtDM
+         TpkkzrSatRC2tKLCS2py+8MRWbHpQuncSIWcqVzUP6kNaJkvki0MS2awpy3nv/5TAdjx
+         quCUyX5QF3/SOBb8WQQioo7pB8bunicwDYHHMAI8m/4G+D+3cvQ5erp8OoBuLRGyObZ9
+         lRwA==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:msip_labels:content-language:accept-language
+         :in-reply-to:references:message-id:date:thread-index:thread-topic
+         :subject:cc:to:from:dkim-signature;
+        bh=6WtMp5apVzrFY1bauChzLwreg/WVPmAejBPaa+U2qJ8=;
+        fh=2HC1PVio+rykBIuafjlCrPPGwA0QXf0WbtiTEDx9qrk=;
+        b=BIw13i+BCKjI8oi/4xcwcmJlaFyNXVKY5muFieJSySrBlzWVP2+g05VoYLY2xcJAsh
+         unYSjQj4/NHdBobx7OP8PnAEYWSnO78yi7LEQi57M6Od0RwtY9ohHFDBHiVDU+XatBMQ
+         ChDn3VL3dFV7U+WY1/vpbyXFxnbyYS21WQT+IfomYdBWL6CWRh8oXvv59hE7OnI5wzPk
+         6aItWnRHX2zSJ7Qqw0pDE2D/pKdca9mJzIeJFC0lQ5yHBHyjlNmCyGa8zjfUXOMN0mwf
+         BkveHl6hpPWlCgrwHuVhOqZJoTh8LANeGwGw4XwLNfGcf1lV25xtH41qE9WJ1EeRCg5y
+         r1hA==;
+        dara=google.com
+ARC-Authentication-Results: i=2; mx.google.com;
+       dkim=pass header.i=@whitney.org header.s=selector1 header.b=e2+llY+S;
+       arc=pass (i=1 spf=pass spfdomain=whitney.org dkim=pass dkdomain=whitney.org dmarc=pass fromdomain=whitney.org);
+       spf=pass (google.com: domain of christiane_paul@whitney.org designates 209.222.82.38 as permitted sender) smtp.mailfrom=Christiane_Paul@whitney.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=whitney.org
+Return-Path: <Christiane_Paul@whitney.org>
+Received: from outbound-ip170a.ess.barracuda.com (outbound-ip170a.ess.barracuda.com. [209.222.82.38])
+        by mx.google.com with ESMTPS id af79cd13be357-7c0961ee932si1484405085a.578.2025.02.23.17.55.25
+        for <paulrcohen@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Sun, 23 Feb 2025 17:55:28 -0800 (PST)
+Received-SPF: pass (google.com: domain of christiane_paul@whitney.org designates 209.222.82.38 as permitted sender) client-ip=209.222.82.38;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@whitney.org header.s=selector1 header.b=e2+llY+S;
+       arc=pass (i=1 spf=pass spfdomain=whitney.org dkim=pass dkdomain=whitney.org dmarc=pass fromdomain=whitney.org);
+       spf=pass (google.com: domain of christiane_paul@whitney.org designates 209.222.82.38 as permitted sender) smtp.mailfrom=Christiane_Paul@whitney.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=whitney.org
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10lp2041.outbound.protection.outlook.com [104.47.58.41]) by mx-outbound42-174.us-east-2c.ess.aws.cudaops.com (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO); Mon, 24 Feb 2025 01:55:22 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=tugNTGHU2vmNfDc/g4Cow/bACs0IegkGX6BgDgDDSQ3jaZ1M0t9N7PFZBVGTOAhoDWLJWoE1aQqn4Z0UINS0oDtOoHqjq3ZF4usepmOU9oYLK18WpDvQpBRG+8UoH4T8VU+g0Nr42Znm5iicnDVZrGXu/AddIrTWWkj/ZTgSuKuIPm0WOzKrZ9eFq72j2aH1b+rH/nY7ZsfBI3DhdhN4NRCKlUIPlHIyB5g0fbgtVMzBrv5OtuNVs+FwmzLzrnwzOgZflhgdu6jdBVImghDPCjcwpRO/EL57J+Ik8g/AhivMh7UzOpaXG0kkdNzQtW0uKS6aEaSvez7niEmnmJFC9Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=6WtMp5apVzrFY1bauChzLwreg/WVPmAejBPaa+U2qJ8=;
+ b=FMu5eFL0fAZZpaqVc/9DvS+nF531AEF35TlfeFPhTo85qtjGjiIVOE7UosmJxC3cE1dq3mh+ucccgM1oIKPaZ6SPpA271qqIrwYiqnCj3Blppc8EVL3ieIMFaaHy7yaJzzJ/AGhdt3jOHDswco37gUdomHesZ3cQyPbcdftGZSt3TcH/ooj5ONnA5sp3nFNHzfD0xxjGWVQVa82yZE3CzuBotlAmtgqC5M5KYmwWfM0YVs0lLyKRVX3McfPOnfO9reL88UVs9ni1eRZ3N8fJXhwuqalQpuXrCA8YVzcX+4cKQaMx8NuEWf5Se3GMp2oE9rMq3Aglm64vBdS/Ul4btg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=whitney.org; dmarc=pass action=none header.from=whitney.org;
+ dkim=pass header.d=whitney.org; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=whitney.org;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=6WtMp5apVzrFY1bauChzLwreg/WVPmAejBPaa+U2qJ8=;
+ b=e2+llY+SBDTsg6mw35fjtzhSzZAvYwIovNQWVwCW/M+8TqZ/GVnn0Ul2Ox4YNlTavVlPD4jse8gKwnNynIH8t06tmEmVtNAF+6T4ttTVKDzI0y9+uZsa3utjoqU6bQn6QsaI8IH9Ku9Jonf3K3LeptoIM7M6Vuc+51Ys2B4u2Ow=
+Received: from BL1PR22MB3659.namprd22.prod.outlook.com (2603:10b6:208:396::16)
+ by MW4PR22MB3434.namprd22.prod.outlook.com (2603:10b6:303:1bd::6) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8489.14; Mon, 24 Feb
+ 2025 01:55:15 +0000
+Received: from BL1PR22MB3659.namprd22.prod.outlook.com
+ ([fe80::3341:17d7:1d00:30e8]) by BL1PR22MB3659.namprd22.prod.outlook.com
+ ([fe80::3341:17d7:1d00:30e8%5]) with mapi id 15.20.8489.010; Mon, 24 Feb 2025
+ 01:55:15 +0000
+From: Christiane Paul <Christiane_Paul@whitney.org>
+To: Mila Askarova <m.askarova@gazelliarthouse.com>, Paul Cohen
+	<paulrcohen@gmail.com>
+CC: "Sean.Crowley1@nbcuni.com" <Sean.Crowley1@nbcuni.com>, Thomas Machnik
+	<zipnpup@yahoo.com>
+Subject: Re: Harold Cohen at Christies
+Thread-Topic: Harold Cohen at Christies
+Thread-Index: AQHbhhwZRip2LJ+XTkKIn3zIeUjTq7NVOsyAgAB2gEI=
+Date: Mon, 24 Feb 2025 01:55:15 +0000
+Message-ID:
+ <BL1PR22MB3659E172A5AFAB221343950C9DC02@BL1PR22MB3659.namprd22.prod.outlook.com>
+References:
+ <CAKjPZkEu1ZBsdDv6yWHXYe_mjM18bTxiF_r5xEPaeQ7Xz5astQ@mail.gmail.com>
+ <CAAOqD34UQ2YjoPF=+AvyOoTnA8iKtdTjpyKNqhq_uQfZSjQhDg@mail.gmail.com>
+In-Reply-To:
+ <CAAOqD34UQ2YjoPF=+AvyOoTnA8iKtdTjpyKNqhq_uQfZSjQhDg@mail.gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+msip_labels:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=whitney.org;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: BL1PR22MB3659:EE_|MW4PR22MB3434:EE_
+x-ms-office365-filtering-correlation-id: 5ed81bdf-e897-4ec7-868a-08dd54764845
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|10070799003|366016|69100299015|1800799024|376014|13003099007|38070700018|7053199007|8096899003;
+x-microsoft-antispam-message-info:
+ =?Windows-1252?Q?nZUb/gETQkBeMminDumpppkgqUryhRb6hvytt23TIm0fo4ye1Nr9TMGF?=
+ =?Windows-1252?Q?u/KdmR309kPWpzg0wZ7S8MESUezKNzUIBiNvEEB6VqMZKa1/Xkx9OObG?=
+ =?Windows-1252?Q?6vjuuZatLT110MeuKyHihRDFZ6DsOD2Uy+c4cy0vj5dRBlNTMHpE6hzP?=
+ =?Windows-1252?Q?JYtcimD/X8cSjnj/JgNzI++NBid7YAEjE6cbNjZypFukUfxhCm+H0dj2?=
+ =?Windows-1252?Q?VphCr8e/lxc6q8gUshl03AHyklmhKAn1lIV5lEkogvWPqE/ps08Kcuoo?=
+ =?Windows-1252?Q?X+fhzYb90nHjD9LnR1EnAD9l/ZaF+bJwPqk3LHuVaYKuvAfoVUYk/t46?=
+ =?Windows-1252?Q?PGRrODEa6iPph/KpPptpU4UY6djVCmGSuylGyogde/SjAnIKXJBZl++h?=
+ =?Windows-1252?Q?WIAtpLWAIIDo9Wsk6Jnj7642Lr01vqW8ZRE7x3p4R303iM6Sx+uHXXqU?=
+ =?Windows-1252?Q?kKpj0P4kNjiSBdo3zce5kAX9W8lMWO/xwuuf8hswI9QNLHxqbuwfbE1e?=
+ =?Windows-1252?Q?1UwI2Z09kEHt1ngHM5KosoycwJMQJvEe7Wfz7l0ZFkxBh9W2OLmQg57v?=
+ =?Windows-1252?Q?afA5593XiiZcNpFSmE/Vxr2I/PITRZKd1lg1mTrQdseKbtveiA5BBHSl?=
+ =?Windows-1252?Q?jjzs8Yxjucr45lzissZDGOHPp8o+fStR85ZABbAkaHZafRZLnh1xIXi7?=
+ =?Windows-1252?Q?T7mW4yP7+IDhwb/DrEqJE+gLVCJZVI81F24x5eIh2/xz4uL2Xf2bRFVl?=
+ =?Windows-1252?Q?UgIoBpTApZlU6SIkuMTdt2fYTVJE9R40OVLzeFuyZvDDv9A/7FF0xpjf?=
+ =?Windows-1252?Q?x3UDqmyg3Ljt4IrG3fCH1u6oq+ufRPX8bJnFT9/QLHeOubHN2I71uiPT?=
+ =?Windows-1252?Q?ixg5ogcBNiZns6N+awop7keOWzHhTYdDmBUAOsoftjA6DqlddVyAlodk?=
+ =?Windows-1252?Q?mXLtY3ZdVzGSaFffeBRRbKxX60MCyVT/FuxP1XgSnkPawWf5Ykgsxvus?=
+ =?Windows-1252?Q?HpZ3RjNjpbpvrBWc/58jYZIuxVazkfYfoCm/xvOSa80bqs6+xekNASZl?=
+ =?Windows-1252?Q?m+5wyOnYnlWvKbDeO7PASEJTY99arYH13Xet0pfzQf+u0FWB3JRbZoLu?=
+ =?Windows-1252?Q?Yn8BpivE4XY/DX7VlRu2aCYyDIusOk2esPeQ/0VQ50HqKbgqUktH4ROh?=
+ =?Windows-1252?Q?S0ZrcE82sldmm7DL9YpSSn2+KIF+ycULHEpWcGgptJLc6rZeRMkBbhqI?=
+ =?Windows-1252?Q?lHOM62L2hrZSUNW5rozFqBhvCs9m+V7iODqvFGvknZKO2Zntnnv1o+jB?=
+ =?Windows-1252?Q?cV6nX3jcltTGKe3Xko97/ndH7Bt+ja+EJ90qrzwSihOh/yXUUzECFzmW?=
+ =?Windows-1252?Q?07aeKyIRjPNKGY/SpZkPaJoZdGNvs8co2E66knxkHwA+6wRvdy9QpGON?=
+ =?Windows-1252?Q?mmoYPzQqg1qbjmmnT8nmZn2UMZPuKDCFlgeTLqeVlFe4WtHAeJZ3Nxvv?=
+ =?Windows-1252?Q?SxedhJi33mNpNgzSwE/Va4dVonio5A=3D=3D?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BL1PR22MB3659.namprd22.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(10070799003)(366016)(69100299015)(1800799024)(376014)(13003099007)(38070700018)(7053199007)(8096899003);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?Windows-1252?Q?Myz8eWsxopjKoD+DL70mMdzRPSd1V63tse4p7uddnN5VgrfZ918m0K5x?=
+ =?Windows-1252?Q?r4EfkMoK2VKS6XLy8EJoGtteyG9VU1LPc8iAUXo4ZdBCz7PqwIyZHEhN?=
+ =?Windows-1252?Q?PWi2bndiCHR0q2aIG9XljT0+H5oL3uxNtHVdlpLuSdJ4o49sC1DHrd9P?=
+ =?Windows-1252?Q?hpXXPxqZH8bl6vMT/yP66frmvSQcM4vRMIHUoqpX5tfR6Ne1FswKy1C4?=
+ =?Windows-1252?Q?4elFkDhpJ02NUBK1ns62HYyWXjNJ1est+uU1HvA4S33R4JqJSDn+4NWc?=
+ =?Windows-1252?Q?xMrGH4+TACkYOMRwmr3G6yGkiGvRgY6s7Bt/jpwhmntaQ0lo+gfragMc?=
+ =?Windows-1252?Q?N3WXLvxrbZEpq0OPZ8/8aMHjDn5ZGIxGmG7ioSm9EmycUjVbzKVi5ZxX?=
+ =?Windows-1252?Q?IyktT0JnlrWbttKgIpVDWMtrl7hdCMltAPLkss2RXqJt3lAPHHFD9637?=
+ =?Windows-1252?Q?jG+69kMU5gIbObCAeIRCpXa7duX9U8qPd1/NbmobEg8Il64v2pbc9Dmp?=
+ =?Windows-1252?Q?nF5BwABDRlayfVubaj3mcIT1LWLU5iS1mVhB1zT+Gjh8J+dflNjnWoLm?=
+ =?Windows-1252?Q?0co+WC6VBLeM9hxojFI6SPiWt19fRbHIbQlXfPQvbTu1oF0kmiYP+Ty8?=
+ =?Windows-1252?Q?h/eglD/+uR/o1E6wLuUJksVrNR99utZBXxKInrHAg4IgK84ZxQaD+S8J?=
+ =?Windows-1252?Q?1MuKWKghCS5bS/+qR9iXc8MNERpkmzJAH66Nk3n7+6I6T+3JAXDnhRLq?=
+ =?Windows-1252?Q?G6s/IrB3FHyJdc2ZlfsXfSewYHNFGjTtfgHr/izTdGepEUZw54AdjBMy?=
+ =?Windows-1252?Q?/BKSkMsWFWy7uhlTF3Trult3NzV9o74Fk7Iw3YxRf+k/Loi/9Cxg0fPF?=
+ =?Windows-1252?Q?APxgP0M/jF4aZGO9MBSLXlncbDoHrtfUF9bAdOlZUdKZYBOsL9Q/miPE?=
+ =?Windows-1252?Q?SwBCOUD6bOD/gzcgtFSO5e1XwpRsaO+Say9nG1k5lnPeeBAPqrv94p7M?=
+ =?Windows-1252?Q?4CD9P71BFgOe7clJyZWQd0C2Ls0oKqk1zWJgkTI2nfungpd8vEO4VhD1?=
+ =?Windows-1252?Q?rFjf8OlH6xG05X2Jd8UWQ4stlPOhj7ogBg7mzjx/QK2znKdAIXnBaMy4?=
+ =?Windows-1252?Q?kRljSMZykhQ9ztOQo7lm6aMRHG4ZUZYNqGBjWe/mlIByG9e2KnMCeZ6C?=
+ =?Windows-1252?Q?Bh0SolrJux8QshTBqoUQd24idvT7QaqDD2PcevOZ/kCzBchTZ4qrNvCr?=
+ =?Windows-1252?Q?+Ul7FUxAWTKYqgx2OCBlJ3gmDOrtbJkV/JtL9JPH4QbcophQL10hVfW/?=
+ =?Windows-1252?Q?vi9C/nspuCZ02GmDe6etJ9VOLwsZ/kLALvojJyGpJfiv156OLODOGU2p?=
+ =?Windows-1252?Q?1awWNk2aeKt204+1KMRawAwR94q5q8fX1qGyDooNyflFdLVo1UoMlKRg?=
+ =?Windows-1252?Q?XVHTP2XiimljuFNPBU7vXcCuKYKHVB89du8UJLpHXoIclkM0UXitsJWa?=
+ =?Windows-1252?Q?fN/9GgemV4dO8/0VuIxC0lhngHBIXeIdkmGPJQGP4z3HML6Njl30z9ts?=
+ =?Windows-1252?Q?iKHDtz0OtY8OtB+pqWfLaUyVLdcLcz0FyKwLtP4qIx5sZ05wppCU5WFr?=
+ =?Windows-1252?Q?PLlfL/Qaimo2qbCheOo0TSJjYAtwImDjny2yWNqVoZ/5xwbV9ea5FfOG?=
+ =?Windows-1252?Q?ufwre0uhECkd9fwI0sWRWoyYcQAji5NUiaCfX6x1OR04fTO1NoFSnJL0?=
+ =?Windows-1252?Q?UJpMUQKIlO2KvEoTeO8=3D?=
+Content-Type: multipart/alternative;
+	boundary="_000_BL1PR22MB3659E172A5AFAB221343950C9DC02BL1PR22MB3659namp_"
+MIME-Version: 1.0
+X-OriginatorOrg: whitney.org
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BL1PR22MB3659.namprd22.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5ed81bdf-e897-4ec7-868a-08dd54764845
+X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Feb 2025 01:55:15.1584
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 28ad7bce-66ad-4171-92a3-6e36d172f6eb
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: kGR3WJLMWLX6gsc2NnfVwTfTbFmr01bVrFXbb0B1gUtTWl213zNN1ae5RpVn5hv+0GejFh/oDx3gesQtzOz6BQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR22MB3434
+X-BESS-ID: 1740362122-110926-7552-17266-1
+X-BESS-VER: 2019.1_20250219.2339
+X-BESS-Apparent-Source-IP: 104.47.58.41
+X-BESS-Parts: H4sIAAAAAAACAzXLMQqAMAyF4btkdrCxaVKvIg4NbXARBzsI4t3NoMvj58G33N
+	CuDjN03wGOE2bMzF6bn00VCUMQU0rF8iQ6cY0katU7wDP8fuv754WZPp8IU1RjolxkdI
+	MsWk2iZAzWCJ71BRKOJhuBAAAA
+X-BESS-Outbound-Spam-Score: 0.00
+X-BESS-Outbound-Spam-Report: Code version 3.2, rules version 3.2.2.262722 [from 
+	cloudscan17-1.us-east-2b.ess.aws.cudaops.com]
+	Rule breakdown below
+	 pts rule name              description
+	---- ---------------------- --------------------------------
+	0.00 HTML_MESSAGE           BODY: HTML included in message 
+	0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
+X-BESS-Outbound-Spam-Status: SCORE=0.00 using account:ESS111578 scores of KILL_LEVEL=7.0 tests=HTML_MESSAGE, BSF_BESS_OUTBOUND
+X-BESS-BRTS-Status:1
+
+--_000_BL1PR22MB3659E172A5AFAB221343950C9DC02BL1PR22MB3659namp_
+Content-Type: text/plain; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
+
+Likewise, thanks so much for the introduction, Paul!
+I'd also be happy to answer any questions (you find information about the W=
+hitney Museum exhibition here<https://whitney.org/exhibitions/harold-cohen-=
+aaron>).
+[https://whitneymedia.org/assets/image/829164/large_RS73495_Harold-Cohen-AA=
+RON-for-KCat-2021_web.jpg]<https://whitney.org/exhibitions/harold-cohen-aar=
+on>
+Harold Cohen: AARON | Whitney Museum of American Art<https://whitney.org/ex=
+hibitions/harold-cohen-aaron>
+This exhibition traces the evolution of Harold Cohen=92s AARON, the earlies=
+t artificial intelligence (AI) program for artmaking. Leaving behind his pr=
+actice as an established painter in London, Cohen (1928=962016) conceived t=
+he software in the late 1960s at the University of California, San Diego, a=
+nd named it AARON in the early 1970s.
+whitney.org
+All best,
+Christiane
+
+
+
+Christiane Paul
+
+Curator of Digital Art
+
+Whitney Museum of American Art
+99 Gansevoort Street
+New York, NY 10014
+
+________________________________
+From: Mila Askarova <m.askarova@gazelliarthouse.com>
+Sent: Sunday, February 23, 2025 1:48 PM
+To: Paul Cohen <paulrcohen@gmail.com>
+Cc: Christiane Paul <Christiane_Paul@whitney.org>; Sean.Crowley1@nbcuni.com=
+ <Sean.Crowley1@nbcuni.com>; Thomas Machnik <zipnpup@yahoo.com>
+Subject: Re: Harold Cohen at Christies
+
+
+This email was sent from an external source so please treat with caution.
+
+Thank you for the kind introduction Paul and Mr Crowley, lovely to e-meet.
+
+Let us know if we can help in any way or you need further information for y=
+our segment.
+
+My best,
+Mila
+
+Mila Askarova
+CEO & Founder
+
+GAZELLI ART HOUSE
+
+www.gazelliarthouse.com<https://linkprotect.cudasvc.com/url?a=3Dhttp%3a%2f%=
+2fwww.gazelliarthouse.com&c=3DE,1,ZvYYm5WIVo_W9Ns0B96QnBAMP5s4DPrJgaHsde4Vp=
+CfQAO198aUuY6W_d0F8dqedwdzetx_tIa6CC5WS-8bZERSOWnj7sVSOL_mudjy53_8,&typo=3D=
+1>
++44 (0) 207 491 8816 / +994 (0) 12 498 1230
+
+
+On Sun, 23 Feb 2025 at 21:55, Paul Cohen <paulrcohen@gmail.com<mailto:paulr=
+cohen@gmail.com>> wrote:
+Hi Mr. Crowley, I received the email that you sent to the Harold Cohen Trus=
+t about interviewing Harold for an NBC segment on the upcoming Christies sa=
+le. I'm the Trustee and Harold Cohen's son.  Harold died in 2016, so you wo=
+n't be able to interview him.  I might be able to answer some of your quest=
+ions or you might like to speak with Mila Askarova at the Gazelli Art House=
+ in London, which represents the Trust, or with Christiane Paul at the Whit=
+ney Museum of American Art.  Cristiane curated a major exhibition of Harold=
+'s work at the Whitney last year.  I can't speak to Mila's or Christiane's =
+availability though. Thanks, --Paul
+
+______________________________
+
+Paul Cohen,  Professor
+School of Computing and Information
+University of Pittsburgh
+personal webpage<https://linkprotect.cudasvc.com/url?a=3Dhttps%3a%2f%2fpaul=
+rcohen.github.io%2f&c=3DE,1,XT7hXEWEhlLcLm99XxCqZRkcix3LDznMwXmis5y3IwWq4vB=
+gxVDlr_7gxzJ1fCm9Mj876AEXLOg4yz56LmvIB4EwBSTsAdLIlK2eAeh44loAy3fg83FE&typo=
+=3D1>
+______________________________
+
+--_000_BL1PR22MB3659E172A5AFAB221343950C9DC02BL1PR22MB3659namp_
+Content-Type: text/html; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
+252">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div class=3D"elementToProof" style=3D"font-family: Calibri, Helvetica, san=
+s-serif; font-size: 10pt; color: rgb(0, 0, 0);">
+Likewise, thanks so much for the introduction, Paul!&nbsp;</div>
+<div class=3D"elementToProof" style=3D"font-family: Calibri, Helvetica, san=
+s-serif; font-size: 10pt; color: rgb(0, 0, 0);">
+I'd also be happy to answer any questions (you find information about the W=
+hitney Museum exhibition
+<a href=3D"https://whitney.org/exhibitions/harold-cohen-aaron" id=3D"LPlnk"=
+ title=3D"https://whitney.org/exhibitions/harold-cohen-aaron">
+here</a>).</div>
+<div class=3D"_Entity _EType_OWALinkPreview _EId_OWALinkPreview _EReadonly_=
+1">
+<div id=3D"LPBorder_GTaHR0cHM6Ly93aGl0bmV5Lm9yZy9leGhpYml0aW9ucy9oYXJvbGQtY=
+29oZW4tYWFyb24." class=3D"LPBorder780886" style=3D"width: 100%; margin-top:=
+ 16px; margin-bottom: 16px; position: relative; max-width: 800px; min-width=
+: 424px;">
+<table id=3D"LPContainer780886" role=3D"presentation" style=3D"padding: 12p=
+x 36px 12px 12px; width: 100%; border-width: 1px; border-style: solid; bord=
+er-color: rgb(200, 200, 200); border-radius: 2px;">
+<tbody>
+<tr valign=3D"top" style=3D"border-spacing: 0px;">
+<td>
+<div id=3D"LPImageContainer780886" style=3D"position: relative; margin-righ=
+t: 12px; height: 232.693px; overflow: hidden; width: 240px;">
+<a target=3D"_blank" id=3D"LPImageAnchor780886" href=3D"https://whitney.org=
+/exhibitions/harold-cohen-aaron"><img id=3D"LPThumbnailImageId780886" alt=
+=3D"" height=3D"232" style=3D"display: block;" width=3D"240" src=3D"https:/=
+/whitneymedia.org/assets/image/829164/large_RS73495_Harold-Cohen-AARON-for-=
+KCat-2021_web.jpg"></a></div>
+</td>
+<td style=3D"width: 100%;">
+<div id=3D"LPTitle780886" style=3D"font-size: 21px; font-weight: 300; margi=
+n-right: 8px; font-family: wf_segoe-ui_light, &quot;Segoe UI Light&quot;, &=
+quot;Segoe WP Light&quot;, &quot;Segoe UI&quot;, &quot;Segoe WP&quot;, Taho=
+ma, Arial, sans-serif; margin-bottom: 12px;">
+<a target=3D"_blank" id=3D"LPUrlAnchor780886" href=3D"https://whitney.org/e=
+xhibitions/harold-cohen-aaron" style=3D"text-decoration: none; color: var(-=
+-themePrimary);">Harold Cohen: AARON | Whitney Museum of American Art</a></=
+div>
+<div id=3D"LPDescription780886" style=3D"font-size: 14px; max-height: 100px=
+; color: rgb(102, 102, 102); font-family: wf_segoe-ui_normal, &quot;Segoe U=
+I&quot;, &quot;Segoe WP&quot;, Tahoma, Arial, sans-serif; margin-bottom: 12=
+px; margin-right: 8px; overflow: hidden;">
+This exhibition traces the evolution of Harold Cohen=92s AARON, the earlies=
+t artificial intelligence (AI) program for artmaking. Leaving behind his pr=
+actice as an established painter in London, Cohen (1928=962016) conceived t=
+he software in the late 1960s at the
+ University of California, San Diego, and named it AARON in the early 1970s=
+.</div>
+<div id=3D"LPMetadata780886" style=3D"font-size: 14px; font-weight: 400; co=
+lor: rgb(166, 166, 166); font-family: wf_segoe-ui_normal, &quot;Segoe UI&qu=
+ot;, &quot;Segoe WP&quot;, Tahoma, Arial, sans-serif;">
+whitney.org</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class=3D"elementToProof" style=3D"font-family: Calibri, Helvetica, san=
+s-serif; font-size: 10pt; color: rgb(0, 0, 0);">
+All best,</div>
+<div class=3D"elementToProof" style=3D"font-family: Calibri, Helvetica, san=
+s-serif; font-size: 10pt; color: rgb(0, 0, 0);">
+Christiane</div>
+<div class=3D"elementToProof" style=3D"font-family: Calibri, Helvetica, san=
+s-serif; font-size: 10pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div class=3D"elementToProof" style=3D"font-family: Calibri, Helvetica, san=
+s-serif; font-size: 10pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div id=3D"Signature" class=3D"elementToProof">
+<p style=3D"text-align: left; background-color: rgb(255, 255, 255); margin:=
+ 0in 0in 0.0001pt;">
+<span style=3D"font-family: Calibri, sans-serif, serif, EmojiFont; font-siz=
+e: 9pt; color: rgb(33, 33, 33);"><b>Christiane Paul</b></span></p>
+<div style=3D"background-color: rgb(255, 255, 255); margin: 0px;">
+<div style=3D"direction: ltr; text-align: left; margin: 0px; font-family: C=
+alibri, sans-serif, serif, EmojiFont; font-size: 9pt; color: rgb(33, 33, 33=
+);">
+Curator of Digital Art</div>
+<div style=3D"direction: ltr; text-align: left; margin: 0px; font-family: C=
+alibri, sans-serif, serif, EmojiFont; font-size: 9pt; color: rgb(33, 33, 33=
+);">
+<br>
+</div>
+<div style=3D"direction: ltr; text-align: left; margin: 0px; font-family: C=
+alibri, sans-serif, serif, EmojiFont; font-size: 9pt; color: rgb(33, 33, 33=
+);">
+<b>Whitney Museum of American Art</b></div>
+<div style=3D"direction: ltr; text-align: left; margin: 0px; font-family: C=
+alibri, sans-serif, serif, EmojiFont; font-size: 9pt; color: rgb(33, 33, 33=
+);">
+99 Gansevoort Street</div>
+<div style=3D"direction: ltr; text-align: left; margin: 0px; font-family: C=
+alibri, sans-serif, serif, EmojiFont; font-size: 9pt; color: rgb(33, 33, 33=
+);">
+New York, NY 10014</div>
+</div>
+<div style=3D"text-align: left; background-color: rgb(255, 255, 255); margi=
+n: 0in 0in 0.0001pt; font-family: Calibri, Helvetica, sans-serif; font-size=
+: 9pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+</div>
+<div id=3D"appendonsend"></div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Mila Askarova &lt;m.a=
+skarova@gazelliarthouse.com&gt;<br>
+<b>Sent:</b> Sunday, February 23, 2025 1:48 PM<br>
+<b>To:</b> Paul Cohen &lt;paulrcohen@gmail.com&gt;<br>
+<b>Cc:</b> Christiane Paul &lt;Christiane_Paul@whitney.org&gt;; Sean.Crowle=
+y1@nbcuni.com &lt;Sean.Crowley1@nbcuni.com&gt;; Thomas Machnik &lt;zipnpup@=
+yahoo.com&gt;<br>
+<b>Subject:</b> Re: Harold Cohen at Christies</font>
+<div>&nbsp;</div>
+</div>
+<div>
+<p>This email was sent from an external source so please treat with caution=
+.</p>
+<div>
+<div dir=3D"auto">Thank you for the kind introduction Paul and Mr Crowley, =
+lovely to e-meet.&nbsp;</div>
+<div dir=3D"auto"><br>
+</div>
+<div dir=3D"auto">Let us know if we can help in any way or you need further=
+ information for your segment.&nbsp;</div>
+<div dir=3D"auto"><br>
+</div>
+<div dir=3D"auto">My best,&nbsp;</div>
+<div dir=3D"auto">Mila&nbsp;</div>
+<div dir=3D"auto"><br clear=3D"all">
+<div dir=3D"auto">
+<div dir=3D"ltr" class=3D"x_gmail_signature" data-smartmail=3D"gmail_signat=
+ure">Mila Askarova&nbsp;<br>
+CEO &amp; Founder&nbsp;<br>
+<br>
+GAZELLI ART HOUSE<br>
+<br>
+<a href=3D"https://linkprotect.cudasvc.com/url?a=3Dhttp%3a%2f%2fwww.gazelli=
+arthouse.com&amp;c=3DE,1,ZvYYm5WIVo_W9Ns0B96QnBAMP5s4DPrJgaHsde4VpCfQAO198a=
+UuY6W_d0F8dqedwdzetx_tIa6CC5WS-8bZERSOWnj7sVSOL_mudjy53_8,&amp;typo=3D1" ta=
+rget=3D"_blank">www.gazelliarthouse.com</a><br>
++44 (0) 207 491 8816 / +994 (0) 12 498 1230<br>
+</div>
+</div>
+</div>
+</div>
+<div>
+<div><br>
+</div>
+<div><br>
+<div class=3D"x_gmail_quote">
+<div dir=3D"ltr" class=3D"x_gmail_attr">On Sun, 23 Feb 2025 at 21:55, Paul =
+Cohen &lt;<a href=3D"mailto:paulrcohen@gmail.com" target=3D"_blank">paulrco=
+hen@gmail.com</a>&gt; wrote:<br>
+</div>
+<blockquote class=3D"x_gmail_quote" style=3D"margin:0px 0px 0px 0.8ex; bord=
+er-left-width:1px; border-left-style:solid; padding-left:1ex; border-left-c=
+olor:rgb(204,204,204)">
+<div dir=3D"ltr">
+<div>
+<div class=3D"x_gmail_default" style=3D"font-size:small">Hi Mr. Crowley, I =
+received the email that you sent to the Harold Cohen Trust about interviewi=
+ng Harold for an NBC segment on the upcoming Christies sale. I'm the Truste=
+e and Harold Cohen's son.&nbsp; Harold died
+ in 2016, so you won't be able to interview him.&nbsp; I might be able to a=
+nswer some of your questions or you might like to speak with Mila Askarova =
+at the Gazelli Art House in London, which represents the Trust, or with Chr=
+istiane Paul at the Whitney Museum of
+ American Art.&nbsp; Cristiane curated a major exhibition of Harold's work =
+at the Whitney last year.&nbsp; I can't speak to Mila's or Christiane's ava=
+ilability though. Thanks, --Paul<br>
+</div>
+<br clear=3D"all">
+</div>
+<div>
+<div dir=3D"ltr" class=3D"x_gmail_signature" data-smartmail=3D"gmail_signat=
+ure">
+<div dir=3D"ltr">
+<div>
+<div dir=3D"ltr">
+<div>
+<div dir=3D"ltr">
+<div>
+<div dir=3D"ltr">
+<div>
+<div dir=3D"ltr">
+<div>
+<div dir=3D"ltr">______________________________<br>
+<br>
+Paul Cohen,&nbsp;&nbsp;Professor</div>
+<div dir=3D"ltr">School of Computing and Information</div>
+<div dir=3D"ltr">University of Pittsburgh</div>
+<div dir=3D"ltr"><a href=3D"https://linkprotect.cudasvc.com/url?a=3Dhttps%3=
+a%2f%2fpaulrcohen.github.io%2f&amp;c=3DE,1,XT7hXEWEhlLcLm99XxCqZRkcix3LDznM=
+wXmis5y3IwWq4vBgxVDlr_7gxzJ1fCm9Mj876AEXLOg4yz56LmvIB4EwBSTsAdLIlK2eAeh44lo=
+Ay3fg83FE&amp;typo=3D1" target=3D"_blank">personal webpage</a><br>
+______________________________</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</blockquote>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
+
+--_000_BL1PR22MB3659E172A5AFAB221343950C9DC02BL1PR22MB3659namp_--

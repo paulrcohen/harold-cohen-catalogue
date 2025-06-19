@@ -1,0 +1,1127 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a10:6f10:b0:5ec:db95:1ae4 with SMTP id jd16csp365299pxb;
+        Fri, 11 Apr 2025 06:37:22 -0700 (PDT)
+X-Forwarded-Encrypted: i=3; AJvYcCVUDpmAi2NVNcZBfyuVAAkW06+Q7ikXxB2M/qpp+KtY2TxxaAOQsZ0PfPwvx5vYpHw31oIzG5o2PCXJ@gmail.com
+X-Google-Smtp-Source: AGHT+IEGmigBSPh4Bvwr336yRDxZ5oHuUo5qYM+uxhQ15NsstsSAWK7SkSlbXiJ+YxcysrGiyrAs
+X-Received: by 2002:a05:6602:3a0f:b0:85b:46d7:1886 with SMTP id ca18e2360f4ac-8617cb52833mr298017639f.7.1744378641814;
+        Fri, 11 Apr 2025 06:37:21 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1744378641; cv=pass;
+        d=google.com; s=arc-20240605;
+        b=fgBawOfRY+2xoTQFzSrwgAtxalulGu0ZXjOoQhBF8+ow5oAU1YPIlKQUqMRMHiMYTu
+         LLsYaX25ISsnF6b/QxNH53OUzeCiVZDlLLpeHOcLyr3CTxQa6NkGUF8zmuyxkNBM59Qa
+         Kp1jTcJOZfzmzz8GlgjHSItzKtmYcOpKFJu5jTlYmdKhMcYQETZ6EDszqRuIl+W3/VlZ
+         M8gQXc0JZ0r2oxzVRIXzcjEOLQPnCLzGRdlS9+GjQ/ZGnouLBz0ihIkikcWajMmP+2AW
+         MPJNgh+ojL/8FjLqvWReDb8AOVh3V3FI+jMc9kDvqs2ykVk8EYOYAkni/jQFX7S+/zV+
+         rn4w==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:content-language:accept-language:in-reply-to
+         :references:message-id:date:thread-index:thread-topic:subject:cc:to
+         :from:dkim-signature;
+        bh=uW7RgMnBJIIpRY7Kk8dwkrlTmueNeyzmI8srvHAgEXQ=;
+        fh=ZFFdFdldUfRsHZprMr9eNsUhAGpeeNZQ4Ger8pNyCRA=;
+        b=DlM91iAJjm4dl+6ofgZkG6RALu7zZrKSFds2/6f1V6TXrYqBP084njiaSy8GzKOtpj
+         RdwJAPlL8cdd0PdpPOh2Xir4gIaOMDADMQlaMlnrqoj/ujwpHAkp+X1f/8LFI31qZTOz
+         bCHCUYJoBrG5YQGZ6hS/mJizcDiDuPAGDocXs8tRZsQI9ji2eS7B2PPOt4gMUAjNj20/
+         703a6PlxamQaBUwamgF0a1Ii04UB9Rc4JiopVDhxQ1keHhtTGzfbKdcSl4CLY+04UvYN
+         qc6Y8uCA8CIZkbmPwQG/TQ01bBliRsmesgfHscI8L4HbH9r4rsZRUMPUje4H4wVCcCj9
+         8NXA==;
+        dara=google.com
+ARC-Authentication-Results: i=2; mx.google.com;
+       dkim=pass header.i=@whitney.org header.s=selector1 header.b=FOZdN82i;
+       arc=pass (i=1 spf=pass spfdomain=whitney.org dkim=pass dkdomain=whitney.org dmarc=pass fromdomain=whitney.org);
+       spf=pass (google.com: domain of micah_musheno@whitney.org designates 209.222.82.38 as permitted sender) smtp.mailfrom=Micah_Musheno@whitney.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=whitney.org
+Return-Path: <Micah_Musheno@whitney.org>
+Received: from outbound-ip170a.ess.barracuda.com (outbound-ip170a.ess.barracuda.com. [209.222.82.38])
+        by mx.google.com with ESMTPS id ca18e2360f4ac-8616522adf9si512122639f.21.2025.04.11.06.37.17
+        for <paulrcohen@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 11 Apr 2025 06:37:20 -0700 (PDT)
+Received-SPF: pass (google.com: domain of micah_musheno@whitney.org designates 209.222.82.38 as permitted sender) client-ip=209.222.82.38;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@whitney.org header.s=selector1 header.b=FOZdN82i;
+       arc=pass (i=1 spf=pass spfdomain=whitney.org dkim=pass dkdomain=whitney.org dmarc=pass fromdomain=whitney.org);
+       spf=pass (google.com: domain of micah_musheno@whitney.org designates 209.222.82.38 as permitted sender) smtp.mailfrom=Micah_Musheno@whitney.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=whitney.org
+Received: from NAM11-CO1-obe.outbound.protection.outlook.com (mail-co1nam11lp2174.outbound.protection.outlook.com [104.47.56.174]) by mx-outbound10-75.us-east-2a.ess.aws.cudaops.com (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO); Fri, 11 Apr 2025 13:37:14 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=It5PmIPdbchL3urgQ/askgOU8DdpantQ6OnhI9yS2l4ocWxg8cspOs2hrEAldGeDYnBg99+KAq0NfVJBC5PbcHsU7tOTQ+pPkFCGil+Yb+ehVxem7aMARBVz5h+OrvzI3lJmrpnMnJ43t6aqBdJguZDJOsKkk9BxEZZCZep3pctURuoqVerqRpegbTvNntH0Z6auJJHvvrvKtroNokQ8CGpqdSluWnWuc7lBQyplcYaZ/u0WLnT7PuuCHG8OdNmRp5qrUgrSdJhwXO5xtEB3D9XlgqCvzBA7t2oDZUTZk4Swq8yv0YaYvTEgdexFFV+qKcQ/8gN2lxt6VI9mWnAWvw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=uW7RgMnBJIIpRY7Kk8dwkrlTmueNeyzmI8srvHAgEXQ=;
+ b=nvTe0KBZivf0+MUUuyYjE6dOo7ue6jvXWDhDapBBXczKd68JM2zv5ZaYrjFsZ0Y41QfalFHBQcI4vejWdMHok0UZwBA1J5N2kYCXoreaGWrpZJ8dPI85SIsXEQpOVwcSBgjUX5bBdqjv/MZ4QhTVgNtMa4QBsgWdEE6ehjEQY2MSl6raiF6Vd1cY0EPjGGfN7xX6PkGcsOcjR4J/CQI2WREeYFx7QZEvwLdb9Uj3L/CmvOPWyjjRW2ZH5iYmMIgyvMe/VlLjkxnI6D38rf3UvSJw2e7W3DaZc4pvwrQMtW3TOCgYnkX97iah5FeM8mGg/iRyV0rye4y1/Z0/HM737Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=whitney.org; dmarc=pass action=none header.from=whitney.org;
+ dkim=pass header.d=whitney.org; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=whitney.org;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=uW7RgMnBJIIpRY7Kk8dwkrlTmueNeyzmI8srvHAgEXQ=;
+ b=FOZdN82ix590DvX+KLSYlh/0+gUICEsgFQBya1GU1jOHQMTFCiqcgcDi0/ZM8E1T69pwI73TC8ZQdxroQu37Kl4kJf9Cv+Ne4J7H9uKkXHqfJz2QHyWYv3zau6FWnU8ZJF7zNkpU8LNWJdZcWu9A8cYDTUbsbt8suvohCRAo+ew=
+Received: from IA0PR22MB4223.namprd22.prod.outlook.com (2603:10b6:208:493::14)
+ by PH0PR22MB2923.namprd22.prod.outlook.com (2603:10b6:510:fe::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8632.10; Fri, 11 Apr
+ 2025 13:37:11 +0000
+Received: from IA0PR22MB4223.namprd22.prod.outlook.com
+ ([fe80::ffa6:610b:1fd8:426a]) by IA0PR22MB4223.namprd22.prod.outlook.com
+ ([fe80::ffa6:610b:1fd8:426a%4]) with mapi id 15.20.8632.017; Fri, 11 Apr 2025
+ 13:37:11 +0000
+From: Micah Musheno <Micah_Musheno@whitney.org>
+To: "Balakumar, Devanathan [PS]" <devanathan.balakumar@cengage.com>, Paul
+ Cohen <paulrcohen@gmail.com>
+CC: "Lavanya, Vengadapathy [PS]" <vengadapathy.lavanya@cengage.com>, Thomas
+ Machnik <zipnpup@yahoo.com>
+Subject: RE: Cengage Learning Permission Request: Harold Cohen, AARON Gijon,
+ 2007- Image for Understanding Art/ Fichner-Rathus
+Thread-Topic: Cengage Learning Permission Request: Harold Cohen, AARON Gijon,
+ 2007- Image for Understanding Art/ Fichner-Rathus
+Thread-Index: Aduns3tiGF+XX7miQjS0yGTImKP20wDMuq3g
+Date: Fri, 11 Apr 2025 13:37:10 +0000
+Message-ID:
+ <IA0PR22MB4223DDEA58562540B61C143788B62@IA0PR22MB4223.namprd22.prod.outlook.com>
+References:
+ <CY4PR0201MB3394FAC41E12174C9DD1329E93AA2@CY4PR0201MB3394.namprd02.prod.outlook.com>
+In-Reply-To:
+ <CY4PR0201MB3394FAC41E12174C9DD1329E93AA2@CY4PR0201MB3394.namprd02.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: yes
+X-MS-TNEF-Correlator:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=whitney.org;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: IA0PR22MB4223:EE_|PH0PR22MB2923:EE_
+x-ms-office365-filtering-correlation-id: 90c8afb6-38ec-42e2-0f9f-08dd78fdf646
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|376014|366016|1800799024|8096899003|13003099007|4053099003|4013099003|19033499003|7053199007|38070700018;
+x-microsoft-antispam-message-info:
+ =?us-ascii?Q?0AXqdUYlpBtbbM/+pW4Akit3BvKQuuV3FWcqcy71xo211r7JaAR0HHa5VT/j?=
+ =?us-ascii?Q?CivC37sjptQJqVVHsYao2qKdpQLz3vNt0EDCFR4B0UrpO/8dPgTNm9SVlvuI?=
+ =?us-ascii?Q?gUWuyw94XqmTz/DwVTHV3rvzTxQNuUjK04w8FhUNDPwd10zkbHXihRuEK65I?=
+ =?us-ascii?Q?ATmdeIhBKwPxd9G6zKZu8ewHUjzJUcLkWxSGbO3DzINxbHZ7XTbBQLegIGro?=
+ =?us-ascii?Q?sbBfNHnGqZqJCNWDK/dDxonA5kv++2/85+6Xjc6gSkLy29RL2w+h/xEKS3VV?=
+ =?us-ascii?Q?1Nb223DVv8EPR4fP0LQBPUvVQqodukJrZv3+EDxuJd+pZH2HI/F5YaNUqN0v?=
+ =?us-ascii?Q?OPTiHzF3SIc9A4fbb+p0Z5SQ/luqySLMrt8AC5LOHsFKu/g5UqmYClSjbRgr?=
+ =?us-ascii?Q?s9N7sA6+hKDNo7EAX6l5SMEe+GgoOY7xhvK4ie7Gf4o6tKJyGEUUAqS/wo2W?=
+ =?us-ascii?Q?6ZphFHUTlbqKl06b3vJ8+lomrEZ95jyfMkDW2+weJadQiyeSW5PGRhzSfwRf?=
+ =?us-ascii?Q?IgFNy5qPYSO2oYBURIsFluwp3lHpVohcCUJ5JhJm6Nr/uSNFxFcV0Rg5+M2O?=
+ =?us-ascii?Q?T9uxoUmfJiDt1fN+FV63P0/gZScJR6DyyDA1zZKuBRjp+oMNu3hD630uATKd?=
+ =?us-ascii?Q?ISzAGunvF+qR7EcC8fbE+GM4ne+IX9WH7vYVjw3/wtxitMaMQL+nzYuAl01t?=
+ =?us-ascii?Q?/W+qPmj0TNrztVlRmTA2XnidmLPiIQyBzSuVDiNYf07ca9X7zqmupknUG+Fa?=
+ =?us-ascii?Q?Z1LJB3hI5wQpsTubYRKuagR0RgS+bqZVlkTfF8ClNBudFDqR8H/yfasL/ZCT?=
+ =?us-ascii?Q?VYRzW1wmgjq1FdufS2BGo95ZChSdEQuQt8haP6///kd4VI0Fx1GD/jZW4ZpK?=
+ =?us-ascii?Q?nFXWnosGBsA5YB1kvhxHkz5C6DrO4FUu8j0vSZKtzBgGJiY+ntkZG2LZkqfb?=
+ =?us-ascii?Q?dgOQwuzs6IFHXeD7KzL6LyicG+P2cj0DRO886pvV/+UKm+sQa+0cmfZ/JFbe?=
+ =?us-ascii?Q?yy38905zUrYzduQZ5O7M/pB8sKcZLv/ne2+8I+9QmDL8FMEtddY5WQmVWuVP?=
+ =?us-ascii?Q?5UukLCVuxW4leD7//baWod9onqlSwWpuzAu+7qkdz5ZTpBY4h+cAwlt7Fvkb?=
+ =?us-ascii?Q?jw+nc1XmTeP314iGVTPdlW3ufafqgAXOI6kDB1RTb7vmM7t5m9lMhQwaBbGj?=
+ =?us-ascii?Q?iXMsGt+4DzZbVfOUHeAfr1Fr7wS/ao+W6ypW867PS8J+2HomLAp9jDkmjY31?=
+ =?us-ascii?Q?1IBOemGdkgKcqmcm9hZLtmJ+QhtBc57uvP21d05HGAW7b6VPO4OIsvVhZmsO?=
+ =?us-ascii?Q?iQPaT6RiI8cB0xJZLjRgUxMhfpUw1lhFiZGxxZTBDacOScyMfkJbGG98bjUU?=
+ =?us-ascii?Q?2VLNNWfLGrPZhG0dinCwLlot6LxyYaaweU7IZSDkk5Svuc8SM75oCGBVu9gj?=
+ =?us-ascii?Q?dczccBjYvV4=3D?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:IA0PR22MB4223.namprd22.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(376014)(366016)(1800799024)(8096899003)(13003099007)(4053099003)(4013099003)(19033499003)(7053199007)(38070700018);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?us-ascii?Q?VwZcR4fWvyCRtxZ/XA+kHJmiiLFUBB6hW6870mgtDCGnXO54dy4O22U0ky+s?=
+ =?us-ascii?Q?U8r+rl/ZqRjAZXblOQWMzVpSkVZZI7uTHCVaCS2QwfYSrVwzggGleKycjr+O?=
+ =?us-ascii?Q?zk7CRnWTPIgdDQs9vdZZlTiJnrel2N5OZ2M6WKZTJ1+I9J/M5RrqMOpme+mN?=
+ =?us-ascii?Q?vG2HmF3DJFrGoAIuqW4FePYHmYPKfBJjxMZ+uaZfZd2HZxkLG7kneeftuC9r?=
+ =?us-ascii?Q?nvElznKm2dPzrRIzFRruwx85olesbahHLd7Y5GK+DREfaEfqX0lRNUyYrcHb?=
+ =?us-ascii?Q?J9+CteLZZCcq8DpldBqrbbn0UBzGk7SqOkP0wL8x51U74Gl/oy/Hym3rycZz?=
+ =?us-ascii?Q?igA2oPxbroFxL7gNDDGMi+26WjGYQcqRw3moqdomspZBNhbmC9lr+sKX/iBQ?=
+ =?us-ascii?Q?/y5d7PMeS7S/HO/Bds4pe9WAOkRXoMlNlac43/JYwRaUp7zlOjKtiiOipjHs?=
+ =?us-ascii?Q?pZbNEi2aTWFEdqRVuKj6My5GplmBZHu0PNjHUcsiRFi4Nm4PTS1HG/Rows7B?=
+ =?us-ascii?Q?hpmyXNat3Jy9iUeECKZ2nPTHb7fnuDDzPrAI/rpzTnEEvTjEU0wGJ/qkLITP?=
+ =?us-ascii?Q?q66wd0gbVmjfpZp27OBBOC6Q+mPH88VZJb6ne+HeFAbFh7RVOSF76ch0fVtu?=
+ =?us-ascii?Q?1Sdi0a0GkwHuhlm7bZqKQo7nviC+LGdN5s0C5H2soeiBQZbCxt9z5zoHThXJ?=
+ =?us-ascii?Q?HqlSINJllK9meHlFkl+/00wF78LK9hbGcjhup7zB9XskIUjG8EwIvUJ4LXdA?=
+ =?us-ascii?Q?sgAn9l5o4F6u2LkZJ6TRnOSpcRa1UdZWL/5F2J1nVrB5RHfPHfFPRSB91/6Q?=
+ =?us-ascii?Q?xLdgQhStqPAKAQXsWovjsPRGvuYj2icLHWHSe2ETHJBsFeVYUsouo/2QUdUm?=
+ =?us-ascii?Q?XvJX5GbnkWYWf0/4WZVsK0SMjNfxC9lpi66yapiB5/UcnSTh0PMY5rBxb/Rj?=
+ =?us-ascii?Q?rRNzj/RLSm7Z8zZ6kuPqiqwdnDewrmgVtVXw1n8ZwfRFucOb0QT4CGyQ/RrO?=
+ =?us-ascii?Q?pl2xXGOiNLxWaB4hkUZGDNhaSbnu4z3nIBcU1EC0LixtLtehlvm2PNivpNsJ?=
+ =?us-ascii?Q?+qZPiAhzuv6Q1sifZ/7ybWmz8Yijh3dBKY+HBxCgBpdkTDC6Vz8VeKkmgFJ2?=
+ =?us-ascii?Q?mcJXBtX2nfwCszlY/aza4XuH1Kls5GFVAgDwIOAQ4qLTFV8t8indG9hgV8PN?=
+ =?us-ascii?Q?fe979/6ORbLLLZo40JMsWDKyhFUWg6v3EeGeW6udtRKPFpF/tRIeeNveBHuu?=
+ =?us-ascii?Q?+BzbPXBYMrCIYnVgC5Glf0STjohcumS9oxcZrmXtvh7aFJG8DmEuxfiFniyt?=
+ =?us-ascii?Q?lE58+LpCYF+0X/HpxPjZ7uLZMhrs3MO5S701zGTJcPjIOlEA5Ua7WcvBlkF1?=
+ =?us-ascii?Q?Nt4AX4JbJ0RTks+2rkDr9+rOgBMdtooEstWMmZ1SeVwgyw9qWJi4ZWXNN+Hv?=
+ =?us-ascii?Q?HIg3tUQDnIoSKLakBRCLyZJPJvy9ENm6NtwjYyKf09gU8gtdAvgSqQ++SKQw?=
+ =?us-ascii?Q?Z0LCxH19oM51ZKEAA5oxV/5w7ukE1qAWwLkvLrXqqueeayKs/FJcS9qjV8gN?=
+ =?us-ascii?Q?X0yqXkf69odESIi0VRc=3D?=
+Content-Type: multipart/related;
+	boundary="_004_IA0PR22MB4223DDEA58562540B61C143788B62IA0PR22MB4223namp_";
+	type="multipart/alternative"
+MIME-Version: 1.0
+X-OriginatorOrg: whitney.org
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: IA0PR22MB4223.namprd22.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 90c8afb6-38ec-42e2-0f9f-08dd78fdf646
+X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Apr 2025 13:37:11.0088
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 28ad7bce-66ad-4171-92a3-6e36d172f6eb
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: IupEsAxw9McHcC4RVBdOrPpiTcpijl5A4qUxVgM0ClZtUOI+6enNyys/ueI4dYhS8mozcqNwNW78es9Xw7YNLA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR22MB2923
+X-BESS-ID: 1744378634-102635-7686-6548-1
+X-BESS-VER: 2019.1_20250408.2322
+X-BESS-Apparent-Source-IP: 104.47.56.174
+X-BESS-Parts: H4sIAAAAAAACA03MvQrDMAwE4HfxnME/kiLlVUoHybYaCqWFZiiUvHszONDlOA
+	7uu3xD/2xhCduRU3i+wwLIcrT1GBtkdE3u3iKospLInHtRcojcLOzT+V+3x/hnYOIBKF
+	XDnFli82rejZurQCfjiBXgD7i/bgNIMaZyAhXJSwEiEsDZjL3BnLijNCrIYb/+ADGexB
+	/DAAAA
+X-BESS-Outbound-Spam-Score: 0.00
+X-BESS-Outbound-Spam-Report: Code version 3.2, rules version 3.2.2.263811 [from 
+	cloudscan8-232.us-east-2a.ess.aws.cudaops.com]
+	Rule breakdown below
+	 pts rule name              description
+	---- ---------------------- --------------------------------
+	0.00 HTML_MESSAGE           BODY: HTML included in message 
+	0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
+X-BESS-Outbound-Spam-Status: SCORE=0.00 using account:ESS111578 scores of KILL_LEVEL=7.0 tests=HTML_MESSAGE, BSF_BESS_OUTBOUND
+X-BESS-BRTS-Status:1
+
+--_004_IA0PR22MB4223DDEA58562540B61C143788B62IA0PR22MB4223namp_
+Content-Type: multipart/alternative;
+	boundary="_000_IA0PR22MB4223DDEA58562540B61C143788B62IA0PR22MB4223namp_"
+
+--_000_IA0PR22MB4223DDEA58562540B61C143788B62IA0PR22MB4223namp_
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+Dear B. Devanathan,
+
+Thank you for reaching out with this request, I am writing to connect you w=
+ith Paul Cohen, who represents the Harold Cohen Trust, who would be the bes=
+t contact to continue this conversation. Thanks to all, if I can do anythin=
+g else to support, do let me know.
+
+Best,
+Micah
+
+Micah Musheno (she/her)
+Licensing Manager
+(212) 570-3675
+
+Whitney Museum of American Art
+99 Gansevoort Street
+New York, NY 10014
+
+From: Balakumar, Devanathan [PS] <devanathan.balakumar@cengage.com>
+Sent: Monday, April 7, 2025 11:24 AM
+To: Licensing <Licensing@whitney.org>
+Cc: Lavanya, Vengadapathy [PS] <vengadapathy.lavanya@cengage.com>
+Subject: Cengage Learning Permission Request: Harold Cohen, AARON Gijon, 20=
+07- Image for Understanding Art/ Fichner-Rathus
+
+
+This email was sent from an external source so please treat with caution.
+Hello,
+
+I am contacting you on behalf of Cengage Group (https://www.cengagegroup.co=
+m/<https://urldefense.com/v3/__https:/www.cengagegroup.com/__;!!H9nueQsQ!6u=
+8iBWs9R1AktGvVcJguERk2y3PEeSV1T3iS3WkwaoU9ZMWc4UYkoaDSZvBxhPHXQcFGlJ7vWGCY_=
+5eyKWHkUNrbbDOQ-p5v$>). We provide quality digital products and services to=
+ millions of students, equipping them with skills and competencies needed t=
+o advance their careers and improve their lives.
+
+Cengage Group is developing a product titled, Understanding Art written by =
+Fichner-Rathus, We would like to use your content in this product. Cengage =
+Group and its respective partners, affiliates, subsidiaries, divisions and =
+assigns hereby request, and you hereby grant, a non-exclusive, worldwide li=
+cense to publish, reproduce, distribute, publicly display, license, transla=
+te (if requested), perform, create non-dramatic recordings and/or otherwise=
+ include the Material in this current edition and versions of the Work, to =
+create derivative works thereon (including translations and adaptations), r=
+elated ancillaries and supplements, and in promotional materials, in all fo=
+rmats, including but not limited to print and/or electronic format. You fur=
+ther grant us the right to provide, without charge, copies of the Work in w=
+hich the Material appears as needed to comply with any Cengage Group access=
+ibility policies to benefit the impaired or disabled. You additionally gran=
+t us the limited right to edit the Material for style, clarity or length an=
+d to modify for size or resolution, as may be necessary to conform to our f=
+ormat restrictions.
+
+The attached letter provides more details pertaining to our request for per=
+mission. I have provided the image description for your reference, Harold C=
+ohen, AARON Gijon, 2007. Artificial intelligence software, dimensions varia=
+ble. Whitney Museum of American Art, New York City. Copyright: Harold Cohen=
+ Trust.
+
+Also, we would require high resolution image at the earliest.
+
+Please review and if you agree to our terms, indicate your approval by sign=
+ing and e-mailing both pages of the attached letter and provide answers to =
+the following question(s) at your earliest convenience:
+
+Credit Line Confirmation:
+
+  *   Please confirm your preferred credit line:
+Pricing:
+
+        *   If you are charging a fee, please indicate your proposed paymen=
+t on the letter, and include an invoice addressed to Cengage Group, Attn : =
+Parthiban, 5191 Natorp Blvd, Mason, OH 45040.
+
+Please Note: Within two business days of Cengage Group receiving the signed=
+ license agreement, you will be sent an email from MS.Vendors@cengage.com<m=
+ailto:MS.Vendors@cengage.com>  to upload your W8 or W9 tax documentation. T=
+o successfully acquire your payment within a timely manner, you will go thr=
+ough a two-step authentication process by providing an accurate email and t=
+elephone number. Once your tax documentation has been uploaded, Cengage Gro=
+up's financial department will be validating those records within one busin=
+ess day and your payment with be processed within Cengage Group's standard =
+invoice timeline.
+
+Thanks,
+B.Devanathan
+
+Thanks and Regards,
+B. Devanathan
+Rights & Permissions - Executive
+Lumina Datamatics-On Behalf of Cengage
++91 8248604497
+Www.cengagegroup.com<https://linkprotect.cudasvc.com/url?a=3Dhttp%3a%2f%2fw=
+ww.cengagegroup.com%2f&c=3DE,1,WGK66qcwSPIf7cOnBAfC8XArbU2KaGpYByJJXLjeAyNS=
+-8oD1cPngtcp-IVJIwAkluDuJIJBIdjYEpnmai6-Xo5x6Z9tOcrr93YvcnxBypnVomEQSF-VDs7=
+XSQ,,&typo=3D1>
+Www.luminadatamatics.com<https://linkprotect.cudasvc.com/url?a=3Dhttp%3a%2f=
+%2fwww.luminadatamatics.com%2f&c=3DE,1,SiG4TXIOZZhpSQCr7emtK-QwQSxCfTYFxSAf=
+Sur0Rze9AONVm3wpCyVz4lgUSXWqlcp0U1CdRd_v5jSubJBxuIQT-waeI3e7FxnB14T24y1bGDE=
+,&typo=3D1>
+[A picture containing text, clipart    Description automatically generated]=
+<http://?>
+
+
+--_000_IA0PR22MB4223DDEA58562540B61C143788B62IA0PR22MB4223namp_
+Content-Type: text/html; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dus-ascii"=
+>
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<!--[if !mso]><style>v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style><![endif]--><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Aptos;}
+@font-face
+	{font-family:"Aptos Narrow";}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	font-size:10.0pt;
+	font-family:"Aptos",sans-serif;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#467886;
+	text-decoration:underline;}
+span.EmailStyle21
+	{mso-style-type:personal-compose;
+	font-family:"Aptos",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;
+	mso-ligatures:none;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+/* List Definitions */
+@list l0
+	{mso-list-id:36517499;
+	mso-list-template-ids:2107009306;}
+@list l0:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l0:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l0:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l0:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l0:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l0:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l0:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l0:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l0:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l1
+	{mso-list-id:724109272;
+	mso-list-template-ids:1007959618;}
+@list l1:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l1:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l1:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l1:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l1:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l1:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l1:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l1:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l1:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l2
+	{mso-list-id:1636254050;
+	mso-list-template-ids:-1195222502;}
+@list l2:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l2:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l2:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l2:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l2:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l2:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l2:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l2:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l2:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l3
+	{mso-list-id:2119447625;
+	mso-list-template-ids:175399410;}
+@list l3:level1
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l3:level2
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l3:level3
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:1.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l3:level4
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:2.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l3:level5
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:2.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l3:level6
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:3.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l3:level7
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:3.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l3:level8
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:4.0in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+@list l3:level9
+	{mso-level-number-format:bullet;
+	mso-level-text:o;
+	mso-level-tab-stop:4.5in;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ansi-font-size:10.0pt;
+	font-family:"Courier New";
+	mso-bidi-font-family:"Times New Roman";}
+ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#467886" vlink=3D"#96607D" style=3D"word-wrap:=
+break-word">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt">Dear </span><span s=
+tyle=3D"font-size:12.0pt;mso-ligatures:standardcontextual">B. Devanathan,<o=
+:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;mso-ligatures:standa=
+rdcontextual"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;mso-ligatures:standa=
+rdcontextual">Thank you for reaching out with this request, I am writing to=
+ connect you with Paul Cohen, who represents the Harold Cohen Trust, who wo=
+uld be the best contact to continue
+ this conversation. Thanks to all, if I can do anything else to support, do=
+ let me know.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;mso-ligatures:standa=
+rdcontextual"><br>
+Best,<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;mso-ligatures:standa=
+rdcontextual">Micah<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt"><o:p>&nbsp;</o:p></=
+span></p>
+<p class=3D"MsoNormal" style=3D"background:white"><b><span style=3D"color:b=
+lack">Micah Musheno
+</span></b><span style=3D"color:black">(she/her)</span><span style=3D"font-=
+size:12.0pt"><o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"background:white"><span style=3D"color:blac=
+k">Licensing Manager</span><span style=3D"font-size:12.0pt"><o:p></o:p></sp=
+an></p>
+<p class=3D"MsoNormal" style=3D"background:white"><span style=3D"color:blac=
+k">(212) 570-3675</span><span style=3D"font-size:12.0pt"><o:p></o:p></span>=
+</p>
+<p class=3D"MsoNormal" style=3D"background:white"><span style=3D"color:blac=
+k">&nbsp;</span><span style=3D"font-size:12.0pt"><o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"background:white"><b><span style=3D"color:b=
+lack">Whitney Museum of American Art</span></b><span style=3D"font-size:12.=
+0pt"><o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"background:white"><span style=3D"color:blac=
+k">99 Gansevoort Street</span><span style=3D"font-size:12.0pt"><o:p></o:p><=
+/span></p>
+<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt;background:white"><spa=
+n style=3D"color:black">New York, NY 10014</span><span style=3D"font-size:1=
+2.0pt"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt"><o:p>&nbsp;</o:p></=
+span></p>
+<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0in =
+0in 0in">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:11.0pt;font-family:&quot=
+;Calibri&quot;,sans-serif">From:</span></b><span style=3D"font-size:11.0pt;=
+font-family:&quot;Calibri&quot;,sans-serif"> Balakumar, Devanathan [PS] &lt=
+;devanathan.balakumar@cengage.com&gt;
+<br>
+<b>Sent:</b> Monday, April 7, 2025 11:24 AM<br>
+<b>To:</b> Licensing &lt;Licensing@whitney.org&gt;<br>
+<b>Cc:</b> Lavanya, Vengadapathy [PS] &lt;vengadapathy.lavanya@cengage.com&=
+gt;<br>
+<b>Subject:</b> Cengage Learning Permission Request: Harold Cohen, AARON Gi=
+jon, 2007- Image for Understanding Art/ Fichner-Rathus<o:p></o:p></span></p=
+>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p>This email was sent from an external source so please treat with caution=
+.<span style=3D"font-size:12.0pt"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;mso-ligatures:standa=
+rdcontextual">Hello,<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;mso-ligatures:standa=
+rdcontextual"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;mso-ligatures:standa=
+rdcontextual">I am contacting you on behalf of Cengage Group (</span><span =
+lang=3D"EN-IN" style=3D"font-size:12.0pt;mso-ligatures:standardcontextual">=
+<a href=3D"https://urldefense.com/v3/__https:/www.cengagegroup.com/__;!!H9n=
+ueQsQ!6u8iBWs9R1AktGvVcJguERk2y3PEeSV1T3iS3WkwaoU9ZMWc4UYkoaDSZvBxhPHXQcFGl=
+J7vWGCY_5eyKWHkUNrbbDOQ-p5v$" target=3D"_blank"><span lang=3D"EN-US">https:=
+//www.cengagegroup.com/</span></a></span><span style=3D"font-size:12.0pt;ms=
+o-ligatures:standardcontextual">).
+ We provide quality digital products and services to millions of students, =
+equipping them with skills and competencies needed to advance their careers=
+ and improve their lives.&nbsp;</span><span lang=3D"EN-GB" style=3D"font-si=
+ze:12.0pt;mso-ligatures:standardcontextual"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;mso-ligatures:standa=
+rdcontextual">&nbsp;</span><span lang=3D"EN-GB" style=3D"font-size:12.0pt;m=
+so-ligatures:standardcontextual"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;mso-ligatures:standa=
+rdcontextual">Cengage Group is developing a product titled,
+<b>Understanding Art </b>written by <b>Fichner-Rathus</b>, We would like to=
+ use your content in this product. Cengage Group and its respective partner=
+s, affiliates, subsidiaries, divisions and assigns hereby request, and you =
+hereby grant, a non-exclusive, worldwide
+ license to publish, reproduce, distribute, publicly display, license, tran=
+slate (if requested), perform, create non-dramatic recordings and/or otherw=
+ise include the
+<b>Material</b> in this current edition and versions of the <b>Work, </b>to=
+ create derivative works thereon (including translations and adaptations), =
+related ancillaries and supplements, and in promotional materials, in all f=
+ormats, including but not limited
+ to print and/or electronic format. You further grant us the right to provi=
+de, without charge, copies of the
+<b>Work</b> in which the <b>Material</b> appears as needed to comply with a=
+ny Cengage Group accessibility policies to benefit the impaired or disabled=
+. You additionally grant us the limited right to edit the
+<b>Material</b> for style, clarity or length and to modify for size or reso=
+lution, as may be necessary to conform to our format restrictions.&nbsp;</s=
+pan><span lang=3D"EN-GB" style=3D"font-size:12.0pt;mso-ligatures:standardco=
+ntextual"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;mso-ligatures:standa=
+rdcontextual">&nbsp;&nbsp;</span><span lang=3D"EN-GB" style=3D"font-size:12=
+.0pt;mso-ligatures:standardcontextual"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;mso-ligatures:standa=
+rdcontextual">The attached letter provides more details pertaining to our r=
+equest for permission. I have provided the image description for your refer=
+ence,
+<b>Harold Cohen, AARON Gijon, 2007. Artificial intelligence software, dimen=
+sions variable. Whitney Museum of American Art, New York City. Copyright: H=
+arold Cohen Trust.<o:p></o:p></b></span></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:12.0pt;mso-ligatures:sta=
+ndardcontextual"><o:p>&nbsp;</o:p></span></b></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;mso-ligatures:standa=
+rdcontextual">Also, we would require
+<b>high resolution image</b> at the earliest.<b><o:p></o:p></b></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;mso-ligatures:standa=
+rdcontextual"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;mso-ligatures:standa=
+rdcontextual">Please review and if you agree to our terms, indicate your ap=
+proval by signing and e-mailing both pages of the attached letter and provi=
+de answers to the following question(s)
+ at your earliest convenience:&nbsp;</span><span lang=3D"EN-GB" style=3D"fo=
+nt-size:12.0pt;mso-ligatures:standardcontextual"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;mso-ligatures:standa=
+rdcontextual">&nbsp;</span><span lang=3D"EN-GB" style=3D"font-size:12.0pt;m=
+so-ligatures:standardcontextual"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><b><u><span style=3D"font-size:12.0pt;mso-ligatures:=
+standardcontextual">Credit Line Confirmation</span></u></b><b><span style=
+=3D"font-size:12.0pt;mso-ligatures:standardcontextual">:</span></b><span st=
+yle=3D"font-size:12.0pt;mso-ligatures:standardcontextual">&nbsp;</span><spa=
+n lang=3D"EN-GB" style=3D"font-size:12.0pt;mso-ligatures:standardcontextual=
+"><o:p></o:p></span></p>
+<ul style=3D"margin-top:0in" type=3D"circle">
+<li class=3D"MsoNormal" style=3D"mso-list:l1 level1 lfo3"><span style=3D"fo=
+nt-size:12.0pt;mso-ligatures:standardcontextual">Please confirm your prefer=
+red credit line:&nbsp;&nbsp;</span><span lang=3D"EN-GB" style=3D"font-size:=
+12.0pt;mso-ligatures:standardcontextual"><o:p></o:p></span></li></ul>
+<p class=3D"MsoNormal"><b><u><span style=3D"font-size:12.0pt;mso-ligatures:=
+standardcontextual">Pricing</span></u></b><span style=3D"font-size:12.0pt;m=
+so-ligatures:standardcontextual">:</span><span lang=3D"EN-GB" style=3D"font=
+-size:12.0pt;mso-ligatures:standardcontextual"><o:p></o:p></span></p>
+<ul style=3D"margin-top:0in" type=3D"circle">
+<ul style=3D"margin-top:0in" type=3D"circle">
+<ul style=3D"margin-top:0in" type=3D"circle">
+<li class=3D"MsoNormal" style=3D"mso-list:l2 level3 lfo6"><span style=3D"fo=
+nt-size:12.0pt;mso-ligatures:standardcontextual">If you are charging a fee,=
+ please indicate your proposed payment on the letter, and include an invoic=
+e addressed to
+<b>Cengage Group, Attn : </b></span><b><span lang=3D"EN-IN" style=3D"font-s=
+ize:12.0pt;mso-ligatures:standardcontextual">Parthiban</span></b><b><span s=
+tyle=3D"font-size:12.0pt;mso-ligatures:standardcontextual">, 5191 Natorp Bl=
+vd, Mason, OH 45040.</span></b><span lang=3D"EN-GB" style=3D"font-size:12.0=
+pt;mso-ligatures:standardcontextual"><o:p></o:p></span></li></ul>
+</ul>
+</ul>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;mso-ligatures:standa=
+rdcontextual">&nbsp;</span><span lang=3D"EN-GB" style=3D"font-size:12.0pt;m=
+so-ligatures:standardcontextual"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:12.0pt;mso-ligatures:sta=
+ndardcontextual">Please Note:</span></b><span style=3D"font-size:12.0pt;mso=
+-ligatures:standardcontextual"> Within two business days of Cengage Group r=
+eceiving the signed license agreement,
+ you will be sent an email from </span><span lang=3D"EN-IN" style=3D"font-s=
+ize:12.0pt;mso-ligatures:standardcontextual"><a href=3D"mailto:MS.Vendors@c=
+engage.com" target=3D"_blank"><span lang=3D"EN-US">MS.Vendors@cengage.com</=
+span></a></span><span style=3D"font-size:12.0pt;mso-ligatures:standardconte=
+xtual">&nbsp;
+ to upload your W8 or W9 tax documentation. To successfully acquire your pa=
+yment within a timely manner, you will go through a two-step authentication=
+ process by providing an accurate email and telephone number. Once your tax=
+ documentation has been uploaded,
+ Cengage Group&#8217;s financial department will be validating those record=
+s within one business day and your payment with be processed within Cengage=
+ Group&#8217;s standard invoice timeline.&nbsp;&nbsp;</span><span lang=3D"E=
+N-GB" style=3D"font-size:12.0pt;mso-ligatures:standardcontextual"><o:p></o:=
+p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;mso-ligatures:standa=
+rdcontextual"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;mso-ligatures:standa=
+rdcontextual">Thanks,
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;mso-ligatures:standa=
+rdcontextual">B.Devanathan<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-IN" style=3D"font-size:12.0pt;mso-l=
+igatures:standardcontextual"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:black;mso-ligatures:standardcontextual;mso-far=
+east-language:EN-IN">Thanks and Regards,<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:11.0pt;font-family:&quot=
+;Calibri&quot;,sans-serif;color:#0000CC;mso-ligatures:standardcontextual;ms=
+o-fareast-language:EN-IN">B. Devanathan<o:p></o:p></span></b></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ap=
+tos Narrow&quot;,sans-serif;mso-ligatures:standardcontextual;mso-fareast-la=
+nguage:EN-IN">Rights &amp; Permissions - Executive
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;mso-ligatures:standardcontextual;mso-fareast-languag=
+e:EN-IN">Lumina Datamatics-On Behalf of Cengage<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;mso-ligatures:standardcontextual;mso-fareast-languag=
+e:EN-IN">+91 8248604497<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-IN" style=3D"font-size:12.0pt;mso-l=
+igatures:standardcontextual"><a href=3D"https://linkprotect.cudasvc.com/url=
+?a=3Dhttp%3a%2f%2fwww.cengagegroup.com%2f&amp;c=3DE,1,WGK66qcwSPIf7cOnBAfC8=
+XArbU2KaGpYByJJXLjeAyNS-8oD1cPngtcp-IVJIwAkluDuJIJBIdjYEpnmai6-Xo5x6Z9tOcrr=
+93YvcnxBypnVomEQSF-VDs7XSQ,,&amp;typo=3D1"><span lang=3D"EN-US" style=3D"fo=
+nt-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:#0563C1;mso=
+-fareast-language:EN-IN">Www.cengagegroup.com</span></a></span><span style=
+=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;mso-ligatur=
+es:standardcontextual;mso-fareast-language:EN-IN"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-IN" style=3D"font-size:12.0pt;mso-l=
+igatures:standardcontextual"><a href=3D"https://linkprotect.cudasvc.com/url=
+?a=3Dhttp%3a%2f%2fwww.luminadatamatics.com%2f&amp;c=3DE,1,SiG4TXIOZZhpSQCr7=
+emtK-QwQSxCfTYFxSAfSur0Rze9AONVm3wpCyVz4lgUSXWqlcp0U1CdRd_v5jSubJBxuIQT-wae=
+I3e7FxnB14T24y1bGDE,&amp;typo=3D1"><span lang=3D"EN-US" style=3D"font-size:=
+11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:#0563C1;mso-fareast=
+-language:EN-IN">Www.luminadatamatics.com</span></a></span><span style=3D"f=
+ont-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;mso-ligatures:st=
+andardcontextual;mso-fareast-language:EN-IN"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><a href=3D"http://?"><span style=3D"font-size:11.0pt=
+;font-family:&quot;Calibri&quot;,sans-serif;color:windowtext;mso-fareast-la=
+nguage:EN-IN;text-decoration:none"><img border=3D"0" width=3D"170" height=
+=3D"61" style=3D"width:1.7708in;height:.6354in" id=3D"Picture_x0020_13" src=
+=3D"cid:image001.jpg@01DBAAC4.E0E2E640" alt=3D"A picture containing text, c=
+lipart
+
+Description automatically generated"></span></a><span lang=3D"EN-IN" style=
+=3D"font-size:12.0pt;mso-ligatures:standardcontextual;mso-fareast-language:=
+EN-IN"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-IN" style=3D"font-size:12.0pt;mso-l=
+igatures:standardcontextual"><o:p>&nbsp;</o:p></span></p>
+</div>
+</body>
+</html>
+
+--_000_IA0PR22MB4223DDEA58562540B61C143788B62IA0PR22MB4223namp_--
+
+--_004_IA0PR22MB4223DDEA58562540B61C143788B62IA0PR22MB4223namp_
+Content-Type: image/jpeg; name="image001.jpg"
+Content-Description: image001.jpg
+Content-Disposition: inline; filename="image001.jpg"; size=10013;
+	creation-date="Fri, 11 Apr 2025 13:37:10 GMT";
+	modification-date="Fri, 11 Apr 2025 13:37:10 GMT"
+Content-ID: <image001.jpg@01DBAAC4.E0E2E640>
+Content-Transfer-Encoding: base64
+
+/9j/4AAQSkZJRgABAQAA3ADcAAD/4QCARXhpZgAATU0AKgAAAAgABAEaAAUAAAABAAAAPgEbAAUA
+AAABAAAARgEoAAMAAAABAAIAAIdpAAQAAAABAAAATgAAAAAAAADcAAAAAQAAANwAAAABAAOgAQAD
+AAAAAQABAACgAgAEAAAAAQAAANagAwAEAAAAAQAAAE0AAAAA/+0AOFBob3Rvc2hvcCAzLjAAOEJJ
+TQQEAAAAAAAAOEJJTQQlAAAAAAAQ1B2M2Y8AsgTpgAmY7PhCfv/AABEIAE0A1gMBIgACEQEDEQH/
+xAAfAAABBQEBAQEBAQAAAAAAAAAAAQIDBAUGBwgJCgv/xAC1EAACAQMDAgQDBQUEBAAAAX0BAgMA
+BBEFEiExQQYTUWEHInEUMoGRoQgjQrHBFVLR8CQzYnKCCQoWFxgZGiUmJygpKjQ1Njc4OTpDREVG
+R0hJSlNUVVZXWFlaY2RlZmdoaWpzdHV2d3h5eoOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0
+tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4eLj5OXm5+jp6vHy8/T19vf4+fr/xAAfAQADAQEBAQEB
+AQEBAAAAAAAAAQIDBAUGBwgJCgv/xAC1EQACAQIEBAMEBwUEBAABAncAAQIDEQQFITEGEkFRB2Fx
+EyIygQgUQpGhscEJIzNS8BVictEKFiQ04SXxFxgZGiYnKCkqNTY3ODk6Q0RFRkdISUpTVFVWV1hZ
+WmNkZWZnaGlqc3R1dnd4eXqCg4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TF
+xsfIycrS09TV1tfY2dri4+Tl5ufo6ery8/T19vf4+fr/2wBDAAEBAQEBAQIBAQICAgICAgMCAgIC
+AwQDAwMDAwQFBAQEBAQEBQUFBQUFBQUGBgYGBgYHBwcHBwgICAgICAgICAj/2wBDAQEBAQICAgMC
+AgMIBQUFCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAj/
+3QAEAA7/2gAMAwEAAhEDEQA/AP7+K+Df2/P+Cg/wS/4J7fAE/G/4lC71q51K8TRvB3hXQALjVPEe
+sTqTDZWSLuzkKWkkwVjQE4J2q3z/AP8ABar9rfxH+yZ+xa7eAL19O8VfEbxbonwr8OalE22Wwm8R
+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
+
+--_004_IA0PR22MB4223DDEA58562540B61C143788B62IA0PR22MB4223namp_--

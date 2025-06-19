@@ -1,0 +1,364 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a10:b092:b0:5c7:f970:fbca with SMTP id y18csp1752580pxa;
+        Thu, 6 Feb 2025 11:26:22 -0800 (PST)
+X-Received: by 2002:a17:90b:4f90:b0:2ee:f80c:687c with SMTP id 98e67ed59e1d1-2fa243f2101mr299964a91.31.1738869982551;
+        Thu, 06 Feb 2025 11:26:22 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1738869982; cv=none;
+        d=google.com; s=arc-20240605;
+        b=JxQBeT6BW+G/sY+er4dB1YZKMZ4pMe7s+q0SETwStn0VpnqTh9eyXogMnGLAyiU0VS
+         Bl8vus3uzQU8Q8ey4dWZX0JXABWaHD32H9BdWS7Mny7uoNthR+j8WxMKZaWlDi1T/hFc
+         wMrN3ybBXGZYECISJfr5CunP8ATFck5SpoHic3338eQB2bvHZSv5CTIglwKXlCXvz8ea
+         g8Z98yvjcO5X0+AJBqY3yepAOK2Q9hmcoNQ3iCcgRBnNGEeLbbAcb2kbuz6a8T6GexQg
+         SeRobA4jCk9ulii1oDbpAyA9uT17s1DTAQMj1yHtcnwViW7k5nZTa6oqQResSo5y1jSb
+         EdEw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=qLDQw+1uBAmZReuZ4wDAeBjG6TBx+lrWxevqOSsK0mA=;
+        fh=k1Fl5XfQHTndA3X48g7tmBdWuaMMdmLYuCpEUz7Dv3U=;
+        b=Q2FV4fOf2hEncW+9EGmuE8+N4iP51csEu3/pkMCH/ceVl5vmwz1x5hxMv5IZJq8jRd
+         Of2rEllfwZJc3IGUOWneRjQMzR/IC7enCJA87BSzsIs4/fuglpb1VZvyK3j//xfRStJv
+         7VOHiFE2E2jFJLIvINwqGtQgWkwzAkW3DoPR9ESt0c7XRq3gRsUPqO80y7qK7VTI95wb
+         xQlon+2AtftUqtRj0QdxzPkk/uvqLYXQBX9hZ8WGhFmJa2wSigeV77woHTz50tdKq5eP
+         miOUoRW44IeRL255bxHO2ePy+veZ3MhvF2nXrSlyMLGi2M5SxezdVTgR1V0klMdu1Bhn
+         PtWw==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@haroldcohentrust.org header.s=google header.b="EeWi080/";
+       spf=pass (google.com: domain of team@haroldcohentrust.org designates 209.85.220.41 as permitted sender) smtp.mailfrom=team@haroldcohentrust.org;
+       dara=pass header.i=@gmail.com
+Return-Path: <team@haroldcohentrust.org>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id 98e67ed59e1d1-2fa1f06f123sor508472a91.4.2025.02.06.11.26.22
+        for <paulrcohen@gmail.com>
+        (Google Transport Security);
+        Thu, 06 Feb 2025 11:26:22 -0800 (PST)
+Received-SPF: pass (google.com: domain of team@haroldcohentrust.org designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@haroldcohentrust.org header.s=google header.b="EeWi080/";
+       spf=pass (google.com: domain of team@haroldcohentrust.org designates 209.85.220.41 as permitted sender) smtp.mailfrom=team@haroldcohentrust.org;
+       dara=pass header.i=@gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=haroldcohentrust.org; s=google; t=1738869982; x=1739474782; dara=google.com;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=qLDQw+1uBAmZReuZ4wDAeBjG6TBx+lrWxevqOSsK0mA=;
+        b=EeWi080/kIQeullIJIyKyeEBedOLBYBgfDyNOKSqnCounkQ5xeq1/e6DERbMyTtq0v
+         piKxRVfupDPov7zICXLVxB5KHAEwN8oRsiiVnGcFUgnHxLJySC3VFbYa1UZHY9vgiUPT
+         wL/Ee8rPfnXZrhYys7G5J4VGE2cS8GdII+miwhQJI2nFSk1WAXuOgC/E4M91EEpRJBoO
+         DS1UZeiT8jD5UBGyKA+dfpSn3cpFqKk7T/HBnO7U2rmfLwUr2jfKI2H8YzmL8ZL+Qb7s
+         GRPpN9gPTDhoOI55BHny4+1sxlNx3cV3R/v4HR4/O+pc6iRU8XTFWUtsJPaJAkU3yqSs
+         JrmA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1738869982; x=1739474782;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=qLDQw+1uBAmZReuZ4wDAeBjG6TBx+lrWxevqOSsK0mA=;
+        b=GCnq2uXunsu1mEkCnBqY1meGxsphy51oK+Eg9ipgTfTTbSlXIG41l0LmU0Lq7Y0kX6
+         2/o+Wsy81pj4L5gBn1wyL8+7AD1Ud4uouEi4s4yOFlOd12wLXV+qZDsWQypiD6Uz34jl
+         H0u3d3jYhNj++O1fsRK9ZrD8AKDam6fUlXpsveCfHAWJPARa4L9+uHlRE6B9vwFFjocb
+         sCSxfByx6AbTo5+dXJ4hq+pKh3t/4OdF6Hy2oJo5E3IFAGOLJtEkrjnVp6LIRthFCse1
+         /CP92BvmzFtVFPrIlva9CvmpTgvh0p2f3bYDK9IGSGBnSVo362sqBrozmbBidg1/2loe
+         C0BA==
+X-Gm-Message-State: AOJu0YzkicDyFvlgBHBmW3s93lQHDYZLWvVDw/cBTqQ5YzWOkdfnFo/v
+	zxB9sBzwsirYjoBnDl7G3TSXSPgQ/75T6rRoDO/wzn/WDapyFkO5r53S6Qb7NbLNDFnMQLlxMx2
+	l1ckqidxXqfXJxRrtuG0XJd5fIY0fje184TZvB+M+MfsmGMiN3Gg=
+X-Gm-Gg: ASbGncv7cwfaclevGMTUfrzbRGkmBc4gXlMdGQ+dUKcVfVW32EtO10neFR6yUlLf+BO
+	/GY+WE/EwrRIJ6SF3ytuIvFnyodGBCTAQfJQR8vHRVw3Kn3L8DuSLKfd0m1miRFvRUNnzJrq6Dm
+	9l1l4RuNGhT4R09RHyWo3THhnlnu6R7rk=
+X-Google-Smtp-Source: AGHT+IES6zmNrIsMqANHXb+YeSk8hkp6/q/2WQMyDJQEELon1YZT/0aZ2/S5fJ/T3wAIgUv3R44bUr9yA3JXGiK1hKU=
+X-Received: by 2002:a17:90b:4f90:b0:2ee:f80c:687c with SMTP id
+ 98e67ed59e1d1-2fa243f2101mr299779a91.31.1738869980280; Thu, 06 Feb 2025
+ 11:26:20 -0800 (PST)
+MIME-Version: 1.0
+References: <CANeY__Kbcx01cgFxgxHztOA7NDiDiYbgwDxcrQp5qnZdnyCffA@mail.gmail.com>
+ <3B255137-49AE-4B65-8A05-B3E54065A16C@gmail.com> <CAKjPZkH=u8u1tvHGY_+=yC-HCRnmsoOzHVbRLz1NbhR414y+kA@mail.gmail.com>
+In-Reply-To: <CAKjPZkH=u8u1tvHGY_+=yC-HCRnmsoOzHVbRLz1NbhR414y+kA@mail.gmail.com>
+From: Paul Cohen <team@haroldcohentrust.org>
+Date: Thu, 6 Feb 2025 11:26:09 -0800
+X-Gm-Features: AWEUYZmTosFqEsVgUdyvL0Ic9u8UcZHDaYjgH2yzPtRuHfm-sfxCQpbCH9IjEY8
+Message-ID: <CANeY__+pCF1KkzWQffeHaVjQWpQ01cQYUBsXnzYJBK4hPEr1HQ@mail.gmail.com>
+Subject: Re: AARON painting appraisal recommendation request
+To: Paul Cohen <paulrcohen@gmail.com>
+Cc: Brigham Bell <brigham.bell@gmail.com>, aaron@aaronshome.com, 
+	Thomas Machnik <zipnpup@yahoo.com>, George Lionel Barker <george@gazelliarthouse.com>
+Content-Type: multipart/alternative; boundary="0000000000007c54ac062d7e3733"
+
+--0000000000007c54ac062d7e3733
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi both,
+I received a quote from Michael Maloney and have attached it below. I
+rather think working with George Barker is the way to go. It's nice to have
+Maloney's quote as a reference for the future.
+
+Tom Machnik -- Art Studio Manager -- The Harold Cohen Trust
+
+--- --- ---
+Hello, Tom.
+Yes, this is something I can take care of for your client's insurance
+appraisal.
+Is it just the one painting?  The project will fall within my
+3-hour-minimum for a review of the current value of the painting and
+document preparation.  The cost will be $1200. ($400 per hour x 3).
+
+If your client would like me to proceed, I will need the following:
+
+   - an image of the painting, the title, medium & size.
+   - A copy of the original invoice, which I am guessing you may have on
+   file.
+   - The client's name and address.
+   - The location of the artwork
+
+Attached is a basic overview of fees and procedures.
+If I can be of assistance, I trust you or your client will let me know.
+Michael Maloney
+Fine Art Appraiser
+MALONEY FINE ART APPRAISAL SERVICES
+6121 Sunset Boulevard
+Los Angeles, CA 90028
+1310.570.6420
+
+On Thu, Feb 6, 2025 at 8:57=E2=80=AFAM Paul Cohen <paulrcohen@gmail.com> wr=
+ote:
+
+> Hi Brig, actually the email was from Tom Machnik, not me; thanks Tom!
+>
+> Michael Maloney appraised Harold's estate right after he died for tax
+> purposes so the appraisals were low and the recent increase in prices
+> wasn't reflected.  It might be more accurate to ask the Gazelli Art House=
+,
+> which represents the Harold Cohen Trust, for a reference for an appraiser=
+.
+> I've cc'd George Barker, there.  --P
+>
+> ______________________________
+>
+> Paul Cohen,  Professor
+> School of Computing and Information
+> University of Pittsburgh
+> personal webpage <https://paulrcohen.github.io/>
+> ______________________________
+>
+>
+> On Thu, Feb 6, 2025 at 9:56=E2=80=AFAM Brigham Bell <brigham.bell@gmail.c=
+om>
+> wrote:
+>
+>> Hi Paul,
+>>
+>> Thanks so much!
+>>
+>> I=E2=80=99ll check in with them Michael Maloney, too.
+>>
+>> Regards,
+>> Brig
+>>
+>> On Feb 6, 2025, at 2:14=E2=80=AFAM, Paul Cohen <team@haroldcohentrust.or=
+g> wrote:
+>>
+>> =EF=BB=BF
+>> Dear Brigham
+>> Thank-you for your inquiry. It is nice to know one of Harold's more
+>> important works is alive, appreciated and well cared for. On your behalf=
+, I
+>> have reached out to an appraiser we have used in the past and I am await=
+ing
+>> a reply. If you prefer, you are welcome to reach out to him as well. Her=
+e
+>> is his contact information:
+>> Michael Maloney
+>> MALONEY FINE ART
+>> 2680 South La Cienega Blvd
+>> Los Angeles, CA 90034
+>> 1310.570.6420
+>>
+>>
+>> Tom Machnik -- Art Studio Manager -- The Harold Cohen Trust
+>>
+>> On Wed, Feb 5, 2025 at 9:01=E2=80=AFAM Brigham Bell <brigham.bell@gmail.=
+com>
+>> wrote:
+>>
+>>> Need advice on appraisal. I asked Sotheby=E2=80=99s, but they don=E2=80=
+=99t have an idea
+>>> on whether to appraise it as art or technology. Should I ask an auction
+>>> house, or is there an AARON appraisal specialist somewhere?
+>>>
+>>> Any suggestions are welcome.
+>>>
+>>> Again, not planning on selling this anytime soon, as it is considered
+>>> important to our whole family.
+>>>
+>>> On Jan 30, 2025, at 3:59=E2=80=AFPM, Brig <brigham.bell@gmail.com> wrot=
+e:
+>>>
+>>> =EF=BB=BF
+>>>
+>>> Hi,
+>>>
+>>>
+>>> Do you know the best place to get an appraisal of AARON paintings?
+>>>
+>>>
+>>> Most importantly, I need an appraisal of *Meeting on Gauguin's Beach
+>>> <https://www.computerhistory.org/revolution/computer-graphics-music-and=
+-art/15/231/745>*,
+>>> so that I know how much to insure it for when shipping it from Californ=
+ia
+>>> to Colorado.
+>>>
+>>>
+>>> Thanks in advance for any help,
+>>>
+>>> Brigham Bell
+>>>
+>>> 1-720-339-6103
+>>>
+>>>
+
+--0000000000007c54ac062d7e3733
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi both,=C2=A0<div>I received a quote from Michael Maloney=
+ and have attached it below. I rather think working with George Barker is t=
+he way to go. It&#39;s nice to have Maloney&#39;s quote as a reference for =
+the future.</div><div><br></div><div>Tom Machnik -- Art Studio Manager -- T=
+he Harold Cohen Trust</div><div><br></div><div>--- --- ---</div><div><span =
+style=3D"color:rgb(29,29,29);font-family:&quot;Helvetica Neue&quot;,Helveti=
+ca,Arial,sans-serif;font-size:13px">Hello, Tom.</span><div style=3D"line-he=
+ight:1.5;color:rgb(29,29,29);font-family:&quot;Helvetica Neue&quot;,Helveti=
+ca,Arial,sans-serif;font-size:13px">Yes, this is something I can take care =
+of for your client&#39;s insurance appraisal.</div><div style=3D"line-heigh=
+t:1.5;color:rgb(29,29,29);font-family:&quot;Helvetica Neue&quot;,Helvetica,=
+Arial,sans-serif;font-size:13px">Is it just the one painting?=C2=A0 The pro=
+ject will fall within my 3-hour-minimum for a review of the current value o=
+f the painting and document preparation.=C2=A0 The cost will be $1200. ($40=
+0 per hour x 3).</div><div style=3D"line-height:1.5;color:rgb(29,29,29);fon=
+t-family:&quot;Helvetica Neue&quot;,Helvetica,Arial,sans-serif;font-size:13=
+px"><br clear=3D"none"></div><div style=3D"line-height:1.5;color:rgb(29,29,=
+29);font-family:&quot;Helvetica Neue&quot;,Helvetica,Arial,sans-serif;font-=
+size:13px">If your client would like me to proceed, I will need the followi=
+ng:</div><div style=3D"line-height:1.5;color:rgb(29,29,29);font-family:&quo=
+t;Helvetica Neue&quot;,Helvetica,Arial,sans-serif;font-size:13px"><ul style=
+=3D"margin-block-start: 1em;"><li style=3D"margin-bottom:4px">an image of t=
+he painting, the title, medium &amp; size.<br clear=3D"none"></li><li style=
+=3D"margin-bottom:4px">A copy of the original invoice, which I am guessing =
+you may have on file.<br clear=3D"none"></li><li style=3D"margin-bottom:4px=
+">The client&#39;s name and address.<br clear=3D"none"></li><li>The locatio=
+n of the artwork</li></ul><div style=3D"line-height:1.5">Attached is a basi=
+c overview of fees and procedures.</div></div><div style=3D"line-height:1.5=
+;color:rgb(29,29,29);font-family:&quot;Helvetica Neue&quot;,Helvetica,Arial=
+,sans-serif;font-size:13px">If I can be of assistance, I trust you or your=
+=C2=A0client will let me know.</div><div style=3D"line-height:1.5;color:rgb=
+(29,29,29);font-family:&quot;Helvetica Neue&quot;,Helvetica,Arial,sans-seri=
+f;font-size:13px"><div dir=3D"ltr" style=3D"line-height:1.5">Michael Malone=
+y<br clear=3D"none"></div><div style=3D"line-height:1.5"><font size=3D"2">F=
+ine Art Appraiser</font></div><div style=3D"line-height:1.5"><font size=3D"=
+2">MALONEY FINE ART APPRAISAL SERVICES</font></div><div style=3D"line-heigh=
+t:1.5"><font size=3D"2">6121 Sunset Boulevard</font></div><div style=3D"lin=
+e-height:1.5"><font size=3D"2">Los Angeles, CA 90028</font></div><div style=
+=3D"line-height:1.5"><font size=3D"2">1310.570.6420</font></div></div></div=
+></div><br><div class=3D"gmail_quote gmail_quote_container"><div dir=3D"ltr=
+" class=3D"gmail_attr">On Thu, Feb 6, 2025 at 8:57=E2=80=AFAM Paul Cohen &l=
+t;<a href=3D"mailto:paulrcohen@gmail.com">paulrcohen@gmail.com</a>&gt; wrot=
+e:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0=
+.8ex;border-left-width:1px;border-left-style:solid;border-left-color:rgb(20=
+4,204,204);padding-left:1ex"><div dir=3D"ltr"><div><div style=3D"font-size:=
+small" class=3D"gmail_default">Hi Brig, actually the email was from Tom Mac=
+hnik, not me; thanks Tom!<br><br></div><div style=3D"font-size:small" class=
+=3D"gmail_default">Michael Maloney appraised Harold&#39;s estate right afte=
+r he died for tax purposes so the appraisals were low and the recent increa=
+se in prices wasn&#39;t reflected.=C2=A0 It might be more accurate to ask t=
+he Gazelli Art House, which represents the Harold Cohen Trust, for a refere=
+nce for an appraiser.=C2=A0 I&#39;ve cc&#39;d George Barker, there.=C2=A0 -=
+-P<br></div><br clear=3D"all"></div><div><div dir=3D"ltr" class=3D"gmail_si=
+gnature"><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div>=
+<div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr">______________=
+________________<br><br>Paul Cohen,=C2=A0=C2=A0Professor</div><div dir=3D"l=
+tr">School of Computing and Information</div><div dir=3D"ltr">University of=
+ Pittsburgh</div><div dir=3D"ltr"><a href=3D"https://paulrcohen.github.io/"=
+ target=3D"_blank">personal webpage</a><br>______________________________</=
+div></div></div></div></div></div></div></div></div></div></div></div></div=
+><br></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_a=
+ttr">On Thu, Feb 6, 2025 at 9:56=E2=80=AFAM Brigham Bell &lt;<a href=3D"mai=
+lto:brigham.bell@gmail.com" target=3D"_blank">brigham.bell@gmail.com</a>&gt=
+; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px=
+ 0px 0.8ex;border-left-width:1px;border-left-style:solid;border-left-color:=
+rgb(204,204,204);padding-left:1ex"><div dir=3D"auto"><div dir=3D"ltr">Hi Pa=
+ul,</div><div dir=3D"ltr"><br></div><div dir=3D"ltr">Thanks so much!</div><=
+div dir=3D"ltr"><br></div><div dir=3D"ltr">I=E2=80=99ll check in with them =
+Michael Maloney, too.</div><div dir=3D"ltr"><br></div><div dir=3D"ltr">Rega=
+rds,</div><div dir=3D"ltr">Brig</div><div dir=3D"ltr"><br><blockquote type=
+=3D"cite">On Feb 6, 2025, at 2:14=E2=80=AFAM, Paul Cohen &lt;<a href=3D"mai=
+lto:team@haroldcohentrust.org" target=3D"_blank">team@haroldcohentrust.org<=
+/a>&gt; wrote:<br><br></blockquote></div><blockquote type=3D"cite"><div dir=
+=3D"ltr">=EF=BB=BF<div dir=3D"ltr">Dear Brigham=C2=A0<div>Thank-you for you=
+r inquiry. It is nice to know one of Harold&#39;s more important works is a=
+live, appreciated and well cared for. On your behalf, I have reached out to=
+ an appraiser we have used in the past and I am awaiting a reply. If you pr=
+efer, you are welcome to reach out to him as well. Here is his contact info=
+rmation:</div><div><span style=3D"color:rgb(29,29,29);font-family:&quot;Hel=
+vetica Neue&quot;,Helvetica,Arial,sans-serif;font-size:x-small">Michael Mal=
+oney</span><br clear=3D"none" style=3D"color:rgb(29,29,29);font-family:&quo=
+t;Helvetica Neue&quot;,Helvetica,Arial,sans-serif"><span style=3D"color:rgb=
+(29,29,29);font-family:&quot;Helvetica Neue&quot;,Helvetica,Arial,sans-seri=
+f;font-size:x-small">MALONEY FINE ART</span><br clear=3D"none" style=3D"col=
+or:rgb(29,29,29);font-family:&quot;Helvetica Neue&quot;,Helvetica,Arial,san=
+s-serif"><span style=3D"color:rgb(29,29,29);font-family:&quot;Helvetica Neu=
+e&quot;,Helvetica,Arial,sans-serif;font-size:x-small">2680 South La Cienega=
+ Blvd</span><br clear=3D"none" style=3D"color:rgb(29,29,29);font-family:&qu=
+ot;Helvetica Neue&quot;,Helvetica,Arial,sans-serif"><span style=3D"color:rg=
+b(29,29,29);font-family:&quot;Helvetica Neue&quot;,Helvetica,Arial,sans-ser=
+if;font-size:x-small">Los Angeles, CA 90034</span><br clear=3D"none" style=
+=3D"color:rgb(29,29,29);font-family:&quot;Helvetica Neue&quot;,Helvetica,Ar=
+ial,sans-serif"><span style=3D"color:rgb(29,29,29);font-family:&quot;Helvet=
+ica Neue&quot;,Helvetica,Arial,sans-serif;font-size:x-small">1310.570.6420<=
+/span><br></div><div><br></div><div><br></div><div>Tom Machnik -- Art Studi=
+o Manager -- The Harold Cohen Trust</div></div><br><div class=3D"gmail_quot=
+e"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, Feb 5, 2025 at 9:01=E2=80=
+=AFAM Brigham Bell &lt;<a href=3D"mailto:brigham.bell@gmail.com" target=3D"=
+_blank">brigham.bell@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D=
+"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px;borde=
+r-left-style:solid;border-left-color:rgb(204,204,204);padding-left:1ex"><di=
+v dir=3D"auto"><div dir=3D"ltr">Need advice on appraisal. I asked Sotheby=
+=E2=80=99s, but they don=E2=80=99t have an idea on whether to appraise it a=
+s art or technology. Should I ask an auction house, or is there an AARON ap=
+praisal specialist somewhere?</div><div dir=3D"ltr"><br></div><div dir=3D"l=
+tr">Any suggestions are welcome.</div><div dir=3D"ltr"><br></div><div dir=
+=3D"ltr">Again, not planning on selling this anytime soon, as it is conside=
+red important to our whole family.</div><div dir=3D"ltr"><br><blockquote ty=
+pe=3D"cite">On Jan 30, 2025, at 3:59=E2=80=AFPM, Brig &lt;<a href=3D"mailto=
+:brigham.bell@gmail.com" target=3D"_blank">brigham.bell@gmail.com</a>&gt; w=
+rote:<br><br></blockquote></div><blockquote type=3D"cite"><div dir=3D"ltr">=
+=EF=BB=BF<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div class=3D"g=
+mail_default"><div><p class=3D"MsoNormal" style=3D"color:rgb(34,34,34)"><sp=
+an style=3D"color:rgb(39,78,19)"><font face=3D"verdana, sans-serif">Hi,</fo=
+nt></span></p><p class=3D"MsoNormal" style=3D"color:rgb(34,34,34)"><font fa=
+ce=3D"verdana, sans-serif"><br></font></p><p class=3D"MsoNormal"><font face=
+=3D"verdana, sans-serif"><span style=3D"color:rgb(39,78,19)">Do you know th=
+e best place to get an=C2=A0appraisal of AARON paintings?</span><br></font>=
+</p><p class=3D"MsoNormal"><font color=3D"#274e13" face=3D"verdana, sans-se=
+rif"><br></font></p><p class=3D"MsoNormal"><font color=3D"#274e13" face=3D"=
+verdana, sans-serif">Most importantly, I need an appraisal of <i><a href=3D=
+"https://www.computerhistory.org/revolution/computer-graphics-music-and-art=
+/15/231/745" target=3D"_blank">Meeting on Gauguin&#39;s Beach</a></i>, so t=
+hat I know how much to insure it for when shipping it from California to Co=
+lorado.</font></p><p class=3D"MsoNormal"><span style=3D"color:rgb(39,78,19)=
+"><font face=3D"verdana, sans-serif"><br></font></span></p><p class=3D"MsoN=
+ormal"><span style=3D"color:rgb(39,78,19)"><font face=3D"verdana, sans-seri=
+f">Thanks in advance for any help,</font></span></p><p class=3D"MsoNormal">=
+<span style=3D"color:rgb(39,78,19)"><font face=3D"verdana, sans-serif">Brig=
+ham Bell</font></span></p><p class=3D"MsoNormal"><span style=3D"color:rgb(3=
+9,78,19)"><font face=3D"verdana, sans-serif">1-720-339-6103<br></font></spa=
+n></p></div></div></div>
+</div>
+</div>
+</div></blockquote></div></blockquote></div>
+</div></blockquote></div></blockquote></div>
+</blockquote></div>
+
+--0000000000007c54ac062d7e3733--

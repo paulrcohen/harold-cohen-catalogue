@@ -1,0 +1,230 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a10:b092:b0:5c7:f970:fbca with SMTP id y18csp1750078pxa;
+        Thu, 6 Feb 2025 11:20:29 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFWpB+14IOaGaJ7qMvSjRgdTOEm/XmisALGWg5R4REnyhxEkM2ru+waycPO9NC2FgFr+3zY
+X-Received: by 2002:ac8:7f8d:0:b0:46c:7152:317e with SMTP id d75a77b69052e-47167ad1fc1mr4834241cf.42.1738869629239;
+        Thu, 06 Feb 2025 11:20:29 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1738869629; cv=none;
+        d=google.com; s=arc-20240605;
+        b=BFjPYSKYK+jI1NIxqRwRgGAs2fEeLOtc6ZmlD3d4lSDW7LdOrHX3vuIckZSF0+CXSy
+         1DIr3kBr+aIWKb57+FXVkW18cG1KGdTHdpjtFvWJYbA+WXnDuFa0d6Y+Bzy/a8nwu729
+         zJi7MARbqUF3g/+fMY16ybD/zKcP48WYrWJBZeIxXfnqtLBKqqi5nUWYULBejwHX4Bf0
+         upMMItIA6v75nFu4ywAYG9e8TGgPhKqSu2VvaEj0cGAWL03kYHFjfJGkvMVY3dVJ1Qyz
+         ykHCSulkjxmCKb6CEaq+ou47uhVS8Mt0hLz0m1BdhSqvK1sl5aKpeQNiY8eGnibg7S50
+         8ORA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:subject:references:in-reply-to:message-id:cc:to
+         :reply-to:from:date:dkim-signature;
+        bh=UfSAq0rl3JGQQW/EBoOxb8x60ZTXKCC/qiwNAs5aK0A=;
+        fh=5TzOt5XZ6KAJrP9BWqhnkaQf/oVP2jBjoQAbwjZykg0=;
+        b=NcDA2TN1/hyN6KpSlDs4ZqEoSBfL9Q7IdOKthS4RodBK/mkRZjg7//qrzSeNMtoHwL
+         3QDAkbS5Np2dqVtrbjP8ZY/t1feZbv8aIJ3Ek+g5oI4zm7ftOe94Pw+NnaJQ4nI8ZzLm
+         gKDSkT8Ol9UbaL+iWjzabS2ChpTMLCQwYJn74ByR3DiNIhz9AtdfOWcTAx1rutYuBpPC
+         3ecI4qyrzJeskZT4/JHaH8ywAnkAXsg7wgBgtL/6g1NgnOeQCtqPdKH8QSzobpjK2TwF
+         6iIzQMALQ5CxbesZsZUCarJ3oeN5ZUF/Ow37HKiG5XLDnbtJA6PkJeNc9FVnXuc4quto
+         Q+SQ==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=DoOVPMC3;
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.129.124 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+Return-Path: <zipnpup@yahoo.com>
+Received: from sonic309-14.consmr.mail.bf2.yahoo.com (sonic309-14.consmr.mail.bf2.yahoo.com. [74.6.129.124])
+        by mx.google.com with ESMTPS id d75a77b69052e-47153beb8a7si15960121cf.654.2025.02.06.11.20.28
+        for <paulrcohen@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 06 Feb 2025 11:20:29 -0800 (PST)
+Received-SPF: pass (google.com: domain of zipnpup@yahoo.com designates 74.6.129.124 as permitted sender) client-ip=74.6.129.124;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=DoOVPMC3;
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.129.124 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1738869628; bh=UfSAq0rl3JGQQW/EBoOxb8x60ZTXKCC/qiwNAs5aK0A=; h=Date:From:Reply-To:To:Cc:In-Reply-To:References:Subject:From:Subject:Reply-To; b=DoOVPMC3Sqk8i72iWhF74FZ4FX83di8s+vhPkjISUK2KCVDAtE8EU88tNTzo4RTrbO95gBJAF+TUa+nblTB1moL2WteDsg+PMIAwvjxISjMZHUCQ1SN2/jvvUNTxGRIJYLJEq9HNTzvHPNLppqKbUZZiGbjueGMvbV4iVjoMFTwvAglQT6jTskgC3FStCWLBTFhTSCkioseen1wNqMyOaqMXvH4O0J2EKp9ZC3IM4v7848SbAV+5fKoiiqV27qX8kT61njwmH8zsB1oaMQDz86qtdKY45dqGxoHOdyOBo4acflVkt5/zU0oIzMzXWzG/VvM63Qcrgvno0nySm1JSzA==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1738869628; bh=pbzfXowYnmuVniV35plxjVRbtt2fZWzCxkFlouhaUok=; h=X-Sonic-MF:Date:From:To:Subject:From:Subject; b=sVUVlrkrRaYTKqrpV366P44wUUKZFjmk5DzxFDqIHXLEBLj2KEB7viPdB9ui9VKuCkOkewWYwZZthIn5jfdtVJ2CuSIUUoyVsreIC/6ii0XGibM7e9scLpDnGbsHjxqfs23C/2bC5XQ95l0EOuwlhejoofhI/ZJ+WBAQ8tGJZFOYP+2+9DXsRZfhr0XDFWuE+HzA0/KPnRLNTEd8y4gjQwMKnp1W1rQa7dNvsDefbyWl2QRwqMroCqqF06O1rxcpZkjNTdmNSzfOxrv3xwfbGkPpzh5+je58vFSo08cUZ518WW3+birPk5IHqrn7OkmqdtJVvLizxr5WPLowAdVq7Q==
+X-YMail-OSG: c1Y1V0gVM1lrW9Nkp7zdjYsiwLlkIb7s9kisRBUYVCeIZrSAa.vtBi7rE7t4fPs
+ 79mtZ.YCeCESVy4mAMWIP_STspJ2ulxVUy9yi_VIBaxqU99mzvUSXz2haorx7seVgqh6BKqpPm5C
+ gSp8meTcbthIfwAak0K2TuRtLMXWtVRXIFgaCnGkGvvRQUvqRjiVIt38oPjYawqBIqo.dWGgPtO.
+ DDws2S8QDdcI48U1sfFjM1Z5kemdlH4DXkeXsQbmP14cH.VNA8B5DNKXnHPDR8Ypv1bRiYlzkCEU
+ ekJzdPhN5HugpzAaoOXtwymPx.vv8VFMIPDLCKeeZxwsyQ2NXy6l6HruiLhbFCL1qBKuZGc3rkpx
+ FaHvq3Bsxd2RFOmDs_jl1Ir6Z85aZQbUCI1tf0D8QfSPp9xhjLh4rLqFZ7OPeyfTWamtBtQ4qwVp
+ al0K81i2j.vgp2ScjdPKx4J_gXQCERuPkTho1A7EdH4o15C9SbU5ACSMeVLISlxGBRMyVoq5d_ww
+ yaoiux5oYF2Ud6y.UpHSaHHaOluakSDmPZVPCLC55ncFc1QA4TfpmhCHVl81jnqMHQ9Ml__9xYXa
+ D8_N0RXHQF.XIcXGY2eUd6vbYY7n3tQJpo0H_wR2szdMSOScPMufqVPhklyUwvUTE0kjOpwKyobh
+ 73sRW_Dbz3N6DYlIJO1gE4rzW0S1Xwp3CrkdI9Tx71nA_.zEBrcD5GmLtq5Ifmx9yoiekcOrgeYp
+ joaigk4XhHcy0fvDIBljlrVVFdwcoMmlCjehW_vxoUYVxhG7HwqMWSbYdGTUvYTlK7kK82DZGVil
+ _Z2gpo2qT39Psuo2TIZ5azDL8LixbAi7S6Vrax9Ld3_NbXba6NR9qbzMqsjfX1eiPHmGGaDJjNE9
+ f6EDlEbiq4mFk5oPIhfj489HteNfMBidRjvDCK5IMLXpW1u1OXKshsKvlHjWEW7nCFojpV275u4F
+ j56oIsLHY8.5ML1aRVyXlxH.5ZIQs31IQr7val1KZJUdZ25EjQ0FAmY7lcOrsJQL4sKfRNgwulfD
+ Tzf7Uvs5xdGIPKCZ4.IrHHJLibB5ody8iW7wvBzSr5Dlu6PEuMz.D2uqSYl0Ub5vDYIiMNnefzct
+ SQzB8_idx7f8AH8e1Qto1pZ450nNGnUS7.BbpGIwPMFb.mDS5yz1DKkTK82q9mEcyZVnbX3Arq4Y
+ uLUxsib4bHsGqGlg7isfBPs8WOR5JuNGZZx0CUvM.sLX6TAZ5N7CIYbDptyCvIf4HqyezEQ.rJHL
+ CvtyQrp8FSGlWx_9Hmo1.iP1DXUw0ZO1YJfXeGfb3rpTKRbBkxdfj07qQ6QN9e7dlHNG00oHKOAh
+ EghMc9HZLlT2xVRlQaIOxYBZFC66ogAsmSwGimgW5BtKbI1dOXTl7_jZI.ylE1vWZaCaN53X1C9T
+ n3G.ISOh9uM1SNOwc7dwCvyaVWWvkK1Inzq14fx6aPs7ZS9kF4F9S7T2_R9qduqYOeI3NXGD7rMD
+ Q7Vkcbf9.LVUegFGilHxWBVnMnC4rPPAgokXyrKCfGX0r3h2y6TlEOq8Z0cCkC2qrJXh4wiVO5lh
+ D0IFT2cJVQLc61f2sAzEsNtupSREGEa_ezCJhuOoFIe0kClotOjwpQN_k9kNEE0xDUsPs8IKnXJG
+ GguR9pKzTPUnUtvt_gSynRXI2YCtNkVjMmtUvoEBjVpVSagpCtmggVNpg2_D.m1ZKlBJoxbrUVfP
+ IbVoiKTa2S97AvgsTb8lGBCaI8e6zDxFYE8znfxfQFYwM9GGcaa9V5tYT.LQpUeZWKiUV1wr0yDZ
+ sK8rJPmcXnHposlU6liKgb4p_u5rdD5kJSDBX3k0UBblxAnYnvS7CA7a4.wFQXmCqTd1diZ3M.L8
+ jogyA8EDo.48brcmqadnBe7pM02SsADLVmGziYJUhmnBVFfgCziox9.9vnKgvUl6DGvXfvvvmefc
+ BKFm6ClwFvf.KjLUbDFZWzEv0LUrdvtofrOikb6tk1DqMnbG8.XZUkz9cHxDynxzmxzpkZf1yQuE
+ _kTceiHNFXJlymQ3X4JIQynzrdwVqLl978sEoyQkqssCd_ThGDsrlWVKUlieIYOtvj9qVcby.Y0e
+ 7g79nC5fsN1WV83HqFeoV_LpOj3nzT7cEeCAP1oSNDRIcfy7ibvuHqEnn1Q9B8A0LmXtoG3zwWQM
+ Wed4UPv7HUDpfK6HUr.l5H.W0aoZpxJw9baInyYe7SgKgvl_NB9tDagQTuHZCowUwhhtuSq8Ov8i
+ 3vPGIhEQZKYsrnZ2AEXqy_Ul3E6NnDydddW7PprA6T.aRhfx.oRlmpfhZ5JTPx2mtdCkitfuLWqH
+ fqGrZrsEzw4vxa17SxW8jpXCfBfF7776Lyfeuuic0iA7aDIL.ZaW1n7lRTCc-
+X-Sonic-MF: <zipnpup@yahoo.com>
+X-Sonic-ID: 5523f7ca-d0a2-4658-801c-1c47b43d19d9
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic309.consmr.mail.bf2.yahoo.com with HTTP; Thu, 6 Feb 2025 19:20:28 +0000
+Date: Thu, 6 Feb 2025 19:20:21 +0000 (UTC)
+From: Thomas Machnik <zipnpup@yahoo.com>
+Reply-To: Thomas Machnik <zipnpup@yahoo.com>
+To: Michael Maloney <michael@maloneyfineart.com>
+Cc: Paul Cohen <paulrcohen@gmail.com>, 
+	Harold Cohen Trust <aaron@aaronshome.com>, 
+	Paul Cohen <team@haroldcohentrust.org>
+Message-ID: <1081380080.5157249.1738869621070@mail.yahoo.com>
+In-Reply-To: <CACKYvS4=Usc_CK-ep8dU4=-M2xZ0=wzRGSSM3Cj9hCm_HfacPA@mail.gmail.com>
+References: <1164647764.5017160.1738832245946.ref@mail.yahoo.com> <1164647764.5017160.1738832245946@mail.yahoo.com> <CACKYvS4=Usc_CK-ep8dU4=-M2xZ0=wzRGSSM3Cj9hCm_HfacPA@mail.gmail.com>
+Subject: Re: Harold Cohen Trust appraisal request
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_5157248_729595254.1738869621068"
+X-Mailer: WebService/1.1.23187 YMailNovation
+Content-Length: 7570
+
+------=_Part_5157248_729595254.1738869621068
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+ Thank-you Michael, for your detailed and quick response. If he plans on pr=
+oceeding he will contact you directly.
+Thanks again,
+Tom=C2=A0
+    On Thursday, February 6, 2025 at 08:08:23 AM PST, Michael Maloney <mich=
+ael@maloneyfineart.com> wrote: =20
+=20
+ Hello, Tom.Yes, this is something I can take care of for your client's ins=
+urance appraisal.Is it just the one painting?=C2=A0 The project will fall w=
+ithin my 3-hour-minimum for a review of the current value of the painting a=
+nd document preparation.=C2=A0 The cost will be $1200. ($400 per hour x 3).
+If your client would like me to proceed, I will need the following:  =20
+   - an image of the painting, the title, medium & size.  =20
+
+   - A copy of the original invoice, which I am guessing you may have on fi=
+le.  =20
+
+   - The client's name and address.  =20
+
+   - The location of the artwork
+Attached is a basic overview of fees and procedures.If I can be of assistan=
+ce, I trust you or your=C2=A0client will let me know.Michael Maloney
+Fine Art AppraiserMALONEY FINE ART APPRAISAL SERVICES6121 Sunset BoulevardL=
+os Angeles, CA 900281310.570.6420
+www.maloneyartappraisals.com
+
+
+On Thu, Feb 6, 2025 at 12:57=E2=80=AFAM Thomas Machnik <zipnpup@yahoo.com> =
+wrote:
+
+Dear Micheal,This is Tom Machnik of the Harold Cohen Trust. Back in 2016 an=
+d 2017 you did an appraisal of our inventory after Harold Cohen=E2=80=99s p=
+assing. We have a request from an individual who has one of Harold Cohen=E2=
+=80=99s paintings. He is planning to move the painting from California to C=
+olorado and is seeking an appraisal of the work in order to insure it prope=
+rly for transport. Is this something you could do for him? If not, do you h=
+ave a recommendation of someone who could a proper appraisal?
+
+Sincerely,Tom Machnik =E2=80=94 Art Studio Manager =E2=80=94 The Harold Coh=
+en Trust
+
+
+--=20
+Michael Maloney
+Fine Art AppraiserMALONEY FINE ART APPRAISAL SERVICES6121 Sunset BoulevardL=
+os Angeles, CA 900281310.570.6420
+www.maloneyartappraisals.com
+ =20
+------=_Part_5157248_729595254.1738869621068
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head></head><body><div class=3D"ydp86aa09a5yahoo-style-wrap" style=
+=3D"font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px=
+;"><div></div>
+        <div dir=3D"ltr" data-setdir=3D"false">Thank-you Michael, for your =
+detailed and quick response. If he plans on proceeding he will contact you =
+directly.</div><div dir=3D"ltr" data-setdir=3D"false"><br></div><div dir=3D=
+"ltr" data-setdir=3D"false">Thanks again,</div><div dir=3D"ltr" data-setdir=
+=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"false">Tom&nbsp;</div>=
+<div><br></div>
+       =20
+        <div id=3D"ydp86aa09a5yahoo_quoted_9523440016" class=3D"ydp86aa09a5=
+yahoo_quoted">
+            <div style=3D"font-family:'Helvetica Neue', Helvetica, Arial, s=
+ans-serif;font-size:13px;">
+               =20
+                <div>
+                    On Thursday, February 6, 2025 at 08:08:23 AM PST, Micha=
+el Maloney &lt;michael@maloneyfineart.com&gt; wrote:
+                </div>
+                <div><br></div>
+                <div><br></div>
+                <div><div id=3D"ydp86aa09a5yiv9536553701"><div><div dir=3D"=
+ltr"><div dir=3D"ltr">Hello, Tom.<div>Yes, this is something I can take car=
+e of for your client's insurance appraisal.</div><div>Is it just the one pa=
+inting?&nbsp; The project will fall within my 3-hour-minimum for a review o=
+f the current value of the painting and document preparation.&nbsp; The cos=
+t will be $1200. ($400 per hour x 3).</div><div><br clear=3D"none"></div><d=
+iv>If your client would like me to proceed, I will need the following:</div=
+><div><ul><li>an image of the painting, the title, medium &amp; size.<br cl=
+ear=3D"none"></li><li>A copy of the original invoice, which I am guessing y=
+ou may have on file.<br clear=3D"none"></li><li>The client's name and addre=
+ss.<br clear=3D"none"></li><li>The location of the artwork</li></ul><div>At=
+tached is a basic overview of fees and procedures.</div></div><div>If I can=
+ be of assistance, I trust you or your&nbsp;client will let me know.</div><=
+div><div dir=3D"ltr">Michael Maloney<br clear=3D"none"></div><div><font siz=
+e=3D"2">Fine Art Appraiser</font></div><div><font size=3D"2">MALONEY FINE A=
+RT APPRAISAL SERVICES</font></div><div><font size=3D"2">6121 Sunset Bouleva=
+rd</font></div><div><font size=3D"2">Los Angeles, CA 90028</font></div><div=
+><font size=3D"2">1310.570.6420</font></div><div><font size=3D"2"><br clear=
+=3D"none"></font></div><div><font size=3D"2"><a shape=3D"rect" href=3D"http=
+://www.maloneyartappraisals.com/" rel=3D"nofollow" target=3D"_blank">www.ma=
+loneyartappraisals.com</a></font></div><br clear=3D"none" class=3D"ydp86aa0=
+9a5yiv9536553701gmail-Apple-interchange-newline"></div><div><br clear=3D"no=
+ne"></div></div><br clear=3D"none"><div id=3D"ydp86aa09a5yiv9536553701yqt64=
+499" class=3D"ydp86aa09a5yiv9536553701yqt5788757453"><div class=3D"ydp86aa0=
+9a5yiv9536553701gmail_quote ydp86aa09a5yiv9536553701gmail_quote_container">=
+<div dir=3D"ltr" class=3D"ydp86aa09a5yiv9536553701gmail_attr">On Thu, Feb 6=
+, 2025 at 12:57=E2=80=AFAM Thomas Machnik &lt;<a shape=3D"rect" href=3D"mai=
+lto:zipnpup@yahoo.com" rel=3D"nofollow" target=3D"_blank">zipnpup@yahoo.com=
+</a>&gt; wrote:<br clear=3D"none"></div><blockquote style=3D"margin:0px 0px=
+ 0px 0.8ex;border-left-width:1px;border-left-style:solid;border-left-color:=
+rgb(204,204,204);padding-left:1ex;" class=3D"ydp86aa09a5yiv9536553701gmail_=
+quote"><div><div style=3D"font-family:Helvetica, Arial, sans-serif;font-siz=
+e:16px;"><div dir=3D"ltr">Dear Micheal,</div><div dir=3D"ltr">This is Tom M=
+achnik of the Harold Cohen Trust. Back in 2016 and 2017 you did an appraisa=
+l of our inventory after Harold Cohen=E2=80=99s passing. We have a request =
+from an individual who has one of Harold Cohen=E2=80=99s paintings. He is p=
+lanning to move the painting from California to Colorado and is seeking an =
+appraisal of the work in order to insure it properly for transport. Is this=
+ something you could do for him? If not, do you have a recommendation of so=
+meone who could a proper appraisal?<br clear=3D"none"></div><div dir=3D"ltr=
+"><br clear=3D"none"></div><div dir=3D"ltr">Sincerely,</div><div dir=3D"ltr=
+">Tom Machnik =E2=80=94 Art Studio Manager =E2=80=94 The Harold Cohen Trust=
+</div></div></div></blockquote></div></div><div><br clear=3D"all"></div><di=
+v><br clear=3D"none"></div><span class=3D"ydp86aa09a5yiv9536553701gmail_sig=
+nature_prefix">-- </span><br clear=3D"none"><div dir=3D"ltr" class=3D"ydp86=
+aa09a5yiv9536553701gmail_signature"><div dir=3D"ltr"><div dir=3D"ltr">Micha=
+el Maloney<br clear=3D"none"></div><div><font size=3D"2">Fine Art Appraiser=
+</font></div><div><font size=3D"2">MALONEY FINE ART APPRAISAL SERVICES</fon=
+t></div><div><font size=3D"2">6121 Sunset Boulevard</font></div><div><font =
+size=3D"2">Los Angeles, CA 90028</font></div><div><font size=3D"2">1310.570=
+.6420</font></div><div><font size=3D"2"><br clear=3D"none"></font></div><di=
+v><font size=3D"2"><a shape=3D"rect" href=3D"http://www.maloneyartappraisal=
+s.com/" rel=3D"nofollow" target=3D"_blank">www.maloneyartappraisals.com</a>=
+</font></div><div><br clear=3D"none"></div></div></div></div>
+</div></div></div>
+            </div>
+        </div></div></body></html>
+------=_Part_5157248_729595254.1738869621068--

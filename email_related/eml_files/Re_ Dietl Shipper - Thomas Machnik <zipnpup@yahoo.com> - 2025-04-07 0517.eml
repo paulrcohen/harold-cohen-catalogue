@@ -1,0 +1,554 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a10:5c8:b0:5ec:db95:1ae4 with SMTP id p8csp6313712pxt;
+        Mon, 7 Apr 2025 02:17:44 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHaYWidoeOU5pUeub6TwOUQ7B7xKEyug/uM7iy/PWOMmdjNPaKxjynSMcbfMAZK+omGB3i6
+X-Received: by 2002:a05:620a:1918:b0:7c5:47e0:e705 with SMTP id af79cd13be357-7c775a10253mr1479396285a.24.1744017464538;
+        Mon, 07 Apr 2025 02:17:44 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1744017464; cv=none;
+        d=google.com; s=arc-20240605;
+        b=c6YK0w/YMVtC/lI85jKC9DIPss8dmQXptg8ulAjEIGe6KBfOQD5gKucJk/wDm0J5Lx
+         Lvx18bzfNfDEKtzWAAW+gToymcJPJspwgaGhorVr5vIMQ1QNLb0WtiJk4ONLYhl2bXA3
+         fpmSeIVWlpMiN/R8VRncQUAYf6uwbd+Wy45us+tkJbb0E5j0ubyuQ9ptJxIogYkd8AQ6
+         qUTOSAIH/dCKd+5SIwv0Rm+FAaW+AF4KU29+JpXF2TUsZ0XGR5N/Kky1H6EXS2Jts+hH
+         95PMCdNNCGylMkHQQDYUfMSpXzVt8yFgUM2w1rEtLtnhXU8aH9yDqVuxNiCWs0ibFJEa
+         IbaQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:subject:references:in-reply-to:message-id:to:reply-to
+         :from:date:dkim-signature;
+        bh=2rS8yxyKyCXE2kYzH2UxsebfRheTY1O1jRo0F4y+miQ=;
+        fh=+ZSZzLtrqjYAnpssQkgK417RpHpTSSzuH+J6PqTYzzs=;
+        b=LwA0i/8kkjEus49gPqcUBOLhJjHnKLNjEKtTyFA07RL9CdTp0vAcxOMSlRwJQr+uQ/
+         4DJYrd1ECEkpx/55J3UNiTs1f9JzklV5dZgTRJU8yHQAo1SnFWDtO6xjaMaPpE08vFiW
+         by5DpLCrUJSNDVvlyBgT7JrE9WkFgkuFg8CZMHb2WqZTAYZy5sI3bHpxhhU6dJd/+l1Z
+         5pkWHkMAw8i0oWupWfANQv7SbdKE1+IGzOlCR5d4tvUiq0ZW74LI2aVUHIR1KRMBIvvi
+         JTp/lq5N3PbpUiE1a10TKZvXbBp47quegVNF7cBeVIiDq1UogENpSEzJ7Yxpbsw7Mg8P
+         Vl1g==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=M9pfzEet;
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.129.41 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+Return-Path: <zipnpup@yahoo.com>
+Received: from sonic301-2.consmr.mail.bf2.yahoo.com (sonic301-2.consmr.mail.bf2.yahoo.com. [74.6.129.41])
+        by mx.google.com with ESMTPS id af79cd13be357-7c76e74c795si812081085a.23.2025.04.07.02.17.44
+        for <paulrcohen@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 07 Apr 2025 02:17:44 -0700 (PDT)
+Received-SPF: pass (google.com: domain of zipnpup@yahoo.com designates 74.6.129.41 as permitted sender) client-ip=74.6.129.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=M9pfzEet;
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.129.41 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1744017463; bh=2rS8yxyKyCXE2kYzH2UxsebfRheTY1O1jRo0F4y+miQ=; h=Date:From:Reply-To:To:In-Reply-To:References:Subject:From:Subject:Reply-To; b=M9pfzEetS5TlGl6b7OIFgMAWmzPPG01/30aUYhh6168NntmjVlxm8c2e6WbbPSEDJlKz0QQVv8edIk/uujb58N1JRTr1nlNIkXrNojoikSlCZagAEiT2szwCieEm2yzBU2W2X2LueTG4L39kPQDJcc/KU558y5r2VZk9CylMAEowVqLGLVwycjhJMh01i49QyDARUkt9tFZHMGN0+CZ8aKVaiAkSbGi75UdzS9In4q/0DinPNgoziTlvjpzZ/mJa4r4VNJxTx1lrHnyxGKtVwAFSiklq2DmkQfjaZ+iPXBGU6rQfD/p8cHNEDBBGKNTJh97zvqkPp8BbEIBZhQj4kw==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1744017463; bh=x7bbM6EyrK1phxCzW2DMMaAEgQH0BQbRhN+8gUoSUDG=; h=X-Sonic-MF:Date:From:To:Subject:From:Subject; b=ndc8b1q6xe/YpgWcC3AobpswV/VKkvAyvs9yMQC7JVbHGSDIt2O+L17s+dka0R4PCQuipDOyeWpv7lp99vW/LcAcuyxEB+XRvytrqgaaa1/yGGKHBI+yaYJETJS9XEuHspXC8DxynT9n1i4NeWXn+1won8HE5kPaFytgVnekevS+8NIxmzJK0ZzBbeTF1X8E+jIybeo/EoO2tR7pN1cga7p/kslwu1TqUSYyq1CC27SSBYiNoHHwB5LHtEIbB2EP+pF9L6MtWeDV2Ck8SiYW6gRjFO2qAnTyoSoWoVstd51TdemYGSIMlS2qFwCjGT5v35q+7msEnreBxMgjGVYNmw==
+X-YMail-OSG: b_ZVEnoVM1mffUD7R9Evv2FyVTITgJbMAvY.o9Yr37AaC_47IWOmefPJZXODfOt
+ Xr.4vE6bPyrunswzDxjXYgCcRls9nQZCbOPf54R8XKMzP84ID9FZv_KmljVZIr9XpaKkYO9PUtCg
+ awXghkrtrRAJutBLcSujHeAsHU1lp4nT1h4rycw1d.dcmnXSCuaujH3lQgJBTTcYlDbvIV3EbyZm
+ GAWAdTagKtItzfmsIqMw1z3umyhJLo11LXJuTWfP4qwqUzbq3f7Use6V15lPTePV5UGnU508SKY7
+ Sw8rQKQzNHvpA.amzEIosAYjCxBoT1aGg5RltbsuRjlDLzDTDrXpq18372dzN2fxAZgQCHk10jB.
+ smluF4t.zrCcIca92LT1CpAD9gebfAluHlZv3YUsk5q.nvcDpkjwyZzlsG0z5WbfPJiPOOC8aMIm
+ jiAi_Ae6eN9HcrqMhH98sZ0debmVC_.fpgMUBhnRbiVzHqt_ZDViDRCEeRwpEcQhQFasTeOO7Apy
+ v.EtZTCN96XO26qelh8EMxaEZ15T4pvPzTspPchGx1_AtgD.K1F8gTCZe7YjpoR3HL78pCQyMN4Y
+ irbIQTdEcuWv3iw8a8bdNBQtLuLbl5aM1xXg4j9yvsclrTtjlvLj16VtbHTsy5MAgR4r1OJk8rHh
+ a.NJiN631XsM1Gl0LiIz4SXmMd4lGya.g4IG6OkjzYyWYvS9.82V1oRqMuHkP37TNcfzNHA3NECv
+ In8J.Dj6u0x2FZ539SeKDnydYMmizzm_jy9hxAunDpt4t1rTB11mxcxT7sUnCZzZ90pHyHs0TSPA
+ XvzgWvcr4fqaZk.nAdJXFohVli_AGVNk162O47tFGzAZH4jWkwsL40c3xAFhQoUCi5nBYtbffJY6
+ 2UOl53iPUJpOc588A3NT23RuLATx6WY5B85WVtWF9ir2m5tZUW61pXaPNiFjQuskSpCM3PvAbW8d
+ NHvXlp8qMI5MGInpN7zcm8yy.rjXsAAOmZBv2MfW.x0x.uPu2A2TayKg_lEKGq30kbomTpchqcjE
+ Ev4PqVygV6bljsj_RdidQinVax8lAMRi9L3ebbV6ULzH_fGY..ADJ5VDSVMVcjsUkqAsc6iXiGlL
+ uCPFBc8q0RaUjJOJcbDLP22vhiHQmXzsxVq_50nVQslC.uPbBaOvrdtzyYz.P8T_JdcgTkBEtCyC
+ iFzVToK1pXCTIGyv4mbiMe0EM30ZLbsimMbUDtUUePhwRQMcCFaJZSgr9hw9svYhnkJ1cycudfz3
+ f2bT1jxPldC48txKWz2qhzw6SNqI4Bp2Q7Stv10VKcG0A2.ryccfT8fo.x.xxSHWiwDpFd_D9oiH
+ .xKRWijZjeTuBqDn43vUG2F..vnhPf6Z3ZTzSItMTClnKopGVWPpBgM07Z6CGyWP6A_lEQhA1evt
+ ShwI9G1K4TR8TtY5Kg9.DJ0UEsUdN1U.nq5n.uRZqMtOAcYFLF4nfypJ4B6odT7sGUBqPr8g_cZP
+ mK1pjlT08giYabxL_gHau6QDYowFwv2t9Y5SGUUjvTwJLx.T.2F5zvHFI6_oaKkPtHksnOW9NFy2
+ 6vd1ceoIZV0vI.UW7cbaI2gtnEiNdQ6IrakZWl3zxbqdHSXboUedsTDnVkxRi_MpLJEZN7bEh_Df
+ pir6zuAzcQW_cVMVBKMEwlwhVTy6.yEFVGQdohzN9hb3Srav7ze7AJXxwvOSdABUM_0Wqkhz16ql
+ oj9IUk14TCofQOXILQnMOBbnVJhmCu6vSTAHGnvasQyOA1Md23qjvjyCVTzFBC9ezxeHFOJn8Y9R
+ 2w2NRLvm665.DjJwykPtyhCwfOIoQ1aBqCkHnFHcdaOIX9SKex_Ip0hjTpCiinmht2re5oEkvkCa
+ jX1KgdXMlwCNuyVc1xIoz2ftLJSrCyQj606dshpmJv2QhjCbJXJz_sDozEK5fqjBN0E.zfNnYsAz
+ OaIDqU9C.UlDy3x19l07Uq2gxe83nYV73CamA23RN6jaxkpaOJS_svkbD6PXzSJW1wTtwUU4GNlZ
+ sK1nwVBfKqWLg_dQhwHDDFZWAblBluDgFhc1zjPHNfIxlR3lYHvuVVng2w8yZp2wfmhFCm4t2T5Y
+ 09AI7Fhbvq9XKYR.uJ2d_K4fxlxarwF0_I66xk_scryIb9qw6gFGBElxPF1BnZKoOJ3o99cNKAgn
+ LGeJduciNYa19722vauYB27Wmb6NjvXdHHxnTa_GADMiUvGsuSN3YdCCzbEAoK79NeDeTWUmmZ86
+ BsbtJBp1ynSXJbbpDD567Oz3cYxJ89Iem7aJarBmvTkvxiBZvJ9t1z.74nlwWyBjFXVF4zYtw1Rl
+ i3GabG7K2nzU.O99ib1zG6qjMzwcRdp4HDtbGARM-
+X-Sonic-MF: <zipnpup@yahoo.com>
+X-Sonic-ID: f38d351c-be4f-4d25-ac30-f2bfac93bdd7
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic301.consmr.mail.bf2.yahoo.com with HTTP; Mon, 7 Apr 2025 09:17:43 +0000
+Date: Mon, 7 Apr 2025 09:17:39 +0000 (UTC)
+From: Thomas Machnik <zipnpup@yahoo.com>
+Reply-To: Thomas Machnik <zipnpup@yahoo.com>
+To: Paul Cohen <paulrcohen@gmail.com>
+Message-ID: <1969456971.1407495.1744017459991@mail.yahoo.com>
+In-Reply-To: <CAKjPZkHS51qMgY64=YA1+j_m8h7E8eV-L2=MnP_oMOo0oUKxnQ@mail.gmail.com>
+References: <1252788928.908203.1743751063006.ref@mail.yahoo.com> <1252788928.908203.1743751063006@mail.yahoo.com> <CAKjPZkHS51qMgY64=YA1+j_m8h7E8eV-L2=MnP_oMOo0oUKxnQ@mail.gmail.com>
+Subject: Re: Dietl Shipper
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_1407494_426485028.1744017459988"
+X-Mailer: WebService/1.1.23590 YMailNovation
+Content-Length: 29965
+
+------=_Part_1407494_426485028.1744017459988
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+ Hi Paul,I sent a reply but didn=E2=80=99t look like it went through so I w=
+ill try again. I needed to reply to Michael Pollard of Gazelli regarding th=
+is. Looks like I didn=E2=80=99t cc you so here is what I sent to Michael.=
+=C2=A0
+
+Hi Michael,
+
+
+Regarding Dietl, I am a bit conflicted on some issues. One, when they refer=
+ to =E2=80=9CCustomer=E2=80=9D exactly who is that? Is Gazelli the customer=
+ or HCT? OR jointly? If it is HCT, then there are multiple places in the do=
+cument whereby HCT needs to agree to unspecified terms and that makes me fe=
+el a bit uneasy due to the value of the shipment and since we have never de=
+alt with Dietl before. And since we have no proven track record with them.=
+=C2=A0
+
+
+One example of agreeing to unspecified terms is in part 4a. It reads, =E2=
+=80=9CCustomer understands that the terms and conditions under which DIS=E2=
+=80=99 services are provided are subject to change. Customer is advised to =
+take note of the most current terms and conditions which are posted on DIS=
+=E2=80=99 web site and which are also available to Customer upon request. C=
+ustomer agrees that the posted terms and conditions on DIS=E2=80=99 website=
+ on the date of a shipment will apply to that shipment and govern the parti=
+es=E2=80=99 obligations.=E2=80=9D=C2=A0 At a minimum we need to review the =
+most current terms. However, even the current terms are subject to change u=
+ntil the date of the shipment.=C2=A0
+
+
+And part 1 reads, =E2=80=9CCustomer understands that the terms and conditio=
+ns of the storage receipts of warehousemen, and contracts of carriage of ai=
+r, land and/or ocean carriers that DIS retains will apply to Customer as if=
+ Customer had entered into those contracts itself. =E2=80=9C We don=E2=80=
+=99t know these terms in advance=C2=A0 and is another example of agreeing t=
+o unspecified terms.=C2=A0
+
+
+Also in part 1 it reads, Customer warrants that the goods are properly mark=
+ed, addressed, and packaged to withstand any contemplated method of transpo=
+rt. This is currently not the case, only marking for identification purpose=
+s is done.
+
+
+In section 1A it reads, DIS WILL ONLY HONOR INSURANCE CLAIMS WHEN FEES ARE =
+CHARGED ON AN INVOICE AND PAID TO DIS FOR INSURANCE COVERAGE ON THE SHIPMEN=
+T IN WHICH THE CLAIM OCCURRED. =C2=A0I understand and have received your no=
+tice regarding insurance with Lloyd=E2=80=99s of London. My concern is that=
+ the way this reads, it sounds like if we do need to make an insurance clai=
+m, Dietl will not recognize a 3rd party insurance and therefore under no ob=
+ligation to be forthcoming with any requests related to a claim with Lloyd=
+=E2=80=99s of London. If so, is that problematic when making a claim them?
+
+
+In section 1C it reads, Customer warrants that it shall consider DIS=E2=80=
+=99 Customer Supply Chain Security Recommendations as posted on DIS=E2=80=
+=99 website. We need the link to this so we can review it.
+
+
+
+In section 1D it read, =C2=A0Customer agrees to inspect its shipment upon d=
+elivery and give prompt notice of any loss or damage within 5 days of deliv=
+ery for air or ground shipments and within 3 days of
+
+delivery for ocean shipments. =C2=A0If HCT is the =E2=80=9CCustomer=E2=80=
+=9D, how do we go about this inspection?=C2=A0
+
+
+With respect to section 2E =E2=80=9CDIS GIVEN A LIEN ON GOODS FOR UNPAID CH=
+ARGES=E2=80=9D. This goes back to who is the =E2=80=9CCustomer=E2=80=9D and=
+ thereby who is the responsible party for payments?
+
+
+Tom
+
+
+    On Friday, April 4, 2025 at 10:00:19 AM PDT, Paul Cohen <paulrcohen@gma=
+il.com> wrote: =20
+=20
+ Tom, can you highlight the parts that are raising red flags please. --p
+______________________________
+
+Paul Cohen,=C2=A0=C2=A0ProfessorSchool of Computing and InformationUniversi=
+ty of Pittsburghpersonal webpage
+______________________________
+
+On Fri, Apr 4, 2025 at 3:17=E2=80=AFAM Thomas Machnik <zipnpup@yahoo.com> w=
+rote:
+
+
+Dear Paul,
+
+I=E2=80=99d like to call attention to the Gazelli shipment. The attached th=
+e Dietl shipper is still a matter of concern. You may recall that back in J=
+anuary we expressed our concerns to Gazelli because of their terms. I went =
+back to Gazelli and asked for proof of insurance. Gazelli has since provide=
+d proof of insurance fro Lloyd=E2=80=99s of London. However, when I went ba=
+ck and reread Dietl's terms, I am still uncomfortable with them.=C2=A0=C2=
+=A0
+
+
+The way I read the terms, it seems to say that there is absolutely no insur=
+ance unless it is specifically requested ahead of time AND pay both the inv=
+oice for their services and the additional insurance fees, and that they wo=
+n=E2=80=99t honor any insurance claims unless that is done. This makes it s=
+eem as though, if we rely on our own insurance instead of buying theirs and=
+ there is damage or a problem, they won=E2=80=99t honor the claim or help o=
+ur insurance company in any way (like providing information to support the =
+claim.)=C2=A0
+
+
+I am also quite concerned with their wording with respect to the workers be=
+ing onsite in the studio. If there are no problems then none of this matter=
+s. If we could be 100% sure there would be absolutely no issues then we wou=
+ld need any insurance. I would not be surprised if their wording was constr=
+ucted in this way because of their past experience. If so, then this is an =
+additional red flag. Even with the insurance from Lloyd's of London, I am s=
+till uncomfortable with Deitl terms. Seems like a can of worms potentially =
+exploding into venomous snakes.=C2=A0
+
+
+If you see otherwise, please let me know.
+
+
+Sincerely,
+Tom
+
+
+
+
+
+ =20
+------=_Part_1407494_426485028.1744017459988
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head></head><body><div class=3D"ydp4599bb0ayahoo-style-wrap" style=
+=3D"font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px=
+;"><div></div>
+        <div dir=3D"ltr" data-setdir=3D"false">Hi Paul,</div><div dir=3D"lt=
+r" data-setdir=3D"false">I sent a reply but didn=E2=80=99t look like it wen=
+t through so I will try again. I needed to reply to Michael Pollard of Gaze=
+lli regarding this. Looks like I didn=E2=80=99t cc you so here is what I se=
+nt to Michael.&nbsp;</div><div dir=3D"ltr" data-setdir=3D"false"><br></div>=
+<div dir=3D"ltr" data-setdir=3D"false"><span id=3D"ydpf4be988bdocs-internal=
+-guid-43dae9c5-7fff-1d12-2d07-504b1bf7287b" style=3D"color: rgb(0, 0, 0);">=
+<p dir=3D"ltr" style=3D"line-height: 1.38; margin-top: 0pt; margin-bottom: =
+0pt;"><span style=3D"font-size: 12pt; font-family: Arial, sans-serif; color=
+: rgb(29, 29, 29); vertical-align: baseline;">Hi Michael,</span></p><br><p =
+dir=3D"ltr" style=3D"line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt=
+;"><span style=3D"font-size: 12pt; font-family: Arial, sans-serif; color: r=
+gb(29, 29, 29); vertical-align: baseline;">Regarding Dietl, I am a bit conf=
+licted on some issues. One, when they refer to =E2=80=9CCustomer=E2=80=9D e=
+xactly who is that? Is Gazelli the customer or HCT? OR jointly? If it is HC=
+T, then there are multiple places in the document whereby HCT needs to agre=
+e to unspecified terms and that makes me feel a bit uneasy due to the value=
+ of the shipment and since we have never dealt with Dietl before. And since=
+ we have no proven track record with them.&nbsp;</span></p><br><p dir=3D"lt=
+r" style=3D"line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><span =
+style=3D"font-size: 12pt; font-family: Arial, sans-serif; color: rgb(29, 29=
+, 29); vertical-align: baseline;">One example of agreeing to unspecified te=
+rms is in part 4a. It reads, =E2=80=9C</span><span style=3D"font-size: 10.5=
+pt; font-family: Arial, sans-serif; color: rgb(29, 29, 29); background-colo=
+r: rgb(0, 255, 0); vertical-align: baseline;">Customer understands that the=
+ terms and conditions under which DIS=E2=80=99 services are provided are su=
+bject to change. Customer is advised to take note of the most current terms=
+ and conditions which are posted on DIS=E2=80=99 web site and which are als=
+o available to Customer upon request.</span><span style=3D"font-size: 15.5p=
+t; font-family: Arial, sans-serif; color: rgb(29, 29, 29); background-color=
+: rgb(0, 255, 0); vertical-align: baseline;"> </span><span style=3D"font-si=
+ze: 10.5pt; font-family: Arial, sans-serif; color: rgb(29, 29, 29); backgro=
+und-color: rgb(0, 255, 0); vertical-align: baseline;">Customer agrees that =
+the posted terms and conditions on DIS=E2=80=99 website on the date of a sh=
+ipment will apply to that shipment and govern the parties=E2=80=99 obligati=
+ons.=E2=80=9D&nbsp; </span><span style=3D"font-size: 10.5pt; font-family: A=
+rial, sans-serif; color: rgb(29, 29, 29); vertical-align: baseline;">At a m=
+inimum we need to review the most current terms. However, even the current =
+terms are subject to change until the date of the shipment.&nbsp;</span></p=
+><br><p dir=3D"ltr" style=3D"line-height: 1.38; margin-top: 0pt; margin-bot=
+tom: 0pt;"><span style=3D"font-size: 10.5pt; font-family: Arial, sans-serif=
+; color: rgb(29, 29, 29); vertical-align: baseline;">And part 1 reads, =E2=
+=80=9C</span><span style=3D"font-size: 10.5pt; font-family: Arial, sans-ser=
+if; color: rgb(29, 29, 29); background-color: rgb(0, 255, 0); vertical-alig=
+n: baseline;">Customer understands that the</span><span style=3D"font-size:=
+ 7.5pt; font-family: Arial, sans-serif; color: rgb(29, 29, 29); background-=
+color: rgb(0, 255, 0); vertical-align: baseline;"> </span><span style=3D"fo=
+nt-size: 10.5pt; font-family: Arial, sans-serif; color: rgb(29, 29, 29); ba=
+ckground-color: rgb(0, 255, 0); vertical-align: baseline;">terms</span><spa=
+n style=3D"font-size: 7.5pt; font-family: Arial, sans-serif; color: rgb(29,=
+ 29, 29); background-color: rgb(0, 255, 0); vertical-align: baseline;"> </s=
+pan><span style=3D"font-size: 10.5pt; font-family: Arial, sans-serif; color=
+: rgb(29, 29, 29); background-color: rgb(0, 255, 0); vertical-align: baseli=
+ne;">and</span><span style=3D"font-size: 7.5pt; font-family: Arial, sans-se=
+rif; color: rgb(29, 29, 29); background-color: rgb(0, 255, 0); vertical-ali=
+gn: baseline;"> </span><span style=3D"font-size: 10.5pt; font-family: Arial=
+, sans-serif; color: rgb(29, 29, 29); background-color: rgb(0, 255, 0); ver=
+tical-align: baseline;">conditions of</span><span style=3D"font-size: 7.5pt=
+; font-family: Arial, sans-serif; color: rgb(29, 29, 29); background-color:=
+ rgb(0, 255, 0); vertical-align: baseline;"> </span><span style=3D"font-siz=
+e: 10.5pt; font-family: Arial, sans-serif; color: rgb(29, 29, 29); backgrou=
+nd-color: rgb(0, 255, 0); vertical-align: baseline;">the</span><span style=
+=3D"font-size: 7.5pt; font-family: Arial, sans-serif; color: rgb(29, 29, 29=
+); background-color: rgb(0, 255, 0); vertical-align: baseline;"> </span><sp=
+an style=3D"font-size: 10.5pt; font-family: Arial, sans-serif; color: rgb(2=
+9, 29, 29); background-color: rgb(0, 255, 0); vertical-align: baseline;">st=
+orage receipts</span><span style=3D"font-size: 7.5pt; font-family: Arial, s=
+ans-serif; color: rgb(29, 29, 29); background-color: rgb(0, 255, 0); vertic=
+al-align: baseline;"> </span><span style=3D"font-size: 10.5pt; font-family:=
+ Arial, sans-serif; color: rgb(29, 29, 29); background-color: rgb(0, 255, 0=
+); vertical-align: baseline;">of warehousemen, and</span><span style=3D"fon=
+t-size: 7.5pt; font-family: Arial, sans-serif; color: rgb(29, 29, 29); back=
+ground-color: rgb(0, 255, 0); vertical-align: baseline;"> </span><span styl=
+e=3D"font-size: 10.5pt; font-family: Arial, sans-serif; color: rgb(29, 29, =
+29); background-color: rgb(0, 255, 0); vertical-align: baseline;">contracts=
+ of</span><span style=3D"font-size: 7.5pt; font-family: Arial, sans-serif; =
+color: rgb(29, 29, 29); background-color: rgb(0, 255, 0); vertical-align: b=
+aseline;"> </span><span style=3D"font-size: 10.5pt; font-family: Arial, san=
+s-serif; color: rgb(29, 29, 29); background-color: rgb(0, 255, 0); vertical=
+-align: baseline;">carriage</span><span style=3D"font-size: 7.5pt; font-fam=
+ily: Arial, sans-serif; color: rgb(29, 29, 29); background-color: rgb(0, 25=
+5, 0); vertical-align: baseline;"> </span><span style=3D"font-size: 10.5pt;=
+ font-family: Arial, sans-serif; color: rgb(29, 29, 29); background-color: =
+rgb(0, 255, 0); vertical-align: baseline;">of air, land and/or</span><span =
+style=3D"font-size: 7.5pt; font-family: Arial, sans-serif; color: rgb(29, 2=
+9, 29); background-color: rgb(0, 255, 0); vertical-align: baseline;"> </spa=
+n><span style=3D"font-size: 10.5pt; font-family: Arial, sans-serif; color: =
+rgb(29, 29, 29); background-color: rgb(0, 255, 0); vertical-align: baseline=
+;">ocean</span><span style=3D"font-size: 7.5pt; font-family: Arial, sans-se=
+rif; color: rgb(29, 29, 29); background-color: rgb(0, 255, 0); vertical-ali=
+gn: baseline;"> </span><span style=3D"font-size: 10.5pt; font-family: Arial=
+, sans-serif; color: rgb(29, 29, 29); background-color: rgb(0, 255, 0); ver=
+tical-align: baseline;">carriers</span><span style=3D"font-size: 7.5pt; fon=
+t-family: Arial, sans-serif; color: rgb(29, 29, 29); background-color: rgb(=
+0, 255, 0); vertical-align: baseline;"> </span><span style=3D"font-size: 10=
+.5pt; font-family: Arial, sans-serif; color: rgb(29, 29, 29); background-co=
+lor: rgb(0, 255, 0); vertical-align: baseline;">that DIS retains will apply=
+</span><span style=3D"font-size: 7.5pt; font-family: Arial, sans-serif; col=
+or: rgb(29, 29, 29); background-color: rgb(0, 255, 0); vertical-align: base=
+line;"> </span><span style=3D"font-size: 10.5pt; font-family: Arial, sans-s=
+erif; color: rgb(29, 29, 29); background-color: rgb(0, 255, 0); vertical-al=
+ign: baseline;">to</span><span style=3D"font-size: 7.5pt; font-family: Aria=
+l, sans-serif; color: rgb(29, 29, 29); background-color: rgb(0, 255, 0); ve=
+rtical-align: baseline;"> </span><span style=3D"font-size: 10.5pt; font-fam=
+ily: Arial, sans-serif; color: rgb(29, 29, 29); background-color: rgb(0, 25=
+5, 0); vertical-align: baseline;">Customer</span><span style=3D"font-size: =
+7.5pt; font-family: Arial, sans-serif; color: rgb(29, 29, 29); background-c=
+olor: rgb(0, 255, 0); vertical-align: baseline;"> </span><span style=3D"fon=
+t-size: 10.5pt; font-family: Arial, sans-serif; color: rgb(29, 29, 29); bac=
+kground-color: rgb(0, 255, 0); vertical-align: baseline;">as</span><span st=
+yle=3D"font-size: 7.5pt; font-family: Arial, sans-serif; color: rgb(29, 29,=
+ 29); background-color: rgb(0, 255, 0); vertical-align: baseline;"> </span>=
+<span style=3D"font-size: 10.5pt; font-family: Arial, sans-serif; color: rg=
+b(29, 29, 29); background-color: rgb(0, 255, 0); vertical-align: baseline;"=
+>if</span><span style=3D"font-size: 7.5pt; font-family: Arial, sans-serif; =
+color: rgb(29, 29, 29); background-color: rgb(0, 255, 0); vertical-align: b=
+aseline;"> </span><span style=3D"font-size: 10.5pt; font-family: Arial, san=
+s-serif; color: rgb(29, 29, 29); background-color: rgb(0, 255, 0); vertical=
+-align: baseline;">Customer had entered</span><span style=3D"font-size: 7.5=
+pt; font-family: Arial, sans-serif; color: rgb(29, 29, 29); background-colo=
+r: rgb(0, 255, 0); vertical-align: baseline;"> </span><span style=3D"font-s=
+ize: 10.5pt; font-family: Arial, sans-serif; color: rgb(29, 29, 29); backgr=
+ound-color: rgb(0, 255, 0); vertical-align: baseline;">into</span><span sty=
+le=3D"font-size: 7.5pt; font-family: Arial, sans-serif; color: rgb(29, 29, =
+29); background-color: rgb(0, 255, 0); vertical-align: baseline;"> </span><=
+span style=3D"font-size: 10.5pt; font-family: Arial, sans-serif; color: rgb=
+(29, 29, 29); background-color: rgb(0, 255, 0); vertical-align: baseline;">=
+those contracts itself.</span><span style=3D"font-size: 7.5pt; font-family:=
+ Arial, sans-serif; color: rgb(29, 29, 29); background-color: rgb(0, 255, 0=
+); vertical-align: baseline;"> =E2=80=9C</span><span style=3D"font-size: 10=
+.5pt; font-family: Arial, sans-serif; color: rgb(29, 29, 29); vertical-alig=
+n: baseline;"> We don=E2=80=99t know these terms in advance&nbsp; and is an=
+other example of agreeing to unspecified terms.&nbsp;</span></p><br><p dir=
+=3D"ltr" style=3D"line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;">=
+<span style=3D"font-size: 12.5pt; font-family: Arial, sans-serif; color: rg=
+b(29, 29, 29); vertical-align: baseline;">Also in part 1 it reads, </span><=
+span style=3D"font-size: 12.5pt; font-family: Arial, sans-serif; color: rgb=
+(29, 29, 29); background-color: rgb(0, 255, 0); vertical-align: baseline;">=
+Customer warrants that the</span><span style=3D"font-size: 9.5pt; font-fami=
+ly: Arial, sans-serif; color: rgb(29, 29, 29); background-color: rgb(0, 255=
+, 0); vertical-align: baseline;"> </span><span style=3D"font-size: 12.5pt; =
+font-family: Arial, sans-serif; color: rgb(29, 29, 29); background-color: r=
+gb(0, 255, 0); vertical-align: baseline;">goods are</span><span style=3D"fo=
+nt-size: 9.5pt; font-family: Arial, sans-serif; color: rgb(29, 29, 29); bac=
+kground-color: rgb(0, 255, 0); vertical-align: baseline;"> </span><span sty=
+le=3D"font-size: 12.5pt; font-family: Arial, sans-serif; color: rgb(29, 29,=
+ 29); background-color: rgb(0, 255, 0); vertical-align: baseline;">properly=
+</span><span style=3D"font-size: 9.5pt; font-family: Arial, sans-serif; col=
+or: rgb(29, 29, 29); background-color: rgb(0, 255, 0); vertical-align: base=
+line;"> </span><span style=3D"font-size: 12.5pt; font-family: Arial, sans-s=
+erif; color: rgb(29, 29, 29); background-color: rgb(0, 255, 0); vertical-al=
+ign: baseline;">marked,</span><span style=3D"font-size: 9.5pt; font-family:=
+ Arial, sans-serif; color: rgb(29, 29, 29); background-color: rgb(0, 255, 0=
+); vertical-align: baseline;"> </span><span style=3D"font-size: 12.5pt; fon=
+t-family: Arial, sans-serif; color: rgb(29, 29, 29); background-color: rgb(=
+0, 255, 0); vertical-align: baseline;">addressed, and</span><span style=3D"=
+font-size: 9.5pt; font-family: Arial, sans-serif; color: rgb(29, 29, 29); b=
+ackground-color: rgb(0, 255, 0); vertical-align: baseline;"> </span><span s=
+tyle=3D"font-size: 12.5pt; font-family: Arial, sans-serif; color: rgb(29, 2=
+9, 29); background-color: rgb(0, 255, 0); vertical-align: baseline;">packag=
+ed to withstand</span><span style=3D"font-size: 9.5pt; font-family: Arial, =
+sans-serif; color: rgb(29, 29, 29); background-color: rgb(0, 255, 0); verti=
+cal-align: baseline;"> </span><span style=3D"font-size: 12.5pt; font-family=
+: Arial, sans-serif; color: rgb(29, 29, 29); background-color: rgb(0, 255, =
+0); vertical-align: baseline;">any</span><span style=3D"font-size: 9.5pt; f=
+ont-family: Arial, sans-serif; color: rgb(29, 29, 29); background-color: rg=
+b(0, 255, 0); vertical-align: baseline;"> </span><span style=3D"font-size: =
+12.5pt; font-family: Arial, sans-serif; color: rgb(29, 29, 29); background-=
+color: rgb(0, 255, 0); vertical-align: baseline;">contemplated</span><span =
+style=3D"font-size: 9.5pt; font-family: Arial, sans-serif; color: rgb(29, 2=
+9, 29); background-color: rgb(0, 255, 0); vertical-align: baseline;"> </spa=
+n><span style=3D"font-size: 12.5pt; font-family: Arial, sans-serif; color: =
+rgb(29, 29, 29); background-color: rgb(0, 255, 0); vertical-align: baseline=
+;">method</span><span style=3D"font-size: 9.5pt; font-family: Arial, sans-s=
+erif; color: rgb(29, 29, 29); background-color: rgb(0, 255, 0); vertical-al=
+ign: baseline;"> </span><span style=3D"font-size: 12.5pt; font-family: Aria=
+l, sans-serif; color: rgb(29, 29, 29); background-color: rgb(0, 255, 0); ve=
+rtical-align: baseline;">of transport.</span><span style=3D"font-size: 11pt=
+; font-family: Arial, sans-serif; color: rgb(29, 29, 29); vertical-align: b=
+aseline;"> This is currently not the case, only marking for identification =
+purposes is done.</span></p><br><p dir=3D"ltr" style=3D"line-height: 1.38; =
+margin-top: 0pt; margin-bottom: 0pt;"><span style=3D"font-size: 11pt; font-=
+family: Arial, sans-serif; color: rgb(29, 29, 29); vertical-align: baseline=
+;">In section 1A it reads, </span><span style=3D"font-size: 10.5pt; font-fa=
+mily: Arial, sans-serif; color: rgb(29, 29, 29); background-color: rgb(0, 2=
+55, 0); vertical-align: baseline;">DIS WILL ONLY HONOR INSURANCE CLAIMS WHE=
+N FEES ARE CHARGED ON AN INVOICE AND PAID TO DIS FOR INSURANCE COVERAGE ON =
+THE SHIPMENT IN WHICH THE CLAIM OCCURRED. </span><span style=3D"font-size: =
+10.5pt; font-family: Arial, sans-serif; color: rgb(29, 29, 29); vertical-al=
+ign: baseline;">&nbsp;I understand and have received your notice regarding =
+insurance with Lloyd=E2=80=99s of London. My concern is that the way this r=
+eads, it sounds like if we do need to make an insurance claim, Dietl will n=
+ot recognize a 3rd party insurance and therefore under no obligation to be =
+forthcoming with any requests related to a claim with Lloyd=E2=80=99s of Lo=
+ndon. If so, is that problematic when making a claim them?</span></p><br><p=
+ dir=3D"ltr" style=3D"line-height: 1.38; margin-top: 0pt; margin-bottom: 0p=
+t;"><span style=3D"font-size: 10.5pt; font-family: Arial, sans-serif; color=
+: rgb(29, 29, 29); vertical-align: baseline;">In section 1C it reads,</span=
+><span style=3D"font-size: 10pt; font-family: Arial, sans-serif; color: rgb=
+(29, 29, 29); background-color: rgb(0, 255, 0); vertical-align: baseline;">=
+ Customer warrants that it shall consider DIS=E2=80=99 Customer Supply Chai=
+n Security Recommendations as posted on DIS=E2=80=99 website.</span><span s=
+tyle=3D"font-size: 10pt; font-family: Arial, sans-serif; color: rgb(29, 29,=
+ 29); vertical-align: baseline;"> We need the link to this so we can review=
+ it.</span></p><br><br><p dir=3D"ltr" style=3D"line-height: 1.38; margin-to=
+p: 0pt; margin-bottom: 0pt;"><span style=3D"font-size: 10pt; font-family: A=
+rial, sans-serif; color: rgb(29, 29, 29); vertical-align: baseline;">In sec=
+tion 1D it read, </span><span style=3D"font-size: 10pt; font-family: Arial,=
+ sans-serif; color: rgb(29, 29, 29); background-color: rgb(0, 255, 0); vert=
+ical-align: baseline;">&nbsp;Customer agrees to inspect its shipment upon d=
+elivery and give prompt notice of any loss or damage within 5 days of deliv=
+ery for air or ground shipments and within 3 days of</span></p><p dir=3D"lt=
+r" style=3D"line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><span =
+style=3D"font-size: 10pt; font-family: Arial, sans-serif; color: rgb(29, 29=
+, 29); background-color: rgb(0, 255, 0); vertical-align: baseline;">deliver=
+y for ocean shipments. </span><span style=3D"font-size: 10pt; font-family: =
+Arial, sans-serif; color: rgb(29, 29, 29); vertical-align: baseline;">&nbsp=
+;If HCT is the =E2=80=9CCustomer=E2=80=9D, how do we go about this inspecti=
+on?&nbsp;</span></p><br><p dir=3D"ltr" style=3D"line-height: 1.38; margin-t=
+op: 0pt; margin-bottom: 0pt;"><span style=3D"font-size: 10pt; font-family: =
+Arial, sans-serif; color: rgb(29, 29, 29); vertical-align: baseline;">With =
+respect to section 2E</span><span style=3D"font-size: 10pt; font-family: Ar=
+ial, sans-serif; color: rgb(67, 67, 67); background-color: rgb(0, 255, 0); =
+vertical-align: baseline;"> =E2=80=9CDIS GIVEN A LIEN ON GOODS FOR UNPAID C=
+HARGES</span><span style=3D"font-size: 10pt; font-family: Arial, sans-serif=
+; color: rgb(67, 67, 67); background-color: rgb(0, 255, 0); font-weight: 70=
+0; vertical-align: baseline;">=E2=80=9D</span><span style=3D"font-size: 10p=
+t; font-family: Arial, sans-serif; color: rgb(67, 67, 67); font-weight: 700=
+; vertical-align: baseline;">. </span><span style=3D"font-size: 10pt; font-=
+family: Arial, sans-serif; color: rgb(67, 67, 67); vertical-align: baseline=
+;">This goes back to who is the =E2=80=9CCustomer=E2=80=9D and thereby who =
+is the responsible party for payments?</span></p><br><br><div><span style=
+=3D"font-size: 10pt; font-family: Arial, sans-serif; color: rgb(67, 67, 67)=
+; vertical-align: baseline;">Tom</span></div></span></div><div dir=3D"ltr" =
+data-setdir=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"false"><br>=
+</div><div dir=3D"ltr" data-setdir=3D"false"><br></div>
+       =20
+        <div id=3D"ydp4599bb0ayahoo_quoted_4075369045" class=3D"ydp4599bb0a=
+yahoo_quoted">
+            <div style=3D"font-family:'Helvetica Neue', Helvetica, Arial, s=
+ans-serif;font-size:13px;">
+               =20
+                <div>
+                    On Friday, April 4, 2025 at 10:00:19 AM PDT, Paul Cohen=
+ &lt;paulrcohen@gmail.com&gt; wrote:
+                </div>
+                <div><br></div>
+                <div><br></div>
+                <div><div id=3D"ydp4599bb0ayiv6540559626"><div><div dir=3D"=
+ltr"><div><div style=3D"font-size:small;" class=3D"ydp4599bb0ayiv6540559626=
+gmail_default">Tom, can you highlight the parts that are raising red flags =
+please. --p</div><br clear=3D"all"></div><div><div dir=3D"ltr" class=3D"ydp=
+4599bb0ayiv6540559626gmail_signature"><div dir=3D"ltr"><div><div dir=3D"ltr=
+"><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div><d=
+iv dir=3D"ltr">______________________________<br clear=3D"none"><br clear=
+=3D"none">Paul Cohen,&nbsp;&nbsp;Professor</div><div dir=3D"ltr">School of =
+Computing and Information</div><div dir=3D"ltr">University of Pittsburgh</d=
+iv><div dir=3D"ltr"><a shape=3D"rect" href=3D"https://paulrcohen.github.io/=
+" rel=3D"nofollow" target=3D"_blank">personal webpage</a><br clear=3D"none"=
+>______________________________</div></div></div></div></div></div></div></=
+div></div></div></div></div></div><br clear=3D"none"></div><br clear=3D"non=
+e"><div id=3D"ydp4599bb0ayiv6540559626yqt88943" class=3D"ydp4599bb0ayiv6540=
+559626yqt6261171909"><div class=3D"ydp4599bb0ayiv6540559626gmail_quote ydp4=
+599bb0ayiv6540559626gmail_quote_container"><div dir=3D"ltr" class=3D"ydp459=
+9bb0ayiv6540559626gmail_attr">On Fri, Apr 4, 2025 at 3:17=E2=80=AFAM Thomas=
+ Machnik &lt;<a shape=3D"rect" href=3D"mailto:zipnpup@yahoo.com" rel=3D"nof=
+ollow" target=3D"_blank">zipnpup@yahoo.com</a>&gt; wrote:<br clear=3D"none"=
+></div><blockquote style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid =
+rgb(204,204,204);padding-left:1ex;" class=3D"ydp4599bb0ayiv6540559626gmail_=
+quote"><div><div style=3D"font-family:Helvetica Neue, Helvetica, Arial, san=
+s-serif;font-size:16px;"><div dir=3D"ltr"><span id=3D"ydp4599bb0ayiv6540559=
+626m_-7524891846394370727ydpd9fb37f3docs-internal-guid-67d072aa-7fff-7175-9=
+574-3910655a1a6b" style=3D"color:rgb(0,0,0);"></span><p dir=3D"ltr" style=
+=3D"line-height:1.71428;margin-top:0pt;margin-bottom:0pt;"><span style=3D"f=
+ont-size:12pt;font-family:Arial, sans-serif;color:rgb(29,29,29);vertical-al=
+ign:baseline;">Dear Paul,</span></p><p dir=3D"ltr" style=3D"line-height:1.7=
+1428;margin-top:0pt;margin-bottom:0pt;"><span style=3D"font-size:12pt;font-=
+family:Arial, sans-serif;color:rgb(29,29,29);vertical-align:baseline;">I=E2=
+=80=99d like to call attention to the Gazelli shipment. The attached the Di=
+etl shipper is still a matter of concern. You may recall that back in Janua=
+ry we expressed our concerns to Gazelli because of their terms. I went back=
+ to Gazelli and asked for proof of insurance. Gazelli has since provided pr=
+oof of insurance fro Lloyd=E2=80=99s of London. However, when I went back a=
+nd reread Dietl's terms, I am still uncomfortable with them.&nbsp;&nbsp;</s=
+pan></p><br clear=3D"none"><p dir=3D"ltr" style=3D"line-height:1.71428;marg=
+in-top:0pt;margin-bottom:0pt;"><span style=3D"font-size:12pt;font-family:Ar=
+ial, sans-serif;color:rgb(29,29,29);vertical-align:baseline;">The way I rea=
+d the terms, it seems to say that there is absolutely no insurance unless i=
+t is specifically requested ahead of time AND pay both the invoice for thei=
+r services and the additional insurance fees, and that they won=E2=80=99t h=
+onor any insurance claims unless that is done. This makes it seem as though=
+, if we rely on our own insurance instead of buying theirs and there is dam=
+age or a problem, they won=E2=80=99t honor the claim or help our insurance =
+company in any way (like providing information to support the claim.)&nbsp;=
+</span></p><br clear=3D"none"><p dir=3D"ltr" style=3D"line-height:1.71428;m=
+argin-top:0pt;margin-bottom:0pt;"><span style=3D"font-size:12pt;font-family=
+:Arial, sans-serif;color:rgb(29,29,29);vertical-align:baseline;">I am also =
+quite concerned with their wording with respect to the workers being onsite=
+ in the studio. If there are no problems then none of this matters. If we c=
+ould be 100% sure there would be absolutely no issues then we would need an=
+y insurance. I would not be surprised if their wording was constructed in t=
+his way because of their past experience. If so, then this is an additional=
+ red flag. Even with the insurance from Lloyd's of London, I am still uncom=
+fortable with Deitl terms. Seems like a can of worms potentially exploding =
+into venomous snakes.&nbsp;</span></p><br clear=3D"none"><p dir=3D"ltr" sty=
+le=3D"line-height:1.71428;margin-top:0pt;margin-bottom:0pt;"><span style=3D=
+"font-size:12pt;font-family:Arial, sans-serif;color:rgb(29,29,29);vertical-=
+align:baseline;">If you see otherwise, please let me know.</span></p><br cl=
+ear=3D"none"><p dir=3D"ltr" style=3D"line-height:1.71428;margin-top:0pt;mar=
+gin-bottom:0pt;"><span style=3D"font-size:12pt;font-family:Arial, sans-seri=
+f;color:rgb(29,29,29);vertical-align:baseline;">Sincerely,</span></p><div><=
+span style=3D"font-size:12pt;font-family:Arial, sans-serif;color:rgb(29,29,=
+29);vertical-align:baseline;">Tom</span></div></div><div dir=3D"ltr"><br cl=
+ear=3D"none"></div><div dir=3D"ltr"><br clear=3D"none"></div><div dir=3D"lt=
+r"><br clear=3D"none"></div><div dir=3D"ltr"><br clear=3D"none"></div><div =
+dir=3D"ltr"><br clear=3D"none"></div></div></div></blockquote></div></div>
+</div></div></div>
+            </div>
+        </div></div></body></html>
+------=_Part_1407494_426485028.1744017459988--

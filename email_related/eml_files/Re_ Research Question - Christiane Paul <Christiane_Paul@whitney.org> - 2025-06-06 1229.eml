@@ -1,0 +1,394 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a11:6718:b0:616:43e8:43fd with SMTP id wu24csp729692pxb;
+        Fri, 6 Jun 2025 09:29:46 -0700 (PDT)
+X-Forwarded-Encrypted: i=3; AJvYcCWJDIKoykZRw+mRJ4+lk+02ERsZ2gUFYYirYECpFC/x/PJXdRCqq4XQF0ADxeJZQ4KXd+BFCgN0yHvb@gmail.com
+X-Google-Smtp-Source: AGHT+IHy+WLAA2kkMc6FXlPE7yF7+1mW619zWEPNW1HCFoaORv2c9lMieU3+2QkZddpveoM8JuGZ
+X-Received: by 2002:a05:6602:380f:b0:86d:61:ce7e with SMTP id ca18e2360f4ac-87336512428mr502391139f.0.1749227385760;
+        Fri, 06 Jun 2025 09:29:45 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1749227385; cv=pass;
+        d=google.com; s=arc-20240605;
+        b=d1vh9CAsWsRc0kOP/Beq7eu9BZAyOOet1ETirAeJkIuECu70gtK1EnD5fiBeFrhsBY
+         TuinKM6d+ncW7SkSx4pM485ach6ppBp+/nOQZeNyqQXngHcifWtOAb1qT4iL70MxEcSa
+         oKBSVYyQ9iyjc/JVUS6leTyVe9nH5BzgGISUeyaNiQXAYuWZg82X5hqF4CsRDmkLScEz
+         4JgXsVQ+4E60Qq7gV85+Dqo7HrzX0/kZZJ6dZPm+XbskuOqT94qWZJ6Ct7pjpRsA4C0s
+         NZ65ziI1Vwfj5Fw0k5aFKbM9g7C/qnj68LjIRWBoB93dcScyDjwgJjoXDi/sKW8dDSxl
+         Kjuw==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:msip_labels:content-language:accept-language
+         :in-reply-to:references:message-id:date:thread-index:thread-topic
+         :subject:cc:to:from:dkim-signature;
+        bh=RcsY2MwH6dqk0wGrVsD41iO/9e1HcgqM8HpTZdAprpQ=;
+        fh=pF9Q/CXOzshmOWkLatoy8yI3h14w1fSO2p/RkhO7no8=;
+        b=c1taTPqja3/9LuU4iFKouUogHqxfKlhdwesCSNwSqyOQppbycvhwFO1oc+o7uZ4fqC
+         BFAGzFGRuCXWKBo50LQ5WWLYQfNj4B3y3znAOBrq2iqePDVrkxkhPsK8u8FmGkO3fOPs
+         NF6ofIqPkD33O0BIdtMJLT396ZCa5BQrDiY8Hf2X4oHWVTFKat3JGvHGGd64W8tmODxs
+         eiU20Cr4A8iQ0Ws7Vq/vjanpur3FVo77EhRzT+ten5jtxl1jS1G/u5FE06c2AN6IAmAM
+         mkC/W4ctQ282NQQyEftpkzw8tZ0OG6fLVk9R+ZVLbC3UGmMPGC1Cq40azcr1MZNE8fNS
+         6qHQ==;
+        dara=google.com
+ARC-Authentication-Results: i=2; mx.google.com;
+       dkim=pass header.i=@whitney.org header.s=selector1 header.b="AKp5/MmG";
+       arc=pass (i=1 spf=pass spfdomain=whitney.org dkim=pass dkdomain=whitney.org dmarc=pass fromdomain=whitney.org);
+       spf=pass (google.com: domain of christiane_paul@whitney.org designates 209.222.82.104 as permitted sender) smtp.mailfrom=Christiane_Paul@whitney.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=whitney.org
+Return-Path: <Christiane_Paul@whitney.org>
+Received: from outbound-ip170b.ess.barracuda.com (outbound-ip170b.ess.barracuda.com. [209.222.82.104])
+        by mx.google.com with ESMTPS id 8926c6da1cb9f-500df457d01si2820052173.45.2025.06.06.09.29.41
+        for <paulrcohen@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 06 Jun 2025 09:29:45 -0700 (PDT)
+Received-SPF: pass (google.com: domain of christiane_paul@whitney.org designates 209.222.82.104 as permitted sender) client-ip=209.222.82.104;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@whitney.org header.s=selector1 header.b="AKp5/MmG";
+       arc=pass (i=1 spf=pass spfdomain=whitney.org dkim=pass dkdomain=whitney.org dmarc=pass fromdomain=whitney.org);
+       spf=pass (google.com: domain of christiane_paul@whitney.org designates 209.222.82.104 as permitted sender) smtp.mailfrom=Christiane_Paul@whitney.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=whitney.org
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10on2092.outbound.protection.outlook.com [40.107.94.92]) by mx-outbound45-75.us-east-2c.ess.aws.cudaops.com (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO); Fri, 06 Jun 2025 16:29:40 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Y/DysebBsh6IdGbV8qTwEC/wlRHweJNr4EcxErEIxbf4HDWnuhp7nOao/TVl2oMWPYDCcCcqIENhv6EdUJSohkMZh8QqhbmjOhbBc18JCm9pXOieaHTJbpqBdH6r2PmNfCTBKhhwJbC4q2yvD51IKUrNSDhJCQDMSDk6/ghWIZ79iGLV8QRY6TBNjmWjXAuUQ9AG822IkD+hvO/QJjQdNqYM1bAnZJ/gnJjLV2vHnrBUAyl0zqGDOA8/SDqFTt+iQ20QpgNrmhohxMdL2Etp+rBtp7Ysl0OHOzAMg/gQ0EYqzLtyuQ3laNi1muGj1u8VYeLAKuAuy7j3pbxtxj43AQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=RcsY2MwH6dqk0wGrVsD41iO/9e1HcgqM8HpTZdAprpQ=;
+ b=A/nZCzwALrfHAsN5GpY/HXlU3CEsu/Sh6bxExE/xaBgTfuy0Yu68/V/x7Ezzf7cHzHXSPMkosS4HSSSdCTH60CrvxP/EVC0xdJtwgPkBe0qYyBOo8/A0STDiyyPp85k8x++fPf3HfFchQBIkui7d38xK8ICbzJbK0Zhjvb/S+DhKvfUqA7FNwIaBBHeVRPWYR94zYAs82GPsG01xOLileFRCN0VYWEVVaWNeSEPtff94oLWAy/3gKboLlInhmAu3AmyI4QkZR4SpHTJ3OrDOzjetyL/TH9EpmaBlnS1ochzIYThW4rnFT8PEzS5zVmNqgsfgDuCMAPxi5PoSXfVMpw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=whitney.org; dmarc=pass action=none header.from=whitney.org;
+ dkim=pass header.d=whitney.org; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=whitney.org;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=RcsY2MwH6dqk0wGrVsD41iO/9e1HcgqM8HpTZdAprpQ=;
+ b=AKp5/MmGksJ3tXmsU5yCWUEE2O3ZflNsGRO76VO0XsQRN//ezQOlK5zbebmMLSxQDfxbhqA1R4JkQ/clXr67HWwnBFj7bGW6nR1gsThCZmVkL0w6ArILQdDZIXguwTwngsOWI5J5vhqQmzgZjbzqgDcFlCVrpdrf4utVU6RrGdI=
+Received: from MN0PR22MB3666.namprd22.prod.outlook.com (2603:10b6:208:379::21)
+ by SA1PR22MB3097.namprd22.prod.outlook.com (2603:10b6:806:22a::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8792.34; Fri, 6 Jun
+ 2025 16:29:37 +0000
+Received: from MN0PR22MB3666.namprd22.prod.outlook.com
+ ([fe80::166e:4692:17a4:a496]) by MN0PR22MB3666.namprd22.prod.outlook.com
+ ([fe80::166e:4692:17a4:a496%5]) with mapi id 15.20.8746.031; Fri, 6 Jun 2025
+ 16:29:37 +0000
+From: Christiane Paul <Christiane_Paul@whitney.org>
+To: Thomas Machnik <zipnpup@yahoo.com>
+CC: George Lionel Barker <george@gazelliarthouse.com>, Paul Cohen
+	<paulrcohen@gmail.com>
+Subject: Re: Research Question
+Thread-Topic: Research Question
+Thread-Index: AQHb1mpyIVWicFj0iUaM8Nz8Yz0O7rP2Ep7+
+Date: Fri, 6 Jun 2025 16:29:36 +0000
+Message-ID:
+ <MN0PR22MB36664DB4E07BD9369287A81A9D6EA@MN0PR22MB3666.namprd22.prod.outlook.com>
+References: <1345009627.271141.1749163050975.ref@mail.yahoo.com>
+ <1345009627.271141.1749163050975@mail.yahoo.com>
+In-Reply-To: <1345009627.271141.1749163050975@mail.yahoo.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+msip_labels:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=whitney.org;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: MN0PR22MB3666:EE_|SA1PR22MB3097:EE_
+x-ms-office365-filtering-correlation-id: 980f8051-69b9-40fb-8d1b-08dda5175411
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|1800799024|376014|10070799003|366016|7053199007|8096899003|38070700018;
+x-microsoft-antispam-message-info:
+ =?Windows-1252?Q?7hx/vw2Swy+4302aRPWgISeF/0kp0Qn8nLTc04yiyCAWhPp9rAKGktAe?=
+ =?Windows-1252?Q?MnGP5Ym8I6X7PLwe8xhyMyq3Ye7qoTHbkN3RDx37WKJu8GG6T2Y4V8nF?=
+ =?Windows-1252?Q?1wv7pgBtkPhDkCjmskFEDYm1+FO65rZ+Jc09GsI2MbLQeeZt3dhHByCX?=
+ =?Windows-1252?Q?Uwg6x67X7XRHihGZh7UxrxLj2VBED7LDDB7IWZgrNdSU6oZ++w710mKC?=
+ =?Windows-1252?Q?izK0BmjC3wn8MFL9H/VCT1bGvCEYrJG29SkednorsnOXtZVrrGTfSWyg?=
+ =?Windows-1252?Q?KYHWWnRULbqUuukV3nKSLe6IPezstWlh6Xl5uBl2bfSJbnN1yDIonQRV?=
+ =?Windows-1252?Q?sgb6I7Mpw8arxaPjDLWkIyCjCdIDdQHyeF9VBU1gvyC/hBIE9R7aqnD1?=
+ =?Windows-1252?Q?j5uIdV4FAJiqzoeYHdFmbD8jwSoy6QkbES+IFCqbd5jeSpsqrwK5UTVH?=
+ =?Windows-1252?Q?xz+uLbQ8s3x8xcK0gUfNlr2wcxiMj0qwBFI1teSkH1ugSSxQwORDM1i/?=
+ =?Windows-1252?Q?NScXpuuw1ZVTLjCbKjPrg5tqYUMZ1K6R/oxeqH7HkZEB6Re62ravLFkK?=
+ =?Windows-1252?Q?agf5rI37JsAP4ZZLjZekFebgbHhz1M/BZkHdrAyG08JvlWMK+b12aIbf?=
+ =?Windows-1252?Q?cUhdrxIB33KBTI58Z5CLreIxvADMM9HFEQRVgZ8K8MfZLPxvH+mh8mK4?=
+ =?Windows-1252?Q?C/LDQhWdmlr/Tf1ejqd6zDoaAl1yqObO4k4IfYb+g6iOKCBDACgh3lq/?=
+ =?Windows-1252?Q?X5KLS3p+mRo497HgiYyA8xVR18CJOn4BLSSjrUvqy7yB6aIsOxMJHC0x?=
+ =?Windows-1252?Q?bZjPky61fJA3+C/PH5z2td7ei9lP8RRFtUDSKsOLMq0I3lYfF3tURUDX?=
+ =?Windows-1252?Q?x2/d8cjD5LxE75AKtq+JBU2dn04NQ1K9lqMcqES197XfNIu7irwiyoZm?=
+ =?Windows-1252?Q?xqa1WKd2GVVrDKUAgnGi03/MtNSD0vTcW5vc8EgH7v3N9TtsYwgGrFKS?=
+ =?Windows-1252?Q?KSvvkcvrk0DjiL3mHs2Hne300vsP3y6k+PuXSYP/H0Ljp7JM+JpCCfQc?=
+ =?Windows-1252?Q?34nveI/POgLjOLHoYGrtEcWVol6HglUxYWgXyzVe1WYRvOFC5/6eZzDw?=
+ =?Windows-1252?Q?ULE6OSj6ASeLf7fd83idLqmVoZFzTdzdfPjMDHs5CNlELPND/4ksyZbv?=
+ =?Windows-1252?Q?uchdaZg/gMFPLtn1CFNlY1oybv95JSRl/z8J3NVQB+un5DIvOD8QFjKX?=
+ =?Windows-1252?Q?QzynUb9bwfnqId64IkZphHqauLXnvk2thd/ZhKzFIEOYjBLNm56fpi4G?=
+ =?Windows-1252?Q?B/ntn+Nrn6zfygcjllm5fAfkmJ49Js6QQuXMhOBF/BzmXQaStpYGIzPp?=
+ =?Windows-1252?Q?fLSRHsyeTbO1+XUH8DYIxU/NHXxpeBzs4zmVRQdpfaGSKn7zy8iWS+Ng?=
+ =?Windows-1252?Q?jdqYUJTe0s/BaME1REpmIZGmaXi01dNn2KL4u/dbwpXiPbw1QEvAbQnL?=
+ =?Windows-1252?Q?ZH23VnzE04Zp3bQBVYCI+h5wmPOJU6XFHLrrxn3nOCmiP3zuRg47ec4T?=
+ =?Windows-1252?Q?BcIro0pa4TO2f7aqeojzBEkt47o9qwzLz8P1K6e0N2ZE4ooce1z/j4O4?=
+ =?Windows-1252?Q?j9E=3D?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MN0PR22MB3666.namprd22.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(10070799003)(366016)(7053199007)(8096899003)(38070700018);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?Windows-1252?Q?KXybEiGtcWW4hFddXKAWno6Vv83iUGcyjOUlL5y+qw+EOb9YoGyUEozf?=
+ =?Windows-1252?Q?mX7oKX9tcN0qZsBgBbWb5bCKjNld5WNb9d6yCEWlsB6slSu0eY5VO47q?=
+ =?Windows-1252?Q?G/GOaLoI1fzZ5Xhi5aepY3u1NTiegWHRUp+ekBfZpjgYBfkp2yN3vg0Q?=
+ =?Windows-1252?Q?N62YxprvJdORgqf1epMQ9ZigEMBDzKQxK8amCqchBNZn/qPffnr4uWxR?=
+ =?Windows-1252?Q?yrsmABgx6EDO0WSMnZzODIGH1mDrszu5YAjxY7SY1t2piY665RRABpk1?=
+ =?Windows-1252?Q?NCVF//lEm06j/eERG0qtkGCLM8PJBI0Op4xJ7imgb0f1yyDjtOnT9dk6?=
+ =?Windows-1252?Q?2b89FmgdYt8l7qceLS/oFMVo3Umb/BqrVzXI/51UA+UdyZyK0y397j9G?=
+ =?Windows-1252?Q?v9I944kNEm//pYURL/nPtQbzR8GMwZm7mfzwNktJDBD9cnSAFPbrqeQj?=
+ =?Windows-1252?Q?HyvgwegFeus5dviIiAaPA/EOgaRT9OvImCd/CCDC+QSLGGeXgyKMX+pp?=
+ =?Windows-1252?Q?Xviaoj2G+PB9OlaeAddYw49dpEkNwGPh4WUJWsaYgAxhHxTKOSQT1h6i?=
+ =?Windows-1252?Q?QtA3wPk0/KNJuIkp5hEcaQT4VsBOQX4AHsdjXWQYVMr2TLpbzuQTZDW+?=
+ =?Windows-1252?Q?YNIoG6510W5Rs+g27PjTCFwbUiwENqL80B+Ojt646TripwtIcH5/x7TL?=
+ =?Windows-1252?Q?Lg39Iku3zh6K4zomEFA+sRRjLKj5HJ/wumGzxdcaMbGOP8HK7ezu2ey3?=
+ =?Windows-1252?Q?glVGTz0m5VyKupSIJYGKvvRMwRE9xEDYFNWpHfKbpHGYdPRRkX8UxFpE?=
+ =?Windows-1252?Q?xhbMsmeoOUH2pPbSb5mr+FOXS2LmrDJOyPozY900hfN6iA3S9qag67fT?=
+ =?Windows-1252?Q?o+ujUwMlnF5glCDZht9JMNIeWnHGwXbfMxmL2nByxTWEv7/5cLhTIEhC?=
+ =?Windows-1252?Q?eEh2txSGnU1dMX2kuVgRwJMvtrBp7pGMjL8hLannBiA6a898V4zqhQkT?=
+ =?Windows-1252?Q?4UOKMKH/6nNAPp5VYRhK6VkKEk8ZEamUlcbkzoLyeq5rlzvw8GEF7//A?=
+ =?Windows-1252?Q?GFiSql1yy5Fcfiyz1amTTHMr+lRGOV1AMiJGYtdlOh/3/d5zpQHNm4bx?=
+ =?Windows-1252?Q?W7H+XTFeWo9C3JIrGWLBu5CZb/ZwsDhvEkARqgIq5RkG9r2daQ0+SYff?=
+ =?Windows-1252?Q?lcQOXA6C8W0xRXHU7KITBNOhk9ee3Van8H6wvtOA04zSphbHDpAn7ob2?=
+ =?Windows-1252?Q?kIaxd6NiSVvNZuXNSKatgk7W5k6nCAQapoZ9dwZoiMOggc10hJ+9WyE3?=
+ =?Windows-1252?Q?SDqxwL2wynhvPUFS5I6MvIaujq/loKIRrMgfr7IwjL75RUiW6ZdGYk2P?=
+ =?Windows-1252?Q?7R7QvQH9XhmQUcRAlqlH624lnF0LZc6dJsBxkw6aH26evAfzXlHCHOtI?=
+ =?Windows-1252?Q?VGV0dFZg2fIbDfiT4LfSbOeusQf0L5UDQyAmA9C5F30y+hWBvmTFsVU8?=
+ =?Windows-1252?Q?n/VJiZwWP8NL8o9xQAfz0go5Wx8g4R/U8qlB+6h4PRwJpCqrwZvKH/Y+?=
+ =?Windows-1252?Q?9mjc34AIq+QZ0j9fw1aspnmK01pFnFZHR3+KkE/Gblf8WA0srktBkMOz?=
+ =?Windows-1252?Q?i0QjPZHNkghWQUho4tUjIEmp5oUiCLX0kHNTCIq44ztVfkMkWN4zQF0Z?=
+ =?Windows-1252?Q?KpfMtsVGZvyqdesk5pk/OiVD86V9kmbAPe52nGQadC6jfmw72EkdYdh8?=
+ =?Windows-1252?Q?WWhiqbQ3NnUShsO/a64=3D?=
+Content-Type: multipart/alternative;
+	boundary="_000_MN0PR22MB36664DB4E07BD9369287A81A9D6EAMN0PR22MB3666namp_"
+MIME-Version: 1.0
+X-OriginatorOrg: whitney.org
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR22MB3666.namprd22.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 980f8051-69b9-40fb-8d1b-08dda5175411
+X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Jun 2025 16:29:36.9599
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 28ad7bce-66ad-4171-92a3-6e36d172f6eb
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: k8bzvUnMPaamBBrpwiDnvOjMI3Pm4vnA8fRZopnmi0djL0tvVjKa8/224Bk+gaYXODIx5rPsYcnd3teI9w6liQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR22MB3097
+X-BESS-ID: 1749227379-111595-7605-18708-1
+X-BESS-VER: 2019.1_20250604.1808
+X-BESS-Apparent-Source-IP: 40.107.94.92
+X-BESS-Parts: H4sIAAAAAAACAzXLMQ7CMAyF4bt47oAdJ057FcRg17a6IAYyIKHenQxlefr1pO
+	/+hfgM2GDMXeD1ho0KllnHPEUC3XfSm4Zlco/mXrITrqtTSTiXvz/G8/K1C14+AqWyiy
+	lrUGKINmM2qmgtdoTz8QNpGXhDgQAAAA==
+X-BESS-Outbound-Spam-Score: 0.00
+X-BESS-Outbound-Spam-Report: Code version 3.2, rules version 3.2.2.265141 [from 
+	cloudscan14-37.us-east-2a.ess.aws.cudaops.com]
+	Rule breakdown below
+	 pts rule name              description
+	---- ---------------------- --------------------------------
+	0.00 HTML_MESSAGE           BODY: HTML included in message 
+	0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
+X-BESS-Outbound-Spam-Status: SCORE=0.00 using account:ESS111578 scores of KILL_LEVEL=7.0 tests=HTML_MESSAGE, BSF_BESS_OUTBOUND
+X-BESS-BRTS-Status:1
+
+--_000_MN0PR22MB36664DB4E07BD9369287A81A9D6EAMN0PR22MB3666namp_
+Content-Type: text/plain; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Tom,
+So nice to hear from you! It's been the dream of curators, museum staff, an=
+d the digital art world, in particular, to have an archive or meta-data int=
+eroperability to be able to trace an artist's work across institutional col=
+lections. Sadly, initiatives so far haven't gone anywhere, so we are all st=
+uck with tracing works in individual collections. The registrar or staff in=
+ the registrar's department are typically the best people to contact.
+
+When it comes to private collectors donating to institutions or reselling, =
+the situation tends to be even worse. I think in this case the use of NFTs =
+as certificate of authenticity could play a valuable role =97 at least the =
+transfer of a work from one owner to another could be transparently traced.
+
+I'm sorry I can't be more helpful.
+All the best,
+Christiane
+
+
+Christiane Paul
+
+Curator of Digital Art
+
+Whitney Museum of American Art
+99 Gansevoort Street
+New York, NY 10014
+
+________________________________
+From: Thomas Machnik <zipnpup@yahoo.com>
+Sent: Thursday, June 5, 2025 6:37 PM
+To: Christiane Paul <Christiane_Paul@whitney.org>
+Cc: George Lionel Barker <george@gazelliarthouse.com>; Paul Cohen <paulrcoh=
+en@gmail.com>
+Subject: Research Question
+
+
+This email was sent from an external source so please treat with caution.
+
+Hi Christiane,
+
+Happy Thursday and happy June already! I hope you can help me with a questi=
+on. From time to time I work on researching where Cohen=92s works are. Haro=
+ld left behind lists of museums and other entities but did not necessarily =
+document what those works were. Also in the case of Robert Hendel and other=
+s who may have had the original an original work they then donate to a muse=
+um. Unless they notify us we are not aware of the transfer. Therefore, the =
+list doesn=92t necessarily help.
+
+I can (and do from time to time) contact various institutions. Some institu=
+tions have the ability to search on the website others do not. Are you awar=
+e of some sort of database for museums and/or other institutions that may h=
+ave what I am looking for =97 name lists of Cohen works? Also, when I do co=
+ntact a museum, when I don=92t have a personal contact, I rarely make any h=
+eadway. Do you have any suggestions on what department or what position I a=
+sk for? Or any other suggestions? I=92d appreciate you thoughts.
+
+Hope all is well,
+
+Tom
+
+
+--_000_MN0PR22MB36664DB4E07BD9369287A81A9D6EAMN0PR22MB3666namp_
+Content-Type: text/html; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
+252">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div class=3D"elementToProof" style=3D"font-family: Calibri, Helvetica, san=
+s-serif; font-size: 10pt; color: rgb(0, 0, 0);">
+Hi Tom,</div>
+<div class=3D"elementToProof" style=3D"font-family: Calibri, Helvetica, san=
+s-serif; font-size: 10pt; color: rgb(0, 0, 0);">
+So nice to hear from you! It's been the dream of curators, museum staff, an=
+d the digital art world, in particular, to have an archive or meta-data int=
+eroperability to be able to trace an artist's work across institutional col=
+lections. Sadly, initiatives so
+ far haven't gone anywhere, so we are all stuck with tracing works in indiv=
+idual collections. The registrar or staff in the registrar's department are=
+ typically the best people to contact.</div>
+<div class=3D"elementToProof" style=3D"font-family: Calibri, Helvetica, san=
+s-serif; font-size: 10pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div class=3D"elementToProof" style=3D"font-family: Calibri, Helvetica, san=
+s-serif; font-size: 10pt; color: rgb(0, 0, 0);">
+When it comes to private collectors donating to institutions or reselling, =
+the situation tends to be even worse. I think in this case the use of NFTs =
+as certificate of authenticity could play a valuable role =97 at least the =
+transfer of a work from one owner
+ to another could be transparently traced.</div>
+<div class=3D"elementToProof" style=3D"font-family: Calibri, Helvetica, san=
+s-serif; font-size: 10pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div class=3D"elementToProof" style=3D"font-family: Calibri, Helvetica, san=
+s-serif; font-size: 10pt; color: rgb(0, 0, 0);">
+I'm sorry I can't be more helpful.</div>
+<div class=3D"elementToProof" style=3D"font-family: Calibri, Helvetica, san=
+s-serif; font-size: 10pt; color: rgb(0, 0, 0);">
+All the best,</div>
+<div class=3D"elementToProof" style=3D"font-family: Calibri, Helvetica, san=
+s-serif; font-size: 10pt; color: rgb(0, 0, 0);">
+Christiane</div>
+<div class=3D"elementToProof" style=3D"font-family: Calibri, Helvetica, san=
+s-serif; font-size: 10pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div class=3D"elementToProof" id=3D"Signature">
+<p style=3D"text-align: left; background-color: rgb(255, 255, 255); margin:=
+ 0in 0in 0.0001pt;">
+<span style=3D"font-family: Calibri, sans-serif, serif, EmojiFont; font-siz=
+e: 9pt; color: rgb(33, 33, 33);"><b>Christiane Paul</b></span></p>
+<div style=3D"background-color: rgb(255, 255, 255); margin: 0px;">
+<div style=3D"direction: ltr; text-align: left; margin: 0px; font-family: C=
+alibri, sans-serif, serif, EmojiFont; font-size: 9pt; color: rgb(33, 33, 33=
+);">
+Curator of Digital Art</div>
+<div style=3D"direction: ltr; text-align: left; margin: 0px; font-family: C=
+alibri, sans-serif, serif, EmojiFont; font-size: 9pt; color: rgb(33, 33, 33=
+);">
+<br>
+</div>
+<div style=3D"direction: ltr; text-align: left; margin: 0px; font-family: C=
+alibri, sans-serif, serif, EmojiFont; font-size: 9pt; color: rgb(33, 33, 33=
+);">
+<b>Whitney Museum of American Art</b></div>
+<div style=3D"direction: ltr; text-align: left; margin: 0px; font-family: C=
+alibri, sans-serif, serif, EmojiFont; font-size: 9pt; color: rgb(33, 33, 33=
+);">
+99 Gansevoort Street</div>
+<div style=3D"direction: ltr; text-align: left; margin: 0px; font-family: C=
+alibri, sans-serif, serif, EmojiFont; font-size: 9pt; color: rgb(33, 33, 33=
+);">
+New York, NY 10014</div>
+</div>
+<div style=3D"text-align: left; background-color: rgb(255, 255, 255); margi=
+n: 0in 0in 0.0001pt; font-family: Calibri, Helvetica, sans-serif; font-size=
+: 9pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+</div>
+<div id=3D"appendonsend"></div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> Thomas Machnik &lt;zi=
+pnpup@yahoo.com&gt;<br>
+<b>Sent:</b> Thursday, June 5, 2025 6:37 PM<br>
+<b>To:</b> Christiane Paul &lt;Christiane_Paul@whitney.org&gt;<br>
+<b>Cc:</b> George Lionel Barker &lt;george@gazelliarthouse.com&gt;; Paul Co=
+hen &lt;paulrcohen@gmail.com&gt;<br>
+<b>Subject:</b> Research Question</font>
+<div>&nbsp;</div>
+</div>
+<div>
+<p>This email was sent from an external source so please treat with caution=
+.</p>
+<div class=3D"x_yahoo-style-wrap" style=3D"font-family:Helvetica Neue,Helve=
+tica,Arial,sans-serif; font-size:16px">
+<div dir=3D"ltr" data-setdir=3D"false">Hi Christiane,&nbsp;</div>
+<div dir=3D"ltr" data-setdir=3D"false"><br>
+</div>
+<div dir=3D"ltr" data-setdir=3D"false">Happy Thursday and happy June alread=
+y! I hope you can help me with a question. From time to time I work on rese=
+arching where Cohen=92s works are. Harold left behind lists of museums and =
+other entities but did not necessarily
+ document what those works were. Also in the case of Robert Hendel and othe=
+rs who may have had the original an original work they then donate to a mus=
+eum. Unless they notify us we are not aware of the transfer. Therefore, the=
+ list doesn=92t necessarily help.&nbsp;</div>
+<div dir=3D"ltr" data-setdir=3D"false"><br>
+</div>
+<div dir=3D"ltr" data-setdir=3D"false">I can (and do from time to time) con=
+tact various institutions. Some institutions have the ability to search on =
+the website others do not. Are you aware of some sort of database for museu=
+ms and/or other institutions that may
+ have what I am looking for =97 name lists of Cohen works? Also, when I do =
+contact a museum, when I don=92t have a personal contact, I rarely make any=
+ headway. Do you have any suggestions on what department or what position I=
+ ask for? Or any other suggestions?
+ I=92d appreciate you thoughts.</div>
+<div dir=3D"ltr" data-setdir=3D"false"><br>
+</div>
+<div dir=3D"ltr" data-setdir=3D"false">Hope all is well,</div>
+<div dir=3D"ltr" data-setdir=3D"false"><br>
+</div>
+<div dir=3D"ltr" data-setdir=3D"false">Tom</div>
+<div dir=3D"ltr" data-setdir=3D"false"><br>
+</div>
+</div>
+</div>
+</body>
+</html>
+
+--_000_MN0PR22MB36664DB4E07BD9369287A81A9D6EAMN0PR22MB3666namp_--

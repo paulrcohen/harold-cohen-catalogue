@@ -1,0 +1,112 @@
+Subject: Re: Final Copy check
+From: Robert Norton <robert@verisart.com>
+To: Thomas Machnik <zipnpup@yahoo.com>
+Date: 2024-10-01 19:24:44
+Message-ID: <EBCE2A0F-B736-4880-9517-CD9370FBF6B0@verisart.com>
+--------------------------------------------------------------------------------
+
+Thanks for clarifying. We will use the file size as listed by the computer as this will be more transparent for people and easier to understand. Best
+
+Robert Norton
+CEO & co-founder
+Verisart <http://www.verisart.com/>
+
+￼
+
+> On Oct 1, 2024, at 18:14, Thomas Machnik <zipnpup@yahoo.com> wrote:
+> 
+> Robert,
+> The previous list you sent and the one we discussed over the phone.
+> Turns out the Metadata reader does not match with the file size list on the computer.
+> file Metadata reader
+> 0305-08 135 metadata vs 138 file listing on computer
+> 0309-03 208 metadata vs 213 file listing on computer
+> 
+> If you say the metadata needs to match then,
+> The first column is what needs to be used as those are the sizes listed by the reader. And those are the original numbers I listed in the Provenance+Metadata document
+> 
+> 
+> Tom
+> 
+> On Tuesday, October 1, 2024, 9:42:51 AM PDT, Robert Norton <robert@verisart.com> wrote:
+> 
+> 
+> Tom,
+> 
+> Thanks for your time earlier. Per discussion we will go with:
+> 
+> 1) the Earl & Birdie Taylor gallery
+> 2) Use Harold Cohen Trust instead of HCT
+> 3) We will use the file sizes as per the files themselves and not the file size in the Word Document you previously provided.
+> <Screenshot 2024-10-01 at 17.42.01.png>
+> 
+> 
+> Thanks for clarifying - we will pass this on to Sotheby’s.
+> 
+> Best
+> 
+> Robert
+> 
+> 
+> Robert Norton
+> CEO & co-founder
+> Verisart <http://www.verisart.com/>
+> 
+> 
+> <verisart-certified-signature (1).gif>
+> 
+>> On Oct 1, 2024, at 17:20, Robert Norton <robert@verisart.com> wrote:
+>> 
+> 
+> Hi Thomas,
+> 
+> Thanks so much for the additional information you provided yesterday. We wanted to run a few changes by you which have been picked up by our team.
+> 
+> We noticed that the Birdie Taylor gallery is referred to online as the Earl & Birdie Taylor gallery online - should we go with this version? ie. Earl & Birdie Taylor gallery
+> We suggest using Harold Cohen Trust instead as HCT as believe this is clearer. Are you OK with this?
+> Should we change paper to Roland PQM-CRBW-33-50 paper? Or are you not sure if all prints are on this type of paper?
+> Some of the file sizes are slightly different to what you wrote when we double checked them on our end. See below for more information. Are you OK with these changes?
+> 
+>> 0309-03s (C3 AW50)
+>> From: 208 KiB’ To 213 KiB’
+>> 
+>> 0309-06 (i23-3370)
+>> From: 167 KiB To: 171 KiB
+>> 
+>> 0311-32 (i23-3405)
+>> From: 177 KiB To: 181 KiB
+>> 
+>> 0311-35 (i23-3404)
+>> From: 172 KiB To: 176 KiB
+>> 
+>> 030804 (i23-3373)
+>> From: 366 KiB To: 374 KiB
+>> 
+> 
+> 030905 (i23-3369)
+> From: 187 KiB To: 191 KiB
+> 
+> 030907 (C3 AW52)
+> From: 158 KiB To: 162 KiB
+> 
+> 040502 (i23-3377)
+> From: 251 KiB To: 257 KiB
+> 
+> 
+> Please can you and Paul approve these changes so we can send final copy to Sotheby’s. Please find attached copy for both the NFTs and the Physical Print Certificates and the images we will use to mint the NFTs.
+> 
+> Best
+> 
+> Robert
+> 
+> 
+> 
+> Robert Norton
+> CEO & co-founder
+> Verisart <http://www.verisart.com/>
+> 
+> 
+> <verisart-certified-signature (1).gif>
+> 
+> 
+> <Screenshot 2024-10-01 at 17.42.01.png><verisart-certified-signature (1).gif>

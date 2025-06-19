@@ -1,0 +1,132 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a10:6d08:b0:5c7:f970:fbca with SMTP id gq8csp3874785pxb;
+        Wed, 29 Jan 2025 05:49:33 -0800 (PST)
+X-Received: by 2002:a17:906:478f:b0:aa5:225f:47d9 with SMTP id a640c23a62f3a-ab6cfd083b7mr358353866b.29.1738158573260;
+        Wed, 29 Jan 2025 05:49:33 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1738158573; cv=none;
+        d=google.com; s=arc-20240605;
+        b=YHFyoauiq1yJraaKGIHb5YzBrdRgHZev0z/v2/KTwGkcxjHhQVYDOVTre6Mi6CXoHK
+         HxC/eoorp+PgHnSr0KIPvFQtC8WlTyqjAbA5Ojr7dEVDGhVOMhy/5csnm5+00cJ3GGUC
+         HuqciLiCVad1rdvcHuX25294GKW6MnOvTJyBtoDOVTVY/GeIWUep5+Nz9bxSHUmrKYBI
+         2h7c4dWK/gxc8BQ/mtjOXXDy1DUxKWk6brYIiKspvyo66ODyc8QpcYUqFM3GLAXxG8z3
+         7Nn7C2m4AIr/dq/efhhEVcjYuiPgwPe0JGbR8dG4DO70DmZhKBbXTxZHv4pEuvAbblCR
+         IcgQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=6vNsBbifoA8j2ix6uEieKAW/dhegkb73E336WOVu/x0=;
+        fh=3msxlB5Rblv9jjqEdsabgib1afL6bm1FbmGjCbPN4XM=;
+        b=K0ak+LgjDSzeiB+Zbo4yheAxmL/YwVvv6sjc99MJyC4zhYo84SoAdKkQj5lnlQNow3
+         O+7u8gbV2xENBpxikl82HZJ4dxzkHjym27N8ledl9rkvWzWmf+fUKr3XD6K8vY7YhgPu
+         C6LjxMHE77zrsBexXG9N2k1I6zSBOFzfi1D7AwxZrFEdxp89zPO6qxO5Jm+4iZbIPdK5
+         KGrnderaMrV1Qt+5aUVPX3BYvlol1AZElPgOo6tXwIQIcDmcmcv58wV0jPvoBcN1M9Rc
+         YfKFDTgwmekzI1aQ/WpMD4KfxkhiICbkjnjialdVmIs3e+1b+i4/VBj2IQjZeZuELom3
+         0ksw==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@gazelliarthouse-com.20230601.gappssmtp.com header.s=20230601 header.b=lhCX4xdO;
+       spf=pass (google.com: domain of michael@gazelliarthouse.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=michael@gazelliarthouse.com;
+       dara=pass header.i=@gmail.com
+Return-Path: <michael@gazelliarthouse.com>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id a640c23a62f3a-ab6760b907dsor54629866b.15.2025.01.29.05.49.33
+        for <paulrcohen@gmail.com>
+        (Google Transport Security);
+        Wed, 29 Jan 2025 05:49:33 -0800 (PST)
+Received-SPF: pass (google.com: domain of michael@gazelliarthouse.com designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@gazelliarthouse-com.20230601.gappssmtp.com header.s=20230601 header.b=lhCX4xdO;
+       spf=pass (google.com: domain of michael@gazelliarthouse.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=michael@gazelliarthouse.com;
+       dara=pass header.i=@gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gazelliarthouse-com.20230601.gappssmtp.com; s=20230601; t=1738158573; x=1738763373; dara=google.com;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=6vNsBbifoA8j2ix6uEieKAW/dhegkb73E336WOVu/x0=;
+        b=lhCX4xdOKHi1ZhIzux6UIpBozyjigeFTZKEtD3ySzNN4gcNilSRCaBpCMsrC+QniQ7
+         E8QZfzDfcH4pkTg5PjXLaytci8AM3ynmPPUh/OoU+cmVdIGddYByLFTDk4TMPF7rzNQ8
+         +mH6+g0V+c9HnEDEAMBdN9v+HrEn0tB7p1LAVNtBSeCZX6YkztnZqbmpnPvKou3TvMbf
+         BGtPK4N4nmIBhpfAKFIGVG7nTYcFsXcu8nDHpkYsg205CJ6/5CCgdk+X6hvot5OTznBN
+         BWCjGg+laW4c6F9EPQruzZk0jEWXJk89HKAVFOnmS/7gWm3Mlmsb3MBRLWTbPWfkM1Qm
+         ZuUw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1738158573; x=1738763373;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=6vNsBbifoA8j2ix6uEieKAW/dhegkb73E336WOVu/x0=;
+        b=a7awdzdtNLmZyUn0QHCVSZnGuhcZhvk8GIamt4aVcdAV2BeO6iX8kD5Xb6MOCpHCOK
+         SvEWC5RPyrP4Gxcdvf/sla+UpdOHLmSEBcF6SxQgQN6APa4ZLQ6StY918lamD7xZRrWG
+         fk1lz6Eb8mHKCEbM0AO76TebgkqhE6E18TucgNQ5oNwVR+NkwBZSPDvDrdHBsxoGwcMN
+         ifxw+30p4NH6lAHYvAQN8+DT6Gw5Fi5nmV2zcB6nAKwQH/VChf7YqUq4RIUYvn5PJAFB
+         6imu382FyMACeCtzqDfjb+Rh8C+nmwsdhe5lb1mozCCVMQtd4BtXOoIsmqMDmVqs2fZd
+         nzog==
+X-Gm-Message-State: AOJu0YxNj5w+R9LH1Jd35JzKPkyZbTmwHMT0jVMgv/MsICsS/zHHRH26
+	kqjLHnX3G2Il10cEqzDDMbDXUB/smbm1gLCY+c1GQ9OQHnn9n3a+yz0C9PbJe0VezI/cUU2eqJY
+	eSzabS6zSDYelSuwRe2M2B2bpE+VW2FXKKyI86W0xg8jQVfw2ysg=
+X-Gm-Gg: ASbGnctreHoanBumLtDFFpTQh1sq/8x0Ajl+Ex2uk83TThYiSfi94L/CpdbQUKdFnYL
+	BG0slh9nG03AkaMpuXp6sLFboBr8aWKYYsTZG3YpsHlF1ojwHroHEJ+HpiAkwg/bW/GSHkeALyq
+	Y=
+X-Google-Smtp-Source: AGHT+IEC9n3+yIYzfpXZs/mHluvoPgJWU+woSHR68yj77FjgZ2pu0AjS11RXR+PHcnlH0yJYzsShdKINSiPkicXv3e8=
+X-Received: by 2002:a17:907:3fa7:b0:aae:ebfe:cedb with SMTP id
+ a640c23a62f3a-ab6cfe12cfemr303560066b.51.1738158572678; Wed, 29 Jan 2025
+ 05:49:32 -0800 (PST)
+MIME-Version: 1.0
+References: <1368161520.2967243.1738082226596.ref@mail.yahoo.com> <1368161520.2967243.1738082226596@mail.yahoo.com>
+In-Reply-To: <1368161520.2967243.1738082226596@mail.yahoo.com>
+From: Michael Pollard <michael@gazelliarthouse.com>
+Date: Wed, 29 Jan 2025 13:49:20 +0000
+X-Gm-Features: AWEUYZlczgSa8Hh2-z3BBvXDFY1VSG0K81wgfpkl5ePf8fN2cysuSjycmMB9kTg
+Message-ID: <CAGxUL8tPCWRQ7MtJgtaxxQ+_94SheENPBKHHEOtXLx0GyWM50A@mail.gmail.com>
+Subject: Re: Shipper
+To: Thomas Machnik <zipnpup@yahoo.com>
+Cc: Paul Cohen <paulrcohen@gmail.com>
+Content-Type: multipart/alternative; boundary="00000000000049d649062cd894a9"
+
+--00000000000049d649062cd894a9
+Content-Type: text/plain; charset="UTF-8"
+
+Hi Thomas,
+
+Dietl are arranging.
+They have said that their local collecting agent is a little busy, so it
+may be a moment before they get in touch to schedule the visit / pickup.
+I'll follow up with them and see if they have any availability.
+
+Michael.
+
+On Tue, 28 Jan 2025 at 16:37, Thomas Machnik <zipnpup@yahoo.com> wrote:
+
+> Hi Michael,
+> I have not heard from the shipper yet. If they called and I was unable to
+> take it, they did not leave a message. I was assuming they would initiate
+> the call. Maybe that was incorrect. In any case, there is no action yet
+> toward the net step. Please advise.
+>
+> Sincerely
+> Tom
+>
+
+--00000000000049d649062cd894a9
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi Thomas,<div><br></div><div>Dietl are arranging.</div><d=
+iv>They have said that their local collecting agent is a little busy, so it=
+ may be a moment before they get in touch to schedule the visit / pickup.</=
+div><div>I&#39;ll follow up with them and see if they have any availability=
+.</div><div><br></div><div>Michael.</div></div><br><div class=3D"gmail_quot=
+e gmail_quote_container"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, 28 J=
+an 2025 at 16:37, Thomas Machnik &lt;<a href=3D"mailto:zipnpup@yahoo.com">z=
+ipnpup@yahoo.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" =
+style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);pa=
+dding-left:1ex"><div><div style=3D"font-family:&quot;Helvetica Neue&quot;,H=
+elvetica,Arial,sans-serif;font-size:16px"><div dir=3D"ltr">Hi Michael,</div=
+><div dir=3D"ltr">I have not heard from the shipper yet. If they called and=
+ I was unable to take it, they did not leave a message. I was assuming they=
+ would initiate the call. Maybe that was incorrect. In any case, there is n=
+o action yet toward the net step. Please advise.</div><div dir=3D"ltr"><br>=
+</div><div dir=3D"ltr">Sincerely</div><div dir=3D"ltr">Tom</div><span></spa=
+n></div></div></blockquote></div>
+
+--00000000000049d649062cd894a9--

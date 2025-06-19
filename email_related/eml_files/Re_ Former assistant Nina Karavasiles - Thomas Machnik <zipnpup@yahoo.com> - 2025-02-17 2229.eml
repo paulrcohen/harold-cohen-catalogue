@@ -1,0 +1,180 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a10:e90d:b0:5c7:f970:fbca with SMTP id gt13csp2049884pxb;
+        Mon, 17 Feb 2025 19:29:06 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFv1iG3q8NFY/CJABP3fe22nCHIYpGj4/dah3BQJNEFaCyS1cmOxVjXu6XYJcvg2P/hPiuD
+X-Received: by 2002:a05:6a00:3e0c:b0:730:9334:18f3 with SMTP id d2e1a72fcca58-732618c2523mr18546338b3a.19.1739849345886;
+        Mon, 17 Feb 2025 19:29:05 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1739849345; cv=none;
+        d=google.com; s=arc-20240605;
+        b=kmPxCWnOC1i8+vug+XbFy6Pcx7AQjVEJiXkhyYgYpBkCl9VCherOJkvwNCLQVhDXK1
+         9sfYVPHNbzwfOMlU6E3vSQTq7I36SgGs6NPMho2Qs2TrjrmByt7edGCAjYM+ByPzfh+N
+         04WsrCMARTd139dT60N7fKWzVD7Wbkc07fTwfd+K8RFeRv6Q5D9Uh7p3qW+7dgfxhvqk
+         4OHEOaFwccT1+wt/tOOjlRCNy5j6AA/XMMqgY7DQTj4IXw9f0YOSWD0OORcTgglakO3A
+         azlus4E4w7uai9jb+KkYA32CXubhcX+SBldq9JzcNHNwwpT58/q9jUMculxgGi9LEKNm
+         hxTA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:subject:references:in-reply-to:message-id:to:reply-to
+         :from:date:dkim-signature;
+        bh=LCsxFeRu8yRlNuU7SmNXcsyDMqc15r+Oci3T3tiIVKs=;
+        fh=+ZSZzLtrqjYAnpssQkgK417RpHpTSSzuH+J6PqTYzzs=;
+        b=RC2tEHM3ey7dHZ70rKLPhhGaPQapUqKRO/+klFjmM6f5OKPhLDtjMZzllTQcrkonib
+         V1p45+Co4ZZy3cxbn63qqdRqV7/6qcJeOE+fXnW6fuE8Uu/iFo99B/Ss9aUnc3/+9sCH
+         AS0pRGck3v+Kfqsc+kAxAtKjWJeupuEq8/ZH1PFpa+4GoknxWwU0po1W+7XQdH1CJl5I
+         tXj7iqgpg0r0zzcdhUVwiTBoHdtN9SBM/dbMrI34nZRC+tqWd6bdo/Nlw+dwGq3t+hQL
+         BlxdCeHOqHEKawIfO/pYdkh2E+W2P5PO7PFKyktODtmvqoMMXQXVXylYUyCM7jbckOO+
+         LEKA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=SzdMRPnX;
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.130.122 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+Return-Path: <zipnpup@yahoo.com>
+Received: from sonic316-12.consmr.mail.bf2.yahoo.com (sonic316-12.consmr.mail.bf2.yahoo.com. [74.6.130.122])
+        by mx.google.com with ESMTPS id d2e1a72fcca58-73270c3863fsi6784428b3a.105.2025.02.17.19.29.05
+        for <paulrcohen@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 17 Feb 2025 19:29:05 -0800 (PST)
+Received-SPF: pass (google.com: domain of zipnpup@yahoo.com designates 74.6.130.122 as permitted sender) client-ip=74.6.130.122;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=SzdMRPnX;
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.130.122 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1739849344; bh=LCsxFeRu8yRlNuU7SmNXcsyDMqc15r+Oci3T3tiIVKs=; h=Date:From:Reply-To:To:In-Reply-To:References:Subject:From:Subject:Reply-To; b=SzdMRPnXf4Xsclt6OkS0ttbaSVWxQITNrjpbIhpXX5Zc3b2EfhavkLL9DHI1gzoNGcw8VG9v16Z7AkYoWRESk/Csppw0gekNMPb+8iJAl1WcBfpE8WkBkPSOA2PQVc5sRVRhByZjWlZO99PtAnI24kYo9Nbw0aoLR2Xtmw9uwFUdy7bdpLhTtNE4zz74Bvt1bBFgntAyF/ugbk9a5p6nJuLAejH0LGvEtcOVwALK4W2iPKI39hpPFCHiFi8CAXbQ0JlNw9qO6Q4FoA1W/EkPHS8od+hu6VSZMLO/vl8bVMbQmpHJauvWP3yjujxi3LdkLj2Qu9u80vR8GF0Y02v7cA==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1739849344; bh=B8+OAeOZZkNb3PQnoWz6GeldR1B1Mrz3mB9h4qytbe1=; h=X-Sonic-MF:Date:From:To:Subject:From:Subject; b=OindnGvZqroED8ue7xCuG946Tmxq3xUuEojmXv1Kduwcylde0Mb2Wp+E4MgeuIHPbzldt9pIZRWJiYaWsb9q+TSoWTi0a1DVYcO1nOU8xWfbHmiqV6y9R8l6w7yaM9/7Bp+AAFePspG9mcrqkJV0dpYUmT4stB/5h+5OAYhrpYTSekalIdVZ4GVilaAvKYbJAZs1AaezY/bCd44I/a/N84Iad0BoskoQMzqb8em3j1dZlG/gp2ws1C1sNPZXqFPo4C/a1sh1wsIfFwbM2BkDGMKFR2TkxHsxQkfw1dx2bHoYdZxpb7G2Af3aQTzSSeW89Igm495cnr/ehDN6ehjwZg==
+X-YMail-OSG: MdDyxAAVM1kVfvC65MJDhGOP2U8dG1puA0pO0sS1uMzZ1I3k8U9UsXjGZ.m89Ys
+ 5yMb.6Hz06_QpwMEaHSfQbQD.8rsFGPYQRQHeu3TW3EpThgbS3IuPlOAX6Z23F_DkGVvHQLpq5ef
+ KZwF8tzbNslzyE0bG.T65JbrkO_OHEiMdUPohDzDIwN89LniHt9a1q9yhe9C5pliKGPLDEW6TkeO
+ D.u82xwcTKOaHvl6oAv_BkbSuZ8kmq8cemSjbQOsbTImV_UyerxLUaM0sSSUur.8UqnscsimQ57E
+ kfVOrG8fCJlYHUqcNijrj.bQsszW8NrVnMEBZ8iewLoECqb_UmfjVXR78yTnZo.uhVJnU7bs8uRV
+ aFmX5JhDa1B5AcS6llFyuz7o78FsCkErui4rdnKFNNViQB7wyJcuzbp9GA5LlIajU4yhe7k02Ao8
+ LFZ3M_7n_S0tJV.MhvJl9EZRa2Y5T3CQcI6BDYVNhHrlqH4wNAiRKQ85S.W2PsQHNQ_H4Y.iS_IB
+ 3_yr67TmsyAXh3ZRNpdyRecO.z.cIym0wqXxUkfxZKrbby_IyPYmO.NE6oaqDN9fr2q5YrrHgBNx
+ Tfj8UcUg00yP0Nde0r3zKSCk0WmSRAtKtH.Bfps8q0vpe_zcuBahHRDF1wL8PSnZncQ8toPB6L1s
+ wRnU0CRy0tkhFeRGeADzfSE7wIF4QLKYUOlIj35N39zBFDCSR_QuWGou56f2AWg_NeqgiGPvrUPE
+ N5HiALZlghhvXP1tEUeG7wWKVUS9u3XPn6mr9gOjhMej1GZjX7TWFN8VqvSF0ObTbAHqp0mG7F9B
+ 6_ykJ3mVOsqq7Ak_mpls7QLpC9q4t2h0XlTdIGzZJQNNdlvyu5DrKLZkN97DNjpRypd_ATqHl549
+ kKXSOioJqzO6H2vU9JWaA07PnQJLHGksbvUkS_fZzWgVbByo2zr9d1WUIH7B7hcKKbRfZK_Rv5yy
+ dFGr6NT5NlU0WCZUCnS7ZkjGqhaZe6rQw8miWkQXC1l_kmBmA5JFS_wXyeL9Rc5XSNVGioKvt.ph
+ RD646r_.oNMQluY0Tc5ywReulov9kpYb0PM9K9V3pNw4UWwJ6LMe1LZrfTABMtQbE1Ywf.IiyU9y
+ eT7mNjEu7TmgI8gJ6WfS8WIOKdUiVjBm5beK.6uVFiYAWwL1Jl.YOZlhfdWlamA_RWN3nOSMxZcJ
+ zo443YiX5u_zHFcQQ5hNgJfXLd6Sm91tT1tFL9LUribVcBZWebsGNKdyN3CFMkpuxgDt4KXwzKuQ
+ fad20E0ECil2rsPEjzWa2TK3Lod99xpqDTgnOnE4KJT9dsP3Q0_fsTLv3lJb5BeohDwIM_59Q0y6
+ aF0lZJ3HXvwTjPRfHGab9bJbEVHzNV4f_FltIIDdJKyOgXQ3XsWh1D.TBbU702ULVg9__rubXrct
+ 98dNQUUbfSVVKdVxIkMCl2_0LeMQ3u1IFkLLc1PrJ5u6f1iIn9qNNpva7T1bgSEtUApFgXM4UrjP
+ EiKFced_LnWh_u3ABS_FRI9S7MlO7W6bHi2vgU8lwcyMB6999YUBgDjpWJFx8GHfQPEaoSIDRjfC
+ m_WHsSFAXjpLMyIOgXT9qiYVEPpusZ9mxB751zfFmW7YCXFBqRoME1FwrRApCyaLpqIYpxe5nkRW
+ nVqXsmOeKrMecvr7ccajcEJUs3SznYO9C2bSHQGrkjPceEEOev2bWXWMSSNYOT2LAunkEDAI803a
+ LbzZo0dWtuQjWpQRHrnGZYG3yTL4vw74mGUP6NU5mfAVd0k8RgGRHKGmUFUkHaHLRKWDQLWoh_BA
+ U5BIc6AYta_BiFWXgxkD3rAq5XxDD4nmCygdDPRKCBGABwES1sqJT9qPoAhrwHF0JFVqT1Y8J87S
+ 4vwDrU8I8iIvGe.KAjtNXnn9zBZpYagujWUFEKfZ9877AiPpcVhKeTpM7gCoV92n7qAERZxSiBYv
+ VHrkrErWOw6KVxw2zDke39p1XNPRF1aftE0OE84cYcXgWHs0k2Q4gDgFHm.blb1R69_CMv1iK.DI
+ 9itHtO8sF0LCuxICwq19XDmGT555oPMgfanQh0Qh0xKskEMikUEb8QyusEFMQY6qveo4PtvKdfdm
+ d_bkgdLkU_9UQiwHCBbv.8oeE6fQMPI6bAk2Kf14A0H2NjrltEEDOQyBj_cJ82ah7hQdwDWcqzSh
+ BK.bewsFsmiub0zZBreegnVvhYxpjD3877dYjyh0UeiMG6GtJi8BFEvaEwGn.SPbOyAwWLoAg1sq
+ pIQ3prcf9Vnwlp20h.Jzut274Njb.yU1igoboNmKs30LCUB8v7MvpNwz5yTXnqAvAfVebZEVP0wB
+ Cwmd3q7Ofy2AkjywqFx643FmTJZRjBWCE7.QR1umBUGO43g--
+X-Sonic-MF: <zipnpup@yahoo.com>
+X-Sonic-ID: c43a81ce-fae7-46f8-be2c-8a350ad32a96
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic316.consmr.mail.bf2.yahoo.com with HTTP; Tue, 18 Feb 2025 03:29:04 +0000
+Date: Tue, 18 Feb 2025 03:29:03 +0000 (UTC)
+From: Thomas Machnik <zipnpup@yahoo.com>
+Reply-To: Thomas Machnik <zipnpup@yahoo.com>
+To: Paul Cohen <paulrcohen@gmail.com>
+Message-ID: <1066983577.736769.1739849343583@mail.yahoo.com>
+In-Reply-To: <CAKjPZkF9csdKT8=kXpfL3V8mZis7RV8pYqCmceSEN+22vgV55A@mail.gmail.com>
+References: <416026351.729506.1739845974913.ref@mail.yahoo.com> <416026351.729506.1739845974913@mail.yahoo.com> <CAKjPZkF9csdKT8=kXpfL3V8mZis7RV8pYqCmceSEN+22vgV55A@mail.gmail.com>
+Subject: Re: Former assistant Nina Karavasiles
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_736768_177994536.1739849343582"
+X-Mailer: WebService/1.1.23369 YMailNovation
+Content-Length: 4683
+
+------=_Part_736768_177994536.1739849343582
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+ Thanks will do!
+    On Monday, February 17, 2025 at 06:35:58 PM PST, Paul Cohen <paulrcohen=
+@gmail.com> wrote: =20
+=20
+ Hi Tom, I think it=E2=80=99s great!=C2=A0 Please give Nina my best wishes.=
+ Thanks! P
+On Mon, Feb 17, 2025 at 9:33 PM Thomas Machnik <zipnpup@yahoo.com> wrote:
+
+Hi Paul
+I have been in contact with Harold=E2=80=99s former assistant Nina Karavasi=
+les. Her time with Harold was approximately 1989 to 1995. She has been help=
+ful in filling in details from the transition from drawing to painting time=
+ period. Would it be ok for her to visit the studio next week. I would like=
+ to ask her some further questions regarding the works that will be sent to=
+ London before they go. Let me know if you think that would be ok for her t=
+o visit the studio,
+Tom
+
+--=20
+______________________________
+
+Paul Cohen,=C2=A0=C2=A0ProfessorSchool of Computing and InformationUniversi=
+ty of Pittsburghpersonal webpage
+______________________________ =20
+------=_Part_736768_177994536.1739849343582
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head></head><body><div class=3D"ydp9b8993a5yahoo-style-wrap" style=
+=3D"font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px=
+;"><div></div>
+        <div dir=3D"ltr" data-setdir=3D"false">Thanks will do!</div><div><b=
+r></div>
+       =20
+        <div id=3D"ydp9b8993a5yahoo_quoted_0482640636" class=3D"ydp9b8993a5=
+yahoo_quoted">
+            <div style=3D"font-family:'Helvetica Neue', Helvetica, Arial, s=
+ans-serif;font-size:13px;">
+               =20
+                <div>
+                    On Monday, February 17, 2025 at 06:35:58 PM PST, Paul C=
+ohen &lt;paulrcohen@gmail.com&gt; wrote:
+                </div>
+                <div><br></div>
+                <div><br></div>
+                <div><div id=3D"ydp9b8993a5yiv7369858591"><div><div>Hi Tom,=
+ I think it=E2=80=99s great!&nbsp; Please give Nina my best wishes. Thanks!=
+ P</div><div><br clear=3D"none"></div><div id=3D"ydp9b8993a5yiv7369858591yq=
+t19412" class=3D"ydp9b8993a5yiv7369858591yqt2652465567"><div><div class=3D"=
+ydp9b8993a5yiv7369858591gmail_quote"><div dir=3D"ltr" class=3D"ydp9b8993a5y=
+iv7369858591gmail_attr">On Mon, Feb 17, 2025 at 9:33 PM Thomas Machnik &lt;=
+<a shape=3D"rect" href=3D"mailto:zipnpup@yahoo.com" rel=3D"nofollow" target=
+=3D"_blank">zipnpup@yahoo.com</a>&gt; wrote:<br clear=3D"none"></div><block=
+quote style=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px;border-left-s=
+tyle:solid;padding-left:1ex;border-left-color:rgb(204,204,204);" class=3D"y=
+dp9b8993a5yiv7369858591gmail_quote"><div><div style=3D"font-family:Helvetic=
+a, Arial, sans-serif;font-size:16px;"><div dir=3D"ltr" style=3D"font-family=
+:Helvetica, Arial, sans-serif;">Hi Paul</div><div dir=3D"ltr" style=3D"font=
+-family:Helvetica, Arial, sans-serif;"><br clear=3D"none"></div><div dir=3D=
+"ltr" style=3D"font-family:Helvetica, Arial, sans-serif;">I have been in co=
+ntact with Harold=E2=80=99s former assistant Nina Karavasiles. Her time wit=
+h Harold was approximately 1989 to 1995. She has been helpful in filling in=
+ details from the transition from drawing to painting time period. Would it=
+ be ok for her to visit the studio next week. I would like to ask her some =
+further questions regarding the works that will be sent to London before th=
+ey go. Let me know if you think that would be ok for her to visit the studi=
+o,</div><div dir=3D"ltr" style=3D"font-family:Helvetica, Arial, sans-serif;=
+"><br clear=3D"none"></div><div dir=3D"ltr" style=3D"font-family:Helvetica,=
+ Arial, sans-serif;">Tom</div><div dir=3D"ltr" style=3D"font-family:Helveti=
+ca, Arial, sans-serif;"><br clear=3D"none"></div></div></div></blockquote><=
+/div></div></div>-- <br clear=3D"none"><div dir=3D"ltr" class=3D"ydp9b8993a=
+5yiv7369858591gmail_signature"><div dir=3D"ltr"><div><div dir=3D"ltr"><div>=
+<div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=
+=3D"ltr">______________________________<br clear=3D"none"><br clear=3D"none=
+">Paul Cohen,&nbsp;&nbsp;Professor</div><div dir=3D"ltr">School of Computin=
+g and Information</div><div dir=3D"ltr">University of Pittsburgh</div><div =
+dir=3D"ltr"><a shape=3D"rect" href=3D"https://paulrcohen.github.io/" rel=3D=
+"nofollow" target=3D"_blank">personal webpage</a><br clear=3D"none">_______=
+_______________________</div></div></div></div></div></div></div></div></di=
+v></div></div></div>
+</div></div></div>
+            </div>
+        </div></div></body></html>
+------=_Part_736768_177994536.1739849343582--

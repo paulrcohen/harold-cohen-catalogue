@@ -1,0 +1,17 @@
+Subject: AASC Main Groupings + Run Attempts
+From: Thomas Machnik <zipnpup@yahoo.com>
+To: Paul Cohen <paulrcohen@gmail.com>
+Date: 2024-12-07 09:39:48
+Message-ID: <1587887242.312165.1733564388382@mail.yahoo.com>
+--------------------------------------------------------------------------------
+
+Hi Paul
+I tried to cut this down as much as possible to make it readable. I have attached a file of may notes regarding the 112 versions of AARON I attempted to compile and run. These notes are for versions from 2007 to 2016. I have tried some earlier versions with no successes. I rather think we don't have the correct compiler version and/or correct Windows OS. 
+
+Summary of Main Groupings
+1992-1995 Fragments 
+1995-1998 PaintingMachine People+Plants
+2000-2006 People+Plants to Plants with no people 
+2007-2009 Plants to No Gravity 
+2009-2013 No Gravity to No Backgrounds
+2013-2016 FingerpaintingAlso2010 Hanging Sculptures

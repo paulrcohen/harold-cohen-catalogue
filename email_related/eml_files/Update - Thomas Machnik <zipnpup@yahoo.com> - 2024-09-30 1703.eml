@@ -1,0 +1,105 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a10:a141:b0:5ad:6c17:f336 with SMTP id r1csp2103306pxc;
+        Mon, 30 Sep 2024 14:03:53 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHe7QcZnpyO+/iTo+fbPJwPhg0De9u5MpXlgPPtq1VRG4AwLr1Oshu8XBocAvMrn8VxILFH
+X-Received: by 2002:a05:622a:15d1:b0:458:4e4c:b692 with SMTP id d75a77b69052e-45c9f24de63mr255467371cf.36.1727730233068;
+        Mon, 30 Sep 2024 14:03:53 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1727730233; cv=none;
+        d=google.com; s=arc-20240605;
+        b=hUs9YJMLFuZaIuaFlmjxq/uwKGuG5puKBxKb3HgiYmjiP4D+2M4Uta1D25WKhJaEnD
+         Vp05gkcab0QiInYNWqMF/7hBNI+L7koPGF6/rMq0dqFThXmaylSshCOO/n02Rj8IrYAm
+         LAkHwkFXA3XfRbCdZnEI6/BAf4cNookUDaROxjWjnORojmUSpp5Y5FvlEkOwkzgCGx1f
+         hCNy9ZSi8z5tfuQkrVcvGwBOuo7C9yIZODM7l8neYpeYqYwbMFIXl6uHEUNA8s0Zprji
+         NIeom/CHzj9zoNIl1ltQsD8sg5JmOUbGEfKKfc4RVRV5CL3PmLz48FTVd3yiNMzXidcS
+         4/bw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=references:mime-version:subject:message-id:to:reply-to:from:date
+         :dkim-signature;
+        bh=HZwegnr9LeI7CVMFjBbN/CPPQVWSWah1uMc9b+mMNlA=;
+        fh=2g7fEGCerHu6uyt6L8yJEXVRxq72AJVpS2kTEH0OTOY=;
+        b=Hq/NSTD7bLH2LzbEu54RkjXkzz+CzI5k102hIpJJmkPcukLP/0iluO74/yRp+Gtoab
+         dw3eAewaT28AyuHNwNF/VPvM79BFX8P9jXRj0sB87Rn1x9QzC6oKGuTjpU/Ip/JCKd9X
+         7qulFOgI0rZ/7hjVvHtzbMcUa0Rhb8zd+BoUl8raP5RIKPNW98LBJpBaAePVkzh+r1cd
+         Ef1cVqAbbtg3SDMz0hIZ0CY1t3dSmhFGrGQRkq6MSCjOz3KWP4y7pos1wU7HMSpg4Fxj
+         jRNjhwGxl7VhpXmI5B5C04+bRzAAQCoiMyKwq0nusb5wNcQ93xVmDRlpXakxn0F7aOUo
+         Rpnw==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b="L/57n1+k";
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.135.81 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+Return-Path: <zipnpup@yahoo.com>
+Received: from sonic318-26.consmr.mail.bf2.yahoo.com (sonic318-26.consmr.mail.bf2.yahoo.com. [74.6.135.81])
+        by mx.google.com with ESMTPS id d75a77b69052e-45c9f39e2e1si94056501cf.720.2024.09.30.14.03.52
+        for <paulrcohen@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 30 Sep 2024 14:03:53 -0700 (PDT)
+Received-SPF: pass (google.com: domain of zipnpup@yahoo.com designates 74.6.135.81 as permitted sender) client-ip=74.6.135.81;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b="L/57n1+k";
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.135.81 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1727730232; bh=HZwegnr9LeI7CVMFjBbN/CPPQVWSWah1uMc9b+mMNlA=; h=Date:From:Reply-To:To:Subject:References:From:Subject:Reply-To; b=L/57n1+kS9vCqJX4n6bQ7erni9dg7hs/X218a3n8lTzOud1rl++kUyg6IL5lizMna4WBj8CcjGlnHHSwPRqQ28nPMJTfDcnqg0KW05Z83lK/uoD0PSHmnJSLhySJqbfDMilewG0XfjFIko283miuF5D5v0sc8gDgUzUmlxS6LCnUFtu31gpG/HFoSO+31BvCqxGw2+ycdWZD3KUrPaUHlmbCtGvKb6cYKJzF5UOVYMfA+2PfazMUAUCWp4QMQOvMsH2xl/tE9sgI3IcXvWPAbjgJanRJJ+yBfr11CGGbdypWKagLJSN11Lx6DSbzkkgBn3BFqJumd+EN4r8FLNFrZQ==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1727730232; bh=858030FHRtKzcFCEX3e3Cs5YEs9pLqfVJvXTOmqhEDx=; h=X-Sonic-MF:Date:From:To:Subject:From:Subject; b=layxTvvjauVHIXNxAisvfYmNykHWmT7ghspZ4+Tvh5ID6E7dSjZCw0pCga6Bu29YLXzwSVRVPNDC8eDPtbgEGoiTSaN2l2PLsOHiRG/VJn4E3NP/7UbSJj77xuVH7OCbbscwDzTq4eq6zpnhqeN1eFJESd0QVhLBBDWX/Yh78BLj/DCA5+fixi/N29+gom4G2Mhtst/9hjHS8Bwr7jJyFX5fpN/I4OxobAzzy/nvi+tKgwS8NJCmPllqcjOmazFKfp5sSgfwhjkVciI0uhAZtsiNpQaVIp4gykCq46MuEHFtpc3w2twbbkO99xLfcQz7b2QB7mNUj6qD8opuiQvd6A==
+X-YMail-OSG: RmN0oaYVM1kF6aDWSjnsz95hjGNf0ewbZsSIvWfarZH6bNgIkqCOYhwaJbQCwjk
+ Ma0vH6hIv9RyCI8PBrFZmnTq1WjUfioxACnIrRCg.TQtnEn4cwylj3U3C93YeU1LgSRJSTaqZ5LP
+ 3n7MhIno.ieNM84X82FhrHNC8ScHbDWeAvQlcWygaP3o06bfientpqYsADOVmgyvmSGL5vFIMbTt
+ m8fktJfvVG0dh_u7liYSfmN2SmDZYIUFbUmunKiC97uIYXxWMB8Z6sN2wBlnECj.Xh4TlzR50OXS
+ IpIQArUhVi2Jy2LYWb3msj1OX3KeezSfyyfQvcpCI8kVTp4.LO0_ObJHAwoYwQBmqIPnxEvsbJNJ
+ JlpQU.4o4ttrx0O3nwJFQv9LJiAnPKliR5SXRgYZ.sIN3lhiygfPQF7g4KTP74ZZ8JEp4coVHjxF
+ S0hTf2IPE2BILmvt6blS6gFg9Neu48izCFgabS5nULhqthZoiXX1ejIX7Cc3wZy9DZLaiOUOEKDC
+ 83dQ09ySTkrkMGPR87ScjvRvD81rjbfbm6NRzsKjjH_19RIYQUj9mnStQQMcGMaBUwdlvKW2AH0i
+ odrpmPUh3.Nf6q6vXVM1zpmsB4LBvqGEsz5ZYkTXzrg.blnZadEM0z9bZUu7PYQfwi2sUodKPGfa
+ uGERdMSzt5RPiduRETqKuqJyNKj1P2rWr5bqXfjgGNHnWa05yBFoBAVVgQwJnPPnHd9pSFh11ASe
+ oqbg49yImNwwHyR3wGPrQ7ZqbWbc.0kuKqQNF53FMG8WHyUZGlFi2vGhfbtyEwFK6jhEAMuyn5xO
+ hSWKRFduCByQCfMHXvi36qKecRewZ95rmp3f5GERrphp1NDZvo1JXZP.30DbNPzC_UTPoLhtKqNv
+ CubI5clw5RDBLq_ETjbdRL1sseEhghebkSsE9q1DcYWy6Sszk1NtCRpxsfcE6xnPOFJCEyD13n4K
+ 2vc7MeDU.pfh8V5ZlR.6STcv7TgU8_Bsg3Amc4tRHsp.8u7TkgoxTMMBr.OSXJ8piADJDfzi0qwO
+ wOcAHyCUJhXjgz7CvMDrtDJwREWtiIDj4DIpvgPvssYNhdtKCvJfIVlSMf_rNdSkVo3mzPCjnkHd
+ SZmKiF.8jX2cZvBO9O7xKuOP1BbIthJeVkbsC1FhEAhMQEIMdbKRpkSUU7VNqJDjvExVYXuOm8PN
+ XYIgjeFS2DDxvuzDDa5w9uhHh0AsBADDAlOeN_pMUqlrMI5Tm3TEtfqLJWYcKjV9YILUds5izr0b
+ m7uvCW8fyq9g37b_u88G23BZcZtOlfVYnhtz0fdiPwFXEAcAsq5PH1bvEglLmrqpOfzeILKGLFBt
+ g.zl0tMhIXKftN0XKm3e9LAwfzgrHJY9mbpLH9J1xGI107RkGXG4ddqV4cMgy4M86wO3QoyhlUtY
+ mU7i7l4hJRNggfzRH9R.buckDaCh89CG7rMfvjDxjfIk4o8q7KaGHdxiCVJ92VNf29H6njP5itax
+ ePayMx2aQMWxJAGoRqf32AAGIqKTFtyrSUnenmKBPpZY5O7K38P2FKN1gfHopliqk.Q2fay6bgHR
+ QnH_I316U1kXzu7xkZj7NH0H3IiCJMld5gDJfHfp6PtFzyJfddV49a4oQv9xhw3zGKMiWKy8uB._
+ tFWJaIW2NEL8S8DbOmN1ltfzflBUx4XUkc23Er3OjtqXdB4mUYhN6YnvelY.vy77N9lEvNoQHwrg
+ Oa2sboSYaOKSIzg3UfM_yYbHp2aQcQNCSGmmJp25GaSg_q4vQ1u0zRH5bYOtFLvqpyt4H0XWL_wK
+ MZsurK0vDQmm4otpKqUvYFw8Z1QZToDCptCaVneH.uhx30omMPcKNicwO8fgONeys83vJmGuc5W6
+ gge9HECAn_iFyuTqYCyRkQeqhFmEjr.JGNCs_rpSaBtp0HkxR9qNj.vbWmIRvXOp8aoriw5FsRsp
+ fszX.ksyN6iKEzvAyes4SmeIg7IwNRdLhkbKsT6Jf9cFvrBQB_mxn5pUr5XSq4AYH62ZAWy0MCYq
+ ChDXHvE1D5KuH.zhZ9.ipZAOQHFe05fWQSS3eWW0rrBIuIzaJCehSr6x12MYmkTkAuJJH8aWIqHi
+ Xtd1zATaTjPij5kvdHIPluQuzogTAw1a2CyNz8UM8Vq3MEm23Q0tpuHd2NoFRrelnbliIQNcVY2l
+ cUwiw4tSvlShL6upUaGsPaTXOcq9zZUd2yN9t4oqFYFhEKmiRNqUZIHDvwN4yck3ldGWOMnJnJAQ
+ _yZodLXrSsBIMGvI.Syeh7YCviMM5Wv6nyegLtO.40de8ZAMNz0t.G9n2ZtgRMMBc4RF1oib59_F
+ yahdSfpi0X4_1aZAbdpcNGB8bDf8-
+X-Sonic-MF: <zipnpup@yahoo.com>
+X-Sonic-ID: 095e2cea-b74f-4de7-9da7-1ebf3d4d145f
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic318.consmr.mail.bf2.yahoo.com with HTTP; Mon, 30 Sep 2024 21:03:52 +0000
+Date: Mon, 30 Sep 2024 21:03:50 +0000 (UTC)
+From: Thomas Machnik <zipnpup@yahoo.com>
+Reply-To: Thomas Machnik <zipnpup@yahoo.com>
+To: Paul Cohen <paulrcohen@gmail.com>, 
+	Paul Cohen <team@haroldcohentrust.org>
+Message-ID: <662265498.7606503.1727730230088@mail.yahoo.com>
+Subject: Update
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_7606502_1964463001.1727730230087"
+References: <662265498.7606503.1727730230088.ref@mail.yahoo.com>
+X-Mailer: WebService/1.1.22645 YMailNorrin
+Content-Length: 995
+
+------=_Part_7606502_1964463001.1727730230087
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+Hi Paul, (i didn't cc anyone on this just sending to you) Just want to let you know I am still working on the provident+metadata it is taking me alot longer than I thought to find the original aa files
+Tom
+
+------=_Part_7606502_1964463001.1727730230087
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<html><head></head><body><div class="ydp1cc63ee7yahoo-style-wrap" style="font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px;"><div dir="ltr" data-setdir="false">Hi Paul, (i didn't cc anyone on this just sending to you) Just want to let you know I am still working on the provident+metadata it is taking me alot longer than I thought to find the original aa files</div><div dir="ltr" data-setdir="false"><br></div><div dir="ltr" data-setdir="false">Tom<br></div></div></body></html>
+------=_Part_7606502_1964463001.1727730230087--

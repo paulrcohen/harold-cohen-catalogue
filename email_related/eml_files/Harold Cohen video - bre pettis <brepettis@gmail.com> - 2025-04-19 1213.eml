@@ -1,0 +1,150 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a10:1699:b0:5ec:db95:1ae4 with SMTP id gp25csp850671pxb;
+        Sat, 19 Apr 2025 09:14:02 -0700 (PDT)
+X-Received: by 2002:a05:6a20:158c:b0:1f3:47d6:aa05 with SMTP id adf61e73a8af0-203cba7ccc3mr10241033637.0.1745079242177;
+        Sat, 19 Apr 2025 09:14:02 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1745079242; cv=none;
+        d=google.com; s=arc-20240605;
+        b=JwT0C4oSCI2Kgip12Y8xqhgzcD554FkAY5ep3JyYLmWkoXvrK7iV91535GtDzzwxaZ
+         raNWz3mb/whGqxLXIajLz5wJdDE4wX9WMlZpYm8xEVzNG/rWeyWu37DUFQxtIrEts6Ld
+         MTJztbDooa04cW/x4+OspiLbhQSkhZzMmI2fskaIncROLPlVKC4qqzGSqw3NQ3DALv3b
+         gdTgQt7nwmdSyYfNGebvZVX9EyZWqbMz3nrvBzGNFVHrhCQc71OhO/G3fhdGgXrOgiLr
+         uLNX7CkW3Zmqr4v+o5EaojN8RttVlvEbK94tohzu4gvndw6vECzoJ+n5rmehUzV+VYFY
+         MoAQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=ILyxqh6tOQdwviU4yXnyN/jBKQ+1iCuBvukdC5qNp5E=;
+        fh=RMZ5EXU1Jwo0TlLTK/ijsLe5zwI59qWpVzUvrwFdgUI=;
+        b=RnvIzy1f3JqhOJdlFY9ZECLP8bF6SPH1hnxpyVxA+XEoE7+nfV/vI+/rLKVjCQ+stY
+         hVYpMloNbe35yFr86SCAQ9U8OI20f7ZvNkmeci0RgsPFc6d5X1tBKRFe64hk0QfHmjYn
+         ZK4ZCV3OXWfWqGTghKxgKl7VKl3+h4ZPxrbPrQDtVWYafshzW6RbElHp5vxiSFsHrnDb
+         V/aGmJ0ec3X0rFl72OET65rqD1W1oagQq4Jb6dLz9WABJr9Z0xxMDqehGrOifjzSFIA4
+         c8GhurdlFJQCgCrAlvCxOgtpcDC8F5RGDRWplGpgxQzbi4sjonerLR+UBcsBrx0nYpa+
+         sTSA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20230601 header.b=dJy6jvwl;
+       spf=pass (google.com: domain of brepettis@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=brepettis@gmail.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com;
+       dara=pass header.i=@gmail.com
+Return-Path: <brepettis@gmail.com>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id 41be03b00d2f7-b0db1414281sor2662176a12.5.2025.04.19.09.14.02
+        for <paulrcohen@gmail.com>
+        (Google Transport Security);
+        Sat, 19 Apr 2025 09:14:02 -0700 (PDT)
+Received-SPF: pass (google.com: domain of brepettis@gmail.com designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20230601 header.b=dJy6jvwl;
+       spf=pass (google.com: domain of brepettis@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=brepettis@gmail.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com;
+       dara=pass header.i=@gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1745079241; x=1745684041; dara=google.com;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=ILyxqh6tOQdwviU4yXnyN/jBKQ+1iCuBvukdC5qNp5E=;
+        b=dJy6jvwlP946ApVx0LE6F0nlMETcCtJzD4AZTqEXex5MA41tVjgnCS2oeV4c/Qubbx
+         nSlMqMOOsDPqEJRz5hgRp6tiz1HkaNY3ybLFRqjZvhhZPbteAIlTC7r8jG8+6KrCJcHv
+         p3SoMPlw1FpXsIFiefbqJBXv6i2MR92iCxpnWd+/SDtVu5mXYvjEaBbyWqCt539Vc5IL
+         +L/KVAWmsCcetwDT/EQU7UaE2ftaGFCKlLiUgh0Wx/hSWm1kghtPwSFx9DChX9xJgy9Q
+         qdathwAQt0Dq0akW9k/RJ+gtnE03O/N0zP9TX9NqOh4Gpw8xZfJrfgKinqrJVCo1Z5iw
+         CcIg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1745079241; x=1745684041;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ILyxqh6tOQdwviU4yXnyN/jBKQ+1iCuBvukdC5qNp5E=;
+        b=Elj6esKIrTDEfftFsxVOenEQ8wvgHnih4tWLhsTY5RXPbB1pmA0+Jabra8SiEc1MQG
+         3ZeWLLybSIJKBGmIZMTV0jIOzeptcl7UacXylULwxExBM82Wz4jYa2oWlXIaIY/MwYQ1
+         pYCXtsyDNlvkEeoJivvlcBytLCatPPbaAzpRdaWSiEAcm4XqJ4Cq2/9Y1uFErO7PqoT+
+         xwraoWNhaSozzHHBin1+FfWlVRbCymOVV7loLXVrUJYIgeqQeEFy42ONMGMLvAmaHm6A
+         QmvfYpT2vKVzZ4XsDXPjYwJq3ecC8Qs9Z9iOWgfpNF9JEkZeA41Gi77Ii7dABHEMLiWw
+         ou5w==
+X-Gm-Message-State: AOJu0Yzzrp5uStJztOSbgjIa4YHLv+4nAQEpxfAGSH0+M6BmBkPExmzt
+	CtH4lsuYdq7Kl3TqRiHw68YZppdQfOw8EPweqFqSvYOGmT37tncy0BPpmgOXr8qt+0YLg1AXS4V
+	is7llA+mU/FLWpy8pi65KinJGUSFYpg==
+X-Gm-Gg: ASbGncujmRE6RwxLRu9+d6ANojuafknqb/sxN5CYF6JbPgy48H5F/JKGHuy8OO3iH4Z
+	WzUw6lin4jzgMMOvrkXhnVV6LvuG9PsV/xG3v8yzfOO+FmXdylionsnv/XXpZtTXu5l31iaACDJ
+	w8o+FdyU4QKuA5q94ZBvalWA==
+X-Google-Smtp-Source: AGHT+IGOVk2eKva9jHJV6nuKnesJi76gcu1oUzVxiV7b89vJr8QjYeVWz8uQzam8N3+YcdwIBmF8SoKNIwi3y/b958c=
+X-Received: by 2002:a17:90b:1f89:b0:2ff:58b8:5c46 with SMTP id
+ 98e67ed59e1d1-3087bb53140mr10037334a91.8.1745079241244; Sat, 19 Apr 2025
+ 09:14:01 -0700 (PDT)
+MIME-Version: 1.0
+From: bre pettis <brepettis@gmail.com>
+Date: Sat, 19 Apr 2025 12:13:50 -0400
+X-Gm-Features: ATxdqUFyL_zSvADnHaO7Xh1wTZjeHlM9k6QhuIYqn0PcmFeReus7sro93HYNpZU
+Message-ID: <CAFhPk_xKBqZGM3YiW1=AyZ84+2cxniD5-KpdOq_QTz-6y5PUCA@mail.gmail.com>
+Subject: Harold Cohen video
+To: Paul Cohen <paulrcohen@gmail.com>, Thomas Machnik <zipnpup@yahoo.com>, 
+	Christiane Paul <Christiane_Paul@whitney.org>, 
+	Zachary Hendel <zachary.hendel@bantamtools.com>
+Content-Type: multipart/alternative; boundary="000000000000478c81063323eccc"
+
+--000000000000478c81063323eccc
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hey folks,
+
+We shot this video footage over a year ago and it got a wall until I hired
+a pro editor to pull a story out of 12 hours or so of footage shot on
+phones and multiple camera ms.
+
+Battles with peaking audio, auto white balance challenges and way too much
+material and here we are!
+
+I=E2=80=99m happy with this and I=E2=80=99ve watched this many many times w=
+ith the editor
+it is time to publish. We are working on the subtitles and then it will be
+ready to go live sometime this week.
+
+I=E2=80=99ll ping you again when it=E2=80=99s live so you can broadcast it =
+to your family
+friends and network but wanted to give you the sneak peek.
+
+https://youtu.be/TbsDA4Nc__s?si=3Du260CxdyWGEKvuY_
+
+
+Bre
+
+Sent from my mobile communicator. This e-mail and any files transmitted
+with it are intended solely for the use of the individual or entity to whom
+they are addressed. If the reader of this e-mail is not the intended
+recipient or the employee or agent responsible for delivering the message
+to the intended recipient, you are hereby notified that any use
+dissemination, forwarding, printing or copying of this e-mail is strictly
+prohibited.
+
+--000000000000478c81063323eccc
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto">Hey folks,=C2=A0</div><div dir=3D"auto"><br></div><div di=
+r=3D"auto">We shot this video footage over a year ago and it got a wall unt=
+il I hired a pro editor to pull a story out of 12 hours or so of footage sh=
+ot on phones and multiple camera ms.=C2=A0</div><div dir=3D"auto"><br></div=
+><div dir=3D"auto">Battles with peaking audio, auto white balance challenge=
+s and way too much material and here we are!</div><div dir=3D"auto"><br></d=
+iv><div dir=3D"auto">I=E2=80=99m happy with this and I=E2=80=99ve watched t=
+his many many times with the editor it is time to publish. We are working o=
+n the subtitles and then it will be ready to go live sometime this week.=C2=
+=A0</div><div dir=3D"auto"><br></div><div dir=3D"auto">I=E2=80=99ll ping yo=
+u again when it=E2=80=99s live so you can broadcast it to your family frien=
+ds and network but wanted to give you the sneak peek.</div><div dir=3D"auto=
+"><br></div><div dir=3D"auto"><div><a href=3D"https://youtu.be/TbsDA4Nc__s?=
+si=3Du260CxdyWGEKvuY_">https://youtu.be/TbsDA4Nc__s?si=3Du260CxdyWGEKvuY_</=
+a></div><br></div><div dir=3D"auto"><br></div><div dir=3D"auto">Bre</div><d=
+iv dir=3D"auto"><br clear=3D"all"><div dir=3D"auto"><div dir=3D"ltr" class=
+=3D"gmail_signature" data-smartmail=3D"gmail_signature">Sent from my mobile=
+ communicator.
+
+This e-mail and any files transmitted with it are intended solely for the u=
+se of the individual or entity to whom they are addressed. If the reader of=
+ this e-mail is not the intended recipient or the employee or agent respons=
+ible for delivering the message to the intended recipient, you are hereby n=
+otified that any use dissemination, forwarding, printing or copying of this=
+ e-mail is strictly prohibited.</div></div></div>
+
+--000000000000478c81063323eccc--

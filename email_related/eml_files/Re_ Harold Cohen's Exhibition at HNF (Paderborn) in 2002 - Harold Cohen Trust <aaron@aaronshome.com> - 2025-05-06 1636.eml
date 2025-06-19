@@ -1,0 +1,295 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a11:f584:b0:5ec:db95:1ae4 with SMTP id ic4csp3275066pxc;
+        Tue, 6 May 2025 13:37:10 -0700 (PDT)
+X-Forwarded-Encrypted: i=2; AJvYcCUWtt5SQffnbluUOUpaU5O4U6SvtRt6ngUBxOGHFdB1PhrBUSnkQx/x2eiHm+rWrVTfKxiERNjxxxKQ@gmail.com
+X-Google-Smtp-Source: AGHT+IGz2YXAFySUXN9H5Si5ufGQVDJG4IVuV0I9++8Plp38NqkPbd13hfnbIkz5wV77TRo6odTG
+X-Received: by 2002:aa7:8186:0:b0:740:6f6:7338 with SMTP id d2e1a72fcca58-7409b641ee8mr1539879b3a.3.1746563829973;
+        Tue, 06 May 2025 13:37:09 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1746563829; cv=none;
+        d=google.com; s=arc-20240605;
+        b=KkLWHeFNA3YIO9Z6CcP5OitonEvps1kZsQh38noMdhnfSoKy/qK1j5zK6udl9KeKsn
+         QobMUdBg7sWWDp4s6nsCWht9PJaSpg3QlIQ3n4YiItP8v2Zl5fBCkCgsHS4B9ymd33oe
+         UEa1GSFXEubKTkPyYJ/Hyq5vWlzT8vjw7R7VWNdzEhfGBNwa5L5A1aGWr1i0cCQC45q+
+         X37JOfz6dmQcbI29ZSSAa2or/vLX2hbHxMIPo2oGUoBGJM6x1vEn+/WU2PBroLD0GMc/
+         Lu6vZoC0EuVfwBpJ6F/0FbzIdn38CdWWyL8nRcjCKrAi5cKyRBSHmlGn8kl0fda86aEP
+         2wkg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-language:in-reply-to:mime-version:user-agent:date
+         :message-id:cc:from:references:to:subject:dkim-signature;
+        bh=9wb7vNNLq5oYUkoW5SAtA1210PSojvSmoqMNP+9n6/g=;
+        fh=Y3H6l4HCNbZoshMKE4wCPeN2evgNkccNhnvL/8MCnZo=;
+        b=DwSPdertiU18wjY3tI+VC5o5a61zJy+59CaI8B6ol5iKy1jjSy+cabCfd9bsbO7XDV
+         p+epINHN865kU/8sVpVX7vp14I8dScF2mEdLwq93tnzgXwm6EvwxcSqhLiDy+8yr4PRU
+         Bru8fR4FrfytDN4FAE33EBgwH3ODB+O3LCHFOJw+qfws5JYnPtoUL30yH5lzKEvWW/Wl
+         iC5UWqX6y5lxueSddCyvjiIQS8Qz8TfADRLvs60auNfh7uqAluFf3hRNn1Do6HHIwLWu
+         PVPMlOGO/CkwT2vwXZ7d3CbqqcnnZV+lyLIrWLHu/wWrxn2VEYTTLQPtJBLU0qYy/dqm
+         hF/A==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=fskr5srU;
+       spf=none (google.com: aaron@aaronshome.com does not designate permitted sender hosts) smtp.mailfrom=aaron@aaronshome.com
+Return-Path: <aaron@aaronshome.com>
+Received: from sonic306-8.consmr.mail.bf2.yahoo.com (sonic306-8.consmr.mail.bf2.yahoo.com. [74.6.132.47])
+        by mx.google.com with ESMTPS id d2e1a72fcca58-74058ff1fefsi14732599b3a.159.2025.05.06.13.37.09
+        for <paulrcohen@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 06 May 2025 13:37:09 -0700 (PDT)
+Received-SPF: none (google.com: aaron@aaronshome.com does not designate permitted sender hosts) client-ip=74.6.132.47;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=fskr5srU;
+       spf=none (google.com: aaron@aaronshome.com does not designate permitted sender hosts) smtp.mailfrom=aaron@aaronshome.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1746563828; bh=9wb7vNNLq5oYUkoW5SAtA1210PSojvSmoqMNP+9n6/g=; h=Subject:To:References:From:Cc:Date:In-Reply-To:From:Subject:Reply-To; b=fskr5srUa8HU6BeNY+ITmK2UBplEh7tOKJR4D2ST4nEL+akkGEFf7ID26VpaWBZLBbprv/IeEGxxSSMTom+yXKwF5yD2d6LE5VcnntkAMhgLQ7H3mhGxSCJY3Q/27UAFRSlzLfiRaths3EoRhE51bo/hEraV1/6axcDpBIreH/fE9rW1HUqMOidvpKMqbukRP5S0mONOnscQcyj0j1zpP4LcdI8H/yXi5UpmWREOZsNiBdePnlEbDYiCTZQs4XbDohjXXmn/zUswjd7hZjhbtQMQ7rtvQFC4oV5j6I72V8IQzD+Z84SmSAivC25Qxzf5YQ9eq38IUXzlXtNrC1w74Q==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1746563828; bh=a6Ns2dpsBwYt4ENf8KkidE8kXAdG7ucyK20tpvDoVDh=; h=X-Sonic-MF:Subject:To:From:Date:From:Subject; b=QweoZnze+18j+dzT5yQU8WSozgJZe9SwIrbPdKNs5utpgdAtNW44WarcYrQsn+fNmT/u59Ls0o5NKrHnaws/d2v5Xn29RopX3W69GBgkc6TOr9AVV+TSRcXBoa0vpNTHKc6y/o8sary9eX5jTY9sXqvL8/iiZ6gz/5KXzjZhim8M9Q4/8xNFE1pGnE+H+7v14BjWln+TWTLrwsjttrFX6R3AFId4/SZM6dAF3694nKfHGZjNxSBghpN2r0OzDJk5IW5e9n4steLr8u6/vkoTIb/+CvvOU6uPL/Mfh9kOrUraSsI6nf5D93YrI8x9QLfUz+ezI015c4BA9P7vHvhPRg==
+X-YMail-OSG: axF_mwoVM1lucp6w4otx43xTWzyL5C9BkMXqc2S3EXMtC_XhTNcF_JdtmJbU6hD
+ 7x06PT4VaLlFdiln5vfGlA_SdGY7_vvb3BOXjshl52BFR0cZHfA_cDtI6Dn2B2ERlaCv_4WOIuXw
+ i9k2kzSDx2.Twj2t0qZrfbWykSxlrUgFyumVIMFLuU0pUB7s04t4yiZyiY1_AAr9Q71R30xGpcQ9
+ MtSFMaSsZ.QgCtHGS8uHPASnwGjtTtK2nvNsBsCzwEY0xkeGx4CHrI6AXkJPr.QDHjvJu0MrLX_T
+ 66iHqrZsp4Jdge_yJIU4y.iQCCogHb.tMdv9tarSkJmPl8Rh0zENUzb0gTVdy32wn9Ob9G3nAiAH
+ E2_w4QUWQB5AIA41OSxNOC.n86Ak0MU7DXJFfpCYVXIZwJWjRa1n0wH3moww1YcxZC3DPQ1VTcOD
+ ucAtYJZLWkSNS8es6Hj9Z6O.fHfGq3Of0D5XqQY_DKPSTJxsFxp8IBso81CbppAJZal.rA_vKjYt
+ m829PNYkWAxJAkGD_RanLfTvBxD2JcxW3BsmYZyizCeKIu9zixGjZeOh_We.ZcBGN.UjDJTY6eCC
+ 0xVRPe_eqVm73oCfHMw1j5AOn69zDndeYWCylwv6E1KVrsH0ma3ar4BeX2CMEnHgoaGGJW9.kptS
+ 4QEyTbzuPZ5N0oLb87YNvwVxoEYcHIa.hDs4kztThpOGoy8gu9tZ.6pcf8GGNQ5NVGfYGBS1uQaI
+ V1yH7ZC_Fjdyl37yEHqgkIT_5OKMsk_jns79n0RE6V1W7qP0RltGpmchSdfmMaruoUqRt6IMAxpy
+ icBZ1lqNEn6dn_1.sDzqmFmcu_4JK8e8FaGyQdCLS_83lne0eDFl.a.3NcbxIFjbyYX3q3DzcIyD
+ IDM8MmjKKfLBG3wFtxBGWXWH1eQWFWvP_o0OtdDrq_h5mk2QhzmqsnCjbDRudQIVr2J6ajPmtHRA
+ cNvOgP1aHEtUIkd0JPAD76r.e7tR0MvR7phzbW16l_KVxzn8EftMx5Kt2DrlPnrcHxquopFZCaXv
+ L51JgdK0Wd0E5EvZgis01JGnVAt_GNCL1zYYWbn0Zo8SxDKGteOCHMrM03YDShEVglCSFjw9u1cb
+ 1zj5vo1LtfDSknSb_SpC2D5j29r2K6s7QXI.8JegwdDUXjdHf18qtspVaFFv4L_BSFE1b34VAsAl
+ L.08tSRNUWnRPS3LeQtorQqykWXimcJYC2aMqqy0V6zLykBU06Fux6Thq4laj.RnMwF9cKJlmeGq
+ 2z_Bnw6HvEJKxgliAws1W1UDQqs6nGs.SofLTbNbXVXWfkIsNnzbWBtmHgpVTrBEqaQGwFiE5YUD
+ CJJPVw89cNBbX6AobjBgV7N5B.oA_.VU7FIgk2EKzKVQz8sUR2kf10EJOLi.k9o538_h6nbAvdNE
+ vfsQ9AxT.pYkpTXnIflyUMaeiSKnfZm.hDt1xMrRTJ_yzk8.2YZANGuvOzV3Ny5oZLn_OpznS_bU
+ J1S5kKFA0zlA3uFN6m_hIMSxMCTx_SmBJnKMdoq8yPcDftb7fzP7WB79cT4a0l_FTwZY_WX7ZcjJ
+ i.7F87BaXc4I0MTnBadWv8YGNX0BopxTlwdqi2xG35UqHfBZV6lfx28TFq5D79MXTOWGt7eAlG9E
+ hAB9HUdWfoC1hrks.POHqf6P.5ir2D13RuVYgcJAaK7IligQ2xdmxV5yo6YM2BnyP8_HmoWNoiQ2
+ PFMXCAFF_fRGC37v78XvxCSAtFCZrWirhsXgggQWLVsdCXh64JCJcJ9CuyBBEHQIB73ecIfqwkUx
+ FhB4ofoCYShMLbqEf9q6GFcYmeBzcYUAUzfk0cifswmZO5xUuwpi9kr_QKCs4qpuxKF7hqNugZnx
+ QYrMVLdlzD2ZyndQe.WRRDv2fIWcmHFTOMjYIz68gARkbdVISQUBd.XfQfTfcW9FCj4yFMhTT8_5
+ rTSwJ_Q0tvLinMeCXE97U3iOAX40ZykKIl9oVtBpCqjNAEgZK1e2PXEA.1wALD56.IQ00_PD7Fz1
+ OluvejSLHafub9_v1j3T_1c6dU63Ag6oAa8n1sOeRWCYkmB613rqmvSSmcdFB1E_m2EmUTAiaUXK
+ G2tQBTiCjVCHGVfTkztmxXjw.LginWrNXrFArwCvDWi9NInYEO672ja3ad52d.5J.YV4WFEIBwyk
+ hmnLCR25dxcafEbv5uhni_TDE3JN5JAxYqa1qaEQlPcoTpz19Wa3WI402rPd.bi.vsI30c_cKMAV
+ 2VGXzg5M5BkJKn3p1Uv2DaArhet.7tKrCk8qI1n4sWsJIAUviYgQyyi1pIGmlh6FeQp3XoYQIUNQ
+ zBYOIRlHFUhItIElsGXNhkqzwZluJZHHiUJXdSA--
+X-Sonic-MF: <aaron@aaronshome.com>
+X-Sonic-ID: c4802f75-adf5-4469-9564-cbb02e8aaf79
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic306.consmr.mail.bf2.yahoo.com with HTTP; Tue, 6 May 2025 20:37:08 +0000
+Received: by hermes--production-gq1-74d64bb7d7-6nlps (Yahoo Inc. Hermes SMTP Server) with ESMTPA ID 9291748dc5045fd377e4115a3d643388;
+          Tue, 06 May 2025 20:37:04 +0000 (UTC)
+Subject: Re: Harold Cohen's Exhibition at HNF (Paderborn) in 2002
+To: susan grabowski <susan.grabowski@informatik-lernen.org>,
+ Eva Kudrass <kudrass@technikmuseum.berlin>
+References: <A57319AF-E865-42CA-B080-14DA4146232A@informatik-lernen.org>
+From: Harold Cohen Trust <aaron@aaronshome.com>
+Cc: Thomas Machnik <zipnpup@yahoo.com>
+Message-ID: <2b1077e2-e1f1-141e-2877-afff1ffe649d@aaronshome.com>
+Date: Tue, 6 May 2025 13:36:59 -0700
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:78.0)
+ Gecko/20100101 Thunderbird/78.13.0
+MIME-Version: 1.0
+In-Reply-To: <A57319AF-E865-42CA-B080-14DA4146232A@informatik-lernen.org>
+Content-Type: multipart/alternative;
+ boundary="------------8EE034570ED9437CF55B7CFB"
+Content-Language: en-US
+X-Mailer: WebService/1.1.23772 mail.backend.jedi.jws.acl:role.jedi.acl.token.atz.jws.hermes.yahoo
+Content-Length: 8573
+
+This is a multi-part message in MIME format.
+--------------8EE034570ED9437CF55B7CFB
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+Dear Eva,
+
+Nice to meet you virtually. I appreciate you taking a moment to read my 
+request. My name is Tom Machnik. I am the Art Studio Manager for the 
+Harold Cohen Trust. Susan Grabowski reached out to us about a year or so 
+ago regarding a project she is spearheading and we joyfully contributed 
+to her project. She connected me to you because I asked about the 
+following related to research I am doing that involves HNF and the 
+people there.
+
+I am currently piecing together Cohen/AARON works and history during his 
+transitional period from his Painting Machine Era to his use of 
+Commercial wide format printers (approximately from 1998 to 2002). We 
+have limited archival documents from that time, but we do have a 
+correspondence whereby Cohen discusses with Andreas Schulze an upcoming 
+show at HNF. Based on HNF's website there does seem to have been a show 
+there in Feb 2002. Our communications suggest some event may have also 
+occurred at HNF in Fall of 2001. Based on our documents HNF may have 
+been involved in the actual production of these works. As these HNF 
+shows/events may have been the first international public showing from 
+Cohen/AARON after his Painting Machine Era, they are of much interest to 
+the Trust. Since we seem to be missing details regarding this show, I am 
+seeking to connect with Andreas Schulze or anyone who may have been 
+involved with Cohen either directly or indirectly. If you can connect me 
+with anyone, that would be wonderful.
+
+Much appreciation for your time. I wish you well.
+
+Sincerely,
+Thomas Machnik -- Art Studio Manager -- The Harold Cohen Trust
+
+
+
+
+On 5/6/25 12:06 PM, susan grabowski wrote:
+> Dear Tom and Eva
+>
+> I am very happy that I can connect the two of you.
+> Eva knows people in Paderborn and can certainly help you.
+> However, I would also be interested in what you can find out 😉
+> I wish you a pleasant exchange.
+>
+> All my best,
+> Susan
+>
+> –––––––––––––––––––
+> dr. susan grabowski
+> lehre & forschung
+> informatische bildung
+> in verbindung mit kunst
+> Tel.: 076 697 85 67
+> –––––––––––––––––––
+>
+>
+>
+>
+
+
+--------------8EE034570ED9437CF55B7CFB
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    Dear Eva,<br>
+    <br>
+    Nice to meet you virtually. I appreciate you taking a moment to read
+    my request. My name is Tom Machnik. I am the Art Studio Manager for
+    the Harold Cohen Trust. Susan Grabowski reached out to us about a
+    year or so ago regarding a project she is spearheading and we
+    joyfully contributed to her project. She connected me to you because
+    I asked about the following related to research I am doing that
+    involves HNF and the people there. <br>
+    <br>
+    I am currently piecing together Cohen/AARON works and history during
+    his transitional period from his Painting Machine Era to his use of
+    Commercial wide format printers (approximately from 1998 to 2002).
+    We have limited archival documents from that time, but we do have a
+    correspondence whereby Cohen discusses with Andreas Schulze an
+    upcoming show at HNF. Based on HNF's website there does seem to have
+    been a show there in Feb 2002. Our communications suggest some event
+    may have also occurred at HNF in Fall of 2001. Based on our
+    documents HNF may have been involved in the actual production of
+    these works. As these HNF shows/events may have been the first
+    international public showing from Cohen/AARON after his Painting
+    Machine Era, they are of much interest to the Trust. Since we seem
+    to be missing details regarding this show, I am seeking to connect
+    with Andreas Schulze or anyone who may have been involved with Cohen
+    either directly or indirectly. If you can connect me with anyone,
+    that would be wonderful.<br>
+    <br>
+    Much appreciation for your time. I wish you well.<br>
+    <br>
+    Sincerely,<br>
+    Thomas Machnik -- Art Studio Manager -- The Harold Cohen Trust<br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="moz-cite-prefix">On 5/6/25 12:06 PM, susan grabowski
+      wrote:<br>
+    </div>
+    <blockquote type="cite"
+      cite="mid:A57319AF-E865-42CA-B080-14DA4146232A@informatik-lernen.org">
+      <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+      Dear Tom and Eva
+      <div><br>
+      </div>
+      <div>I am very happy that I can connect the two of you.</div>
+      <div>
+        <div>Eva knows people in Paderborn and can certainly help you.</div>
+        <div>However, I would also be interested in what you can find
+          out 😉</div>
+      </div>
+      <div>I wish you a pleasant exchange.</div>
+      <div><br>
+      </div>
+      <div>All my best,</div>
+      <div>Susan</div>
+      <div><br>
+      </div>
+      <div>
+        <div>
+          <meta charset="UTF-8">
+          <div dir="auto" style="font-family: Helvetica; font-size:
+            14px; font-style: normal; font-variant-caps: normal;
+            font-weight: 400; letter-spacing: normal; orphans: auto;
+            text-align: start; text-indent: 0px; text-transform: none;
+            white-space: normal; widows: auto; word-spacing: 0px;
+            -webkit-text-stroke-width: 0px; text-decoration: none;
+            color: rgb(0, 0, 0); caret-color: rgb(0, 0, 0);
+            overflow-wrap: break-word; -webkit-nbsp-mode: space;
+            line-break: after-white-space;">
+            <div dir="auto" style="caret-color: rgb(0, 0, 0); color:
+              rgb(0, 0, 0); font-family: Helvetica; font-size: 14px;
+              font-style: normal; font-variant-caps: normal;
+              font-weight: 400; letter-spacing: normal; text-align:
+              start; text-indent: 0px; text-transform: none;
+              white-space: normal; word-spacing: 0px;
+              -webkit-text-stroke-width: 0px; text-decoration: none;
+              overflow-wrap: break-word; -webkit-nbsp-mode: space;
+              line-break: after-white-space;">
+              <div dir="auto" style="caret-color: rgb(0, 0, 0);
+                letter-spacing: normal; text-align: start; text-indent:
+                0px; text-transform: none; white-space: normal;
+                word-spacing: 0px; -webkit-text-stroke-width: 0px;
+                text-decoration: none; overflow-wrap: break-word;
+                -webkit-nbsp-mode: space; line-break:
+                after-white-space;">
+                <div dir="auto" style="caret-color: rgb(0, 0, 0);
+                  letter-spacing: normal; text-align: start;
+                  text-indent: 0px; text-transform: none; white-space:
+                  normal; word-spacing: 0px; -webkit-text-stroke-width:
+                  0px; text-decoration: none; overflow-wrap: break-word;
+                  -webkit-nbsp-mode: space; line-break:
+                  after-white-space;">
+                  <div>–––––––––––––––––––<br>
+                    <font color="#a71893">dr. susan grabowski</font><br>
+                    lehre &amp; forschung</div>
+                  <div style="color: rgb(0, 0, 0);">informatische
+                    bildung<br>
+                  </div>
+                  <div style="color: rgb(0, 0, 0);">in verbindung mit
+                    kunst</div>
+                  <div style="color: rgb(0, 0, 0);">Tel.: 076 697 85 67<br>
+                    –––––––––––––––––––</div>
+                  <div style="color: rgb(0, 0, 0);"><br>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <span style="caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0);
+            font-family: Helvetica; font-size: 14px; font-style: normal;
+            font-variant-caps: normal; font-weight: 400; letter-spacing:
+            normal; orphans: auto; text-align: start; text-indent: 0px;
+            text-transform: none; white-space: normal; widows: auto;
+            word-spacing: 0px; -webkit-text-stroke-width: 0px;
+            text-decoration: none;"></span><br
+            class="Apple-interchange-newline">
+          <br>
+        </div>
+        <br>
+      </div>
+    </blockquote>
+    <br>
+  </body>
+</html>
+
+--------------8EE034570ED9437CF55B7CFB--

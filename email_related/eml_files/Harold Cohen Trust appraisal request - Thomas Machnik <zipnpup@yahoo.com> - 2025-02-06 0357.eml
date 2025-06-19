@@ -1,0 +1,128 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a10:b092:b0:5c7:f970:fbca with SMTP id y18csp1432815pxa;
+        Thu, 6 Feb 2025 00:57:31 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IG/ODGlf14Uyiabk3SxWL3WWL6NsYAF4F2fajDmAC72KNwKq8o1JxIBrMtX2bVlrq0et0nb
+X-Received: by 2002:ac8:5a10:0:b0:461:9d9:15c2 with SMTP id d75a77b69052e-4702817c6f6mr89076671cf.1.1738832251231;
+        Thu, 06 Feb 2025 00:57:31 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1738832251; cv=none;
+        d=google.com; s=arc-20240605;
+        b=GPT13DI9IrOAwb/TONwOcuFxqiM6v4l3v+SVCygw9pZoisPsHsu+fbaiw8dl4c95iw
+         V2D03/Dqr+5nYdaT1mSCuEljIb3sipocEBnqJ5de+YN7AuwMtIwLltPKOMZx3QNfWQgH
+         5wJQajVe58NDJ/Hk47qt7oiWt9ST5cLb1WeGVBDojaWOmhCmv4a5PbbjcnyfilzN8U0J
+         Z/EtXCWMX64E0Z7/ooZigmwX9N7zwy6bV8/ou+TZ/pHISGeFEQyvq3lSsfn9qohbnfLj
+         h9RKwkDL5W03m1RMFgfr4BqESSC5UwidftV8vRmVFL3XBfFVcjvUgSyXI4EB6SbRv8pS
+         oFEg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=references:mime-version:subject:message-id:cc:to:reply-to:from:date
+         :dkim-signature;
+        bh=EnZuI0THsYsWABB3CtgXJUFrjhNzI5wq/agJyFHJ+rQ=;
+        fh=AifeHZkb2CKdYX+jZHupUqABWLHMvV2q/MHJSREMv3k=;
+        b=JYgKEbIOno2pbUxGQTZyedkUImyoONpZxJMb9zD/Y0iDjRYD3eKoIawIQN+cMelHiu
+         Sbfp494bNwsbJAlvMaqpBTXlAiVdaYTABlD2Gg4p3ShnVAdrwSJMuX7IG28FeBXPLwWB
+         WEohca0aKPcmaP7pmjdhSWR2pM25NgdXsXC8lWtWOq4aLP+av33GDkVSX06lsqMn24Fg
+         0wKscRL6O+RnjbGKgV/11OkEILvIGKbFmBBLrlUgfWlQRbtq5+AzPnEUGTLGjxBJflg6
+         ZboJdbhTc8AQUfm7Fn06dpCwFxOm4c3xYNOyFcGXJmb++JQXE+9xZXeetTtXG/ntp/zb
+         42rA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=S32y1Tfg;
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.129.123 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+Return-Path: <zipnpup@yahoo.com>
+Received: from sonic309-13.consmr.mail.bf2.yahoo.com (sonic309-13.consmr.mail.bf2.yahoo.com. [74.6.129.123])
+        by mx.google.com with ESMTPS id d75a77b69052e-471492954a1si7403711cf.158.2025.02.06.00.57.30
+        for <paulrcohen@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 06 Feb 2025 00:57:31 -0800 (PST)
+Received-SPF: pass (google.com: domain of zipnpup@yahoo.com designates 74.6.129.123 as permitted sender) client-ip=74.6.129.123;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=S32y1Tfg;
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.129.123 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1738832250; bh=EnZuI0THsYsWABB3CtgXJUFrjhNzI5wq/agJyFHJ+rQ=; h=Date:From:Reply-To:To:Cc:Subject:References:From:Subject:Reply-To; b=S32y1Tfgcp83eYcAnsUf59regpgAKCS305vDJsdNhvNWNlisfl3TIxOfisZrGXErFQznqz4ZCNdgKxpxdi5yirpsopdBaan+r3o7AtNge/MMCWjD4/8UPX8t8dgIu0T+lgr8n2AFDb7IGlYGJkeF3MzyhNjF80GvqE85hVk2QZoFI0zE7uc3UsmFCceRYqX5hGotliDYBXpVLiIdZgH1aUBJIgCjQYntH+YarU6I+wv0b8sSwNYq2xxE+T7dcPBEIVZq3ncZYGuFQH/EKf0/AWjVtlMjhDmgcaK+yJHQzeOgd3lDqjnxEwszR1nitnAaCUrl8/KNAmb1cgB8QlMevg==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1738832250; bh=jhRUNX0q04chUEvuTwr5MVDiEYQ8N1uO0bTUjYa3xGU=; h=X-Sonic-MF:Date:From:To:Subject:From:Subject; b=OwzneIqLeyI/pkQtDy743lBEnY2F798Kx7Hbl43LtGL9gIlaa7DLOBeCG0RrzHuBX3+IQ8UR3UhjDnGOs0hMfkJw/6dwXW4iMKcrEl5eqB3PchrdW+49bDjIw0Sp5Jz2I6tE24DFCQKbvS2V/r2jVRCvKLEMUcxCz73bh42G7Y7f3gLSE+R0mePPIWDEQNwgEYmYbrz6aF9pg4faMe/KwznpGKS2BSLzVsI8MCbXYWV8giEyt7bLvGYF+aQvWt+LnQXTzTLNKNZbsM+6vfEb1FTbuZH+bt3Nz0VMzhSD5L3UbEQe7h/jDiN6rsiJ+K49l066yDAM3wY/UKkTckc47g==
+X-YMail-OSG: ktWPN6MVM1mTWp8HCZy3A8Ysvv8qwD_rRoJRco0VR.q9Cv9lYKzbe12mXNLCBZe
+ kjOekBzQQBNIrK3dEk777i43q1kJxgMLfakXUtWcxhyLutEUBjP1SeE.NwW8HXWdicBEi0NIKQHy
+ wJZgWVjw32EOGGP4i9fiJIzb3uAKmOT8kwZ8zScLa9N0Uk8b7HlZikOdYPuCsQ0FU2zeeFhRu9ue
+ lLpPeVqZx33Vn6iUJQdsdK1DUC.ahhuTXrr.hq6Rxv.Weky8DcDRPs06zkqze9NfWE5haDZEasPw
+ jxsFNSrkSV2UKzFXjGMHCMQ6w6J2YEqSPhxfVG3LA4l2Equku31oqnTEaf073pKCKSe3caZMw.hD
+ gbKxU1OJ3R_EZGP1CayS23bTOaoXs4Sdb5wG_GcbfEdMngmM9YAt1lA4HcpWhzy5ShZNxtn39dWs
+ K5bHlGqJIGCBK6bw0DKgjDU5t4C2l4xOcGceop_elkx37MSHqVf_8j6f5xi7JskPVnL6za3qfzVn
+ Nx.9qxZk.yzsfqh28HeTyc58oq.plAGtweGK.4P9c80lUbD3rSQ2iBkyd.UYWEDKjdxn2rllnvIc
+ RbHo.sW0gIKEOI9stl_DTwWX3cqqv2Qn_RjyUP8hnLEGNWpuc6RI8NXdAVLVTneda4OZbtXVk.h1
+ KVVMKWBM16975zjbRo3VVRie5G_CW4TxBDl.XHSJBPpRGB20GjFbntnQiFSmx0YbgwWnTzXWWQXY
+ 5cuPVqmgzdMzuGl3TvymDfgEvZL1WwW3MCJg.oSvQPWMBAKts8RArlDgRFRKyOgTasPCjeRoeOcq
+ Pdcc7skQyydCd3mm70ZgMDfXxy4laH.uBx3qwyNs1IJEpv0tizE9nqQpOKiIs3rvNA.yOUe.TH_M
+ yvAOefwXnJPVX5zs_TxxLcl.DZ5QRCNHU9cXIeM_rNN8QWAuFwJk8du3RmHqfTsbw3oXDYYK_wta
+ zZwIvRMyEoc_29a14yXg3o5Q8ebPyvRpEjSrByQeZTdK4LaTCAGrpIY1En9UpJkX7N2H2vxXhI6t
+ 0bXQYCdzFnCwZKV3RCiTtAz.rjZ2OQ_InJRSkGqDA1h.xkOdjRDXX6ONMpP7wTMx9kE5o3gJc4oV
+ NXL17cCTuXS9TC1.uSF2ZouARCLgpX6r6c9rFLEx0TT5oQJ2PPAmrCB__Eohkq609az3_V33V4wJ
+ ZGQ3sctvb_QOSzky.w7EC6BQWyXW16l3TDj23C0c8YrN1kLhyGRve2iMyfxaGvxEzo9kLHiWgC9B
+ d9pjEeCmrSC4TGxX7wAxNEgViZnTtsAocHM0ze.dPYVwM7DQRekS9x5AVR3g8wr7JZ7oVpJ_YPu0
+ cc2Fxj7j_3RSD.7QVrr0y2MqmWHNLYr0CrsBvzFoAPi6nYP212mU8VmmETPKvKjgnU23TmuPEc7K
+ PBMV0KBtXAgLIE5ZPGVng6Dp0hxxHgiGpIxeisR3ZBNydtij_OPI1UgW31NYWYZCLKipJGZ2ByjG
+ FRvM56urXO9Li5Q_hqxeYOwYL_5.9kSr8J7FaDuUBVSdAw4nKLg8o6CrzLahQ94puWl87OW99e4W
+ 16vDaksTQGtRlfEvqdyalz8XmbSY_QPnNtj8vHWNnk5tiKCGV29YOOuRYd92qIhSK8YYk9BQM.E9
+ QEgBQvHGcLLkmATQp9l.R3fCU5fCTT4mZCXIuSWH.Pq3Mqh6ClRyi0dTX0IbcteWKixRuwGdO.kH
+ zC9I8FujwP6bsHhuLRdKZp.zFLd9yWypcKwfiML4_yYlq9MqUK2eq.pJqzQxy5cFlgQ2DEFBjivz
+ fBDJIEr4rBRnaskLsL.wJZ27l7ktSKJZojNsCQh.jrX52ZC3K.CWQE3lnCC89n8zeFog1L2EzVVX
+ MVEF6wDSPSjCpkXxldtxxLEK5g0C6pyEMP2.0KK55uTnScajFf9csOvA5SwCQvNGFlAZRZRwKnxa
+ bcwMD9zjkCSMT8m4aIktKZ1PhT38nrseYHcI26uC99qqxlJMUAF85NmQ6MX0lASzp8kpn4N.p9fE
+ w4Yy8QjDjc8x9BohvCc9J4jNfe9vpsBRRxpW3ZJP0iTecZKEmrCZ85KQtci.aGtkNRY38uWJOGpG
+ BoB_rV04bl6xhenjDiHJB0ofwlFJWZaMOxifKYpGZQzlXhVzR46gydOVyo98W3fT.MI66nVJuTcg
+ kFP4QC0p4vfHn1N22hE5DffhFJ.CIu6tAuLgoJjHjV1kDmAyRnXsy_eHX5MOTBnbMjeU.DNXAD9G
+ t5zRCwESW.e0E46lOZLg7zs6cB50SoFSdXnqRKCGLFl7BGsc5bIREQ4KD.UdWHRjMUrs3JRIQcm7
+ RMMB1RZwkQH6CxodXOeATbmz_Q__Gow--
+X-Sonic-MF: <zipnpup@yahoo.com>
+X-Sonic-ID: 34cd8886-5750-4145-b385-66d68a203478
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic309.consmr.mail.bf2.yahoo.com with HTTP; Thu, 6 Feb 2025 08:57:30 +0000
+Date: Thu, 6 Feb 2025 08:57:25 +0000 (UTC)
+From: Thomas Machnik <zipnpup@yahoo.com>
+Reply-To: Thomas Machnik <zipnpup@yahoo.com>
+To: Michael Maloney <michael@maloneyfineart.com>, 
+	Michael Maloney <michaelmaloney2010@gmail.com>
+Cc: Paul Cohen <paulrcohen@gmail.com>, 
+	Harold Cohen Trust <aaron@aaronshome.com>, 
+	Paul Cohen <team@haroldcohentrust.org>
+Message-ID: <1164647764.5017160.1738832245946@mail.yahoo.com>
+Subject: Harold Cohen Trust appraisal request
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_5017159_1394904817.1738832245945"
+References: <1164647764.5017160.1738832245946.ref@mail.yahoo.com>
+X-Mailer: WebService/1.1.23187 YMailNovation
+Content-Length: 1934
+
+------=_Part_5017159_1394904817.1738832245945
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Dear Micheal,This is Tom Machnik of the Harold Cohen Trust. Back in 2016 an=
+d 2017 you did an appraisal of our inventory after Harold Cohen=E2=80=99s p=
+assing. We have a request from an individual who has one of Harold Cohen=E2=
+=80=99s paintings. He is planning to move the painting from California to C=
+olorado and is seeking an appraisal of the work in order to insure it prope=
+rly for transport. Is this something you could do for him? If not, do you h=
+ave a recommendation of someone who could a proper appraisal?
+
+Sincerely,Tom Machnik =E2=80=94 Art Studio Manager =E2=80=94 The Harold Coh=
+en Trust
+------=_Part_5017159_1394904817.1738832245945
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head></head><body><div class=3D"yahoo-style-wrap" style=3D"font-fami=
+ly:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px;"><div dir=
+=3D"ltr" data-setdir=3D"false">Dear Micheal,</div><div dir=3D"ltr" data-set=
+dir=3D"false">This is Tom Machnik of the Harold Cohen Trust. Back in 2016 a=
+nd 2017 you did an appraisal of our inventory after Harold Cohen=E2=80=99s =
+passing. We have a request from an individual who has one of Harold Cohen=
+=E2=80=99s paintings. He is planning to move the painting from California t=
+o Colorado and is seeking an appraisal of the work in order to insure it pr=
+operly for transport. Is this something you could do for him? If not, do yo=
+u have a recommendation of someone who could a proper appraisal?<br></div><=
+div dir=3D"ltr" data-setdir=3D"false"><br></div><div dir=3D"ltr" data-setdi=
+r=3D"false">Sincerely,</div><div dir=3D"ltr" data-setdir=3D"false">Tom Mach=
+nik =E2=80=94 Art Studio Manager =E2=80=94 The Harold Cohen Trust</div></di=
+v></body></html>
+------=_Part_5017159_1394904817.1738832245945--

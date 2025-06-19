@@ -1,0 +1,142 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a10:e821:b0:5c7:f970:fbca with SMTP id gk33csp1336634pxb;
+        Sun, 9 Feb 2025 11:56:08 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IEaIGVhr6CC0MgX3kU9IptbI9648oZ57pHHT+0fAPsaL+ankwz5czc6TqFimUBfCAqLbYcw
+X-Received: by 2002:a05:620a:2723:b0:7b6:d643:59ab with SMTP id af79cd13be357-7c047ba4ef6mr1632341685a.10.1739130967975;
+        Sun, 09 Feb 2025 11:56:07 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1739130967; cv=none;
+        d=google.com; s=arc-20240605;
+        b=EPAZ+cAMtvHDJ33c0voFaxNR/lQshx4rKePew3LWdSZqFkiI5Hz/SklL+liQApqKgL
+         Ufjl+cpNxDGSzHJZG0yBym0Ni66NIaRI/rsaKDlEmVNk6ptj8yLaXUUeD3gk6tlIrHl8
+         sk2TKgFGdgFDqZmRPzccYlhs1vb5TNJVqT/8TVeENKTGj1PzsWz8grQ3+/+U72pGub1U
+         M2OZkTaFJMLHaYyQaSnSeNkv4m/lhYnCm60nd1aim1fC4HNzRpYU37wZwlCz7kY3yz97
+         UssUJjA4lXVb4+6AcED4PcgdIVKAml/TR//UACb5/QUSqzvtOy7czU5tfzKFilNE9iQZ
+         OaGw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=references:mime-version:subject:message-id:to:reply-to:from:date
+         :dkim-signature;
+        bh=AIVa/X10iU6hZ6p/2U3RUgQ2bhtn/hL2T3zrBWpU/Ws=;
+        fh=62VxPQ7WQrxTPQwyWtspFor8j9yd6+g94DSZr0WJlQ0=;
+        b=XR08aWI++fsYCrDrNDW8zHUhQPLQCLkyQFcv3uZxv9CoNUCHdFSLuaNkZYVf+Xo9Co
+         DxSuQ+V8N/oeEopRLXHA4M2pWn5cN0lQSszAeEvwh1dcTdGPvmbxTsjk8FZWzrVFWjcy
+         8wFQtZBsK65l6Qm4db5C23j9crK5HRG3m/6aXksVTqeL1+nMFmRkCBTmrS2m86WrgPPR
+         vQUHFVpGwlAymiB6eI468hwu46Dwo2DRmJB1oQDnrutgmjYHQ6/sqD83D/Kgu2ZNbUt3
+         T6Q9ve/boC+k/fu4XI+PxtVbutoUxV97EQUiOmtxNyq5/aWY72bSNmZ/tUdkwd8idlvp
+         mOdg==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=hFCGs65F;
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.134.124 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+Return-Path: <zipnpup@yahoo.com>
+Received: from sonic315-14.consmr.mail.bf2.yahoo.com (sonic315-14.consmr.mail.bf2.yahoo.com. [74.6.134.124])
+        by mx.google.com with ESMTPS id af79cd13be357-7c041e94b56si774053385a.206.2025.02.09.11.56.07
+        for <paulrcohen@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 09 Feb 2025 11:56:07 -0800 (PST)
+Received-SPF: pass (google.com: domain of zipnpup@yahoo.com designates 74.6.134.124 as permitted sender) client-ip=74.6.134.124;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=hFCGs65F;
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.134.124 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1739130967; bh=AIVa/X10iU6hZ6p/2U3RUgQ2bhtn/hL2T3zrBWpU/Ws=; h=Date:From:Reply-To:To:Subject:References:From:Subject:Reply-To; b=hFCGs65FXhbjxPgS7v0eEuPZU5qlS3V+ZKKC9yZpK6MBwRqTs8gNBQHP5L2rKg2bcBQK2hlKMAy+0YACyPKgN7kupguq3hk32qIN32yMxQsXGtkud/hr2F/IPREXKK38In0dDaLZxwRglgJZZluZJDPX95ZMHrbblxZMM6oiHzSPaFl7Ox5GtdlITe10K67y3I726q35cckYUmgCDzkDPh+qK3m+AJs2CkhQvFgGQCE8azUKAsEPcvoJNjfdnhVswR3ol/+8N97HcPnFgbZcP0mt2c9KLlTN1kELhY0zCvDZ4b+aR/sTlLoJhneI3kIVtnCQhpt9M36WPHRUJsf7kg==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1739130967; bh=nR9Y7Jt7cygncNCZelx7Yz/+UozFztt18Mo/Eu2Nm82=; h=X-Sonic-MF:Date:From:To:Subject:From:Subject; b=ksJsat8q42Amk5NLlpKJAF97GRpJiPRtigW4tEyYKuJx7hgRb3s97kFEkcbfjMoAeAasubB6osJ4DnEW22rKKbB01WUEPIAUPk10mkIMCo0PauMO490K+N5ont5LX9rkULZn5HtR/I4klV3G9MWqTEW+0xDnSldcEaQry9TODWIv9x3T/WwAx1wRiKafIRXQdFcExGJrWh/ebGJTw6v2mtPhrqU4nzyQ29FSY7lNblTwowtLPu6Yq/mIZCl7n/TMNhFoXkigrN8RVwXTzKBgcOyktmqabZnSm1oPy7yzVWczz4+Lk/OvS8Hc344gvOn8D8Juc2ZlnEcWFeQN4qFZjg==
+X-YMail-OSG: 2Fv1s_YVM1lXLydwpcYxjRH5limhKfU7rogTvd4iBOKILwBfmHP949HtSFwcNk_
+ .LXEFLQGqLfEB9FTURZjPK39mMZCA6F.qTAKtAyvPxyrmw1kcemxKPl9PXBQM0ILTtHztH8U8r9P
+ 5nWv8kWAfkn5LIbGeornzT.Glr8ssXRItP.jtmZezRfTmmRwSxbXr9FUui9At36VgA9LjW6c.WpI
+ f0XFh8MkvnDDb7MTyA3W3Xbm75Dl2NyQLzY7eCclRiRPhq5iOy.TD.pLKFAw17puIRXGzPlrfIUy
+ TayEFx6NKWmuswrqB494hXlmOM8MzOQ2GTvQWU2we3NAZeyGQJPogPiQ04fObnDIPpB_VmaPd9KG
+ RA3vG8fpXyLPbPHhKh8rFI5h401FzpDrb15smrEISio5oMJnW2wmtifZ7DwSl0PcLSIhnmweVQsy
+ g6E5kYY4CCQ2L2aqqmmVoqR0927HGr.XEz3mN7AZMKQ9Pt5enFqIZA3GXOlSEJ_6DPhM2qVQ1KMI
+ tlwunseDIkL0Ze1TvDaQoFptiSrYPkW8qUZQcdrEd2oN7m2vaTGk1SIcgIMDwPkcTaHla5jMHvuw
+ kADqmqA7SRCHY6Vr1ZLN2hJX.MV.UV1WVjGZIyMB2z0rewC2_4BQ5qKgm9Mw_rUz5yRyoVL7QEu5
+ rD5d7VsH_U8EOkjhZsevy7IpAckKuXm1efzxyBwjYYHFNgXfskn4H1Q6lp26YNV__oICzdaGWyoU
+ uN.bJ1O0BKccn6Wk5Tw2fGLPjok4vbpHgIkA9X2vLDZLadt_B34WOz1nr0FhR2xLbTAIgenBJ7VO
+ VAcRbZHY1Qi97ra84bXl4NdM6KCpLXjI4uDGUZXCIuDshhbcEm6pumYdK0W0225OSKgxb9qRSWQP
+ N8cQBgMryZa828tRUOyWEGPmQH7kFKcS0fxAqHo1ji8c8ZeKuJq8kVB1NFohymvEN25fQ2VDWrX4
+ qcw0Lczf2uECmWHbng7g9PBiKyDLF0NTo7bHtC8tez5H5W1dUgyiRX9C4GvyGxrKcfMVf8c0rKHv
+ E5dfP7NuGpQXqFbEGiWkZTNZGbtpQHvK4Ssq8lAwMrwYsxd1BQOf_hmlRFr7axf6_o1EbRNZD7n7
+ ve7cNpgN9x8uH2zn4sV4rfuyu6ZkfZOoV9zo3PjDgkf.l09qVj1k4SGlLcbd3EJUe_sS9k9LYgMH
+ gcLlfUpzkORhpG9ATnLbmWqM47XU5lh9yT.jEYcxtldr_ygrVCJQssKvlRKgm8OGqszSDMUH0MsS
+ 5sy6sRkiRpLLudv8J_mawaBhbdaGWxU9PE_CEH8lfmOFF8.JjAe1hxY_QYKxbcUdSqIGMOEFG1W8
+ SqR2xMzLhQJ7zt8FnNdt.KVzRyG9Q4fRysnohfwq4PYFsSmKyolnUPw9oWK_lKkHTjbb71AWRxf5
+ BTkqcnZrZmXAZl.4B.IRgdwjmvqVyIRizPXcWztkFjjVsbMzCZZtyoXSXRlbhhWv4c4_rANZOPI7
+ fA0H4YwGfTlLleFoQg7762nMc0.FN3bpA8gUVTdb1A3Xz8hOE31GqZWFK9anriLbod0v4GJiEkwl
+ DrLxEH3yaTF6w78_uh3JOkSFsM2od8ymAQ3t3gXYSNpXD_aZsWidPD5cLa3vG10eQaaJX6nAo70V
+ GrUKZfIyDEfdHwfF1vEfPi9UHXwEapu1kveWO16B9yXhSGeqGQp_vHbXaYEOalItoRzqpihpWwt7
+ 6Zrwux.IiAbRaEVRK5h2jgwLSAm3fwyzZQ3Qnw84oX.Xk9gB0ZQ00P6qztnLq65lh2GTzPSvfREk
+ kwGCtJaL.ESt0K.npmnPrnxf4c_Pa.z7Eocs9J_YY.x9PZmmB5EeQBNZO.Pq4X5CAAGjjdto8j0A
+ k_cBjXdlRFV5WGHiUT3YgG4QYAPha9l57Hhj3jeNMvcDFOEG1Cw8Y8Mj.yRkxtL3cbRAoGxnZ0K8
+ 9ZSnbB9xuuaaU5Pd2n0wEZMmVSFSodgMVtT0VF0.hDkoDb9ZqZ_eXItDwktuJZ2qP2dC_Gmo6Lpd
+ icB2dI711s3Z0trUBvWR6ApGE5PjXlugt7p88R4VjiHRVphnmiF3HZo0ee5M0z63Q9W7V8.9hgW5
+ lyoDY2MsJ4vvFxGA60R1MqWNqVRu_RMaAM.6l13VREbzNQF.IHofxgYDelMUJGDQQrtn5DRodf7I
+ _EEXRJTDvsIOhIK2U6kYQaNijbu5q9U6UDMGQ49ZrPCmYXuHZdqn.vLBlZuMk7AbmUEIsA46eFPE
+ zINAsJBIGoz3Iafb0BALOPJ8yy3MdycXtK9eO_sV0O0nHbRcaSnFXo8mRqlB6ZssSacgUR2zvA6Z
+ o6vPLU71gdKeWKW9vAE.weEwH1KG1myMon_AZmR0-
+X-Sonic-MF: <zipnpup@yahoo.com>
+X-Sonic-ID: 451174f1-4a4d-41cc-b96e-fdd4fad84dfd
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic315.consmr.mail.bf2.yahoo.com with HTTP; Sun, 9 Feb 2025 19:56:07 +0000
+Date: Sun, 9 Feb 2025 19:56:02 +0000 (UTC)
+From: Thomas Machnik <zipnpup@yahoo.com>
+Reply-To: Thomas Machnik <zipnpup@yahoo.com>
+To: Paul Cohen <paulrcohen@gmail.com>, 
+	Mila Askarova <m.askarova@gazelliarthouse.com>, 
+	Paul Cohen <team@haroldcohentrust.org>, 
+	Harold Cohen Trust <aaron@aaronshome.com>, 
+	=?UTF-8?Q?kanoko_nishi_=E8=A5=BF=E9=B9=BF=E4=B9=83=E5=AD=90?= <littledeerofthewest@googlemail.com>, 
+	George Lionel Barker <george@gazelliarthouse.com>, 
+	Anastasia Shapovalova <anastasia@gazelliarthouse.com>, 
+	Sara Nishi <nishisara@gmail.com>
+Message-ID: <1097043545.5697713.1739130962277@mail.yahoo.com>
+Subject: =?UTF-8?Q?Christie=E2=80=99s_Promo_Auction_Video_Feb_2025?=
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_5697712_650575045.1739130962276"
+References: <1097043545.5697713.1739130962277.ref@mail.yahoo.com>
+X-Mailer: WebService/1.1.23187 YMailNovation
+Content-Length: 2620
+
+------=_Part_5697712_650575045.1739130962276
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Everyone,Here is a link to quick fast-paced promo video for the upcoming=
+ Chrisitie=E2=80=99s online auction Feb 20 to Mar 5, 2025. It has a brief m=
+ention of Harold along with the other AI-artist participants. Interestingly=
+, in the blurb below the video, Harold is the first one mentioned.=C2=A0htt=
+ps://www.youtube.com/watch?v=3DjCa0Sao01BY&t=3D70s
+
+Also here is a detailed article from Christies regarding the upcoming aucti=
+on for those interested. This article shows Harold=E2=80=99s work and has t=
+ext about him.https://www.christies.com/stories/what-is-ai-art-augmented-in=
+telligence-36dc0897d3584268b5102468a3bf8a8c?cid=3DEM_SM_O_YT_Inc_CON_______=
+_____
+
+Tom
+------=_Part_5697712_650575045.1739130962276
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head></head><body><div class=3D"yahoo-style-wrap" style=3D"font-fami=
+ly:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px;"><div dir=
+=3D"ltr" data-setdir=3D"false">Hi Everyone,</div><div dir=3D"ltr" data-setd=
+ir=3D"false">Here is a link to quick fast-paced promo video for the upcomin=
+g Chrisitie=E2=80=99s online auction Feb 20 to Mar 5, 2025. It has a brief =
+mention of Harold along with the other AI-artist participants. Interestingl=
+y, in the blurb below the video, Harold is the first one mentioned.&nbsp;</=
+div><div dir=3D"ltr" data-setdir=3D"false"><span class=3D"ydpcff84c65pasted=
+-link"><a href=3D"https://www.youtube.com/watch?v=3DjCa0Sao01BY&amp;t=3D70s=
+" rel=3D"nofollow" target=3D"_blank">https://www.youtube.com/watch?v=3DjCa0=
+Sao01BY&amp;t=3D70s</a></span><br></div><div dir=3D"ltr" data-setdir=3D"fal=
+se"><br></div><div dir=3D"ltr" data-setdir=3D"false">Also here is a detaile=
+d article from Christies regarding the upcoming auction for those intereste=
+d. This article shows Harold=E2=80=99s work and has text about him.</div><d=
+iv dir=3D"ltr" data-setdir=3D"false"><span class=3D"ydp3d5b819cpasted-link"=
+><a href=3D"https://www.christies.com/stories/what-is-ai-art-augmented-inte=
+lligence-36dc0897d3584268b5102468a3bf8a8c?cid=3DEM_SM_O_YT_Inc_CON_________=
+___" rel=3D"nofollow" target=3D"_blank">https://www.christies.com/stories/w=
+hat-is-ai-art-augmented-intelligence-36dc0897d3584268b5102468a3bf8a8c?cid=
+=3DEM_SM_O_YT_Inc_CON____________</a></span><br></div><div dir=3D"ltr" data=
+-setdir=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"false">Tom</div=
+></div></body></html>
+------=_Part_5697712_650575045.1739130962276--

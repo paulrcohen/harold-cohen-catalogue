@@ -1,0 +1,197 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a10:e950:b0:5ad:6c17:f336 with SMTP id gu16csp1527681pxb;
+        Thu, 28 Nov 2024 02:58:57 -0800 (PST)
+X-Received: by 2002:a05:620a:2950:b0:7b6:73f5:2867 with SMTP id af79cd13be357-7b67c43d16emr816579785a.44.1732791537541;
+        Thu, 28 Nov 2024 02:58:57 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1732791537; cv=none;
+        d=google.com; s=arc-20240605;
+        b=a00v1qOwrAPmn+O5NURbxQ0j5/FPsKakoo7AHGGlTyR2p4MGuVaIiChZwRU7/I0Xat
+         043wyxepeMIBMov/DJKxNB0SjO3MS864+BC0O/plWCeCgbQugUX1J2csuRZo64IRhHb7
+         oTosai2ji/xcCbKemYQwrUEbtClK+3dc100O37wH2g80dxjEeBYg2M067+sLgtCpK1fk
+         T/Cgd7YCqOqYyTZ3TdXXNDHAi/MDoaLRQvMByli3jAniCiFDJ3jF8c015jbaWKW7F+gA
+         0i9ZM2zBY1KWKAlY5xsUN+5eFffS/Rpnk+2aokrWKUvjSZ54xxbWDswbnETqIn8sPfsA
+         Hs9w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=BEsVv4plLhJ6xqZlgHP7jwQm5WwpzGNCyoBTXzll3VI=;
+        fh=JMOXRmlXu4SCOxOwddNRpSsdR76rxQriS+ObO5ozOn0=;
+        b=ITHNMKPFvbrPqh3VHibDys+aHxlrVQjzbuFgb2YeVeXNNyl30EFNf14M+EHHbo8EVs
+         dAM6KbKtD+S6/pmWuiaol80TBH90A88cm3xEkBxK7lb5NNswhc24fcElR28XZyfcrFqM
+         n8hf5VkNj8J/1G8wZvDy6mvqe1w2h5edMWxDFSuDS8rmLpyriK6ahmch4dL3SboGwNlo
+         qHXc0eKTluFxtCuYGb6yF7pIkY1CTEXzQExh/MOaHTeRDeAVWj9hm1GmsTiNgm3fikWt
+         DBraXA5fvW55gWYxMMraVF7xAanhVa3fGkjO+sG1fkxl9nPIh5MC0Aks68tZGSJWXg3h
+         om9Q==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@googlemail.com header.s=20230601 header.b=VZBAbUCa;
+       spf=pass (google.com: domain of joel.shamash@googlemail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=joel.shamash@googlemail.com;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=googlemail.com;
+       dara=pass header.i=@gmail.com
+Return-Path: <joel.shamash@googlemail.com>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id af79cd13be357-7b6849a8400sor79665885a.15.2024.11.28.02.58.57
+        for <paulrcohen@gmail.com>
+        (Google Transport Security);
+        Thu, 28 Nov 2024 02:58:57 -0800 (PST)
+Received-SPF: pass (google.com: domain of joel.shamash@googlemail.com designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@googlemail.com header.s=20230601 header.b=VZBAbUCa;
+       spf=pass (google.com: domain of joel.shamash@googlemail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=joel.shamash@googlemail.com;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=googlemail.com;
+       dara=pass header.i=@gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20230601; t=1732791537; x=1733396337; dara=google.com;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=BEsVv4plLhJ6xqZlgHP7jwQm5WwpzGNCyoBTXzll3VI=;
+        b=VZBAbUCayCRdtm90n86rsfXx7PoLCJrnqxDZ7iuW6g9C9/ebCEuqMn6R8898XBNinu
+         1tK38ZXrJ77ZzJd73NTilhf9ahDATuiRjm34iAnmqjE4XKTEfby6AkUKskQCF7jFKPp5
+         GrP78vU8ZkaIeIw6OrEz9sa88o2g4GH41yY7WIdMveTZ1rXSh7O3VNmCliHcZgUfyfMd
+         +3eeHM/BTLZjeZrDEjsvO5mI8XVvtq+cPM0VFCjIi5n3Qmn75nqMkA033kp7hb8Oxar7
+         XfYgQ+5ie2iDsqUizszpnZtd0fSdknPZzU7fHvZ2uTIY3uieyetHl7ReqqonO5+1+PyE
+         UUYA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1732791537; x=1733396337;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=BEsVv4plLhJ6xqZlgHP7jwQm5WwpzGNCyoBTXzll3VI=;
+        b=bxZ4LoTz12T0PTsjIcWfqND3kW8n94LwAINBe8/PN8IPDJS+TMRodO4GuDmz0VZ0CC
+         h98ImDWyIiYYo/uqQR18cBisUvYu9bqSY+DNn4K/fteKOks0kWE8Kj5uq8jF+gLDF581
+         x2EXLayxhd1RkiQu0NyiNatnzbzf28zrRY+gUQ5/Q1IJDWWbZxW3XF/lq7ZQQfW894CI
+         HSy6ttG1uNL8ULpImW7A+ZPsMDo/lU+DFwZO2m8xeVy5iaZul6PceTclCoFrZPrsbekI
+         GechnJCAeyAKdbVYkGwMeyXp35ejN+Qi6NheBgkQArRe9HTx+oVPEBRSv/xa2MxUvJwc
+         4k5w==
+X-Gm-Message-State: AOJu0YwhIPulSq5EujwPCERn0k8+rMpt7T0uOBatyJgYszfL5+uokKAG
+	tVbKclGCnj6SCRUVbo0VTUjl5sJxwGrbmvI8oxzB9DfkUgLeCoCAHTHuiZM92ZJHJpJFlX3ne07
+	G+RvPx+UY+fSFVuL8zZRABwtNuijOyg==
+X-Gm-Gg: ASbGnctnLXQwn4PkHavGuNs5V+R900TOe+rAA5VPdEt7GNbDvA+tYTh/SNONgOlrzUx
+	2c2juxjGTaQc7b/EX5TbPDv1Zdo6GRvEPTA==
+X-Google-Smtp-Source: AGHT+IFlrBYSvP84JLnyt9zpr6HcNa7/fzgw4Sd1waNXWzWvq9EtzJhqdPN95AtCsIOH/Qrs3v+pi05ubGg/erQBDrc=
+X-Received: by 2002:ac8:5d07:0:b0:466:a584:69f8 with SMTP id
+ d75a77b69052e-466b366ad87mr80721081cf.43.1732791536794; Thu, 28 Nov 2024
+ 02:58:56 -0800 (PST)
+MIME-Version: 1.0
+References: <CANS7RF9P5Emb2h1c4=UjMPTQ9_Y34_7pLyPKPGqWg2Eysj-tTQ@mail.gmail.com>
+ <CAKjPZkGHFCPOh7pXfzKDh6oT=JpEOXnF+=+u5otXvSVAT4zxQg@mail.gmail.com>
+In-Reply-To: <CAKjPZkGHFCPOh7pXfzKDh6oT=JpEOXnF+=+u5otXvSVAT4zxQg@mail.gmail.com>
+From: Joel Shamash <joel.shamash@googlemail.com>
+Date: Thu, 28 Nov 2024 10:58:30 +0000
+Message-ID: <CANS7RF_J0Ye_KKZOXUzRX0vD1uK5B=ceC9+FUWXxWP47J-051A@mail.gmail.com>
+Subject: Re: Electric Dreams
+To: Paul Cohen <paulrcohen@gmail.com>
+Cc: Thomas Machnik <zipnpup@yahoo.com>
+Content-Type: multipart/alternative; boundary="0000000000000546ab0627f6f8e6"
+
+--0000000000000546ab0627f6f8e6
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Thank you so much Paul (moving to bcc to save your inbox).
+
+Hi Tom - great to connect, if you have time in the coming weeks I would
+love to schedule a call to get your insights on Harold and his work,
+they'll no doubt be invaluable as we flesh out the narrative for the
+documentary. I know it's a busy time of the year so no immediate rush on my
+side, happy to do in the new year if that suits you better.
+
+Best,
+Joel
+
+On Wed, 27 Nov 2024 at 16:37, Paul Cohen <paulrcohen@gmail.com> wrote:
+
+> Hi Joel thanks for getting in touch!  It was good to see you last night.
+> As to your projects, please call in us if we can help. Let me introduce y=
+ou
+> to Tom Machnik, who worked with Harold for many years and currently is th=
+e
+> Trust studio manager and informal historian.  Tom has vast deep knowledge
+> about Harold and his work, so I=E2=80=99m sure you and he will have much =
+to
+> discuss.   Keep me in the loop if it helps.  Looking forward.  P
+>
+> On Wed, Nov 27, 2024 at 4:24 PM Joel Shamash <joel.shamash@googlemail.com=
+>
+> wrote:
+>
+>> Hi both,
+>>
+>> It was a real pleasure to meet yesterday evening at the Electric Dreams
+>> opening.
+>>
+>> As I mentioned I am a big admirer of Harolds work and have so enjoyed
+>> digging into his various writings and the context of his work and journe=
+y
+>> with AARON.
+>>
+>> I am also eager to share his pioneering story with the world and am in
+>> the early stages of developing a documentary with the former Head of Art=
+s
+>> and Music at the BBC.
+>>
+>> Paul - you kindly mentioned sharing the contact information of Harolds
+>> studio assistant, i'm sure they would be a fantastic help as we start to
+>> flesh out the material.
+>>
+>> Best regards,
+>> Joel Shamash
+>>
+> --
+> ______________________________
+>
+> Paul Cohen,  Professor
+> School of Computing and Information
+> University of Pittsburgh
+> personal webpage <https://paulrcohen.github.io/>
+> ______________________________
+>
+
+--0000000000000546ab0627f6f8e6
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Thank you so much Paul (moving to bcc to save your inbox).=
+<div><br></div><div>Hi Tom - great to connect, if you have time in the comi=
+ng weeks I would love to schedule a call to get your insights on Harold and=
+ his work, they&#39;ll no doubt be invaluable as we flesh out the narrative=
+ for the documentary. I know it&#39;s a busy time of the year so no immedia=
+te rush on my side, happy to do in the new year if that suits you better.</=
+div><div><br></div><div>Best,</div><div>Joel</div></div><br><div class=3D"g=
+mail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, 27 Nov 2024 at 16=
+:37, Paul Cohen &lt;<a href=3D"mailto:paulrcohen@gmail.com">paulrcohen@gmai=
+l.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"ma=
+rgin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:=
+1ex"><div dir=3D"auto">Hi Joel thanks for getting in touch!=C2=A0 It was go=
+od to see you last night. =C2=A0 As to your projects, please call in us if =
+we can help. Let me introduce you to Tom Machnik, who worked with Harold fo=
+r many years and currently is the Trust studio manager and informal histori=
+an.=C2=A0 Tom has vast deep knowledge about Harold and his work, so I=E2=80=
+=99m sure you and he will have much to discuss. =C2=A0 Keep me in the loop =
+if it helps.=C2=A0 Looking forward. =C2=A0P</div><div><br><div class=3D"gma=
+il_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, Nov 27, 2024 at 4:2=
+4 PM Joel Shamash &lt;<a href=3D"mailto:joel.shamash@googlemail.com" target=
+=3D"_blank">joel.shamash@googlemail.com</a>&gt; wrote:<br></div><blockquote=
+ class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px so=
+lid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr">Hi both,<div><br></=
+div><div>It was a real pleasure to meet yesterday evening at the Electric D=
+reams opening.</div><div><br></div><div>As I mentioned I am a big admirer o=
+f Harolds work and have so enjoyed digging into his various writings and th=
+e context of his work and journey with AARON.</div><div><br></div><div>I am=
+ also eager to share his pioneering story with the world and am in the earl=
+y stages of developing a documentary with the former Head of Arts and Music=
+ at the BBC.=C2=A0</div><div><br></div><div>Paul - you kindly mentioned sha=
+ring the contact information of Harolds studio assistant, i&#39;m sure they=
+ would be a fantastic help as we start to flesh out the material.</div><div=
+><br></div><div>Best regards,</div><div>Joel Shamash</div></div>
+</blockquote></div></div>-- <br><div dir=3D"ltr" class=3D"gmail_signature">=
+<div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=
+=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr">______________________=
+________<br><br>Paul Cohen,=C2=A0=C2=A0Professor</div><div dir=3D"ltr">Scho=
+ol of Computing and Information</div><div dir=3D"ltr">University of Pittsbu=
+rgh</div><div dir=3D"ltr"><a href=3D"https://paulrcohen.github.io/" target=
+=3D"_blank">personal webpage</a><br>______________________________</div></d=
+iv></div></div></div></div></div></div></div></div></div></div>
+</blockquote></div>
+
+--0000000000000546ab0627f6f8e6--

@@ -1,0 +1,68 @@
+Subject: Re: Quick question re Harold Cohen data for Sothebys
+From: Paul Cohen <paulrcohen@gmail.com>
+To: Robert norton <robert@verisart.com>
+Date: 2024-10-08 20:50:23
+Message-ID: <CAKjPZkE+FKAXVBnw9N2Z0gVu7DS=2W5_2Z4Yc7Sg7WR4hQtq+g@mail.gmail.com>
+--------------------------------------------------------------------------------
+
+This doesn’tadd much but Harold did sometimes get dates wrong. I’ll have
+to dig for it but I remember at least one work signed as a birthday present
+but the wrong day 😟
+
+
+
+> Thanks Tom for this and I do appreciate how hard it is to account for
+> everything that happened such a long time ago. This was one of the
+> motivations for starting Verisart - to help artists keep veritable and
+> accurate records.
+>
+> Just to clarify Sotheby’s are not asking about the print as this
+> spreadsheet specifically refers to the image file for the NFT. Is it
+> possible that the program was run in 2002 but the image not saved until
+> 2003?
+>
+> Perhaps your answer is the same for the image as it was for the print but
+> just wanted to make check this with you.
+>
+> Grateful for any further thoughts. In meantime I can share this with
+> Sotheby’s.
+>
+> Thanks
+>
+> Robert
+>
+> On Oct 8, 2024, at 04:53, Thomas Machnik <zipnpup@yahoo.com> wrote:
+>
+> ﻿
+>
+> Hi Robert,
+> When it comes to Harold there rarely is a quick answer. Since the physical
+> print date precedes the aa file timestamp by one year, that begs the
+> question, "How is this possible?" I know you probably want a quick yes or
+> no answer. If that is true then the quick is answer yes. Yes, meaning the
+> physical work is signed as 2002 and the aa file timestamp is 2003. But this
+> would certainly suggest an error. Did Tom write down the information
+> incorrectly? Is that the error? No. The timestamp for the aa file is 2003
+> and the signed print is 2002.
+>
+> It seems like we have one of two scenarios. One, Harold signed the
+> physical print incorrectly. Two, he signed the print correctly. But, we
+> don't know why the generated work seems to be in the future. If the second
+> scenario is true, how could it be true? Maybe, the version of AARON Harold
+> used was from 2002 and that he simply ran it in 2003.
+>
+> We had a situation at the Whitney this past year whereby all the work was
+> generated in 2023 and then plotted in 2024. However, the version of AARON
+> generating the work was from 2001. We may think these are 2024 works
+> because they were plotted in 2024. But maybe in the mind of the artist they
+> are really 2001 works because all the works were already fixed as
+> potentials in the 2001.
+>
+> I'm not sure if the second scenario can be confirmed or not as I never
+> thought about this before. When I go to the studio Tuesday, I will see what
+> I can find. I also sent a message to Cohen's 2002-2003 assistant and
+> waiting for her thoughts and this matter.
+>
+> Tom
+>
+>

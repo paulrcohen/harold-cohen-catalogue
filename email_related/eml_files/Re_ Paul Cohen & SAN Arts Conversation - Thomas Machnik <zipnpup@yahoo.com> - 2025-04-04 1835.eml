@@ -1,0 +1,309 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a10:5c8:b0:5ec:db95:1ae4 with SMTP id p8csp5195716pxt;
+        Fri, 4 Apr 2025 15:35:09 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IE9N4y7RgKH8VdVQaG2ZUcZDISaD4M6cll9sC6KjIUM+u1Nhhi5ml49WRXj/WZOkHIOJCrv
+X-Received: by 2002:ac8:5842:0:b0:472:1d98:c6df with SMTP id d75a77b69052e-479310e472dmr21034091cf.52.1743806109001;
+        Fri, 04 Apr 2025 15:35:09 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1743806108; cv=none;
+        d=google.com; s=arc-20240605;
+        b=YRMJNgoUVX+pS4X4nFsMdmhAD1RMKvq3sZmeYidTl6SvlCDphY87GKUGbiOpUhGWjt
+         yGT+U24DnFQw86VQM6HbMbmk2KOdcei59umpO0dZM55oODjfT8fOtYNlJGzZQBFadfyN
+         JMjey3B0Eo3T9zxMFwLBJauAGDKkTtQdZuT/MBm8qV0ky34T3cx84CJDvVapdhEuaNhG
+         mZ30gmXV/ZWVp/qqybAG2cHizHEWhYFZrZ0g5BMVpVctFDVxzAXb9DN3e0mHfZWBXwkM
+         M6ktytiWBvbdNdaGa+nx4PEMbmFXhy9g9iIPtKaLQVwXpdwJKWoMhQQsESVGQfZ4XXrR
+         ETrw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:subject:references:in-reply-to:message-id:cc:to
+         :reply-to:from:date:dkim-signature;
+        bh=LEF8aJgUrVEZHGz7DG6PtuYBVnlbMSbrOopsNljyTPI=;
+        fh=sivERodAxAKpL42UbKiRZP09xhk39IfwFObd1J6TkhM=;
+        b=UEpCevBAB95pQC1vU/DMFXimf6sFHSoFpdR94GdhxKhF3m5oAb9fkNK71mVHPfW99P
+         fBVKwMnrT4jZd24uB20W4u7kDdC24ulWMnAZUgGKa7n24roMjSYrijXAI43Wl5cWiO7O
+         t6qUwXcpOYU3h9EJpiJzOVbxZHcuGWtNDIh5sNLDZX2kgzSeUej3oJEIyTClAKubTyR1
+         m/naZlhZOwU29/Ju9E9CNLeJEnBheuLJMJ+lPc81p3ySnr0wFDl783CT9w8j3mpJ2oX7
+         VPanMpKXW74aF969NezT6XcNs8wgZupTKhh7LlDtVxD+iYCLTqPo8yBp2M1QEDgTquPp
+         sgSA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=KKulTXal;
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.135.125 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+Return-Path: <zipnpup@yahoo.com>
+Received: from sonic310-15.consmr.mail.bf2.yahoo.com (sonic310-15.consmr.mail.bf2.yahoo.com. [74.6.135.125])
+        by mx.google.com with ESMTPS id d75a77b69052e-4791b198ecasi38993761cf.414.2025.04.04.15.35.08
+        for <paulrcohen@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 04 Apr 2025 15:35:08 -0700 (PDT)
+Received-SPF: pass (google.com: domain of zipnpup@yahoo.com designates 74.6.135.125 as permitted sender) client-ip=74.6.135.125;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=KKulTXal;
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.135.125 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1743806108; bh=LEF8aJgUrVEZHGz7DG6PtuYBVnlbMSbrOopsNljyTPI=; h=Date:From:Reply-To:To:Cc:In-Reply-To:References:Subject:From:Subject:Reply-To; b=KKulTXalG+xZgdfIUe9meIAnZfVmUnbGbknGhNury7XKSTihhUwl6MDXJkBDjOSmyPSxHqLj5DIgWljjbK/Y5vR9LuRgJbBWQ9s6102ncOZtD5NdnIbEOWqMvcjH5gjnEOBH/EGbVNNX6qU08pPA5XqXeHlvfwkU5SkclGDUgWNXsfRrMriFaX3nT7Ie+0pmXlVegDFD2n1RmAlA86H6Ic8ysktdQUjKKczN42+9fENkwyaIhkEa6Yrsyvn/qUdRwNOK04WdbR+2nv+K1EYM/oWWP5KXBZbxnYLGLpsghQjKHFgwZuI2nkjJK+PxBUoXrvG5mda4LiG/0CMAaDajoQ==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1743806108; bh=/MOW4BgMeNN2IKy+SA9WPpQWjT2M4ZqzINgw8ULdi/1=; h=X-Sonic-MF:Date:From:To:Subject:From:Subject; b=Myu/yIAvSnItXpj2qug1IDPZZKRiyCXEf898xSzHvgE4aQ7K1xK8RzYVtjOpqzhb1A5nPuyO6mrb5PT37mYdR2o2lOBsaOSeDMLRsv/KSO4gTnzKH/RaiRlXa+yLqSWLx+PMYx6E+mX4D8NN/8QN+7KyZzvzt2TCqgMr0/gMQFt8kVeteNpHMw7GzL1MybGWUgUIvRJ7EtOFrw/b0pguT4/di3Ji0CyikGMCYPd1JsHclCgVe0wZkv4yql/3jISfcxIzEWMR8XECouT2B3ncwQMyWKTpDtbKqRydcrcI96bhhLwjPsob2VoFWavgGlrU5YBXUhzaaM3gUNeObbke6g==
+X-YMail-OSG: DYfE52AVM1lWTx5SSqnm0l7lPtZ.lpsnfJtAcqLX1dZLy7PU0C8MiZOD94FN0TU
+ TN7Ujoig5cXa3_j1uW_r.sFp3GrfnMuW6FPoLmJhQhkXLYdHLkyZi0H8sLhNW.84o98XFSJo_Vj.
+ STASHidO3LRHPbUPtH0uxwxCSe2sBL6ZwvhoZoKbumA.2ZyzIllIwW7eLAglM93flQfK4rxhUiwl
+ ws_3KXcK7b2BYtV.vVDq2kPz5TMQtrCBTMqAe21AfkdJNX6ZQi5NrtzG4gBEeBi_VSF3lwiaVILS
+ PuZr94EMalncdkEAGiFAm4TZCiNV.Z58pQoGc5Pv0yQ7OQsriSXn_VLbizE5MWm2d51hnPDa9s8O
+ Q43Awx8jkDUK_K7AUqVVk27JXbAL9cLBPZNqRHePeiqJI6AJLulnUL.7snvi3TAK9HGAl4hq2_oz
+ RHMxj1fQWVyGA3d.eSn0qAqdaTd9NlulEPKp_vC9SikYkZz_9Jo4TRVPpeoTSZsvk5ENiuzhPdHF
+ XqqYeA1p_1R7FPhtSOjUBM399Wsa3ogFsMg93Co6Ew8MY.bDHCuIDaryn9ir4DKNMwYv4XzwzFqc
+ i9JmslOtQcOBcmldoPiUK4_JRSxFWQoUbu9DKo65_uVlsPOqsNrYgZYtLlYTP.jshlkUKawYjAJ4
+ pdVS31RfFBVo1TJ2SZ3kFRxNNKe_GVteToSURfWBegKxQOmptQssC6vYly6Vn.3_HGd9.4NI5Usz
+ zwEEak0TLr3pMwQhpYLNiw_XZ2YahYthva2JpNroK0vOkNfBcAXS7DUaaKCo36EkDFtFGt8yLX3V
+ WKi7XRYN6jIL5Fvd.9ndT3IQp3395JWDy_vJ86jkVmrvifvsE9PJ1_bw4mc4RrNDbtluRs71gwtN
+ n9Un593V3b2sePhzJkWeEn_37cQbgHi1NV1XbZWq7jq5FIolaBbIAm1UAGhNt_vhLiNG5UQ7G3s1
+ seQkljcDgI4cS2I3i1E_kK2U2GCkgbKhpYb3gHUtmcac4RhbkaSbfEn0qEIMXHklm.PsAbG831Ql
+ kOtWlFgVnO8pI0wGiAIbzt.JFnncA__CfgVqAI6MBkWhXTMBFV8.3NrvQofwp82CuoO6aYyt08zx
+ coa1ofOVlLg4p2wPEm9NTrivmhj9yG9Rt.JgjMs_VloGx8b1klFb5.u.sDQnfymD_aOkMJKaqo9j
+ G2UoD95MNWBn08aBDRWIGjiv.7hYj_n051Jdla7qr6785QtRE9kBjGE2WER0nW81r9M76Y6.sV3y
+ RakdwZ2svp1IjfIFjz3_jVR0OWu6YMAZ9KG4UCChNflEWY92_V6AHMDM.rv2_lGAkkLQwcMZAVQP
+ Uzjrrep__Yj38RVQJCmT4KvcjYAY.YrzKdYgI5tQTBLYGRggD.JMEKp1MeL7cRnjxOXy1d8XdVdq
+ gvcITFXy86NNDw7aBTpUiiwSxDVvW_6gkfn8MkO67Lr1Pk61Gu6wzIVfz2J5eIRb4Jb3QkwTemvm
+ tdQpwS46kyxGbIkdBAWFESZBe8gFoCkzWBNaOB4olzsbDcA2WayxmJ9jqYohYGQHy2TLQn.5qqcy
+ YKbyTK0ZU.tJglw_FdbSFrmdo1JaohIiiyNWillXvlXBFi_6kHSXgaCoOMLlnY5LT.C02SCkUd9i
+ 2ZuZnfV0e18HFr4fxOdDek0VMwUXFnQPaEtclc1upz9glsi0dNH7hiqBOUCBlMQiTAfClJB6B1sU
+ xPZX5u1Rp0lUHjUuE.XRNOTUMCcuJVCrE2xvhGxtuoqDrgaZihsiPqHf5zJVihpre4JRINtABeZi
+ VN3Sm9Pu86vA2ygOf6kXuHOosVdVEoRCtuwfrNijtdBojZIiCRFnXJiVgL0bf5Is1RSVqKEaoh2P
+ hTNV3djlnd47QaRVK.riMUFqDazLJfpjra4.R9wxSmakmzcN9TZeuVP5CGsn.hULvP69tLH9tT.r
+ wZWxiBVGXWUffy3wxSnPf.QncC_vgT3Nd_b8BAscPpU_NHRJR2PME8kOipOLBcQRnp5eTTxQNNae
+ Jn2cTzSDvU8rD72dqMds3xV6nlAz_wbnsDnFiKNiFQ9QP1TxzVO13BnelGbTu5r54yUg3XyUfF.l
+ K3FdL6D37P_us2lcii68uIORDvwSIHa8gcBowGL_U9KKyn8s6zdv9ioC.8Gc1g3RbrqnsloJHX1b
+ 0mJkVjPUhKRXgWOBEXoHy4K1bo2cpN9DIr2q4DMu2iSESVrzz.dFfVSNiPYN03pSnKAA62lCVgMg
+ 65wj3b1oIzVkJ7yUFlIeN2GSe1bY0lR0.zkQi494e.WiPYQCpbMLZzFwY4RMCNNgE36xfx8vvZnj
+ y8IBg4MOMzApQOhIWjhzQts2seUzWhBmX3GE-
+X-Sonic-MF: <zipnpup@yahoo.com>
+X-Sonic-ID: 1e03a8c7-c280-4893-8f32-bb9f93bed656
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic310.consmr.mail.bf2.yahoo.com with HTTP; Fri, 4 Apr 2025 22:35:08 +0000
+Date: Fri, 4 Apr 2025 22:35:03 +0000 (UTC)
+From: Thomas Machnik <zipnpup@yahoo.com>
+Reply-To: Thomas Machnik <zipnpup@yahoo.com>
+To: "paulrcohen@gmail.com" <paulrcohen@gmail.com>, 
+	Dennert Daniel <ddennert@san.org>
+Cc: Tiffany Beres <tberes@san.org>
+Message-ID: <929449923.1090556.1743806103499@mail.yahoo.com>
+In-Reply-To: <BYAPR16MB27761376998615BBE9187889D4A92@BYAPR16MB2776.namprd16.prod.outlook.com>
+References: <BYAPR16MB27761376998615BBE9187889D4A92@BYAPR16MB2776.namprd16.prod.outlook.com>
+Subject: Re: Paul Cohen & SAN Arts Conversation
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_1090555_1974717230.1743806103498"
+X-Mailer: WebService/1.1.23590 YMailNovation
+Content-Length: 9073
+
+------=_Part_1090555_1974717230.1743806103498
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+ Hi Daniel,
+Nice to meet you. I have a midday appointment on Friday and may not be in t=
+he studio at that time. I should be able to join though. I may need to join=
+ by phone. Looking forward to hearing about your project. Thanks for your i=
+nterest in Harold Cohen/AARON.=C2=A0
+Sincerely,Thomas Machnik =E2=80=94 Art Studio Manager =E2=80=94 The Harold =
+Cohen Trust
+    On Friday, April 4, 2025 at 02:47:52 PM PDT, Dennert Daniel <ddennert@s=
+an.org> wrote: =20
+=20
+ =20
+Hi Paul and Thomas,
+=20
+ =C2=A0
+=20
+Looking forward to talking more next week. Below is a meeting link for Micr=
+osoft Teams. Let me know if you need anything else!
+=20
+ =C2=A0
+=20
+Warmly,
+Daniel
+=20
+___________________________________________________________________________=
+_____
+=20
+Microsoft TeamsNeed help?
+=20
+Join the meeting now=20
+=20
+Meeting ID:272 971 333 073
+=20
+Passcode:G8JJ3AR2
+=20
+Dial in by phone
+=20
++1 619-737-2396,,331682689#United States, Chula Vista
+=20
+Find a local number
+=20
+Phone conference ID:331 682 689#
+=20
+For organizers:Meeting options |Reset dial-in PIN=20
+=20
+___________________________________________________________________________=
+_____
+=20
+ =C2=A0
+  =20
+------=_Part_1090555_1974717230.1743806103498
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head></head><body><div class=3D"ydp3ec35d8byahoo-style-wrap" style=
+=3D"font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px=
+;"><div></div>
+        <div dir=3D"ltr" data-setdir=3D"false">Hi Daniel,</div><div dir=3D"=
+ltr" data-setdir=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"false"=
+>Nice to meet you. I have a midday appointment on Friday and may not be in =
+the studio at that time. I should be able to join though. I may need to joi=
+n by phone. Looking forward to hearing about your project. Thanks for your =
+interest in Harold Cohen/AARON.&nbsp;</div><div dir=3D"ltr" data-setdir=3D"=
+false"><br></div><div dir=3D"ltr" data-setdir=3D"false">Sincerely,</div><di=
+v dir=3D"ltr" data-setdir=3D"false">Thomas Machnik =E2=80=94 Art Studio Man=
+ager =E2=80=94 The Harold Cohen Trust</div><div><br></div>
+       =20
+        <div id=3D"ydp3ec35d8byahoo_quoted_3982586755" class=3D"ydp3ec35d8b=
+yahoo_quoted">
+            <div style=3D"font-family:'Helvetica Neue', Helvetica, Arial, s=
+ans-serif;font-size:13px;">
+               =20
+                <div>
+                    On Friday, April 4, 2025 at 02:47:52 PM PDT, Dennert Da=
+niel &lt;ddennert@san.org&gt; wrote:
+                </div>
+                <div><br></div>
+                <div><br></div>
+                <div><div id=3D"ydp3ec35d8byiv1283349247">
+
+=20
+=20
+
+
+<div>
+<div class=3D"ydp3ec35d8byiv1283349247WordSection1">
+<p class=3D"ydp3ec35d8byiv1283349247MsoNormal">Hi Paul and Thomas,</p>=20
+<p class=3D"ydp3ec35d8byiv1283349247MsoNormal"> &nbsp;</p>=20
+<p class=3D"ydp3ec35d8byiv1283349247MsoNormal">Looking forward to talking m=
+ore next week. Below is a meeting link for Microsoft Teams. Let me know if =
+you need anything else!</p>=20
+<p class=3D"ydp3ec35d8byiv1283349247MsoNormal"> &nbsp;</p>=20
+<p class=3D"ydp3ec35d8byiv1283349247MsoNormal">Warmly,<br>
+Daniel</p>=20
+<div>
+<div style=3D"margin-bottom: 0.25in;">
+<p class=3D"ydp3ec35d8byiv1283349247MsoNormal"><span style=3D"font-family:s=
+ans-serif;color:#242424;">_________________________________________________=
+_______________________________</span><span style=3D"font-size:12.0pt;font-=
+family:sans-serif;color:#242424;"></span></p>=20
+</div>
+<div style=3D"margin-bottom:9.0pt;">
+<p class=3D"ydp3ec35d8byiv1283349247MsoNormal"><span class=3D"ydp3ec35d8byi=
+v1283349247me-email-text"><b><span style=3D"font-size:18.0pt;font-family:sa=
+ns-serif;color:#242424;">Microsoft Teams</span></b></span><span style=3D"fo=
+nt-family:sans-serif;color:#242424;">
+<a href=3D"https://aka.ms/JoinTeamsMeeting?omkt=3Den-US" rel=3D"nofollow" t=
+arget=3D"_blank"><span style=3D"font-size:10.5pt;color:#5B5FC7;">Need help?=
+</span></a>
+</span></p>=20
+</div>
+<div style=3D"margin-bottom:4.5pt;">
+<p class=3D"ydp3ec35d8byiv1283349247MsoNormal"><span style=3D"font-family:s=
+ans-serif;color:#242424;"><a href=3D"https://teams.microsoft.com/l/meetup-j=
+oin/19%3ameeting_OGRkYTQwNjItN2RkYi00NDRlLTk0ZTYtOGNlZTdkNDllNzFj%40thread.=
+v2/0?context=3D%7b%22Tid%22%3a%22a87ab59c-02b1-470f-b316-4a3649f06dbf%22%2c=
+%22Oid%22%3a%22e1bf6499-ebe2-4c4f-919f-e7f298c371c9%22%7d" title=3D"Meeting=
+ join link" rel=3D"nofollow" target=3D"_blank"><b><span style=3D"font-size:=
+15.0pt;color:#5B5FC7;">Join
+ the meeting now</span></b></a> </span></p>=20
+</div>
+<div style=3D"margin-bottom:4.5pt;">
+<p class=3D"ydp3ec35d8byiv1283349247MsoNormal"><span class=3D"ydp3ec35d8byi=
+v1283349247me-email-text-secondary"><span style=3D"font-size:10.5pt;font-fa=
+mily:sans-serif;color:#616161;">Meeting ID:
+</span></span><span class=3D"ydp3ec35d8byiv1283349247me-email-text"><span s=
+tyle=3D"font-size:10.5pt;font-family:sans-serif;color:#242424;">272 971 333=
+ 073</span></span><span style=3D"font-family:sans-serif;color:#242424;">
+</span></p>=20
+</div>
+<div style=3D"margin-bottom:.25in;">
+<p class=3D"ydp3ec35d8byiv1283349247MsoNormal"><span class=3D"ydp3ec35d8byi=
+v1283349247me-email-text-secondary"><span style=3D"font-size:10.5pt;font-fa=
+mily:sans-serif;color:#616161;">Passcode:
+</span></span><span class=3D"ydp3ec35d8byiv1283349247me-email-text"><span s=
+tyle=3D"font-size:10.5pt;font-family:sans-serif;color:#242424;">G8JJ3AR2</s=
+pan></span><span style=3D"font-family:sans-serif;color:#242424;">
+</span></p>=20
+</div>
+<div style=3D"margin-bottom:.25in;">
+<div align=3D"center" style=3D"text-align:center;" class=3D"ydp3ec35d8byiv1=
+283349247MsoNormal"><span style=3D"font-family:sans-serif;color:#242424;">
+<hr size=3D"1" width=3D"100%" align=3D"center">
+</span></div>
+</div>
+<div>
+<div style=3D"margin-bottom:4.5pt;">
+<p class=3D"ydp3ec35d8byiv1283349247MsoNormal"><span class=3D"ydp3ec35d8byi=
+v1283349247me-email-text"><b><span style=3D"font-family:sans-serif;color:#2=
+42424;">Dial in by phone</span></b></span><span style=3D"font-family:sans-s=
+erif;color:#242424;">
+</span></p>=20
+</div>
+<div style=3D"margin-bottom:4.5pt;">
+<p class=3D"ydp3ec35d8byiv1283349247MsoNormal"><span style=3D"font-family:s=
+ans-serif;color:#242424;"><a><span style=3D"font-size:10.5pt;color:#5B5FC7;=
+">+1 619-737-2396,,331682689#</span></a>
+</span><span class=3D"ydp3ec35d8byiv1283349247me-email-text"><span style=3D=
+"font-size:10.5pt;font-family:sans-serif;color:#616161;">United States, Chu=
+la Vista</span></span><span style=3D"font-family:sans-serif;color:#242424;"=
+>
+</span></p>=20
+</div>
+<div style=3D"margin-bottom:4.5pt;">
+<p class=3D"ydp3ec35d8byiv1283349247MsoNormal"><span style=3D"font-family:s=
+ans-serif;color:#242424;"><a href=3D"https://dialin.teams.microsoft.com/fd7=
+38f5d-4d0a-43fa-8cc5-4dca89503f20?id=3D331682689" rel=3D"nofollow" target=
+=3D"_blank"><span style=3D"font-size:10.5pt;color:#5B5FC7;">Find a local nu=
+mber</span></a>
+</span></p>=20
+</div>
+</div>
+<div style=3D"margin-bottom:.25in;">
+<p class=3D"ydp3ec35d8byiv1283349247MsoNormal"><span class=3D"ydp3ec35d8byi=
+v1283349247me-email-text-secondary"><span style=3D"font-size:10.5pt;font-fa=
+mily:sans-serif;color:#616161;">Phone conference ID:
+</span></span><span class=3D"ydp3ec35d8byiv1283349247me-email-text"><span s=
+tyle=3D"font-size:10.5pt;font-family:sans-serif;color:#242424;">331 682 689=
+#</span></span><span style=3D"font-family:sans-serif;color:#242424;">
+</span></p>=20
+</div>
+<div>
+<p class=3D"ydp3ec35d8byiv1283349247MsoNormal"><span class=3D"ydp3ec35d8byi=
+v1283349247me-email-text-secondary"><span style=3D"font-size:10.5pt;font-fa=
+mily:sans-serif;color:#616161;">For organizers:
+</span></span><span style=3D"font-family:sans-serif;color:#242424;"><a href=
+=3D"https://teams.microsoft.com/meetingOptions/?organizerId=3De1bf6499-ebe2=
+-4c4f-919f-e7f298c371c9&amp;tenantId=3Da87ab59c-02b1-470f-b316-4a3649f06dbf=
+&amp;threadId=3D19_meeting_OGRkYTQwNjItN2RkYi00NDRlLTk0ZTYtOGNlZTdkNDllNzFj=
+@thread.v2&amp;messageId=3D0&amp;language=3Den-US" rel=3D"nofollow" target=
+=3D"_blank"><span style=3D"font-size:10.5pt;color:#5B5FC7;">Meeting
+ options</span></a> </span><span style=3D"font-family:sans-serif;color:#D1D=
+1D1;">|</span><span style=3D"font-family:sans-serif;color:#242424;">
+<a href=3D"https://dialin.teams.microsoft.com/usp/pstnconferencing" rel=3D"=
+nofollow" target=3D"_blank">
+<span style=3D"font-size:10.5pt;color:#5B5FC7;">Reset dial-in PIN</span></a=
+> </span></p>=20
+</div>
+<div style=3D"margin-bottom: 0.25in;">
+<p class=3D"ydp3ec35d8byiv1283349247MsoNormal"><span style=3D"font-family:s=
+ans-serif;color:#242424;">_________________________________________________=
+_______________________________</span></p>=20
+</div>
+</div>
+<p class=3D"ydp3ec35d8byiv1283349247MsoNormal"> &nbsp;</p>=20
+</div>
+</div>
+
+</div></div>
+            </div>
+        </div></div></body></html>
+------=_Part_1090555_1974717230.1743806103498--

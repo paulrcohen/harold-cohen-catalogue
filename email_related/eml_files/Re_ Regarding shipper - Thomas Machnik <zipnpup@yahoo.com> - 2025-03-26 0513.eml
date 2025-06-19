@@ -1,0 +1,652 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a10:2a94:b0:5ec:db95:1ae4 with SMTP id ja20csp3129208pxb;
+        Wed, 26 Mar 2025 02:13:22 -0700 (PDT)
+X-Forwarded-Encrypted: i=2; AJvYcCUGYDODxZDm8E55i0Xs15Sy45FUjpe8swobUbhpL838v0O8SZ3R8VQPX8Am4hSf4KQTp5Ygz4iEuqlV@gmail.com
+X-Google-Smtp-Source: AGHT+IEAhnxQ0bSSQS2pYzn3ZHHboumy/TuTDvXeEQaBhZaxQQd11+x0lBPRWOb2ySUG7Hbn5stF
+X-Received: by 2002:a05:620a:198e:b0:7c5:9788:1762 with SMTP id af79cd13be357-7c5ba22dc9cmr2669994585a.45.1742980402384;
+        Wed, 26 Mar 2025 02:13:22 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1742980402; cv=none;
+        d=google.com; s=arc-20240605;
+        b=NelwfOmW2dKl+D/RXeUy9z1hMu6ssp8f30Bc4pdoqGcaa9il0tAQOA0Jo0EkiWj2Xk
+         k4nhkMdBsZ+jQqfIWKBh2ajjEbR8QKkRJs7rg02GbdtcHEcAqjx5zzWZ8VItGlkymq+U
+         unimcffbxuQ4uchbpanoTQHQyvAxh2Q3ovzcme9CmTaSUZ1cn+VP9CJwF4fcxJRDf9of
+         HstBFucnU0y7MioG0kacg4laWTbiuSwwDhem741gXRW7sbFW1dziDKeK2xMywaSMa+GI
+         jJcDcWVEkQLXncK7nZSIjxHID3jQGvRx627bdspeD0qHRHDLATRupado5MzTAibd5nOJ
+         9MEA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:subject:references:in-reply-to:message-id:cc:to
+         :reply-to:from:date:dkim-signature;
+        bh=uMk2a9It7DGv/x5q7II/KF0H6J1ZxUDKWrbJnAVtPWg=;
+        fh=b3DrhI7OOyM8FfxhsW0IOAhizZJdGrTmwcVZGsir4iU=;
+        b=CRMiGrFu9LC2scR4d8LpdvZg0cwQ87wTZGf67pb47sj7RKwXb0OrHegehWen7iE7yN
+         ccPPa8TVgVCboqHdwXt8a+CuHi8pushBP+3BUxSNT0FHWsiqTF7FD3anGK2dvsP7Itwy
+         LO8r7I9MtKSYoX/ICpDFbg4jA9TOzlbtJZrs0O9kGIOXeZqqpCGvGPHkBryaP/GOZetl
+         aozTsab1aIjxY9r1YyW6DHPp/fEYPhHY5JhcXpaCtoDf4Hxemn7PqgHKbeVO3VoI68oW
+         i36A4U/ewpTvV0NP1UgoCecqisbuuJVyf7di1kRmwqHCyj2MrXoaX13beTIotOLlxY8+
+         ngGw==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=pZQdlo3A;
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.135.123 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+Return-Path: <zipnpup@yahoo.com>
+Received: from sonic310-13.consmr.mail.bf2.yahoo.com (sonic310-13.consmr.mail.bf2.yahoo.com. [74.6.135.123])
+        by mx.google.com with ESMTPS id af79cd13be357-7c5b9356c32si1122736285a.365.2025.03.26.02.13.22
+        for <paulrcohen@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 26 Mar 2025 02:13:22 -0700 (PDT)
+Received-SPF: pass (google.com: domain of zipnpup@yahoo.com designates 74.6.135.123 as permitted sender) client-ip=74.6.135.123;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=pZQdlo3A;
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.135.123 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1742980401; bh=uMk2a9It7DGv/x5q7II/KF0H6J1ZxUDKWrbJnAVtPWg=; h=Date:From:Reply-To:To:Cc:In-Reply-To:References:Subject:From:Subject:Reply-To; b=pZQdlo3AhyfGXLQFtt4deazQtFJtwAGDrqIry3wnA0KvsMzb6Jfjrk+5MGqisWRNK44tqs6MD731w+gtI7vqYAm0h76W2TcmMqipgfsLrd0WvBBRYb3kR8PgUjqtWBJ0m5YoKU+zX3bca4GfNlCb3+srI00N0pTW2jngopEOSrE8bBrJhDCo10gwJX+UQ1jIhqXEV8lc5IZARefCHlUTBs7n+SCRK8g7jQWGvCWThhN0xxgr2gH+ia0J1MPtsM9N9rInzXUzwy15W15FkDjr3iet7lmeEPP9WaTyzdfU9iHqn93CmO1IK0yqXyA/UX2UNNfDiHt4zcljVGz8S/IJdA==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1742980401; bh=e5yHPOMTscFeK3o1U1bAY+9KJFgAS8GB/T6W1Gk8cgm=; h=X-Sonic-MF:Date:From:To:Subject:From:Subject; b=DeprBLcOZ/T8ASyF03HUV3JL/AnYyTMIxHID7TCL3Sw8M5ZiOkcZawFoxsdOcb5uCWJWKsldKQzTtY3evkqU0dRWc6eZJBIzt7kCltNvNrId8wrNsWHSJAlA0aZHaRCFe6V4NMmNwdyj9eGv0xFHoXLNTk3g0cbZGke+VU2uNGEZ1fhqU0DGhmrFODythL6HxbG2YXRjpu/orCIG69m5GurbSLsU2NC8ZUHouKnDBhsnD8mZQKj46BMUbN3+7gP0ljy/6ToXriUAbdyQhac02FW4gkpl0Gez0MQbXYVmRIXsvP6gV4T6KEzV076kPLNEdtJmyfZXqICXIcaam5j5rw==
+X-YMail-OSG: c4Jl4dgVM1k.2YOP3gmaA4fkxUiZZh7JEJpORm4608yyL5Q3GXIZX8qL2qezO_q
+ 9KrOzTKW9MXKan2UMNmShmLrC0a.EpBASJ.zDcC6hSrVrXbYGFpGpJoO_kNGeHxCaVptLOLmiufz
+ HuB7cHhyTtubQu6BGncbzugmiyCWv9CKh849vMksAOHoLaNNAxjqv4_.0aFGo640z02MHSUR2_aP
+ jOLb68ZrAYparoVfP9TBV1ijyuPvqNiKjg.D.48XNfmWWnnIH8jHKWUeLitBkd_8HRpO3bct_mnj
+ VJITcy4BD478NGaCV_pgAdtLALM8x91gIM4rGj4WYVRyKgETbhj0Y.RYpvepVA6VWyAK8tSdv5Rj
+ xvSuly6hBJ1zPo9FPm68tVoD4WwuPTCTtaCqGP9_CgRB9GcUx.IcXei_LwXwVnrK8P.K27rmCtPm
+ 78Qdkni38Vu9oEMNQ7O.aRYLcWIe1RCHrMEepumYfFbjpWcmkrIsMZ4YeMVsB1FEY8xmmmlL4Ah3
+ EDcYUBeIUK3PnBsf7ZIyoO2k274wSEZ33PBktyvGXZZx_eg8T1EL28b.J1GUZcTcfjwHXCmqbz.6
+ jkZkL.2_e6HSZZL.BlvmO6cakKjBYSFVxLW0emGn6JyybRMHOXPNyALfLJQYEleNuT6kqmWfnfOK
+ EvrXiDjDxZG8jUF8lXj12aIAx_t.caM_7sk2yFyKv_5Dqtt3rjhDwI2mTSxLEPX5coiBwXsFQUoE
+ j1PQBJXzGPIO3gRFF_srENxDdhhdX.Y7Q0D43zrEY60B8hIX3KI1YoiqjoJJdhwduibqwqka8lYw
+ LLO1pPPtZaG8uFv0gM3UNWcdcMrMKOMGeiwcCVL.KHQ1ZuO1Y8CyuYfb85vOpkcOYtAmFayuZOvS
+ .LR3MpK_2zUJfur5PqFp_C2k26UAqoPrbJY2pK3bIKTWPcuwsUgmHpsZ1fhQLl52Z6s3PNb7DxCL
+ 6WEnLx8lbUHbcWXn1hPla3GDhkQRjkvpDL0BD6biXlITAxw6mL1gtgO27e7ckYaLwU7VcRcs2Ufj
+ ZBk4nlKoaq.SnqyIzN9F2Xu22JpyxSxzERVsCx9TIog_.bAnuyxTAeJpm8J6smD0JwatBu_aehK9
+ RbNYRlYh46eEi4iPPNWY7YR_QERHFMbVKvKjOWRHOCQ6QC7ApDZ56xL62E70IvwFdyaBS32qc9Xi
+ kz3iWR1nai9_73YkAeEVatUB0gdZsIBOCpoFBquFCPYa1OlulcUcjcWMigv_gffg9_ooW7c4Quoj
+ LpWCAI124G5neg1MTLnubZdBQBNyNd9j6e5WKe3zvVa8sj5porD6Yb6fkjt5L3HVGoXuxpSA_L9u
+ eon9S.qzh702i2D00gK5Nup3ue0j7HpW14etWGdedrGtZSgFRppT6aqjJK6SC4s7ZpRkMGHj2ys7
+ 6OMCGlNoM7DyIJF13A7uoZglUjynSr_H8jFewuThzCNEoAdCYGWXMja1TT.3an04o.2kDV0vcGzs
+ FU7e7X7kbrl1GmjsqoCb_nuFVnF.nBVjfPEJ.aITT4W5Du08_cX2osB8.qY2tTdUtU6ThfCVcvXZ
+ dDqOYu_voD7R_JfMhFAmFKPz87HpycVGiVRvel8m95.XLbyr5XVJRF.zdbvA3Y1wx4409dKOBB4h
+ Wold82k3rJ6Ap6if5iwj9A5wmm0UJ_nqIu0CCqzLbW.9_jnSJwUKlQpGRmqY.4xQ0Qe8avYlOUZD
+ NQxU9bLz9OldmuTWHn8zkSh8oBVSLdsSGgMTd6pYHPKknxK3k5D5_zlR8WGPqd5jtlNxU_YLoTpx
+ 0DwaWgTvtMm__JQDnO1sLt4v0cCIvZjaucOZobChW8LJXREZp_vIIv151BQcBhCHi6i_rnhRHWbn
+ 2PWh7apkYJpXWeW0bWpAJbbmTPgfvSOEvuTkJEpDCVB3suRNnGFBlGi3ApZ3TD1JStMogfpx6Dwl
+ C1WlRwaWpjRuUioiToy.haQfyKL6TzCuuE5iC7XFpqV5l9IsidS3wJbNFyJ7eqQqAJG2nIQEjeak
+ AwPe00u2Gdn049wiXTVyU2sKXl_SK43CP_2WKyn2nx3xqDrTWYGQpR.Crd3H8vTvQFOrZE3z27yn
+ WOrwPYxe9vmLwryqAzVONxvps8CQuqrBHO7SJ0Kp7Zwo0kjQHn0fuAtlh1ogFLrpCaYFuzkx4f2f
+ WxCR7GlUChYTUbqNWuTyJisNfLw12pkEgaGReNlAFIMZtsobwAeRZM6CT7ELoSRwz4sXlEChrwSG
+ yXVFJR892crocSLSbLiIpW0U2m1kWHiiUQGqevagcoI2kyq_iHQeakdAyWbIFAPKbFNH4lvfLVdd
+ UlsqiuR5XUVYABEQclw--
+X-Sonic-MF: <zipnpup@yahoo.com>
+X-Sonic-ID: 779265b0-a884-4c90-a627-8afdedb40306
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic310.consmr.mail.bf2.yahoo.com with HTTP; Wed, 26 Mar 2025 09:13:21 +0000
+Date: Wed, 26 Mar 2025 09:13:17 +0000 (UTC)
+From: Thomas Machnik <zipnpup@yahoo.com>
+Reply-To: Thomas Machnik <zipnpup@yahoo.com>
+To: Michael Pollard <michael@gazelliarthouse.com>
+Cc: Mila Askarova <m.askarova@gazelliarthouse.com>, 
+	Paul Cohen <paulrcohen@gmail.com>, 
+	Harold Cohen Trust <aaron@aaronshome.com>, 
+	Anastasia Shapovalova <anastasia@gazelliarthouse.com>, 
+	George Lionel Barker <george@gazelliarthouse.com>
+Message-ID: <680184708.1082515.1742980397915@mail.yahoo.com>
+In-Reply-To: <CAGxUL8sRzxEQofM7SkSD+gPbFaR-j4M9PXLJRYdhQpyfJya+sw@mail.gmail.com>
+References: <1696574720.5015493.1738826454762.ref@mail.yahoo.com> <1696574720.5015493.1738826454762@mail.yahoo.com> <CAGxUL8vwsJQ0juZopy4bUxXJ2A03bzDksNL37vP9qLgnmXDTFQ@mail.gmail.com> <101713102.5284560.1738916788038@mail.yahoo.com> <470688565.74004.1739350045026@mail.yahoo.com> <CAGxUL8usse2RAhJGXvE6TiSh1dkiPGvgg1FZfedGFCuMm3V6RQ@mail.gmail.com> <CAGxUL8s2pV85XmK-TVntiW5fVLoVvzZ0B+CkH6c3K6wFGMAo0Q@mail.gmail.com> <84764688.9904.1739491873406@mail.yahoo.com> <69425708.2821866.1740643142887@mail.yahoo.com> <CAGxUL8sG=k1Ofz-64zoM55gJBkAYWmH0ZA3Rc+7qjeGBtFud3g@mail.gmail.com> <191449905.660379.1741334695701@mail.yahoo.com> <CAGxUL8vRrT7nJd4GL2L7=Rfy6SqWNTKAOHThmtdSXaLk0kSoFQ@mail.gmail.com> <1715276053.761433.1741370529488@mail.yahoo.com> <472008526.99592.1742543044516@mail.yahoo.com> <CAGxUL8uKkrh9TQ5=wTQKtrfCAvCyk2vT7nfAUoBi4wg0O6RMfg@mail.gmail.com> <CAGxUL8sRzxEQofM7SkSD+gPbFaR-j4M9PXLJRYdhQpyfJya+sw@mail.gmail.com>
+Subject: Re: Regarding shipper
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_1082514_573561593.1742980397911"
+X-Mailer: WebService/1.1.23533 YMailNovation
+Content-Length: 32000
+
+------=_Part_1082514_573561593.1742980397911
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+ Hi MichealThank-you for the documents. I will be reviewing them and if I n=
+eed any more details I will get back with you.
+Sincerely,=C2=A0Thomas Machnik =E2=80=94 Art Studio Manager =E2=80=94 The H=
+arold Cohen Trust
+    On Tuesday, March 25, 2025 at 06:13:08 AM PDT, Michael Pollard <michael=
+@gazelliarthouse.com> wrote: =20
+=20
+ Dear Thomas,
+Thank you for your patience.Attached here are two documents:
+1) The certificate of insurance for the artworks.This certificate specifica=
+lly covers the works while in transit.If you would like a copy of the anoth=
+er certificate that covers them while they are stored / exhibited under the=
+ general policy, I can arrange one for this also.
+2) A copy of the Full inventory of works and insurance=C2=A0values that wer=
+e used for the the creation of the Certificate of insurance (including GAH'=
+s reference numbers).
+If you need more details at all, kindly let me know.
+Michael.
+On Mon, 24 Mar 2025 at 17:16, Michael Pollard <michael@gazelliarthouse.com>=
+ wrote:
+
+Hello Thomas,
+Apologies for the=C2=A0delay here.The total value requires me to submit the=
+se for an additional 'premium', or specific transit cover.All the details a=
+re with our broker and they should come back to me tomorrow with confirmati=
+on of the 'premium' and a copy of the COI.
+Thank you for following up.
+Michael.=C2=A0
+On Fri, 21 Mar 2025 at 07:44, Thomas Machnik <zipnpup@yahoo.com> wrote:
+
+ Hi Michael,Just checking in. Is there any update on the COI? Anything you =
+need from me?
+Tom
+    On Friday, March 7, 2025 at 10:02:09 AM PST, Thomas Machnik <zipnpup@ya=
+hoo.com> wrote: =20
+=20
+  Sounds good, Tom
+    On Friday, March 7, 2025 at 03:05:14 AM PST, Michael Pollard <michael@g=
+azelliarthouse.com> wrote: =20
+=20
+ Hi Thomas,
+Thank you for confirming the list and providing the link.I'll finalize my d=
+ocumentation for this shipment and should be able to get you a COI either l=
+ater today or Monday.
+I'll let you know if I spot anything amiss while putting together my docume=
+ntation.
+Best,
+Michael.
+On Fri, 7 Mar 2025 at 08:32, Thomas Machnik <zipnpup@yahoo.com> wrote:
+
+ Hi Michael,
+I sent George the information he requested. Assuming we are not adding any =
+additional works, can you send us a certificate of insurance based on the v=
+alues I put in the shipment list at this link? The values are in BPS and ar=
+e in the first column.=C2=A0https://docs.google.com/spreadsheets/d/11MqbW2p=
+AIPfUA4YNC6AHWu09PPzyM20-YvIF8nedKNs/edit?usp=3DsharingIf in need any addit=
+ional info let me knowTom
+    On Monday, March 3, 2025 at 02:10:43 AM PST, Michael Pollard <michael@g=
+azelliarthouse.com> wrote: =20
+=20
+ hi Thomas,
+Jeremy Yoder from Dietl (Jeremy.Yoder@dietl.com)=C2=A0sent you a exporter o=
+f records / terms and conditions form to complete and return.
+Last time I spoke to Jeremy he said that this hadn't been completed.
+I didn't receive a copy, but can you confirm you received it?If not, let me=
+ know and I'll follow=C2=A0up with Jeremy.
+Michael.
+
+On Thu, 27 Feb 2025 at 07:59, Thomas Machnik <zipnpup@yahoo.com> wrote:
+
+ Hi Michael,
+Just checking in regarding the shipment and where we are at. In order to mo=
+ve ahead, do you need anything else from us besides the previous estimated =
+values for insurance purposes?=C2=A0
+Sincerely,=C2=A0Tom
+
+    On Thursday, February 13, 2025 at 04:11:13 PM PST, Thomas Machnik <zipn=
+pup@yahoo.com> wrote: =20
+=20
+  Hi Paul, Michael and all,
+Paul, along with the items to be shipped I put estimated values for insuran=
+ce purpose so that Michael can provide us with a certificate of insurance. =
+With this certificate, I believe we should be able to move forward with the=
+ shipment.
+Paul & MichaelHere is the link to the items to be shipped along with the in=
+surance values. Insurance values are in the second column.https://docs.goog=
+le.com/spreadsheets/d/11MqbW2pAIPfUA4YNC6AHWu09PPzyM20-YvIF8nedKNs/edit?usp=
+=3Dsharing=C2=A0
+
+Sorry it took a while to get all the estimated values for insurance purpose=
+s. These values are based on what I could find historically. Some of the pr=
+icing was 10+, 20+ or 30+ years ago. For works that did not have historical=
+ pricing, I then matched them to similar works of the same year and similar=
+ size. Using this as a historical base value, I then extrapolated a new val=
+ue based on the time that has passed at a 4% annual increase. The prices ar=
+e rounded off to the nearest thousand and converted from USD to BPS at $1 =
+=3D 0.8 BPS. I did make some final adjustments as some values seem to be wa=
+y off one way or the other. In the case of the posters I used a value of 25=
+ BPS per poster. In the case of Harold's 2016 final work, I wasn=E2=80=99t =
+sure what to put for that. I put it at 100K BPS. As for the Machine Paintin=
+gs, I used what I believed they were priced at in 2024 =E2=80=94 40K BPS. N=
+one of these are set in stone. Adjustments can be made as need be.
+Michael, regarding the=C2=A0'exporter of record=E2=80=99 =C2=A0we prefer to=
+ get the certificate of insurance from you first and then Paul and I can re=
+view both the =E2=80=98exporter of record=E2=80=99 and the =E2=80=98certifi=
+cate of insurance=E2=80=99 together.=C2=A0
+If you have an questions let me know,
+Tom
+
+    On Thursday, February 13, 2025 at 09:34:35 AM PST, Michael Pollard <mic=
+hael@gazelliarthouse.com> wrote: =20
+=20
+ Dear Thomas,
+I followed up with=C2=A0the shipper and they've said they still need the fo=
+rm for the 'exporter of record' completed and returned.Have you reviewed th=
+e letter, and are you happy to complete and return it?
+Michael.
+On Wed, 12 Feb 2025 at 14:41, Michael Pollard <michael@gazelliarthouse.com>=
+ wrote:
+
+Thanks for the update Tom.
+Hope the storm is not too severe.
+On Wed, 12 Feb 2025 at 08:47, Thomas Machnik <zipnpup@yahoo.com> wrote:
+
+ Hi Michael,I did not forget about you. I am working on preliminary insuran=
+ce values for the various works. I am almost done. We have a storm coming i=
+n for the next two days. I had the works staged in the studio. On Wed, I wi=
+ll be needing to move the works to a safer location in case we have an issu=
+e =E2=80=94 just to be safe.
+Tom
+
+    On Friday, February 7, 2025 at 12:26:28 AM PST, Thomas Machnik <zipnpup=
+@yahoo.com> wrote: =20
+=20
+  Thanks Michael for clarifying. I will review the shipper list and their v=
+alues. Tom
+    On Thursday, February 6, 2025 at 04:14:56 AM PST, Michael Pollard <mich=
+ael@gazelliarthouse.com> wrote: =20
+=20
+ Hello Tom.Works are insures by Gazelli's private insurance door to door.Th=
+e shipping company does not have insurance.Our insurer would hold the shipp=
+ing company culpable for any acts of gross negligence.I can provide a certi=
+ficate of insurance (if required) but would need insurance values for the w=
+orks first.
+On Thu, 6 Feb 2025, 07:20 Thomas Machnik, <zipnpup@yahoo.com> wrote:
+
+Hi Micheal,We are a bit concerned regarding the shipper=E2=80=99s terms wit=
+h respect to any possible damages to the work during transit. We had hoped =
+for a bit more sense of responsibility and clarification with respect to in=
+surance and assurance. Will there be any insurance for the works during tra=
+nsit? If so, can you clarify the nature of this insurance?=C2=A0
+Tom
+   =20
+
+   =20
+ =20
+   =20
+
+ =20
+------=_Part_1082514_573561593.1742980397911
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head></head><body><div class=3D"ydpf8e7329byahoo-style-wrap" style=
+=3D"font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px=
+;"><div></div>
+        <div dir=3D"ltr" data-setdir=3D"false">Hi Micheal</div><div dir=3D"=
+ltr" data-setdir=3D"false">Thank-you for the documents. I will be reviewing=
+ them and if I need any more details I will get back with you.</div><div di=
+r=3D"ltr" data-setdir=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"f=
+alse">Sincerely,&nbsp;</div><div dir=3D"ltr" data-setdir=3D"false">Thomas M=
+achnik =E2=80=94 Art Studio Manager =E2=80=94 The Harold Cohen Trust</div><=
+div><br></div>
+       =20
+        <div id=3D"ydpf8e7329byahoo_quoted_3585721948" class=3D"ydpf8e7329b=
+yahoo_quoted">
+            <div style=3D"font-family:'Helvetica Neue', Helvetica, Arial, s=
+ans-serif;font-size:13px;">
+               =20
+                <div>
+                    On Tuesday, March 25, 2025 at 06:13:08 AM PDT, Michael =
+Pollard &lt;michael@gazelliarthouse.com&gt; wrote:
+                </div>
+                <div><br></div>
+                <div><br></div>
+                <div><div id=3D"ydpf8e7329byiv7924040415"><div><div dir=3D"=
+ltr">Dear Thomas,<div><br clear=3D"none"></div><div>Thank you for your pati=
+ence.</div><div>Attached here are two documents:</div><div><br clear=3D"non=
+e"></div><div>1) The certificate of insurance for the artworks.</div><div>T=
+his certificate specifically covers the works while in transit.</div><div>I=
+f you would like a copy of the another certificate that covers them while t=
+hey are stored / exhibited under the general policy, I can arrange one for =
+this also.</div><div><br clear=3D"none"></div><div>2) A copy of the Full in=
+ventory of works and insurance&nbsp;values that were used for the the creat=
+ion of the Certificate of insurance (including GAH's reference numbers).</d=
+iv><div><br clear=3D"none"></div><div>If you need more details at all, kind=
+ly let me know.</div><div><br clear=3D"none"></div><div>Michael.</div></div=
+><br clear=3D"none"><div id=3D"ydpf8e7329byiv7924040415yqt27296" class=3D"y=
+dpf8e7329byiv7924040415yqt8447980856"><div class=3D"ydpf8e7329byiv792404041=
+5gmail_quote ydpf8e7329byiv7924040415gmail_quote_container"><div dir=3D"ltr=
+" class=3D"ydpf8e7329byiv7924040415gmail_attr">On Mon, 24 Mar 2025 at 17:16=
+, Michael Pollard &lt;<a shape=3D"rect" href=3D"mailto:michael@gazelliartho=
+use.com" rel=3D"nofollow" target=3D"_blank">michael@gazelliarthouse.com</a>=
+&gt; wrote:<br clear=3D"none"></div><blockquote style=3D"margin:0px 0px 0px=
+ 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex;" class=3D"y=
+dpf8e7329byiv7924040415gmail_quote"><div dir=3D"ltr">Hello Thomas,<div><br =
+clear=3D"none"></div><div>Apologies for the&nbsp;delay here.</div><div>The =
+total value requires me to submit these for an additional 'premium', or spe=
+cific transit cover.</div><div>All the details are with our broker and they=
+ should come back to me tomorrow with confirmation of the 'premium' and a c=
+opy of the COI.</div><div><br clear=3D"none"></div><div>Thank you for follo=
+wing up.</div><div><br clear=3D"none"></div><div>Michael.&nbsp;</div></div>=
+<br clear=3D"none"><div class=3D"ydpf8e7329byiv7924040415gmail_quote"><div =
+dir=3D"ltr" class=3D"ydpf8e7329byiv7924040415gmail_attr">On Fri, 21 Mar 202=
+5 at 07:44, Thomas Machnik &lt;<a shape=3D"rect" href=3D"mailto:zipnpup@yah=
+oo.com" rel=3D"nofollow" target=3D"_blank">zipnpup@yahoo.com</a>&gt; wrote:=
+<br clear=3D"none"></div><blockquote style=3D"margin:0px 0px 0px 0.8ex;bord=
+er-left:1px solid rgb(204,204,204);padding-left:1ex;" class=3D"ydpf8e7329by=
+iv7924040415gmail_quote"><div><div style=3D"font-family:Helvetica, Arial, s=
+ans-serif;font-size:16px;"><div></div>
+        <div dir=3D"ltr">Hi Michael,</div><div dir=3D"ltr">Just checking in=
+. Is there any update on the COI? Anything you need from me?</div><div dir=
+=3D"ltr"><br clear=3D"none"></div><div dir=3D"ltr">Tom</div><div><br clear=
+=3D"none"></div>
+       =20
+        <div id=3D"ydpf8e7329byiv7924040415m_-6849158779715724105m_87347819=
+21656282925ydpb9f1a777yahoo_quoted_3222449350">
+            <div style=3D"font-family:Helvetica, Arial, sans-serif;font-siz=
+e:13px;">
+               =20
+                <div>
+                    On Friday, March 7, 2025 at 10:02:09 AM PST, Thomas Mac=
+hnik &lt;<a shape=3D"rect" href=3D"mailto:zipnpup@yahoo.com" rel=3D"nofollo=
+w" target=3D"_blank">zipnpup@yahoo.com</a>&gt; wrote:
+                </div>
+                <div><br clear=3D"none"></div>
+                <div><br clear=3D"none"></div>
+                <div><div id=3D"ydpf8e7329byiv7924040415m_-6849158779715724=
+105m_8734781921656282925ydpb9f1a777yiv2835304488"><div><div style=3D"font-f=
+amily:Helvetica, Arial, sans-serif;font-size:16px;"><div></div>
+        <div dir=3D"ltr">Sounds good, Tom</div><div><br clear=3D"none"></di=
+v>
+       =20
+        <div id=3D"ydpf8e7329byiv7924040415m_-6849158779715724105m_87347819=
+21656282925ydpb9f1a777yiv2835304488yqt06206"><div id=3D"ydpf8e7329byiv79240=
+40415m_-6849158779715724105m_8734781921656282925ydpb9f1a777yiv2835304488ydp=
+ae0162f9yahoo_quoted_2239955446">
+            <div style=3D"font-family:Helvetica, Arial, sans-serif;font-siz=
+e:13px;">
+               =20
+                <div>
+                    On Friday, March 7, 2025 at 03:05:14 AM PST, Michael Po=
+llard &lt;<a shape=3D"rect" href=3D"mailto:michael@gazelliarthouse.com" rel=
+=3D"nofollow" target=3D"_blank">michael@gazelliarthouse.com</a>&gt; wrote:
+                </div>
+                <div><br clear=3D"none"></div>
+                <div><br clear=3D"none"></div>
+                <div><div id=3D"ydpf8e7329byiv7924040415m_-6849158779715724=
+105m_8734781921656282925ydpb9f1a777yiv2835304488ydpae0162f9yiv6981819950"><=
+div><div dir=3D"ltr">Hi Thomas,<div><br clear=3D"none"></div><div>Thank you=
+ for confirming the list and providing the link.</div><div>I'll finalize my=
+ documentation for this shipment and should be able to get you a COI either=
+ later today or Monday.</div><div><br clear=3D"none"></div><div>I'll let yo=
+u know if I spot anything amiss while putting together my documentation.</d=
+iv><div><br clear=3D"none"></div><div>Best,</div><div><br clear=3D"none"></=
+div><div>Michael.</div></div><br clear=3D"none"><div id=3D"ydpf8e7329byiv79=
+24040415m_-6849158779715724105m_8734781921656282925ydpb9f1a777yiv2835304488=
+ydpae0162f9yiv6981819950yqt88820"><div><div dir=3D"ltr">On Fri, 7 Mar 2025 =
+at 08:32, Thomas Machnik &lt;<a shape=3D"rect" href=3D"mailto:zipnpup@yahoo=
+.com" rel=3D"nofollow" target=3D"_blank">zipnpup@yahoo.com</a>&gt; wrote:<b=
+r clear=3D"none"></div><blockquote style=3D"margin:0px 0px 0px 0.8ex;border=
+-left:1px solid rgb(204,204,204);padding-left:1ex;"><div><div style=3D"font=
+-family:Helvetica, Arial, sans-serif;font-size:16px;"><div></div>
+        <div dir=3D"ltr">Hi Michael,</div><div dir=3D"ltr"><br clear=3D"non=
+e"></div><div dir=3D"ltr">I sent George the information he requested. Assum=
+ing we are not adding any additional works, can you send us a certificate o=
+f insurance based on the values I put in the shipment list at this link? Th=
+e values are in BPS and are in the first column.</div><div dir=3D"ltr">&nbs=
+p;<a shape=3D"rect" href=3D"https://docs.google.com/spreadsheets/d/11MqbW2p=
+AIPfUA4YNC6AHWu09PPzyM20-YvIF8nedKNs/edit?usp=3Dsharing" rel=3D"nofollow" t=
+arget=3D"_blank">https://docs.google.com/spreadsheets/d/11MqbW2pAIPfUA4YNC6=
+AHWu09PPzyM20-YvIF8nedKNs/edit?usp=3Dsharing</a></div><div dir=3D"ltr">If i=
+n need any additional info let me know</div><div dir=3D"ltr">Tom</div><div>=
+<br clear=3D"none"></div>
+       =20
+        <div id=3D"ydpf8e7329byiv7924040415m_-6849158779715724105m_87347819=
+21656282925ydpb9f1a777yiv2835304488ydpae0162f9yiv6981819950m_73985157195587=
+88817ydp80ac48fayahoo_quoted_2211076827">
+            <div style=3D"font-family:Helvetica, Arial, sans-serif;font-siz=
+e:13px;">
+               =20
+                <div>
+                    On Monday, March 3, 2025 at 02:10:43 AM PST, Michael Po=
+llard &lt;<a shape=3D"rect" href=3D"mailto:michael@gazelliarthouse.com" rel=
+=3D"nofollow" target=3D"_blank">michael@gazelliarthouse.com</a>&gt; wrote:
+                </div>
+                <div><br clear=3D"none"></div>
+                <div><br clear=3D"none"></div>
+                <div><div id=3D"ydpf8e7329byiv7924040415m_-6849158779715724=
+105m_8734781921656282925ydpb9f1a777yiv2835304488ydpae0162f9yiv6981819950m_7=
+398515719558788817ydp80ac48fayiv2723147468"><div><div dir=3D"ltr">hi Thomas=
+,<div><br clear=3D"none"></div><div>Jeremy Yoder from Dietl (<span style=3D=
+"color:rgb(17,85,204);font-family:Roboto, RobotoDraft, Helvetica, Arial, sa=
+ns-serif;font-size:13px;"><a shape=3D"rect" href=3D"mailto:Jeremy.Yoder@die=
+tl.com" rel=3D"nofollow" target=3D"_blank">Jeremy.Yoder@dietl.com</a>)</spa=
+n>&nbsp;sent you a exporter of records / terms and conditions form to compl=
+ete and return.</div><div><br clear=3D"none"></div><div>Last time I spoke t=
+o Jeremy he said that this hadn't been completed.</div><div><br clear=3D"no=
+ne"></div><div>I didn't receive a copy, but can you confirm you received it=
+?</div><div>If not, let me know and I'll follow&nbsp;up with Jeremy.</div><=
+div><br clear=3D"none"></div><div>Michael.</div><div><br clear=3D"none"></d=
+iv></div><br clear=3D"none"><div id=3D"ydpf8e7329byiv7924040415m_-684915877=
+9715724105m_8734781921656282925ydpb9f1a777yiv2835304488ydpae0162f9yiv698181=
+9950m_7398515719558788817ydp80ac48fayiv2723147468yqt17894"><div><div dir=3D=
+"ltr">On Thu, 27 Feb 2025 at 07:59, Thomas Machnik &lt;<a shape=3D"rect" hr=
+ef=3D"mailto:zipnpup@yahoo.com" rel=3D"nofollow" target=3D"_blank">zipnpup@=
+yahoo.com</a>&gt; wrote:<br clear=3D"none"></div><blockquote style=3D"margi=
+n:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex=
+;"><div><div style=3D"font-family:Helvetica, Arial, sans-serif;font-size:16=
+px;"><div></div>
+        <div dir=3D"ltr"><div><div dir=3D"ltr">Hi Michael,</div><div dir=3D=
+"ltr"><br clear=3D"none"></div><div dir=3D"ltr">Just checking in regarding =
+the shipment and where we are at. In order to move ahead, do you need anyth=
+ing else from us besides the previous estimated values for insurance purpos=
+es?&nbsp;</div><div dir=3D"ltr"><br clear=3D"none"></div><div dir=3D"ltr">S=
+incerely,&nbsp;</div><div dir=3D"ltr">Tom</div><div><br clear=3D"none"></di=
+v></div></div><div><br clear=3D"none"></div>
+       =20
+        <div id=3D"ydpf8e7329byiv7924040415m_-6849158779715724105m_87347819=
+21656282925ydpb9f1a777yiv2835304488ydpae0162f9yiv6981819950m_73985157195587=
+88817ydp80ac48fayiv2723147468m_5749682004053046927ydpe50f90c5yahoo_quoted_1=
+634813725">
+            <div style=3D"font-family:Helvetica, Arial, sans-serif;font-siz=
+e:13px;">
+               =20
+                <div>
+                    On Thursday, February 13, 2025 at 04:11:13 PM PST, Thom=
+as Machnik &lt;<a shape=3D"rect" href=3D"mailto:zipnpup@yahoo.com" rel=3D"n=
+ofollow" target=3D"_blank">zipnpup@yahoo.com</a>&gt; wrote:
+                </div>
+                <div><br clear=3D"none"></div>
+                <div><br clear=3D"none"></div>
+                <div><div id=3D"ydpf8e7329byiv7924040415m_-6849158779715724=
+105m_8734781921656282925ydpb9f1a777yiv2835304488ydpae0162f9yiv6981819950m_7=
+398515719558788817ydp80ac48fayiv2723147468m_5749682004053046927ydpe50f90c5y=
+iv1550581139"><div><div style=3D"font-family:Helvetica, Arial, sans-serif;f=
+ont-size:16px;"><div style=3D"font-family:Helvetica, Arial, sans-serif;font=
+-size:16px;"></div>
+        <div dir=3D"ltr" style=3D"font-family:Helvetica, Arial, sans-serif;=
+font-size:16px;">Hi Paul, Michael and all,</div><div dir=3D"ltr" style=3D"f=
+ont-family:Helvetica, Arial, sans-serif;font-size:16px;"><br clear=3D"none"=
+></div><div dir=3D"ltr" style=3D"font-family:Helvetica, Arial, sans-serif;f=
+ont-size:16px;">Paul, along with the items to be shipped I put estimated va=
+lues for insurance purpose so that Michael can provide us with a certificat=
+e of insurance. With this certificate, I believe we should be able to move =
+forward with the shipment.</div><div dir=3D"ltr" style=3D"font-family:Helve=
+tica, Arial, sans-serif;font-size:16px;"><br clear=3D"none"></div><div dir=
+=3D"ltr" style=3D"font-family:Helvetica, Arial, sans-serif;font-size:16px;"=
+>Paul &amp; Michael</div><div dir=3D"ltr" style=3D"font-family:Helvetica, A=
+rial, sans-serif;font-size:16px;">Here is the link to the items to be shipp=
+ed along with the insurance values. Insurance values are in the second colu=
+mn.</div><div dir=3D"ltr" style=3D"font-family:Helvetica, Arial, sans-serif=
+;font-size:16px;"><a shape=3D"rect" href=3D"https://docs.google.com/spreads=
+heets/d/11MqbW2pAIPfUA4YNC6AHWu09PPzyM20-YvIF8nedKNs/edit?usp=3Dsharing" re=
+l=3D"nofollow" target=3D"_blank">https://docs.google.com/spreadsheets/d/11M=
+qbW2pAIPfUA4YNC6AHWu09PPzyM20-YvIF8nedKNs/edit?usp=3Dsharing</a>&nbsp;<br c=
+lear=3D"none"></div><div dir=3D"ltr" style=3D"font-family:Helvetica, Arial,=
+ sans-serif;font-size:16px;"><br clear=3D"none"></div><div dir=3D"ltr" styl=
+e=3D"font-family:Helvetica, Arial, sans-serif;font-size:16px;">Sorry it too=
+k a while to get all the estimated values for insurance purposes. These val=
+ues are based on what I could find historically. Some of the pricing was 10=
++, 20+ or 30+ years ago. For works that did not have historical pricing, I =
+then matched them to similar works of the same year and similar size. Using=
+ this as a historical base value, I then extrapolated a new value based on =
+the time that has passed at a 4% annual increase. The prices are rounded of=
+f to the nearest thousand and converted from USD to BPS at $1 =3D 0.8 BPS. =
+I did make some final adjustments as some values seem to be way off one way=
+ or the other. In the case of the posters I used a value of 25 BPS per post=
+er. In the case of Harold's 2016 final work, I wasn=E2=80=99t sure what to =
+put for that. I put it at 100K BPS. As for the Machine Paintings, I used wh=
+at I believed they were priced at in 2024 =E2=80=94 40K BPS. None of these =
+are set in stone. Adjustments can be made as need be.</div><div dir=3D"ltr"=
+ style=3D"font-family:Helvetica, Arial, sans-serif;font-size:16px;"><br cle=
+ar=3D"none"></div><div dir=3D"ltr">Michael, regarding the&nbsp;<i>'exporter=
+ of record=E2=80=99 </i>&nbsp;we prefer to get the certificate of insurance=
+ from you first and then Paul and I can review both the =E2=80=98exporter o=
+f record=E2=80=99 and the =E2=80=98certificate of insurance=E2=80=99 togeth=
+er.&nbsp;</div><div dir=3D"ltr"><br clear=3D"none"></div><div dir=3D"ltr" s=
+tyle=3D"font-family:Helvetica, Arial, sans-serif;font-size:16px;">If you ha=
+ve an questions let me know,</div><div dir=3D"ltr" style=3D"font-family:Hel=
+vetica, Arial, sans-serif;font-size:16px;"><br clear=3D"none"></div><div di=
+r=3D"ltr" style=3D"font-family:Helvetica, Arial, sans-serif;font-size:16px;=
+">Tom</div><div dir=3D"ltr" style=3D"font-family:Helvetica, Arial, sans-ser=
+if;font-size:16px;"><br clear=3D"none"></div><div style=3D"font-family:Helv=
+etica, Arial, sans-serif;font-size:16px;"><br clear=3D"none"></div>
+       =20
+        <div id=3D"ydpf8e7329byiv7924040415m_-6849158779715724105m_87347819=
+21656282925ydpb9f1a777yiv2835304488ydpae0162f9yiv6981819950m_73985157195587=
+88817ydp80ac48fayiv2723147468m_5749682004053046927ydpe50f90c5yiv1550581139y=
+qt30196"><div id=3D"ydpf8e7329byiv7924040415m_-6849158779715724105m_8734781=
+921656282925ydpb9f1a777yiv2835304488ydpae0162f9yiv6981819950m_7398515719558=
+788817ydp80ac48fayiv2723147468m_5749682004053046927ydpe50f90c5yiv1550581139=
+ydp9f698178yahoo_quoted_0074594691" style=3D"font-family:Helvetica, Arial, =
+sans-serif;font-size:16px;">
+            <div style=3D"font-family:Helvetica, Arial, sans-serif;font-siz=
+e:13px;">
+               =20
+                <div>
+                    On Thursday, February 13, 2025 at 09:34:35 AM PST, Mich=
+ael Pollard &lt;<a shape=3D"rect" href=3D"mailto:michael@gazelliarthouse.co=
+m" rel=3D"nofollow" target=3D"_blank">michael@gazelliarthouse.com</a>&gt; w=
+rote:
+                </div>
+                <div><br clear=3D"none"></div>
+                <div><br clear=3D"none"></div>
+                <div><div id=3D"ydpf8e7329byiv7924040415m_-6849158779715724=
+105m_8734781921656282925ydpb9f1a777yiv2835304488ydpae0162f9yiv6981819950m_7=
+398515719558788817ydp80ac48fayiv2723147468m_5749682004053046927ydpe50f90c5y=
+iv1550581139ydp9f698178yiv7567462578"><div><div dir=3D"ltr">Dear Thomas,<di=
+v><br clear=3D"none"></div><div>I followed up with&nbsp;the shipper and the=
+y've said they still need the form for the <i>'exporter of record'</i> comp=
+leted and returned.</div><div>Have you reviewed the letter, and are you hap=
+py to complete and return it?</div><div><br clear=3D"none"></div><div>Micha=
+el.</div></div><br clear=3D"none"><div id=3D"ydpf8e7329byiv7924040415m_-684=
+9158779715724105m_8734781921656282925ydpb9f1a777yiv2835304488ydpae0162f9yiv=
+6981819950m_7398515719558788817ydp80ac48fayiv2723147468m_574968200405304692=
+7ydpe50f90c5yiv1550581139ydp9f698178yiv7567462578yqt75549"><div><div dir=3D=
+"ltr">On Wed, 12 Feb 2025 at 14:41, Michael Pollard &lt;<a shape=3D"rect" h=
+ref=3D"mailto:michael@gazelliarthouse.com" rel=3D"nofollow" target=3D"_blan=
+k">michael@gazelliarthouse.com</a>&gt; wrote:<br clear=3D"none"></div><bloc=
+kquote style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,=
+204);padding-left:1ex;"><div dir=3D"ltr">Thanks for the update Tom.<div><br=
+ clear=3D"none"></div><div>Hope the storm is not too severe.</div></div><br=
+ clear=3D"none"><div><div dir=3D"ltr">On Wed, 12 Feb 2025 at 08:47, Thomas =
+Machnik &lt;<a shape=3D"rect" href=3D"mailto:zipnpup@yahoo.com" rel=3D"nofo=
+llow" target=3D"_blank">zipnpup@yahoo.com</a>&gt; wrote:<br clear=3D"none">=
+</div><blockquote style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid r=
+gb(204,204,204);padding-left:1ex;"><div><div style=3D"font-family:Helvetica=
+, Arial, sans-serif;font-size:16px;"><div></div>
+        <div dir=3D"ltr">Hi Michael,</div><div dir=3D"ltr">I did not forget=
+ about you. I am working on preliminary insurance values for the various wo=
+rks. I am almost done. We have a storm coming in for the next two days. I h=
+ad the works staged in the studio. On Wed, I will be needing to move the wo=
+rks to a safer location in case we have an issue =E2=80=94 just to be safe.=
+</div><div dir=3D"ltr"><br clear=3D"none"></div><div dir=3D"ltr">Tom</div><=
+div dir=3D"ltr"><br clear=3D"none"></div><div><br clear=3D"none"></div>
+       =20
+        <div id=3D"ydpf8e7329byiv7924040415m_-6849158779715724105m_87347819=
+21656282925ydpb9f1a777yiv2835304488ydpae0162f9yiv6981819950m_73985157195587=
+88817ydp80ac48fayiv2723147468m_5749682004053046927ydpe50f90c5yiv1550581139y=
+dp9f698178yiv7567462578m_8133720951740324316m_7307415872061321021ydp750ebbf=
+8yahoo_quoted_9869284580">
+            <div style=3D"font-family:Helvetica, Arial, sans-serif;font-siz=
+e:13px;">
+               =20
+                <div>
+                    On Friday, February 7, 2025 at 12:26:28 AM PST, Thomas =
+Machnik &lt;<a shape=3D"rect" href=3D"mailto:zipnpup@yahoo.com" rel=3D"nofo=
+llow" target=3D"_blank">zipnpup@yahoo.com</a>&gt; wrote:
+                </div>
+                <div><br clear=3D"none"></div>
+                <div><br clear=3D"none"></div>
+                <div><div id=3D"ydpf8e7329byiv7924040415m_-6849158779715724=
+105m_8734781921656282925ydpb9f1a777yiv2835304488ydpae0162f9yiv6981819950m_7=
+398515719558788817ydp80ac48fayiv2723147468m_5749682004053046927ydpe50f90c5y=
+iv1550581139ydp9f698178yiv7567462578m_8133720951740324316m_7307415872061321=
+021ydp750ebbf8yiv3963418464"><div><div style=3D"font-family:Helvetica, Aria=
+l, sans-serif;font-size:16px;"><div></div>
+        <div dir=3D"ltr"><span id=3D"ydpf8e7329byiv7924040415m_-68491587797=
+15724105m_8734781921656282925ydpb9f1a777yiv2835304488ydpae0162f9yiv69818199=
+50m_7398515719558788817ydp80ac48fayiv2723147468m_5749682004053046927ydpe50f=
+90c5yiv1550581139ydp9f698178yiv7567462578m_8133720951740324316m_73074158720=
+61321021ydp750ebbf8yiv3963418464ydpdef7e278docs-internal-guid-a58cd14a-7fff=
+-16de-098b-72c8e99b0349" style=3D"color:rgb(0,0,0);"></span><div dir=3D"ltr=
+"><span style=3D"font-size:12pt;font-family:Arial, sans-serif;color:rgb(29,=
+29,29);vertical-align:baseline;">Thanks Michael for clarifying. I will revi=
+ew the shipper list and their values. Tom</span></div></div><div><br clear=
+=3D"none"></div>
+       =20
+        <div id=3D"ydpf8e7329byiv7924040415m_-6849158779715724105m_87347819=
+21656282925ydpb9f1a777yiv2835304488ydpae0162f9yiv6981819950m_73985157195587=
+88817ydp80ac48fayiv2723147468m_5749682004053046927ydpe50f90c5yiv1550581139y=
+dp9f698178yiv7567462578m_8133720951740324316m_7307415872061321021ydp750ebbf=
+8yiv3963418464yqt83777"><div id=3D"ydpf8e7329byiv7924040415m_-6849158779715=
+724105m_8734781921656282925ydpb9f1a777yiv2835304488ydpae0162f9yiv6981819950=
+m_7398515719558788817ydp80ac48fayiv2723147468m_5749682004053046927ydpe50f90=
+c5yiv1550581139ydp9f698178yiv7567462578m_8133720951740324316m_7307415872061=
+321021ydp750ebbf8yiv3963418464ydpdc26db9byahoo_quoted_8927855026">
+            <div style=3D"font-family:Helvetica, Arial, sans-serif;font-siz=
+e:13px;">
+               =20
+                <div>
+                    On Thursday, February 6, 2025 at 04:14:56 AM PST, Micha=
+el Pollard &lt;<a shape=3D"rect" href=3D"mailto:michael@gazelliarthouse.com=
+" rel=3D"nofollow" target=3D"_blank">michael@gazelliarthouse.com</a>&gt; wr=
+ote:
+                </div>
+                <div><br clear=3D"none"></div>
+                <div><br clear=3D"none"></div>
+                <div><div id=3D"ydpf8e7329byiv7924040415m_-6849158779715724=
+105m_8734781921656282925ydpb9f1a777yiv2835304488ydpae0162f9yiv6981819950m_7=
+398515719558788817ydp80ac48fayiv2723147468m_5749682004053046927ydpe50f90c5y=
+iv1550581139ydp9f698178yiv7567462578m_8133720951740324316m_7307415872061321=
+021ydp750ebbf8yiv3963418464ydpdc26db9byiv5161080155"><div><div>Hello Tom.<d=
+iv>Works are insures by Gazelli's private insurance door to door.</div><div=
+>The shipping company does not have insurance.</div><div>Our insurer would =
+hold the shipping company culpable for any acts of gross negligence.</div><=
+div>I can provide a certificate of insurance (if required) but would need i=
+nsurance values for the works first.</div></div><br clear=3D"none"><div id=
+=3D"ydpf8e7329byiv7924040415m_-6849158779715724105m_8734781921656282925ydpb=
+9f1a777yiv2835304488ydpae0162f9yiv6981819950m_7398515719558788817ydp80ac48f=
+ayiv2723147468m_5749682004053046927ydpe50f90c5yiv1550581139ydp9f698178yiv75=
+67462578m_8133720951740324316m_7307415872061321021ydp750ebbf8yiv3963418464y=
+dpdc26db9byiv5161080155yqt81617"><div><div dir=3D"ltr">On Thu, 6 Feb 2025, =
+07:20 Thomas Machnik, &lt;<a shape=3D"rect" href=3D"mailto:zipnpup@yahoo.co=
+m" rel=3D"nofollow" target=3D"_blank">zipnpup@yahoo.com</a>&gt; wrote:<br c=
+lear=3D"none"></div><blockquote style=3D"margin:0px 0px 0px 0.8ex;border-le=
+ft:1px solid rgb(204,204,204);padding-left:1ex;"><div><div style=3D"font-fa=
+mily:Helvetica, Arial, sans-serif;font-size:16px;"><div dir=3D"ltr">Hi Mich=
+eal,</div><div dir=3D"ltr">We are a bit concerned regarding the shipper=E2=
+=80=99s terms with respect to any possible damages to the work during trans=
+it. We had hoped for a bit more sense of responsibility and clarification w=
+ith respect to insurance and assurance. Will there be any insurance for the=
+ works during transit? If so, can you clarify the nature of this insurance?=
+&nbsp;</div><div dir=3D"ltr"><br clear=3D"none"></div><div dir=3D"ltr">Tom<=
+/div></div></div></blockquote></div></div>
+</div></div></div>
+            </div>
+        </div></div></div></div></div></div>
+            </div>
+        </div></div></div></blockquote></div>
+</blockquote></div></div>
+</div></div></div>
+            </div>
+        </div></div></div></div></div></div>
+            </div>
+        </div></div></div></blockquote></div></div>
+</div></div></div>
+            </div>
+        </div></div></div></blockquote></div></div>
+</div></div></div>
+            </div>
+        </div></div></div></div></div></div>
+            </div>
+        </div></div></div></blockquote></div>
+</blockquote></div></div>
+</div></div></div>
+            </div>
+        </div></div></body></html>
+------=_Part_1082514_573561593.1742980397911--

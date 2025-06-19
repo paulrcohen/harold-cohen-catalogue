@@ -1,0 +1,22 @@
+Subject: found some of Harold's code in my "Perfume" code from 1982
+From: George Legrady <glegrady@ucsb.edu>
+To: Paul Cohen <paulrcohen@gmail.com>,
+ "Christiane Paul, Curatorial" <christiane_paul@whitney.org>,
+ Becky Cohen <beckycohenphotographer@gmail.com>
+Date: 2024-09-17 22:58:59
+Message-ID: <F85BAAD4-4DD2-4895-8587-1DA5478DD236@ucsb.edu>
+--------------------------------------------------------------------------------
+
+Hi Paul, Becky, Thomas and Christiane, 
+
+At Harold’s opening we had talked about tracking down some of Harold’s code from the early 1980s in my storage space. Also Becky who I had not seen for many decades, amazingly remembered I wrote my first program in Harold’s lab that visualized the operation of perfume molecules leaving an enclosed contained space into a wider open space as a way to illustrate that time cannot proceed backwards as the molecules could not be recollected and returned back into the enclosed space of the bottle. I got the story from a Scientific American article and this seemed at the time to be a good first coding project as a continuity to my staged studio photography. 
+
+I had forgotten about this code until Becky mentioned it at the opening this past winter, but this week-end, I inadvertendly came across a full printout in a stored box. It is dated June 17, 1982, and takes up 20 pages. 
+
+Even though I wrote the code that visualizes the molecular animation, nearly all of the utilities subroutines used to visualize the moving dots on the TeckTronix screen as seen here on the right page was written by Harold, so the full printout partially documents what part of his code was like at that time. Unfortunately, the more interesting aspect of Harold’s code I dont have, only the utilities subroutines. Additionally, the code also gives the insight of how to get the data from the PDP-11 to the Tecktronix to visualize the program.
+
+Please let me know how you all want to access the code if it is of interest. I can scan all the pages and do a OCR to turn it into real code. Also how do we distribute the credit given that the subroutines are Harold’s whereas the molecular animation is mine. For the coding finetuning, I was asisted by Jeff Greenberg, who was Harold’s studio assistant at the time. 
+
+Very Best, 
+
+George

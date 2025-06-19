@@ -1,0 +1,32 @@
+Subject: My AASC notes Color Coded
+From: Thomas Machnik <zipnpup@yahoo.com>
+To: Paul Cohen <paulrcohen@gmail.com>
+Date: 2024-12-09 07:15:28
+Message-ID: <1596091551.552263.1733728528135@mail.yahoo.com>
+--------------------------------------------------------------------------------
+
+Hi Paul,Attached is an updated version of my AASC compilation run notes. I color coded each entry based on the result of trying to run each version. At the end of the document is the summary of each. I have only tested 111 versions. These are dated from 2007 to 2016. I have actually tried running earlier versions but they don't run not because of the code per se but rather due to compiler issues I have yet to resolve. 
+
+Red shades = Does not run, 
+Green shades = Exhibition VersionOrange shades = test version or debug version 
+Yellow shades = WIP, developmental version or experimental version
+Purple shades = This version produces AARON Files for printing 
+Blue = 3-D hanging sculpture versions
+White = did not know how to categorize these versions
+
+Details
+Red = Does not run    This is a rather obvious category 
+
+Green shades - Exhibition Version    These versions do not produce files for printing they simply run unattended continuously making art on the screen and were intended to run at exhibitions. 
+    Light Green = identified which exhibition this version ran at    Dark Green = runs like an exhibition version but unlikely that this particular one actually ran publically
+Orange shades = Test or debug version    Seems that sometime Harold made versions to perform some kind of test to try something out possibly. And in other cases he has versions that have seem like he had some coding problems an maybe used these to figure out those problems. These are labelled debug.
+
+Yellow shades = WIP, Intermediate, Development, Experimental
+    These versions were never printed. They run but they seem like Harold was in the process of developing code. In some cases when it runs, it produces artwork files but the results are clearly not intended to have been printed or considered and official AARON artwork. Experimental are versions that seem like Harold was focusing on a particular aspect of AARON and therefore doesn't necessarily produce a full AARON image. 
+
+Purple shades = This version produces AARON Files for printing 
+      These versions most likely produced the files that were used to make the various AARON prints and paintings. 
+
+Blue = generates 3-D hanging sculptures
+
+White = did not know how to categorize these versions

@@ -1,0 +1,491 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a10:a141:b0:5ad:6c17:f336 with SMTP id r1csp2128943pxc;
+        Mon, 30 Sep 2024 15:08:42 -0700 (PDT)
+X-Received: by 2002:a05:6a20:2d22:b0:1d0:2533:1a42 with SMTP id adf61e73a8af0-1d4fa64c119mr16171544637.9.1727734122746;
+        Mon, 30 Sep 2024 15:08:42 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1727734122; cv=none;
+        d=google.com; s=arc-20240605;
+        b=XESlvzKmVLLbdShrI4wD7/1kohuMZtJLdvCBEz4SgFhebQX9Eqq/AlbWKosjc2fdr5
+         iCAN3up2FWJB+VnCZbyAxHorN5fVGzCTXJPhoSC6aMZcaYOqUtr+7b3U8iofuArlz3ss
+         gJzF1OvPI04pRIU0hYcY+R1C4afR03f1MAV7lykPn+wy9M8FCQzmAmgxua75gV8WJQ73
+         vp4Q02Rya4AO9E1ne+we6qIqZN/vQoLdaW2Klbew+MwKqt9jpaARCaxajyBmcebt+n6/
+         x6dHTOamSL3SRKzkyNKlNG4ZsT/uTU8Z5gn9shSL47o2uQi0+o9s/6YN7jhjIafeEMzV
+         fZfw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=G4xqRoeslTqZ+w5/8nXudvxcFvYqJj2yXAV88oJ3oRg=;
+        fh=KXTXbfN720LKPU2LPeglFyaglMMJ197jSz9G6Uk6M1g=;
+        b=PcOO5K/rrhbIXg0bbSQ97cxU28JWzLTeaoYCIoQCSo2sVcjtYhULSAuexNrzxVgydB
+         wVx6BiyHHgY/jkJOEbXztDUoLJ1xkDBY8kVxy0Zn2okxvVSM1n326LOhyt9eiTYH29rh
+         DRI1Lx1CMiyaq0SINfNDiBoAvzbmHx5SnIJb77PsPzyR3iUevr04cdk5ne1KjTa80Sbx
+         NjlLI3yuqO2p14ojLe/TtYB84KD5hb1OXtcN4H49c92AamelFIVVwuAeuRDMhWtVNJ5+
+         6afHcyy5+xLXet667EYLTzoX0T6KyJ8AgNp48HSaO9ZYifKMZnQ16xGbbDfCarC6WmpA
+         Ne8A==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@gazelliarthouse-com.20230601.gappssmtp.com header.s=20230601 header.b=SpFFvwRN;
+       spf=pass (google.com: domain of m.askarova@gazelliarthouse.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=m.askarova@gazelliarthouse.com;
+       dara=pass header.i=@gmail.com
+Return-Path: <m.askarova@gazelliarthouse.com>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id d2e1a72fcca58-71b264a7aabsor5104921b3a.4.2024.09.30.15.08.42
+        for <paulrcohen@gmail.com>
+        (Google Transport Security);
+        Mon, 30 Sep 2024 15:08:42 -0700 (PDT)
+Received-SPF: pass (google.com: domain of m.askarova@gazelliarthouse.com designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@gazelliarthouse-com.20230601.gappssmtp.com header.s=20230601 header.b=SpFFvwRN;
+       spf=pass (google.com: domain of m.askarova@gazelliarthouse.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=m.askarova@gazelliarthouse.com;
+       dara=pass header.i=@gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gazelliarthouse-com.20230601.gappssmtp.com; s=20230601; t=1727734122; x=1728338922; dara=google.com;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=G4xqRoeslTqZ+w5/8nXudvxcFvYqJj2yXAV88oJ3oRg=;
+        b=SpFFvwRNILoX75GZgMptHAqjnmyhIB1pLOdGMzUd2T671PSogxCGRpivRxvyNoA3YK
+         s+bLwM1+AVFDKj3zuFa09J4l0yQMzHJxO+62nb1w2lu8hMOt61tPQXY0L/0+yOvibe9F
+         L4G5vN/ZEQBT4xfIQkK3u6TJzXeDQy+H6F9sX1P13uOlAshOB9jDAC8Tltguo/lap1bb
+         D+hJRxV3tTPKjFgw5nkA/MAhFWa6kr2a0uRlNZk7Nh82TogfWvxa3a0Z/a1zINeyDbl7
+         GbbR+bhEGM4RHh9eKA2F3CX212G8vtfnrmSwwfe2Tngh563qE2vVad1EO9f2XbNJ1Otb
+         MVQw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727734122; x=1728338922;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=G4xqRoeslTqZ+w5/8nXudvxcFvYqJj2yXAV88oJ3oRg=;
+        b=LeZR+KI96QCirNeWlvqcAo9L1AhZnz0hTdbemDO2QHHf94kiIZ97Lwnth5JL4uHYgY
+         kim6FA2RNhNM/W9EFaE1rDnA2enu/N6vG357zbg/cPIwW68A9puHu/oA/IlE6K5rr61a
+         Sc6MaSTLcCuSCWbuzeogKxaJ5hTi2Fbw5l5XNUUNf8iBla3lbYXot9ZAZ8aiH1q4mEN/
+         5xWFf8UHh5qu05zwc0DB1kOozt+XaWen7Dfg9f5LHpCiY1QtKdJo0N+7x/uojacWR7QK
+         jk8mWFNEMeYAlN8gspytHq4an+LvUtM9hn5SXVs44drTjD6bfnu7jmLxTzMvk6O30UzQ
+         XJnA==
+X-Gm-Message-State: AOJu0YzKoOslddHdUkH2XixD76S5Sjmd/DwGv2G6gaZQav+cPvdoE+Gw
+	gykmSryvPN3wM+VuTbMvGEUMl8WjTWkT8TDpKAqUA8LvjYnrdXahwi02iS8N01giLQZjXX5C6bZ
+	e9mvzqWwRMsy9Ly4tYb7FMhD0OngcfHPE0Z61HhEzq+kwLMJf
+X-Google-Smtp-Source: AGHT+IEokKv9C/mnXHircaCrdkfxqG2V5SObfTUYwdCBWuIeic/KZw6o1gbCtM7H030PORp8OxjVPVpj0juVSWmmbbM=
+X-Received: by 2002:a05:6a00:b50:b0:71a:fbc6:28b7 with SMTP id
+ d2e1a72fcca58-71b25f293dcmr21084607b3a.4.1727734121801; Mon, 30 Sep 2024
+ 15:08:41 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAKjPZkFaaS09SdSwayqU5zWAddmpKMAcGGb+k9OPqoyQxgZSdw@mail.gmail.com>
+ <3BC4D65E-3B41-4ACD-8A18-0998147B3023@verisart.com> <CAKjPZkGY2vWX3ofQcNW9qer2OsAY0eSXmcwAEAfVE4+NHuw2qA@mail.gmail.com>
+In-Reply-To: <CAKjPZkGY2vWX3ofQcNW9qer2OsAY0eSXmcwAEAfVE4+NHuw2qA@mail.gmail.com>
+From: Mila Askarova <m.askarova@gazelliarthouse.com>
+Date: Mon, 30 Sep 2024 23:08:30 +0100
+Message-ID: <CAAOqD34Kv8TraxfLrE9bThi8M4O5WcHQ--iFaBqbYBs6EMeh1w@mail.gmail.com>
+Subject: Re: Proposed wording for Harold Cohen Sale
+To: Paul Cohen <paulrcohen@gmail.com>
+Cc: Robert norton <robert@verisart.com>, Paul Cohen <team@haroldcohentrust.org>, 
+	Thomas Machnik <zipnpup@yahoo.com>
+Content-Type: multipart/alternative; boundary="00000000000098c68706235d7252"
+
+--00000000000098c68706235d7252
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+No problem, Rob has already sent this through.
+Thanks so much for all this Paul & Tom!
+
+Onwards and upwards!
+
+Speak soon
+Mila
+
+On Mon, 30 Sept 2024 at 23:03, Paul Cohen <paulrcohen@gmail.com> wrote:
+
+> Mila, Robert, please send the material to Michael.  Tom has been working
+> all day to track down the original AA files and he's not done yet, so if
+> Michael needs stuff by COB today, please send what you have and we'll fil=
+l
+> in the JPEG provenance tomorrow.  Thanks, --P
+> ______________________________
+>
+> Paul Cohen,  Professor
+> School of Computing and Information
+> University of Pittsburgh
+> personal webpage <https://paulrcohen.github.io/>
+> ______________________________
+>
+>
+> On Mon, Sep 30, 2024 at 3:34=E2=80=AFPM Robert norton <robert@verisart.co=
+m> wrote:
+>
+>> The poweeed by Verisart is just part of my email signature. Thanks for
+>> the notes.  We will ensure the bio is corrected as this may be a format
+>> issue.  Also yes once we get the updated digital information from Tom we
+>> will use this for each of the NFTs
+>>
+>> Thanks for your timely input and time today
+>>
+>> Best
+>>
+>> Robert
+>>
+>> On Sep 30, 2024, at 20:08, Paul Cohen <paulrcohen@gmail.com> wrote:
+>>
+>> =EF=BB=BF
+>> Hi Robert, thanks for all this good material.  I'm not sure what the
+>> "powered by Verisart" one was intended to be.  It says it's a gif, but t=
+his
+>> is what I see when I open it.  Is this right?
+>>
+>> <Screenshot 2024-09-30 at 2.51.50=E2=80=AFPM.png>
+>>
+>> The printed certificate mockup looks good, thanks.  I scanned the QR cod=
+e
+>> and was taken to Verisart (abeit a private record) so that works.  The
+>> traits for the opensea NFT mockup are as we discussed.  For Tom's benefi=
+t,
+>> the traits describe the NFT, not the physical print.  Traits do however
+>> include the fact that a print is included.  Traits are searchable.
+>>
+>> I'm not sure of the purpose of  the pdfs, two of them  look like they ar=
+e
+>> parts of a contractual agreement w Sotheby's.  For the one that deals wi=
+th
+>> NFTs, I assume this is where you will add the provenance/metadata materi=
+al
+>> you'll be getting from Tom?  WRT the final doc, which includes the
+>> certificate of authenticity, the NFT and the Configuration, I have a cou=
+ple
+>> of observations:  1) the second paragraph of the NFT will be slightly
+>> different for most of the NFTs because the dates will be different and s=
+o
+>> will the jpeg metadata, and because in one case we need to that the jpeg
+>> was made by Tom in 2024.  2) In "professional bio" under "opensea
+>> configuration" the first three paragraphs are separated by blank lines b=
+ut
+>> the fourth is not.
+>>
+>> Thanks! --P
+>>
+>> ______________________________
+>>
+>> Paul Cohen,  Professor
+>> School of Computing and Information
+>> University of Pittsburgh
+>> personal webpage <https://paulrcohen.github.io/>
+>> ______________________________
+>>
+>>
+>> On Mon, Sep 30, 2024 at 2:37=E2=80=AFPM Robert Norton <robert@verisart.c=
+om>
+>> wrote:
+>>
+>>> Hi Paul,
+>>>
+>>> Thanks for your time today.  Please see below the proposed new wording.
+>>> The Estate will be sending through further digital information today.
+>>> However please check the proposed NFT description which we have also mo=
+cked
+>>> up as to how it will appear on Opensea for ease of reference.
+>>>
+>>> We have also included the following:
+>>>
+>>>
+>>>    - Draft certificate from the Trust for the physical print
+>>>    - Draft Opensea Listing for the NFT with updated collection, wallet
+>>>    name, traits and description
+>>>    - Draft spreadsheet of NFTs with descriptions and dimensions
+>>>    - Draft spreadsheet of prints with descriptions and dimensions
+>>>    - *Draft Copy that needs your sign off as will be used by Sotheby=E2=
+=80=99s
+>>>    in their outreach *
+>>>
+>>>
+>>> Please note we will need to provide you with the Verisart URLs for all
+>>> the printed works as these will be certified separately from the NFTs a=
+nd
+>>> linked to from the NFT descriptions.
+>>>
+>>> Please let us know if you require any changes as we would like to send
+>>> across final copy for Sotheby=E2=80=99s by end of day your time.  We wi=
+ll update
+>>> NFT descriptions with any information we get from Tom in due course.
+>>>
+>>>
+>>> Best
+>>>
+>>> Robert
+>>>
+>>> Robert Norton
+>>> CEO & co-founder
+>>> Verisart <http://www.verisart.com>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+>>>
+
+--=20
+Mila Askarova
+CEO & Founder
+
+*GAZELLI ART HOUSE*
+
+LONDON
+Cipher: Pouran Jinchi & Ruba Salameh
+<https://gazelliarthouse.com/exhibitions/185-cipher-pouran-jinchi-ruba-sala=
+meh/>
+The Window: Aida Mahmudova
+<https://gazelliarthouse.com/exhibitions/186-the-window-aida-mahmudova/>
+Project Space & Frieze Sculpture 2024: Libby Heaney
+<https://nft.gazell.io/collections/libby-heaney-frieze-sculpture-2024>
+
+BAKU
+Group Show
+
+GAZELL.iO
+September Resident | Kate Hollenbach
+<https://gazell.io/exhibitions/138-kate-hollenbach/>
+
+www.gazelliarthouse.com
++44 (0) 207 491 8816 / +994 (0) 12 498 1230
+
+<https://streaklinks.com/BHpVIxJHhzip8Hm6nAyO2h9O/https%3A%2F%2Fwww.instagr=
+am.com%2Fgazelliarthouse%2F>
+<https://streaklinks.com/BHpVIoEUFPH6ci6Q4QBT8JGr/https%3A%2F%2Ftwitter.com=
+%2FGazelliArtHouse>
+
+<https://streaklinks.com/BHpVIoEeHlRoFY_ETAqPyMXi/https%3A%2F%2Fwww.faceboo=
+k.com%2FGazelliArtHouse%2F>
+
+
+This e-mail message, including all attachments, is for the sole use of the
+intended recipient(s) and may contain legally privileged and confidential
+information. If you are not an intended recipient, you are hereby notified
+that you have either received this message in error or
+through interception, and that any review, use, distribution, copying or
+disclosure of this message and/or its attachments or parts thereof is
+strictly prohibited and is subject to criminal and civil penalties with
+appropriate national legislation.
+
+--00000000000098c68706235d7252
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">No problem, Rob has already sent this through.=C2=A0<div>T=
+hanks so much for all this Paul &amp; Tom!=C2=A0</div><div><br></div><div>O=
+nwards=C2=A0and upwards!=C2=A0</div><div><br></div><div>Speak soon</div><di=
+v>Mila</div></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"=
+gmail_attr">On Mon, 30 Sept 2024 at 23:03, Paul Cohen &lt;<a href=3D"mailto=
+:paulrcohen@gmail.com">paulrcohen@gmail.com</a>&gt; wrote:<br></div><blockq=
+uote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1p=
+x solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div class=3D"g=
+mail_default" style=3D"font-size:small">Mila, Robert, please send the mater=
+ial to Michael.=C2=A0 Tom has been working all day to track down the origin=
+al AA files and he&#39;s not done yet, so if Michael needs stuff by COB tod=
+ay, please send what you have and we&#39;ll fill in the JPEG provenance tom=
+orrow.=C2=A0 Thanks, --P<br clear=3D"all"></div><div><div dir=3D"ltr" class=
+=3D"gmail_signature"><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=
+=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr">=
+______________________________<br><br>Paul Cohen,=C2=A0=C2=A0Professor</div=
+><div dir=3D"ltr">School of Computing and Information</div><div dir=3D"ltr"=
+>University of Pittsburgh</div><div dir=3D"ltr"><a href=3D"https://paulrcoh=
+en.github.io/" target=3D"_blank">personal webpage</a><br>__________________=
+____________</div></div></div></div></div></div></div></div></div></div></d=
+iv></div></div><br></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" cl=
+ass=3D"gmail_attr">On Mon, Sep 30, 2024 at 3:34=E2=80=AFPM Robert norton &l=
+t;<a href=3D"mailto:robert@verisart.com" target=3D"_blank">robert@verisart.=
+com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"marg=
+in:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1e=
+x"><div dir=3D"auto"><div dir=3D"ltr"></div><div dir=3D"ltr">The poweeed by=
+ Verisart is just part of my email signature. Thanks for the notes.=C2=A0 W=
+e will ensure the bio is corrected as this may be a format issue.=C2=A0 Als=
+o yes once we get the updated digital information from Tom we will use this=
+ for each of the NFTs</div><div dir=3D"ltr"><br></div><div dir=3D"ltr">Than=
+ks for your timely input and time today</div><div dir=3D"ltr"><br></div><di=
+v dir=3D"ltr">Best</div><div dir=3D"ltr"><br></div><div dir=3D"ltr">Robert=
+=C2=A0</div><div dir=3D"ltr"><br><blockquote type=3D"cite">On Sep 30, 2024,=
+ at 20:08, Paul Cohen &lt;<a href=3D"mailto:paulrcohen@gmail.com" target=3D=
+"_blank">paulrcohen@gmail.com</a>&gt; wrote:<br><br></blockquote></div><blo=
+ckquote type=3D"cite"><div dir=3D"ltr">=EF=BB=BF<div dir=3D"ltr"><div class=
+=3D"gmail_default" style=3D"font-size:small">Hi Robert, thanks for all this=
+ good material.=C2=A0 I&#39;m not sure what the &quot;powered by Verisart&q=
+uot; one was intended to be.=C2=A0 It says it&#39;s a gif, but this is what=
+ I see when I open it.=C2=A0 Is this right?</div><div class=3D"gmail_defaul=
+t" style=3D"font-size:small"><br></div><div class=3D"gmail_default" style=
+=3D"font-size:small"><div>&lt;Screenshot 2024-09-30 at 2.51.50=E2=80=AFPM.p=
+ng&gt;</div></div><div class=3D"gmail_default" style=3D"font-size:small"><b=
+r></div><div class=3D"gmail_default" style=3D"font-size:small">The printed =
+certificate mockup looks good, thanks.=C2=A0 I scanned the QR code and was =
+taken to Verisart (abeit a private record) so that works.=C2=A0 The traits =
+for the opensea NFT mockup are as we discussed.=C2=A0 For Tom&#39;s benefit=
+, the traits describe the NFT, not the physical print.=C2=A0 Traits do howe=
+ver include the fact that a print is included.=C2=A0 Traits are searchable.=
+=C2=A0</div><div class=3D"gmail_default" style=3D"font-size:small"><br></di=
+v><div class=3D"gmail_default" style=3D"font-size:small">I&#39;m not sure o=
+f the purpose of=C2=A0 the pdfs, two of them=C2=A0 look like they are parts=
+ of a contractual agreement w Sotheby&#39;s.=C2=A0 For the one that deals w=
+ith NFTs, I assume this is where you will add the provenance/metadata mater=
+ial you&#39;ll be getting from Tom?=C2=A0 WRT the final doc, which includes=
+ the certificate of authenticity, the NFT and the Configuration, I have a c=
+ouple of observations:=C2=A0 1) the second paragraph of the NFT will be sli=
+ghtly different for most of the NFTs because the dates will be different an=
+d so will the jpeg metadata, and because in one case we need to that the jp=
+eg was made by Tom in 2024.=C2=A0 2) In &quot;professional bio&quot; under =
+&quot;opensea configuration&quot; the first three paragraphs are separated =
+by blank lines but the fourth is not. <br></div><div class=3D"gmail_default=
+" style=3D"font-size:small"><br></div><div class=3D"gmail_default" style=3D=
+"font-size:small">Thanks! --P<br></div><div class=3D"gmail_default" style=
+=3D"font-size:small"><br></div><div><div dir=3D"ltr" class=3D"gmail_signatu=
+re"><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div =
+dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr">___________________=
+___________<br><br>Paul Cohen,=C2=A0=C2=A0Professor</div><div dir=3D"ltr">S=
+chool of Computing and Information</div><div dir=3D"ltr">University of Pitt=
+sburgh</div><div dir=3D"ltr"><a href=3D"https://paulrcohen.github.io/" targ=
+et=3D"_blank">personal webpage</a><br>______________________________</div><=
+/div></div></div></div></div></div></div></div></div></div></div></div><br>=
+</div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">=
+On Mon, Sep 30, 2024 at 2:37=E2=80=AFPM Robert Norton &lt;<a href=3D"mailto=
+:robert@verisart.com" target=3D"_blank">robert@verisart.com</a>&gt; wrote:<=
+br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8e=
+x;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div>Hi Paul,<di=
+v><br></div><div>Thanks for your time today.=C2=A0 Please see below the pro=
+posed new wording.=C2=A0 The Estate will be sending through further digital=
+ information today.=C2=A0 However please check the proposed NFT description=
+ which we have also mocked up as to how it will appear on Opensea for ease =
+of reference. =C2=A0</div><div><br></div><div>We have also included the fol=
+lowing:</div><div><br></div><div><ul><li>Draft certificate from the Trust f=
+or the physical print</li><li>Draft Opensea Listing for the NFT with update=
+d collection, wallet name, traits and description</li><li>Draft spreadsheet=
+ of NFTs with descriptions and dimensions</li><li>Draft spreadsheet of prin=
+ts with descriptions and dimensions=C2=A0</li><li><b>Draft Copy that needs =
+your sign off as will be used by Sotheby=E2=80=99s in their outreach=C2=A0<=
+/b></li></ul><div><br></div></div><div>Please note we will need to provide =
+you with the Verisart URLs for all the printed works as these will be certi=
+fied separately from the NFTs and linked to from the NFT descriptions.</div=
+><div><br></div><div>Please let us know if you require any changes as we wo=
+uld like to send across final copy for Sotheby=E2=80=99s by end of day your=
+ time.=C2=A0 We will update NFT descriptions with any information we get fr=
+om Tom in due course.</div><div><br></div><div><br></div><div>Best</div><di=
+v><br></div><div>Robert</div><div>
+<div style=3D"font-family:Helvetica;font-size:12px;font-style:normal;font-v=
+ariant-caps:normal;font-weight:normal;letter-spacing:normal;text-align:star=
+t;text-indent:0px;text-transform:none;white-space:normal;word-spacing:0px;t=
+ext-decoration:none;color:rgb(0,0,0)"><font color=3D"#696969"><br>Robert No=
+rton</font></div><div style=3D"font-family:Helvetica;font-size:12px;font-st=
+yle:normal;font-variant-caps:normal;font-weight:normal;letter-spacing:norma=
+l;text-align:start;text-indent:0px;text-transform:none;white-space:normal;w=
+ord-spacing:0px;text-decoration:none;color:rgb(0,0,0)"><font color=3D"#6969=
+69">CEO &amp; co-founder</font></div><div style=3D"font-family:Helvetica;fo=
+nt-size:12px;font-style:normal;font-variant-caps:normal;font-weight:normal;=
+letter-spacing:normal;text-align:start;text-indent:0px;text-transform:none;=
+white-space:normal;word-spacing:0px;text-decoration:none;color:rgb(0,0,0)">=
+<a href=3D"http://www.verisart.com" target=3D"_blank">Verisart</a></div><di=
+v style=3D"font-family:Helvetica;font-size:12px;font-style:normal;font-vari=
+ant-caps:normal;font-weight:400;letter-spacing:normal;text-align:start;text=
+-indent:0px;text-transform:none;white-space:normal;word-spacing:0px;text-de=
+coration:none;color:rgb(0,0,0)"><br></div><br><span></span></div></div><div=
+><div><span></span>
+</div><div><span><br></span></div><div><span><br></span></div><div><span><d=
+iv></div></span></div></div><div><div id=3D"m_8589764801936893914m_-4709180=
+918705782702m_6950436162080802264AppleMailSignature"><span><div></div></spa=
+n></div></div><div><div id=3D"m_8589764801936893914m_-4709180918705782702m_=
+6950436162080802264AppleMailSignature"><span><div></div></span></div></div>=
+<div><div id=3D"m_8589764801936893914m_-4709180918705782702m_69504361620808=
+02264AppleMailSignature"><span><div></div></span></div></div><div><div id=
+=3D"m_8589764801936893914m_-4709180918705782702m_6950436162080802264AppleMa=
+ilSignature"><span><div></div></span></div></div><div><div><span><div></div=
+><br></span></div>
+<br></div></blockquote></div>
+</div></blockquote></div></blockquote></div>
+</blockquote></div><br clear=3D"all"><div><br></div><span class=3D"gmail_si=
+gnature_prefix">-- </span><br><div dir=3D"ltr" class=3D"gmail_signature"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div><font color=3D"#000000">Mila Askarova=C2=A0</font></div><div>=
+<font color=3D"#000000">CEO &amp; Founder=C2=A0</font></div><div style=3D"c=
+olor:rgb(80,0,80)"><b><br></b></div><div><div style=3D"font-family:&quot;ti=
+mes new roman&quot;,serif"><div style=3D"font-family:Arial,Helvetica,sans-s=
+erif"><div style=3D"color:rgb(34,34,34)"><div dir=3D"ltr"><div dir=3D"ltr">=
+<div dir=3D"ltr"><font color=3D"#000000"><b>GAZELLI ART HOUSE</b></font></d=
+iv><div dir=3D"ltr"><br></div><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D=
+"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><=
+div dir=3D"ltr"><span><div dir=3D"ltr"><div dir=3D"ltr"><font face=3D"arial=
+, sans-serif" color=3D"#000000">LONDON</font></div><div><font face=3D"arial=
+, sans-serif"><a href=3D"https://gazelliarthouse.com/exhibitions/185-cipher=
+-pouran-jinchi-ruba-salameh/" style=3D"color:rgb(17,85,204)" target=3D"_bla=
+nk">Cipher: Pouran Jinchi &amp; Ruba Salameh</a></font></div><div><font fac=
+e=3D"arial, sans-serif"><a href=3D"https://gazelliarthouse.com/exhibitions/=
+186-the-window-aida-mahmudova/" style=3D"color:rgb(17,85,204)" target=3D"_b=
+lank">The Window: Aida Mahmudova</a></font></div><div><font face=3D"arial, =
+sans-serif"><a href=3D"https://nft.gazell.io/collections/libby-heaney-friez=
+e-sculpture-2024" style=3D"color:rgb(17,85,204)" target=3D"_blank">Project =
+Space &amp; Frieze Sculpture 2024: Libby Heaney</a></font></div><div><br></=
+div><div><span style=3D"color:rgb(0,0,0);font-family:arial,sans-serif">BAKU=
+=C2=A0</span></div><div>Group Show</div><div><br></div><div dir=3D"ltr"><di=
+v><font color=3D"#000000" face=3D"arial, sans-serif">GAZELL.iO=C2=A0</font>=
+</div><div><span style=3D"font-family:arial,sans-serif">September Resident =
+|=C2=A0<a href=3D"https://gazell.io/exhibitions/138-kate-hollenbach/" style=
+=3D"color:rgb(17,85,204)" target=3D"_blank">Kate Hollenbach</a></span></div=
+></div></div></span><div dir=3D"ltr"><div><br></div></div></div></div></div=
+></div></div></div></div></div></div></div><div dir=3D"ltr"><font face=3D"a=
+rial, sans-serif"><div><a href=3D"http://www.gazelliarthouse.com/" style=3D=
+"color:rgb(17,85,204)" target=3D"_blank"><font color=3D"#0b5394">www.gazell=
+iarthouse.com</font></a></div><div>+44 (0) 207 491 8816 / +994 (0) 12 498 1=
+230</div><div><br></div><div style=3D"font-size:x-small"><div><font color=
+=3D"#000000"><a href=3D"https://streaklinks.com/BHpVIxJHhzip8Hm6nAyO2h9O/ht=
+tps%3A%2F%2Fwww.instagram.com%2Fgazelliarthouse%2F" style=3D"color:rgb(17,8=
+5,204);display:inline-block" target=3D"_blank"><img src=3D"https://68ef2f69=
+c7787d4078ac-7864ae55ba174c40683f10ab811d9167.ssl.cf1.rackcdn.com/instagram=
+-icon_24x24.png" width=3D"24" style=3D"margin: 0.8em 0.2em; padding: 0px; l=
+etter-spacing: -0.1px; border: 0px; vertical-align: middle; max-width: 100%=
+;"><div style=3D"margin:0px;width:0px;height:0px"><div></div></div></a><a h=
+ref=3D"https://streaklinks.com/BHpVIoEUFPH6ci6Q4QBT8JGr/https%3A%2F%2Ftwitt=
+er.com%2FGazelliArtHouse" hspace=3D"streak-track" style=3D"color:rgb(17,85,=
+204);display:inline-block" target=3D"_blank"><img src=3D"https://68ef2f69c7=
+787d4078ac-7864ae55ba174c40683f10ab811d9167.ssl.cf1.rackcdn.com/twitter-ico=
+n_24x24.png" width=3D"24" style=3D"margin: 0.8em 0.2em; padding: 0px; lette=
+r-spacing: -0.1px; border: 0px; vertical-align: middle; max-width: 100%;"><=
+div style=3D"margin:0px;width:0px;height:0px"><div></div></div></a>=C2=A0<a=
+ href=3D"https://streaklinks.com/BHpVIoEeHlRoFY_ETAqPyMXi/https%3A%2F%2Fwww=
+.facebook.com%2FGazelliArtHouse%2F" hspace=3D"streak-track" style=3D"color:=
+rgb(17,85,204);display:inline-block" target=3D"_blank"><img src=3D"https://=
+68ef2f69c7787d4078ac-7864ae55ba174c40683f10ab811d9167.ssl.cf1.rackcdn.com/f=
+acebook-icon_24x24.png" width=3D"24" style=3D"margin: 0.8em 0.2em; padding:=
+ 0px; letter-spacing: -0.1px; border: 0px; vertical-align: middle; max-widt=
+h: 100%;"></a></font></div></div><div style=3D"font-size:x-small"><br></div=
+><div style=3D"font-size:x-small"><img width=3D"96" height=3D"44" src=3D"ht=
+tps://ci3.googleusercontent.com/mail-sig/AIorK4w7gKovNZAR8tYAuQ9hIjEiBgWel9=
+uIDPpW34GyeY595Rek12deHDAlPE9ZZxtPymKBYCzaHBU"></div></font></div></div></d=
+iv></div></div><div style=3D"color:rgb(80,0,80)"><div style=3D"color:rgb(34=
+,34,34)"><div><font face=3D"times new roman, serif" color=3D"#000000"><br><=
+/font></div></div></div><div><div><font size=3D"1"><span style=3D"font-fami=
+ly:&quot;times new roman&quot;,serif;color:rgb(0,0,0)">This e-mail message,=
+ including all attachments, is for the=C2=A0sole use of the intended recipi=
+ent(s) and may contain=C2=A0legally privileged and confidential information=
+. If you are=C2=A0not an intended recipient, you are hereby notified that=
+=C2=A0you have either received this message in error or through=C2=A0interc=
+eption, and that any=C2=A0</span><span style=3D"font-family:&quot;times new=
+ roman&quot;,serif;color:rgb(0,0,0)">review</span><span style=3D"font-famil=
+y:&quot;times new roman&quot;,serif;color:rgb(0,0,0)">, use, distribution,=
+=C2=A0copying or disclosure of this message and/or its=C2=A0attachments or =
+parts thereof is strictly prohibited and is=C2=A0subject to criminal and ci=
+vil penalties with appropriate=C2=A0national legislation.</span></font></di=
+v></div></div></div></div></div></div></div></div></div></div></div></div><=
+/div></div></div></div></div></div></div></div></div></div></div></div></di=
+v></div></div></div></div></div></div></div></div></div></div></div></div><=
+/div></div></div></div></div></div></div></div></div></div></div></div></di=
+v></div></div></div></div></div></div></div></div></div></div></div></div><=
+/div></div></div></div></div></div></div></div></div></div></div>
+
+--00000000000098c68706235d7252--

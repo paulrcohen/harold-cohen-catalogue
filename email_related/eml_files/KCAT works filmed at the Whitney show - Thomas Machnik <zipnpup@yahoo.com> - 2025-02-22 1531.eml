@@ -1,0 +1,185 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a11:111:b0:5c7:f970:fbca with SMTP id x17csp977145pxu;
+        Sat, 22 Feb 2025 12:32:07 -0800 (PST)
+X-Forwarded-Encrypted: i=2; AJvYcCXBJl+QBvK0E0nIfdRanai4+2pvx5HZ2qBygmZq1Wyccb0ljK8+bhRmtfB/ZJ89DcFQERATDzeDnyg5@gmail.com
+X-Google-Smtp-Source: AGHT+IEc7uQpYXM/kkY4yxQKqw4K7GCdW1xeHv7T/C2e+e+JV5t7TaR11bWTww5wbHrwn5BgwGNk
+X-Received: by 2002:a17:902:eccf:b0:220:d1c3:24d1 with SMTP id d9443c01a7336-2219fff2c96mr142216685ad.46.1740256326957;
+        Sat, 22 Feb 2025 12:32:06 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1740256326; cv=none;
+        d=google.com; s=arc-20240605;
+        b=V9lbn32kdlyz0ThnjAOnKm2dAflyTn4bnSV6F8paZ7jaY1CQlwEwMw/uauyAL5+yxb
+         JolQP//sk6cePR60Ray/U5490oydNLqlaHam8bjIG5orQJXGpDOTTsOtfBLsnfTEESH5
+         SKDasSWnO1zwqLVWzf+q5U1vHTP+yKMSS/qssLxtXa8HwAn++Avjpzxul2iE/tN+jhS5
+         zL7NDu7Rf0IRKgajzPljZGSrTJAaLp0PxmvKeKVZtWtGVQqsbl+X7Y/NSVy4fA9r09Cp
+         Mg3z5cLypqyEH1ub6TWfIsvl+8hak3xRbudjEpGnJsztrbHbG7uTLUagsLsVjIbaoXSU
+         +1gA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=references:mime-version:subject:message-id:cc:to:reply-to:from:date
+         :dkim-signature;
+        bh=U5cfXb9Qstp2xJ2Vs2WkzGmeF3Kx1XGtXhBEXgZWWJU=;
+        fh=vmcX3yW+UdHDWYrF7pY9QoNxdiQHqXORbXQ7Cohw37c=;
+        b=DiCrcHwWRF1cMuIyqezQSdbL0nG8MH25xYNnm1YNEOjoYyxBG5EKb/zxGdyqlkW8pM
+         uFDLXkXprji75a0GqKRp4HM+gqWKZBZ5IfirAA4M1kqVtkswruCbvckLucyHgVYy5imD
+         G+F9jWnWv785FzER4dl8vDXLwT4yeHcf5QSpq3K2d5dYyPQKb5Q1uiseFjItEUv4MeFJ
+         WOQhZVrdpKK1saXObHuaC/hNZzuweb2WrSADkxCEGlh+xd7xDoBtN/wqRG+/vB08OVq0
+         XRmtqC2M5IFT/1dGtyOHGplW2Dkg9P6YBh9XHTc7hXCQPhTlfrZ7MeStCkPx5gXPSxlO
+         qewg==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=WI52PZNb;
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.131.81 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+Return-Path: <zipnpup@yahoo.com>
+Received: from sonic319-26.consmr.mail.bf2.yahoo.com (sonic319-26.consmr.mail.bf2.yahoo.com. [74.6.131.81])
+        by mx.google.com with ESMTPS id 98e67ed59e1d1-2fceb04bc01si6488453a91.42.2025.02.22.12.32.06
+        for <paulrcohen@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 22 Feb 2025 12:32:06 -0800 (PST)
+Received-SPF: pass (google.com: domain of zipnpup@yahoo.com designates 74.6.131.81 as permitted sender) client-ip=74.6.131.81;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=WI52PZNb;
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.131.81 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1740256325; bh=U5cfXb9Qstp2xJ2Vs2WkzGmeF3Kx1XGtXhBEXgZWWJU=; h=Date:From:Reply-To:To:Cc:Subject:References:From:Subject:Reply-To; b=WI52PZNbkikSDXmb7hCbpr+4Lvnh7qrJs7IK94t0pUrtVwTCfQLx0om7YCS7NHZeom/7ubVPJqoAGn7/vmBRYCRLNnwKbU4TPHZ7R8hpD62IUXyGA4/YCS0GnhWpHIlYpVJZk8eRUC/UtLPjghzJZkwefsIwrIyDT8KNISDbRlQ0/KufO3LOKIM08KQn22rj825v6F+9XbZ7Ub+SBATCSfqKfbASrGRLl0EMkV+jXnuEWXQElm+v2P5j0TtbDytsWJZuz0HmgXrIgPO1TnDKiDVNP2Rb7IFkUyML9XyzPjbqW/fryP6CWTNTUDq6RIuWpnSi1Sr95MqRa2mmTfIauQ==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1740256325; bh=+UJNrBLwoEKv6KhPTgFv5wXteRBYpfIbVGlkd0IHKtE=; h=X-Sonic-MF:Date:From:To:Subject:From:Subject; b=RItZafMTfpSdZKXohd3GV0oZZyUrw7OcZgj18HnjSNgYxKL5q96JfopqPkYMjoayAtUEov83QRz+H9/zTec5A9+iTbuRSge1kY63A03TlqIjEbbQVoBHMLVdf6HdsmFDdK5o7JjDALT3TqS1VIVQg4tQ7ot8MpzY81ZzNTeRyBdoYUQi5DhKqdLqwuiepMLYO5p+HM9S5XNj5VUNmhlASlYuIknZZKUr1RwQ73qCt6zEPec8kL9Hp2QEJmrzW5EKBXm++rCiFf+fW4duG5RIaNMIQqWUg/lWr29L3iPCA9H59gyoTbPmy5MBrxDHwu91KZYcyEqgxvc7TQKR4gSJoA==
+X-YMail-OSG: d3T1nAMVM1mrz9vlBwuGzFV0AtI8uzUgUmHfA7_QgFwI8gecoc0I4Z8_ORDjOnL
+ VVxMrm0EIW6Hk3lWUHBTLgjSRiOGs2xY4mD1QzBqgFyKSPi8JYwQJBznq3OMweFMDlpr0Ofo2fNc
+ RRek0LynDt1eXymnYKYoxLRbrwzhtDQjO8fXEG09_WiYCCa9PQl0gce_UbcnoUoc3QIArg5rdvRt
+ 0tr4vedi8gCfD.LmK7E7zAOBK4mnoq1VoLyaATSAcENatK3XfT8ojlkw9wJSLOxkmtfdG6Tsq9gy
+ YAqBZt5b5Szsbeg4dAnL0P9pn5gNoCLGkmVU243yCok.yI471Rg8GwyzdBvUI.sE02FUpo_.rky4
+ uC402cFhT4WXLCj1lSnmKuPP_iLy36L.l_Vt_Sf4LN8jxGY7MWpziCS2YbxVdWfzuZR69qMNync1
+ oDdtzcsE3ZuBPLidKQyC0rqp6K1TxONLGYZYa6t3S_Fv7GyPVcM1qYIfl5rUeskgDlo6r_TYCV.Q
+ wW40QFoc2kSbH8CMyYT4AWenjZOOC1JY9ZaMXdZ4DuCt9AQGqWxRNK_3rRznb17Pzi12ezfyy7_.
+ _wLLin30K35IprDAYya1GqL5uUN7TLHAbRaNz5Rwz_nsWZo_LkEGc4zuYZjXRE4JrchjyIWHuDWQ
+ ImUBrdMePkICNlzBo.ReEY3k0irBwePgNpdJ4X2y0YhfsLNiUNrKnt5OqIfl7LjNIKYMW5qTgR4G
+ 2PH6A5vgbdKu0CmfFf4J_hddr7wSmOAJVWBoN1066SGX8wBtVHVTE28HdhLmSeZboSPgrQ4HWYZV
+ FjKGSpt0ZULEV61sbjoAQ2.C20MtaHnsz8rp5M9BANyGfES7Fa607QOLTZJxJcIxBeqXAQMikYSD
+ t6IejQhHjd.jKaag6S.S.Tk1Nxz89Mv_PmXMSCIPbncVkH96YmIvwdZsdVPqNsSFq_sPKd_4RFOM
+ ipRJ4pUh4YxFKvzt1.hLqto6VfhaVXKJlDbhtlIhNyITAF6.NJcSUumX6iXq6x7l4uqJmiBCs62V
+ sEc68askfIkkT3OH7RpaZ5y1n0VCzYft7blTPXi7IsKFC0fFwq98Zw686VWSX9ULIEoUA.NQtTga
+ NtNfbK58Z0S2nLOJhG7jy_fvkRa8xiaPS2OeCAO8QDtrX1m2OZzpu4WNpv.g42ijzmKMoB9WjNE4
+ mRmGOG4dJLzvlCJm6SFzQ6nSlhuD4oELuG4Tcyapmcs1sLLXWX_SHsuckSInLRDwM7tseF91zuh9
+ l7lMi3C5tealKJK.2.mH12qXjH3Odbz.6c04n6avILDTrEBWhCBdxwr327Oj6PnJzNWmaff9_kQ2
+ 1W1CKfzbK3PF4UDWF2s0FtKVfyItbyqYl.K4lnFaEbt76ekhj4Otd5VjajEr7LuA7HeDkiQRbv7e
+ UthrdeNaVNRdPqfF9j5nc4iPa3KwawutewkkYFqGQTN6Rw..Bzcma.nPYGaTVHrGUFvsKjt2m7QK
+ ze5156rlDl1DiPC6x8ayZOfxoyylB64Etz4IPSYFtoQHrrsgHw3DFTRa1ZCURI4lf_O8bc9JxIAL
+ cq7fz6kzMck7GJDYn_ECuun4GgLP30D3tO9Nvlit2UshJVDP9Bf7chMyorfT83DTbsc5eipv_zm4
+ tuMSWYaTp5btnXx_msBbpJNvIvlTpy8XvKEjnPurOgVrbUBBDJ0tY2VzY9vDZU3dfZDle8Kg88_q
+ 6b2ssfauBt.m4M2Ug7i7KxLtszVHFS9HnwbSqJrMN.ROBm1ecPT89RHf75nUUwhBxsojlGk_iFVA
+ aEkehGz6P3iVQ4uTyfWNRBA.rCYJWJ.sQrUc6czeSkoDr42CC9IheGGVIvoQeXIVkZnfTmfb1_Rs
+ EKFamk5emsL5q_N89dxGsBRxxu7a83zGmgBuKTk2KAWNEIUkzyo.4hUKUj8bfjVGG_.svHD9MRL0
+ TDwT7Kpb3L2rZw54Z7k1eEYG4sbIMtGmqrhtdEHlfBLamQDGGo_uJchaFgL6Ygv81YoseGRDzxo7
+ kkWTBNC1UGexB.KL0AoQOKklXrB7bpoChWWvgUawhelHIty5ljZie7uIW0ml.9asVI5NeR07ZR5f
+ tQyG150Uxasy9FWYUJ_QhKo.n2yJAuJNqT.WfAJSQyu18tJ_v9Q8DvLeArOXzFjCZpPwI1IZdI4J
+ .WWdktmVJacljHh3vZ7wwIgSMyVPE4lDBZoGr61NF05WCRBv7lhpc3f5NRUuDazGfCxra.DRnqZQ
+ 8XfMqYfm0pHddAPHoNey57IiNpS8YH1cKcaikwgsYoxxrVzpaz97mRgP2OAxfS51P7I7Wrv1ySmL
+ _jyuLgdFi_uWiKt3_1p9pVQ--
+X-Sonic-MF: <zipnpup@yahoo.com>
+X-Sonic-ID: 7747d69c-9198-4087-831f-95a1be5b5022
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic319.consmr.mail.bf2.yahoo.com with HTTP; Sat, 22 Feb 2025 20:32:05 +0000
+Date: Sat, 22 Feb 2025 20:31:59 +0000 (UTC)
+From: Thomas Machnik <zipnpup@yahoo.com>
+Reply-To: Thomas Machnik <zipnpup@yahoo.com>
+To: Christiane Paul <christiane_paul@whitney.org>
+Cc: Harold Cohen Trust <aaron@aaronshome.com>, 
+	Paul Cohen <paulrcohen@gmail.com>
+Message-ID: <752327734.1821996.1740256319185@mail.yahoo.com>
+Subject: KCAT works filmed at the Whitney show
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_1821995_2126943457.1740256319184"
+References: <752327734.1821996.1740256319185.ref@mail.yahoo.com>
+X-Mailer: WebService/1.1.23369 YMailNovation
+Content-Length: 6125
+
+------=_Part_1821995_2126943457.1740256319184
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Christiane,
+I hope your year is off to a good start and that you are involved with exci=
+ting enjoyable efforts. Hard to believe a year has past already since we we=
+re there with you at your incredible Whitney evident for Harold and his AAR=
+ON.=C2=A0
+I am currently working on identifying AARON works executed during the Harol=
+d=E2=80=99s transition period away from the painting machine toward his use=
+ of wide-format commercial printers (1998-2002). At the moment, I am focusi=
+ng on Harolds year 2000 efforts =E2=80=94 just prior to KCAT=E2=80=99s rele=
+ase. There is this one digital image that seems like an outlier. Based on t=
+he imagery it seems to belong to June of 2000 except for one stylistic feat=
+ure =E2=80=94 the nose. =C2=A0
+I know that after the initial KCAT release, Harold began an effort to remov=
+e all the black lines. The earliest dated evidence I have seen of the lines=
+ being removed is May 2001. This artwork has no people though. The earliest=
+ dated evidence we have of people without the line drawing is Oct of 2001. =
+After Oct 2001, the lines are completely gone until 2012.=C2=A0
+I recall Harold commenting in particular about the line used to make the no=
+se and how to handle its removal. From that view point it might be possible=
+ that the work in question was a kind of transitional/experiment work of hi=
+s. A transitional work that would be post KCAT and pre-line removal. And if=
+ so, maybe he used an earlier 2000 AARON version to do an experiment. This =
+is just a guess. Ideally, I find other examples of this nose prior to May 2=
+001.=C2=A0
+When I look through our people with faces works (1990=E2=80=99s to 2001), I=
+ have yet to find a nose like this one. AARON did have the capacity to gene=
+rate a wide range of variety and I haven=E2=80=99t necessarily seen the ext=
+ent of its variety. Your Whitney show did produce a large number of works. =
+In fact we have many of them here in the studio. I believe looking through =
+this collection will help me resolve this issue and possibly others to come=
+.=C2=A0
+We do plan on photographing the works you sent to us sometime in the future=
+, I am wondering if there is a way to look through the Whitney KCAT collect=
+ion without having to do so physically and prior to photographing them.
+I would appreciate any thoughts you have on this matter.
+Sincerely,Tom Machnik
+
+------=_Part_1821995_2126943457.1740256319184
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head></head><body><div class=3D"yahoo-style-wrap" style=3D"font-fami=
+ly:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px;"><div dir=
+=3D"ltr" data-setdir=3D"false">Hi Christiane,</div><div dir=3D"ltr" data-se=
+tdir=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"false">I hope your=
+ year is off to a good start and that you are involved with exciting enjoya=
+ble efforts. Hard to believe a year has past already since we were there wi=
+th you at your incredible Whitney evident for Harold and his AARON.&nbsp;</=
+div><div dir=3D"ltr" data-setdir=3D"false"><br></div><div dir=3D"ltr" data-=
+setdir=3D"false">I am currently working on identifying AARON works executed=
+ during the Harold=E2=80=99s transition period away from the painting machi=
+ne toward his use of wide-format commercial printers (1998-2002). At the mo=
+ment, I am focusing on Harolds year 2000 efforts =E2=80=94 just prior to KC=
+AT=E2=80=99s release. There is this one digital image that seems like an ou=
+tlier. Based on the imagery it seems to belong to June of 2000 except for o=
+ne stylistic feature =E2=80=94 the nose. &nbsp;</div><div dir=3D"ltr" data-=
+setdir=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"false">I know th=
+at after the initial KCAT release, Harold began an effort to remove all the=
+ black lines. The earliest dated evidence I have seen of the lines being re=
+moved is May 2001. This artwork has no people though. The earliest dated ev=
+idence we have of people without the line drawing is Oct of 2001. After Oct=
+ 2001, the lines are completely gone until 2012.&nbsp;</div><div dir=3D"ltr=
+" data-setdir=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"false">I =
+recall Harold commenting in particular about the line used to make the nose=
+ and how to handle its removal. From that view point it might be possible t=
+hat the work in question was a kind of transitional/experiment work of his.=
+ A transitional work that would be post KCAT and pre-line removal. And if s=
+o, maybe he used an earlier 2000 AARON version to do an experiment. This is=
+ just a guess. Ideally, I find other examples of this nose prior to May 200=
+1.&nbsp;</div><div dir=3D"ltr" data-setdir=3D"false"><br></div><div dir=3D"=
+ltr" data-setdir=3D"false">When I look through our people with faces works =
+(1990=E2=80=99s to 2001), I have yet to find a nose like this one. AARON di=
+d have the capacity to generate a wide range of variety and I haven=E2=80=
+=99t necessarily seen the extent of its variety. Your Whitney show did prod=
+uce a large number of works. In fact we have many of them here in the studi=
+o. I believe looking through this collection will help me resolve this issu=
+e and possibly others to come.&nbsp;</div><div dir=3D"ltr" data-setdir=3D"f=
+alse"><br></div><div dir=3D"ltr" data-setdir=3D"false">We do plan on photog=
+raphing the works you sent to us sometime in the future, I am wondering if =
+there is a way to look through the Whitney KCAT collection without having t=
+o do so physically and prior to photographing them.</div><div dir=3D"ltr" d=
+ata-setdir=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"false">I wou=
+ld appreciate any thoughts you have on this matter.</div><div dir=3D"ltr" d=
+ata-setdir=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"false">Since=
+rely,</div><div dir=3D"ltr" data-setdir=3D"false">Tom Machnik</div><div dir=
+=3D"ltr" data-setdir=3D"false"><br></div></div></body></html>
+------=_Part_1821995_2126943457.1740256319184--

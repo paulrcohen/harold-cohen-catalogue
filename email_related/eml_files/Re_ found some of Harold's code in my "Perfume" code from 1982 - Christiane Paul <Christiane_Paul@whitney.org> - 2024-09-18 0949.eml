@@ -1,0 +1,412 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a10:d607:b0:5a5:c71b:1392 with SMTP id gm7csp774555pxb;
+        Wed, 18 Sep 2024 06:49:09 -0700 (PDT)
+X-Forwarded-Encrypted: i=3; AJvYcCVvJOjQL9YKWRj9VkHlrP9sK5jp4pT2g50ucuyFPLozGnemHKm3+ORyxhKBu/JMiS1e9skHUdRzhUfp@gmail.com
+X-Google-Smtp-Source: AGHT+IEeX4wacZBcF/yOEENaLeA3sE9Eg/wJu3w2tHlbZwwt0rJoDtydqLBbcjjn5jz9+bIGdCX5
+X-Received: by 2002:a05:6214:5507:b0:6c5:51f0:3b20 with SMTP id 6a1803df08f44-6c573abbd80mr384182826d6.6.1726667349174;
+        Wed, 18 Sep 2024 06:49:09 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1726667349; cv=pass;
+        d=google.com; s=arc-20240605;
+        b=RLNmJzD2eVomxagsyr2NKOOAzgbDgL5JrHyDbJQPr+rrMGpYsIeMlTy7rku4+wBXJl
+         WMhYWqIVY81IOrPvwzgc1UcyMbnmf+tIWyisbY0T6pbduWSjvKZCGjU/NqL8hM7xF6NI
+         NOt0b8EQQ7kpJDOl/jKjhRnmCKUT5YRsdKGWIW8InnRl8qNO0sp2QiJZJBOapFMo6OqC
+         z58gvT2Id/JHTlr1ub2Ua2V3vhG2zNaVw8mIV4+A0n5gPZMtP2+l9vFoaLLR9sQX+bVi
+         pgI5B9iDhcttF9q955sq3iWFZ0h6X3blUOGfW1rlytFJzyqWWWfIOyv0gKjqyb2K1KWp
+         IwIg==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:msip_labels:content-language:accept-language
+         :in-reply-to:references:message-id:date:thread-index:thread-topic
+         :subject:cc:to:from:dkim-signature;
+        bh=c9bUlj7phjvb3TbmCwo8F8CxaB3ZpyJ9lRpqtzf1YSA=;
+        fh=V7JyTe/TfV+L8/F3PwtNPJzP3Zw3YdjQ+1BLHQTVhH4=;
+        b=OwcpfAk7fFRqF3iKhMZfQ0PHkYQAZ/tGkl7w7/KHJV7DRfX/yOm9dP4AAhFiR6rGiG
+         nghfsTNfWYnqGMFK8vSSYN3R0rGjvVEqRFfX+J8mVgfLX95A9N7lAEGbl0/yukrxk05H
+         y3sQe/xfMGjx/SGAVZPTn5lY/YOpo83YLq46ResG+u79GFBLjBjOA/7YmcvP/JmXg5jh
+         vuOvvYjAYFX+BAwcNhbItQ3SZ6OnLqJBKuUR10Kz8bScnbHtruWIlk/l4YHEaN5UMFUW
+         k97JenQji63ud/92RH5UEVa/sMclxeonyXjyCvD4Nc//YQ4ent359fU15Y8drc7QAPua
+         ZtHA==;
+        dara=google.com
+ARC-Authentication-Results: i=2; mx.google.com;
+       dkim=pass header.i=@whitney.org header.s=selector1 header.b=IVe3Nwlj;
+       arc=pass (i=1 spf=pass spfdomain=whitney.org dkim=pass dkdomain=whitney.org dmarc=pass fromdomain=whitney.org);
+       spf=pass (google.com: domain of christiane_paul@whitney.org designates 209.222.82.60 as permitted sender) smtp.mailfrom=Christiane_Paul@whitney.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=whitney.org
+Return-Path: <Christiane_Paul@whitney.org>
+Received: from outbound-ip193a.ess.barracuda.com (outbound-ip193a.ess.barracuda.com. [209.222.82.60])
+        by mx.google.com with ESMTPS id 6a1803df08f44-6c58c7af2f8si107665346d6.331.2024.09.18.06.49.07
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 18 Sep 2024 06:49:09 -0700 (PDT)
+Received-SPF: pass (google.com: domain of christiane_paul@whitney.org designates 209.222.82.60 as permitted sender) client-ip=209.222.82.60;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@whitney.org header.s=selector1 header.b=IVe3Nwlj;
+       arc=pass (i=1 spf=pass spfdomain=whitney.org dkim=pass dkdomain=whitney.org dmarc=pass fromdomain=whitney.org);
+       spf=pass (google.com: domain of christiane_paul@whitney.org designates 209.222.82.60 as permitted sender) smtp.mailfrom=Christiane_Paul@whitney.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=whitney.org
+Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10lp2043.outbound.protection.outlook.com [104.47.55.43]) by mx-outbound10-131.us-east-2a.ess.aws.cudaops.com (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO); Wed, 18 Sep 2024 13:49:06 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=I08aE+yLYflPvoV/e0bPlbrgCKiQVEmkWKxe/TC1pZmGzaqr8VtdwPquWcbk6tF7cXYFoWXnOAyHwZsVI917Ul5EZpRbdb61NqTneLNzV3smOI53710tS5eV2Qo4N1+dCeqmjzVQsRL/D8qxlRd6V6f0ge8YwSQI5F8Ak1xdnsPfLc9d24h0tBlIS+uy2wNcZw5rmcvHoBnG9lXRATaC6dXQEKYI+jkISZPOJobxGGTHsVGszr5sY2EDzB3tcu/2kQ7GJIOUicPN4KIaTpX9ytOuwwjthr1Uc6IPwE6EjYSVNaDmhX2sh2/KfaTXgRAoZeqCpcuRt5o4WTitI2c+GA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=c9bUlj7phjvb3TbmCwo8F8CxaB3ZpyJ9lRpqtzf1YSA=;
+ b=Sxo3tiDx6DpnFq6VDXLmev4lS68oo0TKWcEZMwBbBVLqG78tufUp5Y1QdVBUJ69SHuT4cNkY3haDgX8vNNxKnpcP3msDAZd+FmBYxGKZm2kbryM363rGc/ApvFUliDPzfkvlzIDSz8jcTqGbmSjWC1DRAZK6wT7DQJUiHkYYrfAGtXKfyRcbFwYrow3ZHDAuwMaw7FHPTfohugfm1Av9Em3C+FlBqFHJJTeftFgLqMZFe44KCoNSe4Jldpe4omSpfFcR91nTTnjT4+hiEf2VNW5ZvPUO1Tkbc3L2Q8lK8zrjOZogfyBLG4rB9UY1AnOcoruUZkhkNAa4DwMGbdOzwg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=whitney.org; dmarc=pass action=none header.from=whitney.org;
+ dkim=pass header.d=whitney.org; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=whitney.org;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=c9bUlj7phjvb3TbmCwo8F8CxaB3ZpyJ9lRpqtzf1YSA=;
+ b=IVe3Nwlj/6mZhwJQBi0Ltlg5gCPBlc4g7nOiAN9pTpHTOcIHYYoXdYF4fqN5WudjYRyZzfOvMIBhwFyLVm04WYd3GQH/mMzViRsOv8IzwJ/s8nZL99hjmkZO9DxwogXkDzQv0FCCh6wAI3FZe+0ut/wF+SdPhXFRCNgsJ3ZW2Gg=
+Received: from MN0PR22MB3666.namprd22.prod.outlook.com (2603:10b6:208:379::21)
+ by MW6PR22MB4277.namprd22.prod.outlook.com (2603:10b6:303:240::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.7982.16; Wed, 18 Sep
+ 2024 13:49:03 +0000
+Received: from MN0PR22MB3666.namprd22.prod.outlook.com
+ ([fe80::166e:4692:17a4:a496]) by MN0PR22MB3666.namprd22.prod.outlook.com
+ ([fe80::166e:4692:17a4:a496%7]) with mapi id 15.20.7962.022; Wed, 18 Sep 2024
+ 13:49:03 +0000
+From: Christiane Paul <Christiane_Paul@whitney.org>
+To: George Legrady <glegrady@ucsb.edu>, Paul Cohen <paulrcohen@gmail.com>,
+	Becky Cohen <beckycohenphotographer@gmail.com>
+CC: Thomas Machnik <zipnpup@yahoo.com>
+Subject: Re: found some of Harold's code in my "Perfume" code from 1982
+Thread-Topic: found some of Harold's code in my "Perfume" code from 1982
+Thread-Index: AQHbCZCalVl3pHdJLUqeLjl2wXgG1rJdjnUf
+Date: Wed, 18 Sep 2024 13:49:03 +0000
+Message-ID:
+ <MN0PR22MB36664D23617E484906A727459D622@MN0PR22MB3666.namprd22.prod.outlook.com>
+References: <6BF1B99A-7BCA-4C20-9660-BBA9A6E33D22@ucsb.edu>
+ <CAKjPZkHpV5UZW8Y8_hFSORP33p=G4u=XPwOfgyg-MD_DEkZkZA@mail.gmail.com>
+ <5E256D2A-04D6-48DA-9D7D-D0654BD4D11C@ucsb.edu>
+ <CAKjPZkE_Tr9q6Q6pvuG3ZGa4Z9TTr0RyoptF0R9sfV8CqK8axQ@mail.gmail.com>
+ <F85BAAD4-4DD2-4895-8587-1DA5478DD236@ucsb.edu>
+In-Reply-To: <F85BAAD4-4DD2-4895-8587-1DA5478DD236@ucsb.edu>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+msip_labels:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=whitney.org;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: MN0PR22MB3666:EE_|MW6PR22MB4277:EE_
+x-ms-office365-filtering-correlation-id: 9b3369cb-0fba-48bf-e500-08dcd7e8a814
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|1800799024|376014|366016|10070799003|38070700018;
+x-microsoft-antispam-message-info:
+ =?Windows-1252?Q?Fsdep7w0GzkDK8Qqo2ggOT7O+JmXppNQNErPeTmszwOWxh8VlJY+gQe6?=
+ =?Windows-1252?Q?pt0eny8eSxW/xZihEkRHtEIaoPBZUhaj8B14LjvOjFfMRhFreetjGXs6?=
+ =?Windows-1252?Q?Z4h88CsAP/J0MU1eHfss3NxJ/CZC+mxfhpLHwwyrKyoCXDLpP6XhQEeN?=
+ =?Windows-1252?Q?LDs9mwETugPk+IgshJ91ChwdkMwSSMjw64muGxXjmbFunzH1o5kvtP3v?=
+ =?Windows-1252?Q?CMYf0Vmg54Vb8c/jNeALKfxqc7+aiPye1cTh5mD9jpGcBMLF2pcpaZAL?=
+ =?Windows-1252?Q?ST+/Kp2KEXjTtE8CwOMalK9IsOVJvLnCvoL502HdPIJsLGTTq1hHahRb?=
+ =?Windows-1252?Q?ugR1xWtE3t+O3MlAx2DP36dNZqi66ywk5WthoylbJ7tqYRDbdoNLDxeR?=
+ =?Windows-1252?Q?MfPPOfT3VJJEG5DUF26GjGoJ4dzl/Q/U2sw/bDI6pkJbA38iR5L8JsO7?=
+ =?Windows-1252?Q?UvO4fzh6RvQ1uhs8haZ52jzb66GaVFaG5pIkZdLbSzVxSmqNlKqAXfJg?=
+ =?Windows-1252?Q?3B3G4eB6lKpSUX0n/i735YZgBkimZJ6whXlMBBP6Gj60HOEID1ZoXbNQ?=
+ =?Windows-1252?Q?xn8Fbd8ety7oYgF3dv/2nI6xedZx1791GQRCJ+cWSHL13FhW5JwrEVLO?=
+ =?Windows-1252?Q?di0Bs5DTe5dwk6b7mSyqYh+3vRK08xMmFZJud41pZrGPLCjX6jHo7qbu?=
+ =?Windows-1252?Q?4V8awRPmK7L4U6ARGr9tigZvnF8rVeAo74Ai1/D5XcG7LH4YKXwvcLFp?=
+ =?Windows-1252?Q?b6Ayu6aPw+orMT5yrMGtdmcJXtiXFo4pifxA0MTJjn4lSs+uYdpaESk9?=
+ =?Windows-1252?Q?T0Fo8NKMtaWEKeRqYSlQqUvDXPOhliL/hQL5vJiShlK4qVLWu/JzZcaW?=
+ =?Windows-1252?Q?NnTKgN9mTQWWT6UC2mKd5auH9wdYS9LhJ10Tn8SfRfInJmYMu6z4n73H?=
+ =?Windows-1252?Q?hF3rXFaTQNIE3eV8jKYXCtAEqfDXDgVzKPvtqmtzrn32t470O4dl24xv?=
+ =?Windows-1252?Q?xbEMszpT75APEJDVlAkFG8gLWQxuZQa7l5aEy6SgATpfWWs4Qqo13nsg?=
+ =?Windows-1252?Q?5j0KyTu2nmzAIXNYyHznQNcoG5FO6F/qQ4Pm6bwDfH76R3NtQlp9M40e?=
+ =?Windows-1252?Q?ZP0M+OlaJJcLyKoNcG2OXSL9FIkJRpJqTxiMjgzYjvtuy2ypDf/9M0su?=
+ =?Windows-1252?Q?lUbB+iZf0xaz7iDH5GOQcMATCkDLGtGw9sUCakCEJX/EG1woqfZwfPNK?=
+ =?Windows-1252?Q?vcgmC5wiUXq1wwzmmoG0h9wZl/Cl19N/Vgpj+qXxpmqyoD5Roo6tRjTs?=
+ =?Windows-1252?Q?Y7IeGLB4CbGM65Wq0sH4eMMEwp01hX374pwbOwT8sPfZzy+euRcFOxxo?=
+ =?Windows-1252?Q?j/pH5o75jAeKH9y9yVAxyyREXrr4CDH90TWodPhaBzcJ9UW9rZciA5lM?=
+ =?Windows-1252?Q?Gl1PAVotA4S9dFyWWHjmQ03FGeQtCRqP8bl507d0wCk9AhUDbIC0y4uC?=
+ =?Windows-1252?Q?BmtGH7QeBrUanVRIhSYNjr30DlBdFA=3D=3D?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MN0PR22MB3666.namprd22.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(366016)(10070799003)(38070700018);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?Windows-1252?Q?W2BLqu0fUaaFcKEH0aS/4c06on8qqFWNwrewbiumOd0TNdn5RITIgY0L?=
+ =?Windows-1252?Q?2eDJWMuoxYqKloVCytBHP0ISbb/4bABYmoXWCHtwJuCYOC0vS7gir4Qq?=
+ =?Windows-1252?Q?bUC2H3iC1IB2XrBPzb2b2/+MFvakActQ12T/GXDhcejPz0u0rfmGI10K?=
+ =?Windows-1252?Q?6QkJ0an+SErlMDMVwF9aqysLRBjpgLD6Zg1ucZy/gs6iSadbPKXfYnRG?=
+ =?Windows-1252?Q?MQ+5OMIFA71QNFAxjzpDU9cC5cVOjY9GKv/FAZURfLSN73FMz+GOsBTd?=
+ =?Windows-1252?Q?KJG/Xg+P4Ppe4rReZSdltFrqQYRUTCuTDPZoAL6KUK8V7YU9OPoIfLAG?=
+ =?Windows-1252?Q?jxnb25LkEMpcOwtYZBqqaYbyvtBcYY7Tmp5vqfrBix+TDV25nzfWd3Fy?=
+ =?Windows-1252?Q?44GIULrq3kp6283ezG7eOdBJB4v9s16FLORv3JbfzVr1ecUuPaa/NpqW?=
+ =?Windows-1252?Q?qBTA5uDyz65giGfQ5y8rT1nAIdYiQ8FXs3pZbbMdB881HhO35qnEVjmA?=
+ =?Windows-1252?Q?+9iMS7fflcy0TskejdvZmbM8/mC7JKRX0Z9VAdWVJO01of2KeOpu96xl?=
+ =?Windows-1252?Q?oS/G9Zc2oPMeTgiFaR7tCeSMXxesSpiapXXcdHJnnBGW1SypGU1DMdTU?=
+ =?Windows-1252?Q?lyjZuQBDEjtJrcut1xwY4l7nsu9SRUNPSUE1H8ZiXWjHwxG8yYwuYNbD?=
+ =?Windows-1252?Q?5JlwNgAttBaVoh0B3Dq+VG/9O9hdhLw4BwdyuoWDNM1HAyxu9zj8Suej?=
+ =?Windows-1252?Q?eGzVDpF8uFe2jXX8/ziB2qL31N6JCoDw1801MXWcJDkx/1P6tamZw+1k?=
+ =?Windows-1252?Q?teK7IrzlCqedrEje4DvHeBdOSBuFLUFfazo5nzNI7YYp6tQjQkc+Hot9?=
+ =?Windows-1252?Q?t/IKaaQqaZ0sXMtwjngEW/tx4ZJy2Fb/gt51JoFY5p15CrwebAYUEoFG?=
+ =?Windows-1252?Q?HY4Se4GCUQoxwBbu9cnji14gngUn4xF99r7ssVfE6O/f1OATjIovpsHM?=
+ =?Windows-1252?Q?nTLQ7m4iq+8SnUzIrVHksSPuXhBgYjBEwOvtqEyRSw+bY4SeUcOZtFVy?=
+ =?Windows-1252?Q?1EQuyJ4uegmmnzOl5IQsH8EaiaAFpdAdzpydHJKbGrrb1UpenfSBv81y?=
+ =?Windows-1252?Q?stL5tLclUXIHXfEzTjYq8DSLhdM2bwaKMc6MWgWxIX2LRCY4jN7ssA7+?=
+ =?Windows-1252?Q?xBJ+JVJMzkYbrmmycyyn9rUyMYjRhg/hQtr2oBh5iOgsimaxRBGVeC1Z?=
+ =?Windows-1252?Q?Vysu+q4mzOSfrsQjheEYRJGbsgKj4LHZl/4pAVNSTofgnZFNcG8cXGf3?=
+ =?Windows-1252?Q?SQsWa/GZTAlyj7fIkUeTd/7caXaKeNez70x+Xt7yy9WZGhOTIf/+2MHQ?=
+ =?Windows-1252?Q?vK49iRMh81d3Wv4Q1c/t5bBKycDjj3p/RbEL/LmZXI6XRIP74aNiPlsr?=
+ =?Windows-1252?Q?bDMVLTUQK4C0NGLpZ7qXQWm/6TPDbMYtr6IEKneMLw7cZ5MEDEhPyfNh?=
+ =?Windows-1252?Q?7SXVOE2zaeeA1Tdrco7l4pmBcFY+A+1SjuSZEebA50GGQWfyF1k/xmvh?=
+ =?Windows-1252?Q?g/qfd2TlxMwcz/8u2RtZyC9s31S0twhVnMVc39mZEvREWGTxkHfvB7KU?=
+ =?Windows-1252?Q?qMgBagSJt4tilJqc1QZPz3l0tCPB+UwFd6zJvFSbY+cI1mrB2N2/hAIm?=
+ =?Windows-1252?Q?YeG5ntKrK8i5+R5vxLafLzUa1X5hK4m+1ZLufD/JQGcgDJ6HuDzy9hBP?=
+ =?Windows-1252?Q?IRGXFMx49ObQKFAEddU=3D?=
+Content-Type: multipart/alternative;
+	boundary="_000_MN0PR22MB36664D23617E484906A727459D622MN0PR22MB3666namp_"
+MIME-Version: 1.0
+X-OriginatorOrg: whitney.org
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR22MB3666.namprd22.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9b3369cb-0fba-48bf-e500-08dcd7e8a814
+X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Sep 2024 13:49:03.2072
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 28ad7bce-66ad-4171-92a3-6e36d172f6eb
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 9gwpCiee+ihKvVPxbOSd85TXEAB8JZyfws9T0eECJpspDrAUsJZojswmvNZBkqDy+4rJZZ6VWc80VINZWzDAmw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW6PR22MB4277
+X-BESS-ID: 1726667346-102691-12698-13273-1
+X-BESS-VER: 2019.1_20240916.1819
+X-BESS-Apparent-Source-IP: 104.47.55.43
+X-BESS-Parts: H4sIAAAAAAACAzXLuw7CMAyF4Xfx3ME2vqR9FcTgOKm6IAYyIKG+OxnKcvTrSN
+	/9C/0zYIMxd4HXGzZe1Wcd89T09IgQr6bY2M2STOptRawNCc7l74/xvLyWwpfvLcXVaW
+	cK5sY7VcEQC+rZXQucjx8WDHRSgQAAAA==
+X-BESS-Outbound-Spam-Score: 0.00
+X-BESS-Outbound-Spam-Report: Code version 3.2, rules version 3.2.2.259131 [from 
+	cloudscan15-12.us-east-2a.ess.aws.cudaops.com]
+	Rule breakdown below
+	 pts rule name              description
+	---- ---------------------- --------------------------------
+	0.00 HTML_MESSAGE           BODY: HTML included in message 
+	0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
+X-BESS-Outbound-Spam-Status: SCORE=0.00 using account:ESS111578 scores of KILL_LEVEL=7.0 tests=HTML_MESSAGE, BSF_BESS_OUTBOUND
+X-BESS-BRTS-Status:1
+
+--_000_MN0PR22MB36664D23617E484906A727459D622MN0PR22MB3666namp_
+Content-Type: text/plain; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
+
+Thanks so much for looking into it and tracking down the code, George! I th=
+ink it would be most relevant to the studio, but I'm also always interested=
+ in having the information for my own research and records.
+
+As to credits, the ones for software usually don't go to that level of deta=
+il (e.g. on tombstone labels), but I think it would be nice to either credi=
+t everyone who contributed to the code or make a distinction between animat=
+ion / subroutines with individual credit wherever it's appropriate.
+
+Thanks again, hope you're all well!
+Christiane
+
+
+Christiane Paul
+
+Curator of Digital Art
+
+Whitney Museum of American Art
+99 Gansevoort Street
+New York, NY 10014
+
+________________________________
+From: George Legrady <glegrady@ucsb.edu>
+Sent: Wednesday, September 18, 2024 1:58 AM
+To: Paul Cohen <paulrcohen@gmail.com>; Christiane Paul <Christiane_Paul@whi=
+tney.org>; Becky Cohen <beckycohenphotographer@gmail.com>
+Cc: Thomas Machnik <zipnpup@yahoo.com>
+Subject: found some of Harold's code in my "Perfume" code from 1982
+
+This email was sent from an external source so please treat with caution.
+
+Hi Paul, Becky, Thomas and Christiane,
+
+At Harold=92s opening we had talked about tracking down some of Harold=92s =
+code from the early 1980s in my storage space. Also Becky who I had not see=
+n for many decades, amazingly remembered I wrote my first program in Harold=
+=92s lab that visualized the operation of perfume molecules leaving an encl=
+osed contained space into a wider open space as a way to illustrate that ti=
+me cannot proceed backwards as the molecules could not be recollected and r=
+eturned back into the enclosed space of the bottle. I got the story from a =
+Scientific American article and this seemed at the time to be a good first =
+coding project as a continuity to my staged studio photography.
+
+I had forgotten about this code until Becky mentioned it at the opening thi=
+s past winter, but this week-end, I inadvertendly came across a full printo=
+ut in a stored box. It is dated June 17, 1982, and takes up 20 pages.
+
+Even though I wrote the code that visualizes the molecular animation, nearl=
+y all of the utilities subroutines used to visualize the moving dots on the=
+ TeckTronix screen as seen here on the right page was written by Harold, so=
+ the full printout partially documents what part of his code was like at th=
+at time. Unfortunately, the more interesting aspect of Harold=92s code I do=
+nt have, only the utilities subroutines. Additionally, the code also gives =
+the insight of how to get the data from the PDP-11 to the Tecktronix to vis=
+ualize the program.
+
+Please let me know how you all want to access the code if it is of interest=
+. I can scan all the pages and do a OCR to turn it into real code. Also how=
+ do we distribute the credit given that the subroutines are Harold=92s wher=
+eas the molecular animation is mine. For the coding finetuning, I was asist=
+ed by Jeff Greenberg, who was Harold=92s studio assistant at the time.
+
+Very Best,
+
+George
+
+
+
+
+
+
+--_000_MN0PR22MB36664D23617E484906A727459D622MN0PR22MB3666namp_
+Content-Type: text/html; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
+252">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div class=3D"elementToProof" style=3D"font-family: Calibri, Helvetica, san=
+s-serif; font-size: 10pt; color: rgb(0, 0, 0);">
+Thanks so much for looking into it and tracking down the code, George! I th=
+ink it would be most relevant to the studio, but I'm also always interested=
+ in having the information for my own research and records.</div>
+<div class=3D"elementToProof" style=3D"font-family: Calibri, Helvetica, san=
+s-serif; font-size: 10pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div class=3D"elementToProof" style=3D"font-family: Calibri, Helvetica, san=
+s-serif; font-size: 10pt; color: rgb(0, 0, 0);">
+As to credits, the ones for software usually don't go to that level of deta=
+il (e.g. on tombstone labels), but I think it would be nice to either credi=
+t everyone who contributed to the code or make a distinction between animat=
+ion / subroutines with individual
+ credit wherever it's appropriate.</div>
+<div class=3D"elementToProof" style=3D"font-family: Calibri, Helvetica, san=
+s-serif; font-size: 10pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div class=3D"elementToProof" style=3D"font-family: Calibri, Helvetica, san=
+s-serif; font-size: 10pt; color: rgb(0, 0, 0);">
+Thanks again, hope you're all well!</div>
+<div class=3D"elementToProof" style=3D"font-family: Calibri, Helvetica, san=
+s-serif; font-size: 10pt; color: rgb(0, 0, 0);">
+Christiane</div>
+<div class=3D"elementToProof" style=3D"font-family: Calibri, Helvetica, san=
+s-serif; font-size: 10pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div id=3D"Signature">
+<p style=3D"text-align: left; background-color: rgb(255, 255, 255); margin:=
+ 0in 0in 0.0001pt;">
+<span style=3D"font-family: Calibri, sans-serif, serif, EmojiFont; font-siz=
+e: 9pt; color: rgb(33, 33, 33);"><b>Christiane Paul</b></span></p>
+<div style=3D"background-color: rgb(255, 255, 255); margin: 0px;">
+<div style=3D"direction: ltr; text-align: left; margin: 0px; font-family: C=
+alibri, sans-serif, serif, EmojiFont; font-size: 9pt; color: rgb(33, 33, 33=
+);">
+Curator of Digital Art</div>
+<div style=3D"direction: ltr; text-align: left; margin: 0px; font-family: C=
+alibri, sans-serif, serif, EmojiFont; font-size: 9pt; color: rgb(33, 33, 33=
+);">
+<br>
+</div>
+<div style=3D"direction: ltr; text-align: left; margin: 0px; font-family: C=
+alibri, sans-serif, serif, EmojiFont; font-size: 9pt; color: rgb(33, 33, 33=
+);">
+<b>Whitney Museum of American Art</b></div>
+<div style=3D"direction: ltr; text-align: left; margin: 0px; font-family: C=
+alibri, sans-serif, serif, EmojiFont; font-size: 9pt; color: rgb(33, 33, 33=
+);">
+99 Gansevoort Street</div>
+<div style=3D"direction: ltr; text-align: left; margin: 0px; font-family: C=
+alibri, sans-serif, serif, EmojiFont; font-size: 9pt; color: rgb(33, 33, 33=
+);">
+New York, NY 10014</div>
+</div>
+<div style=3D"text-align: left; background-color: rgb(255, 255, 255); margi=
+n: 0in 0in 0.0001pt; font-family: Calibri, Helvetica, sans-serif; font-size=
+: 9pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+</div>
+<div id=3D"appendonsend"></div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> George Legrady &lt;gl=
+egrady@ucsb.edu&gt;<br>
+<b>Sent:</b> Wednesday, September 18, 2024 1:58 AM<br>
+<b>To:</b> Paul Cohen &lt;paulrcohen@gmail.com&gt;; Christiane Paul &lt;Chr=
+istiane_Paul@whitney.org&gt;; Becky Cohen &lt;beckycohenphotographer@gmail.=
+com&gt;<br>
+<b>Cc:</b> Thomas Machnik &lt;zipnpup@yahoo.com&gt;<br>
+<b>Subject:</b> found some of Harold's code in my &quot;Perfume&quot; code =
+from 1982</font>
+<div>&nbsp;</div>
+</div>
+<div class=3D"BodyFragment"><font size=3D"2"><span style=3D"font-size:11pt;=
+">
+<div class=3D"PlainText">This email was sent from an external source so ple=
+ase treat with caution.<br>
+<br>
+Hi Paul, Becky, Thomas and Christiane, <br>
+<br>
+At Harold=92s opening we had talked about tracking down some of Harold=92s =
+code from the early 1980s in my storage space. Also Becky who I had not see=
+n for many decades, amazingly remembered I wrote my first program in Harold=
+=92s lab that visualized the operation
+ of perfume molecules leaving an enclosed contained space into a wider open=
+ space as a way to illustrate that time cannot proceed backwards as the mol=
+ecules could not be recollected and returned back into the enclosed space o=
+f the bottle. I got the story from
+ a Scientific American article and this seemed at the time to be a good fir=
+st coding project as a continuity to my staged studio photography.
+<br>
+<br>
+I had forgotten about this code until Becky mentioned it at the opening thi=
+s past winter, but this week-end, I inadvertendly came across a full printo=
+ut in a stored box. It is dated June 17, 1982, and takes up 20 pages.
+<br>
+<br>
+Even though I wrote the code that visualizes the molecular animation, nearl=
+y all of the utilities subroutines used to visualize the moving dots on the=
+ TeckTronix screen as seen here on the right page was written by Harold, so=
+ the full printout partially documents
+ what part of his code was like at that time. Unfortunately, the more inter=
+esting aspect of Harold=92s code I dont have, only the utilities subroutine=
+s. Additionally, the code also gives the insight of how to get the data fro=
+m the PDP-11 to the Tecktronix to
+ visualize the program.<br>
+<br>
+Please let me know how you all want to access the code if it is of interest=
+. I can scan all the pages and do a OCR to turn it into real code. Also how=
+ do we distribute the credit given that the subroutines are Harold=92s wher=
+eas the molecular animation is mine.
+ For the coding finetuning, I was asisted by Jeff Greenberg, who was Harold=
+=92s studio assistant at the time.
+<br>
+<br>
+Very Best, <br>
+<br>
+George<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+</div>
+</span></font></div>
+</body>
+</html>
+
+--_000_MN0PR22MB36664D23617E484906A727459D622MN0PR22MB3666namp_--

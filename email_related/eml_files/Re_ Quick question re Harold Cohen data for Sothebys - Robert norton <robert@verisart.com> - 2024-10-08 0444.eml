@@ -1,0 +1,172 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a10:4b91:b0:5ad:6c17:f336 with SMTP id sk17csp99053pxb;
+        Tue, 8 Oct 2024 01:44:49 -0700 (PDT)
+X-Received: by 2002:a17:903:41c2:b0:20b:4f95:9339 with SMTP id d9443c01a7336-20bff17e31fmr179608605ad.60.1728377089229;
+        Tue, 08 Oct 2024 01:44:49 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1728377089; cv=none;
+        d=google.com; s=arc-20240605;
+        b=B9P0Y0RoPYBZQcDhARDMaNhsnDTBXk5PNDKLexu7fLJdlvDrBMWShylkgB1qFB5WO0
+         moSTuM/vBfOMAYQbW3IRTpVLWXAgzLIs95VPviM9vv9q/qN/+0MAj4g/FNKCOhkdsf2f
+         k9zG2YEXQZIh8wlDAKqRYpdvwyB/6tVVnM2HuDQofgq5qFkczobCBGW06i/jEKCAiah/
+         iXygbEzDXZj8JAbcoKbIGZhs3L+B/8QHAcM0F/P3tEHXX0GBKAb7EwRNdMeb59hdxqdD
+         K94I4XyNEfAu5oUpEmhoepujfr93UrP14dwoqPgpUqlJVffSAuTfo4UNMXw5aaznAVSe
+         47mw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:in-reply-to:cc:references:message-id:date:subject:mime-version
+         :from:content-transfer-encoding:dkim-signature;
+        bh=w64STQIzjwbvMB/oSTwbA7TTG/iSQEpMqjySgGES1M8=;
+        fh=4KFTy4XNFzHRF3RyVkJvXm2v+7axwLQ24WhaIOamNpo=;
+        b=AJgpKeCZ1C3ahcpJ8hLiZPZu7DKwCSYPyCCYlZPUESOhd6jSEh+lKBlKQiZgaRAdKG
+         03bIj/UqKFKZbKtRfapWMIDb51QO1maSad82DYAooHtuMn0Jd3tkWrIdpLYpN2Pt3FxX
+         QkR0xYsOwuioCGtxtW7FdxEXSm06wNzp0aY6D9jn76oI9CPlQCJQ8GJbooij+Yb/ou8t
+         eFaetAhJQbmduI3ZkpN/Ej1JkVTDCJzivpG23YOccOIWnKDtlOU3Ulbn40qWkIo1tfUK
+         XqLyYZuOrZRkj8T2xsMNVnQk30LUQ0s5v3VdUTH9uoewxq1mpI+lOEq+E3vCsK+heG6/
+         TKhg==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@verisart.com header.s=google header.b=WDsC9gwE;
+       spf=pass (google.com: domain of robert@verisart.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=robert@verisart.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=verisart.com;
+       dara=pass header.i=@gmail.com
+Return-Path: <robert@verisart.com>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id d9443c01a7336-20c1393dff7sor39914145ad.18.2024.10.08.01.44.49
+        for <paulrcohen@gmail.com>
+        (Google Transport Security);
+        Tue, 08 Oct 2024 01:44:49 -0700 (PDT)
+Received-SPF: pass (google.com: domain of robert@verisart.com designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@verisart.com header.s=google header.b=WDsC9gwE;
+       spf=pass (google.com: domain of robert@verisart.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=robert@verisart.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=verisart.com;
+       dara=pass header.i=@gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=verisart.com; s=google; t=1728377089; x=1728981889; dara=google.com;
+        h=to:in-reply-to:cc:references:message-id:date:subject:mime-version
+         :from:content-transfer-encoding:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=w64STQIzjwbvMB/oSTwbA7TTG/iSQEpMqjySgGES1M8=;
+        b=WDsC9gwEx66z3hBsqtFoiIRVkak3rquy/cdINphX15eL4LtdYsoSf0ZFXpczZoN3wy
+         WLv3j98NoePXHFNSrao6jyq6HmK9IOT3Cck/zvUQ5b42mM+mcEd8Tv7H/yYUYLJjzflu
+         4LspkSz3yBlNjC3S1Xwf0ppoHni8MvQGaoPcSakZZA+V+UcNFpOcmSIktitvdXzjCGyt
+         9F8HxRy/kTma7U/O2qDi0Md20ljiTkESJ1eEOWLNbdZhbwAqR4CX1jH+hnMXx79keVwc
+         9A90UATSnESNxXp9tp+nJj81u1Yo/YVmahVpOcqYpxiQYWai76sptv3IHPzOxdaf1I5t
+         9sjA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1728377089; x=1728981889;
+        h=to:in-reply-to:cc:references:message-id:date:subject:mime-version
+         :from:content-transfer-encoding:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=w64STQIzjwbvMB/oSTwbA7TTG/iSQEpMqjySgGES1M8=;
+        b=TzXSUiG1ByA6gkagKQn7OXentwNilMR60aKaiAWWtrDTaU3UFwOFwn1hjTxGzukl14
+         Mdj1b4dd4HFo3i1tPhvhXCb7/20GU9CgNnsHpDtnGiYqJxyaeSLogGxHIKdW5/Z+pdSt
+         ZDx3hMCYA8eMVdvS08xxZAJHV2sPKsy/jrzn2tLx2PK6EIs1wXtP0V+/m4nGDbLLh/3u
+         f1eW1vgerkUCrXL+KGRdqTiDv5tvcs2zXp1nIcjIurOriJtp6tvan0TLbfOJtsZMcgpT
+         2S8Ghjf44GA3UKlSW+g+g8okkpe1YvrHyWGQBlU6N0McGem5fX+JI8FFTwusBAai37dK
+         /QCg==
+X-Gm-Message-State: AOJu0YzsE4vK8+MyW55ebQ4VURWHqt8uWOx8RVa5rVwX1UBKiaHRYKDo
+	qJWU+pHeZhBUjfLkaoJuzz6yZUjV2ctMTMMQhJEe2Tt25Fd67dTZuQsqfebN0HN5NqsCT/1mocg
+	8P8o=
+X-Google-Smtp-Source: AGHT+IECSjDhy6RKcMejXetM6GP3WnrQdcGV8oDZ5l2ZsOoPw4pfWU/LxJw85OfKInjnaD5IxGnYkw==
+X-Received: by 2002:a17:902:cecd:b0:20c:56b8:1627 with SMTP id d9443c01a7336-20c56b817ffmr17267115ad.35.1728377088471;
+        Tue, 08 Oct 2024 01:44:48 -0700 (PDT)
+Return-Path: <robert@verisart.com>
+Received: from smtpclient.apple ([172.58.27.3])
+        by smtp.gmail.com with ESMTPSA id d9443c01a7336-20c138d068bsm51803485ad.96.2024.10.08.01.44.47
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 08 Oct 2024 01:44:47 -0700 (PDT)
+Content-Type: multipart/alternative; boundary=Apple-Mail-B0F69807-F04B-4F2D-9F56-05E2B7CCA8C7
+Content-Transfer-Encoding: 7bit
+From: Robert norton <robert@verisart.com>
+Mime-Version: 1.0 (1.0)
+Subject: Re: Quick question re Harold Cohen data for Sothebys 
+Date: Tue, 8 Oct 2024 09:44:35 +0100
+Message-Id: <29E5BE81-63C1-4F65-8F9D-424D7705AB1E@verisart.com>
+References: <1114527533.9312649.1728359601009@mail.yahoo.com>
+Cc: Paul Cohen <paulrcohen@gmail.com>,
+ Harold Cohen Trust <aaron@aaronshome.com>,
+ Mila Askarova Norton <m.askarova@gazelliarthouse.com>
+In-Reply-To: <1114527533.9312649.1728359601009@mail.yahoo.com>
+To: Thomas Machnik <zipnpup@yahoo.com>
+X-Mailer: iPhone Mail (22A3370)
+
+
+--Apple-Mail-B0F69807-F04B-4F2D-9F56-05E2B7CCA8C7
+Content-Type: text/html;
+	charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
+utf-8"></head><body dir=3D"auto"><div dir=3D"ltr"></div><div dir=3D"ltr">Tha=
+nks Tom for this and I do appreciate how hard it is to account for everythin=
+g that happened such a long time ago. &nbsp;This was one of the motivations f=
+or starting Verisart - &nbsp;to help artists keep veritable and accurate rec=
+ords. &nbsp;</div><div dir=3D"ltr"><br></div><div dir=3D"ltr">Just to clarif=
+y Sotheby=E2=80=99s are not asking about the print as this spreadsheet speci=
+fically refers to the image file for the NFT. Is it possible that the progra=
+m was run in 2002 but the image not saved until 2003?</div><div dir=3D"ltr">=
+<br></div><div dir=3D"ltr">Perhaps your answer is the same for the image as i=
+t was for the print but just wanted to make check this with you.&nbsp;</div>=
+<div dir=3D"ltr"><br></div><div dir=3D"ltr">Grateful for any further thought=
+s. &nbsp;In meantime I can share this with Sotheby=E2=80=99s. &nbsp;</div><d=
+iv dir=3D"ltr"><br></div><div dir=3D"ltr">Thanks</div><div dir=3D"ltr"><br><=
+/div><div dir=3D"ltr">Robert&nbsp;</div><div dir=3D"ltr"><br><blockquote typ=
+e=3D"cite">On Oct 8, 2024, at 04:53, Thomas Machnik &lt;zipnpup@yahoo.com&gt=
+; wrote:<br><br></blockquote></div><blockquote type=3D"cite"><div dir=3D"ltr=
+">=EF=BB=BF<div class=3D"ydp46ee6939yahoo-style-wrap" style=3D"font-family:H=
+elvetica Neue, Helvetica, Arial, sans-serif;font-size:16px;"><div id=3D"ydp4=
+6ee6939yiv3563451446"><div><div>
+Hi Robert,</div><div><span>When it comes to Harold there rarely is a quick a=
+nswer. Since the=20
+physical print date precedes the aa file timestamp by one year, that begs th=
+e=20
+question, "How is this possible?"</span> I know you probably want a quick ye=
+s or no answer. If that is true then the quick is answer yes. Yes, meaning t=
+he physical work is signed as 2002 and the aa file timestamp is 2003. But th=
+is would certainly suggest an error. Did Tom write down the information inco=
+rrectly? Is that the error? No. The timestamp for the aa file is 2003 and th=
+e signed print is 2002. <br></div><div dir=3D"ltr" data-setdir=3D"false"><br=
+></div><div dir=3D"ltr" data-setdir=3D"false">It seems like we have one of t=
+wo scenarios. One, Harold signed the physical print incorrectly.&nbsp; Two, h=
+e signed the print correctly. But, we don't know why the generated work seem=
+s to be in the future. If the second scenario is true, how could it be true?=
+ Maybe, the version of AARON Harold used was from 2002 and that he simply ra=
+n it in 2003. <br></div><div dir=3D"ltr" data-setdir=3D"false"><br></div><di=
+v dir=3D"ltr" data-setdir=3D"false"><span>We had a situation at the Whitney t=
+his past year whereby all the work=20
+was generated in 2023 and then plotted in 2024. However, the version of=20
+AARON generating the work was from 2001. We may think these are 2024 works=20=
+
+because they were plotted in 2024. But maybe in the mind of the artist=20
+they are really 2001 works because all the works were already fixed as=20
+potentials in the 2001.</span><br></div><div dir=3D"ltr" data-setdir=3D"fals=
+e"><br></div><div dir=3D"ltr" data-setdir=3D"false">I'm not sure if the seco=
+nd scenario can be confirmed or not as I never thought about this before. Wh=
+en I go to the studio Tuesday, I will see what I can find. I also sent a mes=
+sage to Cohen's 2002-2003 assistant and waiting for her thoughts and this ma=
+tter.<br></div><div dir=3D"ltr" data-setdir=3D"false"><br></div><div dir=3D"=
+ltr" data-setdir=3D"false">Tom&nbsp; <br></div><div><br clear=3D"none"></div=
+><div><br clear=3D"none"><div class=3D"ydp46ee6939yiv3563451446yahoo-signatu=
+re"><a shape=3D"rect" style=3D"font-size:12px;" href=3D"https://mail.onelink=
+.me/107872968?pid=3Dnativeplacement&amp;c=3DGlobal_Acquisition_YMktg_315_Int=
+ernal_EmailSignature&amp;af_sub1=3DAcquisition&amp;af_sub2=3DGlobal_YMktg&am=
+p;af_sub3=3D&amp;af_sub4=3D100000604&amp;af_sub5=3DEmailSignature__Static_" r=
+el=3D"nofollow" target=3D"_blank">Sent from Yahoo Mail for iPad</a><br clear=
+=3D"none"></div><br clear=3D"none"></div>
+</div></div></div><div id=3D"ydpe5aee37dyiv3563451446yqt90330" class=3D"ydpe=
+5aee37dyiv3563451446yqt6041747182"><p style=3D"font-size:15px;color:rgb(123,=
+ 106, 246);padding-top:15px;margin-top:0px;" class=3D"ydpe5aee37dyiv35634514=
+46yahoo-quoted-begin">On Monday, October 7, 2024, 4:29 PM, Robert norton &lt=
+;robert@verisart.com&gt; wrote:</p><blockquote class=3D"ydpe5aee37dyiv356345=
+1446iosymail"><div dir=3D"ltr">Hi Tom<br clear=3D"none"></div><div dir=3D"lt=
+r"><br clear=3D"none"></div><div dir=3D"ltr">Sothebys have flagged this work=
+ as the production year says 2002 but the description of the file says the f=
+ile was created in 2003.&nbsp; <br clear=3D"none"></div><div dir=3D"ltr"><br=
+ clear=3D"none"></div><div dir=3D"ltr">Can you confirm this is correct?<br c=
+lear=3D"none"></div><div dir=3D"ltr"><br clear=3D"none"></div><div dir=3D"lt=
+r">Thanks<br clear=3D"none"></div><div dir=3D"ltr"><br clear=3D"none"></div>=
+<div dir=3D"ltr">Robert <br clear=3D"none"></div><div dir=3D"ltr"><br clear=3D=
+"none"></div><br clear=3D"none"><blockquote></blockquote></blockquote></div>=
+</div></blockquote></body></html>=
+
+--Apple-Mail-B0F69807-F04B-4F2D-9F56-05E2B7CCA8C7--

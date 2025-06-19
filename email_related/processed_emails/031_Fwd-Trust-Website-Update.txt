@@ -1,0 +1,12 @@
+Subject: Fwd: Trust Website Update
+From: Paul Cohen <paulrcohen@gmail.com>
+To: Daniel Maxwell <maxwellgraphics@gmail.com>
+Date: 2024-11-10 16:56:12
+Message-ID: <CAKjPZkE4Lvp_+8CcV_=H_z+eHmVsB-wbo9QYLS3qW6-+0WmJMQ@mail.gmail.com>
+--------------------------------------------------------------------------------
+
+Hi Daniel, sorry to bug you about this. I'm heading to London on the 24th
+and I'd like to make some progress on the catalog raisonne discussions when
+I'm at Gazelli/Verisart. Also, a group of undergrads want to build a
+search engine for the inventory that we might incorporate into the web
+site, but they'd need your guidance about APIs for the site. Sooo, could

@@ -1,0 +1,43 @@
+Subject: Re: How big of a plot can we go?
+From: bre pettis <brepettis@gmail.com>
+To: Thomas Machnik <zipnpup@yahoo.com>
+Date: 2025-05-22 09:32:43
+Message-ID: <CAFhPk_ymupAM7E9r=DdpReGOyoPKKTQhfEfqVs+10RcZWurx8w@mail.gmail.com>
+--------------------------------------------------------------------------------
+
+A few things here. Aidan wrote a script on a virtual machine and let it run
+for a day or two.
+
+We then batch converted the files to strip out the color and converted them
+to gcode and rotated the portrait ones to fit in the machine. We made 5600
+drawings. I think we made it through less than 2000 KCAT drawings.
+
+I think we did something like 10k maze drawings but my memory is hazy
+there.
+
+For the direct control we built a process based on Paul’s work to generate
+work every morning. This proved to be more complicated for the operators
+and they ended up generating new drawings every morning but then running
+drawings from a different folder thus drawing the same drawings everyday.
+After that, we generated something like 10k mazes and I think we had
+folders with dates on them.
+
+There was some sorcery involved to have it be drawing on the screen and on
+the machine at the same time.
+
+The project that I would love to do with you would be a book of Harold
+cohen KCAT plants. My favorite drawings are the ones with plants and second
+favorite are the plants and people.
+
+These files are easy to find because if you sort by file size the plants
+are a lot bigger files.
+
+Paul Rickards, who is an awesome artists went down a rabbit hole and
+adapted the KCAT drawings to a cmyk approach. He processes the KCAT output
+with python code. He gave me two of these as a gift. I’m not at the office
+but can send you a pic later.
+
+If you want to do a Plants of Harold Cohen book or exhibition project I’d
+like to help!
+
+Bre

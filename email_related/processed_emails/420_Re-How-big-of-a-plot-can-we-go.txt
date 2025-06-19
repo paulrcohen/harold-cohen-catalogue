@@ -1,0 +1,25 @@
+Subject: Re: How big of a plot can we go?
+From: Thomas Machnik <zipnpup@yahoo.com>
+To: Bre Pettis <bre@bantamtools.com>
+Date: 2025-05-07 22:40:17
+Message-ID: <1242935500.1355898.1746657617792@mail.yahoo.com>
+--------------------------------------------------------------------------------
+
+Dear Bre,We were approached by the San Diego International Airport Authority to participate in an exhibit slated for next year. When I wrote you initially, we had a preliminary discussion with them and brought the idea of plotting. Based on our discussion it was determined plots would have to be vertical. I have since visited the airport and I’ve seen the various viewing areas. I now have my doubts as to having live plotting in that environment. The viewing areas have these large glass cases mounted on the wall. But the depth is only 8 inches. So that was the purpose of the inquiry. Glad to know there is the potential for Giant wall mounted plotters. In a correspondence Harold wrote in the early 1970s, he conveys his vision of a wall mounted machine making art. Hopefully at some point we can make that a reality. I thought maybe this upcoming exhibit would be the place for it. I rather think it will have to be at another time and another place.
+I do love your prototype. Thanks for the photo. We also received your publication. I’m enjoying the entire read. Thanks for all you did regarding Harold Cohen.
+Tom
+
+ On Wednesday, April 16, 2025 at 10:42:44 AM PDT, Bre Pettis <bre@bantamtools.com> wrote: 
+
+
+
+Just catching up. 
+We have a prototype that can do a 24x72" plot on 28x76" paper. Giant and wall mounted plotters are possible, but the effort and expense are non trivial.
+Happy to chat more about ideas if you like. Do you have a project in mind?
+Bre
+
+
+
+Hi Bre,
+
+Hope you are well.  Hoping to get some preliminary background on the possibility of an idea Paul mentioned.  How close to a mural-size work do you think your plotters could plot? Is 48 or 60 inch wide paper a possibility? Is even larger, say 8 or 10 ft possible? And instead having a person manually mount each sheet like at the Whitney, is it possible to have a roll of paper? Like, say a 60” x 100 foot roll or 48” x 350 ft? Or multiple rolls? And plot maybe a 60x48inch area at a time. And then advance the roll for the next plot? Or could it somehow plot an area, whatever size that maybe, and then, move to another area and plot that other area. And move about across whatever space is available to complete the work? And maybe more importantly than the size… could all of this be done vertically? This may be a bit ambitious, but in a sense, I am asking how close do you think you could get to making a vertical turtle that would execute multiple murals and do so with minimal human intervention. And however close that might be, what would that look like?

@@ -1,0 +1,12 @@
+Subject: HCT Invoice for Jan 2025 work & 2 recent discoveries
+From: Thomas Machnik <zipnpup@yahoo.com>
+To: Paul Cohen <paulrcohen@gmail.com>
+Date: 2025-02-21 14:15:18
+Message-ID: <2042429922.1350566.1740147318709@mail.yahoo.com>
+--------------------------------------------------------------------------------
+
+Hi Paul,Please find attached my invoice for Jan 2025 hours worked.
+Nina confirmed her visit this coming Monday. Also briefly two recent discoveries. 
+While looking for info related to Gordon Bell, I found a one page printout of Lisp code — undated of course. This printout is numbered page two. Page one is missing and the code is cut off at the bottom meaning it was at least 3 pages. Not sure if this is specifically related to AARON. The title of the code is doodle.lis and it seems to be a strategy for filling in areas. The flip side of the print out is a hand-written note addressed to Gordon and based on the content the date is 1995. So we have to assume to the printout is at that time or earlier.  
+Another discovery was made by Sara. While cleaning a closet she found multiple boxes of photographs and 35mm slides with labels saying family photos. However, when I opened the first box, only the first four photographs were family photos. Probably from the 1960s. The photographs below these are b/w photos of 1960s artworks but they are more like notes in a way because some of them have marks on them like he is strategizing. And there is this photo showing Harold working on one of his mid 1960s works. These are the ones where he is implementing his rules. The photo is really quite interesting. He has the work on the floor and what looks like a cup of paint at the end of along broom handle. And he is holding it over the painting. Look quite fascinating.
+Tom

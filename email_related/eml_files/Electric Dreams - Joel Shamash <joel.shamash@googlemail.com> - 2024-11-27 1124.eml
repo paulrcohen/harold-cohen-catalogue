@@ -1,0 +1,121 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a10:e950:b0:5ad:6c17:f336 with SMTP id gu16csp989134pxb;
+        Wed, 27 Nov 2024 08:24:49 -0800 (PST)
+X-Received: by 2002:a05:620a:2447:b0:7b3:5c6d:9625 with SMTP id af79cd13be357-7b67c4ce0dfmr592057785a.16.1732724689239;
+        Wed, 27 Nov 2024 08:24:49 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1732724689; cv=none;
+        d=google.com; s=arc-20240605;
+        b=cdd4iJcYDNOwNjzAff/rW0tP5WpLbjc8GG2zpz50kbkvK+VcturXCs0a+lzq9+q2nt
+         j+Uqf9YQwH3cq/YDiDC9C9v6W+9o2P1oApX4pcp3wFo8kPWMMyyRcdqEevqWfGgIUB6G
+         WyKj42uCgwdodJVW3WCesRYPfkTXhAaqKx6HRxKqzD9gSnvNIAUu98If/0NSirrK62Wr
+         WfQ2EZuKkfasDZHEfLxP56u8UJVzVGAMjY7JstaviaUcNVqV3/7TLRutkU6hEWdnWujv
+         JXoiQkhxs79ZHLT5yiuzqb/tbrCLrYpJFCSPRdcCKrv2VArquv4XHHejKzcLVMnR8Tjb
+         P/hA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=WRkn+NH30ESerhHBpNhwmgBYGibwxh+LslDrQU8S4TE=;
+        fh=qANEMPnyH3MbL/mx4ouOqb6bH3T3WXIC9XH8FALhCwU=;
+        b=ckyrfeZWNkybRSvjEilwei72j1BdKS6r2XVpjZUgaYbE0zuRlsCnf3QhZvbiQgUQGE
+         MUqI2TKp/eZfIGc+4aznq3LQH3k6UsbFb+gr110USNQkekeg3/vRAyhW3+4szA0+R7KQ
+         jj5ttS4ASAkvYINROREnLlPjSTjxHhh4MFFs8HmdrIsOuUy0FfmcHthXqWypJYy2U+PQ
+         INotf3mkDRHyBGTec8JK3gKg0aQQoeIsznh6iMhc6nctorr9CK/cspjt8azCpEx4QjzA
+         3N7RODNqWOXN7JTLa1Zz0dhOjdK6JfnoMnk4ZGaUM3uoAta2APdngJYT5nIIoQ2ar7t4
+         Zk2w==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@googlemail.com header.s=20230601 header.b=Bwm2b9Qu;
+       spf=pass (google.com: domain of joel.shamash@googlemail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=joel.shamash@googlemail.com;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=googlemail.com;
+       dara=pass header.i=@gmail.com
+Return-Path: <joel.shamash@googlemail.com>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id af79cd13be357-7b67d67209csor120556785a.0.2024.11.27.08.24.48
+        (Google Transport Security);
+        Wed, 27 Nov 2024 08:24:49 -0800 (PST)
+Received-SPF: pass (google.com: domain of joel.shamash@googlemail.com designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@googlemail.com header.s=20230601 header.b=Bwm2b9Qu;
+       spf=pass (google.com: domain of joel.shamash@googlemail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=joel.shamash@googlemail.com;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=googlemail.com;
+       dara=pass header.i=@gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20230601; t=1732724688; x=1733329488; dara=google.com;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=WRkn+NH30ESerhHBpNhwmgBYGibwxh+LslDrQU8S4TE=;
+        b=Bwm2b9QulH4+MeLmVdpACgyRifotD4TnHqTUQH/LHB89A07TvuPBoKPQLUYmnfFBHq
+         FGloMQlESr+bMFSXGYgQoIdQwOEGbZJ1T3h4TUZldyYQD+9RVSZCdtvrcvOYlB6UTjub
+         0rKqBZxqVwRomq1fQLyUgBDu6EkHsXEjmct84lOz8gFEJNF5VWK52k6xYHbyv5z+K/Ry
+         /7/Wu3irCTgFtBxW3wb+4VLkpLz/yvxPweZq2l8s578t6Q8O2914LbvxKypduyna+tfh
+         d+ysDVb5MimTzmnbe4VwWAS0yjdl3FMLu6iSAObDArIW2qK8M42LMEfIuEyCX1VYeS4y
+         qOEA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1732724688; x=1733329488;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=WRkn+NH30ESerhHBpNhwmgBYGibwxh+LslDrQU8S4TE=;
+        b=phW5XdtFcsOT4emVpJaCLz5MhJCNULOtUvyA0nKbv5mpXnZo1bm2wYPxbjvo3X0Tsi
+         dvCPJscnWqQKbPKuNlprwHEefoaUh4JR0yvH/xSDtUFXtntAw8/4/DEZ07sgL4EgrOCM
+         hlvTOaG9oCnE/EJLJ0S0MCsZpP3pC78b/Gm+qv4R17yvIggX4nXmELk+FvxUSj+/RyhY
+         NfIraVNRC/Sfs4ZO4BBG5dpU9/xVkQxrW+w3dhDKsoX88w9WU2XnlHWI9W5NtZvYcTkb
+         TNrddsC23brx/kRGXQr/gIDPRE+uUHceV7f6+VjdelZ2dO3Pd8kxNWbgXO9aEXsadnFh
+         veiQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXRSRTgZsrLMTA6gpFywtYRI1y4oFtzextmEuHllV99tgjqfPDq1nxOldMidcECjQlT22eO5rDbjy9rpOnr7UxZzhNaLpQ5@gmail.com
+X-Gm-Message-State: AOJu0YzqhKzMz6lhUZVs+QJam3hvpasYfyW0AF/PHf84Pgv56SJl2Ezo
+	2VXvZD/1o3Eh4TfQfZyJWyX8+6nxPZhbUUJapIGNFnQ9B3hS7pv/xazn3ByJnPaxp5jMa+y8Uml
+	wTq1Bafa7hkBQS9bokXaTvHzj/SaEOw==
+X-Gm-Gg: ASbGncu+tDL03xx2+Sfo8thPz/J+5dTRH5RNB1hIP5QbT5AG0mNC33gvabCb/nMwRw1
+	YUwwsgjKcJrDOFi99nAUD10sFKOJE7Iuk6Q==
+X-Google-Smtp-Source: AGHT+IEBerCN138PS9ZwzCKCEJqsenBubtiX+butEtPXqvdFgBlvviqSWz7d4CmncugrW8WwIE3BALanrMsM594ZUk8=
+X-Received: by 2002:ac8:5816:0:b0:466:8420:22e with SMTP id
+ d75a77b69052e-466b31c8cb2mr69041221cf.17.1732724688528; Wed, 27 Nov 2024
+ 08:24:48 -0800 (PST)
+MIME-Version: 1.0
+From: Joel Shamash <joel.shamash@googlemail.com>
+Date: Wed, 27 Nov 2024 16:24:22 +0000
+Message-ID: <CANS7RF9P5Emb2h1c4=UjMPTQ9_Y34_7pLyPKPGqWg2Eysj-tTQ@mail.gmail.com>
+Subject: Electric Dreams
+To: "paulrcohen@gmail.com" <paulrcohen@gmail.com>, 
+	"beckycohenphotographer@gmail.com" <beckycohenphotographer@gmail.com>
+Content-Type: multipart/alternative; boundary="0000000000008dadfc0627e76712"
+
+--0000000000008dadfc0627e76712
+Content-Type: text/plain; charset="UTF-8"
+
+Hi both,
+
+It was a real pleasure to meet yesterday evening at the Electric Dreams
+opening.
+
+As I mentioned I am a big admirer of Harolds work and have so enjoyed
+digging into his various writings and the context of his work and journey
+with AARON.
+
+I am also eager to share his pioneering story with the world and am in the
+early stages of developing a documentary with the former Head of Arts and
+Music at the BBC.
+
+Paul - you kindly mentioned sharing the contact information of Harolds
+studio assistant, i'm sure they would be a fantastic help as we start to
+flesh out the material.
+
+Best regards,
+Joel Shamash
+
+--0000000000008dadfc0627e76712
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi both,<div><br></div><div>It was a real pleasure to meet=
+ yesterday evening at the Electric Dreams opening.</div><div><br></div><div=
+>As I mentioned I am a big admirer of Harolds work and have so enjoyed digg=
+ing into his various writings and the context of his work and journey with =
+AARON.</div><div><br></div><div>I am also eager to share his pioneering sto=
+ry with the world and am in the early stages of developing a documentary wi=
+th the former Head of Arts and Music at the BBC.=C2=A0</div><div><br></div>=
+<div>Paul - you kindly mentioned sharing the contact information of Harolds=
+ studio assistant, i&#39;m sure they would be a fantastic help as we start =
+to flesh out the material.</div><div><br></div><div>Best regards,</div><div=
+>Joel Shamash</div></div>
+
+--0000000000008dadfc0627e76712--

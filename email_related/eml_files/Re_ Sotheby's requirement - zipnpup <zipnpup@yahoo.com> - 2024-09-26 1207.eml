@@ -1,0 +1,192 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a11:4819:b0:5ad:6c17:f336 with SMTP id nr25csp1138051pxb;
+        Thu, 26 Sep 2024 09:07:56 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHVcGNa0rLzF/6PKcgfJYgEapBfznYqo135a8sfO6dbE3xr1hVrbGvT8YemKztEoKhQZXGg
+X-Received: by 2002:a05:6214:16e:b0:6c5:da8:9ba8 with SMTP id 6a1803df08f44-6cb2f2c7c63mr44042866d6.19.1727366875555;
+        Thu, 26 Sep 2024 09:07:55 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1727366875; cv=none;
+        d=google.com; s=arc-20240605;
+        b=Qhrw9QR2cCWX5CgnsGWp6EKghZiLjyDXC6bQTH6clWYeXTJDmnGUenxPNcCgua2I5u
+         q1GYJ+X9f1bg+1cZSVLrn1rs93U0Yw770xRgfjcwUEnFqeGtO2M7cxOaXPYBCqQ9B3oM
+         eMRF75yBpbzOYIjzNgDNDpZju4zarlLexz+51r0Yh983Gi61e5ZFn9lqE/PHETmO5JS4
+         ayplvl0bTrk6s6Tl+YwNxMS657WNP5YtGyErHamzCQWsbUhHvofLhh31Li+9uTbWe5ju
+         eQLajZVoROCaNUY2aeJiJ70bMVlxUwztI5hcAlT9VVOl2OkytqGClfOI9+r6ivefLY5m
+         9Zmw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:to:from:importance:in-reply-to:subject:date
+         :savedfromemail:message-id:dkim-signature;
+        bh=rs51dE4Ub706NYta1NQUBCuTqU/ogJgwakaiwZkP3pA=;
+        fh=h8ksneQrqTpWjSQVoScBzsbewCKe2w1Dun6R9VqGJTg=;
+        b=S0qmlwyedpiaTcg29liL6NJdykh2/3Bz0Usfb7fotxeVcnXmEMseFV3ncSXx0nks7o
+         LEaLUzMF9HIT7DadQg5+/YAN6ij1/hdH1MiHbSxsLwYHmIToM47XRfK4S2nANrm0GL2v
+         cKzTIDyI5HM5R/gQuS3CNEs/UgrhXnvoH1G8Cj4/cEMsQF3rFBeDoLzzul/kn4JdbBQv
+         Xlx5lMJobBwAMUE9UycxGhR51W0nion1GUQ9EFwdHg/JT10xtOfSnqa1ZKpWBP7kk93g
+         TtkOaXfmLj8RBSYRxpmeG17gDTzzStOaInrS0h/bI93egCvqxvo6bFHduqgjUDTuKJQq
+         iHVw==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=PRtOWnMF;
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.128.83 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+Return-Path: <zipnpup@yahoo.com>
+Received: from sonic312-21.consmr.mail.bf2.yahoo.com (sonic312-21.consmr.mail.bf2.yahoo.com. [74.6.128.83])
+        by mx.google.com with ESMTPS id 6a1803df08f44-6cb3b69afb9si1121636d6.419.2024.09.26.09.07.55
+        for <paulrcohen@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 26 Sep 2024 09:07:55 -0700 (PDT)
+Received-SPF: pass (google.com: domain of zipnpup@yahoo.com designates 74.6.128.83 as permitted sender) client-ip=74.6.128.83;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=PRtOWnMF;
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.128.83 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1727366875; bh=rs51dE4Ub706NYta1NQUBCuTqU/ogJgwakaiwZkP3pA=; h=Date:Subject:In-Reply-To:From:To:From:Subject:Reply-To; b=PRtOWnMF8kaN9zZwgMLGpPaMWfvzPLLdrx66oVQ0cc9gZUigUvR6VCaUFbowMzoq2UwFk288rwnGtOL+0AHBwtKMV2hTjr3pn3Epg0sPl1G0/YJfwoqdXKEZwjXyXt6DZ0gVA7BgDM2CbNhc+I7dJ0GfYs1N62HCtVc+WxgYyIDTFebqAeoY0jpH2fXK0aqWFYPx6Je/FP/WZGrYPMViT/0PECOJN/rmeJC4KaG2ItSZhnVr/ncEw8SfaMAxK1UUCzai8T91jzf9gReS3jxCSfuuYvZ4oDCHz9AQOqVBRFDOPwt7H0btjjWXcNc59YPYmvMbsljYMUXbBrbsdHMXCw==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1727366875; bh=WosaMTSm0Op/RFIAlTnS+8xiAH3I8/IzTu2aX8qhlCi=; h=X-Sonic-MF:Date:Subject:From:To:From:Subject; b=BxSt5pDSFFshFMQUhcphNfcL37TkjdQv7dMPrOejDtetsP8Xx4Yg5iy9Zey4QEOsDGfyjg44WBWQCzNdYyN6YaNXlOZnYPcYU4drCuEUSCRPd8Y9zR7cHqLwVOmxx/l9iFzzgZ3G8LiGAgUS+dj12Xg60F4cJV47w38Fl8pNcYPmFlo6TPdwpKiaFWcpIkaHleJ7BSVaigmqd7oLK/syNlRf3nRxcnyoNtHENEuAFKKuFOF5ahTG8a8a4gpcmVCzuE/Lm9jkSjAKOpVrwUULUb7lV3mjgisv/m1w1EnZdtQVOPwLNv6kWKBNVsmaSijANJR9Ixh2A2AZHxO1Q/nn6w==
+Message-ID: <81886821.3173428.1727366875181@yahoo.com>
+X-YMail-OSG: tXNKNUMVM1mrqr00Shvbo7gFJczQCGTP5Rt0sKUuuOCO.tUDR_bnz57vnWhMKgt
+ UUC9pCwncVsKVEYB4Fi5J0H3qjbWKrkdj1VCq4m54JisiX5dAHrZG.xw4M_eXH4TmId6EBkzNUIr
+ 15tylGCn2Q6P1BJ19NAHea3VjU4Ui0j8LHWDzWRd0MKzaqjRJ22FLN8BqgZl4Lr8x6eyzgcGdHl2
+ fdD.wQqrrwj_Vk1IjltJ9yHD.615NAmMRm8sqIPquO32N4jH.ofNWI2EIRGcqYruyvd8EbO35fve
+ 7KoTcJbwI.4WHpZUMiZgYZoUJozIj8W22WL7Cy2e8Y0XYeNJLsJFs7cnzUjn1cCU7Regc6OswvCe
+ 9Bpo76RtlLde6U_FPqU11eHr9OUzxU7QvchXufWiKf6r._D70J2NzwpvImaqmgAa4veWBvZkVXCn
+ vnj.XAe_BxIKK0QIjRJs_ERcK4NZKNXoG6GQDJrwW3U5a2mGO0DLXA07YBDXlGZL6j1kopMzMdsj
+ HL5pwNAmBWe_jBx73Ja4ORt05EOfkLb__eI51nRofLqs61w2Li_El6e_5z93eFhIMpdrkKg2vDxY
+ kc64WH6r5Z61xdNIRL3M1Gcjjlh2WDp.3s7K4TMZQX28gGojrvG10c_63voESosb37Rh3Pqm9Tye
+ T7rQJMJAAW..g.v7Uy4dd5llM9hM__aBJ.zeVsoTxZ6rXo.rMXEQS_SDOp9fX4i7l_pAFkedZprg
+ tmLrruwqjSY926EtHuunYJjdSVj283d.28tAoHQcrgsKl9wGBfAC4XI0stRSkvypRGkX4aIg1.D5
+ 2ybLSSywN47g6LTjqVph1mbYsEUbfniMS821e9kMeFgG9gLxpWZOYXjwTDulNWsU3AuQ3hl7gblf
+ 1l0WFm3reNxgj9A1iGI5qi8noloz7fB4Bx4.1SOJlosIMCpNL2T1MLGLLI4htHcSurSqL6nPt9_5
+ CB80Bd5dQvAsJikzoYS6czcF0iG7HhTt2NwxZ2Fz.EjvoYtd85Iv_e7lYGJOHGZryd1rZPXwRyc2
+ Bfq7E4dIxfBDcbYwQXRfg90cFIfR4e3y9imQ5ieGrqqfj1O764OCDbLyat2Dqib2XtYGCEvKo2sl
+ 65RxnnRuu4mDCI5uy_o5G_dNq9E6GdYjwFi_hi9RnJPXwtS8HUXoCkvVQ1bzCH23pITaE1Ks52t4
+ 7WYpqApf4_gL.QQjBjSgF5pHZXoM8bMA3NT073VgrY7OM2Kke1cTGfFx1i5VwepLoSp6_V0U1bgu
+ 27VB9343l62Dp0h3_mmJeeQnNtz81ZZ1.fAvwRgIaYTMJ8vuNwfCMgCb8WhJnEdmSP6IMWFXuE6I
+ vFKKtfvzGJkRCFy7t7C_o5DZAE7UC0ZLwH5hH96EmZvjlWNqaFccgeaTKWkAQlqYOeG.Bped8O3R
+ KbyWPp.umsccH.4Q7WqmIvBpFiGnCX2zjse.C4zijQhrGLpjC_z2fNxuf5oOtpHvzeGESXbne2BF
+ Wokp_r5Tm0K.6TKRPIu._.muhtYJE.Kojd4m.EcZjtHmSQSYRck7qkgF4fUXlmNi9X7Q0vloGw4z
+ 7spqdgQmVCtmRP0BPzqUhDvUEwx1BGjGOJiM1D4nZwUB9P5b5MFQiUfDvf0mumxvcGCbWGTbR5el
+ 1ssKxvyGeZkagJoojjUocQjRwaBe21nlT280SLjZcnx5E8VVpV1loxI84FZls96ICdJNE6Cme0n8
+ SsDVaLelCQ7uGsf3vAIXlzx3Z5MskAlvfeRI9g52KgVlZp85Kbf.besCzapG4jV_UgHjCIRQeONP
+ W9rQZz1e.kXT0rC56hWLFt0b2XlPPlNHCFjqujvRD_XC.bexhq6JoJrc.p52Fcnr5qSVPrkYMf6L
+ ddtzeWNQmBLKFMuA3RhI_cOilSIJ.85_f_hXBdaMUm7anWrhr5Q3H17TZym_tN.xONPX9voFiwXU
+ MQ2FiGOef1NhTZWwZeui89IoEwqtY5rzGT8uEGg2TNbvP1BpnBalAJxfqu6UFP.bg4qpRKfoX3EJ
+ wRWjA8ES0D.o_7.GjFw0_CWgaxulVRnBZipUsTSKcALPOGB9yTPAnIxzTBbn4a.5JNRm9eeLJUM7
+ W4ii6MxUpucIw7hjoq3OIt0LeAyReu0dZiJ5duVHNlpdlX6exVTOhpqkSYqazd4vD9FnNXgCeTnW
+ P1tRxbLw8wS8ZpzjqngjH11cE6fCADbK9ZPKZRfzk8AYQptVYSe80YJiFTEXzKFWh36YvhM8u6dO
+ QPCuthSsCOctxGWRTAweOIW5e6spAiG86hk.Fgi8IQlgd0wqtcKTCcc1b0YwKdPR81ktc3bXEAMx
+ Qh15JWyqYcfKro6rfiEqeDzhmW.mMkGD.1wWZaylMskb8tuC_
+X-Sonic-MF: <zipnpup@yahoo.com>
+X-Sonic-ID: ea42a4c1-2816-44a2-a628-3062f473cbfa
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic312.consmr.mail.bf2.yahoo.com with HTTP; Thu, 26 Sep 2024 16:07:55 +0000
+Received: by hermes--production-gq1-5d95dc458-4hqnr (Yahoo Inc. Hermes SMTP Server) with ESMTPA ID 1eaf698b1517590ffbfe9026da83a70a;
+          Thu, 26 Sep 2024 16:07:53 +0000 (UTC)
+SavedFromEmail: zipnpup@yahoo.com
+Date: Thu, 26 Sep 2024 09:07:48 -0700
+Subject: RE: Sotheby's requirement
+In-Reply-To: <CAKjPZkFZKccJnFdp8j6oyVCJAHWyUBPdSRkYqqr__d5mjLrn8g@mail.gmail.com>
+Importance: normal
+From: zipnpup <zipnpup@yahoo.com>
+To: Paul Cohen <paulrcohen@gmail.com>, Mila Askarova
+ <m.askarova@gazelliarthouse.com>
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="--_com.samsung.android.email_4973276566046870"
+X-Mailer: WebService/1.1.22645 mail.backend.jedi.jws.acl:role.jedi.acl.token.atz.jws.hermes.yahoo
+Content-Length: 6880
+
+----_com.samsung.android.email_4973276566046870
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: base64
+
+T29wcyBzb3JyeSBJIHdhcyByZXBseWluZyB0byBNaWxhJ3MgYmVmb3JlIHNlZWluZyB0aGlzLiBB
+bGwgOSBhcmUgYWxsIHNpZ25lZCBhbmQgdGhleSBhcmUgYWxsIHNpZ25lZCBhcyBZWU1NIyMgMSAv
+IHggSGFyb2xkIENvaGVuIHllYXIuwqAKV2l0aCByZWdhcmRzIHRvIHdvcmtzIGZsb2F0aW5nIGFy
+b3VuZCB0aGVyZSBhcmUgb3RoZXIgd29ya3MgZmxvYXRpbmcgYXJvdW5kIDIgb2YgeCBhbmQgMyBv
+ZiB4IGV0YyBhcyB3ZSBoYXZlIGV2aWRlbmNlIG9mIHRoZXNlIHdvcmtzIGJlaW5nIHNob3duLiBX
+ZSBhbHNvIGhhdmUgZXh0cmEgcHJpbnRzIHVuc2lnbmVkIGluIHRoZSBzdHVkaW8uIFRoZXkgbWF5
+YmUgb2YgYSBkaWZmZXJlbnQgc2l6ZS4gVGhlcmUgaXMgb25lIHByaW50IHNpZ25lZCBhcyBhbiBB
+UC7CoApUaGUga2V5IHRvIG1lIGlzIHRoZSBORlQgKyBQcmludCBjb21ibyB3ZSBjYW4gb25seSBz
+ZWxsIG9uZSBzaWduZWQgd29yayBvZiB0aGlzIGFzIGEgY29tYm8gYmVjYXVzZSB3ZSBoYXZlIG5v
+IG90aGVyIHNpZ25lZCB3b3Jrcy7CoApUb20KCgpTZW50IGZyb20gbXkgVC1Nb2JpbGUgNEcgTFRF
+IERldmljZQoKLS0tLS0tLS0gT3JpZ2luYWwgbWVzc2FnZSAtLS0tLS0tLUZyb206IFBhdWwgQ29o
+ZW4gPHBhdWxyY29oZW5AZ21haWwuY29tPiBEYXRlOiA5LzI2LzI0ICA4OjM3IEFNICAoR01ULTA4
+OjAwKSBUbzogVGhvbWFzIE1hY2huaWsgPHppcG5wdXBAeWFob28uY29tPiwgTWlsYSBBc2thcm92
+YSA8bS5hc2thcm92YUBnYXplbGxpYXJ0aG91c2UuY29tPiBTdWJqZWN0OiBTb3RoZWJ5J3MgcmVx
+dWlyZW1lbnQgClRvbSwgY2FuIHlvdSBjb25maXJtOgoxKSB0aGUgbmluZSB3b3JrcyBvbiB0aGVp
+ciB3YXkgdG8gU290aGVieSdzIGFyZSBhbGwgc2lnbmVkIChhbmQgaWYgdGhleSBhcmVuJ3QgYWxs
+IHNpZ25lZCwgaG93IG1hbnkgYXJlKQoyKSBGb3IgZWFjaCB3b3JrLCBjYW4gd2Ugc2F5IHdpdGgg
+cmVhc29uYWJsZSBjZXJ0YWludHkgdGhhdCBpdCBpcyB1bmlxdWUgaW4gdGhlIHNlbnNlIHRoYXQg
+dGhlcmUgaXMgbm90IGFub3RoZXIgc2lnbmVkIHdvcmsgZnJvbSB0aGUgc2FtZSBlZGl0aW9uIGlu
+IHNvbWVvbmUncyBwb3NzZXNzaW9uLiAKCkkgdGhpbmsgdGhlIGFuc3dlciB0byBxdWVzdGlvbiAx
+IGlzIHRoYXQgYWxsIG5pbmUgd29ya3MgYXJlIHNpZ25lZCwgYW5kIHRoZSBhbnN3ZXIgdG8gcXVl
+c3Rpb24gMiBpcyB0aGF0IHNvbWUgb2YgdGhlc2Ugd29ya3MgYmVsb25nIHRvIGVkaXRpb25zIGFu
+ZCB3ZSBrbm93IG9yIHN1c3BlY3QgdGhhdCBvdGhlciB3b3JrcyBmcm9tIHRob3NlIGVkaXRpb25z
+IGFyZSBmbG9hdGluZyBhcm91bmQgaW4gdGhlIGJpZyB3aWRlIHdvcmxkLiAKClBsZWFzZSBsZXQg
+bWUga25vdyBhcyBzb29uIGFzIHlvdSBjYW4uIAoKLS1QCl9fX19fX19fX19fX19fX19fX19fX19f
+X19fX19fXwoKUGF1bCBDb2hlbizCoMKgUHJvZmVzc29yU2Nob29sIG9mIENvbXB1dGluZyBhbmQg
+SW5mb3JtYXRpb25Vbml2ZXJzaXR5IG9mIFBpdHRzYnVyZ2hwZXJzb25hbCB3ZWJwYWdlCl9fX19f
+X19fX19fX19fX19fX19fX19fX19fX19fXwo=
+
+----_com.samsung.android.email_4973276566046870
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: base64
+
+PGh0bWw+PGhlYWQ+PG1ldGEgaHR0cC1lcXVpdj0iQ29udGVudC1UeXBlIiBjb250ZW50PSJ0ZXh0
+L2h0bWw7IGNoYXJzZXQ9VVRGLTgiPjwvaGVhZD48Ym9keSBkaXI9ImF1dG8iPjxkaXYgZGlyPSJh
+dXRvIj5Pb3BzIHNvcnJ5IEkgd2FzIHJlcGx5aW5nIHRvIE1pbGEncyBiZWZvcmUgc2VlaW5nIHRo
+aXMuIEFsbCA5IGFyZSBhbGwgc2lnbmVkIGFuZCB0aGV5IGFyZSBhbGwgc2lnbmVkIGFzIFlZTU0j
+IyAxIC8geCBIYXJvbGQgQ29oZW4geWVhci4mbmJzcDs8L2Rpdj48ZGl2IGRpcj0iYXV0byI+PGJy
+PjwvZGl2PjxkaXYgZGlyPSJhdXRvIj5XaXRoIHJlZ2FyZHMgdG8gd29ya3MgZmxvYXRpbmcgYXJv
+dW5kIHRoZXJlIGFyZSBvdGhlciB3b3JrcyBmbG9hdGluZyBhcm91bmQgMiBvZiB4IGFuZCAzIG9m
+IHggZXRjIGFzIHdlIGhhdmUgZXZpZGVuY2Ugb2YgdGhlc2Ugd29ya3MgYmVpbmcgc2hvd24uIFdl
+IGFsc28gaGF2ZSBleHRyYSBwcmludHMgdW5zaWduZWQgaW4gdGhlIHN0dWRpby4gVGhleSBtYXli
+ZSBvZiBhIGRpZmZlcmVudCBzaXplLiBUaGVyZSBpcyBvbmUgcHJpbnQgc2lnbmVkIGFzIGFuIEFQ
+LiZuYnNwOzwvZGl2PjxkaXYgZGlyPSJhdXRvIj48YnI+PC9kaXY+PGRpdiBkaXI9ImF1dG8iPlRo
+ZSBrZXkgdG8gbWUgaXMgdGhlIE5GVCArIFByaW50IGNvbWJvIHdlIGNhbiBvbmx5IHNlbGwgb25l
+IHNpZ25lZCB3b3JrIG9mIHRoaXMgYXMgYSBjb21ibyBiZWNhdXNlIHdlIGhhdmUgbm8gb3RoZXIg
+c2lnbmVkIHdvcmtzLiZuYnNwOzwvZGl2PjxkaXYgZGlyPSJhdXRvIj48YnI+PC9kaXY+PGRpdiBk
+aXI9ImF1dG8iPlRvbTwvZGl2PjxkaXYgZGlyPSJhdXRvIj48YnI+PC9kaXY+PGRpdiBkaXI9ImF1
+dG8iPjxicj48L2Rpdj48ZGl2IGRpcj0iYXV0byI+PGJyPjwvZGl2PjxkaXYgaWQ9ImNvbXBvc2Vy
+X3NpZ25hdHVyZSIgZGlyPSJhdXRvIj48ZGl2IHN0eWxlPSJmb250LXNpemU6MTJweDtjb2xvcjoj
+NTc1NzU3IiBkaXI9ImF1dG8iPlNlbnQgZnJvbSBteSBULU1vYmlsZSA0RyBMVEUgRGV2aWNlPC9k
+aXY+PC9kaXY+PGRpdiBkaXI9ImF1dG8iPjxicj48L2Rpdj48ZGl2Pjxicj48L2Rpdj48ZGl2IGFs
+aWduPSJsZWZ0IiBkaXI9ImF1dG8iIHN0eWxlPSJmb250LXNpemU6MTAwJTtjb2xvcjojMDAwMDAw
+Ij48ZGl2Pi0tLS0tLS0tIE9yaWdpbmFsIG1lc3NhZ2UgLS0tLS0tLS08L2Rpdj48ZGl2PkZyb206
+IFBhdWwgQ29oZW4gJmx0O3BhdWxyY29oZW5AZ21haWwuY29tJmd0OyA8L2Rpdj48ZGl2PkRhdGU6
+IDkvMjYvMjQgIDg6MzcgQU0gIChHTVQtMDg6MDApIDwvZGl2PjxkaXY+VG86IFRob21hcyBNYWNo
+bmlrICZsdDt6aXBucHVwQHlhaG9vLmNvbSZndDssIE1pbGEgQXNrYXJvdmEgJmx0O20uYXNrYXJv
+dmFAZ2F6ZWxsaWFydGhvdXNlLmNvbSZndDsgPC9kaXY+PGRpdj5TdWJqZWN0OiBTb3RoZWJ5J3Mg
+cmVxdWlyZW1lbnQgPC9kaXY+PGRpdj48YnI+PC9kaXY+PC9kaXY+PGRpdiBkaXI9Imx0ciI+PGRp
+diBzdHlsZT0iZm9udC1zaXplOnNtYWxsIiBjbGFzcz0iZ21haWxfZGVmYXVsdCI+VG9tLCBjYW4g
+eW91IGNvbmZpcm06PC9kaXY+PGRpdiBzdHlsZT0iZm9udC1zaXplOnNtYWxsIiBjbGFzcz0iZ21h
+aWxfZGVmYXVsdCI+PGJyPjwvZGl2PjxkaXYgc3R5bGU9ImZvbnQtc2l6ZTpzbWFsbCIgY2xhc3M9
+ImdtYWlsX2RlZmF1bHQiPjEpIHRoZSBuaW5lIHdvcmtzIG9uIHRoZWlyIHdheSB0byBTb3RoZWJ5
+J3MgYXJlIGFsbCBzaWduZWQgKGFuZCBpZiB0aGV5IGFyZW4ndCBhbGwgc2lnbmVkLCBob3cgbWFu
+eSBhcmUpPC9kaXY+PGRpdiBzdHlsZT0iZm9udC1zaXplOnNtYWxsIiBjbGFzcz0iZ21haWxfZGVm
+YXVsdCI+PGJyPjwvZGl2PjxkaXYgc3R5bGU9ImZvbnQtc2l6ZTpzbWFsbCIgY2xhc3M9ImdtYWls
+X2RlZmF1bHQiPjIpIEZvciBlYWNoIHdvcmssIGNhbiB3ZSBzYXkgd2l0aCByZWFzb25hYmxlIGNl
+cnRhaW50eSB0aGF0IGl0IGlzIHVuaXF1ZSBpbiB0aGUgc2Vuc2UgdGhhdCB0aGVyZSBpcyBub3Qg
+YW5vdGhlciBzaWduZWQgd29yayBmcm9tIHRoZSBzYW1lIGVkaXRpb24gaW4gc29tZW9uZSdzIHBv
+c3Nlc3Npb24uIDxicj48L2Rpdj48ZGl2IHN0eWxlPSJmb250LXNpemU6c21hbGwiIGNsYXNzPSJn
+bWFpbF9kZWZhdWx0Ij48YnI+PC9kaXY+PGRpdiBzdHlsZT0iZm9udC1zaXplOnNtYWxsIiBjbGFz
+cz0iZ21haWxfZGVmYXVsdCI+SSB0aGluayB0aGUgYW5zd2VyIHRvIHF1ZXN0aW9uIDEgaXMgdGhh
+dCBhbGwgbmluZSB3b3JrcyBhcmUgc2lnbmVkLCBhbmQgdGhlIGFuc3dlciB0byBxdWVzdGlvbiAy
+IGlzIHRoYXQgc29tZSBvZiB0aGVzZSB3b3JrcyBiZWxvbmcgdG8gZWRpdGlvbnMgYW5kIHdlIGtu
+b3cgb3Igc3VzcGVjdCB0aGF0IG90aGVyIHdvcmtzIGZyb20gdGhvc2UgZWRpdGlvbnMgYXJlIGZs
+b2F0aW5nIGFyb3VuZCBpbiB0aGUgYmlnIHdpZGUgd29ybGQuIDxicj48L2Rpdj48ZGl2IHN0eWxl
+PSJmb250LXNpemU6c21hbGwiIGNsYXNzPSJnbWFpbF9kZWZhdWx0Ij48YnI+PC9kaXY+PGRpdiBz
+dHlsZT0iZm9udC1zaXplOnNtYWxsIiBjbGFzcz0iZ21haWxfZGVmYXVsdCI+UGxlYXNlIGxldCBt
+ZSBrbm93IGFzIHNvb24gYXMgeW91IGNhbi4gPGJyPjwvZGl2PjxkaXYgc3R5bGU9ImZvbnQtc2l6
+ZTpzbWFsbCIgY2xhc3M9ImdtYWlsX2RlZmF1bHQiPjxicj48L2Rpdj48ZGl2IHN0eWxlPSJmb250
+LXNpemU6c21hbGwiIGNsYXNzPSJnbWFpbF9kZWZhdWx0Ij4tLVA8YnI+PC9kaXY+PGRpdj48ZGl2
+IGRhdGEtc21hcnRtYWlsPSJnbWFpbF9zaWduYXR1cmUiIGNsYXNzPSJnbWFpbF9zaWduYXR1cmUi
+IGRpcj0ibHRyIj48ZGl2IGRpcj0ibHRyIj48ZGl2PjxkaXYgZGlyPSJsdHIiPjxkaXY+PGRpdiBk
+aXI9Imx0ciI+PGRpdj48ZGl2IGRpcj0ibHRyIj48ZGl2PjxkaXYgZGlyPSJsdHIiPjxkaXY+PGRp
+diBkaXI9Imx0ciI+X19fX19fX19fX19fX19fX19fX19fX19fX19fX19fPGJyPjxicj5QYXVsIENv
+aGVuLCZuYnNwOyZuYnNwO1Byb2Zlc3NvcjwvZGl2PjxkaXYgZGlyPSJsdHIiPlNjaG9vbCBvZiBD
+b21wdXRpbmcgYW5kIEluZm9ybWF0aW9uPC9kaXY+PGRpdiBkaXI9Imx0ciI+VW5pdmVyc2l0eSBv
+ZiBQaXR0c2J1cmdoPC9kaXY+PGRpdiBkaXI9Imx0ciI+PGEgaHJlZj0iaHR0cHM6Ly9wYXVscmNv
+aGVuLmdpdGh1Yi5pby8iPnBlcnNvbmFsIHdlYnBhZ2U8L2E+PGJyPl9fX19fX19fX19fX19fX19f
+X19fX19fX19fX19fXzwvZGl2PjwvZGl2PjwvZGl2PjwvZGl2PjwvZGl2PjwvZGl2PjwvZGl2Pjwv
+ZGl2PjwvZGl2PjwvZGl2PjwvZGl2PjwvZGl2PjwvZGl2PjwvZGl2Pgo8L2JvZHk+PC9odG1sPg==
+
+----_com.samsung.android.email_4973276566046870--
+

@@ -1,0 +1,939 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a10:87e3:b0:52b:85d5:ba89 with SMTP id k3csp798808pxs;
+        Wed, 3 Jan 2024 07:48:59 -0800 (PST)
+X-Received: by 2002:a17:902:fe82:b0:1d4:6da1:98f5 with SMTP id x2-20020a170902fe8200b001d46da198f5mr6606016plm.23.1704296939273;
+        Wed, 03 Jan 2024 07:48:59 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1704296939; cv=none;
+        d=google.com; s=arc-20160816;
+        b=AoOpYYOMF1BtD4OJ+OauHmL3BQYNz7zZt9vzziq/BOwdoVaVZiHLAMZyYVxnX1XVEA
+         fqUMKWgm0plv6XVtKJ740GK6ckCgaVkJlvHFEQLkhS732dbM4FdZCERn7aER49xanfzw
+         mvJrTTFENybdfxkbNQTez3f2GHhNpN+v/2UwiHzwHouNNJsKDghPusRygELIMxCvb/Hy
+         HY1+C9KmCx4j2b0o8z/7n+RolnHPe2Sc6X5UmIsZ6rJy0BERM+32lHxH/BZD4PWhFlsS
+         2TSlTl7NILaF7sD1juoq/UkieSFnZAfyucJemHY4gcDezsrRzYPrfQnXduOGHJN5RhP6
+         +YtA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=JOox7D+/hWTBEu/ZUP6jlNF3xnH6h7IlLn+QyFo7lQ4=;
+        fh=ZAEs4XYJjSLL0IDmUHi+E2dzNd1As4qn+XP9vKaZ+Qk=;
+        b=wL65WVu/3BZCk7jA2QCOmNG/YR8RqPFBYj55EMYN0jXgmMLHBIdXABYL/VP702w8yb
+         9KODPkOMeKpAdYMsQbak3N/pLXRZjrziDn5AhAL7PN9D9i2vaVQ8q3R469uYVTZ2abES
+         u8l7ITgvUORfeGUH3wKXvaqnEp1VvpqzXTd0Pi5fY4RbvDrBbsH2DJcq0sFPa81+tReu
+         IEp4SjVv2SeaeMvLmHzB3Kodj4ImPfdmLe0hkPXwWaLZ+MNbsaLa0sU1c+6fnAlYVdQ1
+         z/Qb/m1Ic2KOKmwz1KwrndkCQ+kucCRiOHXHoCB1b34g3drgkcKT6ARTud05qL3V0fzo
+         jJoQ==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@gazelliarthouse-com.20230601.gappssmtp.com header.s=20230601 header.b=d4AruCL6;
+       spf=pass (google.com: domain of laura@gazelliarthouse.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=laura@gazelliarthouse.com
+Return-Path: <laura@gazelliarthouse.com>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id o5-20020a170902bcc500b001d499d4964dsor2285662pls.5.2024.01.03.07.48.58
+        for <paulrcohen@gmail.com>
+        (Google Transport Security);
+        Wed, 03 Jan 2024 07:48:59 -0800 (PST)
+Received-SPF: pass (google.com: domain of laura@gazelliarthouse.com designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@gazelliarthouse-com.20230601.gappssmtp.com header.s=20230601 header.b=d4AruCL6;
+       spf=pass (google.com: domain of laura@gazelliarthouse.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=laura@gazelliarthouse.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gazelliarthouse-com.20230601.gappssmtp.com; s=20230601; t=1704296938; x=1704901738; dara=google.com;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=JOox7D+/hWTBEu/ZUP6jlNF3xnH6h7IlLn+QyFo7lQ4=;
+        b=d4AruCL69jNSKbVGSYq6uqCT2TKowGltsTQLdJP+uGp6ukSCzDjs+kLwxFyJ0h9RSg
+         0R7aInhp7PDD2XoPdms6U6ZZp3puXLxHH2YxhN5VtgHI1JbC864SU6cfxw0QO5Ereawm
+         Lags4s1JMopGLOWseS8xvspyqos6/XeDjYv8y675j5Ku26IAkOL0IXie4DwTGxr1nm5U
+         h0DKVkyP+QEm4NYGPBPJ5qClvfnO7gaZWDBGhPHo0u/V8VyDB7eajbNjm757UrvpEnbN
+         uPqrgC7PHMCKZ8Lc/1ksgQTDyWag4qpdZmap/NE1/hAL+3NQgZ8qyMNKMSSk8wySdowI
+         H9YQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1704296938; x=1704901738;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=JOox7D+/hWTBEu/ZUP6jlNF3xnH6h7IlLn+QyFo7lQ4=;
+        b=weQBP5rCpTMR7Rjcas2B461ySkEBQWQJrxVmfMji7NJAJFvPHDnn0Hjb3HI54ve4r9
+         YBLCrlIYrkp1Q+koI6SmxhApYyqi4en6hfj/li9WU9ZFM4qHpgKHcyIpJCb10jhDfaDv
+         0z+vhsD4tPqg9Q5eMD2L1M04W19JlqGUQfsWTx12lbDWoSTOFL9lFFfN1vRsovTy/ukI
+         eEDm15d5TXEVu/22UkqcQw7ZeSx/38Yz+PcWlS487/3sjOYc1ItqTafgaM5tGDU7nXhG
+         V1hh97pVlzPE1pnZeDr4apu5sYOfq5Yvu+3pD9fLbvr+Qu35Wp3xxVhDHAXN6S/ETtv/
+         ZubA==
+X-Gm-Message-State: AOJu0YyZHSy7yJhzPnCnsURNIn3sSvETW5Gai6biQR6uayDTeQSZu5Y4
+	TrbaVhUg08ooXud4K9DqQ/dK/BawvPvzODDbusqgOMDO4x/mVA==
+X-Google-Smtp-Source: AGHT+IH1KcQ+1mGRHAuc7rPH/PWP8tHWAq+9TqhVfhQ8MEIHOXjcbp8vXD08opiPB0bGvgw0s72P1QYPbozZvQ8GPrc=
+X-Received: by 2002:a17:90a:bd83:b0:28c:c709:a805 with SMTP id
+ z3-20020a17090abd8300b0028cc709a805mr2090642pjr.41.1704296938602; Wed, 03 Jan
+ 2024 07:48:58 -0800 (PST)
+MIME-Version: 1.0
+References: <290467636.2230983.1703117103958.ref@mail.yahoo.com>
+ <290467636.2230983.1703117103958@mail.yahoo.com> <CAO1DWx3iYah09=05qS6gkJYtNatAhfe44YyN98tk4scTVNgNug@mail.gmail.com>
+ <VI0PR01MB104411EE923138F77FADC5113A360A@VI0PR01MB10441.eurprd01.prod.exchangelabs.com>
+In-Reply-To: <VI0PR01MB104411EE923138F77FADC5113A360A@VI0PR01MB10441.eurprd01.prod.exchangelabs.com>
+From: Laura Green <laura@gazelliarthouse.com>
+Date: Wed, 3 Jan 2024 15:48:47 +0000
+Message-ID: <CAO1DWx0yDoDY1ta=gJvOyKwRxD+xb3Zos5F1yMxEiTO3G3cHSQ@mail.gmail.com>
+Subject: Re: Request for Extant video/audio of the British artist Harold Cohen (1928-2016)
+To: Archive Requests External <archiverequestsexternal@bbc.co.uk>
+Cc: Sara Nishi <nishisara@gmail.com>, Paul Cohen <paulrcohen@gmail.com>, 
+	=?UTF-8?B?a2Fub2tvIG5pc2hpIOilv+m5v+S5g+WtkA==?= <littledeerofthewest@googlemail.com>, 
+	Thomas Machnik <zipnpup@yahoo.com>, Mila Askarova <m.askarova@gazelliarthouse.com>
+Content-Type: multipart/related; boundary="0000000000009e3506060e0c8d74"
+
+--0000000000009e3506060e0c8d74
+Content-Type: multipart/alternative; boundary="0000000000009e3504060e0c8d73"
+
+--0000000000009e3504060e0c8d73
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Thank you kindly, Andrew.
+
+Best wishes,
+Laura
+
+*Laura Green *
+*Artist Liaison and Communications*
+
+*GAZELLI ART HOUSE*
+
+LONDON
+Pauline Boty: A Portrait
+<https://gazelliarthouse.com/exhibitions/178-a-portrait/>
+BAKU
+A State Of Acceptance: Kalliopi Lemos & Nancy Atakan
+<https://gazelliarthouse.com/exhibitions/176-a-state-of-acceptance-kalliopi=
+-lemos-and-nancy-atakan/>
+GAZELL.iO
+January Resident | Primavera De Filippi
+<https://gazell.io/exhibitions/127-primavera-de-filippi/>
+
+www.gazelliarthouse.com
++44 (0) 207 491 8816 / +994 (0) 12 498 1230
+<https://streaklinks.com/BHpVIxJHhzip8Hm6nAyO2h9O/https%3A%2F%2Fwww.instagr=
+am.com%2Fgazelliarthouse%2F>
+<https://streaklinks.com/BHpVIoEUFPH6ci6Q4QBT8JGr/https%3A%2F%2Ftwitter.com=
+%2FGazelliArtHouse>
+
+<https://streaklinks.com/BHpVIoEeHlRoFY_ETAqPyMXi/https%3A%2F%2Fwww.faceboo=
+k.com%2FGazelliArtHouse%2F>
+
+
+This e-mail message, including all attachments, is for the sole use of the
+intended recipient(s) and may contain legally privileged and confidential
+information. If you are not an intended recipient, you are hereby notified
+that you have either received this message in error or
+through interception, and that any review, use, distribution, copying or
+disclosure of this message and/or its attachments or parts thereof is
+strictly prohibited and is subject to criminal and civil penalties with
+appropriate national legislation.
+
+
+On Wed, 3 Jan 2024 at 10:00, Archive Requests External <
+archiverequestsexternal@bbc.co.uk> wrote:
+
+> Dear Laura
+>
+>
+>
+> I will forward you the reply we sent to the original email.
+>
+>
+>
+> Andrew Martin
+>
+> BBC Archive Requests - External
+>
+>
+>
+> *From:* Laura Green <laura@gazelliarthouse.com>
+> *Sent:* 03 January 2024 09:17
+> *To:* Archive Requests External <archiverequestsexternal@bbc.co.uk>
+> *Cc:* Sara Nishi <nishisara@gmail.com>; Paul Cohen <paulrcohen@gmail.com>=
+;
+> kanoko nishi =E8=A5=BF=E9=B9=BF=E4=B9=83=E5=AD=90 <littledeerofthewest@go=
+oglemail.com>; Thomas Machnik <
+> zipnpup@yahoo.com>; Mila Askarova <m.askarova@gazelliarthouse.com>
+> *Subject:* Re: Request for Extant video/audio of the British artist
+> Harold Cohen (1928-2016)
+>
+>
+>
+> To Whom it may concern,
+>
+>
+>
+> I trust you had a pleasant holiday period.
+>
+> I am just following up on this email =E2=80=93 looking forward to hearing=
+ back
+> from you re. the aforementioned questions.
+>
+>
+> Thank you in advance,
+>
+> Laura
+>
+>
+>
+> *Laura Green *
+>
+> *Artist Liaison and Communications*
+>
+>
+>
+> *GAZELLI ART HOUSE*
+>
+>
+>
+> LONDON
+>
+> Pauline Boty: A Portrait
+> <https://gazelliarthouse.com/exhibitions/178-a-portrait/>
+>
+> BAKU
+>
+> A State Of Acceptance: Kalliopi Lemos & Nancy Atakan
+> <https://gazelliarthouse.com/exhibitions/176-a-state-of-acceptance-kallio=
+pi-lemos-and-nancy-atakan/>
+>
+> GAZELL.iO
+>
+> December Resident | Ira Greenberg
+> <https://gazell.io/exhibitions/126-ira-greenberg/>
+>
+>
+>
+> www.gazelliarthouse.com
+> +44 (0) 207 491 8816 / +994 (0) 12 498 1230
+>
+> [image: Image removed by sender.]
+> <https://streaklinks.com/BHpVIxJHhzip8Hm6nAyO2h9O/https%3A%2F%2Fwww.insta=
+gram.com%2Fgazelliarthouse%2F>
+>
+> [image: Image removed by sender.]
+> <https://streaklinks.com/BHpVIoEUFPH6ci6Q4QBT8JGr/https%3A%2F%2Ftwitter.c=
+om%2FGazelliArtHouse>
+>
+>  [image: Image removed by sender.]
+> <https://streaklinks.com/BHpVIoEeHlRoFY_ETAqPyMXi/https%3A%2F%2Fwww.faceb=
+ook.com%2FGazelliArtHouse%2F>
+>
+> [image: Image removed by sender.]
+>
+>
+>
+>
+>
+> This e-mail message, including all attachments, is for the sole use of th=
+e
+> intended recipient(s) and may contain legally privileged and confidential
+> information. If you are not an intended recipient, you are hereby notifie=
+d
+> that you have either received this message in error or
+> through interception, and that any review, use, distribution, copying or
+> disclosure of this message and/or its attachments or parts thereof is
+> strictly prohibited and is subject to criminal and civil penalties with
+> appropriate national legislation.
+>
+>
+>
+>
+>
+> On Thu, 21 Dec 2023 at 00:05, Thomas Machnik <zipnpup@yahoo.com> wrote:
+>
+> Dear BBC Archivist,
+>
+> My name is Thomas Machnik and I am the Art Studio Manager for the Harold
+> Cohen Trust. Harold Cohen (1928-2016) was a prominent British artist both
+> as a painter and then later developed AARON -- AI computer based art. I a=
+m
+> currently doing research for the Trust. Based on the Trust archives, we
+> know Cohen appeared on BBC TV and radio. We are trying to determine if
+> these appearances are still extant. What type of information would you ne=
+ed
+> in order to determine if you have any film or audio? In some cases we onl=
+y
+> have a reference alluding to an interview. But we do have a couple typed =
+up
+> documents that looks like TV transcripts. One of the transcripts has the
+> following details:
+>
+> BARNET NEWMAN talking to David Sylvester
+>
+> Producer: Leonie Cohn
+>
+> Transmission: Wednesday 17th November 1965: 2140-2215
+>
+> Tape No: CTAM 42905
+>
+>
+>
+> This transcript is 13 pages and it has a second transcript titled,
+> "INTRODUCTION TO BARNETT NEWMAN INTERVIEW WITH DAVID SYLVESTER by John
+> Richardson" and says the length is 7'10"
+>
+>
+>
+> Based on reading the transcripts the show is primarily about Newman. But
+> on page 4 of the second transcript  it reads, "As Harold Cohen is going t=
+o
+> discuss the nature of Newman's impact on himself and others later in the
+> programme, I will say no more than that."
+>
+>
+>
+> These two transcripts are the same folder so we assume they go together
+> even though the John Richardson transcript portion does not have any of t=
+he
+> details like time date or tape number. In this same folder we do not have
+> any transcript of Harold Cohen speaking. But we do have a separate folder
+> with a TV transcript and wonder if this TV transcript belongs with the
+> above or with a separate transmission. The Harold Cohen transcript has a
+> column that includes camera directions. For example it starts off like th=
+is:
+>
+>
+>
+> 130/2 Top shot
+>
+> from ladder
+>
+> ---------------
+>
+> H.C. unrolls canvas
+>
+>
+>
+> Then on the 4 page it has a header that reads:
+>
+> ROLL ONE: SUNDAY NIGHT: PROJECT NO. 5616/0109
+>
+> LOCATION - N.LONDON
+>
+> ------------------------------------------------------------------
+>
+> The people talking are only referred to by initials. The intiials are
+> primarily HC, DT. But on ROLL TWO we see A.T. Question and HC, then on RO=
+LL
+> SIX (we don't have ROLLS 3-5) we see LS, HC, HR, AG.
+>
+>
+>
+> If the Tape NO CTAM 42905 really was transmitted Nov 17, 1965, I rather
+> think this PROJECT NO 5616/0109 might be bit later as there is much
+> discussion about the British Pavillion at the Venice Bienalle XXIII 1966.
+> Much of the transcript refers to artwork that will be rolled up and sent =
+to
+> the Bienalle. I believe the show opened June 1966. So this interview woul=
+d
+> be sometime in Spring 1966 I image.
+>
+>
+>
+> We do have a typed document in a separate folder with a document inside
+> titled "BARNETT NEWMAN by Harold Cohen". It does not have the same look a=
+s
+> a TV transcript but maybe a draft for the 1965 TV show. This work is not
+> dated but it begins like this, "In his interview with David Sylvester,
+> Newman gives a very full and really very technical account of the way his
+> painting developed...." Though it is not dated we suspect it belongs to
+> CTAM 42905 tape. And that PROJECT NO 5616/0109 is separate TV transmissio=
+n.
+> In any case, we are hoping to resolve these unknowns with your help.
+>
+>
+>
+> Ultimately, we would like to view any video the BBC may have of Cohen or
+> at a minimum determine what is still extant. I provided the above as it i=
+s
+> the most detail we have pointing to a specific recording. We are quite su=
+re
+> some of his other events were also filmed by the BBC. What type of
+> information would you need to help us determine what is still extant? If
+> you could advise me further on how to proceed, that would be most
+> appreciated.
+>
+>
+>
+>
+>
+> Thomas Machnik -- Art Studio Manager -- The Harold Cohen Trust
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+>
+
+--0000000000009e3504060e0c8d73
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Thank you kindly, Andrew.=C2=A0<div><br clear=3D"all"><div=
+><div dir=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"gmail_signatu=
+re"><div dir=3D"ltr"><div><font color=3D"#000000" face=3D"arial, sans-serif=
+">Best wishes,</font></div><div><font color=3D"#000000" face=3D"arial, sans=
+-serif">Laura</font></div><div><br></div><div style=3D"font-family:Arial,He=
+lvetica,sans-serif"><div style=3D"color:rgb(34,34,34)"><font face=3D"arial,=
+ sans-serif" size=3D"1" color=3D"#000000"><b>Laura Green=C2=A0</b></font></=
+div><div style=3D"color:rgb(34,34,34)"><font color=3D"#000000" face=3D"aria=
+l, sans-serif" size=3D"1"><b>Artist Liaison and Communications</b></font></=
+div><div style=3D"color:rgb(34,34,34)"><br></div><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr" style=3D"color:rgb(34,34,34)"><font size=3D"1"><f=
+ont color=3D"#000000"><b>GAZELLI ART HOUSE</b>=C2=A0</font></font></div><di=
+v dir=3D"ltr"><font size=3D"1" style=3D"color:rgb(34,34,34)"><font color=3D=
+"#000000"><br></font></font><div dir=3D"ltr"><div dir=3D"ltr" style=3D"colo=
+r:rgb(34,34,34)"><font size=3D"1"><font face=3D"arial, sans-serif" color=3D=
+"#000000">LONDON</font></font></div><div style=3D"color:rgb(34,34,34)"><fon=
+t face=3D"arial, sans-serif" size=3D"1"><a href=3D"https://gazelliarthouse.=
+com/exhibitions/178-a-portrait/" style=3D"color:rgb(0,0,255)" target=3D"_bl=
+ank">Pauline Boty: A Portrait</a></font></div><div style=3D"color:rgb(34,34=
+,34)"><span style=3D"color:rgb(0,0,0);font-family:arial,sans-serif;font-siz=
+e:x-small">BAKU=C2=A0</span></div><div style=3D"color:rgb(34,34,34)"><font =
+face=3D"PortraitTextWeb, sans-serif" size=3D"1" color=3D"#0000ff"><a href=
+=3D"https://gazelliarthouse.com/exhibitions/176-a-state-of-acceptance-kalli=
+opi-lemos-and-nancy-atakan/" style=3D"color:rgb(17,85,204)" target=3D"_blan=
+k"><font color=3D"#0000ff">A State Of Acceptance: Kalliopi Lemos &amp; Nanc=
+y Atakan</font></a></font></div><div dir=3D"ltr"><div style=3D"color:rgb(34=
+,34,34)"><font size=3D"1"><font color=3D"#000000" face=3D"arial, sans-serif=
+">GAZELL.iO=C2=A0</font></font></div><div><font size=3D"1" style=3D"color:r=
+gb(34,34,34)"><font face=3D"arial, sans-serif"><font color=3D"#222222">Janu=
+ary Resident |=C2=A0</font></font></font><span style=3D"font-family:Barlow,=
+sans-serif"><font size=3D"1" color=3D"#0000ff"><a href=3D"https://gazell.io=
+/exhibitions/127-primavera-de-filippi/" target=3D"_blank">Primavera De Fili=
+ppi</a></font></span></div><div style=3D"color:rgb(34,34,34)"><br></div></d=
+iv></div></div></div><div dir=3D"ltr" style=3D"color:rgb(34,34,34)"><div><f=
+ont face=3D"arial, sans-serif"><font size=3D"1"><a href=3D"http://www.gazel=
+liarthouse.com/" style=3D"color:rgb(17,85,204)" target=3D"_blank"><font col=
+or=3D"#0000ff">www.gazelliarthouse.com</font></a><br>+44 (0) 207 491 8816 /=
+ +994 (0) 12 498 1230</font><div><div><font color=3D"#000000" size=3D"1"><a=
+ href=3D"https://streaklinks.com/BHpVIxJHhzip8Hm6nAyO2h9O/https%3A%2F%2Fwww=
+.instagram.com%2Fgazelliarthouse%2F" style=3D"color:rgb(17,85,204);display:=
+inline-block" target=3D"_blank"><img src=3D"https://68ef2f69c7787d4078ac-78=
+64ae55ba174c40683f10ab811d9167.ssl.cf1.rackcdn.com/instagram-icon_24x24.png=
+" width=3D"24" style=3D"margin:0.8em 0.2em;padding:0px;letter-spacing:-0.1p=
+x;border:0px;vertical-align:middle;max-width:100%"><div style=3D"margin:0px=
+;width:0px;height:0px"><div></div></div></a><a href=3D"https://streaklinks.=
+com/BHpVIoEUFPH6ci6Q4QBT8JGr/https%3A%2F%2Ftwitter.com%2FGazelliArtHouse" h=
+space=3D"streak-track" style=3D"color:rgb(17,85,204);display:inline-block" =
+target=3D"_blank"><img src=3D"https://68ef2f69c7787d4078ac-7864ae55ba174c40=
+683f10ab811d9167.ssl.cf1.rackcdn.com/twitter-icon_24x24.png" width=3D"24" s=
+tyle=3D"margin:0.8em 0.2em;padding:0px;letter-spacing:-0.1px;border:0px;ver=
+tical-align:middle;max-width:100%"><div style=3D"margin:0px;width:0px;heigh=
+t:0px"><div></div></div></a>=C2=A0<a href=3D"https://streaklinks.com/BHpVIo=
+EeHlRoFY_ETAqPyMXi/https%3A%2F%2Fwww.facebook.com%2FGazelliArtHouse%2F" hsp=
+ace=3D"streak-track" style=3D"color:rgb(17,85,204);display:inline-block" ta=
+rget=3D"_blank"><img src=3D"https://68ef2f69c7787d4078ac-7864ae55ba174c4068=
+3f10ab811d9167.ssl.cf1.rackcdn.com/facebook-icon_24x24.png" width=3D"24" st=
+yle=3D"margin:0.8em 0.2em;padding:0px;letter-spacing:-0.1px;border:0px;vert=
+ical-align:middle;max-width:100%"></a></font></div></div><div><img width=3D=
+"96" height=3D"44" src=3D"https://ci3.googleusercontent.com/mail-sig/AIorK4=
+w7gKovNZAR8tYAuQ9hIjEiBgWel9uIDPpW34GyeY595Rek12deHDAlPE9ZZxtPymKBYCzaHBU">=
+</div></font></div></div></div></div><div dir=3D"ltr"><div dir=3D"ltr"><div=
+><font face=3D"arial, sans-serif"><span style=3D"color:rgb(34,34,34)"><div>=
+<br></div><div><br></div><div><font color=3D"#000000" size=3D"1">This e-mai=
+l message, including all attachments, is for the=C2=A0sole use of the inten=
+ded recipient(s) and may contain=C2=A0legally privileged and confidential i=
+nformation. If you are=C2=A0not an intended recipient, you are hereby notif=
+ied that=C2=A0you have either received this message in error or through=C2=
+=A0interception, and that any=C2=A0review, use, distribution,=C2=A0copying =
+or disclosure of this message and/or its=C2=A0attachments or parts thereof =
+is strictly prohibited and is=C2=A0subject to criminal and civil penalties =
+with appropriate=C2=A0national legislation.</font></div></span></font></div=
+></div></div></div></div></div><br></div></div><br><div class=3D"gmail_quot=
+e"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, 3 Jan 2024 at 10:00, Archi=
+ve Requests External &lt;<a href=3D"mailto:archiverequestsexternal@bbc.co.u=
+k">archiverequestsexternal@bbc.co.uk</a>&gt; wrote:<br></div><blockquote cl=
+ass=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid=
+ rgb(204,204,204);padding-left:1ex"><div class=3D"msg6932212383221966557">
+
+
+
+
+
+<div lang=3D"EN-GB" style=3D"overflow-wrap: break-word;">
+<div class=3D"m_6932212383221966557WordSection1">
+<p class=3D"MsoNormal"><span>Dear Laura<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><span>I will forward you the reply we sent to the or=
+iginal email.<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span><u></u>=C2=A0<u></u></span></p>
+<p class=3D"MsoNormal"><span>Andrew Martin<u></u><u></u></span></p>
+<p class=3D"MsoNormal"><span>BBC Archive Requests - External<u></u><u></u><=
+/span></p>
+<p class=3D"MsoNormal"><span><u></u>=C2=A0<u></u></span></p>
+<div style=3D"border-right:none;border-bottom:none;border-left:none;border-=
+top:1pt solid rgb(225,225,225);padding:3pt 0cm 0cm">
+<p class=3D"MsoNormal"><b><span lang=3D"EN-US">From:</span></b><span lang=
+=3D"EN-US"> Laura Green &lt;<a href=3D"mailto:laura@gazelliarthouse.com" ta=
+rget=3D"_blank">laura@gazelliarthouse.com</a>&gt;
+<br>
+<b>Sent:</b> 03 January 2024 09:17<br>
+<b>To:</b> Archive Requests External &lt;<a href=3D"mailto:archiverequestse=
+xternal@bbc.co.uk" target=3D"_blank">archiverequestsexternal@bbc.co.uk</a>&=
+gt;<br>
+<b>Cc:</b> Sara Nishi &lt;<a href=3D"mailto:nishisara@gmail.com" target=3D"=
+_blank">nishisara@gmail.com</a>&gt;; Paul Cohen &lt;<a href=3D"mailto:paulr=
+cohen@gmail.com" target=3D"_blank">paulrcohen@gmail.com</a>&gt;; kanoko nis=
+hi
+</span><span style=3D"font-family:&quot;MS Gothic&quot;">=E8=A5=BF=E9=B9=BF=
+=E4=B9=83=E5=AD=90</span><span lang=3D"EN-US"> &lt;<a href=3D"mailto:little=
+deerofthewest@googlemail.com" target=3D"_blank">littledeerofthewest@googlem=
+ail.com</a>&gt;; Thomas Machnik &lt;<a href=3D"mailto:zipnpup@yahoo.com" ta=
+rget=3D"_blank">zipnpup@yahoo.com</a>&gt;; Mila Askarova &lt;<a href=3D"mai=
+lto:m.askarova@gazelliarthouse.com" target=3D"_blank">m.askarova@gazelliart=
+house.com</a>&gt;<br>
+<b>Subject:</b> Re: Request for Extant video/audio of the British artist Ha=
+rold Cohen (1928-2016)<u></u><u></u></span></p>
+</div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<div>
+<p class=3D"MsoNormal">To Whom it may concern,<u></u><u></u></p>
+<div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">I trust you had a pleasant=C2=A0holiday period.<u></=
+u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal">I am just following=C2=A0up on this email =E2=80=93 =
+looking forward to hearing back from you re. the aforementioned questions.=
+=C2=A0<u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><br clear=3D"all">
+<u></u><u></u></p>
+<div>
+<div>
+<div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:Arial,sans-serif;color:bl=
+ack">Thank you in advance,</span><u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:Arial,sans-serif;color:bl=
+ack">Laura</span><u></u><u></u></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+<div>
+<div>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:7.5pt;font-family:Arial,=
+sans-serif;color:black">Laura Green=C2=A0</span></b><span style=3D"font-fam=
+ily:Arial,sans-serif;color:rgb(34,34,34)"><u></u><u></u></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:7.5pt;font-family:Arial,=
+sans-serif;color:black">Artist Liaison and Communications</span></b><span s=
+tyle=3D"font-family:Arial,sans-serif;color:rgb(34,34,34)"><u></u><u></u></s=
+pan></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:Arial,sans-serif;color:rg=
+b(34,34,34)"><u></u>=C2=A0<u></u></span></p>
+</div>
+<div>
+<div>
+<div>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:7.5pt;font-family:Arial,=
+sans-serif;color:black">GAZELLI ART HOUSE</span></b><span style=3D"font-siz=
+e:7.5pt;font-family:Arial,sans-serif;color:black">=C2=A0</span><span style=
+=3D"font-family:Arial,sans-serif;color:rgb(34,34,34)"><u></u><u></u></span>=
+</p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:Arial,sans-serif;color:rg=
+b(34,34,34)"><u></u>=C2=A0<u></u></span></p>
+<div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:7.5pt;font-family:Arial,san=
+s-serif;color:black">LONDON</span><span style=3D"font-family:Arial,sans-ser=
+if;color:rgb(34,34,34)"><u></u><u></u></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:7.5pt;font-family:Arial,san=
+s-serif;color:rgb(34,34,34)"><a href=3D"https://gazelliarthouse.com/exhibit=
+ions/178-a-portrait/" target=3D"_blank">Pauline Boty: A Portrait</a></span>=
+<span style=3D"font-family:Arial,sans-serif;color:rgb(34,34,34)"><u></u><u>=
+</u></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:10pt;font-family:Arial,sans=
+-serif;color:black">BAKU=C2=A0</span><span style=3D"font-family:Arial,sans-=
+serif;color:rgb(34,34,34)"><u></u><u></u></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:7.5pt;font-family:Arial,san=
+s-serif;color:blue"><a href=3D"https://gazelliarthouse.com/exhibitions/176-=
+a-state-of-acceptance-kalliopi-lemos-and-nancy-atakan/" target=3D"_blank">A=
+ State Of Acceptance: Kalliopi Lemos &amp;
+ Nancy Atakan</a></span><span style=3D"font-family:Arial,sans-serif;color:r=
+gb(34,34,34)"><u></u><u></u></span></p>
+</div>
+<div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:7.5pt;font-family:Arial,san=
+s-serif;color:black">GAZELL.iO=C2=A0</span><span style=3D"font-family:Arial=
+,sans-serif;color:rgb(34,34,34)"><u></u><u></u></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:7.5pt;font-family:Arial,san=
+s-serif;color:rgb(34,34,34)">December Resident |=C2=A0</span><span style=3D=
+"font-size:7.5pt;font-family:Barlow;color:rgb(34,34,34)"><a href=3D"https:/=
+/gazell.io/exhibitions/126-ira-greenberg/" target=3D"_blank">Ira
+ Greenberg</a></span><span style=3D"font-family:Arial,sans-serif;color:rgb(=
+34,34,34)"><u></u><u></u></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:Arial,sans-serif;color:rg=
+b(34,34,34)"><u></u>=C2=A0<u></u></span></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:7.5pt;font-family:Arial,san=
+s-serif;color:rgb(34,34,34)"><a href=3D"http://www.gazelliarthouse.com/" ta=
+rget=3D"_blank">www.gazelliarthouse.com</a><br>
++44 (0) 207 491 8816 / +994 (0) 12 498 1230</span><span style=3D"font-famil=
+y:Arial,sans-serif;color:rgb(34,34,34)"><u></u><u></u></span></p>
+<div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:7.5pt;font-family:Arial,san=
+s-serif;color:black"><a href=3D"https://streaklinks.com/BHpVIxJHhzip8Hm6nAy=
+O2h9O/https%3A%2F%2Fwww.instagram.com%2Fgazelliarthouse%2F" target=3D"_blan=
+k"><span style=3D"color:rgb(17,85,204);border:1pt solid windowtext;padding:=
+0cm;text-decoration:none"><img border=3D"0" width=3D"24" height=3D"24" styl=
+e=3D"width: 0.25in; height: 0.25in;" id=3D"m_6932212383221966557Picture_x00=
+20_1" src=3D"cid:ii_18cd00325c0bee2ed7e1" alt=3D"Image removed by sender.">=
+</span><span style=3D"font-family:Calibri,sans-serif;color:rgb(17,85,204)">=
+<u></u><u></u></span></a></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:7.5pt;font-family:Arial,san=
+s-serif;color:black"><a href=3D"https://streaklinks.com/BHpVIoEUFPH6ci6Q4QB=
+T8JGr/https%3A%2F%2Ftwitter.com%2FGazelliArtHouse" target=3D"_blank"><span =
+style=3D"color:rgb(17,85,204);border:1pt solid windowtext;padding:0cm;text-=
+decoration:none"><img border=3D"0" width=3D"24" height=3D"24" style=3D"widt=
+h: 0.25in; height: 0.25in;" id=3D"m_6932212383221966557Picture_x0020_2" src=
+=3D"cid:ii_18cd00325c0bee2ed7e1" alt=3D"Image removed by sender."></span><s=
+pan style=3D"color:rgb(17,85,204)"><u></u><u></u></span></a></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:7.5pt;font-family:Arial,san=
+s-serif;color:black">=C2=A0</span><a href=3D"https://streaklinks.com/BHpVIo=
+EeHlRoFY_ETAqPyMXi/https%3A%2F%2Fwww.facebook.com%2FGazelliArtHouse%2F" tar=
+get=3D"_blank"><span style=3D"font-size:7.5pt;font-family:Arial,sans-serif;=
+color:rgb(17,85,204);border:1pt solid windowtext;padding:0cm;text-decoratio=
+n:none"><img border=3D"0" width=3D"24" height=3D"24" style=3D"width: 0.25in=
+; height: 0.25in;" id=3D"m_6932212383221966557Picture_x0020_3" src=3D"cid:i=
+i_18cd00325c0bee2ed7e1" alt=3D"Image removed by sender."></span></a><span s=
+tyle=3D"color:rgb(34,34,34)"><u></u><u></u></span></p>
+</div>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:Arial,sans-serif;color:rg=
+b(34,34,34);border:1pt solid windowtext;padding:0cm"><img border=3D"0" widt=
+h=3D"96" height=3D"44" style=3D"width: 1in; height: 0.4583in;" id=3D"m_6932=
+212383221966557Picture_x0020_4" src=3D"cid:ii_18cd00325c0bee2ed7e1" alt=3D"=
+Image removed by sender."></span><span style=3D"font-family:Arial,sans-seri=
+f;color:rgb(34,34,34)"><u></u><u></u></span></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div>
+<div>
+<div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:Arial,sans-serif;color:rg=
+b(34,34,34)"><u></u>=C2=A0<u></u></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-family:Arial,sans-serif;color:rg=
+b(34,34,34)"><u></u>=C2=A0<u></u></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:7.5pt;font-family:Arial,san=
+s-serif;color:black">This e-mail message, including all attachments, is for=
+ the=C2=A0sole use of the intended recipient(s) and may contain=C2=A0legall=
+y privileged and confidential information. If
+ you are=C2=A0not an intended recipient, you are hereby notified that=C2=A0=
+you have either received this message in error or through=C2=A0interception=
+, and that any=C2=A0review, use, distribution,=C2=A0copying or disclosure o=
+f this message and/or its=C2=A0attachments or parts thereof is
+ strictly prohibited and is=C2=A0subject to criminal and civil penalties wi=
+th appropriate=C2=A0national legislation.</span><span style=3D"font-family:=
+Arial,sans-serif;color:rgb(34,34,34)"><u></u><u></u></span></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><u></u>=C2=A0<u></u></p>
+<div>
+<div>
+<p class=3D"MsoNormal">On Thu, 21 Dec 2023 at 00:05, Thomas Machnik &lt;<a =
+href=3D"mailto:zipnpup@yahoo.com" target=3D"_blank">zipnpup@yahoo.com</a>&g=
+t; wrote:<u></u><u></u></p>
+</div>
+<blockquote style=3D"border-top:none;border-right:none;border-bottom:none;b=
+order-left:1pt solid rgb(204,204,204);padding:0cm 0cm 0cm 6pt;margin-left:4=
+.8pt;margin-right:0cm">
+<div>
+<div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12pt;font-family:Helvetica,=
+sans-serif">Dear BBC Archivist,<u></u><u></u></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12pt;font-family:Helvetica,=
+sans-serif">My name is Thomas Machnik and I am the Art Studio Manager for t=
+he Harold Cohen Trust. Harold Cohen (1928-2016) was a prominent British art=
+ist both as a painter and then later
+ developed AARON -- AI computer based art. I am currently doing research fo=
+r the Trust. Based on the Trust archives, we know Cohen appeared on BBC TV =
+and radio. We are trying to determine if these appearances are still extant=
+. What type of information would
+ you need in order to determine if you have any film or audio? In some case=
+s we only have a reference alluding to an interview. But we do have a coupl=
+e typed up documents that looks like TV transcripts. One of the transcripts=
+ has the following details:<u></u><u></u></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12pt;font-family:Helvetica,=
+sans-serif">BARNET NEWMAN talking to David Sylvester<u></u><u></u></span></=
+p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12pt;font-family:Helvetica,=
+sans-serif">Producer: Leonie Cohn<u></u><u></u></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12pt;font-family:Helvetica,=
+sans-serif">Transmission: Wednesday 17th November 1965: 2140-2215<u></u><u>=
+</u></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12pt;font-family:Helvetica,=
+sans-serif">Tape No: CTAM 42905<u></u><u></u></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12pt;font-family:Helvetica,=
+sans-serif"><u></u>=C2=A0<u></u></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12pt;font-family:Helvetica,=
+sans-serif">This transcript is 13 pages and it has a second transcript titl=
+ed, &quot;INTRODUCTION TO BARNETT NEWMAN INTERVIEW WITH DAVID SYLVESTER by =
+John Richardson&quot; and says the length
+ is 7&#39;10&quot;<u></u><u></u></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12pt;font-family:Helvetica,=
+sans-serif"><u></u>=C2=A0<u></u></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12pt;font-family:Helvetica,=
+sans-serif">Based on reading the transcripts the show is primarily about Ne=
+wman. But on page 4 of the second transcript=C2=A0 it reads, &quot;As Harol=
+d Cohen is going to discuss the nature of
+ Newman&#39;s impact on himself and others later in the programme, I will s=
+ay no more than that.&quot;<u></u><u></u></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12pt;font-family:Helvetica,=
+sans-serif"><u></u>=C2=A0<u></u></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12pt;font-family:Helvetica,=
+sans-serif">These two transcripts are the same folder so we assume they go =
+together even though the John Richardson transcript portion does not have a=
+ny of the details like time date
+ or tape number. In this same folder we do not have any transcript of Harol=
+d Cohen speaking. But we do have a separate folder with a TV transcript and=
+ wonder if this TV transcript belongs with the above or with a separate tra=
+nsmission. The Harold Cohen transcript
+ has a column that includes camera directions. For example it starts off li=
+ke this:<u></u><u></u></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12pt;font-family:Helvetica,=
+sans-serif"><u></u>=C2=A0<u></u></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12pt;font-family:Helvetica,=
+sans-serif">130/2 Top shot<u></u><u></u></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12pt;font-family:Helvetica,=
+sans-serif">from ladder<u></u><u></u></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12pt;font-family:Helvetica,=
+sans-serif">---------------<u></u><u></u></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12pt;font-family:Helvetica,=
+sans-serif">H.C. unrolls canvas<u></u><u></u></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12pt;font-family:Helvetica,=
+sans-serif"><u></u>=C2=A0<u></u></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12pt;font-family:Helvetica,=
+sans-serif">Then on the 4 page it has a header that reads:<u></u><u></u></s=
+pan></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12pt;font-family:Helvetica,=
+sans-serif">ROLL ONE: SUNDAY NIGHT: PROJECT NO. 5616/0109<u></u><u></u></sp=
+an></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12pt;font-family:Helvetica,=
+sans-serif">LOCATION - N.LONDON<u></u><u></u></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12pt;font-family:Helvetica,=
+sans-serif">---------------------------------------------------------------=
+---<u></u><u></u></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12pt;font-family:Helvetica,=
+sans-serif">The people talking are only referred to by initials. The intiia=
+ls are primarily HC, DT. But on ROLL TWO we see A.T. Question and HC, then =
+on ROLL SIX (we don&#39;t have ROLLS
+ 3-5) we see LS, HC, HR, AG.<u></u><u></u></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12pt;font-family:Helvetica,=
+sans-serif"><u></u>=C2=A0<u></u></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12pt;font-family:Helvetica,=
+sans-serif">If the Tape NO CTAM 42905 really was transmitted Nov 17, 1965, =
+I rather think this PROJECT NO 5616/0109 might be bit later as there is muc=
+h discussion about the British Pavillion
+ at the Venice Bienalle XXIII 1966. Much of the transcript refers to artwor=
+k that will be rolled up and sent to the Bienalle. I believe the show opene=
+d June 1966. So this interview would be sometime in Spring 1966 I image.<u>=
+</u><u></u></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12pt;font-family:Helvetica,=
+sans-serif"><u></u>=C2=A0<u></u></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12pt;font-family:Helvetica,=
+sans-serif">We do have a typed document in a separate folder with a documen=
+t inside titled &quot;BARNETT NEWMAN by Harold Cohen&quot;. It does not hav=
+e the same look as a TV transcript but maybe
+ a draft for the 1965 TV show. This work is not dated but it begins like th=
+is, &quot;In his interview with David Sylvester, Newman gives a very full a=
+nd really very technical account of the way his painting developed....&quot=
+; Though it is not dated we suspect it belongs
+ to CTAM 42905 tape. And that PROJECT NO 5616/0109 is separate TV transmiss=
+ion. In any case, we are hoping to resolve these unknowns with your help.<u=
+></u><u></u></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12pt;font-family:Helvetica,=
+sans-serif"><u></u>=C2=A0<u></u></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12pt;font-family:Helvetica,=
+sans-serif">Ultimately, we would like to view any video the BBC may have of=
+ Cohen or at a minimum determine what is still extant. I provided the above=
+ as it is the most detail we have
+ pointing to a specific recording. We are quite sure some of his other even=
+ts were also filmed by the BBC. What type of information would you need to =
+help us determine what is still extant? If you could advise me further on h=
+ow to proceed, that would be most
+ appreciated.<u></u><u></u></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12pt;font-family:Helvetica,=
+sans-serif"><u></u>=C2=A0<u></u></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12pt;font-family:Helvetica,=
+sans-serif"><u></u>=C2=A0<u></u></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12pt;font-family:Helvetica,=
+sans-serif">Thomas Machnik -- Art Studio Manager -- The Harold Cohen Trust<=
+u></u><u></u></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12pt;font-family:Helvetica,=
+sans-serif"><u></u>=C2=A0<u></u></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12pt;font-family:Helvetica,=
+sans-serif"><u></u>=C2=A0<u></u></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12pt;font-family:Helvetica,=
+sans-serif"><u></u>=C2=A0<u></u></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12pt;font-family:Helvetica,=
+sans-serif"><u></u>=C2=A0<u></u></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12pt;font-family:Helvetica,=
+sans-serif"><u></u>=C2=A0<u></u></span></p>
+</div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:12pt;font-family:Helvetica,=
+sans-serif"><u></u>=C2=A0<u></u></span></p>
+</div>
+</div>
+</div>
+</blockquote>
+</div>
+</div>
+</div>
+
+</div></blockquote></div>
+
+--0000000000009e3504060e0c8d73--
+--0000000000009e3506060e0c8d74
+Content-Type: image/jpeg; name="~WRD0000.jpg"
+Content-Disposition: inline; filename="~WRD0000.jpg"
+Content-Transfer-Encoding: base64
+Content-ID: <ii_18cd00325c0bee2ed7e1>
+X-Attachment-Id: ii_18cd00325c0bee2ed7e1
+
+/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0a
+HBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIy
+MjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCABkAGQDASIA
+AhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQA
+AAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3
+ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWm
+p6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEA
+AwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSEx
+BhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElK
+U1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3
+uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD3+iii
+gAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKA
+CiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAK
+KKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAoo
+ooAKKKKACiiigAooooAKKKKACiiigD//2Q==
+--0000000000009e3506060e0c8d74--

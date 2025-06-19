@@ -1,0 +1,154 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a11:624d:b0:5ad:6c17:f336 with SMTP id vj13csp35130pxb;
+        Thu, 5 Dec 2024 03:07:02 -0800 (PST)
+X-Received: by 2002:a05:600c:511f:b0:431:5632:448b with SMTP id 5b1f17b1804b1-434d0a07915mr80489395e9.25.1733396821873;
+        Thu, 05 Dec 2024 03:07:01 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1733396821; cv=none;
+        d=google.com; s=arc-20240605;
+        b=K1cRAxVnTX+fsDVPBJyUyzjgE3b9TZwt4dG2SBD862i1YjHKMkmVaTvA9srJuq/zv0
+         MYOmXVu/x5Br5C3SGEJumdI0Du48camPlf9tZxPlG9w/ccchO+YFgu5Akul3voR7feOx
+         fUCsxfgyYz2qsBLNOUfiXQnfD0lOj5Oe9v+yKsYg37UqPUgEkKo3/OwuGXMHvjR/urt9
+         nwdqNAZwJhbqmVdo1owHrwIdUilHpLa9SAexq8bpS4q7AYmFTJiy7Xu8aqqV15BwJz/b
+         NJRtXGSioSO+OU/7mdXsV/dqKdJzKe0/LKZSmJ5KoqDXDxEHnfjmH+/fyXJNqcuiCmYc
+         FL8Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:in-reply-to:cc:references:message-id:date:subject:mime-version
+         :from:content-transfer-encoding:dkim-signature;
+        bh=ArB0dn3CfZRAY1yx8QW7VThxQ0WaNEzqbloos1gj55U=;
+        fh=RuWIqodEW+8meD12vOzerZDRf3aA68cTMFzd3GQ9Czk=;
+        b=Rpgx5wmj78e73cQW90Plu7qEgTqbPJVhPt6EZlYRPKqhPqYrD6+tHMZGj4b0n5F3jp
+         8pklkD/fpbfBZsWR7RXosbRUZpGbctwB+GFZkzhcUqaVJygcWEPUae2MPX3SB1HwybLf
+         dpgXFbxnHNbPDiG73LUbnm1+46o421ehMdKdfBOq0H23eHRSlpFq0XqTkiMiWBgNgpoG
+         yY8h21t0TzRjZ1vCU+5tR9lFgajO9YkhLsy0sh+COzXRJ0IXWUTWl7IahEefNNCCn3Gt
+         g1tU0T/kzMbFFF8vnL3X3u27JlVSLYPLOxsqmOU0igTZJuooCKGNFv7+ETa/uhU/vaHT
+         F8zA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@gazelliarthouse-com.20230601.gappssmtp.com header.s=20230601 header.b=S7qxb4gj;
+       spf=pass (google.com: domain of george@gazelliarthouse.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=george@gazelliarthouse.com;
+       dara=pass header.i=@gmail.com
+Return-Path: <george@gazelliarthouse.com>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id 5b1f17b1804b1-434d9fb6ccbsor4902745e9.12.2024.12.05.03.07.01
+        for <paulrcohen@gmail.com>
+        (Google Transport Security);
+        Thu, 05 Dec 2024 03:07:01 -0800 (PST)
+Received-SPF: pass (google.com: domain of george@gazelliarthouse.com designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@gazelliarthouse-com.20230601.gappssmtp.com header.s=20230601 header.b=S7qxb4gj;
+       spf=pass (google.com: domain of george@gazelliarthouse.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=george@gazelliarthouse.com;
+       dara=pass header.i=@gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gazelliarthouse-com.20230601.gappssmtp.com; s=20230601; t=1733396820; x=1734001620; dara=google.com;
+        h=to:in-reply-to:cc:references:message-id:date:subject:mime-version
+         :from:content-transfer-encoding:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ArB0dn3CfZRAY1yx8QW7VThxQ0WaNEzqbloos1gj55U=;
+        b=S7qxb4gjIn0O7cLai0FdYRT4y6tOHvNiI0sbeyES4rQ+O7b7xP/RBCzXn1LxJtEcx5
+         aM76oDyRZyNPh5XXWQAotJbv7Q+uM97yyhpuQOLPBTK/mF+LFY5K+GiRJ5moV3KeMecc
+         PubBW7DWyqdJsMQ6LaDv27AqNCVp2+8p9C0FA/Gb9GlFBjtmduFghlhYW9PgXvnJj5+x
+         LQb2s3J6zJaDg36iCH4zDIsW1n4Wkjjbufq6YxV93kCf/xY7yFKy4uyEJJsvLc+K3/Az
+         ftGk4RWgWb81lVEANEr0KkDCcGoTdd15UDrFwZkHp0GfI7FquzilW+AZwXmioNs7rbkx
+         wB0Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733396820; x=1734001620;
+        h=to:in-reply-to:cc:references:message-id:date:subject:mime-version
+         :from:content-transfer-encoding:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ArB0dn3CfZRAY1yx8QW7VThxQ0WaNEzqbloos1gj55U=;
+        b=UNIiodFlRrkNXVuXtXjWn7TyWCb+ExqoGM6jiSmNVI5aJiXf1wu8ofXD9Bnlu/Hm7b
+         iaVLC9t01fSh/nHZFnCG91aMyheoYt02JisomLPnphGsf4rArxjkr4LbyWtaoZCgDvYI
+         CkseUpfq7stimpFRUp1fI/Uv/pMEksvLR59LGXcyblvzwI+1GVtOZpDYXU/0J7Mwcwzx
+         NQHGHlhBM+cDXw/LkoNFlyluzsjCf3/Z16OGSNu1EJpv6M8JWFzBCx9wKMBYbPBHQXwp
+         ZFcgvZEq8bhKcHVnpbGsZ4ur7lrv9K3hffpuh/v54bjoeiYHYIDXxz7np3yBu3j8vsez
+         7H0A==
+X-Gm-Message-State: AOJu0YxM2KStNpg6trq0gH2MTN916NlNIFiKWskgIciv+SYWeyY1Ia1m
+	i80Q2rY5B+fYLPCja7aMNslt0gW46Ha2x606il2ItBm++P9jRJZlvp+L4DTbs1WFDeEI9UGhj+E
+	=
+X-Gm-Gg: ASbGncu5ZZyt4wRG8oRrCWYpPH+d1e/3j32L8ZVuCCkvOmZftfhnA166OqwU1wsGQXa
+	MO4dG+vhgKFCwZJotTc6hqNy8AJKfWeB9fSkzEBzkl+0b/9EA5YPXyoUKJP8108tozl2tWyALNH
+	gh6zjYYmKbCg7cb1VuJ30aK22lJiHkJpRTvgPPVmyxmh5Kqxpxd7W026WiDRU0DGFZMYhXsQSz4
+	R3XfADklVFPJqwdJ+f17KPw4dz6jxfeYUEz5nAWXvcLtnfCqzUYgJg6unpHyPjj5NKPQgP4+QQ=
+X-Google-Smtp-Source: AGHT+IE1MPh/os/zb1vXFbzBDWwGWpp3pO3SwgH4COV25+zh+MGOYMImOb4sTakhAnTy0VByJHF5RQ==
+X-Received: by 2002:a05:600c:35cf:b0:431:52b7:a499 with SMTP id 5b1f17b1804b1-434d0a07e76mr76753595e9.20.1733396820408;
+        Thu, 05 Dec 2024 03:07:00 -0800 (PST)
+Return-Path: <george@gazelliarthouse.com>
+Received: from smtpclient.apple ([85.255.236.239])
+        by smtp.gmail.com with ESMTPSA id 5b1f17b1804b1-434da0da551sm20432635e9.21.2024.12.05.03.06.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 05 Dec 2024 03:06:59 -0800 (PST)
+Content-Type: multipart/alternative; boundary=Apple-Mail-BE5C2456-6A6A-4AD3-8729-EACD2A23FA30
+Content-Transfer-Encoding: 7bit
+From: George Lionel Barker <george@gazelliarthouse.com>
+Mime-Version: 1.0 (1.0)
+Subject: Re: a favor
+Date: Thu, 5 Dec 2024 11:06:50 +0000
+Message-Id: <C5169A10-28E3-4F18-A637-64E60C8F9E22@gazelliarthouse.com>
+References: <1225095637.3355691.1733345065070@mail.yahoo.com>
+Cc: Paul Cohen <paulrcohen@gmail.com>,
+ Michael Pollard <michael@gazelliarthouse.com>
+In-Reply-To: <1225095637.3355691.1733345065070@mail.yahoo.com>
+To: Thomas Machnik <zipnpup@yahoo.com>
+X-Mailer: iPhone Mail (22B91)
+
+
+--Apple-Mail-BE5C2456-6A6A-4AD3-8729-EACD2A23FA30
+Content-Type: text/html;
+	charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
+utf-8"></head><body dir=3D"auto">Hi Paul,&nbsp;<div><br></div><div>Yes happy=
+ to help =F0=9F=91=8D<br><div><br></div><div><br id=3D"lineBreakAtBeginningO=
+fSignature"><div dir=3D"ltr"><div>39 Dover Street</div><div>W1S 4NN</div><di=
+v>London&nbsp;</div><div><br></div><div>T: +44 (0) 207 491 8816</div><div>M:=
+ +44 (0) 7895 096 252</div></div><div dir=3D"ltr"><br><blockquote type=3D"ci=
+te">On 4 Dec 2024, at 20:44, Thomas Machnik &lt;zipnpup@yahoo.com&gt; wrote:=
+<br><br></blockquote></div><blockquote type=3D"cite"><div dir=3D"ltr">=EF=BB=
+=BF<!--[if gte mso 9]><xml><o:OfficeDocumentSettings><o:AllowPNG/><o:PixelsP=
+erInch>96</o:PixelsPerInch></o:OfficeDocumentSettings></xml><![endif]-->
+Sounds good, &nbsp;looking forward to seeing their efforts, Tom<br><br><br><=
+div class=3D"yahoo-signature"><a style=3D"font-size:12px" href=3D"https://ma=
+il.onelink.me/107872968?pid=3Dnativeplacement&amp;c=3DGlobal_Acquisition_YMk=
+tg_315_Internal_EmailSignature&amp;af_sub1=3DAcquisition&amp;af_sub2=3DGloba=
+l_YMktg&amp;af_sub3=3D&amp;af_sub4=3D100000604&amp;af_sub5=3DEmailSignature_=
+_Static_">Sent from Yahoo Mail for iPad</a><br></div><br><p class=3D"yahoo-q=
+uoted-begin" style=3D"font-size: 15px; color: rgb(132, 115, 255); padding-to=
+p: 15px; margin-top: 0px;">On Wednesday, December 4, 2024, 12:39 PM, Paul Co=
+hen &lt;paulrcohen@gmail.com&gt; wrote:</p><blockquote class=3D"iosymail"><d=
+iv id=3D"yiv8788163985"><div dir=3D"ltr"><div><div style=3D"font-size:small;=
+" class=3D"yiv8788163985gmail_default">Guys, I am writing to ask a favor.&nb=
+sp; A couple of months back, I agreed to supervise a class project for three=
+ undergrads here at Pitt.&nbsp; The class is a web development thing where t=
+hey have to design a web front end and back end.&nbsp; I suggested that they=
+ build something for Harold's inventory and sent them a csv file that contai=
+ns a fraction of Harold's stuff on Art Logic.&nbsp; To get a grade in the cl=
+ass, they need the work to be evaluated by professionals in the field.&nbsp;=
+ It would require you to sit through a short demo and (probably) write a ver=
+y short evaluation, just a few sentences.&nbsp; <br><br></div><div style=3D"=
+font-size:small;" class=3D"yiv8788163985gmail_default">I haven't seen the pr=
+oject yet because they are undergraduates who have left everything to the la=
+st minute.&nbsp; They are hoping to show it to you -- if you are willing -- n=
+ext Monday or Tuesday. <br></div><div style=3D"font-size:small;" class=3D"yi=
+v8788163985gmail_default"><br></div><div style=3D"font-size:small;" class=3D=
+"yiv8788163985gmail_default">My guess is that the work is pretty rudimentary=
+, partly because they are undergraduates and partly because they are from Ch=
+ina and Korea and communicating with them has been very difficult.&nbsp;</di=
+v><div style=3D"font-size:small;" class=3D"yiv8788163985gmail_default"><br><=
+/div><div style=3D"font-size:small;" class=3D"yiv8788163985gmail_default">So=
+ I don't expect this to be an uplifting experience for any of us, but they d=
+id the work and I'd like them to get a fair evaluation.&nbsp; <br></div></di=
+v><div><br></div><div><div style=3D"font-size:small;" class=3D"yiv8788163985=
+gmail_default">Thanks, --Paul<br></div><br clear=3D"all"></div><div><div dir=
+=3D"ltr" class=3D"yiv8788163985gmail_signature"><div dir=3D"ltr"><div><div d=
+ir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr"=
+><div><div dir=3D"ltr">______________________________<br><br>Paul Cohen,&nbs=
+p;&nbsp;Professor</div><div dir=3D"ltr">School of Computing and Information<=
+/div><div dir=3D"ltr">University of Pittsburgh</div><div dir=3D"ltr"><a rel=3D=
+"nofollow noopener noreferrer" target=3D"_blank" href=3D"https://paulrcohen.=
+github.io/">personal webpage</a><br>______________________________</div></di=
+v></div></div></div></div></div></div></div></div></div></div></div></div>
+</div><blockquote></blockquote></blockquote>
+</div></blockquote></div></div></body></html>=
+
+--Apple-Mail-BE5C2456-6A6A-4AD3-8729-EACD2A23FA30--

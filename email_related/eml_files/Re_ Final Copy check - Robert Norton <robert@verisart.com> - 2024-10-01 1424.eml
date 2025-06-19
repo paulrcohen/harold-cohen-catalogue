@@ -1,0 +1,580 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a10:4ea9:b0:5ad:6c17:f336 with SMTP id up41csp439663pxb;
+        Tue, 1 Oct 2024 11:24:57 -0700 (PDT)
+X-Forwarded-Encrypted: i=2; AJvYcCWYD2rB3aML815zLT7BQhLE+PYcYuGI2WUSGbyCvrOjQy0Vh5F7MtEoMzk/jlKuSDQRxFYwcZQhvc20@gmail.com
+X-Received: by 2002:a05:600c:3c89:b0:42c:b995:20d9 with SMTP id 5b1f17b1804b1-42f777ee34bmr2714095e9.28.1727807097350;
+        Tue, 01 Oct 2024 11:24:57 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1727807097; cv=none;
+        d=google.com; s=arc-20240605;
+        b=ArjncW51WxldFDDUiRcPi0QiFCmJuOwvbBVPT/UmBuZXbC4sAaroAwPbrQdWInV41k
+         KEVxGh/YBaLqTk5NAxThRzkp4Uq/+e6cJQCHlujpwtAXbjCBJ+v7ReIDaqjdajvz43v6
+         mtF9URpce11GfGTK41HSzJtj8A34QbBHE/yu96MxzQ+XXA05IleaL47Rs52l9IsKJnI+
+         OKMZ4miNUzqINFtlZjDV0d9hJeZcFRjjpmFGEqTXV8HHNOE5C76KkoPptHB5H8KLqUk7
+         HLyjz81TVk35w9aux0Yb5leNb1YqYO3PisG2vi+nSsxVnP0CQZTN8oXPx/iWVAVIXTOX
+         Geyg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=references:to:cc:in-reply-to:date:subject:mime-version:message-id
+         :from:dkim-signature;
+        bh=C0QSBOjcaedsEJIrBF4BhrFvGH5e+lwgPYKLworvUQA=;
+        fh=h3ppQ+62yH529r8F5OLyAWk56f6HAmLKFZjUVxnlZu8=;
+        b=J7LviZcoi6u0bECbVD43vyMTEJ5r/9Cb8PRAVM8gXBbkGIC4HDi6yl/jvkAMQXD4zd
+         B7N/mzIjnDInItAjTtHJBgTflcYJhy9D19qJAr1IqFB97Je4RTtyrOszRysK5q2NIORV
+         jeN7OFFqwccv6Ka0QjuiJKOomA0AnMilyIPyroO8l0237asy6dkENGx0f0i/lTBCG9os
+         Jix1AuJbESJ/e90V1BBKqflzLE2KiYlcwsn72LsfPDN9qhntLrfi3FRzUMlq8gTeMy4A
+         mvzJ1idZf2A+NzRsl/HGP6T0k7Jq3r5gsgKyDZhRkGLYztXBdItaI2sbgs/qgNm68Q1n
+         /mAQ==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@verisart.com header.s=google header.b=h43bQn+Y;
+       spf=pass (google.com: domain of robert@verisart.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=robert@verisart.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=verisart.com;
+       dara=pass header.i=@gmail.com
+Return-Path: <robert@verisart.com>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id 5b1f17b1804b1-42f5aa817c4sor39084335e9.6.2024.10.01.11.24.57
+        for <paulrcohen@gmail.com>
+        (Google Transport Security);
+        Tue, 01 Oct 2024 11:24:57 -0700 (PDT)
+Received-SPF: pass (google.com: domain of robert@verisart.com designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@verisart.com header.s=google header.b=h43bQn+Y;
+       spf=pass (google.com: domain of robert@verisart.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=robert@verisart.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=verisart.com;
+       dara=pass header.i=@gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=verisart.com; s=google; t=1727807097; x=1728411897; dara=google.com;
+        h=references:to:cc:in-reply-to:date:subject:mime-version:message-id
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=C0QSBOjcaedsEJIrBF4BhrFvGH5e+lwgPYKLworvUQA=;
+        b=h43bQn+YDLy5d0bT8mte0vtDl+X/14MI6piENhAQniFFkLirv2ryTDo1ewzfXtmKps
+         1G9PYunBNAl/6UA/rl3DwPJTQxvjn/tO/3BKIgca8wzQHOfe24G/rUiQkFy+guAvDr7Z
+         RX7rmyYHpYWdWeSoboveZAhGltCjz7W941wD3zFOsNyMck8oI0WIwGBAOgTv34cvBX4/
+         iluEnEhywFY7HyElef8Ps5ZfU6mXAD55MsSkrmf4iQJybkcqSjfRQ/7AOAclmNKlrNcA
+         C+ZTFBW3Cq1xyUhjpaFx3bQ5TDvH2To3YXtYAOKsiGiaxUNzpzWwjdfW79FV0vycIzX0
+         utiQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727807097; x=1728411897;
+        h=references:to:cc:in-reply-to:date:subject:mime-version:message-id
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=C0QSBOjcaedsEJIrBF4BhrFvGH5e+lwgPYKLworvUQA=;
+        b=lqlMDyh/RKMArU2mhJ8YkrokmVBY9ARhY3F6DL5bompVzRek9EU4xl0vcV7oMfRsgE
+         9G61rXQMXJd0bkUOSnqZp/T1UKy/Gtw8jvnbmmLeS5FoJMVMeL5oc3Sa7vFm44+79RNo
+         Mo74MFHwPaZhEX5dXgJ5abrAxw0ahZSnfHzm8rkIEsg7vWRBMloWecpxTytkeafAKKBb
+         qjaGXg3VaEcg47TFUIvi3fkOmeGb4xbxku4XYB5UjXyy3pRWIGg3Pc/i7QtHWOei2o/T
+         1uDFavg57ghXwPAs/sNilwcKbFQWNvi5C1M4fCZOb/G7wy5t4jsiSZ8Ro+4i73REX0Di
+         3FZw==
+X-Forwarded-Encrypted: i=1; AJvYcCVHRLoJ7DbNF30DasjDMvC6J27SgiVlMgsoEBrxYmnSEQrNwGlu3+1b1ZovU5uea570zeCfvpR4ZTk5@gmail.com
+X-Gm-Message-State: AOJu0YyqlbPYDSwXiSN3DcRLalfn+SewOFb0764wmk8dTlEVll0jMArO
+	KWEj0Jk0PMC7t6O15PzXq8yEac2Yf6yEscc89UUuyXdPuOjVg0nJYBtQw79dWxQ=
+X-Google-Smtp-Source: AGHT+IElbRuqQA+DTZc2/zt5VsPpJ94w0KoW0U6kgA16NIhUEfkkGchWCe+bWPqkIaHf9h3Trd1i3w==
+X-Received: by 2002:adf:eac9:0:b0:37c:d001:856d with SMTP id ffacd0b85a97d-37cfba059d3mr343206f8f.42.1727807096428;
+        Tue, 01 Oct 2024 11:24:56 -0700 (PDT)
+Return-Path: <robert@verisart.com>
+Received: from smtpclient.apple ([212.140.171.194])
+        by smtp.gmail.com with ESMTPSA id ffacd0b85a97d-37cd5742230sm12400511f8f.92.2024.10.01.11.24.55
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 01 Oct 2024 11:24:55 -0700 (PDT)
+From: Robert Norton <robert@verisart.com>
+Message-Id: <EBCE2A0F-B736-4880-9517-CD9370FBF6B0@verisart.com>
+Content-Type: multipart/alternative;
+	boundary="Apple-Mail=_51B787D0-90EF-4468-8F3E-5032E9B71722"
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3818.100.11.1.3\))
+Subject: Re: Final Copy check
+Date: Tue, 1 Oct 2024 19:24:44 +0100
+In-Reply-To: <903323627.2692894.1727802882177@mail.yahoo.com>
+Cc: Paul Cohen <team@haroldcohentrust.org>,
+ Cohen Paul <paulrcohen@gmail.com>,
+ Askarova Norton Mila <m.askarova@gazelliarthouse.com>
+To: Thomas Machnik <zipnpup@yahoo.com>
+References: <9B8E7CAA-C9A9-4D93-B5A8-D98F3C66464C@verisart.com>
+ <46E74908-7D6C-4758-B214-64F50D0E5C6D@verisart.com>
+ <903323627.2692894.1727802882177@mail.yahoo.com>
+X-Mailer: Apple Mail (2.3818.100.11.1.3)
+
+
+--Apple-Mail=_51B787D0-90EF-4468-8F3E-5032E9B71722
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=utf-8
+
+Thanks for clarifying.  We will use the file size as listed by the =
+computer as this will be more transparent for people and easier to =
+understand. Best
+
+Robert Norton
+CEO & co-founder
+Verisart <http://www.verisart.com/>
+
+
+=EF=BF=BC
+
+> On Oct 1, 2024, at 18:14, Thomas Machnik <zipnpup@yahoo.com> wrote:
+>=20
+> Robert,
+> The previous list you sent and the one we discussed over the phone.
+> Turns out the Metadata reader does not match with the file size list =
+on the computer.
+> file            Metadata reader
+> 0305-08   135 metadata vs 138 file listing on computer
+> 0309-03   208 metadata vs 213 file listing on computer
+>=20
+> If you say the metadata needs to match then,
+> The first column is what needs to be used as those are the sizes =
+listed by the reader. And those are the original numbers I listed in the =
+Provenance+Metadata document
+>=20
+>=20
+> Tom
+>=20
+> On Tuesday, October 1, 2024, 9:42:51 AM PDT, Robert Norton =
+<robert@verisart.com> wrote:
+>=20
+>=20
+> Tom,
+>=20
+> Thanks for your time earlier.  Per discussion we will go with:
+>=20
+> 1) the Earl & Birdie Taylor gallery
+> 2) Use Harold Cohen Trust instead of HCT
+> 3) We will use the file sizes as per the files themselves and not the =
+file size in the Word Document you previously provided.
+> <Screenshot 2024-10-01 at 17.42.01.png>
+>=20
+>=20
+> Thanks for clarifying - we will pass this on to Sotheby=E2=80=99s.
+>=20
+> Best
+>=20
+> Robert
+>=20
+>=20
+> Robert Norton
+> CEO & co-founder
+> Verisart <http://www.verisart.com/>
+>=20
+>=20
+> <verisart-certified-signature (1).gif>
+>=20
+>> On Oct 1, 2024, at 17:20, Robert Norton <robert@verisart.com> wrote:
+>>=20
+>=20
+> Hi Thomas,
+>=20
+> Thanks so much for the additional information you provided yesterday.  =
+We wanted to run a few changes by you which have been picked up by our =
+team.
+>=20
+> We noticed that the Birdie Taylor gallery is referred to online as the =
+Earl & Birdie Taylor gallery online - should we go with this version? =
+ie.  Earl & Birdie Taylor gallery
+> We suggest using Harold Cohen Trust instead as HCT as believe this is =
+clearer.  Are you OK with this?
+> Should we change paper to Roland PQM-CRBW-33-50 paper? Or are you not =
+sure if all prints are on this type of paper?
+> Some of the file sizes are slightly different to what you wrote when =
+we double checked them on our end.  See below for more information.  Are =
+you OK with these changes?
+>=20
+>> 0309-03s (C3 AW50)
+>> From: 208 KiB=E2=80=99 To 213 KiB=E2=80=99
+>>=20
+>> 0309-06 (i23-3370)
+>> From: 167 KiB To: 171 KiB
+>>=20
+>> 0311-32 (i23-3405)
+>> From: 177 KiB To: 181 KiB
+>>=20
+>> 0311-35 (i23-3404)
+>> From: 172 KiB To: 176 KiB
+>>=20
+>> 030804 (i23-3373)
+>> From: 366 KiB To:  374 KiB
+>>=20
+>=20
+> 030905 (i23-3369)
+> From: 187 KiB To: 191 KiB
+>=20
+> 030907 (C3 AW52)
+> From: 158 KiB To: 162 KiB
+>=20
+> 040502 (i23-3377)
+> From: 251 KiB To: 257 KiB
+>=20
+>=20
+> Please can you and Paul approve these changes so we can send final =
+copy to Sotheby=E2=80=99s.  Please find attached copy for both the NFTs =
+and the Physical Print Certificates and the images we will use to mint =
+the NFTs.
+>=20
+> Best
+>=20
+> Robert
+>=20
+>=20
+>=20
+> Robert Norton
+> CEO & co-founder
+> Verisart <http://www.verisart.com/>
+>=20
+>=20
+> <verisart-certified-signature (1).gif>
+>=20
+>=20
+> <Screenshot 2024-10-01 at 17.42.01.png><verisart-certified-signature =
+(1).gif>
+
+
+--Apple-Mail=_51B787D0-90EF-4468-8F3E-5032E9B71722
+Content-Type: multipart/related;
+	type="text/html";
+	boundary="Apple-Mail=_1A7E8476-14FE-4BD9-9694-B5D2105D9905"
+
+
+--Apple-Mail=_1A7E8476-14FE-4BD9-9694-B5D2105D9905
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=utf-8
+
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; =
+charset=3Dutf-8"></head><body style=3D"overflow-wrap: break-word; =
+-webkit-nbsp-mode: space; line-break: after-white-space;">Thanks for =
+clarifying. &nbsp;We will use the file size as listed by the computer as =
+this will be more transparent for people and easier to understand. =
+Best<br id=3D"lineBreakAtBeginningOfMessage"><div>
+<div style=3D"font-family: Helvetica; font-size: 12px; font-style: =
+normal; font-variant-caps: normal; font-weight: normal; letter-spacing: =
+normal; orphans: auto; text-align: start; text-indent: 0px; =
+text-transform: none; white-space: normal; widows: auto; word-spacing: =
+0px; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; =
+text-decoration: none; caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); =
+word-wrap: break-word; -webkit-nbsp-mode: space; line-break: =
+after-white-space;"><font color=3D"#696969"><br =
+class=3D"Apple-interchange-newline">Robert Norton</font></div><div =
+style=3D"font-family: Helvetica; font-size: 12px; font-style: normal; =
+font-variant-caps: normal; font-weight: normal; letter-spacing: normal; =
+orphans: auto; text-align: start; text-indent: 0px; text-transform: =
+none; white-space: normal; widows: auto; word-spacing: 0px; =
+-webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; =
+text-decoration: none; caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); =
+word-wrap: break-word; -webkit-nbsp-mode: space; line-break: =
+after-white-space;"><font color=3D"#696969">CEO &amp; =
+co-founder</font></div><div style=3D"font-family: Helvetica; font-size: =
+12px; font-style: normal; font-variant-caps: normal; font-weight: =
+normal; letter-spacing: normal; orphans: auto; text-align: start; =
+text-indent: 0px; text-transform: none; white-space: normal; widows: =
+auto; word-spacing: 0px; -webkit-text-size-adjust: auto; =
+-webkit-text-stroke-width: 0px; text-decoration: none; caret-color: =
+rgb(0, 0, 0); color: rgb(0, 0, 0); word-wrap: break-word; =
+-webkit-nbsp-mode: space; line-break: after-white-space;"><a =
+href=3D"http://www.verisart.com">Verisart</a></div><div =
+style=3D"font-family: Helvetica; font-size: 12px; font-style: normal; =
+font-variant-caps: normal; font-weight: 400; letter-spacing: normal; =
+orphans: auto; text-align: start; text-indent: 0px; text-transform: =
+none; white-space: normal; widows: auto; word-spacing: 0px; =
+-webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px; =
+text-decoration: none; caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); =
+word-wrap: break-word; -webkit-nbsp-mode: space; line-break: =
+after-white-space;"><br></div><br =
+class=3D"Apple-interchange-newline"><span><img =
+alt=3D"verisart-certified-signature (1).gif" =
+src=3D"cid:824DAC38-7178-4033-BBF9-689D677D7C42"></span>
+</div>
+<div><br><blockquote type=3D"cite"><div>On Oct 1, 2024, at 18:14, Thomas =
+Machnik &lt;zipnpup@yahoo.com&gt; wrote:</div><br =
+class=3D"Apple-interchange-newline"><div><div><div =
+class=3D"ydp355f840fyahoo-style-wrap" style=3D"font-family:Helvetica =
+Neue, Helvetica, Arial, sans-serif;font-size:16px;"><div></div>
+        <div dir=3D"ltr" data-setdir=3D"false">Robert,</div><div =
+dir=3D"ltr" data-setdir=3D"false">The previous list you sent and the one =
+we discussed over the phone.</div><div dir=3D"ltr" =
+data-setdir=3D"false">Turns out the Metadata reader does not match with =
+the file size list on the computer.</div><div dir=3D"ltr" =
+data-setdir=3D"false">file&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=
+&nbsp;&nbsp;&nbsp; Metadata reader<br></div><div dir=3D"ltr" =
+data-setdir=3D"false">0305-08&nbsp;&nbsp; 135 metadata vs 138 file =
+listing on computer</div><div dir=3D"ltr" =
+data-setdir=3D"false">0309-03&nbsp;&nbsp; 208 metadata vs 213 file =
+listing on computer</div><div dir=3D"ltr" =
+data-setdir=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"false">If =
+you say the metadata needs to match then,</div><div dir=3D"ltr" =
+data-setdir=3D"false">The first column is what needs to be used as those =
+are the sizes listed by the reader. And those are the original numbers I =
+listed in the Provenance+Metadata document</div><div dir=3D"ltr" =
+data-setdir=3D"false"><br></div><div dir=3D"ltr" =
+data-setdir=3D"false"><br></div><div dir=3D"ltr" =
+data-setdir=3D"false">Tom<br></div><div><br></div>
+       =20
+        </div><div id=3D"ydpe3cccc1byahoo_quoted_8187702017" =
+class=3D"ydpe3cccc1byahoo_quoted">
+            <div style=3D"font-family:'Helvetica Neue', Helvetica, =
+Arial, sans-serif;font-size:13px;color:#26282a;">
+               =20
+                <div>
+                        On Tuesday, October 1, 2024, 9:42:51 AM PDT, =
+Robert Norton &lt;robert@verisart.com&gt; wrote:
+                    </div>
+                    <div><br></div>
+                    <div><br></div>
+               =20
+               =20
+                <div><div =
+id=3D"ydpe3cccc1byiv5873238160"><div>Tom,<div><br =
+clear=3D"none"></div><div>Thanks for your time earlier. &nbsp;Per =
+discussion we will go with:</div><div><br clear=3D"none"></div><div>1) =
+the Earl &amp; Birdie Taylor gallery</div><div>2) Use Harold Cohen Trust =
+instead of HCT</div><div>3) We will use the file sizes as per the files =
+themselves and not the file size in the Word Document you previously =
+provided.</div><div><span id=3D"cid:l7wRMu5MMsP7pmxMAXi4">&lt;Screenshot =
+2024-10-01 at 17.42.01.png&gt;</span></div><div><br =
+clear=3D"none"></div><div><br clear=3D"none"></div><div>Thanks for =
+clarifying - we will pass this on to Sotheby=E2=80=99s.</div><div><br =
+clear=3D"none"></div><div>Best</div><div><br =
+clear=3D"none"></div><div>Robert</div><div><br clear=3D"none"><div>
+<div style=3D"font-family: Helvetica; font-size: 12px; font-style: =
+normal; font-weight: normal; letter-spacing: normal; text-indent: 0px; =
+text-transform: none; white-space: normal; word-spacing: 0px; =
+text-decoration: none; text-decoration-style: solid; =
+text-decoration-color: currentcolor;"><font color=3D"#696969"><br =
+class=3D"ydpe3cccc1byiv5873238160Apple-interchange-newline" =
+clear=3D"none">Robert Norton</font></div><div style=3D"font-family: =
+Helvetica; font-size: 12px; font-style: normal; font-weight: normal; =
+letter-spacing: normal; text-indent: 0px; text-transform: none; =
+white-space: normal; word-spacing: 0px; text-decoration: none; =
+text-decoration-style: solid; text-decoration-color: =
+currentcolor;"><font color=3D"#696969">CEO &amp; =
+co-founder</font></div><div style=3D"font-family: Helvetica; font-size: =
+12px; font-style: normal; font-weight: normal; letter-spacing: normal; =
+text-indent: 0px; text-transform: none; white-space: normal; =
+word-spacing: 0px; text-decoration: none; text-decoration-style: solid; =
+text-decoration-color: currentcolor;"><a shape=3D"rect" =
+href=3D"http://www.verisart.com/" rel=3D"nofollow" =
+target=3D"_blank">Verisart</a></div><div style=3D"font-family: =
+Helvetica; font-size: 12px; font-style: normal; font-weight: 400; =
+letter-spacing: normal; text-indent: 0px; text-transform: none; =
+white-space: normal; word-spacing: 0px; text-decoration: none; =
+text-decoration-style: solid; text-decoration-color: currentcolor;"><br =
+clear=3D"none"></div><br =
+class=3D"ydpe3cccc1byiv5873238160Apple-interchange-newline" =
+clear=3D"none"><span><span =
+id=3D"cid:KUFED5WKnWS42WjBzTNF">&lt;verisart-certified-signature =
+(1).gif&gt;</span></span>
+</div>
+<div id=3D"ydpe3cccc1byiv5873238160yqt35530" =
+class=3D"ydpe3cccc1byiv5873238160yqt4683774686"><div><br =
+clear=3D"none"><blockquote type=3D"cite"><div>On Oct 1, 2024, at 17:20, =
+Robert Norton &lt;robert@verisart.com&gt; wrote:</div><br =
+class=3D"ydpe3cccc1byiv5873238160Apple-interchange-newline" =
+clear=3D"none"><div></div></blockquote></div></div></div></div><div =
+id=3D"ydpe3cccc1byiv5873238160yqt29095" =
+class=3D"ydpe3cccc1byiv5873238160yqt4683774686"><div><div>Hi =
+Thomas,<div><br clear=3D"none"></div><div>Thanks so much for the =
+additional information you provided yesterday. &nbsp;We wanted to run a =
+few changes by you which have been picked up by our team.</div><div><br =
+clear=3D"none"></div><div><ul =
+class=3D"ydpe3cccc1byiv5873238160MailOutline"><li>We noticed that the =
+Birdie Taylor gallery is referred to online as the Earl &amp; Birdie =
+Taylor gallery online - should we go with this version? ie. &nbsp;Earl =
+&amp; Birdie Taylor gallery</li><li>We suggest using Harold Cohen Trust =
+instead as HCT as believe this is clearer. &nbsp;Are you OK with =
+this?</li><li>Should we change paper to Roland PQM-CRBW-33-50 paper? Or =
+are you not sure if all prints are on this type of paper?<br =
+clear=3D"none"></li><li>Some of the file sizes are slightly different to =
+what you wrote when we double checked them on our end. &nbsp;See below =
+for more information. &nbsp;Are you OK with these =
+changes?</li></ul></div></div><div><br clear=3D"none"><blockquote =
+type=3D"cite"><div><div><div><ul =
+class=3D"ydpe3cccc1byiv5873238160MailOutline"><li><div><span =
+id=3D"ydpe3cccc1byiv5873238160m_1278603300313774899gmail-docs-internal-gui=
+d-a6254234-7fff-dd69-3e0e-16be3be0971e"></span><div =
+style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span =
+style=3D"font-family:Arial, =
+sans-serif;font-weight:700;vertical-align:baseline;">0309-03s (C3 =
+AW50)</span></div>From: <b>208 KiB=E2=80=99&nbsp;</b>To&nbsp;<span =
+style=3D"font-family:Arial, =
+sans-serif;font-weight:700;vertical-align:baseline;">213 =
+KiB=E2=80=99</span></div><div><span style=3D"font-family:Arial, =
+sans-serif;font-weight:700;"><br clear=3D"none"></span></div><div><span =
+style=3D"font-family:Arial, sans-serif;font-weight:700;">0309-06 =
+(i23-3370)</span></div><div>From:&nbsp;<b>167 =
+KiB&nbsp;</b>To:&nbsp;<span style=3D"font-family:Arial, =
+sans-serif;font-weight:700;">171 KiB</span></div><div><span =
+style=3D"font-family:Arial, sans-serif;font-weight:700;"><br =
+clear=3D"none"></span></div><div><span =
+id=3D"ydpe3cccc1byiv5873238160m_1278603300313774899gmail-docs-internal-gui=
+d-36f9fe97-7fff-423a-f103-92727b4ab9f2"></span><div =
+style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span =
+style=3D"font-family:Arial, =
+sans-serif;font-weight:700;vertical-align:baseline;">0311-32 =
+(i23-3405)</span></div>From:&nbsp;<b>177 KiB&nbsp;</b>To:&nbsp;<span =
+style=3D"font-family:Arial, sans-serif;font-weight:700;">181 =
+KiB</span></div><div><br clear=3D"none"></div><div><span =
+id=3D"ydpe3cccc1byiv5873238160m_1278603300313774899gmail-docs-internal-gui=
+d-3f411e26-7fff-d60f-3424-8e5b818b7648"></span><div =
+style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span =
+style=3D"font-family:Arial, =
+sans-serif;font-weight:700;vertical-align:baseline;">0311-35 =
+(i23-3404)</span></div><div>From: <b>172 KiB&nbsp;</b>To:&nbsp;<span =
+style=3D"font-family:Arial, =
+sans-serif;font-weight:700;vertical-align:baseline;">176 =
+KiB</span></div></div><div><br clear=3D"none"></div><div><span =
+id=3D"ydpe3cccc1byiv5873238160m_1278603300313774899gmail-docs-internal-gui=
+d-ef84d8b4-7fff-8ad8-c800-c39b40c39362"></span><div =
+style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span =
+style=3D"font-family:Arial, =
+sans-serif;font-weight:700;vertical-align:baseline;">030804 =
+(i23-3373)</span></div><div><div>From: <b>366&nbsp;KiB&nbsp;</b>To: =
+&nbsp;<span style=3D"font-family:Arial, sans-serif;font-weight:700;">374 =
+KiB</span></div></div><div><span =
+id=3D"ydpe3cccc1byiv5873238160m_1278603300313774899gmail-docs-internal-gui=
+d-d9deb23e-7fff-66bc-9a4c-e5b863016d63"></span><p dir=3D"ltr" =
+style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span =
+style=3D"font-family:Arial, =
+sans-serif;font-weight:700;vertical-align:baseline;"></span></p></div></di=
+v></li></ul></div></div><br =
+clear=3D"none"><div></div></div></blockquote></div></div></div><div><div><=
+ul class=3D"ydpe3cccc1byiv5873238160MailOutline"><li><div><div><span =
+id=3D"ydpe3cccc1byiv5873238160m_1278603300313774899gmail-docs-internal-gui=
+d-d9deb23e-7fff-66bc-9a4c-e5b863016d63"></span><p dir=3D"ltr" =
+style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span =
+style=3D"font-family:Arial, =
+sans-serif;font-weight:700;vertical-align:baseline;"></span></p><div =
+style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span =
+style=3D"font-family:Arial, =
+sans-serif;font-weight:700;vertical-align:baseline;">030905 =
+(i23-3369)</span></div><div><div>From:&nbsp;<b>187 =
+KiB&nbsp;</b>To:&nbsp;<span style=3D"font-family:Arial, =
+sans-serif;font-weight:700;">191 KiB</span></div></div><div><span =
+id=3D"ydpe3cccc1byiv5873238160m_1278603300313774899gmail-docs-internal-gui=
+d-d9deb23e-7fff-66bc-9a4c-e5b863016d63"></span><div =
+style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span =
+style=3D"font-family:Arial, =
+sans-serif;font-weight:700;vertical-align:baseline;"><br =
+clear=3D"none"></span></div><div =
+style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span =
+style=3D"font-family:Arial, =
+sans-serif;font-weight:700;vertical-align:baseline;">030907 (C3 =
+AW52)</span></div><div><div>From: <b>158 KiB&nbsp;</b>To:&nbsp;<span =
+style=3D"font-family:Arial, sans-serif;font-weight:700;">162 =
+KiB</span></div></div><div><span =
+id=3D"ydpe3cccc1byiv5873238160m_1278603300313774899gmail-docs-internal-gui=
+d-d9deb23e-7fff-66bc-9a4c-e5b863016d63"></span><div =
+style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span =
+style=3D"font-family:Arial, =
+sans-serif;font-weight:700;vertical-align:baseline;"><br =
+clear=3D"none"></span></div><div =
+style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span =
+style=3D"font-family:Arial, =
+sans-serif;font-weight:700;vertical-align:baseline;">040502 =
+(i23-3377)</span></div><div><div>From: 2<b>51 =
+KiB&nbsp;</b>To:&nbsp;<span style=3D"font-family:Arial, =
+sans-serif;font-weight:700;vertical-align:baseline;">257 =
+KiB</span></div></div><div><span style=3D"font-family:Arial, =
+sans-serif;font-weight:700;vertical-align:baseline;"><br =
+clear=3D"none"></span></div></div></div></div></div></li></ul><div><br =
+clear=3D"none"></div></div><div>Please can you and Paul approve these =
+changes so we can send final copy to Sotheby=E2=80=99s. &nbsp;Please =
+find attached copy for both the NFTs and the Physical Print Certificates =
+and the images we will use to mint the NFTs.</div><div><br =
+clear=3D"none"></div><div>Best</div><div><br =
+clear=3D"none"></div><div>Robert</div><div><br =
+clear=3D"none"></div><div><br clear=3D"none"><div>
+<div style=3D"font-family: Helvetica; font-size: 12px; font-style: =
+normal; font-weight: normal; letter-spacing: normal; text-indent: 0px; =
+text-transform: none; white-space: normal; word-spacing: 0px; =
+text-decoration-line: none; text-decoration-style: solid; =
+text-decoration-color: currentcolor;"><font color=3D"#696969"><br =
+class=3D"ydpe3cccc1byiv5873238160Apple-interchange-newline" =
+clear=3D"none">Robert Norton</font></div><div style=3D"font-family: =
+Helvetica; font-size: 12px; font-style: normal; font-weight: normal; =
+letter-spacing: normal; text-indent: 0px; text-transform: none; =
+white-space: normal; word-spacing: 0px; text-decoration-line: none; =
+text-decoration-style: solid; text-decoration-color: =
+currentcolor;"><font color=3D"#696969">CEO &amp; =
+co-founder</font></div><div style=3D"font-family: Helvetica; font-size: =
+12px; font-style: normal; font-weight: normal; letter-spacing: normal; =
+text-indent: 0px; text-transform: none; white-space: normal; =
+word-spacing: 0px; text-decoration-line: none; text-decoration-style: =
+solid; text-decoration-color: currentcolor;"><a shape=3D"rect" =
+href=3D"http://www.verisart.com/" rel=3D"nofollow" =
+target=3D"_blank">Verisart</a></div><div style=3D"font-family: =
+Helvetica; font-size: 12px; font-style: normal; font-weight: 400; =
+letter-spacing: normal; text-indent: 0px; text-transform: none; =
+white-space: normal; word-spacing: 0px; text-decoration-line: none; =
+text-decoration-style: solid; text-decoration-color: currentcolor;"><br =
+clear=3D"none"></div><br =
+class=3D"ydpe3cccc1byiv5873238160Apple-interchange-newline" =
+clear=3D"none"><span></span></div></div><span =
+id=3D"ydpe3cccc1byiv5873238160cid:4652C5E3-7971-4564-8343-A44C0B285B05">&l=
+t;verisart-certified-signature =
+(1).gif&gt;</span></div><div><div><div><div><span></span>
+</div>
+
+<br clear=3D"none"></div></div><br clear=3D"none"></div></div></div>
+            </div>
+        </div></div><span id=3D"cid:l7wRMu5MMsP7pmxMAXi4">&lt;Screenshot =
+2024-10-01 at 17.42.01.png&gt;</span><span =
+id=3D"cid:KUFED5WKnWS42WjBzTNF">&lt;verisart-certified-signature =
+(1).gif&gt;</span></div></blockquote></div><br></body></html>=
+
+--Apple-Mail=_1A7E8476-14FE-4BD9-9694-B5D2105D9905
+Content-Transfer-Encoding: base64
+Content-Disposition: inline;
+	filename="verisart-certified-signature (1).gif"
+Content-Type: image/gif;
+	name="verisart-certified-signature (1).gif"
+Content-Id: <824DAC38-7178-4033-BBF9-689D677D7C42>
+
+R0lGODlhuQAQAPf/ALS0tVhYWpaWl3p6e2lpa46Oj1xcXqamp0xMTqysrVpaXENDRElJSjU1NoSE
+hTw8PkFBQ5SUlUpKTIeHiFFRUiUlJpCQkWdnaUVFRjo6PF5eYBYWGMnJyldXWKKio3BwcXV1dm9v
+cK6ur2JiY6qqqz4+QIaGhlRUVZycnW5ub5qam4mJirCwsGtrbGFhYoGBgmVlZnJyc3NzdGxsbX5+
+fxAQEjg4OqioqYiIiXR0daCgohQUFjIyNCgoKn9/gCoqLDAwMlJSU1NTVBoaHIWFhjc3OIODhCMj
+JR0dHy0tLyYmJxISFB8fIRgYGkdHSfr6+v39/fz8/N3d3fv7+/n5+dfX1/f393d3eHd3efLy8vj4
++NDQ0HZ2d87Oztvb3MPDw4CAgd/f3+zs7PT09Pb29tzc3NPT0/X19b29vnl5evf3+PDw8PHx8ePj
+497e3tHR0ebm5qCgoE9PUH19ftTU1OXl5V5eX3x8fHh4ent7fNbW1ri4ubm5uvPz89XV1eTk5Orq
+6tra2o+PkJiYmefn5yEhI+Li4qGhoVZWV9fX2MbGxre3uJWVlrKyssrKy8TExNjY2bu7vMjIyU5O
+UM/Pz4uLjI2NjnFxcu3t7b29vdLS0ry8vOvr683Nzu7u7sfHyOfn6KSkpFBQUdnZ2vb2952dnpub
+nIyMjenp6oqKi6enqKmpqrq6u9bW17y8vaCgocvLzLa2tre3t76+v3x8fURERczMzX19fb+/wOnp
+6cDAwKOjpMPDxLOzs+bm55mZmpOTlIKCg5eXmNTU1W1tbmNjZMLCwtra28bGx8fHx+jo6c3Nzb6+
+vp6en5+fn4CAgOHh4a+vsOPj5O/v77+/v7Gxstvb287Oz9HR0uDg4FVVVp+foC4uMOjo6MzMzGZm
+Z8rKyuXl5mRkZcvLy8TExZ6ennd3d8/P0Nzc3Xh4eEVFR/X19tXV1sXFxU9PUa2trqurrOTk5WBg
+YVtbXcnJyZOTk3Z2eJGRkra2t7Kys8XFxsHBwoGBgWhoaQ8PEf///yH5BAEAAP8ALAAAAAC5ABAA
+AAj/AP8JHEiwoMGDCBMqXMhwIJQ2XUaROajm2JY/AgHp0VOlY0c6hqb8I1WGTpWNbZ4cnPJmS5SC
+dAQUYJYloRZJoxBOS+TnZCJOBkH54ejRoxloYqR48VKGE5SGUKMapMJGJcE+66T+y3RpwLiDmnyE
+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
+--Apple-Mail=_1A7E8476-14FE-4BD9-9694-B5D2105D9905--
+
+--Apple-Mail=_51B787D0-90EF-4468-8F3E-5032E9B71722--

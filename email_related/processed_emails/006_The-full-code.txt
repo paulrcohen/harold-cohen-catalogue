@@ -1,0 +1,15 @@
+Subject: The full code
+From: George Legrady <glegrady@ucsb.edu>
+To: Paul Cohen <paulrcohen@gmail.com>,
+ Thomas Machnik <zipnpup@yahoo.com>
+Date: 2024-10-16 16:20:04
+Message-ID: <F519B68F-2461-4279-AA87-124C4E820E12@ucsb.edu>
+--------------------------------------------------------------------------------
+
+hi Paul and Tom, 
+
+I dont know if I sent you the full code of my Perfume diffusion code in case you see something else that may be relevant to Harold’s code. 
+
+Very best, 
+
+george

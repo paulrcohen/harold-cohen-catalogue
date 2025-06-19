@@ -1,0 +1,343 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a11:4819:b0:5ad:6c17:f336 with SMTP id nr25csp775651pxb;
+        Wed, 25 Sep 2024 19:14:05 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IG2IVrCRChrQ/5xBqi4NyDWf9FSzYXYH4VYqKwxIZNlLjzIDvT4kA+oFGmB4W74TNmoFG8/
+X-Received: by 2002:a05:622a:1105:b0:456:8019:affc with SMTP id d75a77b69052e-45b5decb00amr65617671cf.2.1727316845553;
+        Wed, 25 Sep 2024 19:14:05 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1727316845; cv=none;
+        d=google.com; s=arc-20240605;
+        b=PwVD3JEqBKN2msVCBtdJR6dV3ZIgvEcy4y0JALJF7eLGLvsvBDv20JFDyHWH8Hmd6x
+         hlWsiy5+62OBRQGURfWmZt5DEj6p0aRFiObLADAao12KFOU2ftq8DhczNwMvfjpYJW58
+         9UMddnLOx6ir9WdvxmMj6SwsnN8nsJJS3kPfwdEQT97EvWOc32/9iISBxRSWgpradwom
+         AMfztD/p6cEOvrnYATOn6x13UleS0Z0i/XbTm58D1/JKGVY7wTOjsKajqZHN8We1eZEm
+         QV2hJaABqsVDXMd7w049K5I7ULZjERf0Yo5zgJnNjH+B5P4AGQhieJSw4pq9BrPRdR8J
+         Ii6w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:subject:references:in-reply-to:message-id:cc:to
+         :reply-to:from:date:dkim-signature;
+        bh=zraVCcO82sSINI06n+MS/SL9L9VvGWs7QYjm8GoGJ40=;
+        fh=em6WrpvVbEWotKjfsd4TuBIZbWnHCChXnzvlRYYJfnw=;
+        b=E0J03bdTHLgp/fm6EehM24FNZINgLz2ZpKKDwoawQCZedBGsXsVN+FvGRoL9DtJJM7
+         C1VRJLppqTvogaEGz2Us/W76a0MxA/8R14BZ3nWhyPiDP41VI2murjc0mFNd02308S7d
+         Y1cDpmsF7xeqse2hYIQjV34MV/q+41KepOAc2Bff2FKE5kPWdgNyzUXW8D14GL+XEfkE
+         Z7TKGh++J7SO3MeDRlD5LKoj3Cug3KXSGJNdLvi2R8BbAISXuE/tnjYYSPWhRbrb8/41
+         GO6uL3bzsTx2sVXDBVK/0cnfHJ6O1NlmvchvM5/Xen3LG0+beYWasDJOTpgDDnIC6LNC
+         yUlA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=Yv0Kb4di;
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.133.82 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+Return-Path: <zipnpup@yahoo.com>
+Received: from sonic321-27.consmr.mail.bf2.yahoo.com (sonic321-27.consmr.mail.bf2.yahoo.com. [74.6.133.82])
+        by mx.google.com with ESMTPS id d75a77b69052e-45b52684b2dsi49830441cf.388.2024.09.25.19.14.05
+        for <paulrcohen@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 25 Sep 2024 19:14:05 -0700 (PDT)
+Received-SPF: pass (google.com: domain of zipnpup@yahoo.com designates 74.6.133.82 as permitted sender) client-ip=74.6.133.82;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=Yv0Kb4di;
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.133.82 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1727316845; bh=zraVCcO82sSINI06n+MS/SL9L9VvGWs7QYjm8GoGJ40=; h=Date:From:Reply-To:To:Cc:In-Reply-To:References:Subject:From:Subject:Reply-To; b=Yv0Kb4diz45IMhYzCivmv1z+ZaRN5O4o0G9N+78KYy6GkvvFTMNiyZHhvwchScmGU+TLr3PeRmMafVNuEgjzPsWfLNBGOUCvx2EKnl/6Ti3OGMgf0HIflktEPS8buyzW26idXAFPr1PnSKBXwlZ8iMVXB0dpIEShPrBYWc3RPMwORpB97KkYozDqs34hhbywRZY6xHhUN67WIQJHN6rBTdVKaflf2TCwWkb0GYRD70VnbVlXR2mQRv/QHFPmTGNKjtH3XGCln2r/531yIl8CYzZ2EvpQBv6sMmOrIaECLOzNtnuWR3Pacdj3+jGXZP7PtqbG20SX+NJrT8jrpWSN4Q==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1727316845; bh=j+Rhj4VJ5R9mQcCP8zE/WhWgy/2lhkDTZO3qBuhgrnD=; h=X-Sonic-MF:Date:From:To:Subject:From:Subject; b=CFfAgtc9yvcUph8DBc4DSNGTOUBnuyRQqwByalVBcYYYrkI0xANMUFUGQR8lWlWxSkRF334ZvCwYRNWs+4lDJv06o/1yj1KMgmUDCM6O95EyYSb2jVK/YZ9daQzhBVaT6sEFjZSsCbpv7sl5KKkhHJtuh6TimYvlM2N3fvZwsiiiDQylKOACDSPhT056scGU+3TqWvbASCnI21abTOVYhXbUD5+KS52exD1Ez67gn8O3Q0B3R/uOokdsq0zUE/8xaw8hFkEh8Fsd+sS2MZ/EXRL6Mizg2b1ynkDCOiEXpjViTzrdhl+0KKT75URyYvrYjHs5SWHldQ3JbmBqbqalQw==
+X-YMail-OSG: mkmGxOUVM1lKEeamYPSP9J_hdYZbHeY_miKyO9YLIkrBuLAsNLkoYiTERjIjQwx
+ PQtmj5xPYe9rmXuWdJAK4t2pb_1mcPpWmCAJHP4OweSU9FkBGtI1TG0qtwytD55zKIsuL..015Fq
+ 5Yib8DDmaTmuQZKF6x_RNkCXi.esFNtssC35Z9.Z1P1qQ80jHKaZQrnTlW4YJiYx2xMqwQkZ.uXE
+ q8zhrKsi6JUUvSSEDp2jnuA.xjF_5vvwHGRnypNNeRqyokdGacNbT0NSCLOIaUvTjLi5Z9Jp7Lml
+ 843GVfut2Pl_rwMFlzqKBt3suvHKSLT4Qqi1BLV6j1MoGUG.E2UbLkNeY10N0EBM4ybbdeqwVeR2
+ .Ursifng9q42kSNaQAm1atOHWtG9YHqD83yu9mLw8AKc40dLQxZp35eT_3sqwM19WnkAspep_UX1
+ Pc1ue8v84du5kA7L0bD3wJmggcwKxdmW5CMIMLdsOdvDT2wQZaxiWCU2Tx5bXZXmDCkCb4mN1qnE
+ 0UF.FDBlCzh9JmCD.p4Je.J2itVAW1l3YkIcjbbFsvJWs4uT1Bd0ZDLRVXvwNi.vcW.Z9i5T631L
+ 8L2Q8m4KjNlmbnxe441Oq9ypwH4EJ2YvEezWy1PUADmr11CcmXvC.XUfDSc5hPxP7SWMtLzDSsg_
+ 1Ss1jC8GvxkdoSzlxl6BQ9337lAK1G8spt5tWwJ4JPKkLUKiDuHoxBU0K8LbmpdpYkdtDCo.YwiR
+ unU51mWwAWh2X1T4gBuYYMNdsNh3DRMmfDiVFAvrPvTzJRChM0FK1sCulXcYPzrOhpXcjcZ1mBFs
+ YWYl.FbUmnrbcBi8AYH.MFsJBMKLQrrWTtP0YgREvyRAfuk4NUA.swOoTIVaNgQ.nvGEGLYe85iw
+ Xo8GHALpUuhaE0FTBZgEqP5L6SIFX6tsNxd_KghuZhd_n2KZJhmd50yFrVuFm4uiN0RtkcIKc93V
+ AOnHpTT.Ay1YB0BcQ_8vRTQg8DQo2rEqOst2xOy_TwX2gLqS4BdRsjB3vTXHwyt0aORpMzlK0pZj
+ GbbLoMFvP.DTom_srP1Y0XYo_WbCIRqZNP2qx3jFZRp.0gf7ulwIcV03Ny5a.SdgGomFTW5OSQ28
+ B7qPPNO23Tlf1o6lZzEmL06OmZqbZZ2klpWCF8GpLDSawRmIsXEtDIOScZm9LkjdvMFt6dq3NSQ.
+ 2RCmf5w4FWfI_hoGw.MPZeMBGy6yuVJquIiYFdMNOTprhvrY39a7Q9n7JvQd2.UrFKP7ypartF61
+ q2C30gdKJ4aNbga5KD6CWjiwer_6YbryFpxftL_TyTNmivSYohmhcUoKJ6MmI7HN3HFchgZPbXnU
+ 3N7Ui68Xhzvz3qGGcNZW5WlbQ92P1ak2KESup_ZPkj4pDp3de5F6oXh2oGlGSOs5iU3oH9.OavJ7
+ 4eAnLoUx.Frxi2xKYTsgkAa5w2j.I1duJNjTVPRzY.dLu3F9MP58JzTLCFd5st7pS1lGi4JucV9q
+ or.yxQPrHOcmFc8ZddF.fOTVGBOTddZG9nFpuIO9aq1i45uaDfNKrJgQYNJVhZAS4i6n4QpVmFaR
+ dbET1aufLWrTdl5F3MStBH6nseYnwihYctUQ6B4QSYEU._wnqJapqDRBZkf22XSh3IyPHsNnxQBz
+ MI6WWddqeohn.SLaKWvez_rz6QUSGFKVKWe2aNc0txnxtI8aRmJ0KtG1evXnZAvm_IcTYy_8hVOG
+ ZIcBXdXah.4nMspgOPGgRLQpOcSxCXw8J3uRa5o7dp4fmM0YRcnC3M1CQs9XPuVRK6tCQSf786Gj
+ J3G_ivMHxul9_ihWVKR1UUnZRYs_nB7nsd1ER1Vf9HEigPS500893_ZYPmnZb2S2zBz_TrPaKVkj
+ 0CLAjYTBZ8AAhbzhgzgrDEBKO7SVRxOnLXaUtMB7XNxEbQBL24IF9y5A8pxcPV8t7qQyKemRUR94
+ wsjDOTV0DwnE_Ha4mVtPiA5XsphMHvgG9uMj1.4fSZoKDDWbsyPBVZwzLlboxaSM49Dn41wuvOWf
+ siPHsMlvJ0vrBUJFbjb1U2nYlsS19HhF6YOyu9n6twrqmnHLu8Fza9_VBNwT7u_VJnrgHN8NPvvh
+ lzwzNWLR0YMhSonQL4UR9ygiEkdyceOIJYVtvAcOtc4d_htuBv8fDx4E30CmsOUlF2MO7EkDmLKN
+ B5Coyt.y.y8QIj5DSVk0ehTRKCOwcAZe2IHN1nWRgWUqlAJnM4Bu6wqUUCFDeLfbggd.rE_RQzsN
+ sg60o9DTZOkNThm4kbTeHz00Mg.xqTSIbjUXqQ8Jn0e0NS3rkNhBt.rHAq0SZGUQL7nzC36P4mQ.
+ VA8R3IpKellpnMi5Vlh7Z4qoaYIp9
+X-Sonic-MF: <zipnpup@yahoo.com>
+X-Sonic-ID: 8d9ad900-77a0-4664-9def-8d883380e052
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic321.consmr.mail.bf2.yahoo.com with HTTP; Thu, 26 Sep 2024 02:14:05 +0000
+Date: Thu, 26 Sep 2024 02:14:03 +0000 (UTC)
+From: Thomas Machnik <zipnpup@yahoo.com>
+Reply-To: Thomas Machnik <zipnpup@yahoo.com>
+To: Paul Cohen <paulrcohen@gmail.com>
+Cc: Paul Cohen <prcohen@pitt.edu>
+Message-ID: <389497873.6640531.1727316843969@mail.yahoo.com>
+In-Reply-To: <CAKjPZkHTbqO4czFt6snEu+nSuFROSRP=8Ly3fTm0nBTJrb1x7w@mail.gmail.com>
+References: <665748628.5856307.1727079240564.ref@mail.yahoo.com> <665748628.5856307.1727079240564@mail.yahoo.com> <CAKjPZkHTbqO4czFt6snEu+nSuFROSRP=8Ly3fTm0nBTJrb1x7w@mail.gmail.com>
+Subject: Re: HCT Invoice for Aug 2024 hours worked
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_6640530_1891974843.1727316843967"
+X-Mailer: WebService/1.1.22645 YMailNorrin
+Content-Length: 15165
+
+------=_Part_6640530_1891974843.1727316843967
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+ Hi Paul,Thanks for the list of items. Regarding a call to catch up, I'd li=
+ke to keep Thursday morning open in case there is something urgent from Mil=
+a. But tentatively I could take a call Thursday between 1p to 4p Calif time=
+ . If that doesn't work, similar time for Friday. Let me know if either tim=
+e works,
+
+Tom
+
+    On Monday, September 23, 2024, 9:37:09 AM PDT, Paul Cohen <paulrcohen@g=
+mail.com> wrote: =20
+=20
+ Hey Tom, lots to discuss here!=C2=A0 We should have a call this week if po=
+ssible.=C2=A0 Very briefly:  =20
+   - When I spoke with an accountant she said HCT should be a business, not=
+ a Trust
+   - I'm thinking about retiring from Pitt and moving to Boston (where Alle=
+gra and Hitch are) and focusing on the startup, HCT and writing (keep this =
+to yourself please)  =20
+
+   - I have started the complicated accounting that will enable HCT to file=
+ taxes, but it's gonna take a while
+   - Last week I had a private convo with Mila (no Robert) re the Sotheby's=
+ process.=C2=A0 I said I was ready to pull the plug and postpone -- for rea=
+sons you have stated -- but she called Michael at Sotheby's and assured her=
+self that this would likely be a sell out sale and the first of a series.=
+=C2=A0 So I agreed to go ahead.=C2=A0 But in today's weekly catchup we had =
+a hotwash and agreed that the process was out of control and needs to be be=
+tter next time.  =20
+
+   - We decided to make lists this week and prioritize at next Monday's cat=
+chup, so I want to talk with you about everything that needs doing
+   - All of which is pushing me to form a company so that you can be a full=
+-time employee, not an hourly person, if that's what you want.=C2=A0 You ha=
+ve been extremely patient.=C2=A0 It's going to take a bit longer, mostly be=
+cause of the accounting, but it needs to happen.=C2=A0 Goodness knows how I=
+ will sell it to the heirs, so for the time being, don't say nuthin to nobo=
+dy!   =20
+
+   - In the meantime, please bill the Trust at $50/hr.=C2=A0   =20
+
+When are you free for a catchup this week?
+--P
+______________________________
+
+Paul Cohen,=C2=A0=C2=A0ProfessorSchool of Computing and InformationUniversi=
+ty of Pittsburghpersonal webpage
+______________________________
+
+On Mon, Sep 23, 2024 at 4:14=E2=80=AFAM Thomas Machnik <zipnpup@yahoo.com> =
+wrote:
+
+Hi Paul,We are in the final stretch to sending the work off for the Sotheby=
+ Auction. The photoshoot went well with the photographer Pablo Mason. Becau=
+se the works are behind plexiglass it was a bit of a challenge to get the l=
+ighting right. Fortunately had plenty of black draping fabric to setup arou=
+nd the studio to reduce the reflection. Once he got it right I saw the firs=
+t photo and it looked fabulous. With the right lighting it looks even bette=
+r than with the ambient light in the studio. It was a pleasure working with=
+ him. If we need someone in the future I would not hesitate to recommend hi=
+m again.=20
+
+I am waiting for the final pickup time for the work but it is tentatively s=
+et for sometime this Wednesday.=C2=A0 The works are basically ready to go. =
+I will check them one more time tomorrow. I am hoping to get the link to Pa=
+blo's photos tomorrow so I can put them into the shipment list document tha=
+t needs to be signed upon pickup.
+
+This has been a real push to make this happen. I haven't even had a moment =
+to look at Roger's print. He showed it to me when I picked it up last Monda=
+y and the brief moment I saw it, I was happily surprise that it looked quit=
+e close to the original. I will need to really look at it closely though. A=
+ssuming all goes well and no more immediate concerns with Gazelli, I will l=
+ook at the Roger's print this week. I will also pull a drawing for George L=
+egrady finally. And see what can be done regarding work for the Whitney fol=
+k.=20
+
+I didn't keep track of my hours related to Sotheby. When I started I didn't=
+ think it would have ballooned into the time consuming activity that it did=
+. In a previous email you mentioned this was a lesson learned and you we ev=
+en considering pulling the plug at the very last minute. I agree with you t=
+hat at time point it would do more harm than good to pull the plug at this =
+late stage. Let's see how the auction goes. I sure hope it is a success. An=
+d I understand that part of the strategy is to sway the Tate into buying a =
+software version possibly. If that happens, then certainly Sotheby is a suc=
+cess.
+
+A while back in the summer we talked about various things. One of them was =
+an increase in pay. I have added an increase on this invoice. The last time=
+ I had a raise was 2016. I calculated the inflation rate from 2016 to 2024 =
+using https://www.in2013dollars.com/us/inflation/2016?amount=3D1 which clai=
+ms today $45.94 is the equivalent of $35 dollars in 2016. My new invoice ra=
+te is a bit higher at $50/hr. I hope this doesn't break the bank but I am d=
+oing much more and have much more responsibility than back in 2016. There a=
+re times I am basically working around the clock. I am not saying this as a=
+ complaint as I am committed to improving the legacy of Harold/AARON and wo=
+uld have left a long time ago if I didn't enjoy being involved. It does see=
+m like an exciting time and I am hoping the trust continues to outperform o=
+ur expectations. I hope our relationship with Mila remains solid and that G=
+azelli continues to be successful. I recently learned I am no longer eligib=
+le for health care from California due to COVID winding down. The health ca=
+re was basically free. Next month, I will need to sign up for health care. =
+Previously, you had mentioned about paying for my health care. I really don=
+'t know how much that will be yet but I hope the Trust will consider paying=
+ for my health care.=20
+
+Tom
+
+
+
+
+
+
+ =20
+------=_Part_6640530_1891974843.1727316843967
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head></head><body><div class=3D"ydpfb53276dyahoo-style-wrap" style=
+=3D"font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px=
+;"><div></div>
+        <div dir=3D"ltr" data-setdir=3D"false">Hi Paul,</div><div dir=3D"lt=
+r" data-setdir=3D"false">Thanks for the list of items. Regarding a call to =
+catch up, I'd like to keep Thursday morning open in case there is something=
+ urgent from Mila. But tentatively I could take a call Thursday between 1p =
+to 4p Calif time . If that doesn't work, similar time for Friday. Let me kn=
+ow if either time works,<br></div><div dir=3D"ltr" data-setdir=3D"false"><b=
+r></div><div dir=3D"ltr" data-setdir=3D"false">Tom<br></div><div><br></div>
+       =20
+        </div><div id=3D"ydp67ca54abyahoo_quoted_7367608641" class=3D"ydp67=
+ca54abyahoo_quoted">
+            <div style=3D"font-family:'Helvetica Neue', Helvetica, Arial, s=
+ans-serif;font-size:13px;color:#26282a;">
+               =20
+                <div>
+                        On Monday, September 23, 2024, 9:37:09 AM PDT, Paul=
+ Cohen &lt;paulrcohen@gmail.com&gt; wrote:
+                    </div>
+                    <div><br></div>
+                    <div><br></div>
+               =20
+               =20
+                <div><div id=3D"ydp67ca54abyiv0745206285"><div><div dir=3D"=
+ltr"><div style=3D"font-size:small;" class=3D"ydp67ca54abyiv0745206285gmail=
+_default">Hey Tom, lots to discuss here!&nbsp; We should have a call this w=
+eek if possible.&nbsp; Very briefly:</div><div style=3D"font-size:small;" c=
+lass=3D"ydp67ca54abyiv0745206285gmail_default"><ol><li>When I spoke with an=
+ accountant she said HCT should be a business, not a Trust</li><li>I'm thin=
+king about retiring from Pitt and moving to Boston (where Allegra and Hitch=
+ are) and focusing on the startup, HCT and writing (keep this to yourself p=
+lease)<br clear=3D"none"></li><li>I have started the complicated accounting=
+ that will enable HCT to file taxes, but it's gonna take a while</li><li>La=
+st week I had a private convo with Mila (no Robert) re the Sotheby's proces=
+s.&nbsp; I said I was ready to pull the plug and postpone -- for reasons yo=
+u have stated -- but she called Michael at Sotheby's and assured herself th=
+at this would likely be a sell out sale and the first of a series.&nbsp; So=
+ I agreed to go ahead.&nbsp; But in today's weekly catchup we had a hotwash=
+ and agreed that the process was out of control and needs to be better next=
+ time.<br clear=3D"none"></li><li>We decided to make lists this week and pr=
+ioritize at next Monday's catchup, so I want to talk with you about everyth=
+ing that needs doing</li><li>All of which is pushing me to form a company s=
+o that you can be a full-time employee, not an hourly person, if that's wha=
+t you want.&nbsp; You have been extremely patient.&nbsp; It's going to take=
+ a bit longer, mostly because of the accounting, but it needs to happen.&nb=
+sp; Goodness knows how I will sell it to the heirs, so for the time being, =
+don't say nuthin to nobody! <br clear=3D"none"></li><li>In the meantime, pl=
+ease bill the Trust at $50/hr.&nbsp; <br clear=3D"none"></li></ol><div>When=
+ are you free for a catchup this week?</div><div><br clear=3D"none"></div><=
+div>--P<br clear=3D"none"></div></div><div><div dir=3D"ltr" class=3D"ydp67c=
+a54abyiv0745206285gmail_signature"><div dir=3D"ltr"><div><div dir=3D"ltr"><=
+div><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div =
+dir=3D"ltr">______________________________<br clear=3D"none"><br clear=3D"n=
+one">Paul Cohen,&nbsp;&nbsp;Professor</div><div dir=3D"ltr">School of Compu=
+ting and Information</div><div dir=3D"ltr">University of Pittsburgh</div><d=
+iv dir=3D"ltr"><a shape=3D"rect" href=3D"http://www.pitt.edu/~prcohen/" rel=
+=3D"nofollow" target=3D"_blank">personal webpage</a><br clear=3D"none">____=
+__________________________</div></div></div></div></div></div></div></div><=
+/div></div></div></div></div><br clear=3D"none"></div><br clear=3D"none"><d=
+iv id=3D"ydp67ca54abyiv0745206285yqt45169" class=3D"ydp67ca54abyiv074520628=
+5yqt5994850549"><div class=3D"ydp67ca54abyiv0745206285gmail_quote"><div dir=
+=3D"ltr" class=3D"ydp67ca54abyiv0745206285gmail_attr">On Mon, Sep 23, 2024 =
+at 4:14=E2=80=AFAM Thomas Machnik &lt;<a shape=3D"rect" href=3D"mailto:zipn=
+pup@yahoo.com" rel=3D"nofollow" target=3D"_blank">zipnpup@yahoo.com</a>&gt;=
+ wrote:<br clear=3D"none"></div><blockquote style=3D"margin:0px 0px 0px 0.8=
+ex;border-left:1px solid rgb(204,204,204);padding-left:1ex;" class=3D"ydp67=
+ca54abyiv0745206285gmail_quote"><div><div style=3D"font-family:Helvetica Ne=
+ue, Helvetica, Arial, sans-serif;font-size:16px;"><div dir=3D"ltr">Hi Paul,=
+</div><div dir=3D"ltr">We are in the final stretch to sending the work off =
+for the Sotheby Auction. The photoshoot went well with the photographer Pab=
+lo Mason. Because the works are behind plexiglass it was a bit of a challen=
+ge to get the lighting right. Fortunately had plenty of black draping fabri=
+c to setup around the studio to reduce the reflection. Once he got it right=
+ I saw the first photo and it looked fabulous. With the right lighting it l=
+ooks even better than with the ambient light in the studio. It was a pleasu=
+re working with him. If we need someone in the future I would not hesitate =
+to recommend him again. <br clear=3D"none"></div><div dir=3D"ltr"><br clear=
+=3D"none"></div><div dir=3D"ltr">I am waiting for the final pickup time for=
+ the work but it is tentatively set for sometime this Wednesday.&nbsp; The =
+works are basically ready to go. I will check them one more time tomorrow. =
+I am hoping to get the link to Pablo's photos tomorrow so I can put them in=
+to the shipment list document that needs to be signed upon pickup.<br clear=
+=3D"none"></div><div dir=3D"ltr"><br clear=3D"none"></div><div dir=3D"ltr">=
+This has been a real push to make this happen. I haven't even had a moment =
+to look at Roger's print. He showed it to me when I picked it up last Monda=
+y and the brief moment I saw it, I was happily surprise that it looked quit=
+e close to the original. I will need to really look at it closely though. A=
+ssuming all goes well and no more immediate concerns with Gazelli, I will l=
+ook at the Roger's print this week. I will also pull a drawing for George L=
+egrady finally. And see what can be done regarding work for the Whitney fol=
+k. <br clear=3D"none"></div><div dir=3D"ltr"><br clear=3D"none"></div><div =
+dir=3D"ltr">I didn't keep track of my hours related to Sotheby. When I star=
+ted I didn't think it would have ballooned into the time consuming activity=
+ that it did. In a previous email you mentioned this was a lesson learned a=
+nd you we even considering pulling the plug at the very last minute. I agre=
+e with you that at time point it would do more harm than good to pull the p=
+lug at this late stage. Let's see how the auction goes. I sure hope it is a=
+ success. And I understand that part of the strategy is to sway the Tate in=
+to buying a software version possibly. If that happens, then certainly Soth=
+eby is a success.<br clear=3D"none"></div><div dir=3D"ltr"><br clear=3D"non=
+e"></div><div dir=3D"ltr">A while back in the summer we talked about variou=
+s things. One of them was an increase in pay. I have added an increase on t=
+his invoice. The last time I had a raise was 2016. I calculated the inflati=
+on rate from 2016 to 2024 using <a shape=3D"rect" href=3D"https://www.in201=
+3dollars.com/us/inflation/2016?amount=3D1" rel=3D"nofollow" target=3D"_blan=
+k">https://www.in2013dollars.com/us/inflation/2016?amount=3D1</a> which cla=
+ims today $45.94 is the equivalent of $35 dollars in 2016. My new invoice r=
+ate is a bit higher at $50/hr. I hope this doesn't break the bank but I am =
+doing much more and have much more responsibility than back in 2016. There =
+are times I am basically working around the clock. I am not saying this as =
+a complaint as I am committed to improving the legacy of Harold/AARON and w=
+ould have left a long time ago if I didn't enjoy being involved. It does se=
+em like an exciting time and I am hoping the trust continues to outperform =
+our expectations. I hope our relationship with Mila remains solid and that =
+Gazelli continues to be successful. I recently learned I am no longer eligi=
+ble for health care from California due to COVID winding down. The health c=
+are was basically free. Next month, I will need to sign up for health care.=
+ Previously, you had mentioned about paying for my health care. I really do=
+n't know how much that will be yet but I hope the Trust will consider payin=
+g for my health care. <br clear=3D"none"></div><div dir=3D"ltr"><br clear=
+=3D"none"></div><div dir=3D"ltr">Tom<br clear=3D"none"></div><div><br clear=
+=3D"none"></div><div><br clear=3D"none"></div><div dir=3D"ltr"><br clear=3D=
+"none"></div><div dir=3D"ltr"><br clear=3D"none"></div><div dir=3D"ltr"><br=
+ clear=3D"none"></div></div></div></blockquote></div></div>
+</div></div></div>
+            </div>
+        </div></body></html>
+------=_Part_6640530_1891974843.1727316843967--

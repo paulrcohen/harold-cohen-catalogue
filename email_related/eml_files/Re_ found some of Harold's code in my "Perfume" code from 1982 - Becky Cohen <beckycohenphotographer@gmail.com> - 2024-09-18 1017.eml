@@ -1,0 +1,269 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a10:d607:b0:5a5:c71b:1392 with SMTP id gm7csp793816pxb;
+        Wed, 18 Sep 2024 07:18:09 -0700 (PDT)
+X-Received: by 2002:a05:620a:4082:b0:7a9:be54:4b00 with SMTP id af79cd13be357-7a9e5f2ff82mr3532184685a.35.1726669088984;
+        Wed, 18 Sep 2024 07:18:08 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1726669088; cv=none;
+        d=google.com; s=arc-20160816;
+        b=1CNmIdG/hUE1x2OasoddC+hrU6ij3jwcPWM7MLpZtNHEUv0RKiRFmnSV/WLqBoJ/8C
+         svrsloRda65QzLMhncXJAidMgJPgFREssgVF7HFTu+n1LlsbzZukNLcUXjHbgffoQjER
+         cJ9wtP4xLBDqWvofW/h15jryVL70LLcUBC6nGBJQl+2UD8YeEQEoPHkxrpQdJU4Bq4Rb
+         qLRu76YCAhXEwNPexO4kCS8TInfnMwRy+HNoWTc/USOcGXEpSPN8zc7cqPCdU/Ps2ELH
+         mxR75MjHN/gJU+fvJR050olfDOrz66qatF47DKItNBXqzCJpvze5yCbD+tYMXCnLaYFl
+         CRmQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=gWT4bih7i29XIW/JlfrGfT7GtcqcRc9UC62pJFZFZX0=;
+        fh=nAaovN/Vs6cFSH2+7zLqAtADojE2yunLiCjbnP/knto=;
+        b=b6hcLuA5I928CSeX7S+3ZVF1cVebho+5WZ/y0G+1OcdD530Am5ggOj0yAZaG0jxt4b
+         YE0E38HCgKrzijmljwARGvied3DRBj9OZVYY/22j8sneGqjmUheDvJRPgeCyuwgKTctQ
+         ewC3ewPVlGi2XsxxF8BGyKeUsfu/AwebTN8D6EGLRWnHrlNaFO89lVQNLlFz267Ibu4b
+         Z+Qj6qu7PvFwPX2plaFoT5WCDZZ/sKThdrFKcHBckD3xguH1DP0qI0srppCDg5Epf1ey
+         1dc+2anJJ+c7ZnglNhQGTvJNMz/JWtHneZ4NRyjwvHYcmEsG382tyAo31kFgTAEuPCYS
+         vTGA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20230601 header.b=crU4i4Bl;
+       spf=pass (google.com: domain of beckycohenphotographer@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=beckycohenphotographer@gmail.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com;
+       dara=pass header.i=@gmail.com
+Return-Path: <beckycohenphotographer@gmail.com>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id af79cd13be357-7ab3e9d3024sor843738085a.8.2024.09.18.07.18.08
+        for <paulrcohen@gmail.com>
+        (Google Transport Security);
+        Wed, 18 Sep 2024 07:18:08 -0700 (PDT)
+Received-SPF: pass (google.com: domain of beckycohenphotographer@gmail.com designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20230601 header.b=crU4i4Bl;
+       spf=pass (google.com: domain of beckycohenphotographer@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=beckycohenphotographer@gmail.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com;
+       dara=pass header.i=@gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1726669088; x=1727273888; dara=google.com;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=gWT4bih7i29XIW/JlfrGfT7GtcqcRc9UC62pJFZFZX0=;
+        b=crU4i4BlXfDP42gCbO+rDop5ySf+zx2wWvcNBJOLfPFChbPyiU1oHLiBwYXeziPKAx
+         SjLLEfXx1TwBLnnPX2k7jjVCny42CQtDmUuTsRW9Li8G0xao+lshNITvJ5J9OAEZxBg0
+         kIXVrG6F2QSn/IkN3fepH2DBaKYZvFNBCpdAWaZA4spFFeG8516/PDpO5o/aKUF5ckmM
+         SXCU7jL9of945a2JXaHc4ZfB7DQQS4nwCHj5dd7lP/gkBbE0qnX4WsDwjJj8yAOh06Qu
+         eH2IZ++LLqvKqwgbycUMSXJxPeQINnyZNob9AlhtwIjLA1er6lnEbd984sltba2fPhDT
+         WrbA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1726669088; x=1727273888;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=gWT4bih7i29XIW/JlfrGfT7GtcqcRc9UC62pJFZFZX0=;
+        b=YbIvoNhaw3H2U8OI4bSbVuHDzHSqxAlMqpQk6Pf+U191SSX4DAqCIRapEACZCNYWqh
+         3qf2gJjL1qYWznvFlCt8k7z1+Fqzn7ZKv/t676TI1/IncImsVFGz37bBWyLoD6YKktTx
+         UqEV4e+NKbD/EcQdIznOyAM2fEyvQgWeIB1WodQA2tR6VgKOjTAuHG85GCbQp77fZqvC
+         cCmw3F5oHXNKpTEK00W/kyAdGWblkyoxucGDDGPWGAfwjSxZr7pJGhRF+buH1usbmGkL
+         irsTg1sGslA2mQzvFqOZUrjYph12hQ7f5wfBhW3UlDfK4eXR6lsWyeKDpqgkrFUCzrYd
+         hgcA==
+X-Gm-Message-State: AOJu0YzAmt6Toss/SkFLZLMadiFPKlI2nkfR0VVLcOsHQQscU+D/Z4Jh
+	ewJRcHbwOkF9raLzrXEVy+dYy2TyGzHQ7WfXqgxuqF2QPs0nyiD5Rjg6R8eJc0UyP1chW+WWMm8
+	GkNq+MTW6d2JRCYocoh9ggWliu+o=
+X-Google-Smtp-Source: AGHT+IFvQGn5s08/s5v/dG4dOdI4vrE0g/clY9dnlLKEpqQp2tRnxqZPVlO/OZTsU2Ap7ZobBWmpuALsxbmm2fd+Yt4=
+X-Received: by 2002:a0c:ef47:0:b0:6c5:7789:b695 with SMTP id
+ 6a1803df08f44-6c57789b6c4mr319724716d6.42.1726669088508; Wed, 18 Sep 2024
+ 07:18:08 -0700 (PDT)
+MIME-Version: 1.0
+References: <F85BAAD4-4DD2-4895-8587-1DA5478DD236@ucsb.edu> <991791373.1853833.1726667557261@yahoo.com>
+In-Reply-To: <991791373.1853833.1726667557261@yahoo.com>
+From: Becky Cohen <beckycohenphotographer@gmail.com>
+Date: Wed, 18 Sep 2024 07:17:57 -0700
+Message-ID: <CAAopwHMTNFVB6yMgsS6Bbcobp26HuPhU3Xd4wNQZQsRcsd2WeA@mail.gmail.com>
+Subject: Re: found some of Harold's code in my "Perfume" code from 1982
+To: George Legrady <glegrady@ucsb.edu>
+Cc: Paul Cohen <paulrcohen@gmail.com>, 
+	"Christiane Paul, Curatorial" <Christiane_Paul@whitney.org>, Thomas Machnik <zipnpup@yahoo.com>
+Content-Type: multipart/alternative; boundary="000000000000aa572106226579f2"
+
+--000000000000aa572106226579f2
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Dear George,  That's wonderful news!  It would be so enjoyable to see your
+perfume program revived in some sort of real time expression, if ever that
+strikes your fancy.  I remember being enchanted by your description of what
+you were doing and, I think, some drawings you might have generated.
+
+I'm sure that Paul, Christiane, and Tom will all be excited by your
+rediscovery of this code.
+
+It was so very nice seeing you again earlier this year for Harold's opening
+at The Whitney after all these years.
+
+Becky
+
+On Wed, Sep 18, 2024 at 6:52=E2=80=AFAM zipnpup <zipnpup@yahoo.com> wrote:
+
+> Hi George
+> Congrats on inadvertantly coming across your June 17, 1982 code with
+> Harold's subroutines. This is fantastic! Thanks for sharing the details o=
+n
+> you perfume molecule visualizer. Sounds very interesting how you used
+> Harold's subroutines as part of your animation. It would be nice to get
+> this running again to how Harold's routines played a roll in your 1982 co=
+de
+> and see if there is any hints of AARON running in the background in
+> addition to seeing what your visualizer did. So cool.
+>
+>  I will confer with Paul as to what would be best. My thoughts are... For
+> our archives I would like the scanned 20 pages as a PDF but if it is not
+> too much trouble having both the scan and OCR would be ideal. Knowing som=
+e
+> of the names of Harold's routines might be valuable in connecting it to t=
+he
+> notebooks we have and the oldest code we have.
+>
+> Thanks so much George
+>
+> Tom
+>
+>
+>
+> Sent from my T-Mobile 4G LTE Device
+>
+>
+> -------- Original message --------
+> From: George Legrady <glegrady@ucsb.edu>
+> Date: 9/17/24 10:59 PM (GMT-08:00)
+> To: Paul Cohen <paulrcohen@gmail.com>, "Christiane Paul, Curatorial" <
+> christiane_paul@whitney.org>, Becky Cohen <
+> beckycohenphotographer@gmail.com>
+> Cc: Thomas Machnik <zipnpup@yahoo.com>
+> Subject: found some of Harold's code in my "Perfume" code from 1982
+>
+> Hi Paul, Becky, Thomas and Christiane,
+>
+> At Harold=E2=80=99s opening we had talked about tracking down some of Har=
+old=E2=80=99s
+> code from the early 1980s in my storage space. Also Becky who I had not
+> seen for many decades, amazingly remembered I wrote my first program in
+> Harold=E2=80=99s lab that visualized the operation of perfume molecules l=
+eaving an
+> enclosed contained space into a wider open space as a way to illustrate
+> that time cannot proceed backwards as the molecules could not be
+> recollected and returned back into the enclosed space of the bottle. I go=
+t
+> the story from a Scientific American article and this seemed at the time =
+to
+> be a good first coding project as a continuity to my staged studio
+> photography.
+>
+> I had forgotten about this code until Becky mentioned it at the opening
+> this past winter, but this week-end, I inadvertendly came across a full
+> printout in a stored box. It is dated June 17, 1982, and takes up 20 page=
+s.
+>
+> Even though I wrote the code that visualizes the molecular animation,
+> nearly all of the utilities subroutines used to visualize the moving dots
+> on the TeckTronix screen as seen here on the right page was written by
+> Harold, so the full printout partially documents what part of his code wa=
+s
+> like at that time. Unfortunately, the more interesting aspect of Harold=
+=E2=80=99s
+> code I dont have, only the utilities subroutines. Additionally, the code
+> also gives the insight of how to get the data from the PDP-11 to the
+> Tecktronix to visualize the program.
+>
+> Please let me know how you all want to access the code if it is of
+> interest. I can scan all the pages and do a OCR to turn it into real code=
+.
+> Also how do we distribute the credit given that the subroutines are
+> Harold=E2=80=99s whereas the molecular animation is mine. For the coding
+> finetuning, I was asisted by Jeff Greenberg, who was Harold=E2=80=99s stu=
+dio
+> assistant at the time.
+>
+> Very Best,
+>
+> George
+>
+>
+>
+>
+>
+>
+
+--000000000000aa572106226579f2
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Dear George,=C2=A0 That&#39;s wonderful news!=C2=A0 It wou=
+ld be so enjoyable to see your perfume program revived in some sort of real=
+ time expression, if ever that strikes your fancy.=C2=A0 I remember being e=
+nchanted by your description of what you were doing and, I think, some draw=
+ings you might have generated.<div><br></div><div>I&#39;m sure that Paul, C=
+hristiane, and Tom will all be excited by your rediscovery of this code.</d=
+iv><div><br></div><div>It was so very nice seeing you again earlier this ye=
+ar for Harold&#39;s opening at The Whitney after all these years.</div><div=
+><br></div><div>Becky</div></div><br><div class=3D"gmail_quote"><div dir=3D=
+"ltr" class=3D"gmail_attr">On Wed, Sep 18, 2024 at 6:52=E2=80=AFAM zipnpup =
+&lt;<a href=3D"mailto:zipnpup@yahoo.com">zipnpup@yahoo.com</a>&gt; wrote:<b=
+r></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex=
+;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"auto"=
+><div dir=3D"auto">Hi George</div><div dir=3D"auto">Congrats on inadvertant=
+ly coming across your June 17, 1982 code with Harold&#39;s subroutines. Thi=
+s is fantastic! Thanks for sharing the details on you perfume molecule visu=
+alizer. Sounds very interesting how you used Harold&#39;s subroutines as pa=
+rt of your animation. It would be nice to get this running again to how Har=
+old&#39;s routines played a roll in your 1982 code and see if there is any =
+hints of AARON running in the background in addition to seeing what your vi=
+sualizer did. So cool.</div><div dir=3D"auto"><br></div><div dir=3D"auto">=
+=C2=A0I will confer with Paul as to what would be best. My thoughts are... =
+For our archives I would like the scanned 20 pages as a PDF but if it is no=
+t too much trouble having both the scan and OCR would be ideal. Knowing som=
+e of the names of Harold&#39;s routines might be valuable in connecting it =
+to the notebooks we have and the oldest code we have.</div><div dir=3D"auto=
+"><br></div><div dir=3D"auto">Thanks so much George</div><div dir=3D"auto">=
+<br></div><div dir=3D"auto">Tom</div><div dir=3D"auto"><br></div><div dir=
+=3D"auto"><br></div><div dir=3D"auto"><br></div><div id=3D"m_-8398360991644=
+469607composer_signature" dir=3D"auto"><div style=3D"font-size:12px;color:r=
+gb(87,87,87)" dir=3D"auto">Sent from my T-Mobile 4G LTE Device</div></div><=
+div dir=3D"auto"><br></div><div><br></div><div align=3D"left" dir=3D"auto" =
+style=3D"font-size:100%;color:rgb(0,0,0)"><div>-------- Original message --=
+------</div><div>From: George Legrady &lt;<a href=3D"mailto:glegrady@ucsb.e=
+du" target=3D"_blank">glegrady@ucsb.edu</a>&gt; </div><div>Date: 9/17/24  1=
+0:59 PM  (GMT-08:00) </div><div>To: Paul Cohen &lt;<a href=3D"mailto:paulrc=
+ohen@gmail.com" target=3D"_blank">paulrcohen@gmail.com</a>&gt;, &quot;Chris=
+tiane Paul, Curatorial&quot; &lt;<a href=3D"mailto:christiane_paul@whitney.=
+org" target=3D"_blank">christiane_paul@whitney.org</a>&gt;, Becky Cohen &lt=
+;<a href=3D"mailto:beckycohenphotographer@gmail.com" target=3D"_blank">beck=
+ycohenphotographer@gmail.com</a>&gt; </div><div>Cc: Thomas Machnik &lt;<a h=
+ref=3D"mailto:zipnpup@yahoo.com" target=3D"_blank">zipnpup@yahoo.com</a>&gt=
+; </div><div>Subject: found some of Harold&#39;s code in my &quot;Perfume&q=
+uot; code from 1982 </div><div><br></div></div>Hi Paul, Becky, Thomas and C=
+hristiane, <br><br>At Harold=E2=80=99s opening we had talked about tracking=
+ down some of Harold=E2=80=99s code from the early 1980s in my storage spac=
+e. Also Becky who I had not seen for many decades, amazingly remembered I w=
+rote my first program in Harold=E2=80=99s lab that visualized the operation=
+ of perfume molecules leaving an enclosed contained space into a wider open=
+ space as a way to illustrate that time cannot proceed backwards as the mol=
+ecules could not be recollected and returned back into the enclosed space o=
+f the bottle. I got the story from a Scientific American article and this s=
+eemed at the time to be a good first coding project as a continuity to my s=
+taged studio photography. <br><br>I had forgotten about this code until Bec=
+ky mentioned it at the opening this past winter, but this week-end, I inadv=
+ertendly came across a full printout in a stored box. It is dated June 17, =
+1982, and takes up 20 pages. <br><br>Even though I wrote the code that visu=
+alizes the molecular animation, nearly all of the utilities subroutines use=
+d to visualize the moving dots on the TeckTronix screen as seen here on the=
+ right page was written by Harold, so the full printout partially documents=
+ what part of his code was like at that time. Unfortunately, the more inter=
+esting aspect of Harold=E2=80=99s code I dont have, only the utilities subr=
+outines. Additionally, the code also gives the insight of how to get the da=
+ta from the PDP-11 to the Tecktronix to visualize the program.<br><br>Pleas=
+e let me know how you all want to access the code if it is of interest. I c=
+an scan all the pages and do a OCR to turn it into real code. Also how do w=
+e distribute the credit given that the subroutines are Harold=E2=80=99s whe=
+reas the molecular animation is mine. For the coding finetuning, I was asis=
+ted by Jeff Greenberg, who was Harold=E2=80=99s studio assistant at the tim=
+e. <br><br>Very Best, <br><br>George<br><br><br><br><br><br></div></blockqu=
+ote></div>
+
+--000000000000aa572106226579f2--

@@ -1,0 +1,353 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a10:2a94:b0:5ec:db95:1ae4 with SMTP id ja20csp3153271pxb;
+        Wed, 26 Mar 2025 03:14:13 -0700 (PDT)
+X-Forwarded-Encrypted: i=2; AJvYcCV9g/GOkhjDeqG8DEf7tOzWf2Fdbr0fiUxs4kdhgagWwBeUWFLJpXc6CT7wTp1yL712A/+6eEaTJFAr@gmail.com
+X-Google-Smtp-Source: AGHT+IFTh29Pvi7JFqCjSdwOqb4XEy4JXM5YOTUfneEfuTHzOR8h810vjfDLmT2U5nkImtUrKe+a
+X-Received: by 2002:a05:620a:2727:b0:7c5:a41a:b1a with SMTP id af79cd13be357-7c5ba13350emr2901707185a.10.1742984052864;
+        Wed, 26 Mar 2025 03:14:12 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1742984052; cv=none;
+        d=google.com; s=arc-20240605;
+        b=U1rUEEGuq6I3F7HazTmW8LZFjTqiXvarYQZFaWKopLv3PbgYHvJfBKXOrkrV0P9xJc
+         7YDv07vXPsswTw+WjxEpRCaoVnpmWaWwFZ24WnR/k1TwKtkmjOlOWVqCsvdASa3cDMwL
+         XcNiDMFxvy3Bn6GI4u5LG68i+4AZOgkuQA1sQJeeGWZFHtInm1szJGh2DQXF+8jxTvjz
+         lORp7HYleIi/YyqyMwOM1pulGdwZFlfyGXfjT/ErUW9tvxW2q9tDIhWvA9nEge3rpryz
+         buHB/SOtZSdVR+p3jWQerQBHBJ6sPVnvUjwLFNqcWBagOhcKxBiMcyQaA7a2KcsrGh3Y
+         qeLg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:subject:references:in-reply-to:message-id:to:reply-to
+         :from:date:dkim-signature;
+        bh=9DmRSrZq9PJJ7JpboAgUEK5ft+ckASm3Rco42Hbp1Sk=;
+        fh=PpYnj1y4sAswEsm8icaAajQstpcRzFPm4O0FSn8HQdo=;
+        b=jFPxydwt6CgHDlVv1nrbAq/5IpOmSxOeuG+pTfCgFPTP7OP59T69aGgMu8Vm4oHgtB
+         G4x1HIke3bVz01I8xdwyerkgrZ5s3rgflu6vOsBphLmrCO3sChn2O6FpGtD/ZIZJBmYl
+         F0fQUWa4nrLy1Tq61oaqjS4DMvl2L3jm+Kkol4Hhl+pXsc287Dtf1LgTmMXlb0RXTPx2
+         ytAE1TNAXcfPNvWd9Cna/CknJ90nNzU94P/fn/i7JKnvKG3RgysaC1A70pPUhZyRokHn
+         WKz6vLelgzVqGQ1DlCzQNlmXTGPcXUoyfi7E1oIx2j2CGbQNDC4yKqrEnyNn4LAf8qyx
+         d3zw==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=Jt2zJmXf;
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.133.123 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+Return-Path: <zipnpup@yahoo.com>
+Received: from sonic313-13.consmr.mail.bf2.yahoo.com (sonic313-13.consmr.mail.bf2.yahoo.com. [74.6.133.123])
+        by mx.google.com with ESMTPS id af79cd13be357-7c5b93574e2si1134801785a.337.2025.03.26.03.14.12
+        for <paulrcohen@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 26 Mar 2025 03:14:12 -0700 (PDT)
+Received-SPF: pass (google.com: domain of zipnpup@yahoo.com designates 74.6.133.123 as permitted sender) client-ip=74.6.133.123;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=Jt2zJmXf;
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.133.123 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1742984052; bh=9DmRSrZq9PJJ7JpboAgUEK5ft+ckASm3Rco42Hbp1Sk=; h=Date:From:Reply-To:To:In-Reply-To:References:Subject:From:Subject:Reply-To; b=Jt2zJmXf7JgIkcN39LEsNLwW/z5IBFBCWVCiDOmk0woKCidPIrpWQvJDjCo3cRdH/L0PwoFv0b0VlVy6vNH3puVW1DkQKCa0ztTCS5pSdj0x37XAwOLoG/p6BrmUQO74qpqJmtEDeBkTIw1lLlgsGkgPwLk3VCYRcfTnkgDAip7RgpxKoFnGvFwyGBb5f4aP1mbjKx5tsuc7tktnJJ1G7QnbzqzX6yA827PbPSaXXXKktpd00JjhfC2kkDSAh8NDT6FTdTosy6VOzQz3L4YmESFvByBVUDcy0mX0Zfx/vQclRjMiftdwK9AQlwfkNlVsUQoG2homlxhRLduCUnQjeg==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1742984052; bh=AkLbBmNKxrN5kO/5lDGuGFwWw4fxiOhwLZlLppd9K+S=; h=X-Sonic-MF:Date:From:To:Subject:From:Subject; b=S2JRK8hIqIecnbC3kblq8J/tOkp/M5opgX3KxLjdqa+84fEUI1pe5IESm1+TbLXdD48J9F4FDSVvwoMhln7WmZQPguLkT43q2TnjelWUt1X63hlAzbjerYnyQ43XRovgtxqTgQDyI9+udfTIra8dHtXNybgZeA1pVzI9Q8InSKQ+DjwKyjhxE3jNJE2ixWnxfxA0lo+u6XCkirkaR2DYQHcMpgJKX/LuXUg9DbSHFtuL22YZKRM4MICfP8VmamxjfxZJxVD7PfGdeaUFUctqolB0VCFmvrInHPepQaCSjVzdRp3YoQfJoy+XnwZg9tE8nhN38el2TtsZXynFzkShSQ==
+X-YMail-OSG: .HukulUVM1m2vVe8Z0R8J3myrdNWS4cB4qwA3GG0J8Z4.8so3e7eqbtDkO0MRUL
+ Y5hyTrYJegohCSdeg4uHV.4M71a62GeuK405GqPBWKCOPVeWpKnMMDInIulsYbBuB8h3TigqZebQ
+ JbnyvIog0WbJnxeZv515UfElbFQhf35QD0IY0VzunHSv3OQdv6jZSIjCcfG6tiA_AtRO73xhe4xD
+ AUtIAMROoWfxe3i3Klj8GiZo74aOdwfRDUYJ9AgMFdvn5Tnnvfg2okJBJimUCpP_kcUPIy2LxyfM
+ uMI3BRq6g_Fog1rtzqqRrL4ee1tZVPNYuZjPDqAabLzBd7W2Jf7dUtm9sOL7.gkiV374xSUrHwbk
+ F.Efn7WUcyI0XjjwfVUWyTWb05hbKQxfEFvvJSEFZr0JNUKDraqV_FJftlInolELSeqmdPk4B_cq
+ LuJG1.p2MqJIpQmBIboeHAyaRgTPoNKdNvGRVccRGJphzXfLuH2fjM2RjMyvicItH98HD_es5bOh
+ tFYGiVCiC_iVx91H_LDvI.oBTbSjuT8DRi5xcetJaAt3AEy6LEwn1TTF2v4kVMsLxVTpwFtuPYLW
+ tkpgdOafzdy8YRDr1M45FZJENKzz.Cwaw8WXim42JIdofz7EnvobXs13fhr23yrP3xA2iLffNy5D
+ gTggumVo0gelGWa2zUS0kzC67fZp4P1VeX_.dZ.s0UK1hc3INXNGFVsnV.UeceW1pU9ZQn4tQNNR
+ XXnemjnZhSLE4Iv2J0he.A2mkW335oE50.TD2qBiLT8Z9xjbX6tcFY_LJmWYLedZAMUYfG_X3Izk
+ bjUCdoL7usuRJUkOZvgd84KAiyeDirYQJAqo1.aiWasOLq2NaBNcVP.8JiC7uNxjzMtNbWDlgxPY
+ cNQY1xQ.bWpiu09cXOEDjboTdRciJe40VFbtaP3MDLd0QZQeeZIOILd_5ddr0IA84W7Rqm.o52Im
+ Dbt67c5dlTOVMov5opX1ocrXjLkk0iNB_a.9u148JORn0Fzfz_n9oqRF.6ZPj.UFqK5ySu9xCjbN
+ DVIubnfD.BSTFy1wLg.jXGZ869iP0R35X8W5aEQ.8nxGQfhdzkFCw6RJv.xGmObALaHYRcX9mnlR
+ rvT4onl0WYuVUsROmji8NF_hi5HNEvZj09UReuGzjLtYY4Kai8sP15mgM1o9RQVxKizUzvSXA64K
+ 73i9vi66cN3HtHkRg7RhabjQN2tvto00tLmACvetgR9q9tUao_6Mx9svH5NuF907jwZlFAtrybsr
+ n46SMEUsulv048TCGUyfXyA97Wk8BzBgWfiWTbNWtb6TqOLOwuWB4TxO3j4BVswrSFsBx1.uFx15
+ chX54xC_FDRz35dRaTa5Cfads4.7AsOvDgO7Qfq5LcEMU.RSNvQ.gI5Lf9CWqO1LeOcJ6R2QgTvi
+ BGJRBhI69tfowaetouR6SwXCY9XpGUylUZwQPLNQJWuluZX.c96yZE6wxk0rM.afpiZWcKAhTBRX
+ ItrPKmOKU29Q6X6TZe9DZM1WJ8Iwm_gJ5YSyGv6M_1vqg1AjHb6I3jBNJBJ4R3lb_pRdCYk6GU5s
+ b6Xo.tz10vdwhGseei8WeQwFvVnDelyGYLIYsG732i_jJaFDOWnHiFGFqYxCippaEZOLafD8IzF4
+ X5J.gY7x.LOW2dx6jMNviY2DArbWFVM2Yiqk0GL6o6BQWw2UCuuC7GxNSDVXjZoTQlgxysmCF.jG
+ M2H0jJRFUW1_yLIla.GcbzdKNpSbbiWc13SnxX1R1gbT3rIpscr7Uh_tJpSRWMtPgKJIrqkJqjHY
+ 4S37kg62qKJ69ovtLPGes4YnGQ1mftrJwORpocombU5lWhNP4h8worGLy7hlsc0bKs413nJPdbAM
+ n0y2TnMDScNE8JW5COyb8C6e96gOJUOsG4VhW4bNsGr1zBmPP8nxm32ZBH6mtbeJcab27aRhX7Ia
+ OT5SKiug.aQG.tXddu6CKkp3kD5xvuiRxUhNtQl0A.yTty9AFivhxL_xLBEIK8jTZMfwqVx.7GIf
+ uFFNFMQmdhDAp_ZFx26y_0ng5nw15Qea3ybMAXc9rBgWSAM5PR9A1G_T4kEXro4D_sd2KMBvDbxs
+ Q9I96jwgJSM1e5OiIxcKvF7zmK9omRp6tNSwSJPjzEB90mqN7GiD__eDbSL1gdR3fwjS5znmMGJ0
+ yVkpvL4xsDEeVd42HDDOBqzVhi1j5NnmGVfMJEVQdS_nxpcHtWsUVPFiqcv.SHFol2AW7tf6M9p6
+ o0i0RLPIdsxDn6GDHBxi7VMnfHa0AhlrlqRVFZUQLn1Y_y5eg_sm.HTgdCZOZLEMKDIZvvL8EAyY
+ SgfUPghD53gLBdPFwT1pUnQ--
+X-Sonic-MF: <zipnpup@yahoo.com>
+X-Sonic-ID: daf57475-608b-4d78-9bea-48adc1d91062
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic313.consmr.mail.bf2.yahoo.com with HTTP; Wed, 26 Mar 2025 10:14:12 +0000
+Date: Wed, 26 Mar 2025 10:14:05 +0000 (UTC)
+From: Thomas Machnik <zipnpup@yahoo.com>
+Reply-To: Thomas Machnik <zipnpup@yahoo.com>
+To: Michael Pollard <michael@gazelliarthouse.com>, 
+	Paul Cohen <paulrcohen@gmail.com>, 
+	George Lionel Barker <george@gazelliarthouse.com>
+Message-ID: <209405784.1093132.1742984045857@mail.yahoo.com>
+In-Reply-To: <CAFoqNjR-nH7Lk_WnPhK+ndpuX3a8RqpoaCb_-kyb1ourgm0tWw@mail.gmail.com>
+References: <CAFoqNjR-nH7Lk_WnPhK+ndpuX3a8RqpoaCb_-kyb1ourgm0tWw@mail.gmail.com>
+Subject: Re: Black and White Mural Canvas
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_1093131_1509396704.1742984045853"
+X-Mailer: WebService/1.1.23533 YMailNovation
+Content-Length: 17399
+
+------=_Part_1093131_1509396704.1742984045853
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+ Hi George,
+Based on what I am doing, I=E2=80=99m thinking it best to hold off on B/W o=
+ne for the time being. One of the ongoing documents I am working on is titl=
+ed: Public Art, Murals and very large works. =C2=A0=C2=A0https://docs.googl=
+e.com/presentation/d/1rhZTswn58O6EDT6io6fPWgQyIb8_3Bdbt_YoPB0OFwE/edit?usp=
+=3Dsharing
+Slide 12 shows the B/W workSlide 13 shows a 1981 Dye Painting on sheet clot=
+hSlide 15 shows one panel of a multi-panel work=C2=A0
+It would be best for my research to have all of these similar works togethe=
+r until I can finish going through all the additional panels.=C2=A0
+These are my thoughts,
+Sincerely,Tom
+
+
+
+    On Tuesday, March 25, 2025 at 06:30:09 AM PDT, George Lionel Barker <ge=
+orge@gazelliarthouse.com> wrote: =20
+=20
+ Hi Tom,=C2=A0
+How's things? I hope this=C2=A0email finds you well.=C2=A0
+I am writing to find out if the black and white mural sized canvas can be i=
+ncluded in the current shipment to London? It's similar to the one=C2=A0cur=
+rently on show at the Tate, but you mentioned black and white. We would=C2=
+=A0love to have it with=C2=A0us.=C2=A0
+Looking forward to hearing from you,=C2=A0
+George=C2=A0
+
+LONDONLilly Fenichel: Against the Grain
+BAKU=C2=A0Spring Flow
+GAZELL.iO=C2=A0March Resident |=C2=A0Ben Cullen WilliamsProject Space |=C2=
+=A000 Zhang: Honey
+www.gazelliarthouse.com+44 (0) 207 491 8816 / +994 (0) 12 498 1230=C2=A0
+
+
+
+This e-mail message, including all attachments, is for the=C2=A0sole use of=
+ the intended recipient(s) and may contain=C2=A0legally privileged and conf=
+idential information. If you are=C2=A0not an intended recipient, you are he=
+reby notified that=C2=A0you have either received this message in error or t=
+hrough=C2=A0interception, and that any=C2=A0review, use, distribution,=C2=
+=A0copying or disclosure of this message and/or its=C2=A0attachments or par=
+ts thereof is strictly prohibited and is=C2=A0subject to criminal and civil=
+ penalties with appropriate=C2=A0national legislation.=E1=90=A7 =20
+------=_Part_1093131_1509396704.1742984045853
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head></head><body><div class=3D"ydp4399f50eyahoo-style-wrap" style=
+=3D"font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px=
+;"><div></div>
+        <div dir=3D"ltr" data-setdir=3D"false">Hi George,</div><div dir=3D"=
+ltr" data-setdir=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"false"=
+>Based on what I am doing, I=E2=80=99m thinking it best to hold off on B/W =
+one for the time being. One of the ongoing documents I am working on is tit=
+led: Public Art, Murals and very large works. &nbsp;&nbsp;<a href=3D"https:=
+//docs.google.com/presentation/d/1rhZTswn58O6EDT6io6fPWgQyIb8_3Bdbt_YoPB0OF=
+wE/edit?usp=3Dsharing" target=3D"_blank" rel=3D"noreferrer noopener">https:=
+//docs.google.com/presentation/d/1rhZTswn58O6EDT6io6fPWgQyIb8_3Bdbt_YoPB0OF=
+wE/edit?usp=3Dsharing</a></div><div dir=3D"ltr" data-setdir=3D"false"><br><=
+/div><div dir=3D"ltr" data-setdir=3D"false">Slide 12 shows the B/W work</di=
+v><div dir=3D"ltr" data-setdir=3D"false">Slide 13 shows a 1981 Dye Painting=
+ on sheet cloth</div><div dir=3D"ltr" data-setdir=3D"false">Slide 15 shows =
+one panel of a multi-panel work&nbsp;</div><div dir=3D"ltr" data-setdir=3D"=
+false"><br></div><div dir=3D"ltr" data-setdir=3D"false">It would be best fo=
+r my research to have all of these similar works together until I can finis=
+h going through all the additional panels.&nbsp;</div><div dir=3D"ltr" data=
+-setdir=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"false">These ar=
+e my thoughts,</div><div dir=3D"ltr" data-setdir=3D"false"><br></div><div d=
+ir=3D"ltr" data-setdir=3D"false">Sincerely,</div><div dir=3D"ltr" data-setd=
+ir=3D"false">Tom</div><div dir=3D"ltr" data-setdir=3D"false"><br></div><div=
+ dir=3D"ltr" data-setdir=3D"false"><br></div><div dir=3D"ltr" data-setdir=
+=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"false"><br></div>
+       =20
+        <div id=3D"ydp4399f50eyahoo_quoted_3371380763" class=3D"ydp4399f50e=
+yahoo_quoted">
+            <div style=3D"font-family:'Helvetica Neue', Helvetica, Arial, s=
+ans-serif;font-size:13px;">
+               =20
+                <div>
+                    On Tuesday, March 25, 2025 at 06:30:09 AM PDT, George L=
+ionel Barker &lt;george@gazelliarthouse.com&gt; wrote:
+                </div>
+                <div><br></div>
+                <div><br></div>
+                <div><div id=3D"ydp4399f50eyiv8584925357"><div dir=3D"ltr">=
+<div>Hi Tom,&nbsp;</div><div><br></div><div>How's things? I hope this&nbsp;=
+email finds you well.&nbsp;</div><div><br></div><div>I am writing to find o=
+ut if the black and white mural sized canvas can be included in the current=
+ shipment to London? It's similar to the one&nbsp;currently on show at the =
+Tate, but you mentioned black and white. We would&nbsp;love to have it with=
+&nbsp;us.&nbsp;</div><div><br></div><div>Looking forward to hearing from yo=
+u,&nbsp;</div><div><br></div><div>George&nbsp;</div><div><br></div><div><br=
+></div><div><div dir=3D"ltr" class=3D"ydp4399f50eyiv8584925357gmail_signatu=
+re"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><di=
+v dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div style=3D"padding-top: 0px; padding-right: 0px; padding-lef=
+t: 0px;"><div style=3D"margin:0px;padding:0px 0px 20px;width:1116px;"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div><div dir=3D"ltr"><div dir=3D"ltr"><div=
+ dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D=
+"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><=
+div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"lt=
+r"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div=
+ dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D=
+"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><=
+div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr" style=3D"color:rgb(34,34,34);"><div dir=3D"ltr"><div dir=3D"ltr"><=
+div style=3D"padding-top: 0px; padding-right: 0px; padding-left: 0px; font-=
+family: Roboto, RobotoDraft, Helvetica, Arial, sans-serif;"><div style=3D"m=
+argin:0px;min-width:0px;padding:0px 0px 20px;width:initial;"><div style=3D"=
+margin:8px 0px 0px;padding:0px;"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr" style=3D"font-f=
+amily:Arial, Helvetica, sans-serif;"><div dir=3D"ltr"><div dir=3D"ltr"><div=
+ dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D=
+"ltr"><div dir=3D"ltr"><span><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><font=
+ face=3D"arial, sans-serif" color=3D"#000000">LONDON</font></div><div><font=
+ face=3D"arial, sans-serif"><a href=3D"https://886b17ba.streaklinks.com/CXK=
+TGwInJ8D9uNDMMAK92F4y/https%3A%2F%2Fgazelliarthouse.com%2Fexhibitions%2F191=
+-against-the-grain-lilly-fenichel%2F" style=3D"color:rgb(17,85,204);" targe=
+t=3D"_blank" rel=3D"noreferrer noopener">Lilly Fenichel: Against the Grain<=
+/a></font></div><div><br></div><div><span style=3D"color:rgb(0,0,0);font-fa=
+mily:arial, sans-serif;">BAKU&nbsp;</span></div><div><a href=3D"https://886=
+b17ba.streaklinks.com/CXKTGwM7eylW3-uZnAIMpjFR/https%3A%2F%2Fgazelliarthous=
+e.com%2Fexhibitions%2F195-spring-flow%2F" style=3D"color:rgb(17,85,204);" t=
+arget=3D"_blank" rel=3D"noreferrer noopener">Spring Flow</a></div><div><br>=
+</div><div dir=3D"ltr"><div><font color=3D"#000000" face=3D"arial, sans-ser=
+if">GAZELL.iO&nbsp;</font></div><div><div><span style=3D"font-family:arial,=
+ sans-serif;">March Resident |&nbsp;<a href=3D"https://886b17ba.streaklinks=
+.com/CXKTGwM0NN7vHYWdiACdFPPe/https%3A%2F%2Fgazell.io%2Fpages%2Fben-cullen-=
+williams" style=3D"color:rgb(17,85,204);" target=3D"_blank" rel=3D"noreferr=
+er noopener">Ben Cullen Williams</a></span></div><div><span style=3D"font-f=
+amily:arial, sans-serif;">Project Space |&nbsp;</span><font color=3D"#1155c=
+c" face=3D"arial, sans-serif"><a href=3D"https://886b17ba.streaklinks.com/C=
+XKTGwMrK-8A5Dnlyw8q-CYi/https%3A%2F%2Fgazell.io%2Fcollections%2F00-zhang-ho=
+ney" style=3D"color:rgb(17,85,204);" target=3D"_blank" rel=3D"noreferrer no=
+opener">00 Zhang: Honey</a></font></div></div></div></div></div></div></div=
+></div></div></div></div></div></div><div dir=3D"ltr"><br></div></div></div=
+></div></div><div dir=3D"ltr"><font face=3D"arial, sans-serif"><div><a href=
+=3D"http://www.gazelliarthouse.com/" style=3D"color:rgb(17,85,204);" target=
+=3D"_blank" rel=3D"noreferrer noopener"><font color=3D"#0b5394">www.gazelli=
+arthouse.com</font></a></div><div>+44 (0) 207 491 8816 / +994 (0) 12 498 12=
+30</div></font></div></div></div></div></div></div></div></div></div></div>=
+</div></div></div></div></div></div></div></div></div></div></div></div><di=
+v dir=3D"ltr"><font face=3D"arial, sans-serif"><div><div><font color=3D"#00=
+0000"><a href=3D"https://886b17ba.streaklinks.com/CXKTGwIy8meRmoJwswjvMK3E/=
+https%3A%2F%2Fwww.instagram.com%2Fgazelliarthouse%2F" style=3D"color:rgb(17=
+,85,204);display:inline-block;" target=3D"_blank" rel=3D"noreferrer noopene=
+r"><img src=3D"https://68ef2f69c7787d4078ac-7864ae55ba174c40683f10ab811d916=
+7.ssl.cf1.rackcdn.com/instagram-icon_24x24.png" width=3D"24" style=3D"margi=
+n: 0.8em 0.2em; padding: 0px; letter-spacing: -0.1px; border-width: 0px; bo=
+rder-style: none; border-color: currentcolor; vertical-align: middle; max-w=
+idth: 100%;" data-inlineimagemanipulating=3D"true"><div style=3D"margin:0px=
+;width:0px;min-height:0px;"><div></div></div></a><a href=3D"https://886b17b=
+a.streaklinks.com/CXKTGwIEhN256i59pAP5k3LF/https%3A%2F%2Ftwitter.com%2FGaze=
+lliArtHouse" style=3D"color:rgb(17,85,204);display:inline-block;" target=3D=
+"_blank" rel=3D"noreferrer noopener"><img src=3D"https://68ef2f69c7787d4078=
+ac-7864ae55ba174c40683f10ab811d9167.ssl.cf1.rackcdn.com/twitter-icon_24x24.=
+png" width=3D"24" style=3D"margin: 0.8em 0.2em; padding: 0px; letter-spacin=
+g: -0.1px; border-width: 0px; border-style: none; border-color: currentcolo=
+r; vertical-align: middle; max-width: 100%;" data-inlineimagemanipulating=
+=3D"true"><div style=3D"margin:0px;width:0px;min-height:0px;"><div></div></=
+div></a>&nbsp;<a href=3D"https://886b17ba.streaklinks.com/CXKTGwM3N3sH38PHo=
+w_tYv9u/https%3A%2F%2Fwww.facebook.com%2FGazelliArtHouse%2F" style=3D"color=
+:rgb(17,85,204);display:inline-block;" target=3D"_blank" rel=3D"noreferrer =
+noopener"><img src=3D"https://68ef2f69c7787d4078ac-7864ae55ba174c40683f10ab=
+811d9167.ssl.cf1.rackcdn.com/facebook-icon_24x24.png" width=3D"24" style=3D=
+"margin: 0.8em 0.2em; padding: 0px; letter-spacing: -0.1px; border-width: 0=
+px; border-style: none; border-color: currentcolor; vertical-align: middle;=
+ max-width: 100%;" data-inlineimagemanipulating=3D"true"></a></font></div><=
+/div><div><br></div><div><img width=3D"96" height=3D"44" src=3D"https://ci3=
+.googleusercontent.com/mail-sig/AIorK4w7gKovNZAR8tYAuQ9hIjEiBgWel9uIDPpW34G=
+yeY595Rek12deHDAlPE9ZZxtPymKBYCzaHBU" data-inlineimagemanipulating=3D"true"=
+><br></div><div><br></div><div><br></div><div><font color=3D"#000000">This =
+e-mail message, including all attachments, is for the&nbsp;sole use of the =
+intended recipient(s) and may contain&nbsp;legally privileged and confident=
+ial information. If you are&nbsp;not an intended recipient, you are hereby =
+notified that&nbsp;you have either received this message in error or throug=
+h&nbsp;interception, and that any&nbsp;review, use, distribution,&nbsp;copy=
+ing or disclosure of this message and/or its&nbsp;attachments or parts ther=
+eof is strictly prohibited and is&nbsp;subject to criminal and civil penalt=
+ies with appropriate&nbsp;national legislation.</font></div></font></div></=
+div></div></div></div></div></div></span></div></div></div></div></div></di=
+v></div></div></div></div></div></div></div></div></div></div></div></div><=
+/div></div></div></div></div></div></div></div></div></div></div></div></di=
+v></div></div></div></div></div></div></div></div></div></div><div style=3D=
+"color:rgb(34,34,34);"><div dir=3D"ltr"><div dir=3D"ltr"><div><div></div></=
+div></div></div></div></div></div></div></div></div></div></div></div></div=
+></div></div></div></div></div></div></div></div></div></div></div></div></=
+div></div></div></div></div></div></div></div></div></div><div style=3D"col=
+or:rgb(34,34,34);"><div dir=3D"ltr"><div dir=3D"ltr"></div></div></div></di=
+v></div></div></div></div></div></div></div></div></div></div></div></div><=
+/div></div></div></div></div></div></div></div></div></div></div></div></di=
+v></div></div></div></div></div></div></div></div></div></div></div></div><=
+/div></div></div></div></div></div></div></div></div></div></div></div></di=
+v></div></div></div></div></div></div></div></div></div></div></div></div><=
+/div></div></div></div></div></div></div></div></div></div></div></div></di=
+v></div></div></div></div></div></div></div></div></div></div></div></div><=
+/div></div></div></div></div></div></div></div></div></div></div><div style=
+=3D"margin:8px 0px 0px;padding:0px;"><div dir=3D"ltr"><div dir=3D"ltr"><div=
+ dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D=
+"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><=
+div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div><div dir=3D"ltr"><div dir=3D"ltr"><div></div></div></div></di=
+v><div><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr">=
+<div dir=3D"ltr"><div dir=3D"ltr"><span></span></div></div></div></div></di=
+v></div></div></div></div></div></div></div></div></div></div></div></div><=
+/div></div></div></div></div></div></div></div></div></div></div></div></di=
+v></div></div></div></div></div></div></div></div></div></div></div></div><=
+/div></div></div></div></div><div style=3D"min-height: 1px;"><img alt=3D"" =
+style=3D"width: 0px;" src=3D"https://mailfoogae.appspot.com/t?sender=3DaZ2V=
+vcmdlQGdhemVsbGlhcnRob3VzZS5jb20%3D&amp;type=3Dzerocontent&amp;guid=3D7516a=
+d36-8e33-4e3d-8bdc-6828144a892d" data-inlineimagemanipulating=3D"true" data=
+-id=3D"1742980445596"><font color=3D"#ffffff" size=3D"1">=E1=90=A7</font></=
+div>
+</div></div>
+            </div>
+        </div></div></body></html>
+------=_Part_1093131_1509396704.1742984045853--

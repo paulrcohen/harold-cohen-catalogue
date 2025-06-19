@@ -1,0 +1,196 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a10:774d:b0:5c7:f970:fbca with SMTP id yp13csp12203166pxc;
+        Mon, 6 Jan 2025 08:37:23 -0800 (PST)
+X-Forwarded-Encrypted: i=2; AJvYcCXXftZILvi90c+ZXxrE6mYi5E+QVbd+ZXU/w3mwf4zzoYaH9GassW1Nzkj2wEMW1Mbxsx76qpOu7NxF@gmail.com
+X-Received: by 2002:a25:841:0:b0:e4c:bd70:8532 with SMTP id 3f1490d57ef6-e538c2854eemr34621273276.23.1736181442929;
+        Mon, 06 Jan 2025 08:37:22 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1736181442; cv=none;
+        d=google.com; s=arc-20240605;
+        b=R+i+65I09WjhcY7B2VEmbhDBlmr7OcuwngPBAnv/dtvnkUGTrdO9MOwP+697ZZInnz
+         JySFIDrczWrU8buXrEPSJza6Z+qaBT6IQfYMJfMIxRKQ+2SNYe1q67PedohIHd972lL8
+         WWLgYFT2OwUQ/5mzp/Gz0takK7PYHrkPUe3q57e5ULAwwObpLoK2CjnR1R5+VFytG0cD
+         nKOgIsRklTxtf9OnIjk5iWoG73FfuSm7Nwl3NJjDbddxZb/ejkhR42XEltla0HzfYKVQ
+         WZpM9qIRXuoVW6V3R3MO0/kqD4xqXYnaio8eer3PXReyW5RVedalqqcyjhmIFV5FT0GU
+         9yNg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=UnDE+kfkK1uN7G6fqfRcV5aTeKNhQhVOWKUnfRIcFzw=;
+        fh=wDo5fFGSwSCMsz7wUat9jOtI9y8MljDKdJYka0aq0nI=;
+        b=KO60jl0FNgEaHLOSK5z3vdnUX+KRErwvKz4MO/g6iBCu2LeXqwv0XS1hRvKXCLFYdg
+         CuQk8tFwMoEQDtvKPCtRfKKnPqAqbWsN3l18gO8p3fyzetWZlhDWsxPiyKfGEDbp00z7
+         WN1ZmahPNJwr0+43WC1n1eawIr/tIa6AUcOnJyhBiWhB86yk9GVviTb9v9kcJLyRniCz
+         MVCTktX114JeOf7egAGwXRgOOUZ2leayyNWji3OX/GHUn70dqS+RwA0xccsnuPTPZyKN
+         IWGjBI8JkRSRDDgb+KUV/iTySzIQF/4x35V9NIZ9qqNtgkXCD7mU/p3u+e8PpHeM5QQk
+         sgnQ==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@gazelliarthouse-com.20230601.gappssmtp.com header.s=20230601 header.b=KMLroMtb;
+       spf=pass (google.com: domain of m.askarova@gazelliarthouse.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=m.askarova@gazelliarthouse.com;
+       dara=pass header.i=@gmail.com
+Return-Path: <m.askarova@gazelliarthouse.com>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id 3f1490d57ef6-e537cc82a3esor16514254276.9.2025.01.06.08.37.22
+        for <paulrcohen@gmail.com>
+        (Google Transport Security);
+        Mon, 06 Jan 2025 08:37:22 -0800 (PST)
+Received-SPF: pass (google.com: domain of m.askarova@gazelliarthouse.com designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@gazelliarthouse-com.20230601.gappssmtp.com header.s=20230601 header.b=KMLroMtb;
+       spf=pass (google.com: domain of m.askarova@gazelliarthouse.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=m.askarova@gazelliarthouse.com;
+       dara=pass header.i=@gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gazelliarthouse-com.20230601.gappssmtp.com; s=20230601; t=1736181442; x=1736786242; dara=google.com;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=UnDE+kfkK1uN7G6fqfRcV5aTeKNhQhVOWKUnfRIcFzw=;
+        b=KMLroMtbV8glJX7pjN/gINz9FxBlDEdGkS4bOPMhXwwtbM3XmX6x68NrLUSjI1KIF1
+         994QJuqVJPArWflU2YCT1UQknnO8qhC4Cq7aOXdCY5zn117V8EwZZuQEa4PycUjo2L2z
+         53I4aRRT95IZ+a9KeZfdN8vt3e/IDMETlGiBzvHwXjNSaUgs2smBGSwQrHvWmHiOesU8
+         5FQ/ZCFytpJOwH15I32XUbM/VPgW5e3eqLI/BJY4yhPblz977o2BnUGSqBMhBCFbpWaL
+         UoLJlZxLimv9EdlUbiGtfCTkZtAoNB+J2FZqXSDVuHJUXu1HEbyVA7cnGDwKKDl/WEMT
+         oCaw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1736181442; x=1736786242;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=UnDE+kfkK1uN7G6fqfRcV5aTeKNhQhVOWKUnfRIcFzw=;
+        b=l2XdMpiTNdi37wWke6eVT5Zh8e5xZeyBYkP77+0lqaHaCSyMrR8lrX26BnlUWSrecE
+         yz7rftVMFqkkSJG/3JB3UiFmBvFi1rRyphpXcEEZh2z9B27DXiF+67JSuRcsi8S3e2Xj
+         KgXfbk/r1NMGuPU1QJHtmzL8gdeiq+wArZFXMfg8iuLtK0oVoL2qgC0rtaoP6y6rxJN5
+         ZRX2m9zGJEUUHrp9s9Lb/P3I+im4WWziCppkLra7wZP8un8I/bRG8LE3RxcvIKEYZ5qi
+         cTKQdZBBH7ls5nP32OgOuAZKFRduw8IN7qhS5dsHKQBYXzothmPwaWxcOPLJXxPMW2LR
+         Sa9g==
+X-Forwarded-Encrypted: i=1; AJvYcCWQji5e+dot/rfIuS+J+kQ3Ifv0n+ydNrxLmLIgf1Bl3GVy06EHLJowX3bx6BWx4W40OZtIWXC3zmun@gmail.com
+X-Gm-Message-State: AOJu0Yz3eNmbVl+EDMsJRiQ72OK8xnp+ucZMlWzlRd5Tg6bUs1totYz2
+	cJ/pJv4MDu5N+Ih1G92WT2Vt1ji09AItH88pMqxJVeOxHYtYv2xZUn38aCtSw7T5lihGc0Acp3i
+	IYhXDGUuXAuZ//iBiqIX1iyRgPkCSfTioqCPcZw==
+X-Gm-Gg: ASbGncuyK6YHn9k3tbYOQp0UZB8M53LmXue1MLIjrwb47g9LbFDb6ckjv4qCL+jFs5+
+	R0vkeW9t6Q3NAzZsX5Lcxqk3/LKTkEpbvzY/tpRc=
+X-Google-Smtp-Source: AGHT+IEK/+Fcej0RTcrZk/yL3ZSoUGQ2H14uT8EJwn902jzDsR/CpsCawa2UvoGrXc4QW7ZymXLlptxQ5/ebqedmyrA=
+X-Received: by 2002:a05:6902:1747:b0:e39:9e17:62f6 with SMTP id
+ 3f1490d57ef6-e538c426a09mr41107390276.50.1736181442298; Mon, 06 Jan 2025
+ 08:37:22 -0800 (PST)
+MIME-Version: 1.0
+References: <CAKjPZkGwTPvE7+w2NGn1W1htaiEc7Fu-h9Eq8UQzWZSjSmR6Vw@mail.gmail.com>
+ <359299135.1365078.1736141483608@yahoo.com>
+In-Reply-To: <359299135.1365078.1736141483608@yahoo.com>
+From: Mila Askarova <m.askarova@gazelliarthouse.com>
+Date: Mon, 6 Jan 2025 20:37:10 +0400
+Message-ID: <CAAOqD35wrdNJPCoX=G7WA68QgABXkKOax6jxF-bm3UaOJNe_UA@mail.gmail.com>
+Subject: Re: anthropic proposal
+To: zipnpup <zipnpup@yahoo.com>
+Cc: George Lionel Barker <george@gazelliarthouse.com>, Paul Cohen <paulrcohen@gmail.com>
+Content-Type: multipart/alternative; boundary="00000000000022862b062b0c3e61"
+
+--00000000000022862b062b0c3e61
+Content-Type: text/plain; charset="UTF-8"
+
+Thanks for sharing Paul!
+Would be keen to hear their thoughts on all of this and how they suggest to
+take things forward.
+
+All best,
+Mila
+
+Mila Askarova
+CEO & Founder
+
+GAZELLI ART HOUSE
+
+www.gazelliarthouse.com
++44 (0) 207 491 8816 / +994 (0) 12 498 1230
+
+
+On Mon, 6 Jan 2025 at 09:31, zipnpup <zipnpup@yahoo.com> wrote:
+
+> Hi Paul
+>
+> Yes I did indeed find this very interesting. Thanks for assembling and
+> laying out the challenges regarding the raisonne for Harold.
+>
+> Tom
+>
+>
+>
+> Sent from my T-Mobile 4G LTE Device
+>
+>
+> -------- Original message --------
+> From: Paul Cohen <paulrcohen@gmail.com>
+> Date: 1/5/25 3:24 PM (GMT-07:00)
+> To: Mila Askarova <m.askarova@gazelliarthouse.com>, George Lionel Barker <
+> george@gazelliarthouse.com>, Thomas Machnik <zipnpup@yahoo.com>
+> Subject: anthropic proposal
+>
+> Hi Mila, George and Tom, Anthropic seem to want to work with the Trust on
+> the Catalog Raisonne.  We have a call scheduled for Thursday.  Today I
+> wrote the attached and sent it to them.  Hope you find it interesting! --P
+>
+> ______________________________
+>
+> Paul Cohen,  Professor
+> School of Computing and Information
+> University of Pittsburgh
+> personal webpage <https://paulrcohen.github.io/>
+> ______________________________
+>
+
+--00000000000022862b062b0c3e61
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div><div dir=3D"auto">Thanks for sharing Paul!=C2=A0</div></div><div><div =
+dir=3D"auto">Would be keen to hear their thoughts on all of this and how th=
+ey suggest to take things forward.=C2=A0</div><div dir=3D"auto"><div dir=3D=
+"auto"><div dir=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"gmail_s=
+ignature"><br></div><div dir=3D"ltr" class=3D"gmail_signature" data-smartma=
+il=3D"gmail_signature">All best,=C2=A0</div><div dir=3D"ltr" class=3D"gmail=
+_signature" data-smartmail=3D"gmail_signature">Mila=C2=A0</div><div dir=3D"=
+ltr" class=3D"gmail_signature" data-smartmail=3D"gmail_signature"><br></div=
+><div dir=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"gmail_signatu=
+re">Mila Askarova=C2=A0<br>CEO &amp; Founder=C2=A0<br><br>GAZELLI ART HOUSE=
+<br><br><a href=3D"http://www.gazelliarthouse.com" target=3D"_blank">www.ga=
+zelliarthouse.com</a><br>+44 (0) 207 491 8816 / +994 (0) 12 498 1230<br></d=
+iv></div></div><div><br></div><div><br><div class=3D"gmail_quote"><div dir=
+=3D"ltr" class=3D"gmail_attr">On Mon, 6 Jan 2025 at 09:31, zipnpup &lt;<a h=
+ref=3D"mailto:zipnpup@yahoo.com" target=3D"_blank">zipnpup@yahoo.com</a>&gt=
+; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px=
+ 0px 0.8ex;border-left-width:1px;border-left-style:solid;padding-left:1ex;b=
+order-left-color:rgb(204,204,204)"><div dir=3D"auto"><div dir=3D"auto">Hi P=
+aul</div><div dir=3D"auto"><br></div><div dir=3D"auto">Yes I did indeed fin=
+d this very interesting. Thanks for assembling and laying out the challenge=
+s regarding the raisonne for Harold.=C2=A0</div><div dir=3D"auto"><br></div=
+><div dir=3D"auto">Tom</div><div dir=3D"auto"><br></div><div dir=3D"auto"><=
+br></div><div dir=3D"auto"><br></div><div id=3D"m_1068510057593026518m_-323=
+1132041970727918composer_signature" dir=3D"auto"><div style=3D"font-size:12=
+px;color:rgb(87,87,87)" dir=3D"auto">Sent from my T-Mobile 4G LTE Device</d=
+iv></div></div><div dir=3D"auto"><div dir=3D"auto"><br></div><div><br></div=
+><div align=3D"left" dir=3D"auto" style=3D"font-size:100%;color:rgb(0,0,0)"=
+><div>-------- Original message --------</div><div>From: Paul Cohen &lt;<a =
+href=3D"mailto:paulrcohen@gmail.com" target=3D"_blank">paulrcohen@gmail.com=
+</a>&gt; </div><div>Date: 1/5/25  3:24 PM  (GMT-07:00) </div><div>To: Mila =
+Askarova &lt;<a href=3D"mailto:m.askarova@gazelliarthouse.com" target=3D"_b=
+lank">m.askarova@gazelliarthouse.com</a>&gt;, George Lionel Barker &lt;<a h=
+ref=3D"mailto:george@gazelliarthouse.com" target=3D"_blank">george@gazellia=
+rthouse.com</a>&gt;, Thomas Machnik &lt;<a href=3D"mailto:zipnpup@yahoo.com=
+" target=3D"_blank">zipnpup@yahoo.com</a>&gt; </div><div>Subject: anthropic=
+ proposal </div><div><br></div></div><div dir=3D"ltr"><div><div class=3D"gm=
+ail_default" style=3D"font-size:small">Hi Mila, George and Tom, Anthropic s=
+eem to want to work with the Trust on the Catalog Raisonne.=C2=A0 We have a=
+ call scheduled for Thursday.=C2=A0 Today I wrote the attached and sent it =
+to them.=C2=A0 Hope you find it interesting! --P<br></div><br clear=3D"all"=
+></div><div><div data-smartmail=3D"gmail_signature" class=3D"gmail_signatur=
+e" dir=3D"ltr"><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr"=
+><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr">________=
+______________________<br><br>Paul Cohen,=C2=A0=C2=A0Professor</div><div di=
+r=3D"ltr">School of Computing and Information</div><div dir=3D"ltr">Univers=
+ity of Pittsburgh</div><div dir=3D"ltr"><a href=3D"https://paulrcohen.githu=
+b.io/" target=3D"_blank">personal webpage</a><br>__________________________=
+____</div></div></div></div></div></div></div></div></div></div></div></div=
+></div></div>
+</div></blockquote></div></div>
+</div>
+
+--00000000000022862b062b0c3e61--

@@ -1,0 +1,145 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a11:6718:b0:616:43e8:43fd with SMTP id wu24csp249256pxb;
+        Thu, 5 Jun 2025 15:37:35 -0700 (PDT)
+X-Forwarded-Encrypted: i=2; AJvYcCVWqt+IlkwJxuVBUVjlEmx03GfIOyol1A1lJy+vA14uv47J7A5tGgPYeCj8tYk4PKbLp2jxSvzBvg7g@gmail.com
+X-Google-Smtp-Source: AGHT+IEY2h1OXcorJBT2PJWQoassgjzOyaQ+AJOghInpdAn8LoXjfDPP6SWDmifkFnvGrsYVVNPX
+X-Received: by 2002:a05:622a:5c92:b0:4a4:2fad:7cdd with SMTP id d75a77b69052e-4a5b9e40483mr21372851cf.24.1749163055370;
+        Thu, 05 Jun 2025 15:37:35 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1749163055; cv=none;
+        d=google.com; s=arc-20240605;
+        b=Ooy3DX7rEcnIR1U3tUpCG3SD1qUMW6W1/4KKUz1Z0BEkvx4PurhmvkJrKOFNPYgExJ
+         pCY9FBB7InodE3PM+GKduvszwBWF7xUUg/a1iqf8KkX1m/Zbvdg3G9fe/jS3s6gdgn6i
+         QR0HT29xfWrtGoJtvoCSnkx6q24kWIbBRKHcmQdhh8jZynY4yGBEiPf/vJdQp3hb+fJN
+         2KnHudMhrWb8a2rOaJS2d68mQGDQzwOROtCUObKLDt41y4iiNH3S2ixts5YK5AquoPp3
+         q6Mgd2OySMjJiGX1YSs3Rh+HFRJak834wfpacoOs1kd9Rvl48ttVbAYdDTVTg6ADefww
+         nHZA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=references:mime-version:subject:message-id:cc:to:reply-to:from:date
+         :dkim-signature;
+        bh=xR0Y5UCBg14z5MiRl32yDGy8R2cEq7kkxWPjVmBWqiw=;
+        fh=hGdHbUKVy5dXrJudHdON0f8m62WQRWE0yz54HdwRwtU=;
+        b=j3m7xmCNZgYeACDqADNqi9HMqq/HOYXumArLEn/4y84rs/DZnzl0I9bMII1nmxjxPo
+         xoo07nB234hJ0Pd2IcDO+ugX5xawyEyJO3hVmYeFpJgi5HBXl3nSFxpmBkZksqlkjxSN
+         QVbV1jayysfzndfQhGRU7tT+0+PeSDlo62R0c5vB1jjYF32UV6pp3UMNM7LvTssvArvA
+         NuMCJTIvAgleDMMgMUIbNSkV36iXzmCawE43DaMdVYax1F+XBXebdNopx6yAdyXnEqVV
+         Az7UyG9x9r7Cgwlq9TXsqxSnhPr9Ba5HYPYV0FCWtsgRWw1bN+LnwShA7ZVJRkzKj11o
+         l4zg==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=T9RZS6DY;
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.128.33 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+Return-Path: <zipnpup@yahoo.com>
+Received: from sonic304-10.consmr.mail.bf2.yahoo.com (sonic304-10.consmr.mail.bf2.yahoo.com. [74.6.128.33])
+        by mx.google.com with ESMTPS id d75a77b69052e-4a61985f053si3124741cf.295.2025.06.05.15.37.35
+        for <paulrcohen@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 05 Jun 2025 15:37:35 -0700 (PDT)
+Received-SPF: pass (google.com: domain of zipnpup@yahoo.com designates 74.6.128.33 as permitted sender) client-ip=74.6.128.33;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=T9RZS6DY;
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.128.33 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1749163054; bh=xR0Y5UCBg14z5MiRl32yDGy8R2cEq7kkxWPjVmBWqiw=; h=Date:From:Reply-To:To:Cc:Subject:References:From:Subject:Reply-To; b=T9RZS6DYHmgNsy04Isydw3Iwk7T3AZIaghCmV0O0PZuSCbr9vL90HmrpwyxBzUYfn5AvvHWE1st4rEA+pvDL9Hq6VLvv0eUiP7cDwYIk9HnRCnCyr6Ae9R+dYar1suwVWmqNWak00WP6UQUM5FLj6Pm5S56olhZJpkKsrPIJIfKtcvE+BVRH0ZftUgc0+uzmRrej2tgrAByhjlN0gVHVLXy/H3MNaZjJf7nRgZGMEX+vD6q2yDkE7Yv1SNd/P4fCjO0/z7L3Tsi4pIlH+uy1FHr3ec7YaVcK0wD0VSqrhQ+7OOADsayAsT4RqXp4TsyHZt9RnU36iAX+BRA3O7ZUcg==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1749163054; bh=8s1pnUM7MdwZUvoy15cEi8g/p2bCnNWAjL5kk4bL6OH=; h=X-Sonic-MF:Date:From:To:Subject:From:Subject; b=efVu2fa/jRYGPlTCNaMCAWCzKf8wYr8Jsg3I40tRIppf0zEhAMLQw7/ctc3NaxEBd+P582X+G13yz0kKl5cWP5I1UnvVChJ3aa7fCis2aZ7HMF7aiB8uqF4GUSAOO1TD80cmQmzWWC2acFRNwd5iEWbvIC3wiewLihCvHZLdWfzbWxl56JsIfGw9SREjAuosu2ns0l3Bp697x2cbKZ2m3SvNj42UYKRcrZXCiKuYZht7Ro7C9ockhH1unEpcPE51DmhhC56jDsVJ4m63ywrfumAdKWrFGz1g5E5D43lIpm1JFVB4i17cb0Mij4ySOAk9QsRrRFeCIrcj53HagTg1hQ==
+X-YMail-OSG: EMZFpYwVM1n3W2Udt7TestGIY82yTrd4lu0qMi8yiiX64ZAKJFPZRa9EAtBxlFS
+ N_52GAkKPRoX93EnrTYHk7aYTtkS3OKx1pedvnLdNtSiD0vwZWZYyQMQAqlEaVYDXD2eUbZAlFkX
+ 8.Q3UYqYmUoxN.BArJVwmeaInBiLjfQUnnYWboJsubv.G5ANJHwHc.XtwqVU9m04vIFFt9UHJNuZ
+ dK_PgxVIfNyWSEtaGssnvlAQhkBJD1SabSbfqJApiESNlX2RsG48fban8bJXQWFGpROVklIgDi9C
+ 9zOhPEGIZ59CwazkfrfeyrkDh8.kXU8zU7Rp8tzdV4.1NPvq9BCG3QZ5mPF2nBfKrfRoWfsMOQbc
+ F0fGcoFpUSOswxy3qF5_0wQ6b_Fa.R6TECyXjkE90SKseJoC1MKFKg7Jlv2PHmwyI2ySUEGcHizL
+ DkTbW_c_tPioHf18zvNvJ2J8PmDRUra8Dq38MCblP8Em7C78UQMFDgGcrMzu02ZJ2KiXfIh6PO1w
+ BqbTmtt9m0al7yt6NFoygMXxGAZbFIAFXsj0ZO7N01UVGx_77fEKctd0PCw01me0tR5KYiK2UrrM
+ 2yQg3WGVgSeCfEjav6RVSkhWCFQGDWI5hzLI2f0.219no8r6CqpkedDsqaZozsrpWd2ulFnqOj6W
+ ochoqZNV.ufneILjO3.NIDcULUYa3nvozPziDDg_wtS2JQhIU_YVWcg_NBntdhaTYP3FuPET.RTA
+ UPFOs3Kb2z7j3yXquX7GkXWFci_t5Wo2T4RAv3M_4LhJJYtZUnJz9BiVEbqhcbjm.YAGxLJFaOVz
+ G2yGCrozQaxo.o81x54kzQBQIv2ZJUxD585wbRdMRzHOPOKwpyn6mL_y8ZnI.uGP4Z5IVlitPlnV
+ hsXHOx0lEqYpvF8efm9VcmWl1LYpjIajJKuwt_gdxe_ccdVNR8N6oP.E4L7eFlbtYRL5eFmVqluT
+ kuX_eoQEkv0eUfpRsb15MlosNj3Ht016YCImR4.f7H3OevjAICZLVksYvapC4wExZUjkVrFAxaLr
+ AXo2Z8pxYRXxMwgJPqkS3kZ__xEL8m.pJ9rQDSN4nZUrs5vadbZQ1F4IxgPmfyqe4Vq70bzfDGyx
+ zDVTaYS1olg2J4myX3OOFvDPQ4fRd2ZmZSb_9imA_webE_GavI8Opweu9msfkU3dJOuvE4d7d_X5
+ pBeADTvOSj_E2ZVR4sVO1C1C3y3yNWuxGKRf_ZlXRLi8OIyoSeSPdVJH_h8SAvsCCpkbVv6e.5Rs
+ .F3j3VHVowriaOW.QrTkH9kIDAArbY29p3ECWt5aM7uGSQrBA5uwWG1piM4.hf5oVNLcX_TlNIRA
+ zi5_miI9DhuTBv_wTYswLhZlHTceXKTHIw2Q3IL5R0HLyQrFIMyQxRqNI7KBQTHMW8uBIXjoWlxq
+ dcUlsUI0MpOfZ6jyQX0axcvwT9wz1xAsTinYQgogMDnZtzwIwn6L69w9N_jaCSOUVGmekolsU029
+ WadbmS6TLMuJdCFIr01rNLw2bG8u4HxqdqmrCbhJKa9ZRt73D5ivqGR_iAY6iQDR1FgYDjjf4g3q
+ FPCiNcHqMmWz_CQfvsZXnBnfYfVzE9c__4zX1Ob6BSrRjUsx3TlTlQKMTXD.kUsUKEaFEKXIZnTo
+ 0eJYYwqxjvxLC7ByI4UNN46ERRgLxA8jY8VXkbXdze2j6aJf8_r5xc8pnsNCfZvKP55i9vHZNcza
+ YxM.0imuGq3SP0x_jaToiVUkk6eeIhIycs5pZhAerrs5eqcFKYYfhjtz1U31dXraaXQvlAzEE0Ak
+ UbIMGXp_jKb0wZ6kdcKEwpoPas1x74IHZGKSrEQUh79ZGa4hlTrFfX9xorqqzTpLUjCHkLX7JTzi
+ 4PY4lJUSCtC85S8Y9dtpGIaR55pX2v_A0jxqr7HH3kmq9EIBK_5ZLJR4NxJr2f4xSMMBeYdPOYJz
+ 5_CIilBoj_2YWDceELCL52uPnSVTlXtOYeP9N_UnqumOgZRAoPbAbzzY95J2dT7C0spr9uwRc5TL
+ SZpbhWgV.n6.TAM.Bf_gdEFUb4qoM9Cd3e6M_KjrN2O07K3wXuD6fyHJ9RJA0Lvzzplpyr72ILEK
+ rC.Seoh8AT3BKhgwS7n9SXuTj3v9qUlHfNGFh6j2G2TNQjsH8ll4fNYpBdbHE2zJZeEtxgdLh4wp
+ vrkrrKYzb0XMGOGOaImO6utEI7eiSZOIUwdAAbxshx7x4LdsGV078v6eQH7PBT3iMIEzyYk8hCoN
+ Raxu0kAO0lHrd7U1k1ffSn1K4WnZw2MLZZF5XUXl1Fsur7TmiT_hLnMTlJHDt7NXIIjry1jSNSLj
+ KK9TwzsNa4UYDAn3bfbpL5LDBMw--
+X-Sonic-MF: <zipnpup@yahoo.com>
+X-Sonic-ID: 90470ea5-3b6a-4506-b096-c3ad9600a1bd
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic304.consmr.mail.bf2.yahoo.com with HTTP; Thu, 5 Jun 2025 22:37:34 +0000
+Date: Thu, 5 Jun 2025 22:37:30 +0000 (UTC)
+From: Thomas Machnik <zipnpup@yahoo.com>
+Reply-To: Thomas Machnik <zipnpup@yahoo.com>
+To: Christiane Paul <christiane_paul@whitney.org>
+Cc: George Lionel Barker <george@gazelliarthouse.com>, 
+	Paul Cohen <paulrcohen@gmail.com>
+Message-ID: <1345009627.271141.1749163050975@mail.yahoo.com>
+Subject: Research Question
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_271140_1020852894.1749163050974"
+References: <1345009627.271141.1749163050975.ref@mail.yahoo.com>
+X-Mailer: WebService/1.1.23956 YMailNovation
+Content-Length: 3157
+
+------=_Part_271140_1020852894.1749163050974
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Christiane,=C2=A0
+Happy Thursday and happy June already! I hope you can help me with a questi=
+on. From time to time I work on researching where Cohen=E2=80=99s works are=
+. Harold left behind lists of museums and other entities but did not necess=
+arily document what those works were. Also in the case of Robert Hendel and=
+ others who may have had the original an original work they then donate to =
+a museum. Unless they notify us we are not aware of the transfer. Therefore=
+, the list doesn=E2=80=99t necessarily help.=C2=A0
+I can (and do from time to time) contact various institutions. Some institu=
+tions have the ability to search on the website others do not. Are you awar=
+e of some sort of database for museums and/or other institutions that may h=
+ave what I am looking for =E2=80=94 name lists of Cohen works? Also, when I=
+ do contact a museum, when I don=E2=80=99t have a personal contact, I rarel=
+y make any headway. Do you have any suggestions on what department or what =
+position I ask for? Or any other suggestions? I=E2=80=99d appreciate you th=
+oughts.
+Hope all is well,
+Tom
+
+------=_Part_271140_1020852894.1749163050974
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head></head><body><div class=3D"yahoo-style-wrap" style=3D"font-fami=
+ly:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px;"><div dir=
+=3D"ltr" data-setdir=3D"false">Hi Christiane,&nbsp;</div><div dir=3D"ltr" d=
+ata-setdir=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"false">Happy=
+ Thursday and happy June already! I hope you can help me with a question. F=
+rom time to time I work on researching where Cohen=E2=80=99s works are. Har=
+old left behind lists of museums and other entities but did not necessarily=
+ document what those works were. Also in the case of Robert Hendel and othe=
+rs who may have had the original an original work they then donate to a mus=
+eum. Unless they notify us we are not aware of the transfer. Therefore, the=
+ list doesn=E2=80=99t necessarily help.&nbsp;</div><div dir=3D"ltr" data-se=
+tdir=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"false">I can (and =
+do from time to time) contact various institutions. Some institutions have =
+the ability to search on the website others do not. Are you aware of some s=
+ort of database for museums and/or other institutions that may have what I =
+am looking for =E2=80=94 name lists of Cohen works? Also, when I do contact=
+ a museum, when I don=E2=80=99t have a personal contact, I rarely make any =
+headway. Do you have any suggestions on what department or what position I =
+ask for? Or any other suggestions? I=E2=80=99d appreciate you thoughts.</di=
+v><div dir=3D"ltr" data-setdir=3D"false"><br></div><div dir=3D"ltr" data-se=
+tdir=3D"false">Hope all is well,</div><div dir=3D"ltr" data-setdir=3D"false=
+"><br></div><div dir=3D"ltr" data-setdir=3D"false">Tom</div><div dir=3D"ltr=
+" data-setdir=3D"false"><br></div></div></body></html>
+------=_Part_271140_1020852894.1749163050974--

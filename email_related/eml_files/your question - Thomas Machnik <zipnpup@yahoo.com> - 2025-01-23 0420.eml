@@ -1,0 +1,146 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a10:6d08:b0:5c7:f970:fbca with SMTP id gq8csp75187pxb;
+        Thu, 23 Jan 2025 01:21:03 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHi0zy7CEGMqh+pFYmkAsPx1o+y5zT4mv4zl5OPp3Y7IVWYny3O8X6olQ0Ba71TAq1ID73j
+X-Received: by 2002:a05:620a:4051:b0:7b6:eed4:695c with SMTP id af79cd13be357-7be63249b19mr3802665185a.32.1737624062775;
+        Thu, 23 Jan 2025 01:21:02 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1737624062; cv=none;
+        d=google.com; s=arc-20240605;
+        b=Md9GOCxCIdgPYzP60jd1aCos2i6hxJj5dwSoQFIDsVGiI5gsOf6drUgFH9FPWFqUFI
+         u46i6bvJRvKA1B21fnHPiqF9pWqZNU8lqVngd/B7kMVAF4pw+i/rynof3R/rI7KKmtlG
+         yOw7+PghFXz805saK0GF3j4870Oy4QNEfb4aDn8JaU7ziMI2GFmwHNEtXqfQQCFX48ou
+         D5Sr023FBtg6cc7j7vR6AQr8yXo3XIbaP5zywA9PUgE/KFw8zkWc2a7qh9pAQG6OwRTX
+         PMCrrx3mv8GPvtiNTRtZUEPSmn9QeoKOuHD5Jt7lZBk+C1SOExzLNp5kxd+Cap57FYlm
+         6MPQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=references:mime-version:subject:message-id:cc:to:reply-to:from:date
+         :dkim-signature;
+        bh=ayovk0HYFPGoi5yB4l9XaCwOB+pcNxIfbqp65ytezQY=;
+        fh=fm+DkBbWDqtu+4jWO1gQO+6PnOFFyRn4XAe37vKjUpI=;
+        b=Y4hGTE7aJgoEHz0oELIar8fZwAQ8NMEX6zU6S8zHW2LNbPVjBnMC/o2YJQHX07cyfz
+         OdpdJYgeLAvzxwBpJ0kuOpyONxg8Hr7BIKEYAhZjugnB6GsCwsPLGV8YtvwFykpMKRYu
+         W/Lojdb6U60NO1hQYvPvmFk/70sLN3pUeNmjhdl8+WZR/dYUsUJ7xRYjZUytgzaD8lDC
+         zODujb3p8QHZGIxiuVsBQYvwoZbkX/Uz6LMz1jfQ9l3r8wJRH0/7k6kknPTq6RM2uAEJ
+         wLK8vwQ/l0aMxv15z67uSMlEyu2vMZLHFaBmRJngeJEx0a57bqllXdIumlI3SSuEQWRJ
+         y/TA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=LGIFMA3y;
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.135.123 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+Return-Path: <zipnpup@yahoo.com>
+Received: from sonic310-13.consmr.mail.bf2.yahoo.com (sonic310-13.consmr.mail.bf2.yahoo.com. [74.6.135.123])
+        by mx.google.com with ESMTPS id af79cd13be357-7be614eedf6si1910540385a.583.2025.01.23.01.21.02
+        for <paulrcohen@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 23 Jan 2025 01:21:02 -0800 (PST)
+Received-SPF: pass (google.com: domain of zipnpup@yahoo.com designates 74.6.135.123 as permitted sender) client-ip=74.6.135.123;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=LGIFMA3y;
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.135.123 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1737624062; bh=ayovk0HYFPGoi5yB4l9XaCwOB+pcNxIfbqp65ytezQY=; h=Date:From:Reply-To:To:Cc:Subject:References:From:Subject:Reply-To; b=LGIFMA3yAd7WgxaY5ey5z4OZKPN9D9fEaaCeT2tt8d0IygXtsx/Avt5Mvf+1zYPpOeRNriymYxy1d1o0thZJ++ra9b/chsCyLeBt1LYiIgXcfa5WbWnp6YyUpG/IeUjXTocpPMHowoBTPEpOqmhoeUyM0WPHq7zcTiUekYqtnnA7joBSlmnSb+tT0P3E7PgXL5xuZGYE0sq0SSB3UdLTHGjmOTZroAwPCwzJb1dJgwQTnMrGV8bhPhjaecBGYs2Df1hHUeExzNS1HK7kR5cNkjz2L6TT/HxJwbe+TLZaWtKwEb8CWrGEk+LecDLKt2XdHtXzo41jIFlYOyiNjZd4Lg==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1737624062; bh=3Kk2WCylvbDcT4TnIzsroW3CApmQgA3+kwNtbvKlj9g=; h=X-Sonic-MF:Date:From:To:Subject:From:Subject; b=gKje7PvD5L0pWHRyXaW1sk0N4rhbemuxhhmroAJ7TSlt1mCWeOZVXYk9sTx+9Vb6rhModKVw6i/7Mm3RUS4Yrz4trUotmcGEu0MRY2O02hw8JIUm85Fl89LG+Q7iDJPvNNek53a64aJhMxKRCv/p8SXZARTWNrqBsWWPTcPUYiOHQ9P+sTVZ5Be0lAtdFIBFZc8OKKJxzoN5p321Ktiv9h/KJdqdsJU4Yu25HQ169JsRHFf//IosDs1K7clLf73ZHdG8VN9RfFkLqGsFNgoVNaWoOEApjwdZZv+T/Y0CPdyoJdyWomdSGNzJ21XwfkKTtBrfC9JnQ5fLMF1LOcGb4A==
+X-YMail-OSG: c0i0REwVM1mM819KXEY6o5v6GWwp4ZZJ6TMJjRyfDhHEnWEjDQBBc9O5Xy5jUvk
+ BVA4msjp2KQ28iMKFBZtGtTvgDo89zO6E9_tg1s0KCh7wNVyDUCeQDsc7BQYeCI329QwiMchrOp7
+ pTgPbbQ5GvxJy82NzbiRsNZbfy5iG1vmzmNp0ccOoUmRr.XkqFkGnp3XGKPL3KnrbVM4BySp8ajH
+ Zmx48ljTaU1AJqLaxC4BJF8oNjwyOmNXOYvkEgeIw8oYJ125_UVW9fOl1aRgQ8_ayryqJ.uaYxJ6
+ g1fKJ_vVjOD8qs6OhlPTrQYWB1t2ZkdpeTMWcyf8t3kRfWCDJBreTQ3vEnlwyLhT_SHtH04eCXTu
+ UQrPS.YeiL5iKTOrczK8K7zgx10yd9F2A5z2QL13Xje9kqUl9viK8IdIly8ZMg0ji8QZ11BhaxvO
+ Bo_e1D6oVeRdAQDVJcJKkMauk6_N2jSmqquMjpIgKvsWa0wLkn0yc5aqNZSeTTB4tS1PVW0hTHt_
+ iKKwCY0HBe9DMPfnM43tdQ8GV26SPGYGwSce0Q5tIPFA4Cj_hsoFwbRbExGOVxQ38J7d2y06dala
+ 9smKIJcdvq8WnUHxjYFqFkdf.M77.sOJ9923PCSkYofa1SrGLZlDdXkX6EWZrbep40FaK_KMOtqZ
+ IouKXKujImkLmRfuXZo0wNBR52_60btvKHMz5W3pdmKHBT5nuSmOwXg5UjWOGLHa6z_GXeoLX_TJ
+ 1RgRURc9yHiPhdenoFVpV5S1egQziSsaWvjXmDgwHiFnaPGqENil6IBUNrhROO2xkKmoZM9EwAJ7
+ s25pN.ezpszJ58SJp.t.aYOoIxNUd2qpAXRjbE5b_OUrmCl6wdIpma.aXnNOWEIwoC3PNbkcKjQs
+ qL_VIYnF1mdSy2Mp.68IU7cFOIe74WP0ssVYdbLIbyZFAYWQ3c8.j7hcWcYXf0zSI23JtNMN3xgV
+ 6Rsv5LwLEHvdHj7bdYeWhJSF2JsvmF6qyBZdRwcJ4y1MhQJFRDw.JgxFa5WLfFtVADok5uiMJUzA
+ pvLwArbQAs9fLYqVZkBhdkMKC71WjnbKa04iRuBPvaVhYAdDJiBt1YWEmaTu0D_He7JvsrV2kr01
+ oaj61UMItl3zMZirguL90wVFafpC6gGwmMgE91iEEnlrch3IUq2v9h4pkpE1YFs1HQc8MUCKmFi.
+ LG4d3vj6BNrPhR.Sz3Wqfply_v0cda3jc9duTlbNBOWTajCCz5wBV0ci4xcFOMZPQuLmpWgSqnP2
+ LFDtCQpcBl8EQT3RhhUhSTSgx2QBYlTJntNWAZPCbnMg7RMgmAKXfvEmmhBH1x5OZoKp5Br5roMJ
+ IunsJUXrdqpT03IAkaS1qjIOJDmaoZbT44dVbs82uDLfYLWpSLOlAfNxohuOylHpnDXitMNyX85s
+ rrqkrfzyD0hoiUlCafW3YRgRjn4AYf0mrjKTShEs4.Cgdz9RiWH_DUJgpZSgCj1RXazhZaHit88A
+ eMXzk45veiCa27lElCfPwSgNph.AK0OvOeBw7M8jpjERngjZR_khCIXwLHSrRqDZBr6wgtm9MFxD
+ aPtkAfZFwHYr.YduK18Rm7DHtyjfS2yAgExISAUgxS8WEKypk2bQn0MGKlJ6_WygnvZM3nUrzxXQ
+ yhOd93H11gyFC3zPx5zq2BCHLNW4b6kzIVHXr6js35WoaqqlkUym.Y7.9hcDr0IK3XXosgoxwhO3
+ LcFVwGfra4MdceDcrBE3yZpwLEFmluy5gRZByMJnG6A4lHBB26xNa5VVZlsDMq6AZML_rY9eMwX_
+ tDt7phbfd.PUPolmoRyd0l0OoEJ7er36.swF4p2QGFbMtKC.tGy_qzSFSz_KLfD08UGN1H8pxpRx
+ l7mnOr5Pwn0e29r.v8Nyay6OVgaYaXxqeXtY9y4uTW2XMIwquW5I9Kjs88Ef78ZDtgPRwUL69rFy
+ _zHpmN19rtc_dj82vkaY.b7HpRWrK2s.OBsOUC7O.EGuZwcr.BxscdkHImrlM7z09fn_D9yrdvie
+ YAs8lZKG11mK08z8sGlPJKM57OPndCChGgBh5P7muwtz7yKi.PzjThJy6J1P0vBcuBlEeUavkHyg
+ iTu7fuzQVpXtvUKPdbaYTaTAamMB4pph2gO88BeiuF1LjVUDHf_VJLcAKbCBETXx.lDgRRwQCioy
+ 63ZKMYrgJeWYpoRxNIZnQKQEjXwTVaMu1h4ysr4Y31ap2F4JF8f4uIoRZRW.bBZp5uUHqPDDWe53
+ Gw6pQsxwGo7TIlnpZpr4_syf7ovZRIXwh152XJKFV03jJp8.1bls.kpt7V7C5Lf2CbqcSosjI.0F
+ IwnqBX3OyLawDI8LfCA--
+X-Sonic-MF: <zipnpup@yahoo.com>
+X-Sonic-ID: 6c5e7b94-8bb4-4067-8400-0540c011f813
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic310.consmr.mail.bf2.yahoo.com with HTTP; Thu, 23 Jan 2025 09:21:02 +0000
+Date: Thu, 23 Jan 2025 09:20:27 +0000 (UTC)
+From: Thomas Machnik <zipnpup@yahoo.com>
+Reply-To: Thomas Machnik <zipnpup@yahoo.com>
+To: Anastasia Shapovalova <anastasia@gazelliarthouse.com>
+Cc: Paul Cohen <paulrcohen@gmail.com>
+Message-ID: <1677467328.1864925.1737624027118@mail.yahoo.com>
+Subject: your question
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_1864924_818786185.1737624027117"
+References: <1677467328.1864925.1737624027118.ref@mail.yahoo.com>
+X-Mailer: WebService/1.1.23187 YMailNovation
+Content-Length: 3196
+
+------=_Part_1864924_818786185.1737624027117
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Dear Anastasia,Sorry I didn=E2=80=99t see your message earlier on slack as =
+I didn=E2=80=99t get a notification for some reason until Paul replied.
+In any case, I am not sure I understand your question exactly. Here is a li=
+nk to my notes indicating what we had in house prior to the shipment to you=
+.
+https://docs.google.com/spreadsheets/d/1iHW5D_zGhE0_RO62_1mhxf9Y1b-NmFCWzK2=
+B_PKPd58/edit?usp=3Dsharing
+
+I believe you are interested in the bottom one which in my notes is referre=
+d to as Version 6 / 77D6. According to my notes we had at one time 3 unsign=
+ed B/W works, 2 signed B/W works and 2 hand colored works for a total of 7.=
+ =C2=A0
+If you are asking how many were made in total during Harold=E2=80=99s lifet=
+ime, I don=E2=80=99t have an answer for that. I have not yet come across an=
+y details describing on how many lithographs were ordered.=C2=A0
+If I didn=E2=80=99t answer your question, let me know. I=E2=80=99d be happy=
+ help you further,Tom
+
+
+
+------=_Part_1864924_818786185.1737624027117
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head></head><body><div class=3D"yahoo-style-wrap" style=3D"font-fami=
+ly:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px;"><div dir=
+=3D"ltr" data-setdir=3D"false">Dear Anastasia,</div><div dir=3D"ltr" data-s=
+etdir=3D"false">Sorry I didn=E2=80=99t see your message earlier on slack as=
+ I didn=E2=80=99t get a notification for some reason until Paul replied.</d=
+iv><div dir=3D"ltr" data-setdir=3D"false"><br></div><div dir=3D"ltr" data-s=
+etdir=3D"false">In any case, I am not sure I understand your question exact=
+ly. Here is a link to my notes indicating what we had in house prior to the=
+ shipment to you.</div><div dir=3D"ltr" data-setdir=3D"false"><br></div><di=
+v dir=3D"ltr" data-setdir=3D"false">https://docs.google.com/spreadsheets/d/=
+1iHW5D_zGhE0_RO62_1mhxf9Y1b-NmFCWzK2B_PKPd58/edit?usp=3Dsharing<br></div><d=
+iv dir=3D"ltr" data-setdir=3D"false"><br></div><div dir=3D"ltr" data-setdir=
+=3D"false">I believe you are interested in the bottom one which in my notes=
+ is referred to as Version 6 / 77D6. According to my notes we had at one ti=
+me 3 unsigned B/W works, 2 signed B/W works and 2 hand colored works for a =
+total of 7. &nbsp;</div><div dir=3D"ltr" data-setdir=3D"false"><br></div><d=
+iv dir=3D"ltr" data-setdir=3D"false">If you are asking how many were made i=
+n total during Harold=E2=80=99s lifetime, I don=E2=80=99t have an answer fo=
+r that. I have not yet come across any details describing on how many litho=
+graphs were ordered.&nbsp;</div><div dir=3D"ltr" data-setdir=3D"false"><br>=
+</div><div dir=3D"ltr" data-setdir=3D"false">If I didn=E2=80=99t answer you=
+r question, let me know. I=E2=80=99d be happy help you further,</div><div d=
+ir=3D"ltr" data-setdir=3D"false">Tom</div><div dir=3D"ltr" data-setdir=3D"f=
+alse"><br></div><div dir=3D"ltr" data-setdir=3D"false"><br></div><div dir=
+=3D"ltr" data-setdir=3D"false"><br></div><span></span></div></body></html>
+------=_Part_1864924_818786185.1737624027117--

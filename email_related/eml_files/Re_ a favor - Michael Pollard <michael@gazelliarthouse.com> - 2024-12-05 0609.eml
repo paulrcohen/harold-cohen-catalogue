@@ -1,0 +1,225 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a11:624d:b0:5ad:6c17:f336 with SMTP id vj13csp36936pxb;
+        Thu, 5 Dec 2024 03:10:10 -0800 (PST)
+X-Forwarded-Encrypted: i=2; AJvYcCWwkDUsLZvAWNjVu+2bEeKfTpirwcq/kH0hj2utMvFy1Ge//tsKOllAFqihn/rSGFoCEI7Ld7cbVL4z@gmail.com
+X-Received: by 2002:a17:906:31c7:b0:aa5:4d72:6dd9 with SMTP id a640c23a62f3a-aa5f7dc3e7amr922214966b.27.1733397009692;
+        Thu, 05 Dec 2024 03:10:09 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1733397009; cv=none;
+        d=google.com; s=arc-20240605;
+        b=E9/l/8Q9Iy00kz3VSOPeBT9iWXPK/UzeqkA9JJw8zdODELegjSSlncgsR00H75T5ub
+         nZ5Kd6hZurv+C/yRLRyiyC4oJ9FB12QzMC5qcLCwhXbmQRenhlx7zo7NPoJGNdErkqIe
+         ElrG0zQfW9vy0f24zJNe9AzLdHi9iHZkRPIY6s4Z/9cyMSv8DH97INXnyZBzx1a4RKLx
+         Qj3aVIhFDrtuPCgxo/OjqH4ZrnYhX95ZxFjGdD9I09r4UyDU4zS7jC9P5zxvu5++w8Mn
+         Ceqn0mhJcHibRzGAycFFrVd6b6iPnhqnbMmwfr3ThqeJPETRAD1G35PU5mSIGZrDqsx/
+         LADQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=HlhWa6JQegcaFSEi1jcULzKwJPUeZJQJULRA21tIroU=;
+        fh=h6lbs2qT03fonlS2T6XSz99JBB8XZ0ZV6W4w/lRA+Ng=;
+        b=U0uHeC/HrZXNFDu5OjJFHaGHKRjBqSw/+MCur188x6/S0xsoV+dn4jpX3ZH0wsRsIJ
+         yUOTQAYz74SbZYPQ2qPTaZvlpHn9tkX+I4pe58HEHNXn+mnEQVrPcKTVOqAGM3IaXfe+
+         DvGzvwK2bCAeggOQ8cdQVgu61/wnynE+JmPSGPgM+A/NKwTvYM5cMmHZhumcy76K8I97
+         ANqDw2PT5CsGR5XbNoBTECtSTlqBO+omTq1DxG3mK7kGvUjzJdwujO4Ydbq04uWZTAfF
+         xveyZJvKZyxh8fJrdjVmtNDKe75Ny7Ycxaola6NTwdasMWvWwnet7hZ5ngWdg02cFmcj
+         icjg==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@gazelliarthouse-com.20230601.gappssmtp.com header.s=20230601 header.b=EvtDhR4w;
+       spf=pass (google.com: domain of michael@gazelliarthouse.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=michael@gazelliarthouse.com;
+       dara=pass header.i=@gmail.com
+Return-Path: <michael@gazelliarthouse.com>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id a640c23a62f3a-aa626205738sor58575966b.16.2024.12.05.03.10.09
+        for <paulrcohen@gmail.com>
+        (Google Transport Security);
+        Thu, 05 Dec 2024 03:10:09 -0800 (PST)
+Received-SPF: pass (google.com: domain of michael@gazelliarthouse.com designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@gazelliarthouse-com.20230601.gappssmtp.com header.s=20230601 header.b=EvtDhR4w;
+       spf=pass (google.com: domain of michael@gazelliarthouse.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=michael@gazelliarthouse.com;
+       dara=pass header.i=@gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gazelliarthouse-com.20230601.gappssmtp.com; s=20230601; t=1733397009; x=1734001809; dara=google.com;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=HlhWa6JQegcaFSEi1jcULzKwJPUeZJQJULRA21tIroU=;
+        b=EvtDhR4wOjI1RH+Cf+PSCG1IvoWeREaoEE6Ga4frlMdRoowrn6uLKbc1aOyP0233Bh
+         KIgsB2xJWtc322AUp1SHLjNVqoTYTSNcms4MQUWTqqsVpUC2RJB1VyCHkhyGxLCXH3aV
+         TV/eYGnchMcW30K4XbpvqKIUaubs5MrlFof8Uw1QUygEq50q6AoWscfV6YCCg6BkW1cr
+         BvzNrBDP9Unek7Tc2K+Oj1y/dNML0bw1r7vhG3hI80I7hBqkWIAVk5GIyfBh1eB+91Cx
+         gB/0KhNhQmH4GHSbOqRfXD8Fl1gUN7Thc0E3BEZhTTJI8/9utN09c3QeeGD1NbDQ3OLW
+         cDgQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1733397009; x=1734001809;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=HlhWa6JQegcaFSEi1jcULzKwJPUeZJQJULRA21tIroU=;
+        b=nyBQqQqxInThYlBbMcV7cnjZQQ1+BRrnfcoxomCOPACmZR03ozMvvYmaud1EkiGUZo
+         WRvZltVQQEk3wlf4QLDFvIskE2ZAJZZOSOiMYUACWhPx7zjYVUncTaERmSl3LaicrYnM
+         h+Nl8mvi+8NS92BjCuzTTPD1E37AO5cMweqgLzSRdKJLiOwS9S9Gp9GhcMw+WoKhTwon
+         fYE40QCWnwsfOxyDI+9RmvqzheFzqVg0pj/vziLUU/k7WzHNERSdDHQM2mxEu7VO9Ekw
+         m38r9K6R8ctWJVDLPUQ/w/dwaNEWNZDADUqDqBJ76ewwxOKaHX3FIdOIY2Qaea87cXtc
+         EQjw==
+X-Forwarded-Encrypted: i=1; AJvYcCUw9jtxycybNdX8Ru5DiWuAoDGXMVbF4niivYgYBQU57KXEX16l4MuP8wDqX2TawnQ7vRosOiivTb/A@gmail.com
+X-Gm-Message-State: AOJu0Yws4iW3MFCvxFdkcqJVZHxk5Y33EgcYukA0YHAOxtbXPPamiumb
+	C49XlYyOOt8H2WkbJAClYQd7CJJMO05mEt6GjeEZ+NkJZUeAI+meGd6jLuSoHUpj73K1D60C9eC
+	c2GpKVrJJaeLTL1otCZBTKF4Tzs/TkUUxhpiLMg==
+X-Gm-Gg: ASbGnctJPvDUS1FNBHwVtUsJt5/M5Wb5OiHG0WbfmxXU5sK7iqhtqvN3BisLXFKd6eW
+	8O7BT+KKEzFVURjH9t5LG8TYWSV66EN9y4g==
+X-Google-Smtp-Source: AGHT+IGRpo0k661H91Lgl6RNfivzMEeCIthLKR0RBVqeFtEj7QRpTuTwLLdmpeKHSR3J4+S4dk16XvOpcBA8pZKVO6Y=
+X-Received: by 2002:a17:907:2cd9:b0:a99:4e35:9a25 with SMTP id
+ a640c23a62f3a-aa5f7eef2aemr834337566b.44.1733397008995; Thu, 05 Dec 2024
+ 03:10:08 -0800 (PST)
+MIME-Version: 1.0
+References: <1225095637.3355691.1733345065070@mail.yahoo.com> <C5169A10-28E3-4F18-A637-64E60C8F9E22@gazelliarthouse.com>
+In-Reply-To: <C5169A10-28E3-4F18-A637-64E60C8F9E22@gazelliarthouse.com>
+From: Michael Pollard <michael@gazelliarthouse.com>
+Date: Thu, 5 Dec 2024 11:09:58 +0000
+Message-ID: <CAGxUL8vcFaUYkbXN-XvE8u=pjX-Jw5+mCU+O_Q12youX-mLz_w@mail.gmail.com>
+Subject: Re: a favor
+To: George Lionel Barker <george@gazelliarthouse.com>
+Cc: Thomas Machnik <zipnpup@yahoo.com>, Paul Cohen <paulrcohen@gmail.com>
+Content-Type: multipart/alternative; boundary="000000000000fa0196062883f01b"
+
+--000000000000fa0196062883f01b
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Paul,
+
+Happy to assist however useful.
+Note that I'm not at the gallery next week, so I could work on this
+remotely.
+
+Michael.
+
+On Thu, 5 Dec 2024 at 11:07, George Lionel Barker <
+george@gazelliarthouse.com> wrote:
+
+> Hi Paul,
+>
+> Yes happy to help =F0=9F=91=8D
+>
+>
+> 39 Dover Street
+> W1S 4NN
+> London
+>
+> T: +44 (0) 207 491 8816
+> M: +44 (0) 7895 096 252
+>
+> On 4 Dec 2024, at 20:44, Thomas Machnik <zipnpup@yahoo.com> wrote:
+>
+> =EF=BB=BF Sounds good,  looking forward to seeing their efforts, Tom
+>
+>
+> Sent from Yahoo Mail for iPad
+> <https://mail.onelink.me/107872968?pid=3Dnativeplacement&c=3DGlobal_Acqui=
+sition_YMktg_315_Internal_EmailSignature&af_sub1=3DAcquisition&af_sub2=3DGl=
+obal_YMktg&af_sub3=3D&af_sub4=3D100000604&af_sub5=3DEmailSignature__Static_=
+>
+>
+> On Wednesday, December 4, 2024, 12:39 PM, Paul Cohen <paulrcohen@gmail.co=
+m>
+> wrote:
+>
+> Guys, I am writing to ask a favor.  A couple of months back, I agreed to
+> supervise a class project for three undergrads here at Pitt.  The class i=
+s
+> a web development thing where they have to design a web front end and bac=
+k
+> end.  I suggested that they build something for Harold's inventory and se=
+nt
+> them a csv file that contains a fraction of Harold's stuff on Art Logic.
+> To get a grade in the class, they need the work to be evaluated by
+> professionals in the field.  It would require you to sit through a short
+> demo and (probably) write a very short evaluation, just a few sentences.
+>
+> I haven't seen the project yet because they are undergraduates who have
+> left everything to the last minute.  They are hoping to show it to you --
+> if you are willing -- next Monday or Tuesday.
+>
+> My guess is that the work is pretty rudimentary, partly because they are
+> undergraduates and partly because they are from China and Korea and
+> communicating with them has been very difficult.
+>
+> So I don't expect this to be an uplifting experience for any of us, but
+> they did the work and I'd like them to get a fair evaluation.
+>
+> Thanks, --Paul
+>
+> ______________________________
+>
+> Paul Cohen,  Professor
+> School of Computing and Information
+> University of Pittsburgh
+> personal webpage <https://paulrcohen.github.io/>
+> ______________________________
+>
+>
+
+--000000000000fa0196062883f01b
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi Paul,<br><div><br></div><div>Happy to assist however us=
+eful.</div><div>Note that I&#39;m not at the gallery next week, so I could =
+work on this remotely.</div><div><br></div><div>Michael.</div></div><br><di=
+v class=3D"gmail_quote gmail_quote_container"><div dir=3D"ltr" class=3D"gma=
+il_attr">On Thu, 5 Dec 2024 at 11:07, George Lionel Barker &lt;<a href=3D"m=
+ailto:george@gazelliarthouse.com">george@gazelliarthouse.com</a>&gt; wrote:=
+<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8=
+ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"aut=
+o">Hi Paul,=C2=A0<div><br></div><div>Yes happy to help =F0=9F=91=8D<br><div=
+><br></div><div><br id=3D"m_-8404235892732015851lineBreakAtBeginningOfSigna=
+ture"><div dir=3D"ltr"><div>39 Dover Street</div><div>W1S 4NN</div><div>Lon=
+don=C2=A0</div><div><br></div><div>T: +44 (0) 207 491 8816</div><div>M: +44=
+ (0) 7895 096 252</div></div><div dir=3D"ltr"><br><blockquote type=3D"cite"=
+>On 4 Dec 2024, at 20:44, Thomas Machnik &lt;<a href=3D"mailto:zipnpup@yaho=
+o.com" target=3D"_blank">zipnpup@yahoo.com</a>&gt; wrote:<br><br></blockquo=
+te></div><blockquote type=3D"cite"><div dir=3D"ltr">=EF=BB=BF
+Sounds good, =C2=A0looking forward to seeing their efforts, Tom<br><br><br>=
+<div><a style=3D"font-size:12px" href=3D"https://mail.onelink.me/107872968?=
+pid=3Dnativeplacement&amp;c=3DGlobal_Acquisition_YMktg_315_Internal_EmailSi=
+gnature&amp;af_sub1=3DAcquisition&amp;af_sub2=3DGlobal_YMktg&amp;af_sub3=3D=
+&amp;af_sub4=3D100000604&amp;af_sub5=3DEmailSignature__Static_" target=3D"_=
+blank">Sent from Yahoo Mail for iPad</a><br></div><br><p style=3D"font-size=
+:15px;color:rgb(132,115,255);padding-top:15px;margin-top:0px">On Wednesday,=
+ December 4, 2024, 12:39 PM, Paul Cohen &lt;<a href=3D"mailto:paulrcohen@gm=
+ail.com" target=3D"_blank">paulrcohen@gmail.com</a>&gt; wrote:</p><blockquo=
+te><div id=3D"m_-8404235892732015851yiv8788163985"><div dir=3D"ltr"><div><d=
+iv style=3D"font-size:small">Guys, I am writing to ask a favor.=C2=A0 A cou=
+ple of months back, I agreed to supervise a class project for three undergr=
+ads here at Pitt.=C2=A0 The class is a web development thing where they hav=
+e to design a web front end and back end.=C2=A0 I suggested that they build=
+ something for Harold&#39;s inventory and sent them a csv file that contain=
+s a fraction of Harold&#39;s stuff on Art Logic.=C2=A0 To get a grade in th=
+e class, they need the work to be evaluated by professionals in the field.=
+=C2=A0 It would require you to sit through a short demo and (probably) writ=
+e a very short evaluation, just a few sentences.=C2=A0 <br><br></div><div s=
+tyle=3D"font-size:small">I haven&#39;t seen the project yet because they ar=
+e undergraduates who have left everything to the last minute.=C2=A0 They ar=
+e hoping to show it to you -- if you are willing -- next Monday or Tuesday.=
+ <br></div><div style=3D"font-size:small"><br></div><div style=3D"font-size=
+:small">My guess is that the work is pretty rudimentary, partly because the=
+y are undergraduates and partly because they are from China and Korea and c=
+ommunicating with them has been very difficult.=C2=A0</div><div style=3D"fo=
+nt-size:small"><br></div><div style=3D"font-size:small">So I don&#39;t expe=
+ct this to be an uplifting experience for any of us, but they did the work =
+and I&#39;d like them to get a fair evaluation.=C2=A0 <br></div></div><div>=
+<br></div><div><div style=3D"font-size:small">Thanks, --Paul<br></div><br c=
+lear=3D"all"></div><div><div dir=3D"ltr"><div dir=3D"ltr"><div><div dir=3D"=
+ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div=
+><div dir=3D"ltr">______________________________<br><br>Paul Cohen,=C2=A0=
+=C2=A0Professor</div><div dir=3D"ltr">School of Computing and Information</=
+div><div dir=3D"ltr">University of Pittsburgh</div><div dir=3D"ltr"><a rel=
+=3D"nofollow noopener noreferrer" href=3D"https://paulrcohen.github.io/" ta=
+rget=3D"_blank">personal webpage</a><br>______________________________</div=
+></div></div></div></div></div></div></div></div></div></div></div></div></=
+div>
+</div><blockquote></blockquote></blockquote>
+</div></blockquote></div></div></div></blockquote></div>
+
+--000000000000fa0196062883f01b--

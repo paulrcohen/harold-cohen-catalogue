@@ -1,0 +1,28 @@
+Subject: Re: HCT Dec 2024 Invoice for Nov 2024
+From: Thomas Machnik <zipnpup@yahoo.com>
+To: Paul Cohen <paulrcohen@gmail.com>
+Date: 2024-12-30 20:52:48
+Message-ID: <820121334.2164634.1735591968339@mail.yahoo.com>
+--------------------------------------------------------------------------------
+
+Hi Paul,I know you are probably busy with holidays and such therefore I hate to bother you. But any chance you can pay my invoice soon? Tom
+
+ On Monday, December 23, 2024, 4:38:47 PM PST, Thomas Machnik <zipnpup@yahoo.com> wrote: 
+
+ Hi PaulPlease find attached my invoice for Nov 2024 work. This invoice includes $215.47 for a couple of drives I used to backup what could be backed up. Also since this is the last invoice 2024, I included the summary in a separate file. 
+
+Seems like Gazelli is shutdown for the remaining of the year. Hopefully shortly after they return will finish hammering out the list of items to be shipped and then ship them the items. 
+
+I reached out to Roger (our printer) regarding paying him and waiting a reply. I reviewed the work he did again and it really quite good.
+I know you want to submit a potential list of code for the Whitney and with our last conversion we talked about what criteria the Whitney would be looking for. I have been thinking about what they have and what they don't have. They have KCAT and Gijon. 
+
+Here are the main AASC groupings we have and where KCAT and Gijon belong
+Group-A. 2013 - 2016 Fingerpainting EraGroup-B. 2009 - 2013 Collaborating with my other SelfGroup-C. 2007 - 2009 Gijon belongs hereGroup-D. 2000 - 2005 KCAT belongs hereGroup-E. 1995 - 1997 Painting Machine EraGroup-F.  1992 - 1995 Early LISP fragments 
+Group-G  Paper Code various dates
+Group-H  Film Code various dates
+
+Of the main groups, the Whitney already has code representing Group-C and -D. That leaves Group-A, -B, & -E thru -H
+ Group-A. 2013 - 2016 Fingerpainting Era
+I have a collection of videos for Group-A Fingerpainting Era of the code running. There are 8 runnable versions. They all look similar in that they all make black and white drawings. They are all studio versions meaning they all generate AARON artwork intended for use in the studio and for the Fingerpainting Machine. The files it generates are in non-standard viewable file format. They are readable by the Fingerpainting Machine.
+
+ Group-B. 2009 - 2013 Collaborating with my other Self

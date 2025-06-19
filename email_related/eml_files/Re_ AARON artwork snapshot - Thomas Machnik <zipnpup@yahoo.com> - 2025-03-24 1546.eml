@@ -1,0 +1,230 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a10:2a94:b0:5ec:db95:1ae4 with SMTP id ja20csp2189228pxb;
+        Mon, 24 Mar 2025 12:46:25 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IG6a2tUuLlTVNWA9Bcb8jkrwGPk87X1DAQe+Oq9IMYYlUO8KaMEE7oMor9J7m9+1bnM9XVH
+X-Received: by 2002:a05:6a21:1506:b0:1f5:5b77:3818 with SMTP id adf61e73a8af0-1fe4342e50dmr25157129637.27.1742845585485;
+        Mon, 24 Mar 2025 12:46:25 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1742845585; cv=none;
+        d=google.com; s=arc-20240605;
+        b=UEPtCci3jMdh6yeOzPn0In4Dj5rbfoASr40uDkk3i+TbXNulpwBTzdeumTmX/LmZ+B
+         JFtm33m4t+4NjU1vMYsvWIfTJAa8afB/w7VcLK7GsNPlU9g5pUlXxmeD6mphxE5SjAb2
+         AaDC0XaYhhESwC6ggzwinGhbzTcGEzJnAwSK/4QHw2cLlhJzOyaHjYa4u4DWPPqafYV3
+         NGjPvwLwNaZdai2leNu1x+t6m7zI6F8OiZPfXK8cgG6SLOAcQ8kl/kTB3CYsG+Jl2Yfr
+         o3HOJ4FWFk3KDpHo8oK5mxGOtFBxzOW505UZ60Z1neN6VlpAByk1lHYPZIhBPfTldJ+u
+         6g9A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:subject:references:in-reply-to:message-id:to:reply-to
+         :from:date:dkim-signature;
+        bh=H36bH3fBYBWqIsPTSF07Y18rxBF1I66+vG7UW9NhKWg=;
+        fh=+ZSZzLtrqjYAnpssQkgK417RpHpTSSzuH+J6PqTYzzs=;
+        b=JTS0GlFCJCuAsDRiKpvF+yCu8zKoa61825T26RQBXWyvq39jt7KT2w8d+zVXLozHUM
+         LH2Jx8DsIhHTl67ifFIR7CC3WPH22r3ByVrQ9ket2ZwPGSk+xakVpLqSBqd6Ko1rMgzW
+         Gl8QSPnafPqUMjWh8eRlI22FTHRDE7vsdZYKC7CQ4RsBxIkBc2LlW404saF5F3haThUK
+         1nZmlTSdyo8oXJnXjOYVJTnODnDlQFenDXgve+4ntT5iwt7opiEpvTqIl8KyoPeNJJFq
+         WyIt1z8H6D9t317qZqZHC9yPbbO9NvXg5hi9ypJj/HBGXgKZytBWFq+yCdBZCNR9r7fJ
+         Kz2w==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=iwBQWSHK;
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.135.124 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+Return-Path: <zipnpup@yahoo.com>
+Received: from sonic310-14.consmr.mail.bf2.yahoo.com (sonic310-14.consmr.mail.bf2.yahoo.com. [74.6.135.124])
+        by mx.google.com with ESMTPS id d2e1a72fcca58-739060080e1si14325035b3a.168.2025.03.24.12.46.25
+        for <paulrcohen@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 24 Mar 2025 12:46:25 -0700 (PDT)
+Received-SPF: pass (google.com: domain of zipnpup@yahoo.com designates 74.6.135.124 as permitted sender) client-ip=74.6.135.124;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=iwBQWSHK;
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.135.124 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1742845584; bh=H36bH3fBYBWqIsPTSF07Y18rxBF1I66+vG7UW9NhKWg=; h=Date:From:Reply-To:To:In-Reply-To:References:Subject:From:Subject:Reply-To; b=iwBQWSHKgOCJSNzobbC/OIgObELQTREGJfvL2bmuXSDIzaxFKazBWEuaax9fwfPiNdtISzakG6VcxHkfDPcpYInuXGm0FyBLzLJQ5ieRvhrofEr6KLx4s/Fse3FfMpF3esv005fXgbG+D313/lPi9WrVSSv5Z72cPSmRiRilNsPwo0mxYNsXPPGak+3d0041LTcUEFNM/fL/EHjAyfdkityrpn64g4do5X1YMSOiL3FzIQ7odacEd5XmaYh4TnPhFvrHix0KzkHYBQ5v9DM43ibNjXKuZ0KTQ/Wv1C4x/TGXgkf0se7M7jy7RCR1T0Q6lytaLQ6u1ffadpDSNPhl/w==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1742845584; bh=bNhPr+CJdcLMhB7IekSbbYmVvZamal7wzqx5ClBgz02=; h=X-Sonic-MF:Date:From:To:Subject:From:Subject; b=orBCxEaD1nT+Mo5Wjl3spWM4syx0jTbtsfCUlnp8iRRyh+mXyROVgRHebDBl4b46OthdqdizoIquI5cMA/mzNdHlGRjf8NbWR/jK5/7MNRHxs9uiaNUL7RyOMBiLGj87c5fMYwPbUU2ea9jIA1bbwOiSZJXLZ+NsyuN6eQDqRvAB/zyD7xYwMk0PmeS87sq1mF3Pcl7zdBCzdp84vynyvurd9F8xxyUPLJS+8YExuvQ2fBg93wXaItuTcnBsf47Jd3ZyL7pOdPvbE89lYiZ98ktueO1w8nSGtkTgz6VykpCKRnD85H2bT+3mIlT7soyscBLCtzJ3brxDL0jTcpHwDg==
+X-YMail-OSG: 6orC88YVM1nok.nDveLcj7hd7AtfW846sJLbGqTFht2pdCPt5xrWRQZlDPxPyeS
+ OgPYyQ9nGDJs_ZLpHlYWv0MumEVK9zF.sW5PgRX7KzoFGE.si6BNwNQlkViXlLGCmRGa4mnaBEOc
+ ZOd3R4UztAfiEgENZG6ILWs01FQgIIEf9_Xhg3.ldY0DnUtyRZ0t96oFWbyYiJLFLC7OMmYI4Qtg
+ QUVzFw5oVySjAoyMnqISBH1ynV3pTaEMn.KX4MqKvq3DWMIm2mv8myvW1n6sEzvGLQzJ1hnX7O8T
+ aT6FMbIn4oi1Xzta69Ly_XnyLud3eKFpBBk2iuXicz4qiVZ0b7_CyhHWmL93o3zos_CVyJnr55bf
+ cXF7JIURgGZBPAT80vYsA0CZ2jNt09FSWjrreU.Rc8aaUnbleX9LmUXi7ESHUloBtaBLU5qa.IQi
+ czNl5N7MellSkTf8ixJ.ZoAvhW9Q1.LeJoiqC_C17C86AamxIY3oba_IKoapxstCW6aIdylOJWRd
+ snCTVKtR.VwgX7ewQmrhYTmwlKoAuKmdjkSqR6suuqoIqwJc1TOKQx.CIONphgvbvWpGRW6scYkG
+ DWzOZ477w9xO69dxlrytiq55MlNxXM2GjofEo2cBxfp7LvHSzd.Oynv04YWCzV0i4XFn5D0ZP7s_
+ d69iwagVDamD73xmlDetPNzHuQYvsHD9YcrG9Tt8eXX2.VpSJpgPFy8hLP9CJh.0SKmB3ke37gi.
+ dBWF3ctUznt7YCZMNz1ZvNkVNn5Lz.yvSJqLb5VSgyxZkVPstZNOiX6fdKaXG3EnCzQPpo8VNYOW
+ KSSz_SA1m4C.38XcgSxoDdkTsEjAtX_9yaJinOZaCd1NAPkbDoXfZPFflMHtVJV2FidaW92l6PUf
+ nwzjNYFFQYgf5jhQ2BkNv0FaghCp6doNSf5N8TK0opt4.IiznYFJDba_gadmGTUXXIDdwVetz1TN
+ p_.iZoy0L165d1MUpx2__Wajo6lMa_XzcAz93eN0XWd3UMMXkQDnXpMt3jbF5KqS9_6uMUGcfEYM
+ f8Qq7iam9VMxYpw2yLgGyYJUuO2MYr2Zd_AOVb3Dewm5zrcVk2BlKVHsHltj6jnoEGjaqh1Hp7ep
+ InEkyS_Ek7GjEgg0vIYSvneFlHvC7HlqHTj7Cqlm4iT5vfk3cyW3Cb6sAtS1IYF8yM_d9k.POtR6
+ id8dFarRdbd9pdIfkDwKLnanKyocoLrqkBh_bqfyEXkiyMfCIm4eknZxFPphZ.2Mwi5RIrctRrSP
+ Tk41u.SFaB2_y6pMqIgLU2v0MUhmFLYRqixnTJqKZp7.9Ko_NPm_bMXy.tN4f3YtaoCjGi3P6Y0L
+ nwZEQAUOlU4mXo5yrmZ32WXITdzKSCGiojIlpv3IW6xaWWOen3ft3NLEYyCGXlVhaB1EzKP5aO2i
+ YazurhOQUucRR8MJZRCgQ2Scu6SRzEZKqlz_PD1yy8V2HlY43lXWlJuDi8hzuQzGXEDZbkgWU.BM
+ YNU.2ylIO2pIyeQ6HaeAk.QM3D1IY_sjpUpjfxWH2SRmekWOoOuKbTLQ0GMDVJTCCT0e0WBYzF9f
+ _wZexSY3D77ka5QSmvuWJ5P2Tow9yLc7xebxtsshxtlw2OC94gzLApj8GO3uP44QHSW.OWDUM03u
+ 8GEi2..yTJTuXrUS9QTxwP0exg7w9y0OOnJbTUAIyKxiMqLpiWpDbENhc8br5cD27XGgZF7RYif4
+ 9lYDTZcC.tZCGLTMF9Mno9MHbzhMZYfp_FRg7dAD6lhEILNzhf8VOY8VQn.C4OYTnQPZGIwZ_3BE
+ jo6_MlutqTjO8d48PDp68fISveQ7v5tZl4vYbd22RanTqFLd8r7zildJWUpKYm.DQRCfGVv_YLFu
+ Qunh8jTbQ8kDc6QjELGmHXxVlW1EkjABOYuUuaXjfryRQsVBs2igPaUR8a_7Qxr6KTR6BC6.DE5o
+ YNWxAbwNW2aAGcMmFgEB_2gYAvDtTSdhxK.1AopficutkgNsJ3hUd4J31AJVW30slSfcaH0ZPao_
+ XCm8GpzIt.hm0ND7L_6Eu4LXHJJ24X2KryLEZA77Zx5teLRcZXDL8fsm2Ak.HF77FxCzM5kyS.nF
+ _X4_f4gbGGv8tEiKdFnDCgpz3sjCKBm0S3vSX6s3aTeRQB6.JjF9RMY10qSyoCRRoha9HAHOc83b
+ ET4t1jFytHyoutzR0R0KazV0jkm1.JAqX1kAorMbREYMVuC4aRlEGXkuD3Q9sSc2z7MYoL6lzHvy
+ q0qiTv3jXV7njrDHTL3CWlcMjcMV8OgsD7qKFSdktVGXUpojnPgjSU8DQPr8zIEIOryiVTr6DLSM
+ TJWpjYcBmjJU_SGRIjIZX0ysT_kn3cV7jm9J31z0x
+X-Sonic-MF: <zipnpup@yahoo.com>
+X-Sonic-ID: 479ed956-8399-4e8f-80a2-86f64576ccdc
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic310.consmr.mail.bf2.yahoo.com with HTTP; Mon, 24 Mar 2025 19:46:24 +0000
+Date: Mon, 24 Mar 2025 19:46:22 +0000 (UTC)
+From: Thomas Machnik <zipnpup@yahoo.com>
+Reply-To: Thomas Machnik <zipnpup@yahoo.com>
+To: Paul Cohen <paulrcohen@gmail.com>
+Message-ID: <1881461324.716761.1742845582325@mail.yahoo.com>
+In-Reply-To: <A36E12EB-90F5-47F0-837F-21DC6788C796@gmail.com>
+References: <363716152.547231.1742793310208.ref@mail.yahoo.com> <363716152.547231.1742793310208@mail.yahoo.com> <A36E12EB-90F5-47F0-837F-21DC6788C796@gmail.com>
+Subject: Re: AARON artwork snapshot
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_716760_952434856.1742845582324"
+X-Mailer: WebService/1.1.23533 YMailNovation
+Content-Length: 8602
+
+------=_Part_716760_952434856.1742845582324
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+ Hi Paul,Thanks, that is a good question. Unfortunately, if there was an em=
+ail, it has been deleted. I do see what you mean about rim. Thanks for poin=
+ting that out. I am now reading through the existing emails from around the=
+ same time which happens to be around 911. =C2=A0Apparently Harold had a pi=
+nched nerve in need to surgery. There was an email from Deb Hendel and I th=
+ought maybe SANY0005 was part of their collection. But the email from Deb H=
+endel was to simply convey to Harold that Bob, her and their family were al=
+l okay.
+There are many emails related to a show I didn=E2=80=99t know about previou=
+sly scheduled for October 2001 in Paderborn, Germany =E2=80=94 Heinz Nixdor=
+f MuseumsForum. I don=E2=80=99t see this listed in the bio and never heard =
+Harold mention this show to me. Harold was to go to the opening but was una=
+ble due to surgery to relieve a pinched nerve. The details of the show incl=
+udes projecting AARON onto a very large multi-meter screen, run a looping v=
+ideo of Harold talking about AARON. Initially, KCAT was to be running but H=
+arold sent an updated version. There was a lengthy discussion on printing w=
+orks onsite making them available for sale. I am still reading through the =
+emails to determine if printing onsite for purchase by museum goers actuall=
+y happened or not. There was discussion of selling smaller works that could=
+ be rolled in a tube and sold for $100 a piece. There are also many emails =
+related to the difficulties of printing quality prints. =C2=A0The Museum ha=
+s a link to the show at=C2=A0https://www.hnf.de/ausstellungen/rueckblick/ku=
+nst-aus-dem-computer.html. They claim that 7 physical works were shown. May=
+be SANY0005 was one of them. I am working on reaching out to the museum. It=
+ would also be good to know if SANY005 was one of the ones show and if not =
+what was shown and do they have any Cohen/AARON works. But it would also be=
+ good to know if they still have a runnable version of AARON.=C2=A0
+Tom
+
+
+    On Monday, March 24, 2025 at 06:10:38 AM PDT, Paul Cohen <paulrcohen@gm=
+ail.com> wrote: =20
+=20
+ Hi Tom, I=E2=80=99m not familiar with the picture but there were a lot of =
+them and I might have seen it but forgotten it. =C2=A0The resolution is low=
+ so I can=E2=80=99t make out the weaving together of color groups, though I=
+ can see that it=E2=80=99s happening, which make me think it is probably au=
+thentic. =C2=A0I=E2=80=99m a bit surprised at the bright rim of the pot; I =
+don=E2=80=99t recall Harold doing that. =C2=A0Who is the email from? =C2=A0=
+=E2=80=94P
+
+
+On Mar 24, 2025, at 1:15=E2=80=AFAM, Thomas Machnik <zipnpup@yahoo.com> wro=
+te:
+Hi Paul,I have attached a snapshot of a framed print. The name of the file =
+is SANY0005.jpg and dated September 21, 2001. I found it mixed in with emai=
+ls from 2000-2002. I am assuming the SANY of the filename indicates it was =
+from a Sanyo digital camera. Does this happen to look familiar to you? Or h=
+ave any thoughts regarding this work? Tom<SANY0005 1.JPG>
+<SANY0005 1.JPG>
+
+ =20
+------=_Part_716760_952434856.1742845582324
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head></head><body><div class=3D"ydp14be781ayahoo-style-wrap" style=
+=3D"font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px=
+;"><div></div>
+        <div dir=3D"ltr" data-setdir=3D"false">Hi Paul,</div><div dir=3D"lt=
+r" data-setdir=3D"false">Thanks, that is a good question. Unfortunately, if=
+ there was an email, it has been deleted. I do see what you mean about rim.=
+ Thanks for pointing that out. I am now reading through the existing emails=
+ from around the same time which happens to be around 911. &nbsp;Apparently=
+ Harold had a pinched nerve in need to surgery. There was an email from Deb=
+ Hendel and I thought maybe SANY0005 was part of their collection. But the =
+email from Deb Hendel was to simply convey to Harold that Bob, her and thei=
+r family were all okay.</div><div dir=3D"ltr" data-setdir=3D"false"><br></d=
+iv><div dir=3D"ltr" data-setdir=3D"false">There are many emails related to =
+a show I didn=E2=80=99t know about previously scheduled for October 2001 in=
+ Paderborn, Germany =E2=80=94 Heinz Nixdorf MuseumsForum. I don=E2=80=99t s=
+ee this listed in the bio and never heard Harold mention this show to me. H=
+arold was to go to the opening but was unable due to surgery to relieve a p=
+inched nerve. The details of the show includes projecting AARON onto a very=
+ large multi-meter screen, run a looping video of Harold talking about AARO=
+N. Initially, KCAT was to be running but Harold sent an updated version. Th=
+ere was a lengthy discussion on printing works onsite making them available=
+ for sale. I am still reading through the emails to determine if printing o=
+nsite for purchase by museum goers actually happened or not. There was disc=
+ussion of selling smaller works that could be rolled in a tube and sold for=
+ $100 a piece. There are also many emails related to the difficulties of pr=
+inting quality prints. &nbsp;The Museum has a link to the show at&nbsp;<a h=
+ref=3D"https://www.hnf.de/ausstellungen/rueckblick/kunst-aus-dem-computer.h=
+tml" rel=3D"nofollow" target=3D"_blank">https://www.hnf.de/ausstellungen/ru=
+eckblick/kunst-aus-dem-computer.html</a>. They claim that 7 physical works =
+were shown. Maybe SANY0005 was one of them. I am working on reaching out to=
+ the museum. It would also be good to know if SANY005 was one of the ones s=
+how and if not what was shown and do they have any Cohen/AARON works. But i=
+t would also be good to know if they still have a runnable version of AARON=
+.&nbsp;</div><div dir=3D"ltr" data-setdir=3D"false"><br></div><div dir=3D"l=
+tr" data-setdir=3D"false">Tom</div><div dir=3D"ltr" data-setdir=3D"false"><=
+br></div><div dir=3D"ltr" data-setdir=3D"false"><span style=3D"color: rgb(0=
+, 52, 125); font-family: FF Meta, sans-serif; font-size: 24px;"><br></span>=
+</div><div dir=3D"ltr" data-setdir=3D"false"><br></div>
+       =20
+        <div id=3D"ydp14be781ayahoo_quoted_3440392883" class=3D"ydp14be781a=
+yahoo_quoted">
+            <div style=3D"font-family:'Helvetica Neue', Helvetica, Arial, s=
+ans-serif;font-size:13px;">
+               =20
+                <div>
+                    On Monday, March 24, 2025 at 06:10:38 AM PDT, Paul Cohe=
+n &lt;paulrcohen@gmail.com&gt; wrote:
+                </div>
+                <div><br></div>
+                <div><br></div>
+                <div><div id=3D"ydp14be781ayiv9883534020"><div>Hi Tom, I=E2=
+=80=99m not familiar with the picture but there were a lot of them and I mi=
+ght have seen it but forgotten it. &nbsp;The resolution is low so I can=E2=
+=80=99t make out the weaving together of color groups, though I can see tha=
+t it=E2=80=99s happening, which make me think it is probably authentic. &nb=
+sp;I=E2=80=99m a bit surprised at the bright rim of the pot; I don=E2=80=99=
+t recall Harold doing that. &nbsp;Who is the email from? &nbsp;=E2=80=94P<b=
+r clear=3D"none" id=3D"ydp14be781ayiv9883534020lineBreakAtBeginningOfMessag=
+e"><div><br clear=3D"none"><blockquote type=3D"cite"><div id=3D"ydp14be781a=
+yiv9883534020yqtfd85371" class=3D"ydp14be781ayiv9883534020yqt1413897843"><d=
+iv>On Mar 24, 2025, at 1:15=E2=80=AFAM, Thomas Machnik &lt;zipnpup@yahoo.co=
+m&gt; wrote:</div><br clear=3D"none" class=3D"ydp14be781ayiv9883534020Apple=
+-interchange-newline"></div><div><div><div style=3D"font-family:Helvetica N=
+eue, Helvetica, Arial, sans-serif;font-size:16px;" class=3D"ydp14be781ayiv9=
+883534020yahoo-style-wrap"><div id=3D"ydp14be781ayiv9883534020yqtfd69669" c=
+lass=3D"ydp14be781ayiv9883534020yqt1413897843"><div dir=3D"ltr">Hi Paul,</d=
+iv><div dir=3D"ltr">I have attached a snapshot of a framed print. The name =
+of the file is SANY0005.jpg and dated September 21, 2001. I found it mixed =
+in with emails from 2000-2002. I am assuming the SANY of the filename indic=
+ates it was from a Sanyo digital camera. Does this happen to look familiar =
+to you? Or have any thoughts regarding this work? Tom</div></div><div dir=
+=3D"ltr"><span>&lt;SANY0005 1.JPG&gt;</span><br clear=3D"none"></div></div>=
+</div><span>&lt;SANY0005 1.JPG&gt;</span></div></blockquote></div><div id=
+=3D"ydp14be781ayiv9883534020yqtfd70569" class=3D"ydp14be781ayiv9883534020yq=
+t1413897843"><br clear=3D"none"></div></div></div></div>
+            </div>
+        </div></div></body></html>
+------=_Part_716760_952434856.1742845582324--

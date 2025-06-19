@@ -1,0 +1,448 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a10:4ea9:b0:5ad:6c17:f336 with SMTP id up41csp130634pxb;
+        Tue, 1 Oct 2024 02:42:31 -0700 (PDT)
+X-Forwarded-Encrypted: i=2; AJvYcCUqRtzD/MWGpnT7f7y1MNHXBnxOMqIfB3j++j7Tst2Cwt/o3YhNUfeDx4azhJqnYjDMGVwzHUFBJQUQ@gmail.com
+X-Received: by 2002:a05:6a21:9d83:b0:1cf:666c:4f79 with SMTP id adf61e73a8af0-1d4fa6a1787mr25347860637.19.1727775751149;
+        Tue, 01 Oct 2024 02:42:31 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1727775751; cv=none;
+        d=google.com; s=arc-20160816;
+        b=ZfdPM0JmB2UHs9z8S7mMVfCBuEA7tj0RMZIjegRu0LRMZ3YpvsiqqCJD9LHggo2Y0n
+         nHinAamQa8foq2oEd8FDpibXbA1uIt6IqtyM/bqlHQhtG/1XnSHZ4tLswepbk70yYk5f
+         GirB3/MKGZWWU7G6oi2ysIqfIv4k0n6UjA5JGJ6DnPxPCmQr8bCFQG9Am0EApt8oZHG9
+         bAo3q6WssipnTREGxE5d8bg3Q2sXA4Zx/aubldoIesbvI63ODYFwbt2djFCHFSO+dHhm
+         gB3Zm7nERV6NCyHmhtkIA3eDlOAgdQI77qcKOt8lmi8Feueylgd8hQsaaeos6YmlTXS6
+         hOxw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=X8L3Z49reTfCG+3eYQ5FNFMg0UVqEUtEPFh7UqvVnJw=;
+        fh=LGulDzJgX/aM84smoB9ETYoWwo8eJiL7KcbRrzItpE4=;
+        b=ZMEUz7LQNtB7ulwZyHVWBwYd52NzIqYkJeRpCq3eOIE+vdF/JxwsUS78PexHp9hpAr
+         MUWXRLMlE9sZg9LHqC11dCaEJqISb171d2DZgRhpjSZL2Cv2DMMVoxCwxzM/Ir1PovDH
+         yKtsy2Voqr57cvh9GtEmt/uv9okailQhHecz6qpCoWc24rGwPvYjzerhrsoCS6qNCVlS
+         r9DD5DrArO5kMNakCeZN3UfzT/bBlhmSKequESQYNTfGGRkflfH+hSnVYurR9f5UsOdS
+         HCm6qm3z5h+g0DXle3oRw2ASKjec8jNdB0oNP1vTBOGA09TJGShb6p4rJB3G1QUaeU5j
+         RXHw==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@gazelliarthouse-com.20230601.gappssmtp.com header.s=20230601 header.b=tgAXGQ1W;
+       spf=pass (google.com: domain of m.askarova@gazelliarthouse.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=m.askarova@gazelliarthouse.com;
+       dara=pass header.i=@gmail.com
+Return-Path: <m.askarova@gazelliarthouse.com>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id d2e1a72fcca58-71b264a7d33sor5570353b3a.4.2024.10.01.02.42.30
+        for <paulrcohen@gmail.com>
+        (Google Transport Security);
+        Tue, 01 Oct 2024 02:42:31 -0700 (PDT)
+Received-SPF: pass (google.com: domain of m.askarova@gazelliarthouse.com designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@gazelliarthouse-com.20230601.gappssmtp.com header.s=20230601 header.b=tgAXGQ1W;
+       spf=pass (google.com: domain of m.askarova@gazelliarthouse.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=m.askarova@gazelliarthouse.com;
+       dara=pass header.i=@gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gazelliarthouse-com.20230601.gappssmtp.com; s=20230601; t=1727775750; x=1728380550; dara=google.com;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=X8L3Z49reTfCG+3eYQ5FNFMg0UVqEUtEPFh7UqvVnJw=;
+        b=tgAXGQ1WFFHQ7f/j3yLmsHLAX+vgKgOeoFll3nEWjYGjQGp1/kOPZvvn2aeZXvNbsi
+         dfq13bxO3hx2kApIjKEiJJ13ByLws6pfIiFvwKmrp2rJAuiUPz+XOxE3rHjgqm7Wg44I
+         rqoSJu+sGoaHeHNVK1M8MUn3MjXsV1b+FFDtL91UX15XKPMEZGJ/jnxApL0WyP6YeJQL
+         txj7BETNZkQlGMx7fhWig2Sv0XmlypbzMZB2zTAojrPSkoS7p4uOI3sjRbI9FaeZsF/H
+         h2ohejiYKTdGHOMKIahw9oBE/GEtR9J8NL43wj3DCQX5NxEcC+T5GfC3B3glBvi+pjh9
+         xc1Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727775750; x=1728380550;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=X8L3Z49reTfCG+3eYQ5FNFMg0UVqEUtEPFh7UqvVnJw=;
+        b=Tfu891/nnEaxHLPpNh1SXMm+sJ2sMXuvavPbpsaqMBaZnzoXvZ2lc0VTT9wthJ79MS
+         V8pQk4UzEYI8N8MLNu8zhUjPj+rcoxFWHpWTk4n8y3HmZfeYtGz56gA3CdkC7dK0Q5CE
+         w6je3Bhii+EgCCU/e5qG/mg/7uQww92aQhtYJc34K0YQ4aWe6NTuXqHWcjRwgG+3N6tR
+         5WZROC00ztZf/qF0CgYiTaKXoheYg5hO3aMxFvZnpdQ9BLDLj9vn4WAqq3C8KNqzqZ1k
+         csJvCpqZSZeRcjRES2vT3RM/5bSF+DkkOncDv0eOWqrJRaAWcoGg8GxGPh9OyZKOWC9D
+         11bQ==
+X-Forwarded-Encrypted: i=1; AJvYcCXF6XS+PlA8YD5m5jzamVtLrusegU9O/4bID010i5clQI/8zCfy16krqDkGzi9P4SUAsBytjKGplb0E@gmail.com
+X-Gm-Message-State: AOJu0Yz9g+rRJyaPwXmJy5Og31qlrHnL7GDK+/Th8WKrZjyxsjIRvB7F
+	hrkNbA86sEQcEVhIGKIsoyxfoGK+jGYP3c5Jhr6d9nElFLHxw5dDQVxBHI97IxBS3vIjpqvsjfr
+	iK+97t8Rj7GMNzuwYCBVakyUvwKmmqwcmK3AAsg==
+X-Google-Smtp-Source: AGHT+IFsoLAuomc54q/I8gTCT5Dg42wDTOa86Qsiyl1sbGuVYRZBrt2qYzl7BBopGx+Wk82FGFNKhvsZEwaqMBf0ixE=
+X-Received: by 2002:a05:6a00:21d1:b0:718:e188:fdf1 with SMTP id
+ d2e1a72fcca58-71b2604d435mr22175612b3a.20.1727775750170; Tue, 01 Oct 2024
+ 02:42:30 -0700 (PDT)
+MIME-Version: 1.0
+References: <546203494.7701311.1727767860344.ref@mail.yahoo.com> <546203494.7701311.1727767860344@mail.yahoo.com>
+In-Reply-To: <546203494.7701311.1727767860344@mail.yahoo.com>
+From: Mila Askarova <m.askarova@gazelliarthouse.com>
+Date: Tue, 1 Oct 2024 10:42:17 +0100
+Message-ID: <CAAOqD357b+uUnc0J8RgBByo5zU-Qrqru6yW-bVWqb0iHTSS8UQ@mail.gmail.com>
+Subject: Re: Providence+Metadata+Files
+To: Thomas Machnik <zipnpup@yahoo.com>
+Cc: Harold Cohen Trust <aaron@aaronshome.com>, Natalia Chow <natalia@verisart.com>, 
+	Paul Cohen <paulrcohen@gmail.com>, Paul Cohen <team@haroldcohentrust.org>, 
+	Robert norton <robert@verisart.com>
+Content-Type: multipart/mixed; boundary="000000000000d75e3f0623672307"
+
+--000000000000d75e3f0623672307
+Content-Type: multipart/alternative; boundary="000000000000d75e3d0623672305"
+
+--000000000000d75e3d0623672305
+Content-Type: text/plain; charset="UTF-8"
+
+Hi Tom,
+
+Thank you so much for this.
+
+Can you please also cast your eye over the attached provenance and let us
+know if everything is correct on there?
+
+My best,
+Mila
+
+
+
+Mila Askarova
+CEO & Founder
+
+GAZELLI ART HOUSE
+
+www.gazelliarthouse.com
++44 (0) 207 491 8816 / +994 (0) 12 498 1230
+
+
+On Tue, 1 Oct 2024 at 08:31, Thomas Machnik <zipnpup@yahoo.com> wrote:
+
+> Dear Paul & Mila,
+>
+> Below are two links. One is to the Providence + Metadata document. The
+> other is a link to the file folder to make the NFTs. I know that previously
+> I sent the files for the NFTs but if possible please use these because I
+> used these files to extract the metadata. While most of them are the same,
+> there are some slight differences. So if possible, please use the ones in
+> the link below.
+>
+> I was not sure how to word some of the Providence events so if necessary
+> you can change it so long as the events are intact. I was not sure how to
+> word what "aa" files are. Internally, I typically refer to them as AARON
+> Vector files but the more I thought about it the more I realized that AARON
+> vector files are really the generation before where the vector (black line
+> drawing file) and color file were two different files. The aa files have
+> additional information on how to make the artwork besides just vectors.
+> Keeping that in mind I used "AARON Artwork descriptor file" instead of
+> AARON Artwork vector file. I would prefer to reserve the term AARON Artwork
+> vector file for the drawing files that truly are lists of vectors.
+>
+> As mentioned earlier, all of the jpegs were made by Harold at a later
+> date. I found those dates and included them on the second line. The last
+> line I listed that the file name was changed. We don't exactly know how he
+> created the jpegs so I had to be vague about the process and simply put the
+> date followed by, "Harold Cohen completes jpeg conversion, names file"
+> then put the file name.
+>
+> There was one jpeg that was corrupted. We currently do not have a way to
+> convert aa files into jpegs. Fortunately, we have a Postscript file of the
+> same work that was generated within one minute of the original aa file. I
+> used the postscript file to make a jpeg file. So in this instance, there is
+> no aa file listed since it was not directly involved in the making the jpg.
+> I included my name as the one who made the conversion in case that is
+> relevant. But can be removed with no skin off my back. In the case of the
+> file name changes, I simply put HCT changed the names.
+>
+> Regarding the Metadata, some files have much more metadata available than
+> others. I chose to limit some of the metadata so as to keep the group
+> basically the same.
+>
+> There was much data to enter by hand. I have checked it multiple times but
+> after a good night sleep will check it one last time. If you find any
+> inconsistencies, feel free to correct or ask me about it, Tom
+>
+> Link to files to be used as NFTs
+>
+> https://drive.google.com/drive/folders/1k-i05lGnEvYi8SNKzi3MAITAVvzMeTAQ?usp=sharing
+>
+> Link to the Providence+Metadata
+>
+> https://docs.google.com/document/d/10tf9F58P1qk--fFN9RD2hzqyJV4x8_VsKE3pCn8nRaY/edit?usp=sharing
+>
+>
+
+--000000000000d75e3d0623672305
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div><div><div dir=3D"auto">Hi Tom,=C2=A0</div><div dir=3D"auto"><br></div>=
+<div dir=3D"auto">Thank you so much for this.=C2=A0</div><div dir=3D"auto">=
+<br></div><div dir=3D"auto">Can you please also cast your eye over the atta=
+ched provenance and let us know if everything is correct on there?=C2=A0</d=
+iv></div><div dir=3D"auto"><br></div><div dir=3D"auto">My best,</div><div d=
+ir=3D"auto">Mila=C2=A0</div><div dir=3D"auto"><br></div><div dir=3D"auto"><=
+br></div><div></div></div><div><div><div dir=3D"auto"><br clear=3D"all"><di=
+v dir=3D"auto"><div dir=3D"ltr" class=3D"gmail_signature" data-smartmail=3D=
+"gmail_signature">Mila Askarova=C2=A0<br>CEO &amp; Founder=C2=A0<br><br>GAZ=
+ELLI ART HOUSE<br><br><a href=3D"http://www.gazelliarthouse.com" target=3D"=
+_blank">www.gazelliarthouse.com</a><br>+44 (0) 207 491 8816 / +994 (0) 12 4=
+98 1230<br></div></div></div><div><br></div><div><br><div class=3D"gmail_qu=
+ote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, 1 Oct 2024 at 08:31, Tho=
+mas Machnik &lt;<a href=3D"mailto:zipnpup@yahoo.com" target=3D"_blank">zipn=
+pup@yahoo.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" sty=
+le=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px;border-left-style:soli=
+d;padding-left:1ex;border-left-color:rgb(204,204,204)"><div><div style=3D"f=
+ont-family:&quot;Helvetica Neue&quot;,Helvetica,Arial,sans-serif;font-size:=
+16px"><div dir=3D"ltr" style=3D"font-family:&quot;Helvetica Neue&quot;,Helv=
+etica,Arial,sans-serif">Dear Paul &amp; Mila,</div><div dir=3D"ltr" style=
+=3D"font-family:&quot;Helvetica Neue&quot;,Helvetica,Arial,sans-serif"><br>=
+</div><div dir=3D"ltr" style=3D"font-family:&quot;Helvetica Neue&quot;,Helv=
+etica,Arial,sans-serif">Below are two links. One is to the Providence + Met=
+adata document. The other is a link to the file folder to make the NFTs. I =
+know that previously I sent the files for the NFTs but if possible please u=
+se these because I used these files to extract the metadata. While most of =
+them are the same, there are some slight differences. So if possible, pleas=
+e use the ones in the link below.<br></div><div dir=3D"ltr" style=3D"font-f=
+amily:&quot;Helvetica Neue&quot;,Helvetica,Arial,sans-serif"><br></div><div=
+ dir=3D"ltr" style=3D"font-family:&quot;Helvetica Neue&quot;,Helvetica,Aria=
+l,sans-serif">I was not sure how to word some of the Providence events so i=
+f necessary you can change it so long as the events are intact. I was not s=
+ure how to word what &quot;aa&quot; files are. Internally, I typically refe=
+r to them as AARON Vector files but the more I thought about it the more I =
+realized that AARON vector files are really the generation before where the=
+ vector (black line drawing file) and color file were two different files. =
+The aa files have additional information on how to make the artwork besides=
+ just vectors. Keeping that in mind I used &quot;<span style=3D"font-family=
+:&quot;Helvetica Neue&quot;,Helvetica,Arial,sans-serif"><span style=3D"font=
+-size:11pt;font-family:Arial,sans-serif;font-weight:400;font-style:normal;t=
+ext-decoration:none;text-decoration-style:solid;text-decoration-color:curre=
+ntcolor;vertical-align:baseline;white-space:pre-wrap;background-color:trans=
+parent;color:rgb(0,0,0)" id=3D"m_3134509680697344278m_3970295811113471945m_=
+-3600854604582453283ydpacb3874docs-internal-guid-41fc874a-7fff-dcc7-4fde-c4=
+b5f48faead">AARON Artwork descriptor file</span></span>&quot; instead of AA=
+RON Artwork vector file. I would prefer to reserve the term AARON Artwork v=
+ector file for the drawing files that truly are lists of vectors.</div><div=
+ dir=3D"ltr" style=3D"font-family:&quot;Helvetica Neue&quot;,Helvetica,Aria=
+l,sans-serif"><br></div><div dir=3D"ltr" style=3D"font-family:&quot;Helveti=
+ca Neue&quot;,Helvetica,Arial,sans-serif">As mentioned earlier, all of the =
+jpegs were made by Harold at a later date. I found those dates and included=
+ them on the second line. The last line I listed that the file name was cha=
+nged. We don&#39;t exactly know how he created the jpegs so I had to be vag=
+ue about the process and simply put the date<span style=3D"font-family:&quo=
+t;Helvetica Neue&quot;,Helvetica,Arial,sans-serif"><span style=3D"font-size=
+:11pt;font-family:Arial,sans-serif;font-weight:400;font-style:normal;text-d=
+ecoration:none;text-decoration-style:solid;text-decoration-color:currentcol=
+or;vertical-align:baseline;white-space:pre-wrap;background-color:transparen=
+t;color:rgb(0,0,0)" id=3D"m_3134509680697344278m_3970295811113471945m_-3600=
+854604582453283ydpf1752080docs-internal-guid-f3b987c7-7fff-5b76-835e-b3fb1b=
+c50239"> followed by, &quot;Harold Cohen completes jpeg conversion, names f=
+ile&quot; then put the file name</span><span style=3D"font-size:11pt;font-f=
+amily:Arial,sans-serif;font-weight:700;font-style:normal;text-decoration:no=
+ne;text-decoration-style:solid;text-decoration-color:currentcolor;vertical-=
+align:baseline;white-space:pre-wrap;background-color:transparent;color:rgb(=
+0,0,0)">.</span></span><div dir=3D"ltr" style=3D"font-family:&quot;Helvetic=
+a Neue&quot;,Helvetica,Arial,sans-serif"><span style=3D"font-family:&quot;H=
+elvetica Neue&quot;,Helvetica,Arial,sans-serif"><span style=3D"font-size:11=
+pt;font-family:Arial,sans-serif;font-weight:700;font-style:normal;text-deco=
+ration:none;text-decoration-style:solid;text-decoration-color:currentcolor;=
+vertical-align:baseline;white-space:pre-wrap;background-color:transparent;c=
+olor:rgb(0,0,0)"><br></span></span></div></div><div dir=3D"ltr" style=3D"fo=
+nt-family:&quot;Helvetica Neue&quot;,Helvetica,Arial,sans-serif">There was =
+one jpeg that was corrupted. We currently do not have a way to convert aa f=
+iles into jpegs. Fortunately, we have a Postscript file of the same work th=
+at was generated within one minute of the original aa file. I used the post=
+script file to make a jpeg file. So in this instance, there is no aa file l=
+isted since it was not directly involved in the making the jpg. I included =
+my name as the one who made the conversion in case that is relevant. But ca=
+n be removed with no skin off my back. In the case of the file name changes=
+, I simply put HCT changed the names.</div><div dir=3D"ltr" style=3D"font-f=
+amily:&quot;Helvetica Neue&quot;,Helvetica,Arial,sans-serif"><br></div><div=
+ dir=3D"ltr" style=3D"font-family:&quot;Helvetica Neue&quot;,Helvetica,Aria=
+l,sans-serif">Regarding the Metadata, some files have much more metadata av=
+ailable than others. I chose to limit some of the metadata so as to keep th=
+e group basically the same. <br></div><div dir=3D"ltr" style=3D"font-family=
+:&quot;Helvetica Neue&quot;,Helvetica,Arial,sans-serif"><br></div><div dir=
+=3D"ltr" style=3D"font-family:&quot;Helvetica Neue&quot;,Helvetica,Arial,sa=
+ns-serif">There was much data to enter by hand. I have checked it multiple =
+times but after a good night sleep will check it one last time. If you find=
+ any inconsistencies, feel free to correct or ask me about it, Tom<br></div=
+><div dir=3D"ltr" style=3D"font-family:&quot;Helvetica Neue&quot;,Helvetica=
+,Arial,sans-serif"><br></div><div dir=3D"ltr" style=3D"font-family:&quot;He=
+lvetica Neue&quot;,Helvetica,Arial,sans-serif">Link to files to be used as =
+NFTs<br></div><div dir=3D"ltr" style=3D"font-family:&quot;Helvetica Neue&qu=
+ot;,Helvetica,Arial,sans-serif"><a href=3D"https://drive.google.com/drive/f=
+olders/1k-i05lGnEvYi8SNKzi3MAITAVvzMeTAQ?usp=3Dsharing" rel=3D"nofollow" st=
+yle=3D"font-family:&quot;Helvetica Neue&quot;,Helvetica,Arial,sans-serif" t=
+arget=3D"_blank">https://drive.google.com/drive/folders/1k-i05lGnEvYi8SNKzi=
+3MAITAVvzMeTAQ?usp=3Dsharing</a></div><div dir=3D"ltr" style=3D"font-family=
+:&quot;Helvetica Neue&quot;,Helvetica,Arial,sans-serif"><br></div><div dir=
+=3D"ltr" style=3D"font-family:&quot;Helvetica Neue&quot;,Helvetica,Arial,sa=
+ns-serif">Link to the Providence+Metadata</div><div dir=3D"ltr" style=3D"fo=
+nt-family:&quot;Helvetica Neue&quot;,Helvetica,Arial,sans-serif"><a href=3D=
+"https://docs.google.com/document/d/10tf9F58P1qk--fFN9RD2hzqyJV4x8_VsKE3pCn=
+8nRaY/edit?usp=3Dsharing" rel=3D"nofollow" style=3D"font-family:&quot;Helve=
+tica Neue&quot;,Helvetica,Arial,sans-serif" target=3D"_blank">https://docs.=
+google.com/document/d/10tf9F58P1qk--fFN9RD2hzqyJV4x8_VsKE3pCn8nRaY/edit?usp=
+=3Dsharing</a> <br></div><div dir=3D"ltr" style=3D"font-family:&quot;Helvet=
+ica Neue&quot;,Helvetica,Arial,sans-serif"><br></div></div></div></blockquo=
+te></div></div>
+</div>
+</div>
+
+--000000000000d75e3d0623672305--
+--000000000000d75e3f0623672307
+Content-Type: application/vnd.openxmlformats-officedocument.wordprocessingml.document; 
+	name="HAROLD COHEN - PROVENANCE - DRAFT.docx"
+Content-Disposition: attachment; 
+	filename="HAROLD COHEN - PROVENANCE - DRAFT.docx"
+Content-Transfer-Encoding: base64
+Content-ID: <1924775132832a6a7c51>
+X-Attachment-Id: 1924775132832a6a7c51
+
+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
+ABUfAAAAAA==
+--000000000000d75e3f0623672307--

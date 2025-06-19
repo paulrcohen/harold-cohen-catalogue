@@ -1,0 +1,365 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a10:1699:b0:5ec:db95:1ae4 with SMTP id gp25csp1805537pxb;
+        Mon, 21 Apr 2025 09:20:18 -0700 (PDT)
+X-Forwarded-Encrypted: i=3; AJvYcCVoBzIoanFCmPc3R7q5zv4Er7q5G6RtmwhSfXUBmx/l4jC6RwMNvNvtAuoXjZsqYzj++hYXeB/+PIib@gmail.com
+X-Google-Smtp-Source: AGHT+IEDLSS1h6iJCQokEfx0Hbp/F/SqeaVlnTD0eB8l12y5jCbgVAT2vq4LRjAoUqkNbgoDAE78
+X-Received: by 2002:a05:6902:2382:b0:e5d:defb:3774 with SMTP id 3f1490d57ef6-e7297eea7c2mr15334675276.45.1745252418696;
+        Mon, 21 Apr 2025 09:20:18 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1745252418; cv=pass;
+        d=google.com; s=arc-20240605;
+        b=VkKQqQAbWNuwLLMt5GowXZNA+9fbzxqY9RPdAoffNvXz0NDMPzjbQvXj0dsyVanGIt
+         h+EdCSsCENB+awWxIIPrd5vf4+yCI41F91+4X0o1YFNhyuKh1nJ3Fk4tLUyE1hvBU1L2
+         YQs0nfjHpmrL2AqMPhny/JEQtKK40jRhxrP7CGrvGnp5MRYbPZ5BXUdy1oNl4Q+NJoXI
+         wFFBtuY7RkSoQSxmfQh9hwu5tQLMFEDz2gk7Oa845G+3tC7SsfqHvRj9RMS9KYmpWfqW
+         PEvf6pqFqQtu8/Te/z4fy7Af6BhC0ujt+w9TL6NLOERX/DhnEYloZi8h9tn1YapCAJwb
+         1r6g==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:msip_labels:content-language:accept-language
+         :in-reply-to:references:message-id:date:thread-index:thread-topic
+         :subject:to:from:dkim-signature;
+        bh=exlWO75jgkNDd/gmjNa0KguPY9wrecXNAvTR+Gerq0k=;
+        fh=hbZzsgz0zKLJR1Syw3Ss1KoPJTE4uK5qg1AuwG4CCgM=;
+        b=U7GyaHVMfTR3UrRTQwdkB39E2uOzL+NJ4GA1pMqwCW0oXJfWcm/cQCxq88wQ+u8sD1
+         1yTRfMTugbuqVJLFuNm49Um6f4h6S4QsuDiBjv6B4yHi2cBLf9IKyEa8eXZeYiVKQXEJ
+         WEQyAxZqfcp62Jg/gzeweByA/b1fuOH+RSO5LsxDB6sHHUSmR9lvAMDNecCtWJN75ZfE
+         ApXMqviWC/F/mecau66Z8o4bYMQBKy4G+RVXBwxwUYGi8fVhX96cR001/CDogp+1XrkJ
+         QlxdjVB9WOLdFVzmh8phMxgV4+Ev1TkiAeNTuKI6yJR2yPQ1PnXYuLquA3sHRxXxE4iA
+         k4MQ==;
+        dara=google.com
+ARC-Authentication-Results: i=2; mx.google.com;
+       dkim=pass header.i=@whitney.org header.s=selector1 header.b=sYMweLb6;
+       arc=pass (i=1 spf=pass spfdomain=whitney.org dkim=pass dkdomain=whitney.org dmarc=pass fromdomain=whitney.org);
+       spf=pass (google.com: domain of christiane_paul@whitney.org designates 209.222.82.132 as permitted sender) smtp.mailfrom=Christiane_Paul@whitney.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=whitney.org
+Return-Path: <Christiane_Paul@whitney.org>
+Received: from outbound-ip193b.ess.barracuda.com (outbound-ip193b.ess.barracuda.com. [209.222.82.132])
+        by mx.google.com with ESMTPS id 3f1490d57ef6-e7295947b3esi7135492276.345.2025.04.21.09.20.12
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 21 Apr 2025 09:20:18 -0700 (PDT)
+Received-SPF: pass (google.com: domain of christiane_paul@whitney.org designates 209.222.82.132 as permitted sender) client-ip=209.222.82.132;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@whitney.org header.s=selector1 header.b=sYMweLb6;
+       arc=pass (i=1 spf=pass spfdomain=whitney.org dkim=pass dkdomain=whitney.org dmarc=pass fromdomain=whitney.org);
+       spf=pass (google.com: domain of christiane_paul@whitney.org designates 209.222.82.132 as permitted sender) smtp.mailfrom=Christiane_Paul@whitney.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=whitney.org
+Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11lp2169.outbound.protection.outlook.com [104.47.58.169]) by mx-outbound16-240.us-east-2b.ess.aws.cudaops.com (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO); Mon, 21 Apr 2025 16:20:06 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=kShCSyi3QXs5qcQD8Xw2j8uuyJxH37a7/vEA1hsMnJehEUfwDJy3KeyO67dAdJU7mKv6APJY8Rpi/OUw4gn9c1KmCn7N+r64gYSi/DKxXQzgA8pCJd1GuqNeATrHAVOau6JrK5IHWQUS8gEIBOWqLb5y4M9WzsCy38k0VAJLgG1G1z7qZ2UDYMsIQLIaZePPFtR+uu2gL9ooyxF/K1L4zY9KKSV+GoeI+0G/d0e1TyO9qFWr6yRYPnpItBLN7Dr3MxG8zn91beE+60eRRE/4rY/dwhh00VIols6Elp154GLDQXxUQMt/TyDKj1baz0c6BA6BdgrsZfUuWQ8RZuc2Ww==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=exlWO75jgkNDd/gmjNa0KguPY9wrecXNAvTR+Gerq0k=;
+ b=jf8UQ25Koge8H3Z3UNsDEQmjkB5ML8v354zoTH3qW1s+0SqZa3S0gUu/3TF2UDA2TEmPJqAIdq64p3e3+HEU15tQdw18G78vstiAV8bIz4WkO115fbX9UTIS+TZLRDztamg9VxqWg82IP3gtxPS7HUBYfh8W3UeMMy0q4tG0QdHZHlKYbHBugFNM1h/OkA2vF9U+POIWKLIDh1FhcleGn0jp5LIr4O4K5o6BUf/WUamAk43puQcRM/sSFHXBed0lUNSPeH4IiIJqPaNkmlIGIFa86nCEpx9GeOvb+ZlkRdvkp5dl/nBhdbVYK+WUFAdGlk4d64ZLFjMQbDnYTcIk+g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=whitney.org; dmarc=pass action=none header.from=whitney.org;
+ dkim=pass header.d=whitney.org; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=whitney.org;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=exlWO75jgkNDd/gmjNa0KguPY9wrecXNAvTR+Gerq0k=;
+ b=sYMweLb6bCP+6zbSXcfnV7PIhIpk1nmH0RasmSYDYHe8Bs3m+HrVjoMXAi3Q/NeOQm972OJaxPbJa74f/LJR2i/wXJdR9uZMucO7T0SuBIQeQo5i2L9UpyUcWAg39lpfLE0WfAzgu8Ywr1zJp/pzPufFhcHF5CgW5TkpwgQZYpQ=
+Received: from MN0PR22MB3666.namprd22.prod.outlook.com (2603:10b6:208:379::21)
+ by LV3PR22MB4727.namprd22.prod.outlook.com (2603:10b6:408:1df::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8655.35; Mon, 21 Apr
+ 2025 16:20:04 +0000
+Received: from MN0PR22MB3666.namprd22.prod.outlook.com
+ ([fe80::166e:4692:17a4:a496]) by MN0PR22MB3666.namprd22.prod.outlook.com
+ ([fe80::166e:4692:17a4:a496%5]) with mapi id 15.20.8655.025; Mon, 21 Apr 2025
+ 16:20:04 +0000
+From: Christiane Paul <Christiane_Paul@whitney.org>
+To: bre pettis <brepettis@gmail.com>, Paul Cohen <paulrcohen@gmail.com>,
+	Thomas Machnik <zipnpup@yahoo.com>, Zachary Hendel
+	<zachary.hendel@bantamtools.com>
+Subject: Re: Harold Cohen video
+Thread-Topic: Harold Cohen video
+Thread-Index: AQHbsUYT9+2p5xnoyEKHc5D+Uwy6orOuT8TX
+Date: Mon, 21 Apr 2025 16:20:03 +0000
+Message-ID:
+ <MN0PR22MB36663F5E5EB69C21CFAB25A19DB82@MN0PR22MB3666.namprd22.prod.outlook.com>
+References:
+ <CAFhPk_xKBqZGM3YiW1=AyZ84+2cxniD5-KpdOq_QTz-6y5PUCA@mail.gmail.com>
+In-Reply-To:
+ <CAFhPk_xKBqZGM3YiW1=AyZ84+2cxniD5-KpdOq_QTz-6y5PUCA@mail.gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+msip_labels:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=whitney.org;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: MN0PR22MB3666:EE_|LV3PR22MB4727:EE_
+x-ms-office365-filtering-correlation-id: 4a5bd2e9-2576-487f-6391-08dd80f05f99
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|366016|1800799024|376014|38070700018|8096899003|13003099007|7053199007;
+x-microsoft-antispam-message-info:
+ =?Windows-1252?Q?Rh+iBR9Rs495uZqaQq09sHzhNMCKhyXnrPnvlfJr785zwpGoGW6W8foy?=
+ =?Windows-1252?Q?I8+xRv5Gt4le/J50GZKhQX3TdtLHi+nz8UrlkD0QA26sJSC2g9H44pp6?=
+ =?Windows-1252?Q?rdy6hKxVMVfRwBMdOx7ZC64JV9EkoVn8Xuf+qgYuj6OWHeEbreUNW1QG?=
+ =?Windows-1252?Q?+Y+RLk4q6cjjs4cf7n30pAla5ojOw5+kXCCHtBEgRSdIXztSWoiywCwh?=
+ =?Windows-1252?Q?kwx2AqewbxvAnZm1pLPU5RZgEAo/LKPC5RRcc8hDqEO7PP5x7qo9iEms?=
+ =?Windows-1252?Q?sAahPS8lei7E7iJ6KQhBImbGcDZvjY562RkTSe0NkRt/x122OTHOy195?=
+ =?Windows-1252?Q?QoD36pVrdTTHDpznue7Pg2Cq6rvdChe06p6bPT5lrU2a4M14/GXz6IA0?=
+ =?Windows-1252?Q?8kDwHW4n9C7Aq8PF2UOhfJtEZrKMpvlr1LnUWhploV9FK57odMoThVSe?=
+ =?Windows-1252?Q?divX2z3OidshCtPN2tUkGFNnnE3SywecddWgcqXY68DadIaoh6KpMLx+?=
+ =?Windows-1252?Q?1mN6iLhR4Wx6enZkuUm+pORWwFAG9280er/yHRzxLDGbQ9+rhOggF9g2?=
+ =?Windows-1252?Q?0JJSUn1KgsqkEIs5saS4o2OZ4KL3iZncQ2j9bk4xSr9B8YnqBpM2pvbR?=
+ =?Windows-1252?Q?qZ955REGn4BBaX4sF8WjloTNjggG0K/3sdQme3MS906WCvV3PoRBXBg8?=
+ =?Windows-1252?Q?L97HTxBfntGSaKp3zZNAQB03ExWJtRSR+rvm4yPS/9R3JpE1zMWkPixJ?=
+ =?Windows-1252?Q?h+GFX9HymUqSFhSxaNgQ2VaYohYv/Ro7E15vKouiP6FI45n/0Y11XBpu?=
+ =?Windows-1252?Q?leHugBpFqt0uIghzTlW7BLgUVL5+RLOEYSmJKfI/QtyDZBb0Rp3o57Qv?=
+ =?Windows-1252?Q?J5rkQdzlWVo2HUWUWNNhBBMyvEbJPmspgvcKwcjbE3ZH5sVivIedGa3O?=
+ =?Windows-1252?Q?z6T+TcxGb3DqirioVut+4DVA9RBY1aUKafLrJ7dD+Nm1EMKFeHGjC7yR?=
+ =?Windows-1252?Q?710d96x1FOeyhdymT4p0c0MYiIpK6vBcier/ZaALcKPSRDNcvT5eepGt?=
+ =?Windows-1252?Q?eEocdk/i7vD73cGM3W2980FqYNtKSLzGlE1CAVdGzzQvDmG9ZrzRlE7d?=
+ =?Windows-1252?Q?LqIUVYU8aowht9KUzayw7goRzd9ggik4vY5L+tx/TWLVaIXNAFdfZFKK?=
+ =?Windows-1252?Q?H4ZSini5L9igCguJ3inPbpl56Plk/JHNrWIUPyWhdGIGQiZ1rFmDc1D2?=
+ =?Windows-1252?Q?TPRH1wQVIjJ7XMCBbsKsZLhHBxR/EbbalWQNb3AOBFQP65CKvFppwbLW?=
+ =?Windows-1252?Q?pawgF4pkCSZRc0xn9w0VfywnV9REYt6EBWbIYZ91Oy/9O0xjVa4ZpoDh?=
+ =?Windows-1252?Q?z6j6clK4bEwB0UCjE3KIa0cc1a+4Jc1tsFrVwuNG8zCosCdOfsWXkhjD?=
+ =?Windows-1252?Q?UWYDr5s1TGQmgPGnms4+p4CMgJFkQGA1vTUmQSTuJSd32CImHGpZKGJ2?=
+ =?Windows-1252?Q?5tUyyHz/x488+RUTMppCcYaUR+pkjs9FcFvJX1Te+TgMaozDZug=3D?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:MN0PR22MB3666.namprd22.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(366016)(1800799024)(376014)(38070700018)(8096899003)(13003099007)(7053199007);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?Windows-1252?Q?vdl1iUEdggSSmWB5colmUtvHEby0Df1eu2JOQOoMsVHpSG4LLbaiYCCb?=
+ =?Windows-1252?Q?IucTdQi0fRTH00toZoOiX/Jsyyd8U76lfsL9umutynuS7OmIYO0g+Uxi?=
+ =?Windows-1252?Q?S1deh/lZYxqF2Ynd+iPK9jYdyPo9poNtk3I1gxnfSWvHK2HYsMvWUCZr?=
+ =?Windows-1252?Q?BUN1P1oRscr+VHJYR3KXFdv/l2gLs1rXC/rDNLLxPxMsuw0KDhTWh6jA?=
+ =?Windows-1252?Q?F3dx9hOJXAa7ZvAQw7OIJ10g5p17gtIzQff3iQfXzovt0XGAP3YHrA9l?=
+ =?Windows-1252?Q?BjvWVJwyF7gxXObgO/BKNUEvVBxDPp4ojACZxOX8L2TF2mQfC0eSUV8t?=
+ =?Windows-1252?Q?+NB+3XxmmaEL4w4QXNqhqistp2bCRKaqTM4lK9hVnG79IvSL1gGbhDTP?=
+ =?Windows-1252?Q?PFDw5VXbnigt9fw8SNPldflfWoYc4Cads2/Be8j5NFx06TqauwAN9cpW?=
+ =?Windows-1252?Q?vOx/LXJazxHlfkOtiwXl7rz3EZp0AbcR8OGP/xYqfyeqacNy2tO3afLb?=
+ =?Windows-1252?Q?jb/JYjHONWSTUYROS0/kkwfxG9p1iE1U0LCiKXdKWtP8jfviOskMPUyW?=
+ =?Windows-1252?Q?uDEx2kxx6DHYgoPcPMbKBJLJ2193XXKFKWgixTpOiDG7ppllUWe2xe6V?=
+ =?Windows-1252?Q?uM6YXmIxjxknwryCc4YyHwDazjHpac9/3gAJGU92PNKM6yUq4ZBabHFF?=
+ =?Windows-1252?Q?eGR42Pjy6aOOLwY/tdV3z/ekqrttX7Qup0mRA4u7X9X/LXXXPVZjSs2S?=
+ =?Windows-1252?Q?paKSeP22mzqH2WAp+O/nWhdeOeUOpiqD/uAO9vt8lYcrh17h7k4taGU8?=
+ =?Windows-1252?Q?AnA2vBb7ymkTibSC5QU1/iHc8fVgkG5dAeEBSVtLJVfgs/O21y2op8ia?=
+ =?Windows-1252?Q?nT3KQU3FlbozLxi3/iTyKGX6eq/r7n5pgSZ1UMRkR+zswOxowuzFAgee?=
+ =?Windows-1252?Q?EmQwN/9EDuDxwGjYud2JFF9/2EqxjOzT+717RyXvE0qJL3kGPrgbva1i?=
+ =?Windows-1252?Q?QfTNxIA0ieZ6K9QrImEGdCOJCBENU4scwJr8k8/xDkCdwcar/3bWZLVo?=
+ =?Windows-1252?Q?tZny1l0tXkM5votgPo3K/0bIXyLrhZadcmEprfQogFrqj3oWQVw33601?=
+ =?Windows-1252?Q?xcKjFt+weHgeEtM/FAh4z+BiQq7LrYKegbPxyc3Qp6d/9Ocjlhs+uCqZ?=
+ =?Windows-1252?Q?8qNe21vMWFNyCm2gQ3iaVppI2vMoH9rl9ujx9c5ws8YMqE4DuS45YHTm?=
+ =?Windows-1252?Q?AWrUHNntlVrlonmwbSV+AgqQgxsMPlQX7Qyx7wz5BeHsg251hHmEnK0O?=
+ =?Windows-1252?Q?LLjT7aUT9UysNrCUlAbC7khKL9BBeVzXL+vLWTmAOc5cT9KVmtf36q6e?=
+ =?Windows-1252?Q?xbs51WwlmEIYtbwj2n19l+/f7jHuzhJlFlq/dc8o3eVjv/cb6unhBgBe?=
+ =?Windows-1252?Q?y9xy990gITok8mE9EPewc8JKd7TmR97q4Zop0SgCV344/egLmyU4jVC6?=
+ =?Windows-1252?Q?6eNLy6KheV1GvFLkEPsdqZK2h0jit3S8gutNpktTKbn0O6z+VyHIzRfC?=
+ =?Windows-1252?Q?J7KA15e8JNc41XKTP7VPGOoIMTKRd62jkN1H9nDAkY3t3GE+n92g/sMz?=
+ =?Windows-1252?Q?1aa2SNEmb93qI8deJHkv87gZ2QtLYHlRJGFKmqlFmVEYjVj3zSKsI/qB?=
+ =?Windows-1252?Q?YTcbVf0K15o=3D?=
+Content-Type: multipart/alternative;
+	boundary="_000_MN0PR22MB36663F5E5EB69C21CFAB25A19DB82MN0PR22MB3666namp_"
+MIME-Version: 1.0
+X-OriginatorOrg: whitney.org
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: MN0PR22MB3666.namprd22.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4a5bd2e9-2576-487f-6391-08dd80f05f99
+X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Apr 2025 16:20:03.6607
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 28ad7bce-66ad-4171-92a3-6e36d172f6eb
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: PabJy4QhWPaFPx7GDRgYG2E5fvpQhV51Cy/Sw/bHPNQHk3GBUyqYSTbMUZ3bLUSdTcsKNCVjoFOqz69SmzaVLQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV3PR22MB4727
+X-BESS-ID: 1745252406-104336-12650-1382-1
+X-BESS-VER: 2019.1_20250416.0026
+X-BESS-Apparent-Source-IP: 104.47.58.169
+X-BESS-Parts: H4sIAAAAAAACAzXLMQ6DMAyF4bt4ZoghDjFXqTrYsS0WxNAMlSru3gywPP160v
+	f6gX87bNDHTnB+YMNSedQ+TtSCgbaazdzaEhxhnrzyasJCAtf0+L0ft8/E6fYqao0sBx
+	eXSrMmQ0qmLoJ1sQzX+w/uKWSEgQAAAA==
+X-BESS-Outbound-Spam-Score: 0.00
+X-BESS-Outbound-Spam-Report: Code version 3.2, rules version 3.2.2.264050 [from 
+	cloudscan-ea21-205.us-east-2b.ess.aws.cudaops.com]
+	Rule breakdown below
+	 pts rule name              description
+	---- ---------------------- --------------------------------
+	0.00 HTML_MESSAGE           BODY: HTML included in message 
+	0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
+X-BESS-Outbound-Spam-Status: SCORE=0.00 using account:ESS111578 scores of KILL_LEVEL=7.0 tests=HTML_MESSAGE, BSF_BESS_OUTBOUND
+X-BESS-BRTS-Status:1
+
+--_000_MN0PR22MB36663F5E5EB69C21CFAB25A19DB82MN0PR22MB3666namp_
+Content-Type: text/plain; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
+
+Thanks so much, Bre! I'm looking forward to watching it.
+All best,
+Christiane
+
+
+Christiane Paul
+
+Curator of Digital Art
+
+Whitney Museum of American Art
+99 Gansevoort Street
+New York, NY 10014
+
+________________________________
+From: bre pettis <brepettis@gmail.com>
+Sent: Saturday, April 19, 2025 12:13 PM
+To: Paul Cohen <paulrcohen@gmail.com>; Thomas Machnik <zipnpup@yahoo.com>; =
+Christiane Paul <Christiane_Paul@whitney.org>; Zachary Hendel <zachary.hend=
+el@bantamtools.com>
+Subject: Harold Cohen video
+
+
+This email was sent from an external source so please treat with caution.
+
+Hey folks,
+
+We shot this video footage over a year ago and it got a wall until I hired =
+a pro editor to pull a story out of 12 hours or so of footage shot on phone=
+s and multiple camera ms.
+
+Battles with peaking audio, auto white balance challenges and way too much =
+material and here we are!
+
+I=92m happy with this and I=92ve watched this many many times with the edit=
+or it is time to publish. We are working on the subtitles and then it will =
+be ready to go live sometime this week.
+
+I=92ll ping you again when it=92s live so you can broadcast it to your fami=
+ly friends and network but wanted to give you the sneak peek.
+
+https://youtu.be/TbsDA4Nc__s?si=3Du260CxdyWGEKvuY_
+
+
+Bre
+
+Sent from my mobile communicator. This e-mail and any files transmitted wit=
+h it are intended solely for the use of the individual or entity to whom th=
+ey are addressed. If the reader of this e-mail is not the intended recipien=
+t or the employee or agent responsible for delivering the message to the in=
+tended recipient, you are hereby notified that any use dissemination, forwa=
+rding, printing or copying of this e-mail is strictly prohibited.
+
+--_000_MN0PR22MB36663F5E5EB69C21CFAB25A19DB82MN0PR22MB3666namp_
+Content-Type: text/html; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
+252">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div class=3D"elementToProof" style=3D"font-family: Calibri, Helvetica, san=
+s-serif; font-size: 10pt; color: rgb(0, 0, 0);">
+Thanks so much, Bre! I'm looking forward to watching it.</div>
+<div class=3D"elementToProof" style=3D"font-family: Calibri, Helvetica, san=
+s-serif; font-size: 10pt; color: rgb(0, 0, 0);">
+All best,</div>
+<div class=3D"elementToProof" style=3D"font-family: Calibri, Helvetica, san=
+s-serif; font-size: 10pt; color: rgb(0, 0, 0);">
+Christiane</div>
+<div class=3D"elementToProof" style=3D"font-family: Calibri, Helvetica, san=
+s-serif; font-size: 10pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div id=3D"Signature" class=3D"elementToProof">
+<p style=3D"text-align: left; background-color: rgb(255, 255, 255); margin:=
+ 0in 0in 0.0001pt;">
+<span style=3D"font-family: Calibri, sans-serif, serif, EmojiFont; font-siz=
+e: 9pt; color: rgb(33, 33, 33);"><b>Christiane Paul</b></span></p>
+<div style=3D"background-color: rgb(255, 255, 255); margin: 0px;">
+<div style=3D"direction: ltr; text-align: left; margin: 0px; font-family: C=
+alibri, sans-serif, serif, EmojiFont; font-size: 9pt; color: rgb(33, 33, 33=
+);">
+Curator of Digital Art</div>
+<div style=3D"direction: ltr; text-align: left; margin: 0px; font-family: C=
+alibri, sans-serif, serif, EmojiFont; font-size: 9pt; color: rgb(33, 33, 33=
+);">
+<br>
+</div>
+<div style=3D"direction: ltr; text-align: left; margin: 0px; font-family: C=
+alibri, sans-serif, serif, EmojiFont; font-size: 9pt; color: rgb(33, 33, 33=
+);">
+<b>Whitney Museum of American Art</b></div>
+<div style=3D"direction: ltr; text-align: left; margin: 0px; font-family: C=
+alibri, sans-serif, serif, EmojiFont; font-size: 9pt; color: rgb(33, 33, 33=
+);">
+99 Gansevoort Street</div>
+<div style=3D"direction: ltr; text-align: left; margin: 0px; font-family: C=
+alibri, sans-serif, serif, EmojiFont; font-size: 9pt; color: rgb(33, 33, 33=
+);">
+New York, NY 10014</div>
+</div>
+<div style=3D"text-align: left; background-color: rgb(255, 255, 255); margi=
+n: 0in 0in 0.0001pt; font-family: Calibri, Helvetica, sans-serif; font-size=
+: 9pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+</div>
+<div id=3D"appendonsend"></div>
+<hr style=3D"display:inline-block;width:98%" tabindex=3D"-1">
+<div id=3D"divRplyFwdMsg" dir=3D"ltr"><font face=3D"Calibri, sans-serif" st=
+yle=3D"font-size:11pt" color=3D"#000000"><b>From:</b> bre pettis &lt;brepet=
+tis@gmail.com&gt;<br>
+<b>Sent:</b> Saturday, April 19, 2025 12:13 PM<br>
+<b>To:</b> Paul Cohen &lt;paulrcohen@gmail.com&gt;; Thomas Machnik &lt;zipn=
+pup@yahoo.com&gt;; Christiane Paul &lt;Christiane_Paul@whitney.org&gt;; Zac=
+hary Hendel &lt;zachary.hendel@bantamtools.com&gt;<br>
+<b>Subject:</b> Harold Cohen video</font>
+<div>&nbsp;</div>
+</div>
+<div>
+<p>This email was sent from an external source so please treat with caution=
+.</p>
+<div dir=3D"auto">Hey folks,&nbsp;</div>
+<div dir=3D"auto"><br>
+</div>
+<div dir=3D"auto">We shot this video footage over a year ago and it got a w=
+all until I hired a pro editor to pull a story out of 12 hours or so of foo=
+tage shot on phones and multiple camera ms.&nbsp;</div>
+<div dir=3D"auto"><br>
+</div>
+<div dir=3D"auto">Battles with peaking audio, auto white balance challenges=
+ and way too much material and here we are!</div>
+<div dir=3D"auto"><br>
+</div>
+<div dir=3D"auto">I=92m happy with this and I=92ve watched this many many t=
+imes with the editor it is time to publish. We are working on the subtitles=
+ and then it will be ready to go live sometime this week.&nbsp;</div>
+<div dir=3D"auto"><br>
+</div>
+<div dir=3D"auto">I=92ll ping you again when it=92s live so you can broadca=
+st it to your family friends and network but wanted to give you the sneak p=
+eek.</div>
+<div dir=3D"auto"><br>
+</div>
+<div dir=3D"auto">
+<div><a href=3D"https://youtu.be/TbsDA4Nc__s?si=3Du260CxdyWGEKvuY_">https:/=
+/youtu.be/TbsDA4Nc__s?si=3Du260CxdyWGEKvuY_</a></div>
+<br>
+</div>
+<div dir=3D"auto"><br>
+</div>
+<div dir=3D"auto">Bre</div>
+<div dir=3D"auto"><br clear=3D"all">
+<div dir=3D"auto">
+<div dir=3D"ltr" class=3D"x_gmail_signature" data-smartmail=3D"gmail_signat=
+ure">Sent from my mobile communicator. This e-mail and any files transmitte=
+d with it are intended solely for the use of the individual or entity to wh=
+om they are addressed. If the reader of
+ this e-mail is not the intended recipient or the employee or agent respons=
+ible for delivering the message to the intended recipient, you are hereby n=
+otified that any use dissemination, forwarding, printing or copying of this=
+ e-mail is strictly prohibited.</div>
+</div>
+</div>
+</div>
+</body>
+</html>
+
+--_000_MN0PR22MB36663F5E5EB69C21CFAB25A19DB82MN0PR22MB3666namp_--

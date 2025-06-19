@@ -1,0 +1,162 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a10:6d08:b0:5c7:f970:fbca with SMTP id gq8csp4005467pxb;
+        Wed, 29 Jan 2025 09:08:02 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IEHtrzF9vHrIjRqo7qE7PmrIcoj9/5wSQhto+LqySgea8sHeKKq7XBJvWjoCkandri2Ng3v
+X-Received: by 2002:a05:6122:6093:b0:518:7d3a:dd13 with SMTP id 71dfb90a1353d-51eaf0c7513mr67811e0c.7.1738170482287;
+        Wed, 29 Jan 2025 09:08:02 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1738170482; cv=none;
+        d=google.com; s=arc-20240605;
+        b=U/qRyMXWoHpNwoJ7G3c43YFEKL9EvP+9JWiCpTIdjPZkD65C9ewZ8nUS2BdafZkVko
+         0zwqo8zR8HDKLotKAmbFE1YoAbvMWJvzoikOcPPSJfQWJ0u7JL64zkDfumvFSCD2c9aC
+         iAR0LQ4Ga8rylMo//CymqAK8740xS/e4m2eA0Li5jAkHayuw0F/4lLdtmlNRcR0HekA3
+         4ucqXgSIGGONl+k08P3yORE+PN5MX/sBVTiM2Qp0CWi5/jnRm5cqV9rwAK+3Is5cptqF
+         ejxkgHKD81HAsqpqPWnROkJlKP0jhbPAnzMJ6pFNhjD2kMGWFXJOYZ8OCOLl7aMmial5
+         yMIg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:subject:references:in-reply-to:message-id:cc:to
+         :reply-to:from:date:dkim-signature;
+        bh=6HVx2cYzNq447NSEJsCTmc5vRu5Q6z9xCR2cP8xRGW8=;
+        fh=SS7Ie3qIfevRsx8mEk8syJV3nAucqpW/Zhd2gvZZTIU=;
+        b=ho5MTOGuIzHcllJkPUtwMN6Hib5sYLpadkZRPabwc7NQjmpejJyVxhdkmDn/MGIcCB
+         MxrGDWylSmzZv8mbHEUx4kgt+4XgS+trnnecVemgvaxrH7ZQyHnzCmf3BSRfvRuMH3RK
+         uaHRKrRwo321MUPgPq3TGOD9vrOr11D8LjV+ZST+puQGgyFfTZNXnQbfe6Rz9guvlIAR
+         mByvVZtoy0LDvcUSPnHCqNsc6zdJOl3P3DThYb3szfs9Vq2BSNV37AkYh8/mBJ4VzTAE
+         upSz12M3EaBOHVIXX16Rg1Uyg60eH0ZhanePKwWEKC7Y1evnadxk/cBCoITrl1G7fcfY
+         OUlA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=pu5TEF+9;
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.130.121 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+Return-Path: <zipnpup@yahoo.com>
+Received: from sonic316-11.consmr.mail.bf2.yahoo.com (sonic316-11.consmr.mail.bf2.yahoo.com. [74.6.130.121])
+        by mx.google.com with ESMTPS id 71dfb90a1353d-51e4ec80c57si5191124e0c.176.2025.01.29.09.08.02
+        for <paulrcohen@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 29 Jan 2025 09:08:02 -0800 (PST)
+Received-SPF: pass (google.com: domain of zipnpup@yahoo.com designates 74.6.130.121 as permitted sender) client-ip=74.6.130.121;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=pu5TEF+9;
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.130.121 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1738170481; bh=6HVx2cYzNq447NSEJsCTmc5vRu5Q6z9xCR2cP8xRGW8=; h=Date:From:Reply-To:To:Cc:In-Reply-To:References:Subject:From:Subject:Reply-To; b=pu5TEF+9ksZhAQ1iAYI/wmWfOV+GxIJoLtKVyFR0loO97EStLSWXq7KUI9l7y0jbot4ewycZW4Te8KDOkgzd7Mdmi6PaTnsJGXQOL4JJADNvP9nEyl1JG/DKQFZ6tXxGu8FUYBDgdfffZHkJLfvb9QuLIR6K79DrxcGvxRQSTIagpwx3+mn7hdprpiSyyblYPMpt1iTLzveLAQQb8tBlw4Nd0cDithshjaL2RMysnduqrw/TdF50uyerKbVOPFTub/zb01ZrunBsCI7fAEfjSiilRx0YqXKyrRfCFz/wbOQU0CaUiK9lx2PGCXzAGPhoa9e8qjE4hgXSiuZAmrDoIw==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1738170481; bh=T6pWeVORNosiYYLmHLvqJqwk5ygXljkSsi4t6rBjP/c=; h=X-Sonic-MF:Date:From:To:Subject:From:Subject; b=otRV12mtl87oJvlL73zi2VSAXknSOojPKkiW0kTJEiJESJbgErb78Mmr7YWn3v7R/rqdO6ZFNrQRFFOuqHVvkwyF5fS3h+kbpy2JdZLMyrLbehVQ2TbsJcbIjzV1zT2qT2/68GiZqXvPLhOQmxfYgZfuvlvf2KK1PAik2r6t5cqqAIhJamNz5HZLjDJC3n69OBfA16JfbH+tH1Dz9hL1hNpfAQqIXTtXPgoqsRZqca52eJ1mUQvx+q5rJFq3NvKilFIDo6zkGfwcqwaW7CbjOEHxvmcfxc/dEUQhWdAw/yRfqlQIaZ3/Xuax2Osb8Ut6hqVHFIhWoyJ4bwgHID/4YQ==
+X-YMail-OSG: 0fHQavgVM1m8FecbBJuDUEPJopASjN0xCgOg0S2dbG9rQK3ZTbcflly6XTkl2Al
+ ldlCD1v0dpMivarS8qR2syNlxKLiV_CszTiLxR4eDqzKZ5L.8Iy8OKy8Se_ZafFhxQDuCts_dJxO
+ Naak6aLVyqjVpFHDnHlZwKKE4JRzmqJsGI.sTIlRO5xtjzsVs5bJihb935ZbSdEqlddkJWS6H3xy
+ O37LLPXZP1m2AeV5OjXWNW3G.H_N7OFwrCATOnaF1JOhkt2RLMxKgX0itPQxmCTmUBGg9mkY6Ph6
+ CnEnohZNWTtmAogfn7owff8VWi84gfYKrTCZwTh2X8JVulEaX.yeUQL_6yGK1i6o4FDPeHBwHH0C
+ 8TK7F4wJVszw07fKd1vZGQL9biWubcvZkwID2x6fABRVKNi2RoRSewb9UYTuFtmEdw4AboIKnFa6
+ SbscPg1jXVOXSc7DwdrKj3waViGZOznViYVgno0vMqkV1YPNkYAjrFLjjv5K2eDfFGUyeIwXjnMC
+ YP6ScCBfBLce7NCokpZTa5CRhF8hU_QE_uqbBN8blreMJTShGyN8anMz58MpdrYrHY_L2WQbDW8G
+ VPJLUSmM.QrxK_twcmPTTtrEAn7WuvYAtDAMDQKmcVJkLpev0bp2VsMfmpAGKhTWC_FiTwFPRBe.
+ uYj422SDz0QuZgBR6Di6lbsZlgDeysvhKOtLpRuKtiLxJSgunOq3x_lE5AXIgV6jUeB9Sef0TqL3
+ _ADVPOU_ly8Viy0E9bvsMBF.MXBvUzFO4TWbnOjb_15Iw9WDFStyvGeri8EYY6PsBvHv4CZLYSpg
+ C0nq37FVAMNWXu7T6hRhIi1cWSTJrsa6osIl1.N5H1rjazIBdA5cTMfNDG9URBxhswE9re6839FQ
+ RSwm.0OzmIxHEL0IlLMvOUaTZE2FCgxeWT0qYthomfsUWr72SPZeVl9WoaZAjUtZP1tB1Mc652q8
+ ua5DMrlld2JSFLIav2iPjGo2m6PHfVtdejxbJEsyGkib_vZPBY5wKTPuHOkQWUphLPWG.uW7ShLO
+ LDjOLImxwLwcUQ.Cx9AueizfVMhxgmFCGSfiiuzmdzdiTOYZmEQ1k2DOjEJ7Vp9WEnejAqE3Ygwy
+ GGs8ECpv.LMU5f6iUniKqUMoOe_qbVTFC.2adtKOTqC5EOZ4kh8Pp7ZVsodWuOpFr.PMOP7FrhU5
+ 7.UcMRRL_GMSdN3S_TpKyCUEY0BCY2mmLl4UtKGRBXjh3ApD5Mfz_7WTiOKauCV5HT7mvTzg5QS5
+ bctd4cDWr5AB.PMcQmzeRyCDavM6LaQFbNyygkrfYjMbPTk5NK7.g7gXp0Ua.svwzWRKIh0GGiZi
+ q0dYB0_dJleU9ZA9lgmzzWV5g8bIP_YhhJ26XNbSrAIyjwaCcT4zqmlZKnRtnhOrgDWKPJZmvgSp
+ b0saMLcTY62NNCeOixh1K3K8KyDo1JxzU2h5gkA3uXuB931U.m6lCxymtmL6DZ9fdPiZh7Y7nldT
+ dt.lvg4qwaG.dIecHQEMKvm48dQxPK6hJL_7QWPD4n8jylirITL4U6dabsEHYsVixp.oW_fH8UYc
+ Rh.RtPpjoeLDyqLDJjNt7qPZPa4IpNskicJl0VXvn6KUK.QKKxnaONsC68fGO43SAP6bgxRVyHCu
+ YgNh4JrxZqUhjIDuQwOlQeJlSTND4KfTBmqIAmbRi4fIg_.unesU0p8JEN5Ymv6IZ3kZPFakGWOc
+ FM3teS_Ucwk7M1hl4JhIc830jz5RacjpCNndt.D1Hz9f_6JR8Ix9NlO_mFp8olkCofZizozGEPo1
+ 32zPPpVDZDyrP0t97uiX.b2G8kcydmKl0_hp8xhCWqy74.YLZ5Hi5LTRXfRji2mhgyV39ifzHoYz
+ rAgdRcrUTAy9NTrMJkMbcR3e_2sByHUTXyOU2RIMnayRY7DPAchWa1G18wEsuri1lJmdqo7lfiTj
+ pTBOyPSttaavb.gkAm4yKvYJrqcFUVOsJyn6qs41Q7L6i4vtvkYP45JSoyKpcNG16ptyaU3Kv2P6
+ o2NG.Lhk55NXNPqDeB_hV2WtUqbZ8dRC2h4LddvCKeqav3mKi8mbYaVfyUB8qZ62IsNJJ8F1qb1y
+ DnVrtzrJrR9Axoe_WkriFud1pH9_Me4jXVyI8ztAg0TOsRrGS0CukC6vOvQcDddgjZ2G2V3GBdzt
+ UZrHvd9FF4C0zvccqgl.AZZ0BGwYPP.eUi1F7yr3tNNUfiGKY65WUOXS_oTOcLLogygCK1GgmtnE
+ rtnEBW182LFSvBI4nW6R2VEwp5.GPR8CeibnbZXk0Zz6wCB147cUoJw_yNdLmx3Y2X4G3UT5YM2z
+ WC.CNRN5Ol06658xpREKUA95b959dkA--
+X-Sonic-MF: <zipnpup@yahoo.com>
+X-Sonic-ID: 933be3f8-cdc3-4aac-9590-13a0477d33fe
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic316.consmr.mail.bf2.yahoo.com with HTTP; Wed, 29 Jan 2025 17:08:01 +0000
+Date: Wed, 29 Jan 2025 17:07:15 +0000 (UTC)
+From: Thomas Machnik <zipnpup@yahoo.com>
+Reply-To: Thomas Machnik <zipnpup@yahoo.com>
+To: Michael Pollard <michael@gazelliarthouse.com>
+Cc: Paul Cohen <paulrcohen@gmail.com>
+Message-ID: <565095483.3254739.1738170435936@mail.yahoo.com>
+In-Reply-To: <CAGxUL8tPCWRQ7MtJgtaxxQ+_94SheENPBKHHEOtXLx0GyWM50A@mail.gmail.com>
+References: <1368161520.2967243.1738082226596.ref@mail.yahoo.com> <1368161520.2967243.1738082226596@mail.yahoo.com> <CAGxUL8tPCWRQ7MtJgtaxxQ+_94SheENPBKHHEOtXLx0GyWM50A@mail.gmail.com>
+Subject: Re: Shipper
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_3254738_937330710.1738170435935"
+X-Mailer: WebService/1.1.23187 YMailNovation
+Content-Length: 3869
+
+------=_Part_3254738_937330710.1738170435935
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+ 
+Dear Michael,
+Thanks for the clarification and for the status update. I will be in standby mode,
+Tom
+    On Wednesday, January 29, 2025 at 05:49:35 AM PST, Michael Pollard <michael@gazelliarthouse.com> wrote:  
+ 
+ Hi Thomas,
+Dietl are arranging.They have said that their local collecting agent is a little busy, so it may be a moment before they get in touch to schedule the visit / pickup.I'll follow up with them and see if they have any availability.
+Michael.
+On Tue, 28 Jan 2025 at 16:37, Thomas Machnik <zipnpup@yahoo.com> wrote:
+
+Hi Michael,I have not heard from the shipper yet. If they called and I was unable to take it, they did not leave a message. I was assuming they would initiate the call. Maybe that was incorrect. In any case, there is no action yet toward the net step. Please advise.
+SincerelyTom
+  
+------=_Part_3254738_937330710.1738170435935
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head></head><body><div class=3D"ydp3e527986yahoo-style-wrap" style=
+=3D"font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px=
+;"><div></div>
+        <div><br></div><div dir=3D"ltr" data-setdir=3D"false">Dear Michael,=
+</div><div dir=3D"ltr" data-setdir=3D"false"><br></div><div dir=3D"ltr" dat=
+a-setdir=3D"false">Thanks for the clarification and for the status update. =
+I will be in standby mode,</div><div dir=3D"ltr" data-setdir=3D"false"><br>=
+</div><div dir=3D"ltr" data-setdir=3D"false">Tom</div><div dir=3D"ltr" data=
+-setdir=3D"false"><br></div>
+       =20
+        <div id=3D"ydp3e527986yahoo_quoted_8758830373" class=3D"ydp3e527986=
+yahoo_quoted">
+            <div style=3D"font-family:'Helvetica Neue', Helvetica, Arial, s=
+ans-serif;font-size:13px;">
+               =20
+                <div>
+                    On Wednesday, January 29, 2025 at 05:49:35 AM PST, Mich=
+ael Pollard &lt;michael@gazelliarthouse.com&gt; wrote:
+                </div>
+                <div><br></div>
+                <div><br></div>
+                <div><div id=3D"ydp3e527986yiv3586006335"><div><div dir=3D"=
+ltr">Hi Thomas,<div><br clear=3D"none"></div><div>Dietl are arranging.</div=
+><div>They have said that their local collecting agent is a little busy, so=
+ it may be a moment before they get in touch to schedule the visit / pickup=
+.</div><div>I'll follow up with them and see if they have any availability.=
+</div><div><br clear=3D"none"></div><div>Michael.</div></div><br clear=3D"n=
+one"><div id=3D"ydp3e527986yiv3586006335yqt53628" class=3D"ydp3e527986yiv35=
+86006335yqt2193354944"><div class=3D"ydp3e527986yiv3586006335gmail_quote yd=
+p3e527986yiv3586006335gmail_quote_container"><div dir=3D"ltr" class=3D"ydp3=
+e527986yiv3586006335gmail_attr">On Tue, 28 Jan 2025 at 16:37, Thomas Machni=
+k &lt;<a shape=3D"rect" href=3D"mailto:zipnpup@yahoo.com" rel=3D"nofollow" =
+target=3D"_blank">zipnpup@yahoo.com</a>&gt; wrote:<br clear=3D"none"></div>=
+<blockquote style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204=
+,204,204);padding-left:1ex;" class=3D"ydp3e527986yiv3586006335gmail_quote">=
+<div><div style=3D"font-family:Helvetica, Arial, sans-serif;font-size:16px;=
+"><div dir=3D"ltr">Hi Michael,</div><div dir=3D"ltr">I have not heard from =
+the shipper yet. If they called and I was unable to take it, they did not l=
+eave a message. I was assuming they would initiate the call. Maybe that was=
+ incorrect. In any case, there is no action yet toward the net step. Please=
+ advise.</div><div dir=3D"ltr"><br clear=3D"none"></div><div dir=3D"ltr">Si=
+ncerely</div><div dir=3D"ltr">Tom</div><span></span></div></div></blockquot=
+e></div></div>
+</div></div></div>
+            </div>
+        </div></div></body></html>
+------=_Part_3254738_937330710.1738170435935--

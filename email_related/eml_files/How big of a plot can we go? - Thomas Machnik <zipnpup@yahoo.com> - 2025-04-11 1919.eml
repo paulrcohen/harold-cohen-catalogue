@@ -1,0 +1,155 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a10:6f10:b0:5ec:db95:1ae4 with SMTP id jd16csp667860pxb;
+        Fri, 11 Apr 2025 16:19:44 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IHOuuoT7BdMdxxrwo1qOOq4P2hh5l5Bm345xB53WTiwmeB4i3Ql+kGL8mCZhn+aTKtMmraF
+X-Received: by 2002:a05:620a:c4a:b0:7c5:e3ad:fa19 with SMTP id af79cd13be357-7c7af10c0e8mr621897485a.16.1744413583928;
+        Fri, 11 Apr 2025 16:19:43 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1744413583; cv=none;
+        d=google.com; s=arc-20240605;
+        b=GyDAxX1dATl9/OyBnBhkh6do8AHIOimpNud1baEzN3Znds2FKOdQXl3nr79CNBx3Z1
+         Uu2U1IVscMzDyn2DtTsMwFcFo2l+uybfF9cX4Y8viqQ0aRdjZnD93i4eyqbuJ8k9oFV9
+         fj6YqjsHE+jpRWusAEpeNsarhjOhc05Vbtyq8mmWh2kae3vkq2ZQMz1Gx+RVpmwUHtq5
+         ZFf2IBxV2zlUQKZevibG+nCoseC/ZefV3c/ZWY1YBspHoPFoVU1WQ2FU592zaQX2CEFr
+         NovOrGN8YPUHO7S/C7H/KTgBao+PSEfjUI4wVnlnH0hGNvYQD4WTHuGdJTj8gmBQg1Oj
+         K2/A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=references:mime-version:subject:message-id:cc:to:reply-to:from:date
+         :dkim-signature;
+        bh=1KV/XWO2t1631Yg4+LnUdYxKWs7Xs3ODFGAyuyfwjts=;
+        fh=nlqlkoILC8wh34bGcQF7jqFepSy/YVtzV7EsNUSRuFg=;
+        b=WrHPziFAOzI3ooO7jHJq/iul4L12tQAtxODmaOpT0E7k8g8nBK7nzrbI3cNHOe4xNT
+         H1pl+pYZeGDfd9wTMQVimpzIaHfdgN/d5t4DT2xoF0pVSSsu6IKDt+rn4OyFaInQEhHc
+         EIx//RXFAqTfC3MmFPrdZ0hVGU6UgJZMay6SjLru82mQX752MD5tCN3Kwv6jlXJMF24F
+         nF5snHy84ai+0HRKWoPgFU0C1gLuBPvd8Kpznw8c/2qx8bTyRsr0r+xTE0+yX5eFK6cW
+         CTfPxXs6bjXfG+UXlHWx2rdvL0L8+lk12M2yBLyvvHp/FdxsXE3XaylerNtzmMeZ1ah5
+         jlWQ==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=ik805Rt3;
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.135.82 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+Return-Path: <zipnpup@yahoo.com>
+Received: from sonic318-27.consmr.mail.bf2.yahoo.com (sonic318-27.consmr.mail.bf2.yahoo.com. [74.6.135.82])
+        by mx.google.com with ESMTPS id af79cd13be357-7c7a8a4323csi380875585a.627.2025.04.11.16.19.43
+        for <paulrcohen@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 11 Apr 2025 16:19:43 -0700 (PDT)
+Received-SPF: pass (google.com: domain of zipnpup@yahoo.com designates 74.6.135.82 as permitted sender) client-ip=74.6.135.82;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=ik805Rt3;
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.135.82 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1744413583; bh=1KV/XWO2t1631Yg4+LnUdYxKWs7Xs3ODFGAyuyfwjts=; h=Date:From:Reply-To:To:Cc:Subject:References:From:Subject:Reply-To; b=ik805Rt39lumeWor73BNnABO5yML+As8bM0iQqkhL8y3kqW/11Dqw7cNg5USP9roPNKqCxfqrZPNY1KiQGOA4dTx9i984Y22JW79rA5C0/XIWPlPgkhe8Sx03UZbJc0jvwQgVpdjefwqPXvnqUmRXLBqqZ0OreoXQ7Q7Xs5rxdlz0LM+8x7g5No8oqygKlgdtBRCRVwfgbMNzyA4Y3+5l9mFKq6v8FTiwqEZNgIU0eXzMwfY7JlYnO4WbAMwe4ZVS+eI0WCm3kiAELjEasvX1G0MiYPOiP9L0J3VH8OlLCm1DQ2DTwWXXdQwDmpeaMhhU22K2i5DilABcQYRPpqClg==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1744413583; bh=+508qVEN3Enhx2dMmm8+XFSGp3wQp2oJeSS92NAsL47=; h=X-Sonic-MF:Date:From:To:Subject:From:Subject; b=RUtn2ddQm9e9MfmbgnYawScz97w0rW7XiFnk/OYTXvqjvtn2yzXk8rgZSiJ1GQI5aTgsxovSbkQBpCmxKBq9kC3BkQMyaeNlWmizZ7G+etZ86K6Ct3dV0ruL4/3uwwW4/zy8pq8oK+uBofK1peh4Y54HZHa2B9h6NdXdZQP8MVdWE+JWLaM/0reZRJsUXVWF1yK8JSmP6Wh+vH/CMHkHKPCIzo7IK7/1udIayXiddxfa3Xck+1WG5VOYatzL8yojVXd977yHG9q9yI7MKr48mgIY23PkosMqUc03akzYRk255GyK+e5fkSUYtd5imj6A5hid3c+pF1P8QdviON+ZAA==
+X-YMail-OSG: lx42G0kVM1kMa0UUIHYzCB4jZXW9qsMvvT.zDSAjS3yeTIKiJJL.k82UAC9kWuM
+ p8GuescX7Md1f_mHrak9U37eO0hhn9N8l4Qoo6N64FK8bg3yK3nGbBq2yRyv3x5s5zDyQI.VF8sf
+ aoX8s44XS2zAwHA5pfFamcTgIsmCC21ziBcgZOswPa4TEFAITow1XdW9KQ7msa3H91.qMa0iMpEB
+ YbDZDLyyHe.Ml6ZjLvJP1c5mC_8cZnsMLj2EzRANHdSAczOwBY9gSZLjcgbGPw78K4NRnTPaOxjL
+ Jees1fg38mPA5zIZuxPc8xhXihWJprCr7dTpu5V9qv9bxDyGyBegzN7vFdbLNg_KBBOE1iHHZEnM
+ zSB2kMqHs9zkq_GxeTYWM.ieBIq6FC4CDijcCzRuAGaVIgkPKInFHpqmfnF6PLTf60ZTwQSqSyC1
+ TuOHADPp0pT7uDLgsAAn3XpOmAoHbBRvI7wJapIHcog3DiSYX.rfSFM53t.AMKk0wdkvTIkCZ2SB
+ parr_bQxpNN6ZjFa5RlTU3qqXn4lLu95tbSzEYbC_OcfkxbGUDBng1kx8WuOqOSDeG8_pjHyYspa
+ 60wQgqnyyqKX9KyRAY4mw8gBdXdF_eV2vkAIB7mc_7RxDWPRoe.2pyIZL_KblzRxGqtcD0Uk3iUd
+ 5dok9sTG6SZIy8WaOcAT1B2mrJCuGz1zQ1Xo79uifIrC4qRxEEgIrCITfkwoi8hFfqELNQnkax12
+ pz9GBqLPdtC0s9Uy1idTaUqa9rcdAI35wltGcfkgensahxDPVLeDnNgZuiqHHxLOlgpIWIF6Omoc
+ zQq7lyDlQHAN.xzKvGuIgkm34H4VogfCpxQKAWTc8KFvMlD4ZaS5p.aFDYqB2J4Bx9W4LJMdA8Th
+ BIUiLS2go9ndQrmeTas.FZ51PRie403H8QsYqaS_LCSc.4JQQvESwRamdOfbABn3RojWddB..AtJ
+ NzvBLtZuFWTrL.qxN2bz_XzHCgw.JEgsr__qYUUeoL6cwwUjudVL_aVsIVaS09paFDnt6wvnqG3W
+ qPW42vPGs_rUpW1y3cdNZpdV43tUImY80SIUL0FvtIkk11rlm9JNpXmLmu.8QwiuD9Xox5GQF0go
+ awTdbcjDMEzOiZmqndy._hAYrTVWpq0.5dam9ZnTOtByMQIV8dGdwbSMan5JII8_pa.yOYsyEkst
+ ijdxJ0lTpPwgj_X68vtUiZl6W7CYGPoBvcC5AV090LvmLM7C2a_YZTs4HqR6L9ZxL_JWvx1CG9kl
+ n8Iybl07SefQ89YRr1WdjOdtg6MCDFBoXt66QSVUFvRwGXcJnzcnL16.NYm28NwXt.Q.NI9xtWHP
+ u9x1zyx3GpDS_VJbapX1BANqZAmTUwRoOrDFRZsG.Z_n66YGGHbUZeoFcgytBjbeAMYii4GPxWvW
+ dlc9ozr14ONvM2SOqvPkezCIsBO1eNcgowiEY0twJA2xliJBL5WalcoRvtd5oz8L4OPpkjkidaog
+ XDCQi2bZ0GtuFAUn_VaZokaMjmt5pbMBEBRrFwJLF6VmSJshgGCxX1zSuWdp0CrWOJnx933mj8J_
+ H2Oi3NPfWKIxDyoITi0hDeK8f_VALtKVvpFMWo_TLFXh0.jW9CXpWXoyWdrKLRaR.gul6R.3scSU
+ wDoYoXwBU2PwiW6mA2Ppror607dZbmXzcUwCJbzsNNxlX_hspTCfq_Zj5Wug.LqejxYWoF.96Ysz
+ yGlsXef3H_lshUTXcwLlHxGpfQ8jJ5tDLkV6PhNvsfBgVmXCFKUfGebT6td4TveTXr0XBe_ypCuT
+ V8qUvy4vWqVPxWMAUBIy9yXUBaeg28_SYZ2LtmLI2w4rqnKkgXwIlIwAO.YBCHQj_scDVix4qkYD
+ 7GaJzBtUlajzs8l3lZpXDKLuonx0a0HPAXqUWJuafDZQ6W8RpaWRXvt3hekQNob96PNuWMqu71pz
+ nOgb5O5_YrRGv4fJ4KYe7pF13mHs6Fef.l9nAiCeMhWZk7DC4kVbpfX8mT3zVE8r70Ezx81PnjIp
+ fwY2oMF0nT8Xnv.vw7rW2BNAa5H8NZvXxh7Zaigptyt33Gc1AKuKjundxvRHYnZiJJ.IiGGH7XZ6
+ WrzSB.tLrHzXtWsS9IhG8i0mTlCpkdonwSCYIoiVzGUulMVbqhQNi.ewZvcbv4UXRpAZuJ4dZJSO
+ A_LZFJMJjLRcBjqmoxsmBTDlAMHHIWKa9bICnr4B4kqcWzCTa4_LCIwe29QMuOfVcXrSkBNffADw
+ MER00xX.egSqrur_h0j_q669ajbzEwkaGbc0qy7hGxrZajV3fXcH9lwblUOZ6xMWytT0.ZXwlQdm
+ jZNCnT3y1KD2hz5TeLbhOwA--
+X-Sonic-MF: <zipnpup@yahoo.com>
+X-Sonic-ID: d32c4ad1-c941-42ef-b5ae-91c171b9056b
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic318.consmr.mail.bf2.yahoo.com with HTTP; Fri, 11 Apr 2025 23:19:43 +0000
+Date: Fri, 11 Apr 2025 23:19:39 +0000 (UTC)
+From: Thomas Machnik <zipnpup@yahoo.com>
+Reply-To: Thomas Machnik <zipnpup@yahoo.com>
+To: Bre Pettis <bre@bantamtools.com>
+Cc: Paul Cohen <paulrcohen@gmail.com>, 
+	Harold Cohen Trust <aaron@aaronshome.com>
+Message-ID: <870313733.488364.1744413579696@mail.yahoo.com>
+Subject: How big of a plot can we go?
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_488363_1627102723.1744413579695"
+References: <870313733.488364.1744413579696.ref@mail.yahoo.com>
+X-Mailer: WebService/1.1.23665 YMailNovation
+Content-Length: 3754
+
+------=_Part_488363_1627102723.1744413579695
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+
+Hi Bre,
+
+
+Hope you are well.=C2=A0 Hoping to get some preliminary background on the p=
+ossibility of an idea Paul mentioned.=C2=A0 How close to a mural-size work =
+do you think your plotters could plot? Is 48 or 60 inch wide paper a possib=
+ility? Is even larger, say 8 or 10 ft possible? And instead having a person=
+ manually mount each sheet like at the Whitney, is it possible to have a ro=
+ll of paper? Like, say a 60=E2=80=9D x 100 foot roll or 48=E2=80=9D x 350 f=
+t? Or multiple rolls? And plot maybe a 60x48inch area at a time. And then a=
+dvance the roll for the next plot? Or could it somehow plot an area, whatev=
+er size that maybe, and then, move to another area and plot that other area=
+. And move about across whatever space is available to complete the work? A=
+nd maybe more importantly than the size=E2=80=A6 could all of this be done =
+vertically? This may be a bit ambitious, but in a sense, I am asking how cl=
+ose do you think you could get to making a vertical turtle that would execu=
+te multiple murals and do so with minimal human intervention. And however c=
+lose that might be, what would that look like?=C2=A0=C2=A0=C2=A0
+
+
+Sincerely,
+Tom
+------=_Part_488363_1627102723.1744413579695
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head></head><body><div class=3D"yahoo-style-wrap" style=3D"font-fami=
+ly:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px;"><div dir=
+=3D"ltr" data-setdir=3D"false"><span id=3D"ydp850d646docs-internal-guid-d38=
+0a387-7fff-4617-7b90-ba4a1a1df7dd" style=3D"color: rgb(0, 0, 0);"><p dir=3D=
+"ltr" style=3D"line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><sp=
+an style=3D"font-size: 12pt; font-family: Arial, sans-serif; color: rgb(29,=
+ 29, 29); vertical-align: baseline;">Hi Bre,</span></p><br><p dir=3D"ltr" s=
+tyle=3D"line-height: 1.38; margin-top: 0pt; margin-bottom: 0pt;"><span styl=
+e=3D"font-size: 12pt; font-family: Arial, sans-serif; color: rgb(29, 29, 29=
+); vertical-align: baseline;">Hope you are well.&nbsp; Hoping to get some p=
+reliminary background on the possibility of an idea Paul mentioned.&nbsp; H=
+ow close to a mural-size work do you think your plotters could plot? Is 48 =
+or 60 inch wide paper a possibility? Is even larger, say 8 or 10 ft possibl=
+e? And instead having a person manually mount each sheet like at the Whitne=
+y, is it possible to have a roll of paper? Like, say a 60=E2=80=9D x 100 fo=
+ot roll or 48=E2=80=9D x 350 ft? Or multiple rolls? And plot maybe a 60x48i=
+nch area at a time. And then advance the roll for the next plot? Or could i=
+t somehow plot an area, whatever size that maybe, and then, move to another=
+ area and plot that other area. And move about across whatever space is ava=
+ilable to complete the work? And maybe more importantly than the size=E2=80=
+=A6 could all of this be done vertically? This may be a bit ambitious, but =
+in a sense, I am asking how close do you think you could get to making a ve=
+rtical turtle that would execute multiple murals and do so with minimal hum=
+an intervention. And however close that might be, what would that look like=
+?&nbsp;&nbsp;&nbsp;</span></p><br><p dir=3D"ltr" style=3D"line-height: 1.38=
+; margin-top: 0pt; margin-bottom: 0pt;"><span style=3D"font-size: 12pt; fon=
+t-family: Arial, sans-serif; color: rgb(29, 29, 29); vertical-align: baseli=
+ne;">Sincerely,</span></p><div><span style=3D"font-size: 12pt; font-family:=
+ Arial, sans-serif; color: rgb(29, 29, 29); vertical-align: baseline;">Tom<=
+/span></div></span></div></div></body></html>
+------=_Part_488363_1627102723.1744413579695--

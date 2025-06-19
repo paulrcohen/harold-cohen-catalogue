@@ -1,0 +1,120 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a10:e214:b0:5ad:6c17:f336 with SMTP id r20csp1114497pxx;
+        Wed, 16 Oct 2024 16:02:54 -0700 (PDT)
+X-Received: by 2002:a17:902:d486:b0:20d:27f8:d72a with SMTP id d9443c01a7336-20d27f8d757mr62997615ad.61.1729119774520;
+        Wed, 16 Oct 2024 16:02:54 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1729119774; cv=none;
+        d=google.com; s=arc-20240605;
+        b=bjP+XqQe4addazIRJN1SSIrH+RwBRu8A5d+QYawb9agXSIcuV3IkQbo/dHaQ/3x5xt
+         WPb38QcEunbMuT8zv+kIcgB+2xXZmajtsyDmpvwPraoEnLuB4hFxf8Q6ralQMxTRMyPO
+         x2AeUuBYu0YStMPJLYAPG+zXSyrSs/OHiizqmeV+jo9JrnTwaMKSAsU3GJmYEew5SIFx
+         ahuUgYLwatodQRTJbEWUfMXCV12zTLpx+t7f3bkggBt/BdX2dmf2AIamBXo8/85AL/Nd
+         aU0MBojOJQowDt71A0wCPIIG4DJ8k20DU0DTN3EUoi1OYA++H55aIsmdICeQdsYoGuYk
+         /5+w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:dkim-signature;
+        bh=Ooow2iVtA81L+LfQh8Ou4px3Cf678dXfmcAxPcHa7lo=;
+        fh=Ii2H2X9zRHQv+jUuDGVxvZjmHm8Kx0m/Vi9YuebjFFo=;
+        b=la1c+hoYyslf/PgytgoL6GjPsbGoSJOIEUVwqsC+IFsm/DjzHw+R0BOWXYX2ONCBK3
+         ZmIf3WcMPBgKATJ/oXw7hDuv5/MVJdCCWXKAXPUcX5MH+P7oTSQ9Z3CWDa6EQnBVtdea
+         gxZV/7zE2IyhN3fIrFWtRmxHjPcu2gobPgrRqOuERBW2oqXO1RysY4DSZ19qKDMzoor3
+         UzdlMWEiqExVso5/ykMod/Ql8otoJ36kKln52qXUQTIukej3c1XEvcKwWWr0/MZ8cBjg
+         rAoh04c+7Tg4hcKX1EHY39AHFVbr7Qoe7Y6FZnHDz9G91l3phQbHMWHJpDzuAzK8TEjR
+         N5hw==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@ucsb.edu header.s=google header.b=GxNTaSP3;
+       spf=pass (google.com: domain of glegrady@ucsb.edu designates 209.85.220.41 as permitted sender) smtp.mailfrom=glegrady@ucsb.edu;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=ucsb.edu;
+       dara=pass header.i=@gmail.com
+Return-Path: <glegrady@ucsb.edu>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id 41be03b00d2f7-7ea9c6c40e5sor2132865a12.3.2024.10.16.16.02.54
+        for <paulrcohen@gmail.com>
+        (Google Transport Security);
+        Wed, 16 Oct 2024 16:02:54 -0700 (PDT)
+Received-SPF: pass (google.com: domain of glegrady@ucsb.edu designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@ucsb.edu header.s=google header.b=GxNTaSP3;
+       spf=pass (google.com: domain of glegrady@ucsb.edu designates 209.85.220.41 as permitted sender) smtp.mailfrom=glegrady@ucsb.edu;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=ucsb.edu;
+       dara=pass header.i=@gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ucsb.edu; s=google; t=1729119774; x=1729724574; dara=google.com;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Ooow2iVtA81L+LfQh8Ou4px3Cf678dXfmcAxPcHa7lo=;
+        b=GxNTaSP39rHrazTDovq7d+4E/UPAeATKVkuDsPKVnW0ASb7obgDnvksB9J8O7tIS2i
+         tnfbNiBWpKWVeBIwkgutptrXeZe02THMSaSMUWLZWbib3uN8okGPxnATvvdhZa/6CC56
+         dP5YamF371EPVXhXofNr8GFlYyHc4fXPYapT8wx+5i8Eg4IDEzdB6yLgu90SC0huWbEV
+         f5299nf7JL7WxcnOr/hPK9mNjwkhvS3PTm9LOoJAcIJ8sCZX8kSZbii61148M7q7pKtv
+         XaoabSp143y8U1kNUhgC05Gq6bbF1227fREbKoSfJSJcdL+tJOafOR89XCUw6JMdMiPI
+         Vhwg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729119774; x=1729724574;
+        h=to:references:message-id:content-transfer-encoding:cc:date
+         :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Ooow2iVtA81L+LfQh8Ou4px3Cf678dXfmcAxPcHa7lo=;
+        b=RXeyaVGhPBMwT8VOuxvs85SSLhadFeDtaCj1PPFyDbfBtjhbOeq3TfKK4Y9xp955j5
+         a7Xqq/2UZcGmCP0+RPZGgjKjs2e+ZC3vXm7X68rZuZddUGA589cvM/MVGMAWQqhx3D5g
+         bIY0jpcqfy5Gp67st6NBH2juPnPcxKaV7JCXccdMiTYhdJ3511vn4St0Ivcx1ONTL60W
+         m8sOj/UvP49NoaovrC5mbXQFAJjlQA9OvR8sRByqKVaOXC7RTZHnI9dpQ3K3XHHChqKl
+         RThzlRJryj3UlTH3oSjVKW/LzCCbTgdYkMNc/dcUZ9/IU0qCqXC4Ut9pZxUhwsksBlit
+         yJDw==
+X-Gm-Message-State: AOJu0YyOecBXzjf/qT2hdu9z0Ne46hjQXIJRVY/9jfYJgwUyIzO7FrJK
+	t35Y8LjrKB2S4n1JxzRCUnXk+BxSMA3AeKNo3ZrG3M5/mG7tu8CgZqD2wFPROZDit5WixMAzOSd
+	j
+X-Google-Smtp-Source: AGHT+IG3NMDqU/kgvn5fStdSdGAG4BE/bhnP5x/DzDeRUnGLv0aNLzxEyYxZilOyNu5HxhHCKdLlbg==
+X-Received: by 2002:a05:6a20:6f91:b0:1cf:3677:1c4a with SMTP id adf61e73a8af0-1d905ecb8e9mr7664522637.16.1729119773863;
+        Wed, 16 Oct 2024 16:02:53 -0700 (PDT)
+Return-Path: <glegrady@ucsb.edu>
+Received: from smtpclient.apple (ip68-6-95-119.sb.sd.cox.net. [68.6.95.119])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7ea9c6bb076sm3764948a12.15.2024.10.16.16.02.53
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 16 Oct 2024 16:02:53 -0700 (PDT)
+Content-Type: text/plain;
+	charset=us-ascii
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3776.700.51\))
+Subject: Harold's print has arrived - Amazing! Thanks...
+From: George Legrady <glegrady@ucsb.edu>
+In-Reply-To: <CAKjPZkGi3-CCtXEgnuLYY0uoodO_QzZ3c8Jiib-RFVkZ4PfsMg@mail.gmail.com>
+Date: Wed, 16 Oct 2024 16:02:42 -0700
+Cc: Thomas Machnik <zipnpup@yahoo.com>
+Content-Transfer-Encoding: quoted-printable
+Message-Id: <B33E9DF1-479C-4CB6-A4EA-4F40D047F515@ucsb.edu>
+References: <6BF1B99A-7BCA-4C20-9660-BBA9A6E33D22@ucsb.edu>
+ <CAKjPZkHpV5UZW8Y8_hFSORP33p=G4u=XPwOfgyg-MD_DEkZkZA@mail.gmail.com>
+ <5E256D2A-04D6-48DA-9D7D-D0654BD4D11C@ucsb.edu>
+ <CAKjPZkE_Tr9q6Q6pvuG3ZGa4Z9TTr0RyoptF0R9sfV8CqK8axQ@mail.gmail.com>
+ <F85BAAD4-4DD2-4895-8587-1DA5478DD236@ucsb.edu>
+ <CAKjPZkGi3-CCtXEgnuLYY0uoodO_QzZ3c8Jiib-RFVkZ4PfsMg@mail.gmail.com>
+To: Paul Cohen <paulrcohen@gmail.com>
+X-Mailer: Apple Mail (2.3776.700.51)
+
+hi Paul and Tom,=20
+
+Thank you for the Harold Cohen print. Its perfect. The image fits right =
+in to what Harold was doing when I was in the lab, and then the printing =
+itself is very elegant. So greatly appreciated.=20
+
+Please give me some info:=20
+
+1. What year was the image made?=20
+
+2. When was it printed?
+
+3. How, and on what paper?=20
+
+4. What is the yellow sticker mean i23-0577? should I remove if, if so, =
+will it damage the print?=20
+
+Thank you,=20
+
+PS. I hope the codes you got are useful. They dont show how harold =
+designed the drawing process but they show the interface between the PDP =
+11 and the Tektronix 4014. I will continue to search in the boxes. The =
+location of this code was not apparent when Tom you came by as it was =
+part of my tenure application at USC.=20=

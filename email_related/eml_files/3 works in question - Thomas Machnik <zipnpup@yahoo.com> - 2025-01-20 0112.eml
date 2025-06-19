@@ -1,0 +1,130 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a10:e88f:b0:5c7:f970:fbca with SMTP id gl15csp1803197pxb;
+        Sun, 19 Jan 2025 22:12:27 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IF891UYJKN7+y5VOncEKq+0NeGVOZMy3CLVYkFZLtE35OLGXr9cAcmKXFvMfzwrfCc1Zprn
+X-Received: by 2002:ac8:580b:0:b0:467:54e5:ceaa with SMTP id d75a77b69052e-46e12a1e327mr146896561cf.9.1737353547254;
+        Sun, 19 Jan 2025 22:12:27 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1737353547; cv=none;
+        d=google.com; s=arc-20240605;
+        b=ONQGJVw3rdB+j/KdBYo+V5EQZ2NTeWCe98c8WG3KbsYp61CxlCUbC01e7sq49d07RL
+         mCERLR1vZLE+WwLt9YW3w8jvf99jefcH5BUfnWhy578uoXXZMGWbnfXwpCdje5IT3jvQ
+         ObzKJPHCZZPFvmfGe/RfYubYrQQx6jY8isAdwAOpVZQpO54jnHXqSVeSFO1ZSZ4XYXSJ
+         ompBuSUko8NQFitC4pkQlJRwA/hvjT0j8tc1Hc1Kb/gO4xpFAVm0N/miZiweWnccmNVn
+         JxGOiQpspKPe6OgwfSspBBxQ3HTZHEkmGVqqkueFvNcw5KQyes84D6ulgLCdA5LkavBf
+         Lmfw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=references:mime-version:subject:message-id:cc:to:reply-to:from:date
+         :dkim-signature;
+        bh=vLDGZmpsCMnPF68rKaMHSztd/eDYP9Gwu0oB4CruL+M=;
+        fh=M5h54E3mjDRZTm30JuGK+dDkEt0aXIT06UvHuliiqNQ=;
+        b=MllWbmx/Y3oGOJA+ZbY738Ah1ToNZl0fz+gxlod75Qo1XPVHYktSDhPLjns0KjyWIa
+         EJ8KXGsSulzgj+8FYlWIvARr0vaOxyYT4LPzQ+sBMDEBtm8HsvP1ypBHP6OFh83Gzr8p
+         vWg6BuwoNuwSg7qGoIxbS3Ngj96Q1POYl1kW1+KGQ35tMbbmBa5J5OOxq3prUUB4icPq
+         vlXh3Euou9o7hT9gM9w84UBUvcpUTuk1oUO37fgE7fK+fzugp9tQfoz1XbcbjsFjJ5pm
+         UX1KrO1HjZk5h/oAHlCYOAdobH5Y+/+9rhShI6Z89kAYLR4kaFZuZXvF906zwMKeP5fP
+         3mKA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b="Xr0sYKD/";
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.129.125 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+Return-Path: <zipnpup@yahoo.com>
+Received: from sonic309-15.consmr.mail.bf2.yahoo.com (sonic309-15.consmr.mail.bf2.yahoo.com. [74.6.129.125])
+        by mx.google.com with ESMTPS id d75a77b69052e-46e1044585bsi97165601cf.395.2025.01.19.22.12.26
+        for <paulrcohen@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 19 Jan 2025 22:12:27 -0800 (PST)
+Received-SPF: pass (google.com: domain of zipnpup@yahoo.com designates 74.6.129.125 as permitted sender) client-ip=74.6.129.125;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b="Xr0sYKD/";
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.129.125 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1737353546; bh=vLDGZmpsCMnPF68rKaMHSztd/eDYP9Gwu0oB4CruL+M=; h=Date:From:Reply-To:To:Cc:Subject:References:From:Subject:Reply-To; b=Xr0sYKD/GIQY1JQ4VVJuGGLxtJnuHIwZuzobAN1/TfxUs9kjuyUy0robAhcadlY+gu8M3qCRCCwzgPG7cwPuyr5ikAzURf/p8xB9oaLGaCPbG+CRJ9DFtbk6yVwtUx+SsbBec4RQLl1ecqknPI62ABfVmhU9lkpROpLGVsenaZjCXs7+uii7PYpOdVDJC9Yl5b3dJTbDB7KjyNAhr7Ir8vPEnthYxQuz5yWYYdTszKiL/lJ2wqFdcCagS/tCZ3V089zHlRJO4lx/56zSYJsJ0deCvvQNMdrpNz0nfgAeZbA7gZgVmReFacA/j0GI/Ipb16GIQ3BpYDyYEDYSY2dEcA==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1737353546; bh=LBihfRgXcraA9+vfY2Ny7f/mMuCOJQy1ydYSi49yg1w=; h=X-Sonic-MF:Date:From:To:Subject:From:Subject; b=FFrzayIHVpUMqwXdhIp6CEUsGrSDMLXZdmUqdCPK/1BdpSjMhxvK7EbhKfWQRQZkWXdZcNbSod06SAlH4zGAvh/5IrhYLqRNifl3YmK40dYplyJPQr4lJbpH0n3r7vTmIpWYTBZbr8XHSdCv+tN9/eZAxlKl+FKQWdDl9co/XTVQDr3uO3c7HydFJMOFQtT4sWgCBlph17L7un7aXepzs/VGewkAagcj/hizutT3zmBrJc10t+T70qb4EuWRdTxrnJAVYU9PUxjC2C8/65wYAQEgsxRIZ6nGsvzy2GneQxpv5Y4vmOa5F/Nbta3fCNigp6csWMqa2RtSMz4eedEGxA==
+X-YMail-OSG: 8kIPmUIVM1k74HKqvW3y9dqqWqkj1.ClHLn6jsKpyc_oOqSGmiVsSo_krpJk43.
+ GbRWwH85cvgDJvYQYAKNB0th_3.lC7BljmkaJ72bGj1CE1dMc203bL39R32awurAeZ33pdwUj5UB
+ 62Kwp_v08irkofuxhDpSMXFOf6yt2GejjJWLNLlX_j7SUhfQe9fawRgGejpBJLBX8v4Yeflhfv9x
+ BEc3hzIm0loYthRVdZdTFedpjxAAAm8GdvYWebUY7tnxSrgecaftMcyT_75U2O6PZ97y4mIKJl2n
+ awpZ14FbBAjaLMt1YbmZAFlrSOJXFmoYQVxoINbW7Eq1NYv7EKBOM2QmW7PTawVMvbSgA2g6y9LA
+ bAlJngcmwjsDTqXtBcpq0tzA46QtlWKuEWsqv1qNBAJjMoMWaDKfSFamqrVVZ_zRGxE2x_7oPW.W
+ qO1xbok0UnX7wx99yN1OJwpuOvalT4cLzH_DRGVeiojXR5OaHqBltICq5f3mpa08w0qi23JsXPfO
+ y2rjWyDlJdqkkl2rjD5AX0uXlrsSFVXu9.rpv92z2y3Xh00lM4S1lwzuocxl7foByHCjpEzVoKrM
+ Isx8O6EPzwLjyH6CJHdQtxnZYN3qTASd4GtA_uXfAPSJng87I5CsXtCBEa9.Pd9jDEy15lLQAYYw
+ utmISX6Hsu2SKdShIv7fycg3jthRD4jMk.EzVJSxQ.M4BUrOkR8ojUaqAoe5yY9zi.lvX0mKwXCS
+ jg4csfsqzRoT9knCEgDnfOiZKsM6Q9emKQJ8oS7eSMw.tuvPX1BMn5Hr.IvtxIhjmYKYJrWcVaYX
+ Vzzu0dol04BNbN5rXWPBlAY.5kY5kOEKTLye0mgmU3FNBJvgn9lr7kJVF0EZWDv9dPSlUWfunyto
+ yrcjvMyE2_8AFd6pBIrE5b7Awk.PjK0RD7524llfGxzhjimelGS7oK.1D9we2_RU4yGjbyblaqIa
+ 8tiGdEWUWXh5WvrEZiBrrm7j_x5agNeEpnuJceVkPd4.GmR7fMoHDHNHm3dXuE2dVBlihpLoA1xi
+ RFx.kGyDXYdEOdVaEs096zcEqs_yYldvXBZVuHlW9tEgaOrZ6dAOZ_FsZPz8Umoswe3Vxi1kbzvV
+ 6wgNde94Ja5RZeouBdPSi6pA5kb_JNEaes_h8yu3YMBQJQwbtpe4pfHEyf988aAOKQw0rbIw3LoB
+ y4I0J42INyWP3ujURqbQ9pbLBadOl5Cw1dFU9Uh6l0jMPXTQCkbxCZkuClrM53lJq2go9Grp0_fs
+ hi_M6thSDG0QMoFFDIVfV8TYYearh0Yh_hvONFfqV.WDpK5SRGIMAmRLMJnGR2Wn.KP4YMBmx7In
+ A6J6HuGxW.JVdz400PViyLG7XaZEHUpcnkQc9iAZS5BkUASRY9i00XLBJ2.NiFZ47bBHhEUEwN6K
+ yg_cu0GvDk_9FeTvB2UfBM3kjBINo3IdRe48KttSrfwPzKDXwYcxeGxOwWLCM.e1Oau0AeSaEuoC
+ SiT.1s2wlgP.svWmPvbODvieAzHyyK3LGqZKMopI1JaP0Q14B3alh8hMsGHGxFzSaSVMTT2OdM7b
+ 0lTWszVFIfqxlUHO40T6Omg8kN60RURDjRkY.RzknPwFE78iFM06cJAX4yXCwzTh0lSq7cmid1dJ
+ EuyH30JpOBAm4wHlZm4VEyuuU7mWhhtfR0fuFSQ.yWyvF8veIkKhqQWnra8ii27g3aN8UNbazey8
+ 5YQ2JGN.Yaz2zRFIMQuVbYvufoP2HLkawfth9RiNHcz2DvFI.fnV_xIZI2SPchdpLelJIohfs7KY
+ shzL4gUnTtALH7x.80XXDwpa0pYfclgXGky8w2VRb__Ekew0HnWUpscYv1zLOoXo0tfJ19ZvcIQh
+ DthXkViovNhrXVAlbSoyGlUnVuuG1HGVu4pAhKREuuUwuCH8cec_PcZQlaWoc7KD.24PJNUh7cI3
+ PTD4IoopLWTTs6yJ0ueikw4hv_AK1ToHXkF6rHya39wQzrncXotqWdh.Z.bE9vPgaCVcI3ryZFc9
+ tC37j9a0mTKcjmhtadJCLzHpEiWPekKiVQPgcNJ_XLts7wwqZ.uxcAbmAgbL7aRYsFekE1ROk46O
+ XPUcIcDYEGTTZEURV1YyboNLKfbVpin2kOkxqBOnRy4RaGB4cl8ZoXwGlsVZpagh0YI6tKNOl6vH
+ 2thUgdQjM2X5jcNGBCUMFhPpveQpJIHB_cdaG67wNKLG70cDpftHWfhTP0KJFT1YhuKlT9cpI_LA
+ oer5e5TiOu.gBbD3KPBIqK1on3YnroovRiTJXNc49Ef9J7CIsnlUEPa9Jp3zo42uoYLwcAXMJ8k1
+ AZJgjDwuB761ypW.Fudgw
+X-Sonic-MF: <zipnpup@yahoo.com>
+X-Sonic-ID: f035ce64-c2d6-4abd-ae5a-f88c038f7216
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic309.consmr.mail.bf2.yahoo.com with HTTP; Mon, 20 Jan 2025 06:12:26 +0000
+Date: Mon, 20 Jan 2025 06:12:23 +0000 (UTC)
+From: Thomas Machnik <zipnpup@yahoo.com>
+Reply-To: Thomas Machnik <zipnpup@yahoo.com>
+To: Paul Cohen <paulrcohen@gmail.com>
+Cc: Harold Cohen Trust <aaron@aaronshome.com>
+Message-ID: <1643330539.1075615.1737353543228@mail.yahoo.com>
+Subject: 3 works in question
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_1075614_892621399.1737353543227"
+References: <1643330539.1075615.1737353543228.ref@mail.yahoo.com>
+X-Mailer: WebService/1.1.23187 YMailNovation
+Content-Length: 2405
+
+------=_Part_1075614_892621399.1737353543227
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Paul,As you know we have a shipment to Gazelli in process. Before the wo=
+rks go, I took the opportunity to ask Erin (Harold=E2=80=99s previous assis=
+tant) about 3 works that are significantly different than the other portrai=
+ts style works. Prior to reaching out to her, I dug into the matter and bas=
+ed on what I found I put the dates at 2001 for all 3. All the other works a=
+re 1991 to 1998. After contacting Erin, she was able to verify that one of =
+the works was generated in 2001 and thus adding credence to my findings. Sh=
+e wasn=E2=80=99t sure about the other two. She did however make the followi=
+ng comment, =E2=80=9CI did not paint them. Nor did I see Harold paint them.=
+=E2=80=9D I have found digital files with similar imagery. I am not sure wh=
+at we do about sending or not sending these as they may not actually be Har=
+old Cohen works.=C2=A0
+Tom
+------=_Part_1075614_892621399.1737353543227
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head></head><body><div class=3D"yahoo-style-wrap" style=3D"font-fami=
+ly:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px;"><div dir=
+=3D"ltr" data-setdir=3D"false">Hi Paul,</div><div dir=3D"ltr" data-setdir=
+=3D"false">As you know we have a shipment to Gazelli in process. Before the=
+ works go, I took the opportunity to ask Erin (Harold=E2=80=99s previous as=
+sistant) about 3 works that are significantly different than the other port=
+raits style works. Prior to reaching out to her, I dug into the matter and =
+based on what I found I put the dates at 2001 for all 3. All the other work=
+s are 1991 to 1998. After contacting Erin, she was able to verify that one =
+of the works was generated in 2001 and thus adding credence to my findings.=
+ She wasn=E2=80=99t sure about the other two. She did however make the foll=
+owing comment, =E2=80=9CI did not paint them. Nor did I see Harold paint th=
+em.=E2=80=9D I have found digital files with similar imagery. I am not sure=
+ what we do about sending or not sending these as they may not actually be =
+Harold Cohen works.&nbsp;</div><div dir=3D"ltr" data-setdir=3D"false"><br><=
+/div><div dir=3D"ltr" data-setdir=3D"false">Tom</div></div></body></html>
+------=_Part_1075614_892621399.1737353543227--

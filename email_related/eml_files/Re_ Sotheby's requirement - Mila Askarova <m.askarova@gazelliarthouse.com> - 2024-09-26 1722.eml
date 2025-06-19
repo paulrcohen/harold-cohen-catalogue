@@ -1,0 +1,386 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a11:4819:b0:5ad:6c17:f336 with SMTP id nr25csp1299310pxb;
+        Thu, 26 Sep 2024 14:23:04 -0700 (PDT)
+X-Received: by 2002:a05:6a21:3a47:b0:1ce:d08c:2c10 with SMTP id adf61e73a8af0-1d4fa6c39bdmr1783666637.28.1727385784564;
+        Thu, 26 Sep 2024 14:23:04 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1727385784; cv=none;
+        d=google.com; s=arc-20240605;
+        b=Trt3+yHMeBWiI42LPy1ITZoRXqN3dy1jRVIEpajA+KHrgsez0dFLkTDaa7jgQTn5tu
+         2ooeC1/7jqbJH5PLYOf0JWeWtiBvFMP0Tfi+alZjaEHbNaAVtntYmPF0uPudbqsW6aLK
+         OrDc7iZcS2y5QoPmUtdQuaPs2FXZ/xPqHAqHThwkOOYVqoQEHeAm8TBiqhHJR2OB2XH7
+         EGSOlRKGo1lAebyRV2z3DLpnVKrZx2mBXZ1EDOTXCRizLX33b78gKysPag6goOgJ+Fxg
+         5UC0UCXsmn/2r4agCkdu/zwwLOafOHUqu5j27Lq8CSUICIXrTxH7xVWsCY25/NuQCKxM
+         NJSQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=w+GBdpk92wYaJUpxKQsEU2jzrpIrxGNw4nnc87WlpWQ=;
+        fh=/Nail7yTIkVO1vdAP0SAe+BJ3OrjbhoCmthibuZtNU4=;
+        b=N/CQ3vhsGSKb8EoOi4t01Yl63Nseb4SmmiTfaiFA/kxBjxRN+wIq8aIh9bQRH3W4mp
+         VLXK4YMiIpyYM8/0DDJWmnA6ritOsWKMM5QG+YI4CmBXTZHPU13D4LPm7tLe2KUM+bLc
+         4kcVyurRP1sXpPn3NEky/JsX8b3Lohm/HShfGxrPG3Zqwad2XYvzYdPr7mvzSy2VvKpF
+         SI3kjosJZw0IDD32tEY95nXn5/HB7NjvB+36QVyBPvl9JabUp3c11iFH66nvVFhQGeYv
+         tDwAfPir9wYuAn7H4dbVuqLA/3oudLF9/Nr0P4HKhKewfMlXYPNtvDRZaBHWxVkO41ki
+         jX9A==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@gazelliarthouse-com.20230601.gappssmtp.com header.s=20230601 header.b=ExLQgz+z;
+       spf=pass (google.com: domain of m.askarova@gazelliarthouse.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=m.askarova@gazelliarthouse.com;
+       dara=pass header.i=@gmail.com
+Return-Path: <m.askarova@gazelliarthouse.com>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id 41be03b00d2f7-7e6db2c5a41sor296355a12.4.2024.09.26.14.23.04
+        for <paulrcohen@gmail.com>
+        (Google Transport Security);
+        Thu, 26 Sep 2024 14:23:04 -0700 (PDT)
+Received-SPF: pass (google.com: domain of m.askarova@gazelliarthouse.com designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@gazelliarthouse-com.20230601.gappssmtp.com header.s=20230601 header.b=ExLQgz+z;
+       spf=pass (google.com: domain of m.askarova@gazelliarthouse.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=m.askarova@gazelliarthouse.com;
+       dara=pass header.i=@gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gazelliarthouse-com.20230601.gappssmtp.com; s=20230601; t=1727385784; x=1727990584; dara=google.com;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=w+GBdpk92wYaJUpxKQsEU2jzrpIrxGNw4nnc87WlpWQ=;
+        b=ExLQgz+zYGzWygqTav+KBzwNEbhrHq75JWrjoZ96Jj5fHG9Fqp7qS0RiSIfFwwAcrz
+         aFWJNfe7P4cnKim6Yvx5TRj0awguszLZRiz+xJiT7qibjaD6Ryp3J3S//lfabuWu+D2z
+         zciQdwqWgwSEXL255HMQuBfG7ScWWPv04bRB13OxQL21vemYMOkacm4zfB9G8Nt89vt2
+         I43lk7SWQnrDtwbNBaaLT/EnSRitra0rQ4UyW3SmZZeJQIAO0fobl2Fmz0LKQALarc77
+         x7Qm/bigtOwjKNmwbpXXBaeyBzlZYV+2Gfx6p88Q5oMozAFy95eOzS+d9kwF9ZfFJy8W
+         T74A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727385784; x=1727990584;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=w+GBdpk92wYaJUpxKQsEU2jzrpIrxGNw4nnc87WlpWQ=;
+        b=QPec8ks7okzV1g39YU2LM7pOks/7wK6UyYVDZsD4gFhU1OvmxmyLoJQn+QdR9ZoJuP
+         KUJifVLyBOF9PQjPMXFEqHneo3ADAiyvuohZ19fLGLRSegVHH4Qa0B0SbxbtDX8sTvpW
+         Emg5vGH1WwgFtuiZZOI2gLDvKhl5SjlIAUbdHXFethxhVDeqWPmjJ2r3mIEpP0kspqSx
+         3axinbCQUlGFu474UpZLxAkgS+MJ6PkbgG5liG3dUuSJXIUNyISrZGnFVUst7++mZf5V
+         qjpNx28hGuKlbJZiZIC5PypAy24pF6wKDdZRCETJkgE+oGkAQZGOmNipcrODqTtzRTgQ
+         6SNw==
+X-Gm-Message-State: AOJu0YzuQGKfXpPoij0Rjujbw6fdkff3fN1LmRqzS7BpWjoyTLffD67J
+	eusZc2cTbI1ebHL1TQCwD/CbOSxoRD2FtzOK8v1e7g4mRG74Qs+0pTOSJeOnF2XCbNGyRwqK/ha
+	RVYXeI1/RFbWyDrk4KuPO5RYIF0K1zOfB95UFprkh8OXDjpTN
+X-Google-Smtp-Source: AGHT+IESNMczaZEkoPBx4b3oKuVbJyCZ++hbrA36GuV5KM4BUHS2ADWLc8RYV+JFcd5U96lQAYkJ1pgPTzZ7+ZNVHBc=
+X-Received: by 2002:a05:6300:4044:b0:1c6:fc39:8968 with SMTP id
+ adf61e73a8af0-1d4fa7bc301mr1253065637.46.1727385783575; Thu, 26 Sep 2024
+ 14:23:03 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAKjPZkFZKccJnFdp8j6oyVCJAHWyUBPdSRkYqqr__d5mjLrn8g@mail.gmail.com>
+ <81886821.3173428.1727366875181@yahoo.com> <CAKjPZkGo5T8m9aC-acOoRR60_cvBxKw-E5C4fK8tL_7orPVZuA@mail.gmail.com>
+In-Reply-To: <CAKjPZkGo5T8m9aC-acOoRR60_cvBxKw-E5C4fK8tL_7orPVZuA@mail.gmail.com>
+From: Mila Askarova <m.askarova@gazelliarthouse.com>
+Date: Thu, 26 Sep 2024 22:22:52 +0100
+Message-ID: <CAAOqD37qVo1B49-7CYDxe5q_0+VVcuBouO2DB-mzuWRKsMrnqA@mail.gmail.com>
+Subject: Re: Sotheby's requirement
+To: Paul Cohen <paulrcohen@gmail.com>
+Cc: zipnpup <zipnpup@yahoo.com>
+Content-Type: multipart/alternative; boundary="00000000000005451d06230c58ba"
+
+--00000000000005451d06230c58ba
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Tom,
+
+Many thanks for this.
+Do we know if the works that are out there of the same images as these 9
+that were selected, are signed?
+
+My best,
+Mila
+
+On Thu, 26 Sept 2024 at 18:04, Paul Cohen <paulrcohen@gmail.com> wrote:
+
+> Ok, so my understanding is that we cannot assure Sotheby's that the 9
+> works are unique, hence we cannot have the auction.  I hold Sotheby's
+> responsible for this, unless they gave us a contract earlier that specifi=
+es
+> that uniqueness is a requirement and defines uniqueness.  We've worked
+> pretty hard as they have moved the goalposts, but this is one move too fa=
+r,
+> too late.
+> ______________________________
+>
+> Paul Cohen,  Professor
+> School of Computing and Information
+> University of Pittsburgh
+> personal webpage <https://paulrcohen.github.io/>
+> ______________________________
+>
+>
+> On Thu, Sep 26, 2024 at 12:07=E2=80=AFPM zipnpup <zipnpup@yahoo.com> wrot=
+e:
+>
+>> Oops sorry I was replying to Mila's before seeing this. All 9 are all
+>> signed and they are all signed as YYMM## 1 / x Harold Cohen year.
+>>
+>> With regards to works floating around there are other works floating
+>> around 2 of x and 3 of x etc as we have evidence of these works being
+>> shown. We also have extra prints unsigned in the studio. They maybe of a
+>> different size. There is one print signed as an AP.
+>>
+>> The key to me is the NFT + Print combo we can only sell one signed work
+>> of this as a combo because we have no other signed works.
+>>
+>> Tom
+>>
+>>
+>>
+>> Sent from my T-Mobile 4G LTE Device
+>>
+>>
+>> -------- Original message --------
+>> From: Paul Cohen <paulrcohen@gmail.com>
+>> Date: 9/26/24 8:37 AM (GMT-08:00)
+>> To: Thomas Machnik <zipnpup@yahoo.com>, Mila Askarova <
+>> m.askarova@gazelliarthouse.com>
+>> Subject: Sotheby's requirement
+>>
+>> Tom, can you confirm:
+>>
+>> 1) the nine works on their way to Sotheby's are all signed (and if they
+>> aren't all signed, how many are)
+>>
+>> 2) For each work, can we say with reasonable certainty that it is unique
+>> in the sense that there is not another signed work from the same edition=
+ in
+>> someone's possession.
+>>
+>> I think the answer to question 1 is that all nine works are signed, and
+>> the answer to question 2 is that some of these works belong to editions =
+and
+>> we know or suspect that other works from those editions are floating aro=
+und
+>> in the big wide world.
+>>
+>> Please let me know as soon as you can.
+>>
+>> --P
+>> ______________________________
+>>
+>> Paul Cohen,  Professor
+>> School of Computing and Information
+>> University of Pittsburgh
+>> personal webpage <https://paulrcohen.github.io/>
+>> ______________________________
+>>
+>
+
+--=20
+Mila Askarova
+CEO & Founder
+
+*GAZELLI ART HOUSE*
+
+LONDON
+Cipher: Pouran Jinchi & Ruba Salameh
+<https://gazelliarthouse.com/exhibitions/185-cipher-pouran-jinchi-ruba-sala=
+meh/>
+The Window: Aida Mahmudova
+<https://gazelliarthouse.com/exhibitions/186-the-window-aida-mahmudova/>
+Project Space & Frieze Sculpture 2024: Libby Heaney
+<https://nft.gazell.io/collections/libby-heaney-frieze-sculpture-2024>
+
+BAKU
+Group Show
+
+GAZELL.iO
+September Resident | Kate Hollenbach
+<https://gazell.io/exhibitions/138-kate-hollenbach/>
+
+www.gazelliarthouse.com
++44 (0) 207 491 8816 / +994 (0) 12 498 1230
+
+<https://streaklinks.com/BHpVIxJHhzip8Hm6nAyO2h9O/https%3A%2F%2Fwww.instagr=
+am.com%2Fgazelliarthouse%2F>
+<https://streaklinks.com/BHpVIoEUFPH6ci6Q4QBT8JGr/https%3A%2F%2Ftwitter.com=
+%2FGazelliArtHouse>
+
+<https://streaklinks.com/BHpVIoEeHlRoFY_ETAqPyMXi/https%3A%2F%2Fwww.faceboo=
+k.com%2FGazelliArtHouse%2F>
+
+
+This e-mail message, including all attachments, is for the sole use of the
+intended recipient(s) and may contain legally privileged and confidential
+information. If you are not an intended recipient, you are hereby notified
+that you have either received this message in error or
+through interception, and that any review, use, distribution, copying or
+disclosure of this message and/or its attachments or parts thereof is
+strictly prohibited and is subject to criminal and civil penalties with
+appropriate national legislation.
+
+--00000000000005451d06230c58ba
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><div dir=3D"ltr">Hi Tom,=C2=A0<br><div><br></div><div>Many=
+ thanks for this.</div><div>Do we know if the works that are out there of t=
+he same images=C2=A0as these 9 that were selected, are signed?</div><div><b=
+r></div><div>My best,</div><div>Mila</div><div><br></div></div><div class=
+=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Thu, 26 Sept 2024=
+ at 18:04, Paul Cohen &lt;<a href=3D"mailto:paulrcohen@gmail.com">paulrcohe=
+n@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=
+=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding=
+-left:1ex"><div dir=3D"ltr"><div style=3D"font-size:small">Ok, so my unders=
+tanding is that we cannot assure Sotheby&#39;s that the 9 works are unique,=
+ hence we cannot have the auction.=C2=A0 I hold Sotheby&#39;s responsible f=
+or this, unless they gave us a contract earlier that specifies that uniquen=
+ess is a requirement and defines uniqueness.=C2=A0 We&#39;ve worked pretty =
+hard as they have moved the goalposts, but this is one move too far, too la=
+te.<br clear=3D"all"></div><div><div dir=3D"ltr" class=3D"gmail_signature">=
+<div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=
+=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr">______________________=
+________<br><br>Paul Cohen,=C2=A0=C2=A0Professor</div><div dir=3D"ltr">Scho=
+ol of Computing and Information</div><div dir=3D"ltr">University of Pittsbu=
+rgh</div><div dir=3D"ltr"><a href=3D"https://paulrcohen.github.io/" target=
+=3D"_blank">personal webpage</a><br>______________________________</div></d=
+iv></div></div></div></div></div></div></div></div></div></div></div><br></=
+div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On=
+ Thu, Sep 26, 2024 at 12:07=E2=80=AFPM zipnpup &lt;<a href=3D"mailto:zipnpu=
+p@yahoo.com" target=3D"_blank">zipnpup@yahoo.com</a>&gt; wrote:<br></div><b=
+lockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-le=
+ft:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"auto"><div dir=
+=3D"auto">Oops sorry I was replying to Mila&#39;s before seeing this. All 9=
+ are all signed and they are all signed as YYMM## 1 / x Harold Cohen year.=
+=C2=A0</div><div dir=3D"auto"><br></div><div dir=3D"auto">With regards to w=
+orks floating around there are other works floating around 2 of x and 3 of =
+x etc as we have evidence of these works being shown. We also have extra pr=
+ints unsigned in the studio. They maybe of a different size. There is one p=
+rint signed as an AP.=C2=A0</div><div dir=3D"auto"><br></div><div dir=3D"au=
+to">The key to me is the NFT + Print combo we can only sell one signed work=
+ of this as a combo because we have no other signed works.=C2=A0</div><div =
+dir=3D"auto"><br></div><div dir=3D"auto">Tom</div><div dir=3D"auto"><br></d=
+iv><div dir=3D"auto"><br></div><div dir=3D"auto"><br></div><div id=3D"m_902=
+9912334453026223m_-752423412671483972composer_signature" dir=3D"auto"><div =
+style=3D"font-size:12px;color:rgb(87,87,87)" dir=3D"auto">Sent from my T-Mo=
+bile 4G LTE Device</div></div><div dir=3D"auto"><br></div><div><br></div><d=
+iv align=3D"left" dir=3D"auto" style=3D"font-size:100%;color:rgb(0,0,0)"><d=
+iv>-------- Original message --------</div><div>From: Paul Cohen &lt;<a hre=
+f=3D"mailto:paulrcohen@gmail.com" target=3D"_blank">paulrcohen@gmail.com</a=
+>&gt; </div><div>Date: 9/26/24  8:37 AM  (GMT-08:00) </div><div>To: Thomas =
+Machnik &lt;<a href=3D"mailto:zipnpup@yahoo.com" target=3D"_blank">zipnpup@=
+yahoo.com</a>&gt;, Mila Askarova &lt;<a href=3D"mailto:m.askarova@gazelliar=
+thouse.com" target=3D"_blank">m.askarova@gazelliarthouse.com</a>&gt; </div>=
+<div>Subject: Sotheby&#39;s requirement </div><div><br></div></div><div dir=
+=3D"ltr"><div style=3D"font-size:small">Tom, can you confirm:</div><div sty=
+le=3D"font-size:small"><br></div><div style=3D"font-size:small">1) the nine=
+ works on their way to Sotheby&#39;s are all signed (and if they aren&#39;t=
+ all signed, how many are)</div><div style=3D"font-size:small"><br></div><d=
+iv style=3D"font-size:small">2) For each work, can we say with reasonable c=
+ertainty that it is unique in the sense that there is not another signed wo=
+rk from the same edition in someone&#39;s possession. <br></div><div style=
+=3D"font-size:small"><br></div><div style=3D"font-size:small">I think the a=
+nswer to question 1 is that all nine works are signed, and the answer to qu=
+estion 2 is that some of these works belong to editions and we know or susp=
+ect that other works from those editions are floating around in the big wid=
+e world. <br></div><div style=3D"font-size:small"><br></div><div style=3D"f=
+ont-size:small">Please let me know as soon as you can. <br></div><div style=
+=3D"font-size:small"><br></div><div style=3D"font-size:small">--P<br></div>=
+<div><div class=3D"gmail_signature" dir=3D"ltr"><div dir=3D"ltr"><div><div =
+dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"lt=
+r"><div><div dir=3D"ltr">______________________________<br><br>Paul Cohen,=
+=C2=A0=C2=A0Professor</div><div dir=3D"ltr">School of Computing and Informa=
+tion</div><div dir=3D"ltr">University of Pittsburgh</div><div dir=3D"ltr"><=
+a href=3D"https://paulrcohen.github.io/" target=3D"_blank">personal webpage=
+</a><br>______________________________</div></div></div></div></div></div><=
+/div></div></div></div></div></div></div></div>
+</div></blockquote></div>
+</blockquote></div><br clear=3D"all"><div><br></div><span class=3D"gmail_si=
+gnature_prefix">-- </span><br><div dir=3D"ltr" class=3D"gmail_signature"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div><font color=3D"#000000">Mila Askarova=C2=A0</font></div><div>=
+<font color=3D"#000000">CEO &amp; Founder=C2=A0</font></div><div style=3D"c=
+olor:rgb(80,0,80)"><b><br></b></div><div><div style=3D"font-family:&quot;ti=
+mes new roman&quot;,serif"><div style=3D"font-family:Arial,Helvetica,sans-s=
+erif"><div style=3D"color:rgb(34,34,34)"><div dir=3D"ltr"><div dir=3D"ltr">=
+<div dir=3D"ltr"><font color=3D"#000000"><b>GAZELLI ART HOUSE</b></font></d=
+iv><div dir=3D"ltr"><br></div><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D=
+"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><=
+div dir=3D"ltr"><span><div dir=3D"ltr"><div dir=3D"ltr"><font face=3D"arial=
+, sans-serif" color=3D"#000000">LONDON</font></div><div><font face=3D"arial=
+, sans-serif"><a href=3D"https://gazelliarthouse.com/exhibitions/185-cipher=
+-pouran-jinchi-ruba-salameh/" style=3D"color:rgb(17,85,204)" target=3D"_bla=
+nk">Cipher: Pouran Jinchi &amp; Ruba Salameh</a></font></div><div><font fac=
+e=3D"arial, sans-serif"><a href=3D"https://gazelliarthouse.com/exhibitions/=
+186-the-window-aida-mahmudova/" style=3D"color:rgb(17,85,204)" target=3D"_b=
+lank">The Window: Aida Mahmudova</a></font></div><div><font face=3D"arial, =
+sans-serif"><a href=3D"https://nft.gazell.io/collections/libby-heaney-friez=
+e-sculpture-2024" style=3D"color:rgb(17,85,204)" target=3D"_blank">Project =
+Space &amp; Frieze Sculpture 2024: Libby Heaney</a></font></div><div><br></=
+div><div><span style=3D"color:rgb(0,0,0);font-family:arial,sans-serif">BAKU=
+=C2=A0</span></div><div>Group Show</div><div><br></div><div dir=3D"ltr"><di=
+v><font color=3D"#000000" face=3D"arial, sans-serif">GAZELL.iO=C2=A0</font>=
+</div><div><span style=3D"font-family:arial,sans-serif">September Resident =
+|=C2=A0<a href=3D"https://gazell.io/exhibitions/138-kate-hollenbach/" style=
+=3D"color:rgb(17,85,204)" target=3D"_blank">Kate Hollenbach</a></span></div=
+></div></div></span><div dir=3D"ltr"><div><br></div></div></div></div></div=
+></div></div></div></div></div></div></div><div dir=3D"ltr"><font face=3D"a=
+rial, sans-serif"><div><a href=3D"http://www.gazelliarthouse.com/" style=3D=
+"color:rgb(17,85,204)" target=3D"_blank"><font color=3D"#0b5394">www.gazell=
+iarthouse.com</font></a></div><div>+44 (0) 207 491 8816 / +994 (0) 12 498 1=
+230</div><div><br></div><div style=3D"font-size:x-small"><div><font color=
+=3D"#000000"><a href=3D"https://streaklinks.com/BHpVIxJHhzip8Hm6nAyO2h9O/ht=
+tps%3A%2F%2Fwww.instagram.com%2Fgazelliarthouse%2F" style=3D"color:rgb(17,8=
+5,204);display:inline-block" target=3D"_blank"><img src=3D"https://68ef2f69=
+c7787d4078ac-7864ae55ba174c40683f10ab811d9167.ssl.cf1.rackcdn.com/instagram=
+-icon_24x24.png" width=3D"24" style=3D"margin: 0.8em 0.2em; padding: 0px; l=
+etter-spacing: -0.1px; border: 0px; vertical-align: middle; max-width: 100%=
+;"><div style=3D"margin:0px;width:0px;height:0px"><div></div></div></a><a h=
+ref=3D"https://streaklinks.com/BHpVIoEUFPH6ci6Q4QBT8JGr/https%3A%2F%2Ftwitt=
+er.com%2FGazelliArtHouse" hspace=3D"streak-track" style=3D"color:rgb(17,85,=
+204);display:inline-block" target=3D"_blank"><img src=3D"https://68ef2f69c7=
+787d4078ac-7864ae55ba174c40683f10ab811d9167.ssl.cf1.rackcdn.com/twitter-ico=
+n_24x24.png" width=3D"24" style=3D"margin: 0.8em 0.2em; padding: 0px; lette=
+r-spacing: -0.1px; border: 0px; vertical-align: middle; max-width: 100%;"><=
+div style=3D"margin:0px;width:0px;height:0px"><div></div></div></a>=C2=A0<a=
+ href=3D"https://streaklinks.com/BHpVIoEeHlRoFY_ETAqPyMXi/https%3A%2F%2Fwww=
+.facebook.com%2FGazelliArtHouse%2F" hspace=3D"streak-track" style=3D"color:=
+rgb(17,85,204);display:inline-block" target=3D"_blank"><img src=3D"https://=
+68ef2f69c7787d4078ac-7864ae55ba174c40683f10ab811d9167.ssl.cf1.rackcdn.com/f=
+acebook-icon_24x24.png" width=3D"24" style=3D"margin: 0.8em 0.2em; padding:=
+ 0px; letter-spacing: -0.1px; border: 0px; vertical-align: middle; max-widt=
+h: 100%;"></a></font></div></div><div style=3D"font-size:x-small"><br></div=
+><div style=3D"font-size:x-small"><img width=3D"96" height=3D"44" src=3D"ht=
+tps://ci3.googleusercontent.com/mail-sig/AIorK4w7gKovNZAR8tYAuQ9hIjEiBgWel9=
+uIDPpW34GyeY595Rek12deHDAlPE9ZZxtPymKBYCzaHBU"></div></font></div></div></d=
+iv></div></div><div style=3D"color:rgb(80,0,80)"><div style=3D"color:rgb(34=
+,34,34)"><div><font face=3D"times new roman, serif" color=3D"#000000"><br><=
+/font></div></div></div><div><div><font size=3D"1"><span style=3D"font-fami=
+ly:&quot;times new roman&quot;,serif;color:rgb(0,0,0)">This e-mail message,=
+ including all attachments, is for the=C2=A0sole use of the intended recipi=
+ent(s) and may contain=C2=A0legally privileged and confidential information=
+. If you are=C2=A0not an intended recipient, you are hereby notified that=
+=C2=A0you have either received this message in error or through=C2=A0interc=
+eption, and that any=C2=A0</span><span style=3D"font-family:&quot;times new=
+ roman&quot;,serif;color:rgb(0,0,0)">review</span><span style=3D"font-famil=
+y:&quot;times new roman&quot;,serif;color:rgb(0,0,0)">, use, distribution,=
+=C2=A0copying or disclosure of this message and/or its=C2=A0attachments or =
+parts thereof is strictly prohibited and is=C2=A0subject to criminal and ci=
+vil penalties with appropriate=C2=A0national legislation.</span></font></di=
+v></div></div></div></div></div></div></div></div></div></div></div></div><=
+/div></div></div></div></div></div></div></div></div></div></div></div></di=
+v></div></div></div></div></div></div></div></div></div></div></div></div><=
+/div></div></div></div></div></div></div></div></div></div></div></div></di=
+v></div></div></div></div></div></div></div></div></div></div></div></div><=
+/div></div></div></div></div></div></div></div></div></div></div></div>
+
+--00000000000005451d06230c58ba--

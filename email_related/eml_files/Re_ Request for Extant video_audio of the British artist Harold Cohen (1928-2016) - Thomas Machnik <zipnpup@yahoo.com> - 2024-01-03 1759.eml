@@ -1,0 +1,659 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a10:87e3:b0:52b:85d5:ba89 with SMTP id k3csp1000270pxs;
+        Wed, 3 Jan 2024 14:59:21 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IEYU8Qz4dnONRixz9OMK3TvnoLZTLUApdQ/tLMcFGF8swrtdWWWOcZBQ9Q4/yOXFtZtWN4a
+X-Received: by 2002:a05:6214:1383:b0:680:5fc8:4ae2 with SMTP id pp3-20020a056214138300b006805fc84ae2mr8280767qvb.126.1704322761090;
+        Wed, 03 Jan 2024 14:59:21 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1704322761; cv=none;
+        d=google.com; s=arc-20160816;
+        b=NFxjMMCfviib03bY+St1mApFU+LJu3ZKA+0W7oG59YWTfVwLlJYtH7PYJqNwycubNP
+         HHo9V7x9MZ7kNhXM4WG0QhbnY48S6KJNJx5UshrRUnKzKdYs3qe8PgaeZ9vLOoVZDXiC
+         nXTylkNllFmlbEdMifLIRPUzOqNRLmndAZLoxDAso4xm+j8/nwD5OuXF8jaB8zc9U237
+         XNZnqSf8+gyC5I3u0Ydga5yqCNgKdrUdKcETvY30zW4H5d+4Ace1supIh447+b8mBLvp
+         neemtCU6VOXX4DHyJZKkLcxehempac0UyrbJoeUkBDqxoKbmLTiz/KIAk7mXP85mlAPj
+         nUrQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=mime-version:subject:references:in-reply-to:message-id:cc:to
+         :reply-to:from:date:dkim-signature;
+        bh=jX0P2SufcoGhZBQ5dgScs+P36KYu8e+I5LfbJspso4M=;
+        fh=jSYtX5wUBslELmHrR/pYIvW/HtSj8Lu2/EK6m2N9Vps=;
+        b=EUKsXGQo6r2l6RaubmU+DsFNr7lsSIhaY2pHKphRrJspVPpZdgfAqBSjpAeIdaRslp
+         3Pmk6mn5S9oXnDQToAHE0Kp9wgAtgNyFbKcn2Kqxs1Rb65C+JPAnfzzim7RrXdMn9AAY
+         lxbtAUgJ6twD5JxijqCwW+5icyqDHLF5zPGkbwf2ayZfClp+abDUCKQ8/daMeCCGDn+N
+         xRHlfHpBWBeuTLuaXSGf+Zveo+XDzIbPlfaswX6vFtPdYNqY2cjHXVpikmdTha4WPBXP
+         vpRdhDGpssBO9FeO/CMvDXDlJuYuFP8oFzswkmZD0q8YAhJDGQxibzZAVqMcqajVdiSR
+         XfYg==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=nOHD+YdL;
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.129.124 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+Return-Path: <zipnpup@yahoo.com>
+Received: from sonic309-14.consmr.mail.bf2.yahoo.com (sonic309-14.consmr.mail.bf2.yahoo.com. [74.6.129.124])
+        by mx.google.com with ESMTPS id n11-20020a0c9d4b000000b0067f61c8fc66si30523469qvf.20.2024.01.03.14.59.20
+        for <paulrcohen@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 03 Jan 2024 14:59:21 -0800 (PST)
+Received-SPF: pass (google.com: domain of zipnpup@yahoo.com designates 74.6.129.124 as permitted sender) client-ip=74.6.129.124;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=nOHD+YdL;
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.129.124 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1704322760; bh=jX0P2SufcoGhZBQ5dgScs+P36KYu8e+I5LfbJspso4M=; h=Date:From:Reply-To:To:Cc:In-Reply-To:References:Subject:From:Subject:Reply-To; b=nOHD+YdLjQovy5eYKqY74DCJTkpQzXtpt8WBi1OZa4pxItbZVBCzJZwAep/aHcf374TV6V/6ceqxw7LxG09pAg1XMfKqIotXvEk3aQHhHKu23qGUP7NAoGOGc9OTtrpzUjlLuDR4+UJ3VYq98DNqeYA61JTywZ3kul3jtWbkqF1EBdBcP0z3pD95juHuGg+kUK9FDvEBs93RAh9e1cLN5Rv/rJn7hT7ulc6+jnd/fhYuscOpIMlliLkty1ZQ8FSIq6z8Pl1JkdjWSwJIzKbM6ABPmFfo/7ffIIUNebw/Dvv45Uu7gaGInyiknEznqIX/lme1X9w/9wN3cXWsmvS4wg==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1704322760; bh=VwqxyZKF14cwcoDw2Y6q0J6GpSKZwBu+9JI7XttNf9z=; h=X-Sonic-MF:Date:From:To:Subject:From:Subject; b=nJAinNEYVEjiT+cM/cRWQi3dOtP0rQZ15VxXVnPlU1Fa2ncPVfJbXnMaCD9AGBP+qtnz/3jYwDidxWVulKvjfLy63RjKFATkE3q2c9//MZwiinGwifx1xHEzs5j5+NMJnFPleMFtAL6xwmYlH5dTfe4unjxlF04MdZIIw2O7k5C+ZDy4pShE4gmCvd4Lup+kcehFwTcaCxwUtPvGco96K2GikxatdL2LKV6FeTw1m++BRpq4JYAQQuVehbs+iyOAiGLih/ncKWD0++k21yEshJ6uURi+w4iCmwWX8324IgHiwNCC32ABlS5m6+z4/AK5zYU21rHkyX+FXsebuA0H/Q==
+X-YMail-OSG: Lzy6qkUVM1krnGY8QZ3X72nHP2xgPkPqCJaZ7owHfjaZjzSnhWufwTEgY7I2s_A
+ 8ibYwWPmuKqi6_V8UO1HhzZDcsO9qbKSrabrag2BPAdF0_AWFuWBwMCiWAfvKn1pTGGfkkFcI9HN
+ SAkO.YhjN8tBunyutg6ssr0Q1lEKetbdkrZxsmKDweAlEB_QodTWAA4xKhjOhYBWZLyFrldPFc9M
+ 5LreFBe45gAgfH9qGIKuWzpehfbOCJC6EDsbEKQEmg4zPX5BxKmLgSpoPglDTlwDy0OufseqfJzb
+ NrU9165YY8nETjYHYYZ6ZbP7XQm8EO7iIFRMaS.Ep6TAqdt1B0Fb6ouH3XmG7GWOfU4RgBlqts63
+ dTB82qhEhiT.24qm52hV77_Z2VOPXJ475p9kaoVCEP8ivqUoFx4Z9BTuEIRg20To82m_7XT396yC
+ U8tfBPXUfEHIPmrhqaM1wOguxF.CVaf_dkjqsSthmm49DToiPm9p05gwB03xY4VYbjmjrNSOXs8d
+ UE7FBEdLqdxjz87iIGdPu4F6NAdXxW5hX0AqbDY0aY5UHBNp7FElw_SKxY..8rmD5y7ZiI9KW1gS
+ u_bKu8r4UWg.pLVBckvCXjRYX_mSeyGCiEXSJIs2akKubRZorWSsz3exqbHgh02.rAXfWC2GcLlR
+ NITiuCRD10M0dkwoWVrEu9Bz8nABDV5r2m0Nv4R7C2FH8oPgNVqinRot2Js9LWQmJUjnK22Y3jOD
+ Lsduq4NJc2G.xH13Yq8__CYQ3HHXzUbiBO.udy9xBntwn_cNhJWN4.AJN2ymBcdxj5ILweEIrffI
+ Ia0qVhPtoHB2nuN3FhRIC83vDsLy.sF8DLEuJd03r_H50v6KuHdqhNAFHQmET17kk3BI8N8AJIKg
+ DdUSuS2VetI3WmNYXrOQ8qjYKQI1Xg.btNa4dSD1BC6AsbZVzYNsoSUlVsccj32mhYBYNPxakjH1
+ zZb1J.HQzfqqxUIJ4pl3CU3CJjFI_WvDKPIs_oGKh7mFO7RBcTvYam1.q.Mcx5z8V89kfx5e5vN1
+ U61dKTywdv6HysHOW2O1WNH.fL58SBfHeTbQ94AK5WSMWAFp3jygZnJ4fDTUXETp5aiU1uQUUu7n
+ GW4qK4_FCWbfmQNk2G04OVwMpz8BOTcuDv8PQDTGK.0DmCAWrWFSN5Gz0QOriqxc2Ko5.uZnxPMb
+ vd1gNGkJ5bGMvBpb1peTb6PqswtudgqO_fYDdqfawcWogta1PzmkQyqdHJQDtoAS.Cy6c0e8odkO
+ alM9mUkUeAwLfcFf6XdbXaTYeTj1gcBajpoeJkgL9SJPjLfa5x4V32hVppXA7twAMjG_4gs9uKlc
+ n7.N2OGtawp5YVht4oA7Ayr53vHjg9S.y2rH8dIPS53GtBry5TZvLd1A_SduQAjaaeHWJ0e6MhAm
+ _wLSne4eAbOL8A2sTLqsIbAcWlxVm2lQK1SNEVX9r9FyKnXY2FGxi51zikgJHilRlPRH7e06pIKp
+ DeNt.KFe_ZlyOAoOOAaXxJMbdLsWLaAJtR.cpzczGr2G303aROMOp.e3HMHDt2.bEvj2h5Es5bZ4
+ AaOmClJuf9DoxIEieHynAR1NkoskYwYkhQT_kY331TEmo.3ujiaydaoLL1eicrCtwgEJ9XVjShM0
+ k2pSCuc3cdii85RMxZIB9ClfxRgjLrfLlVTtlteencFQE3oJK_URquZB5wEUDTfbq3Q3OW8CWRRT
+ kHgq_7_a_DOF1lrdinBHrIqCqoURYtFyEzJnOt9zqMcQHYwkR8m1doTWZ5VNlvNOMDID8ZGGilCL
+ fxWtCwG67lTIlmvAYrd9kwAFQUQQ_WhtBWynPfxGn3fVzPO4yD3i8tEl0lZVPQ2Y8pXPiaWzVFqs
+ JPBLpZenb7CWBLkuXMBxAeOKYS7HOvQ2MSt04BtVMu5fNx.reIUm1vT_5k5TxMiv8NkeJ.hdyJ5.
+ P825p1B1G7XxJShUVtqaWrlFU2OhdP1_zzg11VyhXOndDmrhSM7x6.GPFUh0UlJmsW0aHZwnJrwe
+ d2ZFTNb0DSfSpfY_FJLvywzysFt4WxpvmCKOkVlO1N744Dx9fKXx3prsKm8He_iwAx8XN0zvGSH.
+ 7jAyYQ7jwnOZf0PZKN.fmnN7ua8Y5DuXhXu3XN8Iqk2RD5Jh3RJxmf.GPhrBwrQ1vp0pAziU4m7l
+ 27wq8v3Ey.5OQ36dQAF56OYDyZWos6Q0Y.ciV.FVZpd1.ccqSCLuM2f_RB4CkGk2XL5.1JMJsZFe
+ DUTnaqv8Mi56TExmQt7esbSknibAiCbP9Q0NKIjO7Ga_wd0lJywkqdR3y0a6B6rfKbrc-
+X-Sonic-MF: <zipnpup@yahoo.com>
+X-Sonic-ID: e4b8e474-7e14-4622-be14-787d5f4ec11f
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic309.consmr.mail.bf2.yahoo.com with HTTP; Wed, 3 Jan 2024 22:59:20 +0000
+Date: Wed, 3 Jan 2024 22:59:16 +0000 (UTC)
+From: Thomas Machnik <zipnpup@yahoo.com>
+Reply-To: Thomas Machnik <zipnpup@yahoo.com>
+To: Archive Requests External <archiverequestsexternal@bbc.co.uk>
+Cc: Sara Nishi <nishisara@gmail.com>, Paul Cohen <paulrcohen@gmail.com>, 
+	=?UTF-8?Q?kanoko_nishi_=E8=A5=BF=E9=B9=BF=E4=B9=83=E5=AD=90?= <littledeerofthewest@googlemail.com>, 
+	Laura Green <laura@gazelliarthouse.com>
+Message-ID: <497054541.4551865.1704322756865@mail.yahoo.com>
+In-Reply-To: <DB6PR01MB301614D99B34D457D92C92BAA394A@DB6PR01MB3016.eurprd01.prod.exchangelabs.com>
+References: <290467636.2230983.1703117103958.ref@mail.yahoo.com> <290467636.2230983.1703117103958@mail.yahoo.com> <DB6PR01MB301614D99B34D457D92C92BAA394A@DB6PR01MB3016.eurprd01.prod.exchangelabs.com>
+Subject: Re: Request for Extant video/audio of the British artist Harold
+ Cohen (1928-2016)
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_4551864_2066946436.1704322756862"
+X-Mailer: WebService/1.1.21952 YMailNorrin
+Content-Length: 25331
+
+------=_Part_4551864_2066946436.1704322756862
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+ Dear Andrew,Much thanks for looking into our requests and for the quick re=
+sponse. Sorry for my delayed response as I was following up on another lead=
+ regarding the Director of Sunday Night: Five for Venice.=20
+
+I understand the "Sunday Night: Five for Venice" is no longer extant in you=
+r archives. I have since found some additional information which confirms w=
+hat you wrote but also hope that maybe a copy still is extant. I understand=
+ the late Ann Turner (1927-2018) was the film director of the programme. In=
+ a voice recorded interviewed by Alan Lawson in 1995 she provides the detai=
+ls on the films demise where she says*(see note below), "BBC One, I had a f=
+ive for Venice on the 25th of October in 1966. I'd spent a year following a=
+round the British Council something we could never do these days. Actually,=
+ with the five artists concern, which are known as Tony Cairo, Danny Cairo,=
+ Robin Denny now CBE, the two Cohen's Harold and Bernard and Dick Smith and=
+ Lillian Somerville, Sir Herbert Read. David Thompson was involved as the c=
+atalogue was his. And I think it's a very interesting film. And I would ver=
+y much like to see it except BBC lent it to Nancy for ?OU? thing. Humphrey =
+had not signed the retention order. And the thing was junked with its negat=
+ive when it came back to film library, Alan Hanson nearly went through the =
+roof, because you know all those artists are important. And they were all i=
+n their studios talking about their work."
+That is a pity. But Ann Turner goes on to say later in the interview,"One o=
+f the things I have not followed up is if whether the British Council, I ma=
+y simply have given them a copy with luck, they might have kept it you know=
+."=C2=A0 Do you have any thoughts on how I would approach the British Counc=
+il to ask if they have a copy?=20
+
+Also regarding the other finds. This is wonderful news. What do we need to =
+do to get a listing of sorts from you?
+Sincerely,
+Thomas Machnik -- Art Studio Manager -- The Harold Cohen Trust
+
+
+
+*https://historyproject.org.uk/interview/ann-turnerTape 2 approximately 32m=
+15sSome of official transcript does not match the audio. My quote is theref=
+ore an edit of the original transcript to provide clarity only where necess=
+ary.=20
+
+
+
+   On Thursday, December 21, 2023, 4:14:33 PM PST, Archive Requests Externa=
+l <archiverequestsexternal@bbc.co.uk> wrote: =20
+=20
+=20
+Dear Thomas
+=20
+Thank you for contacting the BBC Archives.
+=20
+ =C2=A0
+=20
+I can tell you that the material described in your documents relates to two=
+ different programmes, one TV and one radio.
+=20
+ =C2=A0
+=20
+The TV programme was called =E2=80=9CSunday Night: Five for Venice=E2=80=9D=
+, this was shown on BBC1 on 25 September 1966. Unfortunately this programme=
+ no longer exists in the BBC Archives.
+=20
+ =C2=A0
+=20
+The other programme was broadcast in a series called =E2=80=9CSome American=
+ Artists=E2=80=9D on 20 March 1967 on BBC radio (Network Three, one of the =
+forerunners of Radio 3), although it looks like it was probably recorded tw=
+o years earlier as per your information. This programme does exist in the B=
+BC Archives.
+=20
+ =C2=A0
+=20
+Apart from this item, we also have some later programmes which feature Haro=
+ld Cohen, which we can give you details of if required.
+=20
+ =C2=A0
+=20
+We may be able to give you access to these existing programmes to view or l=
+isten to for research purposes, if you are looking to use them beyond that =
+we would need details of what use you proposed to make of them, and we can =
+advise what may be possible based on that.
+=20
+ =C2=A0
+=20
+Kind regards
+=20
+ =C2=A0
+=20
+Andrew Martin
+=20
+BBC Archive Requests =E2=80=93 External
+=20
+ =C2=A0
+=20
+From: Thomas Machnik <zipnpup@yahoo.com>
+Sent: 21 December 2023 00:05
+To: Archive Requests External <archiverequestsexternal@bbc.co.uk>
+Cc: Sara Nishi <nishisara@gmail.com>; Paul Cohen <paulrcohen@gmail.com>; ka=
+noko nishi=E8=A5=BF=E9=B9=BF=E4=B9=83=E5=AD=90 <littledeerofthewest@googlem=
+ail.com>
+Subject: Request for Extant video/audio of the British artist Harold Cohen =
+(1928-2016)
+=20
+ =C2=A0
+=20
+Dear BBC Archivist,
+=20
+My name is Thomas Machnik and I am the Art Studio Manager for the Harold Co=
+hen Trust. Harold Cohen (1928-2016) was a prominent British artist both as =
+a painter and then later developed AARON -- AI computer based art. I am cur=
+rently doing research for the Trust. Based on the Trust archives, we know C=
+ohen appeared on BBC TV and radio. We are trying to determine if these appe=
+arances are still extant. What type of information would you need in order =
+to determine if you have any film or audio? In some cases we only have a re=
+ference alluding to an interview. But we do have a couple typed up document=
+s that looks like TV transcripts. One of the transcripts has the following =
+details:
+=20
+BARNET NEWMAN talking to David Sylvester
+=20
+Producer: Leonie Cohn
+=20
+Transmission: Wednesday 17th November 1965: 2140-2215
+=20
+Tape No: CTAM 42905
+=20
+ =C2=A0
+=20
+This transcript is 13 pages and it has a second transcript titled, "INTRODU=
+CTION TO BARNETT NEWMAN INTERVIEW WITH DAVID SYLVESTER by John Richardson" =
+and says the length is 7'10"
+=20
+ =C2=A0
+=20
+Based on reading the transcripts the show is primarily about Newman. But on=
+ page 4 of the second transcript=C2=A0 it reads, "As Harold Cohen is going =
+to discuss the nature of Newman's impact on himself and others later in the=
+ programme, I will say no more than that."
+=20
+ =C2=A0
+=20
+These two transcripts are the same folder so we assume they go together eve=
+n though the John Richardson transcript portion does not have any of the de=
+tails like time date or tape number. In this same folder we do not have any=
+ transcript of Harold Cohen speaking. But we do have a separate folder with=
+ a TV transcript and wonder if this TV transcript belongs with the above or=
+ with a separate transmission. The Harold Cohen transcript has a column tha=
+t includes camera directions. For example it starts off like this:
+=20
+ =C2=A0
+=20
+130/2 Top shot
+=20
+from ladder
+=20
+---------------
+=20
+H.C. unrolls canvas
+=20
+ =C2=A0
+=20
+Then on the 4 page it has a header that reads:
+=20
+ROLL ONE: SUNDAY NIGHT: PROJECT NO. 5616/0109
+=20
+LOCATION - N.LONDON
+=20
+------------------------------------------------------------------
+=20
+The people talking are only referred to by initials. The intiials are prima=
+rily HC, DT. But on ROLL TWO we see A.T. Question and HC, then on ROLL SIX =
+(we don't have ROLLS 3-5) we see LS, HC, HR, AG.
+=20
+ =C2=A0
+=20
+If the Tape NO CTAM 42905 really was transmitted Nov 17, 1965, I rather thi=
+nk this PROJECT NO 5616/0109 might be bit later as there is much discussion=
+ about the British Pavillion at the Venice Bienalle XXIII 1966. Much of the=
+ transcript refers to artwork that will be rolled up and sent to the Bienal=
+le. I believe the show opened June 1966. So this interview would be sometim=
+e in Spring 1966 I image.
+=20
+ =C2=A0
+=20
+We do have a typed document in a separate folder with a document inside tit=
+led "BARNETT NEWMAN by Harold Cohen". It does not have the same look as a T=
+V transcript but maybe a draft for the 1965 TV show. This work is not dated=
+ but it begins like this, "In his interview with David Sylvester, Newman gi=
+ves a very full and really very technical account of the way his painting d=
+eveloped...." Though it is not dated we suspect it belongs to CTAM 42905 ta=
+pe. And that PROJECT NO 5616/0109 is separate TV transmission. In any case,=
+ we are hoping to resolve these unknowns with your help.
+=20
+ =C2=A0
+=20
+Ultimately, we would like to view any video the BBC may have of Cohen or at=
+ a minimum determine what is still extant. I provided the above as it is th=
+e most detail we have pointing to a specific recording. We are quite sure s=
+ome of his other events were also filmed by the BBC. What type of informati=
+on would you need to help us determine what is still extant? If you could a=
+dvise me further on how to proceed, that would be most appreciated.
+=20
+ =C2=A0
+=20
+ =C2=A0
+=20
+Thomas Machnik -- Art Studio Manager -- The Harold Cohen Trust
+=20
+ =C2=A0
+=20
+ =C2=A0
+=20
+ =C2=A0
+=20
+ =C2=A0
+=20
+ =C2=A0
+=20
+ =C2=A0
+  =20
+------=_Part_4551864_2066946436.1704322756862
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head></head><body><div class=3D"ydp18039aa4yahoo-style-wrap" style=
+=3D"font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px=
+;"><div></div>
+        <div dir=3D"ltr" data-setdir=3D"false">Dear Andrew,</div><div dir=
+=3D"ltr" data-setdir=3D"false"><div>Much thanks for looking into our reques=
+ts and for the quick response. Sorry for my delayed response as I was follo=
+wing up on another lead regarding the Director of Sunday Night: Five for Ve=
+nice. <br></div><div><br></div><div dir=3D"ltr" data-setdir=3D"false">I und=
+erstand the "Sunday Night: Five for Venice" is no longer extant in your arc=
+hives. I have since found some additional information which confirms what y=
+ou wrote but also hope that maybe a copy still is extant. I understand the =
+late Ann Turner (1927-2018) was the film director of the programme. In a vo=
+ice recorded interviewed by Alan Lawson in 1995 she provides the details on=
+ the films demise where she says*(see note below), "BBC One, I had a five f=
+or Venice on the 25th of October in 1966. I'd=20
+spent a year following around the British Council something we could=20
+never do these days. Actually, with the five artists concern, which are=20
+known as Tony Cairo, Danny Cairo, Robin Denny now CBE, the two Cohen's Haro=
+ld and Bernard and Dick Smith and Lillian Somerville, Sir Herbert=20
+Read. David Thompson was involved as the catalogue was his. And I think=20
+it's a very interesting film. And I would very much like to see it=20
+except BBC lent it to Nancy for ?OU? thing. Humphrey had not signed the ret=
+ention
+ order. And the thing was junked with its negative when it came back to=20
+film library, Alan Hanson nearly went through the roof, because you know al=
+l those artists are important. And they were all in their studios talking a=
+bout their work."</div><div><br></div><div dir=3D"ltr" data-setdir=3D"false=
+">That is a pity. But Ann Turner goes on to say later in the interview,"<sp=
+an>One of the things I have not followed up is if whether the British Counc=
+il, I may simply have given them a copy with luck, they might have kept it =
+you know</span>."&nbsp; Do you have any thoughts on how I would approach th=
+e British Council to ask if they have a copy? <br></div><div dir=3D"ltr" da=
+ta-setdir=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"false">Also r=
+egarding the other finds. This is wonderful news. What do we need to do to =
+get a listing of sorts from you?</div><div dir=3D"ltr" data-setdir=3D"false=
+"><br></div><div dir=3D"ltr" data-setdir=3D"false">Sincerely,</div><div dir=
+=3D"ltr" data-setdir=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"fa=
+lse"><span><span style=3D"font-size:12.0pt;font-family:sans-serif;">Thomas =
+Machnik -- Art Studio Manager -- The Harold Cohen Trust</span></span><br></=
+div><div dir=3D"ltr" data-setdir=3D"false"><br></div><div dir=3D"ltr" data-=
+setdir=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"false"><br></div=
+><div dir=3D"ltr" data-setdir=3D"false">*<a href=3D"https://historyproject.=
+org.uk/interview/ann-turner" rel=3D"nofollow" target=3D"_blank">https://his=
+toryproject.org.uk/interview/ann-turner</a></div><div dir=3D"ltr" data-setd=
+ir=3D"false">Tape 2 approximately 32m15s</div><div dir=3D"ltr" data-setdir=
+=3D"false">Some of official transcript does not match the audio. My quote i=
+s therefore an edit of the original transcript to provide clarity only wher=
+e necessary.</div><div dir=3D"ltr" data-setdir=3D"false"> <br></div><div><b=
+r></div></div><div dir=3D"ltr" data-setdir=3D"false"><br></div><div dir=3D"=
+ltr" data-setdir=3D"false"><br></div></div><div id=3D"ydpe1c9ea2eyahoo_quot=
+ed_4888125390" class=3D"ydpe1c9ea2eyahoo_quoted">
+            <div style=3D"font-family:'Helvetica Neue', Helvetica, Arial, s=
+ans-serif;font-size:13px;color:#26282a;">
+               =20
+                <div>
+                    On Thursday, December 21, 2023, 4:14:33 PM PST, Archive=
+ Requests External &lt;archiverequestsexternal@bbc.co.uk&gt; wrote:
+                </div>
+                <div><br></div>
+                <div><br></div>
+                <div><div id=3D"ydpe1c9ea2eyiv5990253374"><div>
+<div class=3D"ydpe1c9ea2eyiv5990253374WordSection1">
+<p class=3D"ydpe1c9ea2eyiv5990253374MsoNormal"><span>Dear Thomas</span></p>=
+=20
+=20
+<p class=3D"ydpe1c9ea2eyiv5990253374MsoNormal"><span>Thank you for contacti=
+ng the BBC Archives.
+</span></p>=20
+<p class=3D"ydpe1c9ea2eyiv5990253374MsoNormal"><span> &nbsp;</span></p>=20
+<p class=3D"ydpe1c9ea2eyiv5990253374MsoNormal"><span>I can tell you that th=
+e material described in your documents relates to two different programmes,=
+ one TV and one radio.</span></p>=20
+<p class=3D"ydpe1c9ea2eyiv5990253374MsoNormal"><span> &nbsp;</span></p>=20
+<p class=3D"ydpe1c9ea2eyiv5990253374MsoNormal"><span>The TV programme was c=
+alled =E2=80=9CSunday Night: Five for Venice=E2=80=9D, this was shown on BB=
+C1 on 25 September 1966. Unfortunately this programme no longer exists in t=
+he BBC Archives.</span></p>=20
+<p class=3D"ydpe1c9ea2eyiv5990253374MsoNormal"><span> &nbsp;</span></p>=20
+<p class=3D"ydpe1c9ea2eyiv5990253374MsoNormal"><span>The other programme wa=
+s broadcast in a series called =E2=80=9CSome American Artists=E2=80=9D on 2=
+0 March 1967 on BBC radio (Network Three, one of the forerunners of Radio 3=
+), although it looks like it was probably
+ recorded two years earlier as per your information. This programme does ex=
+ist in the BBC Archives.</span></p>=20
+<p class=3D"ydpe1c9ea2eyiv5990253374MsoNormal"><span> &nbsp;</span></p>=20
+<p class=3D"ydpe1c9ea2eyiv5990253374MsoNormal"><span>Apart from this item, =
+we also have some later programmes which feature Harold Cohen, which we can=
+ give you details of if required.</span></p>=20
+<p class=3D"ydpe1c9ea2eyiv5990253374MsoNormal"><span> &nbsp;</span></p>=20
+<p class=3D"ydpe1c9ea2eyiv5990253374MsoNormal"><span>We may be able to give=
+ you access to these existing programmes to view or listen to for research =
+purposes, if you are looking to use them beyond that we would need details =
+of what use you proposed
+ to make of them, and we can advise what may be possible based on that.</sp=
+an></p>=20
+<p class=3D"ydpe1c9ea2eyiv5990253374MsoNormal"><span> &nbsp;</span></p>=20
+<p class=3D"ydpe1c9ea2eyiv5990253374MsoNormal"><span>Kind regards</span></p=
+>=20
+<p class=3D"ydpe1c9ea2eyiv5990253374MsoNormal"><span> &nbsp;</span></p>=20
+<p class=3D"ydpe1c9ea2eyiv5990253374MsoNormal"><span>Andrew Martin</span></=
+p>=20
+<p class=3D"ydpe1c9ea2eyiv5990253374MsoNormal"><span>BBC Archive Requests =
+=E2=80=93 External</span></p>=20
+<p class=3D"ydpe1c9ea2eyiv5990253374MsoNormal"><span> &nbsp;</span></p>=20
+<div id=3D"ydpe1c9ea2eyiv5990253374yqt38905" class=3D"ydpe1c9ea2eyiv5990253=
+374yqt3997379459"><div>
+<div style=3D"border-color: rgb(225, 225, 225) currentcolor currentcolor; b=
+order-style: solid none none; border-width: 1pt medium medium; padding: 3pt=
+ 0cm 0cm;">
+<p class=3D"ydpe1c9ea2eyiv5990253374MsoNormal"><b><span lang=3D"EN-US">From=
+:</span></b><span lang=3D"EN-US"> Thomas Machnik &lt;zipnpup@yahoo.com&gt;
+<br clear=3D"none">
+<b>Sent:</b> 21 December 2023 00:05<br clear=3D"none">
+<b>To:</b> Archive Requests External &lt;archiverequestsexternal@bbc.co.uk&=
+gt;<br clear=3D"none">
+<b>Cc:</b> Sara Nishi &lt;nishisara@gmail.com&gt;; Paul Cohen &lt;paulrcohe=
+n@gmail.com&gt;; kanoko nishi
+</span><span>=E8=A5=BF=E9=B9=BF=E4=B9=83=E5=AD=90</span><span lang=3D"EN-US=
+"> &lt;littledeerofthewest@googlemail.com&gt;<br clear=3D"none">
+<b>Subject:</b> Request for Extant video/audio of the British artist Harold=
+ Cohen (1928-2016)</span></p>=20
+</div>
+</div>
+<p class=3D"ydpe1c9ea2eyiv5990253374MsoNormal"> &nbsp;</p>=20
+<div>
+<div>
+<p class=3D"ydpe1c9ea2eyiv5990253374MsoNormal"><span style=3D"font-size:12.=
+0pt;font-family:sans-serif;">Dear BBC Archivist,</span></p>=20
+</div>
+<div>
+<p class=3D"ydpe1c9ea2eyiv5990253374MsoNormal"><span style=3D"font-size:12.=
+0pt;font-family:sans-serif;">My name is Thomas Machnik and I am the Art Stu=
+dio Manager for the Harold Cohen Trust. Harold Cohen (1928-2016) was a prom=
+inent British artist both as a painter and then later
+ developed AARON -- AI computer based art. I am currently doing research fo=
+r the Trust. Based on the Trust archives, we know Cohen appeared on BBC TV =
+and radio. We are trying to determine if these appearances are still extant=
+. What type of information would
+ you need in order to determine if you have any film or audio? In some case=
+s we only have a reference alluding to an interview. But we do have a coupl=
+e typed up documents that looks like TV transcripts. One of the transcripts=
+ has the following details:</span></p>=20
+</div>
+<div>
+<p class=3D"ydpe1c9ea2eyiv5990253374MsoNormal"><span style=3D"font-size:12.=
+0pt;font-family:sans-serif;">BARNET NEWMAN talking to David Sylvester</span=
+></p>=20
+</div>
+<div>
+<p class=3D"ydpe1c9ea2eyiv5990253374MsoNormal"><span style=3D"font-size:12.=
+0pt;font-family:sans-serif;">Producer: Leonie Cohn</span></p>=20
+</div>
+<div>
+<p class=3D"ydpe1c9ea2eyiv5990253374MsoNormal"><span style=3D"font-size:12.=
+0pt;font-family:sans-serif;">Transmission: Wednesday 17th November 1965: 21=
+40-2215</span></p>=20
+</div>
+<div>
+<p class=3D"ydpe1c9ea2eyiv5990253374MsoNormal"><span style=3D"font-size:12.=
+0pt;font-family:sans-serif;">Tape No: CTAM 42905</span></p>=20
+</div>
+<div>
+<p class=3D"ydpe1c9ea2eyiv5990253374MsoNormal"><span style=3D"font-size:12.=
+0pt;font-family:sans-serif;"> &nbsp;</span></p>=20
+</div>
+<div>
+<p class=3D"ydpe1c9ea2eyiv5990253374MsoNormal"><span style=3D"font-size:12.=
+0pt;font-family:sans-serif;">This transcript is 13 pages and it has a secon=
+d transcript titled, "INTRODUCTION TO BARNETT NEWMAN INTERVIEW WITH DAVID S=
+YLVESTER by John Richardson" and says the length
+ is 7'10"</span></p>=20
+</div>
+<div>
+<p class=3D"ydpe1c9ea2eyiv5990253374MsoNormal"><span style=3D"font-size:12.=
+0pt;font-family:sans-serif;"> &nbsp;</span></p>=20
+</div>
+<div>
+<p class=3D"ydpe1c9ea2eyiv5990253374MsoNormal"><span style=3D"font-size:12.=
+0pt;font-family:sans-serif;">Based on reading the transcripts the show is p=
+rimarily about Newman. But on page 4 of the second transcript&nbsp; it read=
+s, "As Harold Cohen is going to discuss the nature of
+ Newman's impact on himself and others later in the programme, I will say n=
+o more than that."</span></p>=20
+</div>
+<div>
+<p class=3D"ydpe1c9ea2eyiv5990253374MsoNormal"><span style=3D"font-size:12.=
+0pt;font-family:sans-serif;"> &nbsp;</span></p>=20
+</div>
+<div>
+<p class=3D"ydpe1c9ea2eyiv5990253374MsoNormal"><span style=3D"font-size:12.=
+0pt;font-family:sans-serif;">These two transcripts are the same folder so w=
+e assume they go together even though the John Richardson transcript portio=
+n does not have any of the details like time date
+ or tape number. In this same folder we do not have any transcript of Harol=
+d Cohen speaking. But we do have a separate folder with a TV transcript and=
+ wonder if this TV transcript belongs with the above or with a separate tra=
+nsmission. The Harold Cohen transcript
+ has a column that includes camera directions. For example it starts off li=
+ke this:</span></p>=20
+</div>
+<div>
+<p class=3D"ydpe1c9ea2eyiv5990253374MsoNormal"><span style=3D"font-size:12.=
+0pt;font-family:sans-serif;"> &nbsp;</span></p>=20
+</div>
+<div>
+<p class=3D"ydpe1c9ea2eyiv5990253374MsoNormal"><span style=3D"font-size:12.=
+0pt;font-family:sans-serif;">130/2 Top shot</span></p>=20
+</div>
+<div>
+<p class=3D"ydpe1c9ea2eyiv5990253374MsoNormal"><span style=3D"font-size:12.=
+0pt;font-family:sans-serif;">from ladder</span></p>=20
+</div>
+<div>
+<p class=3D"ydpe1c9ea2eyiv5990253374MsoNormal"><span style=3D"font-size:12.=
+0pt;font-family:sans-serif;">---------------</span></p>=20
+</div>
+<div>
+<p class=3D"ydpe1c9ea2eyiv5990253374MsoNormal"><span style=3D"font-size:12.=
+0pt;font-family:sans-serif;">H.C. unrolls canvas</span></p>=20
+</div>
+<div>
+<p class=3D"ydpe1c9ea2eyiv5990253374MsoNormal"><span style=3D"font-size:12.=
+0pt;font-family:sans-serif;"> &nbsp;</span></p>=20
+</div>
+<div>
+<p class=3D"ydpe1c9ea2eyiv5990253374MsoNormal"><span style=3D"font-size:12.=
+0pt;font-family:sans-serif;">Then on the 4 page it has a header that reads:=
+</span></p>=20
+</div>
+<div>
+<p class=3D"ydpe1c9ea2eyiv5990253374MsoNormal"><span style=3D"font-size:12.=
+0pt;font-family:sans-serif;">ROLL ONE: SUNDAY NIGHT: PROJECT NO. 5616/0109<=
+/span></p>=20
+</div>
+<div>
+<p class=3D"ydpe1c9ea2eyiv5990253374MsoNormal"><span style=3D"font-size:12.=
+0pt;font-family:sans-serif;">LOCATION - N.LONDON</span></p>=20
+</div>
+<div>
+<p class=3D"ydpe1c9ea2eyiv5990253374MsoNormal"><span style=3D"font-size:12.=
+0pt;font-family:sans-serif;">----------------------------------------------=
+--------------------</span></p>=20
+</div>
+<div>
+<p class=3D"ydpe1c9ea2eyiv5990253374MsoNormal"><span style=3D"font-size:12.=
+0pt;font-family:sans-serif;">The people talking are only referred to by ini=
+tials. The intiials are primarily HC, DT. But on ROLL TWO we see A.T. Quest=
+ion and HC, then on ROLL SIX (we don't have ROLLS
+ 3-5) we see LS, HC, HR, AG.</span></p>=20
+</div>
+<div>
+<p class=3D"ydpe1c9ea2eyiv5990253374MsoNormal"><span style=3D"font-size:12.=
+0pt;font-family:sans-serif;"> &nbsp;</span></p>=20
+</div>
+<div>
+<p class=3D"ydpe1c9ea2eyiv5990253374MsoNormal"><span style=3D"font-size:12.=
+0pt;font-family:sans-serif;">If the Tape NO CTAM 42905 really was transmitt=
+ed Nov 17, 1965, I rather think this PROJECT NO 5616/0109 might be bit late=
+r as there is much discussion about the British Pavillion
+ at the Venice Bienalle XXIII 1966. Much of the transcript refers to artwor=
+k that will be rolled up and sent to the Bienalle. I believe the show opene=
+d June 1966. So this interview would be sometime in Spring 1966 I image.</s=
+pan></p>=20
+</div>
+<div>
+<p class=3D"ydpe1c9ea2eyiv5990253374MsoNormal"><span style=3D"font-size:12.=
+0pt;font-family:sans-serif;"> &nbsp;</span></p>=20
+</div>
+<div>
+<p class=3D"ydpe1c9ea2eyiv5990253374MsoNormal"><span style=3D"font-size:12.=
+0pt;font-family:sans-serif;">We do have a typed document in a separate fold=
+er with a document inside titled "BARNETT NEWMAN by Harold Cohen". It does =
+not have the same look as a TV transcript but maybe
+ a draft for the 1965 TV show. This work is not dated but it begins like th=
+is, "In his interview with David Sylvester, Newman gives a very full and re=
+ally very technical account of the way his painting developed...." Though i=
+t is not dated we suspect it belongs
+ to CTAM 42905 tape. And that PROJECT NO 5616/0109 is separate TV transmiss=
+ion. In any case, we are hoping to resolve these unknowns with your help.</=
+span></p>=20
+</div>
+<div>
+<p class=3D"ydpe1c9ea2eyiv5990253374MsoNormal"><span style=3D"font-size:12.=
+0pt;font-family:sans-serif;"> &nbsp;</span></p>=20
+</div>
+<div>
+<p class=3D"ydpe1c9ea2eyiv5990253374MsoNormal"><span style=3D"font-size:12.=
+0pt;font-family:sans-serif;">Ultimately, we would like to view any video th=
+e BBC may have of Cohen or at a minimum determine what is still extant. I p=
+rovided the above as it is the most detail we have
+ pointing to a specific recording. We are quite sure some of his other even=
+ts were also filmed by the BBC. What type of information would you need to =
+help us determine what is still extant? If you could advise me further on h=
+ow to proceed, that would be most
+ appreciated.</span></p>=20
+</div>
+<div>
+<p class=3D"ydpe1c9ea2eyiv5990253374MsoNormal"><span style=3D"font-size:12.=
+0pt;font-family:sans-serif;"> &nbsp;</span></p>=20
+</div>
+<div>
+<p class=3D"ydpe1c9ea2eyiv5990253374MsoNormal"><span style=3D"font-size:12.=
+0pt;font-family:sans-serif;"> &nbsp;</span></p>=20
+</div>
+<div>
+<p class=3D"ydpe1c9ea2eyiv5990253374MsoNormal"><span style=3D"font-size:12.=
+0pt;font-family:sans-serif;">Thomas Machnik -- Art Studio Manager -- The Ha=
+rold Cohen Trust</span></p>=20
+</div>
+<div>
+<p class=3D"ydpe1c9ea2eyiv5990253374MsoNormal"><span style=3D"font-size:12.=
+0pt;font-family:sans-serif;"> &nbsp;</span></p>=20
+</div>
+<div>
+<p class=3D"ydpe1c9ea2eyiv5990253374MsoNormal"><span style=3D"font-size:12.=
+0pt;font-family:sans-serif;"> &nbsp;</span></p>=20
+</div>
+<div>
+<p class=3D"ydpe1c9ea2eyiv5990253374MsoNormal"><span style=3D"font-size:12.=
+0pt;font-family:sans-serif;"> &nbsp;</span></p>=20
+</div>
+<div>
+<p class=3D"ydpe1c9ea2eyiv5990253374MsoNormal"><span style=3D"font-size:12.=
+0pt;font-family:sans-serif;"> &nbsp;</span></p>=20
+</div>
+<div>
+<p class=3D"ydpe1c9ea2eyiv5990253374MsoNormal"><span style=3D"font-size:12.=
+0pt;font-family:sans-serif;"> &nbsp;</span></p>=20
+</div>
+<div>
+<p class=3D"ydpe1c9ea2eyiv5990253374MsoNormal"><span style=3D"font-size:12.=
+0pt;font-family:sans-serif;"> &nbsp;</span></p>=20
+</div>
+</div></div>
+</div>
+</div></div></div>
+            </div>
+        </div></body></html>
+------=_Part_4551864_2066946436.1704322756862--

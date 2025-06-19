@@ -1,0 +1,307 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a10:774d:b0:5c7:f970:fbca with SMTP id yp13csp8454321pxc;
+        Mon, 30 Dec 2024 12:52:53 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IFhU0dxQeWykoap4ic73pVWRPRV8JTLVqI//aU/ptGRTNyxoaQWTdJJjlb8XD6GXBqq2gan
+X-Received: by 2002:a05:6214:21e9:b0:6d8:a67e:b2fb with SMTP id 6a1803df08f44-6dd233ac041mr551116056d6.39.1735591973216;
+        Mon, 30 Dec 2024 12:52:53 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1735591973; cv=none;
+        d=google.com; s=arc-20240605;
+        b=UJR+LEJxNSkSRfcDN6jVa2qbCuApHCEcQxKOnH7313K0Vl3PYRDz0JwUBxVcSnM+SP
+         f66es35Nzv7nWHLOepPu62O777n8Nd/X9moo6duNMDt6J5/new58UXGlt6yKGtLYTROg
+         hTa6QOBgXVI1nPe0yCFMcLC5ZFcjfBO/2znUhByyz+uqL0wN/naZy41l1cy9NAA5YKpn
+         1dc1mV4qQTpy1aMwQEuQsMqcnjPq5koaufn0DJUVBfpJlkgmvY+0tPKrnGpAOfvK5o/g
+         7Qruf5NPSWATxKR/yPLKm63PrpwxNJI92ogc6d5DeeH5stVlI18HawjkrHUiLLmRtazH
+         LwXQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:subject:references:in-reply-to:message-id:to:reply-to
+         :from:date:dkim-signature;
+        bh=SW8DfDsKH6LYol7UFZL2e+3Ovru5ysyjEYdMqkpJH2k=;
+        fh=+ZSZzLtrqjYAnpssQkgK417RpHpTSSzuH+J6PqTYzzs=;
+        b=MUjCkJwmqb6vEWQWiE+fRiPeTL8cmIYuo9Y2FqiFDbbhMOpDZPtJvpf7HTK/pUUBpv
+         cdLjCWCD8Ny/qRAKbCkO2Vc+uFnaDqNK25B/K0U20N9Rz62+hpVbvjhSGXEoBaY6mmrP
+         T50WAwd3RwfQMjpvL+n8DF1mHRq7jzHRfihZ8o+dKhnfOPF/vZVXgnwWYemepHU3Xx2o
+         Kdmogq1JLd98OswgqnSyz23EFs99JLOsamdUbVmAyyIffiJoK/dvVi6OUdDduH9jcOcd
+         RGRXa8My0XpuKl6NPBxFdCR/w2A1tZ4O0HDLCxqv/82uPT7Ws2vOrbBY3bnv+eEEx5uz
+         EwCw==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=e2UhZQao;
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.133.124 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+Return-Path: <zipnpup@yahoo.com>
+Received: from sonic313-14.consmr.mail.bf2.yahoo.com (sonic313-14.consmr.mail.bf2.yahoo.com. [74.6.133.124])
+        by mx.google.com with ESMTPS id 6a1803df08f44-6dd1835db78si275333806d6.473.2024.12.30.12.52.53
+        for <paulrcohen@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 30 Dec 2024 12:52:53 -0800 (PST)
+Received-SPF: pass (google.com: domain of zipnpup@yahoo.com designates 74.6.133.124 as permitted sender) client-ip=74.6.133.124;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=e2UhZQao;
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.133.124 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1735591972; bh=SW8DfDsKH6LYol7UFZL2e+3Ovru5ysyjEYdMqkpJH2k=; h=Date:From:Reply-To:To:In-Reply-To:References:Subject:From:Subject:Reply-To; b=e2UhZQaouSTdCaM2NKFNsQNOKHtqB6mVieWjX8LhqTeq0P8zHuC6IQ6jWLlFVK6GuIeXbnT+qU/sAZTzUM+03R9pVUcGaJCi36QAmJY7BasXBDZA17O3Ghw5BN2E7E6BYWhdK5rE8ZikZ9bVBWKhTAwXZWksedm7uBRDNE1Rbry1vVDpY0XaOjqZzKNhKhqPCNNCwUoK+cMtN8O4Ap2tkebpX+mdyXTj62jK5PIsaerjR6Ll9Ngp7mt7h78dgw03s9Ic9TpMPWGmzgCUFPAKs5aJsKJrlTNiKiI+2Zg1/ywAMAOgLWySga1E/ZpGkQec/1zCjAfclkz+VKoEIFDRBg==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1735591972; bh=dO0E/2oIXvD5A1UzQYhXWUHJTcqcB3WO8YIBKNRihn5=; h=X-Sonic-MF:Date:From:To:Subject:From:Subject; b=d0j5jPk2AzA+u8uquP7YdqLgMP6LH+p4LHnnvDNplq6YEmVhfEWD/4MwPUS+1E1wGzliQiY4SqqLxdTU5ZsmA7kxdcAlIzvdg/4KGAtQBSqH/SC+0R4ftBJ+wKN6zTYZcZq3AKdvCLgb5OBDzurabL//E6Dmq6j5tZSsfjUbyek7jhUirv44itx7OAWGf+LBLU1uqhIxjAGFIDn3gDNu02Hk4mry/gzSzgrDiFNGBx9rPzYCtalYuhotANyh+uHP48WsZImA+5OdH2Nvc3s+Z0n79udbkQoNZfhLv75272QwkTjHyVbOTCnQsUwTpSVma+0RkMrpbj1h0c2kogh6kA==
+X-YMail-OSG: osd5U30VM1kkeNiNpO1zo54AAx3iQQ.5BPQc9KhBh84ltM9060cIydqGhDwxWV7
+ Zuhkg5mDlsw9U.pQj0iosWy9PW9OWkf.VnTeKYV.A86sacqXjCmfA23elOiAaqUKECCuHNPSLRO_
+ vl89ZKQUtQp2CPDyBbIuhLJoodqoqtgSwvrZNxkdW2z1JhDyT8HqSr3p_Qv3TruolkM9ZgUysmr4
+ J7tT0gqkPvPqqrPQ7B5dUcyI2lXtPGwC_gPMW76PylUMVsl1.3V1bTASX1kzbW9oha1wf_8KsGTF
+ aKtw3aneBJkc5ZuITX8fo1lKb0xG4fRDc9u2Cqy8f7qYMT_AoeSLzZGFxN1qf4JbKFyPRW2b9twg
+ aWmEVDrVdo_TDB2dIJ2JcnINwXXzxe.ZSYv.4DppU_wPSEi6KPIUiK15w.VJAT11uJ6heWKL9GtO
+ 5G9lq9Uax1rXktt7KhKNnAXa3XxRdm.kFlccxRjiR.uH6V4qB2T2TLjBOyMbYKggJHcuQCT45tHJ
+ IxJRAtNWOsuWKXq_bcoRDaTqXMDWpZwfTHhvI5.v9bZxnxue9zZiDlPREH0RW36SONuWB3C46q16
+ ndHdFJnDxM.jLiq7BThDqGYBTLzoaRsB8jnScfETWhJOKLkI6FGNWDN4Gwup0v2cfbFLmdrM4rcq
+ xwN5i7DWu4ICULMEz_IHzX_sZRdCjdk3YthxnvSXVrAqtQ68DHsvnHEO6iV5m1kM7nzBEn8MD6L.
+ nRytBDsW14qivoFMj6mlXsS4lgoD1F9AxXDWU5z5nytO0sGyUYQFVQOmkmnh7CT56NdBnzuGdozD
+ WT8qXeaPMt1vZMEUa5QohQW7awntwm674M5VUd1VHyeTlR5gd9P_ruml7G5tmlRC5Rg2Ul6a4jvN
+ quqdiY0n.2sRDJ2PlpeWw0DDN6BA3.Rk36hot7y60PiZkoHaghqqW.lVkxf.dCXlODDNCLAPA2Jm
+ kH7PdZWpVzYYw7m3eBKrMkBPpUO5kIXKB5IcXzcLjnhdpWRLwRhyjAqJXkd1.7eWQ3ErYGA6VYNS
+ GSXIn2Uh3.aM._APXCBW6lYKRyXsM9P.cFs57iU0NuuwouQArXETx9rEbkSoQ02vIOad0qZi8o1B
+ 3GoOoZcGAwuWz3BdBuTXI2eiX.JD89PqJJyumm9XCQqghhLS0.SIvJz7GVSrWR0qPAdxrqEvMwKA
+ KqsKWgwynpWT3CYDewnqo4wRJB4w8bxyqir4JV3iSuDTGO1uO_rWWO0C1wlmRnSKStev4mtRNXiH
+ 0ywz6R0soENkpZ00RkX739pOZaYYEOXlQMrchxEDEUt_ir8XX1MtTuxsXHiGb7_pOpuiC6JRCs02
+ BFjlHIjkO7pgwYznbgLqYskTpx5mc7Gw4iI6Jodgwu7QVTG8xU2QQ1p9Rv0t8T21MgKCl7vIBiSx
+ eKLRB8_nF9h20YRG2T3GM5.pX_aUgkYSeljEYXkYYIcWbYRzV.M9DaQiiV7Ph21pW.h4yW0UFx9c
+ AuBZJJrFEe.QEuQa5QPAR8Ee9ECDp680ya008383_6AvgGhjh0IopBAb_yvSbnfkOX7bCdEqQ.Mr
+ xc2muvU6oYXDncnULVo2dtsfHESZoIuBW4g5x25oEuTK4GGugieEszlafr2455.od5LBA1gAV0Bw
+ MDAUAe53IXjXew_Fzb_ERaGMdbKbgg9KntRBzHVMveekPh5qaosqD1ZqAlv2GKdJjvbFFQe1E96a
+ 1VCAx3sJzhvr9.Yh6JF2n4aKlB1LWwBINcum5iJFufXCmPI3eAUWvMh_78Q83vXV0cZ5raalV4N5
+ YUcTsD.rFFfzCuxfZXvbJWec6O2g8t3b3clcXHU78xw83fkeiUAmgWsRldik0lYZnmhaHaTmCykp
+ Prm7YD7fE0H4vTOQQ3J9JHw72GVVYp2USdqPLpZo.3BpomcggNo0yPpAqycccfQSUCOQbIzgrYuv
+ bCJ8pS4qTeiGaTZo1YIR0IlH_h.ciwnTmyPtrIL7xXRsePkJmJ3Zhoy8ESf8833ExgtpTzphPqul
+ bHouzmNZLBCbfYuZDDqYuiAULecLLyAJajaXExCdm2gl_u49S3.t1JqEkYY4bhO7Hm9BXj4zl8Wa
+ JeixdLCaDvXKtlItaYZP55gLM8OScRvLK7cG_m3aN056Gc38mpcHDIEqymF5A9dR92GqR5mpHVRn
+ _U4Jcy3CAZmfmf5nmYZ.J2Kl8mZsHgaR_IQqJimxInQ3W6SkJLDgW8BDB2ZTTz21J_tA3lIOfYkN
+ XQkFVb07wSWfEqxC0jz_CLY95OyyVDtNLwLrU3Aa1TH4lw4DNHYqkjCdFkyhaD0tqxYL6_ZY-
+X-Sonic-MF: <zipnpup@yahoo.com>
+X-Sonic-ID: facb2a43-81cd-4f62-a822-b0572357da35
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic313.consmr.mail.bf2.yahoo.com with HTTP; Mon, 30 Dec 2024 20:52:52 +0000
+Date: Mon, 30 Dec 2024 20:52:48 +0000 (UTC)
+From: Thomas Machnik <zipnpup@yahoo.com>
+Reply-To: Thomas Machnik <zipnpup@yahoo.com>
+To: Paul Cohen <paulrcohen@gmail.com>
+Message-ID: <820121334.2164634.1735591968339@mail.yahoo.com>
+In-Reply-To: <937188158.2015128.1735000727468@mail.yahoo.com>
+References: <937188158.2015128.1735000727468.ref@mail.yahoo.com> <937188158.2015128.1735000727468@mail.yahoo.com>
+Subject: Re: HCT Dec 2024 Invoice for Nov 2024
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_2164633_1912628546.1735591968337"
+X-Mailer: WebService/1.1.23040 YMailNorrin
+Content-Length: 12846
+
+------=_Part_2164633_1912628546.1735591968337
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+ Hi Paul,I know you are probably busy with holidays and such therefore I ha=
+te to bother you. But any chance you can pay my invoice soon? Tom
+
+    On Monday, December 23, 2024, 4:38:47 PM PST, Thomas Machnik <zipnpup@y=
+ahoo.com> wrote: =20
+=20
+ Hi PaulPlease find attached my invoice for Nov 2024 work. This invoice inc=
+ludes $215.47 for a couple of drives I used to backup what could be backed =
+up. Also since this is the last invoice 2024, I included the summary in a s=
+eparate file.=20
+
+Seems like Gazelli is shutdown for the remaining of the year. Hopefully sho=
+rtly after they return will finish hammering out the list of items to be sh=
+ipped and then ship them the items.=20
+
+I reached out to Roger (our printer) regarding paying him and waiting a rep=
+ly. I reviewed the work he did again and it really quite good.
+I know you want to submit a potential list of code for the Whitney and with=
+ our last conversion we talked about what criteria the Whitney would be loo=
+king for. I have been thinking about what they have and what they don't hav=
+e. They have KCAT and Gijon.=20
+
+
+Here are the main AASC groupings we have and where KCAT and Gijon belong
+Group-A. 2013 - 2016 Fingerpainting EraGroup-B. 2009 - 2013 Collaborating w=
+ith my other SelfGroup-C. 2007 - 2009 Gijon belongs hereGroup-D. 2000 - 200=
+5 KCAT belongs hereGroup-E. 1995 - 1997 Painting Machine EraGroup-F.=C2=A0 =
+1992 - 1995 Early LISP fragments=20
+Group-G=C2=A0 Paper Code various dates
+Group-H=C2=A0 Film Code various dates
+
+Of the main groups, the Whitney already has code representing Group-C and -=
+D. That leaves Group-A, -B, & -E thru -H
+ Group-A. 2013 - 2016 Fingerpainting Era
+I have a collection of videos for Group-A Fingerpainting Era of the code ru=
+nning. There are 8 runnable versions. They all look similar in that they al=
+l make black and white drawings. They are all studio versions meaning they =
+all generate AARON artwork intended for use in the studio and for the Finge=
+rpainting Machine. The files it generates are in non-standard viewable file=
+ format. They are readable by the Fingerpainting Machine.
+
+ Group-B. 2009 - 2013 Collaborating with my other Self
+The later code in this time period is similar to Group-A in that they produ=
+ce black and white drawings. Unlike Group-A though, Group-B does make stand=
+ard viewable file format artwork files. There is one exhibition version cal=
+led London (full version name 20130710-1259 aaron.london.13) that represent=
+s this late time period. The early time period of Group-B can be represente=
+d by "Collaborating with my other Self-2011, "Utah-2012" there should also =
+be the "AARON's Floating World" which was shown at Carnegie Science Center =
+in 2009 but I am unable to verify that at the moment. These early works dis=
+play colorful overlapping shapes and overtime changes background color. Als=
+o in this group is the sub-group -- Cox. Cox is a group of AARON versions t=
+hat generated free hanging sculptures. We don't have any exhibition version=
+s of Cox. They make files for making sculptures. Cox represents the transit=
+ion to "Collaborating with my other Self"
+
+ Group-E. 1995 - 1997 Painting Machine Era
+This group spans the Painting Machine Era and is the code that George Blood=
+ recovered. These are the oldest recovered full versions of AARON we curren=
+tly have from digital media. I say full versions but in actuality we curren=
+tly don't have a way to verify this. I have looked at the tape output and t=
+he file names are similar to the next generation of file names, so, I am ho=
+pefully that at least a couple of the versions we have from the tapes are f=
+ully intact.=20
+
+ Group-F.=C2=A0 1992 - 1995 Early LISP fragments=20
+These are fragments of LISP code recovered from floppy disks. Not all are n=
+ecessarily part of the main AARON code but rather possibly AARON experiment=
+s of some sort. Some do, however, make reference to AARON and are some how =
+related to AARON. This group represents the oldest code recovered from digi=
+tal media so far.
+Group-G Paper CodeThis group is any found code printed on paper -- typicall=
+y computer pin-fed paper. Some were found in the notebooks others were foun=
+d in manila folders. Some have been scanned and copied to the digital archi=
+ve. Some have dates most do not, however, based on the context we can get a=
+pproximate dates. And these dates tend to be the 1970's. One in particular =
+is from code titled PIER02.SAI and is dated Oct 18, 1973 which would have b=
+een up at Stanford. This one is not a full program but rather just a page.=
+=20
+
+Group-H Film CodeThere are a few film strips with snapshots of the computer=
+ screen. Computer screens with code on them. They are dated 1974 and seem t=
+o be very early Stanford code. This is not a full program it is only a port=
+ion. The ones that have been found have been scanned and added to the digit=
+al archive.
+I don't know if the above is a helpful summary for Whitney of what we curre=
+ntly have. I hope so.=C2=A0
+Happy Holidays,
+Tom
+
+
+
+
+
+
+
+
+
+ =20
+------=_Part_2164633_1912628546.1735591968337
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head></head><body><div class=3D"ydp681a71d8yahoo-style-wrap" style=
+=3D"font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px=
+;"><div></div>
+        <div dir=3D"ltr" data-setdir=3D"false">Hi Paul,</div><div dir=3D"lt=
+r" data-setdir=3D"false">I know you are probably busy with holidays and suc=
+h therefore I hate to bother you. But any chance you can pay my invoice soo=
+n? Tom<br></div><div><br></div>
+       =20
+        </div><div id=3D"ydp620d290byahoo_quoted_5724533729" class=3D"ydp62=
+0d290byahoo_quoted">
+            <div style=3D"font-family:'Helvetica Neue', Helvetica, Arial, s=
+ans-serif;font-size:13px;color:#26282a;">
+               =20
+                <div>
+                        On Monday, December 23, 2024, 4:38:47 PM PST, Thoma=
+s Machnik &lt;zipnpup@yahoo.com&gt; wrote:
+                    </div>
+                    <div><br></div>
+                    <div><br></div>
+               =20
+               =20
+                <div><div id=3D"ydp620d290byiv0914083754"><div><div style=
+=3D"font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px=
+;" class=3D"ydp620d290byiv0914083754ydp8b6c5643yahoo-style-wrap"><div dir=
+=3D"ltr">Hi Paul</div><div dir=3D"ltr">Please find attached my invoice for =
+Nov 2024 work. This invoice includes $215.47 for a couple of drives I used =
+to backup what could be backed up. Also since this is the last invoice 2024=
+, I included the summary in a separate file. <br></div><div dir=3D"ltr"><br=
+></div><div dir=3D"ltr">Seems like Gazelli is shutdown for the remaining of=
+ the year. Hopefully shortly after they return will finish hammering out th=
+e list of items to be shipped and then ship them the items. <br></div><div =
+dir=3D"ltr"><br></div><div dir=3D"ltr">I reached out to Roger (our printer)=
+ regarding paying him and waiting a reply. I reviewed the work he did again=
+ and it really quite good.</div><div dir=3D"ltr"><br></div><div dir=3D"ltr"=
+>I know you want to submit a potential list of code for the Whitney and wit=
+h our last conversion we talked about what criteria the Whitney would be lo=
+oking for. I have been thinking about what they have and what they don't ha=
+ve. They have KCAT and Gijon. <br></div><div dir=3D"ltr"><br></div><div dir=
+=3D"ltr"><br></div><div dir=3D"ltr">Here are the main AASC groupings we hav=
+e and where KCAT and Gijon belong</div><div><br></div><div dir=3D"ltr">Grou=
+p-A. 2013 - 2016 Fingerpainting Era</div><div dir=3D"ltr">Group-B. 2009 - 2=
+013 Collaborating with my other Self</div><div dir=3D"ltr">Group-C. 2007 - =
+2009 Gijon belongs here</div><div dir=3D"ltr">Group-D. 2000 - 2005 KCAT bel=
+ongs here</div><div dir=3D"ltr">Group-E. 1995 - 1997 Painting Machine Era</=
+div><div dir=3D"ltr">Group-F.&nbsp; 1992 - 1995 Early LISP fragments <br></=
+div><div dir=3D"ltr">Group-G&nbsp; Paper Code various dates<br></div><div d=
+ir=3D"ltr">Group-H&nbsp; Film Code various dates<br></div><div dir=3D"ltr">=
+<br></div><div>Of the main groups, the Whitney already has code representin=
+g Group-C and -D. That leaves Group-A, -B, &amp; -E thru -H</div><div><br><=
+/div><div dir=3D"ltr"> <span>Group-A. 2013 - 2016 Fingerpainting Era</span>=
+<br></div><div dir=3D"ltr">I have a collection of videos for Group-A Finger=
+painting Era of the code running. There are 8 runnable versions. They all l=
+ook similar in that they all make black and white drawings. They are all st=
+udio versions meaning they all generate AARON artwork intended for use in t=
+he studio and for the Fingerpainting Machine. The files it generates are in=
+ non-standard viewable file format. They are readable by the Fingerpainting=
+ Machine.<br></div><div dir=3D"ltr"><br></div><div dir=3D"ltr"> <span>Group=
+-B. 2009 - 2013 Collaborating with my other Self</span><span></span><br></d=
+iv><div dir=3D"ltr">The later code in this time period is similar to Group-=
+A in that they produce black and white drawings. Unlike Group-A though, Gro=
+up-B does make standard viewable file format artwork files. There is one ex=
+hibition version called London (full version name <span>20130710-1259 aaron=
+.london.13) that represents this late time period. The early time period of=
+ Group-B can be represented by "Collaborating with my other Self-2011, "Uta=
+h-2012" there should also be the "AARON's Floating World" which was shown a=
+t Carnegie Science Center in 2009 but I am unable to verify that at the mom=
+ent. These early works display colorful overlapping shapes and overtime cha=
+nges background color. Also in this group is the sub-group -- Cox. Cox is a=
+ group of AARON versions that generated free hanging sculptures. We don't h=
+ave any exhibition versions of Cox. They make files for making sculptures. =
+Cox represents the transition to "Collaborating with my other Self"</span><=
+br></div><div dir=3D"ltr"><br></div><div dir=3D"ltr"> <span>Group-E. 1995 -=
+ 1997 Painting Machine Era</span><br></div><div dir=3D"ltr">This group span=
+s the Painting Machine Era and is the code that George Blood recovered. The=
+se are the oldest recovered full versions of AARON we currently have from d=
+igital media. I say full versions but in actuality we currently don't have =
+a way to verify this. I have looked at the tape output and the file names a=
+re similar to the next generation of file names, so, I am hopefully that at=
+ least a couple of the versions we have from the tapes are fully intact. <b=
+r></div><div dir=3D"ltr"><br></div><div dir=3D"ltr"> <span>Group-F.&nbsp; 1=
+992 - 1995 Early LISP fragments </span><br></div><div dir=3D"ltr">These are=
+ fragments of LISP code recovered from floppy disks. Not all are necessaril=
+y part of the main AARON code but rather possibly AARON experiments of some=
+ sort. Some do, however, make reference to AARON and are some how related t=
+o AARON. This group represents the oldest code recovered from digital media=
+ so far.</div><div dir=3D"ltr"><br></div><div dir=3D"ltr">Group-G Paper Cod=
+e</div><div dir=3D"ltr">This group is any found code printed on paper -- ty=
+pically computer pin-fed paper. Some were found in the notebooks others wer=
+e found in manila folders. Some have been scanned and copied to the digital=
+ archive. Some have dates most do not, however, based on the context we can=
+ get approximate dates. And these dates tend to be the 1970's. One in parti=
+cular is from code titled PIER02.SAI and is dated Oct 18, 1973 which would =
+have been up at Stanford. This one is not a full program but rather just a =
+page. <br></div><div dir=3D"ltr"><br></div><div dir=3D"ltr">Group-H Film Co=
+de</div><div dir=3D"ltr">There are a few film strips with snapshots of the =
+computer screen. Computer screens with code on them. They are dated 1974 an=
+d seem to be very early Stanford code. This is not a full program it is onl=
+y a portion. The ones that have been found have been scanned and added to t=
+he digital archive.</div><div dir=3D"ltr"><br></div><div dir=3D"ltr">I don'=
+t know if the above is a helpful summary for Whitney of what we currently h=
+ave. I hope so.&nbsp;</div><div dir=3D"ltr"><br></div><div dir=3D"ltr">Happ=
+y Holidays,</div><div dir=3D"ltr"><br></div><div dir=3D"ltr">Tom<br></div><=
+div dir=3D"ltr"><br></div><div dir=3D"ltr"><br></div><div dir=3D"ltr"><br><=
+/div><div dir=3D"ltr"><br></div><div dir=3D"ltr"><br></div><div dir=3D"ltr"=
+><br></div><div dir=3D"ltr"><br></div><div dir=3D"ltr"><br></div><div><br><=
+/div></div></div></div></div>
+            </div>
+        </div></body></html>
+------=_Part_2164633_1912628546.1735591968337--

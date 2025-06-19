@@ -1,0 +1,212 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a11:a211:b0:5c7:f970:fbca with SMTP id fp17csp545375pxc;
+        Fri, 31 Jan 2025 01:24:40 -0800 (PST)
+X-Forwarded-Encrypted: i=2; AJvYcCUuJPjlRGqzFFCUDmVdQJq6gJDs3wRKniCjiE1sp0faumxyhtULOhuEzqYHHPOmDmAVUxQohgUKqxJl@gmail.com
+X-Google-Smtp-Source: AGHT+IF+sultmBHJs13lJ6EBBKqBETsQ6o+whUstlvtndL5kVVk3AowauPVbCi4Q0cFCNlTX4Zx/
+X-Received: by 2002:a05:622a:28e:b0:467:6901:7589 with SMTP id d75a77b69052e-46fd0accdadmr161666221cf.29.1738315480046;
+        Fri, 31 Jan 2025 01:24:40 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1738315480; cv=none;
+        d=google.com; s=arc-20240605;
+        b=D60m+/2JkfPoO0IZjNMPngHAqxPb1HmigEYQk3aUAehjn5H6J4JJbKmlFWPitJgAr+
+         jN1NRgMZIJ7oNUWOTCg8dftUifqHhxa/QN/TOkfZz8Pv4iW/uVuQ3iQw2NbZJN414twV
+         LLOlPGBYCWmJT8IEmMe9oYvlmX5v6e60MTlSJaAhlNDzeS30goWvj0iQr8NojV4OGIme
+         WxSPvL+vYd3W8mNB4I/JRxUKbG9eT+pEplLTjKr8BcFbkGx6JBPEnyTRGOr4BD8LJIoT
+         8ZR/rw4w9mN6XYeAx2LftzV+KzmIDpzqPqOoTQoqrl2BCNfRMUiQce5apL2UugHKAZtu
+         hWkQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:subject:references:in-reply-to:message-id:cc:to
+         :reply-to:from:date:dkim-signature;
+        bh=7zmla1p9rZrMrxCRYn7aRobuqaGHOCoC+UdEVf46Pm8=;
+        fh=E2OD0Yi+HsGFZfD7GCAVBLR29ymeVOjKMnCLb1qx3i4=;
+        b=BVtPGJL6SwQSiWF7q7LX/oqY6BzPSCa7xqRDAFlnvC+JMBrZXaBZ+fUJKn68/5/gzz
+         LbIl+qMgRsaubCUpXCY9pEaH8cPNtiZMZIzZ1K+XSm2NAyVWE9J6Bu42mO1U+tv6UEpj
+         Bxb06zn9+NAlBwOIs18qQyV699k5n3ftp1UGbdwR3KhhEPanTHd71PF1cni/RBi0dEIC
+         zCNATaAEfglT3hBzU8W/JS9FTr7CAJVfUWoXtFQ3jjApUT6ZopN4cqBjl1E8NZ+rL11Z
+         ZlrWRqEjzwXaaOtFQv60qxxm/rL6qJQ7pXlOmSzVkLTA0T/WhV7mTpkFk3XZN3UYFAxH
+         QQIA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=t3hatgvg;
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.128.206 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+Return-Path: <zipnpup@yahoo.com>
+Received: from sonic320-25.consmr.mail.bf2.yahoo.com (sonic320-25.consmr.mail.bf2.yahoo.com. [74.6.128.206])
+        by mx.google.com with ESMTPS id d75a77b69052e-46fdf1b9c04si38224691cf.238.2025.01.31.01.24.39
+        for <paulrcohen@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 31 Jan 2025 01:24:40 -0800 (PST)
+Received-SPF: pass (google.com: domain of zipnpup@yahoo.com designates 74.6.128.206 as permitted sender) client-ip=74.6.128.206;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=t3hatgvg;
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.128.206 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1738315479; bh=7zmla1p9rZrMrxCRYn7aRobuqaGHOCoC+UdEVf46Pm8=; h=Date:From:Reply-To:To:Cc:In-Reply-To:References:Subject:From:Subject:Reply-To; b=t3hatgvgpZ6ewORSE1lxQk6j+2N0myDT13Z1iEqd1NOm/SfRk6xvLax7OeCaactxRSxr6erBrT8Lk4khVtUErIDmteEClVMDjQEl4WIP7KPbP9a1i/mtZVRBamf3CVgDHvBed0E1wtt8EOQ0iD9c+Hvp//aAyHvWqU3KFgvJz9+3XSJ/AC8I1LqlO475rGwkMpvQwRGVP5A2n0iDuh+EIQAJB8P9A0ZEbaD25ImsBCvZ5kS3eWn2K834qOFz40YksJYXw8xxF2ZBFUgGKPFTk62yXdzlyZnRxuG9bKjb2SmavNG/NoFXpvYUQSFGXz5yGyPF9LGtccF+2XwpCNluUA==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1738315479; bh=dILrp6JPv2VdK34N90XijOCUd98uHGoZMr2xoMMfyiw=; h=X-Sonic-MF:Date:From:To:Subject:From:Subject; b=oyKwqUR1wa6Zp6L7JlQ2iFI0vd461HuBZNapud6tAzrUBwl1CjjJotgWv8JOEC1bODec18oxiYotJOPn4g2ORhOz3krW2DiPn7iB/2xNQnfXJ3l5bGxnxZD9dBxPAGpZF6dc1AGacrz/PEh0yQrLQc1mJi/ewl1tl+bWUeF12SgsTF5yx6WnLrzvKLWzQsMrxQ66rof8aNLkWPA+F6xIvJY3LdcnPmeocIlYvttC0At2jiljvM90eXIhPPVAeYkMECEixCeJbRfNNwS6racXQJFFHq2+H4qurrsnewEyS8wfi/phLpJhfTaVnnsWS9v6cPlicT6TcumwQw3kl2aCwg==
+X-YMail-OSG: 7Fc7o3sVM1ntFJZ9qMkp25euOPEROaEsRUVRPEXWhSNQSkGijLSahNvh7LMj9Z_
+ uNjPruKZ05CPv31rSLZEAioO9ItPExZBnd0NHvOWZc0BbWPrrjqZ3KtsXD4PGIP4OZZ8QQk9jxdL
+ Dp.EKUpSyKYFT8fRDM54rrRtXk_k5X1FVlmDl7H4Bqf_PvUOA6woiZAFs_ESjWieJ5Ph.5EfCn8.
+ 2PKr3jyofVN1alFOyIQJHtUV3lQlQX5BEIU8lvTYI2IWuml_vcqUmHZ5O.60Q5Dbs4J2qXJ4wkzZ
+ KqhdXrQ_V6yeKwJYdtxGmsUw3yBMD.UFG9pn36fD6ZfkcDZBZ7CeODLvwPGpnTsE3JKyuAaf_U7J
+ yfxMhj.TLMGQDm_jsJsOxeLZ3ap7c5SAnLCbabF3ELXjh8VuIjQMsUWR2lipwcCi_iiq_wh8JqCQ
+ Gu6JJhoBBMZPYkn0VYxNDFXO8iXll7vB4DC3p4Ml_4YwEGdBZnEZWCH83xcxneSmfyY1nWUgnyGI
+ czg1iDV2sW9hYqpWeCEbc0fUq2Nb2PBMz2IiK8wjkzJt5SNP6Dz0S37smLJ3nNDPBTVra2KYOKge
+ sMY7Z9CocASG4TcNrhZobS0w1Tq0SZHEuJvgjTfOKT3qBNAvlxdMgDo8wea3031ruJFmeMOPtveQ
+ 4ah_DP6nnHVyhpscQsif9cK8dXRsAOypzujdUw4z5eXG32M27BC5dcd.GbKKijzcSrgvLVNTBs2v
+ eDhbHLuhZrfDlgv5hGlAK0GlksHCOOqvPGwovS1Q1gbMGPKyrtcjKDRYdUDM9jBhURmIGBasUfsj
+ NqNqcDB61vVMBjN9Hvte9HbDXnFKsDArekGI6P_0qDlfdFAJ9lB5wFvPGmweUFM2ViXGtWTYTBsG
+ QSbaizU2O97AH0iTnnLpsE2eFPgetS7M9mHa1zqlcobHKGD9rHMvPBluJINdJjokwQqbDTs3URbd
+ IWVUCPNvI_RARxeuJU.Pf4gy6.IyaM5KhS7GW8.48wLpjDeQ5m_DPRcUP0XxA4fFu9LXH_PDLuUf
+ 7rAyjdCjspwc5c1evfgUStDmFSE38w1viieckOtH1O7eS045Ta_xNIt7c_VY4IGVD9bIZvuPd2.3
+ muMjHa6T3nVaPE95Mx7aogygkHgo2Iaf1N3m4lm2J_VB_pRDc.j7zahmZHhDW6K_f6QQIyOjzaVP
+ Hp1yMJlvNr1Dd8lQG6fHtHHzgxbe.S0bIX3LUYd0o5u2Tgtt3y6sqhrvxgVGRs2fKdynxTCLOsfi
+ KiUL.VmrulLFlHHrp3cacfGdrlYkPq6wO9tMgnvhbBOx37clkrvx9WwI5fVyU3haO.GOsFDhO0T3
+ TzHYrbncoPB7rrX9.ebUlKqAN3ollcwtBVC7KL5EO2vP9iPDE_G1xKrw7CcR4c5X_O83rCIXlc68
+ Mz8cF7BpBkHZzIFSfk6I6KBmOkBhrVdk3euX3QaqAJRxtb0PwAXdv8dlGtbe9EvxIWBrS72a9DmL
+ Tr8pi2al7iGcBEPUCOrL0G..sW3VCMUhtzsq7EHnm9vb.GvgMlbEmCy0Oa_oUpL6OPRJcBKNNfyO
+ W_Yk_FecfaskrrFirqcLC54XCfsW5UJTjRkGXy2D7JvWshawguYHbuFGRRPqp_Mi8zrvn_hZjAwJ
+ kMRDdkum.72iIw3R_ZeMmUb0sc41mUP0viiNWHF5u.2si8kYCKxpwdLCEuBVrNatg0LXL5qdCaEv
+ 2lMhNfT7J1MOMBwfPmj5PxuYRusMM7pp0.6TXQRt65lnHBKaG4dgFPmnRJvHwIAXdRyi9CKt18RN
+ zTr.8E2RkRnf2Pye4.OOU5eFKee9MGrmv.ArCAL3.iIBvQ1PTgm3jnDw3Lmk8nhEWue5kzyGRpB5
+ Gk3d1oKmRKWPM8B.Ks4RaJUbVniC9R.lI_uDH.XvBhqJTGEKNl4r92u2bBbuk6sqBrJrj79CEzQf
+ x1.dSJ6rqom7luhVZ8dVOlYvqEofhRZH8a9oAuiyX9FdMm6Av_uXQXgAThKx7vlrJSpTN7fCoZhD
+ yiS8Bbw7eGmSNphfOqpaCQiTadKNTh4LFscXJ6THJmSbgSDMqLqJhgv_cLBEAVyJtnbMte6zKXCT
+ JZ9HTvrdUhycpAxW2ks4tMDaJAKryYA200FzAZvWu52yaGb5BwxyvY0nwLqBjm.7OnYRh1sFqAI5
+ rfL7zd4sUBezWHJ.Kb_mA5ESMP0cNpD0PNo0HY.lyDbBEXRgt5u.6rA1TeCxwrPBXMVZbzZowXBw
+ 2dLvbBlloS6MSJIdkaDYZRNMrwBx5wLoXfXoZvH7hZJUGtfQHRQcekaFJKWOaFMro7Sl8i.tyvjG
+ 9IWJMiSPyF3cLUOiLGvWAr_Vp0Wn9ZOFwd5cmmMfgtM9ZOzwnwRKWPKZPrYw_sWtTKQ--
+X-Sonic-MF: <zipnpup@yahoo.com>
+X-Sonic-ID: becb82f0-fcc8-4a23-ae39-38a7aee945aa
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic320.consmr.mail.bf2.yahoo.com with HTTP; Fri, 31 Jan 2025 09:24:39 +0000
+Date: Fri, 31 Jan 2025 09:24:29 +0000 (UTC)
+From: Thomas Machnik <zipnpup@yahoo.com>
+Reply-To: Thomas Machnik <zipnpup@yahoo.com>
+To: George Lionel Barker <george@gazelliarthouse.com>, 
+	Mila Askarova <m.askarova@gazelliarthouse.com>, 
+	Paul Cohen <paulrcohen@gmail.com>
+Cc: Harold Cohen Trust <aaron@aaronshome.com>
+Message-ID: <408374032.3673811.1738315469044@mail.yahoo.com>
+In-Reply-To: <CAKjPZkF6KNG1H6b9D=kkokhxXz-WY3X800JEB6x5gj+jWQ42sg@mail.gmail.com>
+References: <CAPpmcQgvAAMvEmN-p9fR392Z52Du+YpH1M-N5B_fYAw6i5x_NA@mail.gmail.com> <CAKjPZkF6KNG1H6b9D=kkokhxXz-WY3X800JEB6x5gj+jWQ42sg@mail.gmail.com>
+Subject: Re: Showing Harold Cohen's Work in LA
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_3673810_275889456.1738315469042"
+X-Mailer: WebService/1.1.23187 YMailNovation
+Content-Length: 6538
+
+------=_Part_3673810_275889456.1738315469042
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+ Hi All,If we do decide to participate, I=E2=80=99d be happy to support. To=
+o bad it is such short notice. I am not sure how any of this fits into the =
+longer term goals. I believe Bre still has AARON files in reserve that were=
+ not plotted at the Whitney. That and/or Paul=E2=80=99s Maze reconstruction=
+ running on Bre=E2=80=99s plotter would certainly have the potential to sti=
+ll the show.=C2=A0
+If we want to piggyback and highlight the efforts you are currently doing (=
+Gazelli) or plan to preview in the near future, maybe we have similar work =
+here in the studio that is ready to hang and that is not part of the shipme=
+nt to Gazelli. In any case, like I said if we do decide to participate, I=
+=E2=80=99d be happy to support.Tom
+    On Thursday, January 30, 2025 at 08:10:26 AM PST, Paul Cohen <paulrcohe=
+n@gmail.com> wrote: =20
+=20
+ Folks, this arrived a couple of days ago.=C2=A0 How should I respond?=C2=
+=A0 Thanks, --P
+---------- Forwarded message ---------
+From: Neil Mendoza <neil@neilmendoza.com>
+Date: Tue, Jan 28, 2025 at 12:21=E2=80=AFPM
+Subject: Showing Harold Cohen's Work in LA
+To: <prcohen@pitt.edu>, paulrcohen@gmail.com <paulrcohen@gmail.com>
+
+
+Hi Paul,
+
+My name is Neil Mendoza, I'm an artist working with technology. I saw you t=
+each at Pitt. Coincidentally, I actually have a few pieces installed at the=
+ Children's Museum there including a drawing machine.
+
+I'm helping a friend curate a show for Ctrl Gallery, a new pop up in LA. Th=
+e show will open on February=C2=A015th for three weeks so it will be=C2=A0o=
+pen during Frieze week when a lot=C2=A0of the art world is in town. The sho=
+w is based around machine=C2=A0imagination and I think your father's work w=
+ould be a perfect fit if there is anything available. I was just in London =
+and really enjoyed seeing his work at Electric Dreams at the Tate modern!
+Let me know what you think.
+
+Thanks!
+
+Neil--www.neilmendoza.com@neilmendoza =20
+------=_Part_3673810_275889456.1738315469042
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head></head><body><div class=3D"ydp16f5d81byahoo-style-wrap" style=
+=3D"font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px=
+;"><div></div>
+        <div dir=3D"ltr" data-setdir=3D"false">Hi All,</div><div dir=3D"ltr=
+" data-setdir=3D"false">If we do decide to participate, I=E2=80=99d be happ=
+y to support. Too bad it is such short notice. I am not sure how any of thi=
+s fits into the longer term goals. I believe Bre still has AARON files in r=
+eserve that were not plotted at the Whitney. That and/or Paul=E2=80=99s Maz=
+e reconstruction running on Bre=E2=80=99s plotter would certainly have the =
+potential to still the show.&nbsp;</div><div dir=3D"ltr" data-setdir=3D"fal=
+se"><br></div><div dir=3D"ltr" data-setdir=3D"false">If we want to piggybac=
+k and highlight the efforts you are currently doing (Gazelli) or plan to pr=
+eview in the near future, maybe we have similar work here in the studio tha=
+t is ready to hang and that is not part of the shipment to Gazelli. In any =
+case, like I said if we do decide to participate, I=E2=80=99d be happy to s=
+upport.</div><div dir=3D"ltr" data-setdir=3D"false">Tom</div><div dir=3D"lt=
+r" data-setdir=3D"false"><br></div>
+       =20
+        <div id=3D"ydp16f5d81byahoo_quoted_9199068282" class=3D"ydp16f5d81b=
+yahoo_quoted">
+            <div style=3D"font-family:'Helvetica Neue', Helvetica, Arial, s=
+ans-serif;font-size:13px;">
+               =20
+                <div>
+                    On Thursday, January 30, 2025 at 08:10:26 AM PST, Paul =
+Cohen &lt;paulrcohen@gmail.com&gt; wrote:
+                </div>
+                <div><br></div>
+                <div><br></div>
+                <div><div id=3D"ydp16f5d81byiv7935437117"><div dir=3D"ltr">=
+<div><div style=3D"font-size:small;" class=3D"ydp16f5d81byiv7935437117gmail=
+_default">Folks, this arrived a couple of days ago.&nbsp; How should I resp=
+ond?&nbsp; Thanks, --P</div></div><div><div dir=3D"ltr" class=3D"ydp16f5d81=
+byiv7935437117gmail_signature"><div dir=3D"ltr"><div><div dir=3D"ltr"><div>=
+<div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=
+=3D"ltr"><br></div></div></div></div></div></div></div></div></div></div></=
+div></div></div><div class=3D"ydp16f5d81byiv7935437117gmail_quote ydp16f5d8=
+1byiv7935437117gmail_quote_container"><div dir=3D"ltr" class=3D"ydp16f5d81b=
+yiv7935437117gmail_attr">---------- Forwarded message ---------<br>From: <s=
+trong class=3D"ydp16f5d81byiv7935437117gmail_sendername">Neil Mendoza</stro=
+ng> <span>&lt;<a href=3D"mailto:neil@neilmendoza.com" rel=3D"nofollow" targ=
+et=3D"_blank">neil@neilmendoza.com</a>&gt;</span><br>Date: Tue, Jan 28, 202=
+5 at 12:21=E2=80=AFPM<br>Subject: Showing Harold Cohen's Work in LA<br>To: =
+ &lt;<a href=3D"mailto:prcohen@pitt.edu" rel=3D"nofollow" target=3D"_blank"=
+>prcohen@pitt.edu</a>&gt;, <a href=3D"mailto:paulrcohen@gmail.com" rel=3D"n=
+ofollow" target=3D"_blank">paulrcohen@gmail.com</a> &lt;<a href=3D"mailto:p=
+aulrcohen@gmail.com" rel=3D"nofollow" target=3D"_blank">paulrcohen@gmail.co=
+m</a>&gt;<br></div><br><br><div dir=3D"ltr"><div>Hi Paul,<br><br>My name is=
+ Neil Mendoza, I'm an artist working with technology. I saw you teach at Pi=
+tt. Coincidentally, I actually have a few pieces installed at the Children'=
+s Museum there including a drawing machine.<br><br>I'm helping a friend cur=
+ate a show for Ctrl Gallery, a new pop up in LA. The show will open on Febr=
+uary&nbsp;15th for three weeks so it will be&nbsp;open during Frieze week w=
+hen a lot&nbsp;of the art world is in town. The show is based around machin=
+e&nbsp;imagination and I think your father's work would be a perfect fit if=
+ there is anything available. I was just in London and really enjoyed seein=
+g his work at Electric Dreams at the Tate modern!</div><div><br></div><div>=
+Let me know what you think.<br><br>Thanks!<br><br>Neil</div><div><div dir=
+=3D"ltr" class=3D"ydp16f5d81byiv7935437117gmail_signature"><div dir=3D"ltr"=
+>--<div><a href=3D"http://www.neilmendoza.com" rel=3D"nofollow" target=3D"_=
+blank">www.neilmendoza.com</a><div><a href=3D"http://instagram.com/neilmend=
+oza" rel=3D"nofollow" target=3D"_blank">@neilmendoza</a></div></div></div><=
+/div></div></div>
+</div></div>
+</div></div>
+            </div>
+        </div></div></body></html>
+------=_Part_3673810_275889456.1738315469042--

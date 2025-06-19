@@ -1,0 +1,840 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a10:2a94:b0:5ec:db95:1ae4 with SMTP id ja20csp443517pxb;
+        Fri, 21 Mar 2025 08:04:17 -0700 (PDT)
+X-Forwarded-Encrypted: i=2; AJvYcCXR64vEv+FG5kY0fzHRPLjkBYEzm7rE3mo+cEpr23WB0SE33qubVghZVX7ob4ibr4LTK7M65iKCsGmt@gmail.com
+X-Google-Smtp-Source: AGHT+IF38t+u5QZDdOYi/Iamtqvs0PAMb+zjbpuN9LniqKP6xyIdu8qNpDgPLtjXj0TsGUZ6eFyK
+X-Received: by 2002:a17:903:1d2:b0:21f:3e2d:7d42 with SMTP id d9443c01a7336-22780db0f9bmr40789585ad.23.1742569457329;
+        Fri, 21 Mar 2025 08:04:17 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1742569457; cv=none;
+        d=google.com; s=arc-20240605;
+        b=BdXX6IrN5Zn6cnw14ctCneYQAOYIYWakokR/k8ypwIgrqlH1DJNaLYykTcNUo8125h
+         xBM2W/p+VoCatYdxGk5ZkRVYkIlDXVmfD2OSMigoHl5m1P+IH9ufOzyovGPCoBThl7oX
+         6PrIgDe2J3pYd9E0X4hBLtXSF6cl6m1B8F7SRqL2uqeXolXXzA+XgT3R77eKRwe3U7ko
+         V0mgjb37953sL17WxsuIxVX9Qo/w1x/W8AZIpokNg7ieRi1ROW8MXt64CxMJ5yB+DPYf
+         mktUIthH0XPULvO/Nh4H5F0rxHwlih9b5YGsRO/CNi403UA9llvFXLdXsvdCP6jNE6p+
+         6NSQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:subject:references:in-reply-to:message-id:cc:to
+         :reply-to:from:date:dkim-signature;
+        bh=xMFxVecRDJdPuFuolye5IG/BlS0evXrhpvRIttlYuNU=;
+        fh=0PsRusH12hk7itsM6GH+OJKhTRI4QQqfOgOZmZM40LI=;
+        b=jRJ2hblptf1GSwTeZ5rAg+aRhYOl18FiKqI+nvH9oPwvpN1gTKsLGJ5FDB8IlvN5L6
+         3/WPEW6hLMQo1qQ4KKw5gAmfJ3q8xFajoZr6X7iaMkirh6Q6X03r+f2ePzUbwZUvLOz/
+         ChandX+vGbKM6naKrnyMuDSkUCH8fw5PzalwUfgh3gCM3C6K/rJyPqvJ/aZDacOEcIN5
+         3Xz2b7lcWLfWGCH31hsqcdbv21lIicW3kj12yZ034fBExn0svtGaTSdjbZyOYJKHje8G
+         Jd4wNWG2iQ7ptmRVlJhAPhcf/ZDMbAehjUd0GTCTvqM0lqw9aFLK8T/JDKFmuQNzv4gc
+         DvKQ==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=e0RlC9l+;
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.130.41 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+Return-Path: <zipnpup@yahoo.com>
+Received: from sonic308-2.consmr.mail.bf2.yahoo.com (sonic308-2.consmr.mail.bf2.yahoo.com. [74.6.130.41])
+        by mx.google.com with ESMTPS id d9443c01a7336-227811bb02fsi32422315ad.323.2025.03.21.08.04.16
+        for <paulrcohen@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 21 Mar 2025 08:04:17 -0700 (PDT)
+Received-SPF: pass (google.com: domain of zipnpup@yahoo.com designates 74.6.130.41 as permitted sender) client-ip=74.6.130.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=e0RlC9l+;
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.130.41 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1742569456; bh=xMFxVecRDJdPuFuolye5IG/BlS0evXrhpvRIttlYuNU=; h=Date:From:Reply-To:To:Cc:In-Reply-To:References:Subject:From:Subject:Reply-To; b=e0RlC9l+sdV0+B/B6uPypxFXedgP2ZTwpEm2hxmMMG9k7b4gKNOjVK6rlkpsShqi4gzvA9hgNGPBpqLoOxKw9YOg4z4UNgGzTH8/32R2Gaoze87Fu9yaf1p3S+m5zcC4v18ezIO0L+8JFRkWIqSB7iZHD3zcmnLYooxb29v40dG2Sx2z11ZFJQoj/meeeZBLc0r6F2PbbgSKy5BN9f5MlHALpE+jz49fK8Jfr2ESyC18mFWriosIPODArDil2o34NiNzbalA4bClW1UZhFiOg0o6mxiOUoJPgox5r/H6pw13l1ma3HiFFVBWl7AuOu4wH8Q9vz4dD9IW7GvQJjLFUg==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1742569456; bh=OqIV+qZ9wBYcZ/cPvIg1wfQ7LJPNU4EqMMe36XJ83+x=; h=X-Sonic-MF:Date:From:To:Subject:From:Subject; b=cUiak4Em0y+TvQ1iyMVdylqHjO3hvEe8XTDffRD+jvwpdK0soadZXRH8CgRvch2IjCcFLt9n4VgEW64zvSdwSzi0trul1xlAQlJk1pDQFcYF3ekqaeWWbg3rKeH0Yp10Zz6f8d/O2Rrqmf1Yy8xXKojFpIOZs05n0BnlwD0ZtubHVLC4A8eoqg3a5v5M5VcBQ/eudxL9RWXxvBFWxK/WKeog7ZXzyJHc+FNMGtSlPxPSPmx0e2iqUPgAJZkFRojJtJGqzzmTeh3NdzBB/yNwSlOsXS4YPqxN2mx1lVt/yGzDbNmlc7PjGGHqpo8m8oP+UpfhpC7lJp3W7au6dFB4NQ==
+X-YMail-OSG: HgoHOBIVM1laE4VKc9T07BWTcHhbEma2hd3fa4OMgmqlwXod7imMsBwMMBrsflx
+ vRdoQIoqkE78iy1qTXrYcdHOBlF.qpnZBROp8fqQTgpGzCLIc7MYVrQiB0f2BTFCHFFEIM96UMFq
+ uZBx.cqOV1H5bIvS_dj7sK_qxD1BtAC0W5_fHF6VcCePIJT.LJCPICQKOufysWzrvqzFErqikM0T
+ K1Vw_Z9SsUaQ5XpbbBefnKMzN8Rc_JogeR2.JuEErRZNQP6s5ZqklMshU3KvN3HtXJpYtbsmNDL_
+ mCg61wyIxdMgwEG_vsvNjQc3R0lAwUHQSiz3CLlNXF705x5AL1ZVYsHoMKpoRoIFyubmYDWgeW5J
+ gWHufQ8H6duszSoyGVOPMHa5xq7NFkxun3WOVLkDfkO3qWNqnaGQ1J_KH25un1DG0OLXG2dE2Up2
+ yqfKRMrK_fqMH90yJ_zf8xSCIzGQT1LdIu45Mp7l0SKhQ9gj17BgIfrnaKtsB6WG1Ef7XSURuZ3O
+ dqp.Ue96wngyLSXIz_u9MabjupIWXiA5uapuIQmdpEAfI.bJZWu5MMJH7asCAuJTz3BwERoUIBOY
+ DrhDLg6Fi3RCMQoL5XorM2pWcumVHqKacI9At4SKh5b15EDOJ2hmRal5JzJStvr4pQHlfcFmWUla
+ RtS3zYxeyHPSUzbZgTaEgHbdwWrnQxL6mW9e7bsGnQAUSKxowwaMjm_tgco3WJDj8RhEh7g9.d.d
+ NwZ4f0QB0inBfQ8WxEkauHibbz9xR4DhmnAxtDESs7YYQ5CFkvJ7bhVI36hEUM3SAbGDKGBKEBIc
+ lxGHAIs7ftoGmAdZhXw.Ev0tzpAgi9cByIlOW.7hLjyyxX4Jr8J9QxFBRsqQ0fXGjJRPcwFzWwdU
+ FTnUPen8F24QO7zQw8yy2vOPPsHztukyM5x.G1looxPP77oqFwja1JqSXeoGnu8yL10XY9XoiSw3
+ fpVMfxbiIRnxnOkCgsI4m0EFl2Mp87xACw2uFODPGMrWSTQwkZUmqirZzHJ6sl98UlyoIfFVuFSY
+ 4614xELqxYNNljPZ98CDqa9ElfJPhqkeOqVvmXr..hNYnf.ftrKYyDUXWQLP9E95m35eP4ivrm67
+ VUMuEi0AJG.2YEuqOqS.ZDPV_XSLdAWIhpzEyeH_quv5kgmiCwFKtNOrDjKR4tWWkU1bc80LWPUh
+ HJRMp72ZGazVlHXPyBwz4QU.n.EXsQJ_UBZSZscUBbH515KrPSFDDA.hxHcosREAuZ5ltmz4Kfzf
+ IubdoAh40hb8wfx8myHgLEsTbLGqBWC4x_MVkUdpio26Otn8WQFzmA5N66qzSlZyYPxobgeOSQ6p
+ P1HhMbZaSFTR7AOCVYjO.ldrEZiY3F6f1XdK_UXisf4HnIvzPyvdqfRaW8iqtX.A4lpxuegBY5mp
+ ejvdtS7FJDCd2zb7AtgiiGimL9uaus3BB2cjcz8vz2DqEigdm7nN3B_O.TrWQrRWwtfmtYXlaJmr
+ JnBxA_cJekm1gFSLz9TwsFYsxTLBrrM_K.Kavgr06y.aJ9Yms2PY3IVPls_OQ5vaWCABCnivI1Xf
+ H3jMUgCSi62bB2ipljWigvoek0t9Psq_vBp97aSSqfTWadEJgwp_b5sP02Wztsvbx6KGiSl1jJM3
+ VDdNrWVuM6kkrwvwqnSIFrCdQuYXliASZG3bxw37p6.Xh9JHZki9Kl13pTxDyblQLVbs4C2Jbj0W
+ 2Qx7.8cPihSJ61qGvrD6Ae3Pa18l9E4BvVp_cbuVPCBhysvRXsDtCVElVnryY4OXS.BlRgx1uoiR
+ VC0R7anG2KSvcAb4QzNaOFdAVofJwv3ixiaFUXEoquZGRvFBP1hqy698d60vnG4iSQB0Rp2vE4xz
+ IK7mv37VHA1Gjr_JrwAcKfHT6071eD5gl_aKa2lKYcuPdSZ9o4eLtyNnVMsMgB2B0bcRV.Kk8Fpy
+ NlDLLcWS0zK_2l1xYkOQ7_517VfcQOIc5fKEhaNtoSRiP2vrjQRJDExluBIr7x4ynJfNiodjIytc
+ 1Suv0KdV0cpNRJN.eippRb8JEauOmOXKt5b2lRDRxcoFSTiFsqn7RF8QE2sfqpOeWf9CHTPUZ_nz
+ 5Bs_bjuQZAOsdi21RQBOzBhISmmBjOekdDxp9unQN0rVVl1xjL1yLPE72qYUgM6eiPeVE35sVyzQ
+ rcfWZzCsBJO2ZUqJ5QPN_6sS17RJSDEAFovhccJ6hJ0evL_gftdZADtM0mnFMTqdarXMpkgd3qce
+ cf1oiuboG4aTU62zYiLJiSziNcyu06tVWT9GjpPENEirBoITWTeVUYYGJwTHQEXbOTYqe3zI___D
+ o9UOeeXK79U6ZRG1WjXnfng--
+X-Sonic-MF: <zipnpup@yahoo.com>
+X-Sonic-ID: a842fb5f-17b9-44ac-b6ed-e3014ab8316c
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic308.consmr.mail.bf2.yahoo.com with HTTP; Fri, 21 Mar 2025 15:04:16 +0000
+Date: Fri, 21 Mar 2025 15:04:12 +0000 (UTC)
+From: Thomas Machnik <zipnpup@yahoo.com>
+Reply-To: Thomas Machnik <zipnpup@yahoo.com>
+To: Yoshiaki Mima <mima@fun.ac.jp>
+Cc: Harold Cohen Trust <aaron@aaronshome.com>, 
+	Paul Cohen <paulrcohen@gmail.com>
+Message-ID: <639004976.163673.1742569452026@mail.yahoo.com>
+In-Reply-To: <5f2cb269-84a3-4bbd-9cf9-1221f0059ea5@fun.ac.jp>
+References: <949404354.1980576.1675411151196.ref@mail.yahoo.com> <949404354.1980576.1675411151196@mail.yahoo.com> <0b342acb-4b2b-d00f-24c4-30edaa4b7ef2@fun.ac.jp> <1337829006.391518.1675669245380@mail.yahoo.com> <a1ac3df7-559e-1679-d8d6-37e9ee7df3c4@fun.ac.jp> <67c76b35-b636-90b1-b9f0-08a2dfa7ce78@fun.ac.jp> <eb13dbfa-9807-8552-89b7-69fe9fe7dfdc@aaronshome.com> <9e2a9497-ae8b-451b-8fe5-f015ae159a5b@fun.ac.jp> <007cfa42-2e21-4839-9a0d-695f60b73045@fun.ac.jp> <325992230.2358839.1742007908323@mail.yahoo.com> <5f2cb269-84a3-4bbd-9cf9-1221f0059ea5@fun.ac.jp>
+Subject: Re: The Harold Cohen Trust
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_163672_513112503.1742569452023"
+X-Mailer: WebService/1.1.23533 YMailNovation
+Content-Length: 36140
+
+------=_Part_163672_513112503.1742569452023
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+=20
+Dear Mima,
+
+Thanks you so much! I downloaded the videos of Harold=E2=80=99s talk and th=
+ey play fine. I will be reviewing the whole video soon. It is okay if you c=
+annot access your old emails. But if you still have the interview between y=
+ou and Harold from the year 2000, and it is not too much trouble, I would a=
+ppreciate being able to listen to it.
+
+
+Sincerely,
+Tom
+    On Thursday, March 20, 2025 at 06:33:49 PM PDT, Yoshiaki Mima <mima@fun=
+.ac.jp> wrote: =20
+=20
+  Dear Tom,
+=20
+ I guess, I set password on the web site later.
+=20
+ About Harold's Talk movie, https://thinking-sketch.sakura.ne.jp/cohen/
+ please try to access them by (id,pw)=3D(harold,cohen).
+ Those two MP4 files (339.4MB and 423.1MB) might be too big,=20
+ but I will recommend you to DL and keep them in your trust.
+ (Please let me know if you have download them successfully.)
+=20
+ As for the mail about my question to Harold, I am not sure what it was.
+ My old email data do not have easy way to read,=20
+ and I am not sure where the data is kept or not.
+ So, unfortunately, it will take long time to find it.
+=20
+ My first visit to Harold was in Nov 2000 and I talked with him about AARON=
+.
+ The date was very closed to the presidential election in Nov 2000.
+=20
+ At that time, my colleague recorded the conversation between Harold and me=
+.
+ You might be interested in it. I will try to find it.
+=20
+ Yoshiaki MIMA
+=20
+ On 2025/03/15 12:05, Thomas Machnik wrote:
+ =20
+=20
+ Dear Mima,=20
+  This is Tom Machnik. I am the Art Studio Manager for the Harold Cohen Tru=
+st. I hope you are well. I also hope you can help me. Last year you sent me=
+ this link of Harold=E2=80=99s talk. =C2=A0=C2=A0https://thinking-sketch.sa=
+kura.ne.jp/cohen/
+ =20
+  I am doing some new research and I tried to play the link today again but=
+ I am was asked for a user name and password. I don=E2=80=99t remember need=
+ing a password last year. Do you know if I can still play it?=C2=A0=20
+  More importantly, my new research is related to Harold=E2=80=99s paper =
+=E2=80=9CColouring without Seeing.=E2=80=9D I am researching the date becau=
+se we do not have a date on this paper. To complicate matters Harold may ha=
+ve written more than one version. We have an email in our archives between =
+you and Harold. The email is dated Nov 14, 2000. =C2=A0Harold wrote to you =
+regarding a question you had about =E2=80=9CColouring without Seeing.=E2=80=
+=9D =C2=A0Unfortunately, we don=E2=80=99t have your question. But based on =
+what Harold wrote, you were asking about the images in the paper. Do you ha=
+ve any memory regarding =E2=80=9CColouring without Seeing?=E2=80=9D Or any =
+thoughts regarding dates? Any information would be appreciated.=20
+  Sincerely,=C2=A0 Tom Machnik =E2=80=94 Art Studio Manager =E2=80=94 The H=
+arold Cohen Trust=20
+ =20
+ =20
+     On Tuesday, February 6, 2024 at 07:01:06 AM PST, Yoshiaki Mima <mima@f=
+un.ac.jp> wrote: =20
+ =20
+   Dear Tom,
+=20
+ I am sorry for the delay of this answer.
+ I had to spend more time to convert movie file than I expected.
+ Anyway, I uploaded two mpeg4 files at the following URL.
+=20
+ =C2=A0 https://thinking-sketch.sakura.ne.jp/cohen/
+=20
+ Please let me know if you have successfully download them.
+=20
+ Best wishes.
+=20
+ Yoshiaki MIMA
+=20
+ On 2023/12/28 16:14, Yoshiaki Mima wrote:
+ > Dear Tom,
+ >=20
+ > Did you enjoy your christmas?
+ > Glad to know I can still make a contact with you.
+ >=20
+ > I think I will be able to send the data.
+ > Please wait for a while because Japanese new year holidays will start so=
+on.
+ >=20
+ > Yoshiaki Mima
+ >=20
+ > On 2023/12/23 6:20, Harold Cohen Trust wrote:
+ >> Dear Yoshi-aki,
+ >> Thank-you so much for this new information! So sorry for the extremely=
+=20
+ >> long delay. We changed our email contact info earlier in the year and=
+=20
+ >> we don't check this old account much. But because it is near the end=20
+ >> of the year I am going through the emails from this account. Please=20
+ >> contact me via my email account zipnpup@yahoo.com in the future. Yes,=
+=20
+ >> I still need Cohen's lecture at FUN dated 2002/07/24 if it not too=20
+ >> much trouble I would really appreciate it.
+ >>
+ >> Happy New Year,
+ >> Tom Machnik
+ >> zipnpup@yahoo.com
+ >>
+ >>
+ >>
+ >> On 4/6/23 4:58 PM, Yoshiaki MIMA wrote:
+ >>> Tom-san,
+ >>>
+ >>> Recently some old DV(Digital Video) tapes
+ >>> including Harold's lecture at FUN on 2002/07/24,
+ >>> have found in our laboratory.
+ >>>
+ >>> If you still need them,
+ >>> I will be able to send the contents to you after data format conversio=
+n.
+ >>>
+ >>> Thanks,
+ >>>
+ >>> Yoshi-aki
+ >>>
+ >>>
+ >>> On 2023/02/08 7:40, Yoshiaki Mima wrote:
+ >>>> Tom-san,
+ >>>>
+ >>>> I am sorry for my late response.
+ >>>> It is the end of winter semester and I am keeping score, a little=20
+ >>>> bit busy.
+ >>>>
+ >>>> On 2023/02/06 16:40, Harold Cohen wrote:
+ >>>>> Dear Yoshiaki Mima
+ >>>>> Thank-you for your detailed response. I really appreciate this. I=20
+ >>>>> am sorry to say though the links do not work for me. I get a=20
+ >>>>> "privacy error" message. Is there something you need from me to=20
+ >>>>> make this work?
+ >>>> From Japan, we can access the page of SMT without any trouble.
+ >>>> I guess they are setting access restriction from overseas with=20
+ >>>> security concerns.
+ >>>> I have downloaded those pages and attach this mail.
+ >>>>
+ >>>>>
+ >>>>> Also a couple follow up questions if you don't mind. Does the 2002=
+=20
+ >>>>> small desktop computer running with Windows 2000
+ >>>>> or XP that you mention still exist at your university? Also when=20
+ >>>>> you say "the version that was sold on the internet at the time",=20
+ >>>>> are you saying this was the version that ran at the 2002 exhibit?=20
+ >>>>> And finally, was there any physical Harold Cohen/AARON artwork on=20
+ >>>>> display at the 2002 exhibit?
+ >>>> The desktop computer is still in my lab, however, it doesn't work.
+ >>>> I attach the picture to this mail.
+ >>>>
+ >>>> My first visit was in December, 2000 around the presidential election=
+,
+ >>>> At that time Harold said he was preparing a commercially available=20
+ >>>> version of AARON.
+ >>>>
+ >>>> After I came back to Japan, I found an advertisement of the product=
+=20
+ >>>> and I bought it.
+ >>>> Related information is still on the web.=20
+ >>>> http://www.kurzweilcyberart.com/
+ >>>> Its price was around $20. (You might be known about this version of=
+=20
+ >>>> AARON.)
+ >>>> We used the software or the picture that was generated by the softwar=
+e
+ >>>> to introduce "who Harold is" at our exhibition on Dec. 2001.
+ >>>>
+ >>>> The talk on July 2002 at Future University was held as an academic=20
+ >>>> lecture without exhibition.
+ >>>>
+ >>>>>
+ >>>>> When you said the projection was 12 by 6 meters, that is quite=20
+ >>>>> impressive! Thank you for sharing how Harold was an important=20
+ >>>>> friend to you both. I hope you can find audio or video of Harold=20
+ >>>>> Cohen.
+ >>>> Unfortunately, I do not find any audio or video, now.
+ >>>> Because around year 2000, video equipment was to alittle bigger and=
+=20
+ >>>> hard to carry.
+ >>>>>
+ >>>>> Ah so we did meet at the studio and you probably have some of=20
+ >>>>> Harold's works too.
+ >>>>
+ >>>> I have some of his artworks.
+ >>>> The biggest one used to be on the wall near the entrance of his home.
+ >>>>
+ >>>> I have to shutdown my lab by the end of this March because of my=20
+ >>>> retirement.
+ >>>> We have chance to find more objects or information related to Harold,
+ >>>> If I can find some, I will let you know.
+ >>>>
+ >>>> Yoshi-aki
+ >>>>
+ >>>>> Tom
+ >>>>>
+ >>>>>
+ >>>>> On Saturday, February 4, 2023, 5:58:17 PM PST, Yoshiaki Mima=20
+ >>>>> <mima@fun.ac.jp> wrote:
+ >>>>>
+ >>>>>
+ >>>>> Dear Tom-san,
+ >>>>> cc: Noyuri Mima
+ >>>>>
+ >>>>> I am glad to have a mail from you.
+ >>>>> I remember meeting you at Harold's studio.
+ >>>>>
+ >>>>> Harold came to Future University with Hiromi-san on July 24, 2002 an=
+d
+ >>>>> gave us a lecture.
+ >>>>> Harold's visit to the Future University was only once, in 2002.
+ >>>>>
+ >>>>> I coordinated the lecture on that day.
+ >>>>> At the lecture, he prepared his manuscript and read the manuscript.
+ >>>>> I am not sure if we made any visual recordings of his lecture.
+ >>>>> If I can find any records about the day, I will let you know.
+ >>>>>
+ >>>>> As for AARON on the flyer, it was the version that was sold on the
+ >>>>> Internet at the time.
+ >>>>> As you may know, we invited Harold to our exhibition and asked him t=
+o
+ >>>>> give a talk on December 21, 2001.
+ >>>>> https://www.smt.jp/sketch/exhibition.html
+ >>>>> I also try to find visual records.
+ >>>>>
+ >>>>> The picture on your flyer was taken at the exhibition.
+ >>>>> Harold's work was presented to introduce him as a lecturer at the=20
+ >>>>> exhibition
+ >>>>> during the period of exhibition December 21-26, 2001.
+ >>>>> The computer used was small desktop computer running with Windows 20=
+00
+ >>>>> or XP,
+ >>>>> and the display was the projector installed
+ >>>>> at the Mediatheque (a public space for exhibitions, etc. run by the=
+=20
+ >>>>> city
+ >>>>> of Sendai)
+ >>>>> and the screen size was 12 meters by 6 meters.
+ >>>>> https://www.smt.jp/use/institution/opensquare/
+ >>>>>
+ >>>>> Harold has been our important friend of us.
+ >>>>> If you have any further questions, please feel free to ask.
+ >>>>>
+ >>>>> with best regards,
+ >>>>>
+ >>>>> Yoshiaki MIMA
+ >>>>
+ >>>> --=20
+ >>>> =E5=85=AC=E7=AB=8B=E3=81=AF=E3=81=93=E3=81=A0=E3=81=A6=E6=9C=AA=E6=9D=
+=A5=E5=A4=A7=E5=AD=A6:=E7=BE=8E=E9=A6=AC =E7=BE=A9=E4=BA=AE/Yoshiaki MIMA
+ >>>> mima@fun.ac.jp=20
+ >>>
+ >>
+ >=20
+=20
+ --=20
+ Yoshiaki MIMA/=E7=BE=8E=E9=A6=AC =E7=BE=A9=E4=BA=AE
+ =E5=85=AC=E7=AB=8B=E3=81=AF=E3=81=93=E3=81=A0=E3=81=A6=E6=9C=AA=E6=9D=A5=
+=E5=A4=A7=E5=AD=A6=EF=BC=88=E7=89=B9=E4=BB=BB=E6=95=99=E6=8E=88=EF=BC=89   =
+ =20
+ --=20
+=E7=BE=8E=E9=A6=AC =E7=BE=A9=E4=BA=AE/Yoshiaki MIMA
+mima@fun.ac.jp=EF=BC=88=E6=9C=A8=E5=8F=A4=E5=86=85=E7=94=BA:CDO=E8=A3=9C=E4=
+=BD=90=E5=AE=98/=E5=85=AC=E7=AB=8B=E3=81=AF=E3=81=93=E3=81=A0=E3=81=A6=E6=
+=9C=AA=E6=9D=A5=E5=A4=A7=E5=AD=A6:=E7=89=B9=E5=91=BD=E6=95=99=E6=8E=88=EF=
+=BC=89  =20
+------=_Part_163672_513112503.1742569452023
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head></head><body><div class=3D"ydp4953c9e6yahoo-style-wrap" style=
+=3D"font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px=
+;"><div></div>
+        <div dir=3D"ltr" data-setdir=3D"false"><span id=3D"ydp4d643e34docs-=
+internal-guid-87388713-7fff-5391-4c59-f0429741a762" style=3D"color: rgb(0, =
+0, 0);"><p dir=3D"ltr" style=3D"line-height: 1.38; margin-top: 0pt; margin-=
+bottom: 0pt;"><span style=3D"font-size: 12pt; font-family: Arial, sans-seri=
+f; color: rgb(29, 29, 29); vertical-align: baseline;">Dear Mima,</span></p>=
+<p dir=3D"ltr" style=3D"line-height: 1.38; margin-top: 0pt; margin-bottom: =
+0pt;"><span style=3D"font-size: 12pt; font-family: Arial, sans-serif; color=
+: rgb(29, 29, 29); vertical-align: baseline;">Thanks you so much! I downloa=
+ded the videos of Harold=E2=80=99s talk and they play fine. I will be revie=
+wing the whole video soon. It is okay if you cannot access your old emails.=
+ But if you still have the interview between you and Harold from the year 2=
+000, and it is not too much trouble, I would appreciate being able to liste=
+n to it.</span></p><br><p dir=3D"ltr" style=3D"line-height: 1.38; margin-to=
+p: 0pt; margin-bottom: 0pt;"><span style=3D"font-size: 12pt; font-family: A=
+rial, sans-serif; color: rgb(29, 29, 29); vertical-align: baseline;">Sincer=
+ely,</span></p><div><span style=3D"font-size: 12pt; font-family: Arial, san=
+s-serif; color: rgb(29, 29, 29); vertical-align: baseline;">Tom</span></div=
+></span></div><div><br></div>
+       =20
+        <div id=3D"ydp4953c9e6yahoo_quoted_3027186242" class=3D"ydp4953c9e6=
+yahoo_quoted">
+            <div style=3D"font-family:'Helvetica Neue', Helvetica, Arial, s=
+ans-serif;font-size:13px;">
+               =20
+                <div>
+                    On Thursday, March 20, 2025 at 06:33:49 PM PDT, Yoshiak=
+i Mima &lt;mima@fun.ac.jp&gt; wrote:
+                </div>
+                <div><br></div>
+                <div><br></div>
+                <div><div id=3D"ydp4953c9e6yiv9420713669"><div>
+    Dear Tom,<br clear=3D"none">
+    <br clear=3D"none">
+    I guess, I set password on the web site later.<br clear=3D"none">
+    <br clear=3D"none">
+    About Harold's Talk movie, <a shape=3D"rect" href=3D"https://thinking-s=
+ketch.sakura.ne.jp/cohen/" class=3D"ydp4953c9e6yiv9420713669moz-txt-link-fr=
+eetext" rel=3D"nofollow" target=3D"_blank">https://thinking-sketch.sakura.n=
+e.jp/cohen/</a><br clear=3D"none">
+    please try to access them by (id,pw)=3D(harold,cohen).<br clear=3D"none=
+">
+    Those two MP4 files (339.4MB and 423.1MB) might be too big, <br clear=
+=3D"none">
+    but I will recommend you to DL and keep them in your trust.<br clear=3D=
+"none">
+    (Please let me know if you have download them successfully.)<br clear=
+=3D"none">
+    <br clear=3D"none">
+    As for the mail about my question to Harold, I am not sure what it
+    was.<br clear=3D"none">
+    My old email data do not have easy way to read, <br clear=3D"none">
+    and I am not sure where the data is kept or not.<br clear=3D"none">
+    So, unfortunately, it will take long time to find it.<br clear=3D"none"=
+>
+    <br clear=3D"none">
+    My first visit to Harold was in Nov 2000 and I talked with him about
+    AARON.<br clear=3D"none">
+    The date was very closed to the presidential election in Nov 2000.<br c=
+lear=3D"none">
+    <br clear=3D"none">
+    At that time, my colleague recorded the conversation between Harold
+    and me.<br clear=3D"none">
+    You might be interested in it. I will try to find it.<br clear=3D"none"=
+>
+    <br clear=3D"none">
+    Yoshiaki MIMA<br clear=3D"none">
+    <br clear=3D"none">
+    <div id=3D"ydp4953c9e6yiv9420713669yqt59748" class=3D"ydp4953c9e6yiv942=
+0713669yqt6539489141"><div class=3D"ydp4953c9e6yiv9420713669moz-cite-prefix=
+">On 2025/03/15 12:05, Thomas Machnik
+      wrote:<br clear=3D"none">
+    </div>
+    <blockquote type=3D"cite">
+      </blockquote></div></div><div id=3D"ydp4953c9e6yiv9420713669yqt99649"=
+ class=3D"ydp4953c9e6yiv9420713669yqt6539489141"><div><div style=3D"font-fa=
+mily:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px;" class=3D=
+"ydp4953c9e6yiv9420713669ydp71035782yahoo-style-wrap">
+        <div dir=3D"ltr">Dear Mima,</div>
+        <div dir=3D"ltr"><br clear=3D"none">
+        </div>
+        <div dir=3D"ltr">This is Tom Machnik. I am the
+          Art Studio Manager for the Harold Cohen Trust. I hope you are
+          well. I also hope you can help me. Last year you sent me this
+          link of Harold=E2=80=99s talk.</div>
+        <div dir=3D"ltr"><span class=3D"ydp4953c9e6yiv9420713669ydp24fb92ae=
+pasted-link">&nbsp;&nbsp;</span><a shape=3D"rect" href=3D"https://thinking-=
+sketch.sakura.ne.jp/cohen/" class=3D"ydp4953c9e6yiv9420713669moz-txt-link-f=
+reetext" rel=3D"nofollow" target=3D"_blank">https://thinking-sketch.sakura.=
+ne.jp/cohen/</a><br clear=3D"none">
+        </div>
+        <div dir=3D"ltr"><br clear=3D"none">
+        </div>
+        <div dir=3D"ltr">I am doing some new research
+          and I tried to play the link today again but I am was asked
+          for a user name and password. I don=E2=80=99t remember needing a
+          password last year. Do you know if I can still play it?&nbsp;</di=
+v>
+        <div dir=3D"ltr"><br clear=3D"none">
+        </div>
+        <div dir=3D"ltr">More importantly, my new
+          research is related to Harold=E2=80=99s paper =E2=80=9CColouring =
+without
+          Seeing.=E2=80=9D I am researching the date because we do not have=
+ a
+          date on this paper. To complicate matters Harold may have
+          written more than one version. We have an email in our
+          archives between you and Harold. The email is dated Nov 14,
+          2000. &nbsp;Harold wrote to you regarding a question you had abou=
+t
+          =E2=80=9CColouring without Seeing.=E2=80=9D &nbsp;Unfortunately, =
+we don=E2=80=99t have your
+          question. But based on what Harold wrote, you were asking
+          about the images in the paper. Do you have any memory
+          regarding =E2=80=9CColouring without Seeing?=E2=80=9D Or any thou=
+ghts
+          regarding dates? Any information would be appreciated.</div>
+        <div dir=3D"ltr"><br clear=3D"none">
+        </div>
+        <div dir=3D"ltr">Sincerely,&nbsp;</div>
+        <div dir=3D"ltr">Tom Machnik =E2=80=94 Art Studio
+          Manager =E2=80=94 The Harold Cohen Trust</div>
+        <div dir=3D"ltr"><br clear=3D"none">
+        </div>
+        <div dir=3D"ltr"><br clear=3D"none">
+        </div>
+        <div><br clear=3D"none">
+        </div>
+        <div id=3D"ydp4953c9e6yiv9420713669ydp71035782yahoo_quoted_29647290=
+37" class=3D"ydp4953c9e6yiv9420713669ydp71035782yahoo_quoted">
+          <div style=3D"font-family:'Helvetica Neue', Helvetica, Arial, san=
+s-serif;font-size:13px;">
+            <div> On Tuesday, February 6, 2024 at 07:01:06 AM PST,
+              Yoshiaki Mima <a shape=3D"rect" href=3D"mailto:mima@fun.ac.jp=
+" class=3D"ydp4953c9e6yiv9420713669moz-txt-link-rfc2396E" rel=3D"nofollow" =
+target=3D"_blank">&lt;mima@fun.ac.jp&gt;</a> wrote: </div>
+            <div><br clear=3D"none">
+            </div>
+            <div><br clear=3D"none">
+            </div>
+            <div>
+              <div dir=3D"ltr">Dear Tom,<br clear=3D"none">
+                <br clear=3D"none">
+                I am sorry for the delay of this answer.<br clear=3D"none">
+                I had to spend more time to convert movie file than I
+                expected.<br clear=3D"none">
+                Anyway, I uploaded two mpeg4 files at the following URL.<br=
+ clear=3D"none">
+                <br clear=3D"none">
+                &nbsp; <a shape=3D"rect" href=3D"https://thinking-sketch.sa=
+kura.ne.jp/cohen/" class=3D"ydp4953c9e6yiv9420713669moz-txt-link-freetext" =
+rel=3D"nofollow" target=3D"_blank">https://thinking-sketch.sakura.ne.jp/coh=
+en/</a><br clear=3D"none">
+                <br clear=3D"none">
+                Please let me know if you have successfully download
+                them.<br clear=3D"none">
+                <br clear=3D"none">
+                Best wishes.<br clear=3D"none">
+                <br clear=3D"none">
+                Yoshiaki MIMA<br clear=3D"none">
+                <div id=3D"ydp4953c9e6yiv9420713669ydp71035782yqtfd54655" c=
+lass=3D"ydp4953c9e6yiv9420713669ydp71035782yqt9740094438"><br clear=3D"none=
+">
+                  On 2023/12/28 16:14, Yoshiaki Mima wrote:<br clear=3D"non=
+e">
+                  &gt; Dear Tom,<br clear=3D"none">
+                  &gt; <br clear=3D"none">
+                  &gt; Did you enjoy your christmas?<br clear=3D"none">
+                  &gt; Glad to know I can still make a contact with you.<br=
+ clear=3D"none">
+                  &gt; <br clear=3D"none">
+                  &gt; I think I will be able to send the data.<br clear=3D=
+"none">
+                  &gt; Please wait for a while because Japanese new year
+                  holidays will start soon.<br clear=3D"none">
+                  &gt; <br clear=3D"none">
+                  &gt; Yoshiaki Mima<br clear=3D"none">
+                  &gt; <br clear=3D"none">
+                  &gt; On 2023/12/23 6:20, Harold Cohen Trust wrote:<br cle=
+ar=3D"none">
+                  &gt;&gt; Dear Yoshi-aki,<br clear=3D"none">
+                  &gt;&gt; Thank-you so much for this new information!
+                  So sorry for the extremely <br clear=3D"none">
+                  &gt;&gt; long delay. We changed our email contact info
+                  earlier in the year and <br clear=3D"none">
+                  &gt;&gt; we don't check this old account much. But
+                  because it is near the end <br clear=3D"none">
+                  &gt;&gt; of the year I am going through the emails
+                  from this account. Please <br clear=3D"none">
+                  &gt;&gt; contact me via my email account <a shape=3D"rect=
+" href=3D"mailto:zipnpup@yahoo.com" class=3D"ydp4953c9e6yiv9420713669moz-tx=
+t-link-freetext" rel=3D"nofollow" target=3D"_blank">zipnpup@yahoo.com</a>
+                  in the future. Yes, <br clear=3D"none">
+                  &gt;&gt; I still need Cohen's lecture at FUN dated
+                  2002/07/24 if it not too <br clear=3D"none">
+                  &gt;&gt; much trouble I would really appreciate it.<br cl=
+ear=3D"none">
+                  &gt;&gt;<br clear=3D"none">
+                  &gt;&gt; Happy New Year,<br clear=3D"none">
+                  &gt;&gt; Tom Machnik<br clear=3D"none">
+                  &gt;&gt; <a shape=3D"rect" href=3D"mailto:zipnpup@yahoo.c=
+om" class=3D"ydp4953c9e6yiv9420713669moz-txt-link-freetext" rel=3D"nofollow=
+" target=3D"_blank">zipnpup@yahoo.com</a><br clear=3D"none">
+                  &gt;&gt;<br clear=3D"none">
+                  &gt;&gt;<br clear=3D"none">
+                  &gt;&gt;<br clear=3D"none">
+                  &gt;&gt; On 4/6/23 4:58 PM, Yoshiaki MIMA wrote:<br clear=
+=3D"none">
+                  &gt;&gt;&gt; Tom-san,<br clear=3D"none">
+                  &gt;&gt;&gt;<br clear=3D"none">
+                  &gt;&gt;&gt; Recently some old DV(Digital Video) tapes<br=
+ clear=3D"none">
+                  &gt;&gt;&gt; including Harold's lecture at FUN on
+                  2002/07/24,<br clear=3D"none">
+                  &gt;&gt;&gt; have found in our laboratory.<br clear=3D"no=
+ne">
+                  &gt;&gt;&gt;<br clear=3D"none">
+                  &gt;&gt;&gt; If you still need them,<br clear=3D"none">
+                  &gt;&gt;&gt; I will be able to send the contents to
+                  you after data format conversion.<br clear=3D"none">
+                  &gt;&gt;&gt;<br clear=3D"none">
+                  &gt;&gt;&gt; Thanks,<br clear=3D"none">
+                  &gt;&gt;&gt;<br clear=3D"none">
+                  &gt;&gt;&gt; Yoshi-aki<br clear=3D"none">
+                  &gt;&gt;&gt;<br clear=3D"none">
+                  &gt;&gt;&gt;<br clear=3D"none">
+                  &gt;&gt;&gt; On 2023/02/08 7:40, Yoshiaki Mima wrote:<br =
+clear=3D"none">
+                  &gt;&gt;&gt;&gt; Tom-san,<br clear=3D"none">
+                  &gt;&gt;&gt;&gt;<br clear=3D"none">
+                  &gt;&gt;&gt;&gt; I am sorry for my late response.<br clea=
+r=3D"none">
+                  &gt;&gt;&gt;&gt; It is the end of winter semester and
+                  I am keeping score, a little <br clear=3D"none">
+                  &gt;&gt;&gt;&gt; bit busy.<br clear=3D"none">
+                  &gt;&gt;&gt;&gt;<br clear=3D"none">
+                  &gt;&gt;&gt;&gt; On 2023/02/06 16:40, Harold Cohen
+                  wrote:<br clear=3D"none">
+                  &gt;&gt;&gt;&gt;&gt; Dear Yoshiaki Mima<br clear=3D"none"=
+>
+                  &gt;&gt;&gt;&gt;&gt; Thank-you for your detailed
+                  response. I really appreciate this. I <br clear=3D"none">
+                  &gt;&gt;&gt;&gt;&gt; am sorry to say though the links
+                  do not work for me. I get a <br clear=3D"none">
+                  &gt;&gt;&gt;&gt;&gt; "privacy error" message. Is there
+                  something you need from me to <br clear=3D"none">
+                  &gt;&gt;&gt;&gt;&gt; make this work?<br clear=3D"none">
+                  &gt;&gt;&gt;&gt; From Japan, we can access the page of
+                  SMT without any trouble.<br clear=3D"none">
+                  &gt;&gt;&gt;&gt; I guess they are setting access
+                  restriction from overseas with <br clear=3D"none">
+                  &gt;&gt;&gt;&gt; security concerns.<br clear=3D"none">
+                  &gt;&gt;&gt;&gt; I have downloaded those pages and
+                  attach this mail.<br clear=3D"none">
+                  &gt;&gt;&gt;&gt;<br clear=3D"none">
+                  &gt;&gt;&gt;&gt;&gt;<br clear=3D"none">
+                  &gt;&gt;&gt;&gt;&gt; Also a couple follow up questions
+                  if you don't mind. Does the 2002 <br clear=3D"none">
+                  &gt;&gt;&gt;&gt;&gt; small desktop computer running
+                  with Windows 2000<br clear=3D"none">
+                  &gt;&gt;&gt;&gt;&gt; or XP that you mention still
+                  exist at your university? Also when <br clear=3D"none">
+                  &gt;&gt;&gt;&gt;&gt; you say "the version that was
+                  sold on the internet at the time", <br clear=3D"none">
+                  &gt;&gt;&gt;&gt;&gt; are you saying this was the
+                  version that ran at the 2002 exhibit? <br clear=3D"none">
+                  &gt;&gt;&gt;&gt;&gt; And finally, was there any
+                  physical Harold Cohen/AARON artwork on <br clear=3D"none"=
+>
+                  &gt;&gt;&gt;&gt;&gt; display at the 2002 exhibit?<br clea=
+r=3D"none">
+                  &gt;&gt;&gt;&gt; The desktop computer is still in my
+                  lab, however, it doesn't work.<br clear=3D"none">
+                  &gt;&gt;&gt;&gt; I attach the picture to this mail.<br cl=
+ear=3D"none">
+                  &gt;&gt;&gt;&gt;<br clear=3D"none">
+                  &gt;&gt;&gt;&gt; My first visit was in December, 2000
+                  around the presidential election,<br clear=3D"none">
+                  &gt;&gt;&gt;&gt; At that time Harold said he was
+                  preparing a commercially available <br clear=3D"none">
+                  &gt;&gt;&gt;&gt; version of AARON.<br clear=3D"none">
+                  &gt;&gt;&gt;&gt;<br clear=3D"none">
+                  &gt;&gt;&gt;&gt; After I came back to Japan, I found
+                  an advertisement of the product <br clear=3D"none">
+                  &gt;&gt;&gt;&gt; and I bought it.<br clear=3D"none">
+                  &gt;&gt;&gt;&gt; Related information is still on the
+                  web. <br clear=3D"none">
+                  &gt;&gt;&gt;&gt; <a shape=3D"rect" href=3D"http://www.kur=
+zweilcyberart.com/" class=3D"ydp4953c9e6yiv9420713669moz-txt-link-freetext"=
+ rel=3D"nofollow" target=3D"_blank">http://www.kurzweilcyberart.com/</a><br=
+ clear=3D"none">
+                  &gt;&gt;&gt;&gt; Its price was around $20. (You might
+                  be known about this version of <br clear=3D"none">
+                  &gt;&gt;&gt;&gt; AARON.)<br clear=3D"none">
+                  &gt;&gt;&gt;&gt; We used the software or the picture
+                  that was generated by the software<br clear=3D"none">
+                  &gt;&gt;&gt;&gt; to introduce "who Harold is" at our
+                  exhibition on Dec. 2001.<br clear=3D"none">
+                  &gt;&gt;&gt;&gt;<br clear=3D"none">
+                  &gt;&gt;&gt;&gt; The talk on July 2002 at Future
+                  University was held as an academic <br clear=3D"none">
+                  &gt;&gt;&gt;&gt; lecture without exhibition.<br clear=3D"=
+none">
+                  &gt;&gt;&gt;&gt;<br clear=3D"none">
+                  &gt;&gt;&gt;&gt;&gt;<br clear=3D"none">
+                  &gt;&gt;&gt;&gt;&gt; When you said the projection was
+                  12 by 6 meters, that is quite <br clear=3D"none">
+                  &gt;&gt;&gt;&gt;&gt; impressive! Thank you for sharing
+                  how Harold was an important <br clear=3D"none">
+                  &gt;&gt;&gt;&gt;&gt; friend to you both. I hope you
+                  can find audio or video of Harold <br clear=3D"none">
+                  &gt;&gt;&gt;&gt;&gt; Cohen.<br clear=3D"none">
+                  &gt;&gt;&gt;&gt; Unfortunately, I do not find any
+                  audio or video, now.<br clear=3D"none">
+                  &gt;&gt;&gt;&gt; Because around year 2000, video
+                  equipment was to alittle bigger and <br clear=3D"none">
+                  &gt;&gt;&gt;&gt; hard to carry.<br clear=3D"none">
+                  &gt;&gt;&gt;&gt;&gt;<br clear=3D"none">
+                  &gt;&gt;&gt;&gt;&gt; Ah so we did meet at the studio
+                  and you probably have some of <br clear=3D"none">
+                  &gt;&gt;&gt;&gt;&gt; Harold's works too.<br clear=3D"none=
+">
+                  &gt;&gt;&gt;&gt;<br clear=3D"none">
+                  &gt;&gt;&gt;&gt; I have some of his artworks.<br clear=3D=
+"none">
+                  &gt;&gt;&gt;&gt; The biggest one used to be on the
+                  wall near the entrance of his home.<br clear=3D"none">
+                  &gt;&gt;&gt;&gt;<br clear=3D"none">
+                  &gt;&gt;&gt;&gt; I have to shutdown my lab by the end
+                  of this March because of my <br clear=3D"none">
+                  &gt;&gt;&gt;&gt; retirement.<br clear=3D"none">
+                  &gt;&gt;&gt;&gt; We have chance to find more objects
+                  or information related to Harold,<br clear=3D"none">
+                  &gt;&gt;&gt;&gt; If I can find some, I will let you
+                  know.<br clear=3D"none">
+                  &gt;&gt;&gt;&gt;<br clear=3D"none">
+                  &gt;&gt;&gt;&gt; Yoshi-aki<br clear=3D"none">
+                  &gt;&gt;&gt;&gt;<br clear=3D"none">
+                  &gt;&gt;&gt;&gt;&gt; Tom<br clear=3D"none">
+                  &gt;&gt;&gt;&gt;&gt;<br clear=3D"none">
+                  &gt;&gt;&gt;&gt;&gt;<br clear=3D"none">
+                  &gt;&gt;&gt;&gt;&gt; On Saturday, February 4, 2023,
+                  5:58:17 PM PST, Yoshiaki Mima <br clear=3D"none">
+                  &gt;&gt;&gt;&gt;&gt; &lt;<a shape=3D"rect" href=3D"mailto=
+:mima@fun.ac.jp" class=3D"ydp4953c9e6yiv9420713669moz-txt-link-freetext" re=
+l=3D"nofollow" target=3D"_blank">mima@fun.ac.jp</a>&gt;
+                  wrote:<br clear=3D"none">
+                  &gt;&gt;&gt;&gt;&gt;<br clear=3D"none">
+                  &gt;&gt;&gt;&gt;&gt;<br clear=3D"none">
+                  &gt;&gt;&gt;&gt;&gt; Dear Tom-san,<br clear=3D"none">
+                  &gt;&gt;&gt;&gt;&gt; cc: Noyuri Mima<br clear=3D"none">
+                  &gt;&gt;&gt;&gt;&gt;<br clear=3D"none">
+                  &gt;&gt;&gt;&gt;&gt; I am glad to have a mail from
+                  you.<br clear=3D"none">
+                  &gt;&gt;&gt;&gt;&gt; I remember meeting you at
+                  Harold's studio.<br clear=3D"none">
+                  &gt;&gt;&gt;&gt;&gt;<br clear=3D"none">
+                  &gt;&gt;&gt;&gt;&gt; Harold came to Future University
+                  with Hiromi-san on July 24, 2002 and<br clear=3D"none">
+                  &gt;&gt;&gt;&gt;&gt; gave us a lecture.<br clear=3D"none"=
+>
+                  &gt;&gt;&gt;&gt;&gt; Harold's visit to the Future
+                  University was only once, in 2002.<br clear=3D"none">
+                  &gt;&gt;&gt;&gt;&gt;<br clear=3D"none">
+                  &gt;&gt;&gt;&gt;&gt; I coordinated the lecture on that
+                  day.<br clear=3D"none">
+                  &gt;&gt;&gt;&gt;&gt; At the lecture, he prepared his
+                  manuscript and read the manuscript.<br clear=3D"none">
+                  &gt;&gt;&gt;&gt;&gt; I am not sure if we made any
+                  visual recordings of his lecture.<br clear=3D"none">
+                  &gt;&gt;&gt;&gt;&gt; If I can find any records about
+                  the day, I will let you know.<br clear=3D"none">
+                  &gt;&gt;&gt;&gt;&gt;<br clear=3D"none">
+                  &gt;&gt;&gt;&gt;&gt; As for AARON on the flyer, it was
+                  the version that was sold on the<br clear=3D"none">
+                  &gt;&gt;&gt;&gt;&gt; Internet at the time.<br clear=3D"no=
+ne">
+                  &gt;&gt;&gt;&gt;&gt; As you may know, we invited
+                  Harold to our exhibition and asked him to<br clear=3D"non=
+e">
+                  &gt;&gt;&gt;&gt;&gt; give a talk on December 21, 2001.<br=
+ clear=3D"none">
+                  &gt;&gt;&gt;&gt;&gt; <a shape=3D"rect" href=3D"https://ww=
+w.smt.jp/sketch/exhibition.html" class=3D"ydp4953c9e6yiv9420713669moz-txt-l=
+ink-freetext" rel=3D"nofollow" target=3D"_blank">https://www.smt.jp/sketch/=
+exhibition.html</a><br clear=3D"none">
+                  &gt;&gt;&gt;&gt;&gt; I also try to find visual
+                  records.<br clear=3D"none">
+                  &gt;&gt;&gt;&gt;&gt;<br clear=3D"none">
+                  &gt;&gt;&gt;&gt;&gt; The picture on your flyer was
+                  taken at the exhibition.<br clear=3D"none">
+                  &gt;&gt;&gt;&gt;&gt; Harold's work was presented to
+                  introduce him as a lecturer at the <br clear=3D"none">
+                  &gt;&gt;&gt;&gt;&gt; exhibition<br clear=3D"none">
+                  &gt;&gt;&gt;&gt;&gt; during the period of exhibition
+                  December 21-26, 2001.<br clear=3D"none">
+                  &gt;&gt;&gt;&gt;&gt; The computer used was small
+                  desktop computer running with Windows 2000<br clear=3D"no=
+ne">
+                  &gt;&gt;&gt;&gt;&gt; or XP,<br clear=3D"none">
+                  &gt;&gt;&gt;&gt;&gt; and the display was the projector
+                  installed<br clear=3D"none">
+                  &gt;&gt;&gt;&gt;&gt; at the Mediatheque (a public
+                  space for exhibitions, etc. run by the <br clear=3D"none"=
+>
+                  &gt;&gt;&gt;&gt;&gt; city<br clear=3D"none">
+                  &gt;&gt;&gt;&gt;&gt; of Sendai)<br clear=3D"none">
+                  &gt;&gt;&gt;&gt;&gt; and the screen size was 12 meters
+                  by 6 meters.<br clear=3D"none">
+                  &gt;&gt;&gt;&gt;&gt; <a shape=3D"rect" href=3D"https://ww=
+w.smt.jp/use/institution/opensquare/" class=3D"ydp4953c9e6yiv9420713669moz-=
+txt-link-freetext" rel=3D"nofollow" target=3D"_blank">https://www.smt.jp/us=
+e/institution/opensquare/</a><br clear=3D"none">
+                  &gt;&gt;&gt;&gt;&gt;<br clear=3D"none">
+                  &gt;&gt;&gt;&gt;&gt; Harold has been our important
+                  friend of us.<br clear=3D"none">
+                  &gt;&gt;&gt;&gt;&gt; If you have any further
+                  questions, please feel free to ask.<br clear=3D"none">
+                  &gt;&gt;&gt;&gt;&gt;<br clear=3D"none">
+                  &gt;&gt;&gt;&gt;&gt; with best regards,<br clear=3D"none"=
+>
+                  &gt;&gt;&gt;&gt;&gt;<br clear=3D"none">
+                  &gt;&gt;&gt;&gt;&gt; Yoshiaki MIMA<br clear=3D"none">
+                  &gt;&gt;&gt;&gt;<br clear=3D"none">
+                  &gt;&gt;&gt;&gt; -- <br clear=3D"none">
+                  &gt;&gt;&gt;&gt; =E5=85=AC=E7=AB=8B=E3=81=AF=E3=81=93=E3=
+=81=A0=E3=81=A6=E6=9C=AA=E6=9D=A5=E5=A4=A7=E5=AD=A6:=E7=BE=8E=E9=A6=AC =E7=
+=BE=A9=E4=BA=AE/Yoshiaki MIMA<br clear=3D"none">
+                  &gt;&gt;&gt;&gt; <a shape=3D"rect" href=3D"mailto:mima@fu=
+n.ac.jp" class=3D"ydp4953c9e6yiv9420713669moz-txt-link-freetext" rel=3D"nof=
+ollow" target=3D"_blank">mima@fun.ac.jp</a></div>
+                <br clear=3D"none">
+                &gt;&gt;&gt;<br clear=3D"none">
+                &gt;&gt;<br clear=3D"none">
+                &gt; <br clear=3D"none">
+                <br clear=3D"none">
+                -- <br clear=3D"none">
+                Yoshiaki MIMA/=E7=BE=8E=E9=A6=AC =E7=BE=A9=E4=BA=AE<br clea=
+r=3D"none">
+                =E5=85=AC=E7=AB=8B=E3=81=AF=E3=81=93=E3=81=A0=E3=81=A6=E6=
+=9C=AA=E6=9D=A5=E5=A4=A7=E5=AD=A6=EF=BC=88=E7=89=B9=E4=BB=BB=E6=95=99=E6=8E=
+=88=EF=BC=89</div>
+            </div>
+          </div>
+        </div>
+      </div>
+   =20
+    <br clear=3D"none">
+    <pre class=3D"ydp4953c9e6yiv9420713669moz-signature">--=20
+=E7=BE=8E=E9=A6=AC =E7=BE=A9=E4=BA=AE/Yoshiaki MIMA
+<a shape=3D"rect" href=3D"mailto:mima@fun.ac.jp" class=3D"ydp4953c9e6yiv942=
+0713669moz-txt-link-abbreviated" rel=3D"nofollow" target=3D"_blank">mima@fu=
+n.ac.jp</a>=EF=BC=88=E6=9C=A8=E5=8F=A4=E5=86=85=E7=94=BA:CDO=E8=A3=9C=E4=BD=
+=90=E5=AE=98/=E5=85=AC=E7=AB=8B=E3=81=AF=E3=81=93=E3=81=A0=E3=81=A6=E6=9C=
+=AA=E6=9D=A5=E5=A4=A7=E5=AD=A6:=E7=89=B9=E5=91=BD=E6=95=99=E6=8E=88=EF=BC=
+=89</pre>
+  </div></div></div></div>
+            </div>
+        </div></div></body></html>
+------=_Part_163672_513112503.1742569452023--

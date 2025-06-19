@@ -1,0 +1,195 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a11:cac8:b0:5c7:f970:fbca with SMTP id ns8csp316425pxc;
+        Thu, 30 Jan 2025 04:08:06 -0800 (PST)
+X-Received: by 2002:a17:907:7f8d:b0:aac:622:8f6 with SMTP id a640c23a62f3a-ab6cfcdf570mr575675366b.17.1738238885955;
+        Thu, 30 Jan 2025 04:08:05 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1738238885; cv=none;
+        d=google.com; s=arc-20240605;
+        b=EXCPSvlOYvM37/nPXPDY7NHLPRP8EZLo6wKr7LjF62M8pgmnkl6uz2NvV9Yw/i43hy
+         VxbQ+T2tSYVbR373CVXeb6qiAgeIa0h057DGxQxSCqq/3rAikP0ZHbOOejQddvC3W53e
+         BsOcmqcR1LJo8H6xHwxSbVfK+Mkxsn1G9bet1mm3Ifv9m3yHnJ+6DB1KvUS1RQ4riRCS
+         QWBksV+jnnJ5nWwSJh3AdVhHVDJurSjnnnZ7ijuT/ZRaWR3hD6b3CcB4Sr8TtPDFppzb
+         INm6nY5egpU61iLIJlW7YWrowNKD0uwEEuEizBg371yBkOQCKYxZzYfA1Hd50e3hITy9
+         y4nw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=ZTzbvf8QmM5+yE4kKNHO/8HP5IDx9QCZxk3DCsLPmuA=;
+        fh=3msxlB5Rblv9jjqEdsabgib1afL6bm1FbmGjCbPN4XM=;
+        b=EIewLDvE2p/11XstTKVHbXoOmQq2aPR9mpdDtrG19868CYSIErvSuMGjIvFwH8OM5h
+         2SVQJcTyo72P2f7uuVnZEpOMSox0Up9Yv6DutkVcgp2FqFhwt8v0TiGTGbX2A8H+MIpE
+         fS2k1prao3oKo3zyliXhhXzQjbSuosMIzq5z8aCzkTqKX9AcFADHUb8IYjxUyyK7qgRC
+         MG2VuMHF+GeJz6FmJvXJlQ+CEkCiunftOWV94RsZYnVro5dpL32bBAqCk+UheO7w+tsZ
+         nszY9/Y58BsqVKDrth0gGiCR2y6Vp7UBmtXEZ/pKYqNwQ808HnOQkl19g0EFFkQnG64Y
+         A+BA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@gazelliarthouse-com.20230601.gappssmtp.com header.s=20230601 header.b=gAr35Sd1;
+       spf=pass (google.com: domain of michael@gazelliarthouse.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=michael@gazelliarthouse.com;
+       dara=pass header.i=@gmail.com
+Return-Path: <michael@gazelliarthouse.com>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id a640c23a62f3a-ab6e47f22bbsor548166b.8.2025.01.30.04.08.05
+        for <paulrcohen@gmail.com>
+        (Google Transport Security);
+        Thu, 30 Jan 2025 04:08:05 -0800 (PST)
+Received-SPF: pass (google.com: domain of michael@gazelliarthouse.com designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@gazelliarthouse-com.20230601.gappssmtp.com header.s=20230601 header.b=gAr35Sd1;
+       spf=pass (google.com: domain of michael@gazelliarthouse.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=michael@gazelliarthouse.com;
+       dara=pass header.i=@gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gazelliarthouse-com.20230601.gappssmtp.com; s=20230601; t=1738238885; x=1738843685; dara=google.com;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZTzbvf8QmM5+yE4kKNHO/8HP5IDx9QCZxk3DCsLPmuA=;
+        b=gAr35Sd12Fff7kqeDDDeDDhzbgamjjIWHNaiI0lrX681lxmhem4ctPWYP9LBZBMo/7
+         T6iVl9m0VGdzsusZQyYAZoHU4KPLw+VFJCwfHKObPhvzlE9uw2xvP/iWoyA6klyv3Gva
+         2n8ZOnsywj5/vaV7+Hx2ymSYU9BnSR/t80/O4wB2I2cRtypBQc3kPToQwEaLdPpbvsPs
+         NXTAHXRZ4/hSa9+IwFzocgp3PI0pZMCUdZxjcYk2MLBwwyRwh8K8Gck0oP2E1Jv2v8xP
+         /n8Xx1UUpA9fe/qHaZuBGTVZw6fbsR8BQHuI5zuCDK+lGEjkqhO7OlT0qRu6ay7B4bVO
+         YSzg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1738238885; x=1738843685;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ZTzbvf8QmM5+yE4kKNHO/8HP5IDx9QCZxk3DCsLPmuA=;
+        b=h6Vx2zX3raakvxv+PbwEwGZA3ENUZ1nUiDUENs5WK3AwCQ2ohs0tQLpT8Z6veiVoCs
+         vMoutpcmi19Khd0Jp2FGgm9ete0SfZQbgNZI3w1XtQfXRgY8a5+6aoxX+Fm168MZOVte
+         OA4ORMu/wT/YoYiua9fjg4pP6BXbBERyKnwDP0YXS5LA9HbA/tSBLmrvBlqm/eesVwo2
+         n0fDkxkZut4PbKQx0mi3ceOKv2GY630flANKb6Xiaw8R7+cPzlMsqQV5F2TVCdBkOYo+
+         3VBUtdhIi/4UriPVJr2t6KfzT+zgi5bjcRd2H586lsqHFRliyW2Q8WdqffB0P/cwHzXI
+         kpOQ==
+X-Gm-Message-State: AOJu0YyAje9PlT3RwwG2T7YtCw/Gu1wsGbgtDZ6ylP86L9zaQEPBOaSb
+	nTGAOHKE9daxJxKRXTlFRzXMTkH3Df4TLcRwsZwUYscrjV5StZbbzEXrgHaXDTJruOsc2jx3Beb
+	cbzXPvflwhvkwaBN7mKEIuGmgbCHbd+rMb3t7dA==
+X-Gm-Gg: ASbGncuKW3FsydrdpzEKLZNX/yJHoRKYxPA+SsnSY2E6aBKWfnpzqlhBFXQu6qqtQ5z
+	PYscHA0LQ4S9Cg73HKrid84omk166f57qF3xKX9Cb5HdwJYvHZhAR2sJw5RXZfUhoNdXAtgF9F7
+	4=
+X-Google-Smtp-Source: AGHT+IHBbDyOpZXlmEmFEuX/hisX6kUYTKDdf2D7wo0PChDar4oS3OsJhQev5oUoQh8eUbpZluhM7L2b/BV6sAf5b/I=
+X-Received: by 2002:a17:907:7f90:b0:ab2:c1da:b725 with SMTP id
+ a640c23a62f3a-ab6cfd07cb1mr685793766b.30.1738238885199; Thu, 30 Jan 2025
+ 04:08:05 -0800 (PST)
+MIME-Version: 1.0
+References: <1368161520.2967243.1738082226596.ref@mail.yahoo.com>
+ <1368161520.2967243.1738082226596@mail.yahoo.com> <CAGxUL8tPCWRQ7MtJgtaxxQ+_94SheENPBKHHEOtXLx0GyWM50A@mail.gmail.com>
+ <565095483.3254739.1738170435936@mail.yahoo.com>
+In-Reply-To: <565095483.3254739.1738170435936@mail.yahoo.com>
+From: Michael Pollard <michael@gazelliarthouse.com>
+Date: Thu, 30 Jan 2025 12:07:54 +0000
+X-Gm-Features: AWEUYZmeMKdhP9Ff1jOGkr_fU6_vQYWpAEMId55mqdee6SrYJ40ymrUUa0UO0NQ
+Message-ID: <CAGxUL8vbSVVx-1H28m9bQdPCvsvLr-MJiHjEY_5_oRecfKZPhw@mail.gmail.com>
+Subject: Re: Shipper
+To: Thomas Machnik <zipnpup@yahoo.com>
+Cc: Paul Cohen <paulrcohen@gmail.com>
+Content-Type: multipart/alternative; boundary="000000000000499c2e062ceb47de"
+
+--000000000000499c2e062ceb47de
+Content-Type: text/plain; charset="UTF-8"
+
+Hi Thomas,
+
+I wrote to Jeremy and had a response last night.
+They've confirmed they will be able to fit in the collection in the next
+week or so.
+Either Jeremy (From Dietl) or the packing company, will be in touch shortly
+to make arrangements.
+
+Thank you for your patience.
+
+Michael.
+
+On Wed, 29 Jan 2025 at 17:08, Thomas Machnik <zipnpup@yahoo.com> wrote:
+
+>
+> Dear Michael,
+>
+> Thanks for the clarification and for the status update. I will be in
+> standby mode,
+>
+> Tom
+>
+> On Wednesday, January 29, 2025 at 05:49:35 AM PST, Michael Pollard <
+> michael@gazelliarthouse.com> wrote:
+>
+>
+> Hi Thomas,
+>
+> Dietl are arranging.
+> They have said that their local collecting agent is a little busy, so it
+> may be a moment before they get in touch to schedule the visit / pickup.
+> I'll follow up with them and see if they have any availability.
+>
+> Michael.
+>
+> On Tue, 28 Jan 2025 at 16:37, Thomas Machnik <zipnpup@yahoo.com> wrote:
+>
+> Hi Michael,
+> I have not heard from the shipper yet. If they called and I was unable to
+> take it, they did not leave a message. I was assuming they would initiate
+> the call. Maybe that was incorrect. In any case, there is no action yet
+> toward the net step. Please advise.
+>
+> Sincerely
+> Tom
+>
+>
+
+--000000000000499c2e062ceb47de
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi Thomas,<div><br></div><div>I wrote to Jeremy and had a =
+response last night.</div><div>They&#39;ve confirmed they will be able to f=
+it in the collection in the next week or so.</div><div>Either Jeremy (From =
+Dietl) or the packing company, will be in touch shortly to make arrangement=
+s.</div><div><br></div><div>Thank you for your patience.</div><div><br></di=
+v><div>Michael.</div></div><br><div class=3D"gmail_quote gmail_quote_contai=
+ner"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, 29 Jan 2025 at 17:08, Th=
+omas Machnik &lt;<a href=3D"mailto:zipnpup@yahoo.com">zipnpup@yahoo.com</a>=
+&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px =
+0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div=
+><div style=3D"font-family:&quot;Helvetica Neue&quot;,Helvetica,Arial,sans-=
+serif;font-size:16px"><div></div>
+        <div><br></div><div dir=3D"ltr">Dear Michael,</div><div dir=3D"ltr"=
+><br></div><div dir=3D"ltr">Thanks for the clarification and for the status=
+ update. I will be in standby mode,</div><div dir=3D"ltr"><br></div><div di=
+r=3D"ltr">Tom</div><div dir=3D"ltr"><br></div>
+       =20
+        <div id=3D"m_6470870144919061683ydp3e527986yahoo_quoted_8758830373"=
+>
+            <div style=3D"font-family:&quot;Helvetica Neue&quot;,Helvetica,=
+Arial,sans-serif;font-size:13px">
+               =20
+                <div>
+                    On Wednesday, January 29, 2025 at 05:49:35 AM PST, Mich=
+ael Pollard &lt;<a href=3D"mailto:michael@gazelliarthouse.com" target=3D"_b=
+lank">michael@gazelliarthouse.com</a>&gt; wrote:
+                </div>
+                <div><br></div>
+                <div><br></div>
+                <div><div id=3D"m_6470870144919061683ydp3e527986yiv35860063=
+35"><div><div dir=3D"ltr">Hi Thomas,<div><br clear=3D"none"></div><div>Diet=
+l are arranging.</div><div>They have said that their local collecting agent=
+ is a little busy, so it may be a moment before they get in touch to schedu=
+le the visit / pickup.</div><div>I&#39;ll follow up with them and see if th=
+ey have any availability.</div><div><br clear=3D"none"></div><div>Michael.<=
+/div></div><br clear=3D"none"><div id=3D"m_6470870144919061683ydp3e527986yi=
+v3586006335yqt53628"><div><div dir=3D"ltr">On Tue, 28 Jan 2025 at 16:37, Th=
+omas Machnik &lt;<a shape=3D"rect" href=3D"mailto:zipnpup@yahoo.com" rel=3D=
+"nofollow" target=3D"_blank">zipnpup@yahoo.com</a>&gt; wrote:<br clear=3D"n=
+one"></div><blockquote style=3D"margin:0px 0px 0px 0.8ex;border-left:1px so=
+lid rgb(204,204,204);padding-left:1ex"><div><div style=3D"font-family:Helve=
+tica,Arial,sans-serif;font-size:16px"><div dir=3D"ltr">Hi Michael,</div><di=
+v dir=3D"ltr">I have not heard from the shipper yet. If they called and I w=
+as unable to take it, they did not leave a message. I was assuming they wou=
+ld initiate the call. Maybe that was incorrect. In any case, there is no ac=
+tion yet toward the net step. Please advise.</div><div dir=3D"ltr"><br clea=
+r=3D"none"></div><div dir=3D"ltr">Sincerely</div><div dir=3D"ltr">Tom</div>=
+<span></span></div></div></blockquote></div></div>
+</div></div></div>
+            </div>
+        </div></div></div></blockquote></div>
+
+--000000000000499c2e062ceb47de--

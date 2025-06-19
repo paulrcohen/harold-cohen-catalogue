@@ -1,0 +1,257 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a11:a211:b0:5c7:f970:fbca with SMTP id fp17csp565010pxc;
+        Fri, 31 Jan 2025 02:09:38 -0800 (PST)
+X-Forwarded-Encrypted: i=2; AJvYcCVBBVymAR3XhvGFZxKwFWP/A9b511P4c7QlNMG88dJHB7IZrzSpuZGqLzy5PCEI6xwnwdPDiuIjoOAm@gmail.com
+X-Received: by 2002:a05:690c:680a:b0:6ef:6646:b50a with SMTP id 00721157ae682-6f7a837597bmr94772947b3.20.1738318177742;
+        Fri, 31 Jan 2025 02:09:37 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1738318177; cv=none;
+        d=google.com; s=arc-20240605;
+        b=NjE7B/gsJEvYH39BCgv+89yf4/HyPX2VPuvpbQKnUwooJMfcCJ9wr6Ie4KdQF0Ca6+
+         05iTaH2vNTMWMXx9/BN8vJYji0o59ZmTOIBaKUhel/TbfHsv/wtm9qr2ehHP+E8SNdky
+         zIOFxsscjbOR1QJNH8YH4m+wmgcqD4LYSSg5DG2jNyitXa9kfAHHmhSlWJX7lToHXqLa
+         eVdFOITXibbROCDL3Om+G9wtbZ5ZCFeqBsBkUoNqRFMyZ7QwaD7styHbIO8sK4Qc4mas
+         jw9+3XbEEDkhtUu4Z+PXOHNw8uZYrxbs62xadxLCjBzCokMXaiR5T6fcr1wcaJONj11z
+         pzvw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=FGRKCGhYwwvMfOsnc5KpkKBXS1cOmd0Uzs9145FVrV8=;
+        fh=ait1+4sf34pH/n3L0cfKh0k4ehjL52Jr1JD8/eKPbVA=;
+        b=cSTlSmlwX4ujmPXAGIcad1LFOvhZZ4C5yk4e4NieRgr7SaG6CMpIUX0FcshFXPHmjn
+         XyTTz9LEsJ810EVkrPbFahFpvXdLVCMCsue9yVcc7vFqyWNS8mjsorFayIMTXGMvwBif
+         5caDoP+vN5GkA7fupN+uUuzcz0eTlAFaa7Yvn5MwbCXk4ICbCRXw6yBng5wbB2R5c/8b
+         fgQanfwDMrutdmWspeEf+ws7IcBgxLR9swSJkt/6k3FnnupC9RoJGhVbQpN9EURh8P0c
+         1+sC2hXT+rarkC/3V9qfEtifs93jNXRFNhak/ktFJkpJQkuwRb4in7r9BDiI0UkFABla
+         +kWQ==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@gazelliarthouse-com.20230601.gappssmtp.com header.s=20230601 header.b=oTn4ULDZ;
+       spf=pass (google.com: domain of m.askarova@gazelliarthouse.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=m.askarova@gazelliarthouse.com;
+       dara=pass header.i=@gmail.com
+Return-Path: <m.askarova@gazelliarthouse.com>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id 00721157ae682-6f8c47d1fd4sor19637707b3.15.2025.01.31.02.09.37
+        for <paulrcohen@gmail.com>
+        (Google Transport Security);
+        Fri, 31 Jan 2025 02:09:37 -0800 (PST)
+Received-SPF: pass (google.com: domain of m.askarova@gazelliarthouse.com designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@gazelliarthouse-com.20230601.gappssmtp.com header.s=20230601 header.b=oTn4ULDZ;
+       spf=pass (google.com: domain of m.askarova@gazelliarthouse.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=m.askarova@gazelliarthouse.com;
+       dara=pass header.i=@gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gazelliarthouse-com.20230601.gappssmtp.com; s=20230601; t=1738318177; x=1738922977; dara=google.com;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=FGRKCGhYwwvMfOsnc5KpkKBXS1cOmd0Uzs9145FVrV8=;
+        b=oTn4ULDZFkp3KGK/jebbqHlF84YCUR4+uzjaniY+rXJLaDnVGAOy9NMDSzyoNDP66Z
+         AJcQsNoF//BQ+XPO4+D+GwjbXv7/cu+Y+zlePeTorRyI1jajYNCCwnrEnI6g5Pt6vWCO
+         C/YeGWNLZ7cLUTWl3kBzupTrD479+d94NaSLW1xMKoz9KE0oJjc+7hGSicMNeQVFZpm8
+         GitMy2StmAcKxB4JX6CsBE1ZddMCDTGykB57FgxU2BpJhcwaJ5DFoSsLmiS5r6joej0x
+         lsP957q4rVTw2oNrT/xBSwFCCrCmR52wfMJbRghWjAASICbkYQR8or2n5TeFCWn17lXz
+         YxDA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1738318177; x=1738922977;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=FGRKCGhYwwvMfOsnc5KpkKBXS1cOmd0Uzs9145FVrV8=;
+        b=jy5GVvyOlUIgyPdqCYpMa32jHaqwLW3snxEi1+pLyXhahnI269fSUCppLrQuzzGxdk
+         8AYr4m9Umqmlrzwagp6YfEm5kAwXSgPmM7+qyuHfElmNln9ndCoMJjzbx6RirQSssCmr
+         6sPCGCiecfW72t2jC9/ALl/8L2zVwLVprdMAyWUnA1ZOv7t8TWPh8pgOhiWEAcBWxWb6
+         xBdLVbE0lrFEAKEfuyX0MsvZKD9HTYDIUSM4bby/KGCVzVL+PCIgwgM12MlJTumqf26u
+         KPvzFRinpRN3aHuh0WdkYnMZ39N2HndWRQcRXlOiXZC6rvLqWuFWj004pETsGa2BA1ew
+         WR8w==
+X-Forwarded-Encrypted: i=1; AJvYcCVgrVKclasY5BghvQH+SBym3vi+k1yCt9l3htp5CDq1XSWwJEWO3yF75dnQ4jfanJMl0ggeq2W9jUKJ@gmail.com
+X-Gm-Message-State: AOJu0YyvuLkWPokmNa5aESx3tCDR6ACZJHlzeqDKXBmhTuhQb1PdFCcy
+	9bsoehVmdHAGsJ3ITUi3PDFFNGq0vUBlSFsY7RsW9EQ86ZEwvORCMj4CtwGc9XUEnZRYvhf7RCO
+	hLMWVG+2xtj8Dltf0SL2efCi7NZfk9Y+C0LOmk3O3c2hQTY6o
+X-Gm-Gg: ASbGncsokKWvQMJTdQ9VEaUbTGSfrwr1aF4Mc1RbJ2Nm0PxnStZPkelDZ99vYuy5nvQ
+	9b7Ik2Jxd82ecHfmYZ/97BNZ23Zxvn8Fp2oF8RCeol/I03x5GtMnVIAPXW8FRpBVa/JzZJOI=
+X-Google-Smtp-Source: AGHT+IE4YY6lHM9IECcXbIOpQtA+GmjZbH5l0O8wL8uIdpeRGitDl+gpAt/oPc54n5s0gmfaI3Pe1/s/NQaPRxASpgY=
+X-Received: by 2002:a05:690c:6903:b0:6f7:eda4:62c2 with SMTP id
+ 00721157ae682-6f7eda467bamr76705187b3.15.1738318177055; Fri, 31 Jan 2025
+ 02:09:37 -0800 (PST)
+MIME-Version: 1.0
+References: <CAPpmcQgvAAMvEmN-p9fR392Z52Du+YpH1M-N5B_fYAw6i5x_NA@mail.gmail.com>
+ <CAKjPZkF6KNG1H6b9D=kkokhxXz-WY3X800JEB6x5gj+jWQ42sg@mail.gmail.com> <408374032.3673811.1738315469044@mail.yahoo.com>
+In-Reply-To: <408374032.3673811.1738315469044@mail.yahoo.com>
+From: Mila Askarova <m.askarova@gazelliarthouse.com>
+Date: Fri, 31 Jan 2025 10:09:26 +0000
+X-Gm-Features: AWEUYZnXHfUic1WSEbgaMTscnyf-KwSi657W81_sjT8-H0glysieN6at8b8euao
+Message-ID: <CAAOqD378GsCEVowEM6rr-fziiYOm-J5zLxa27zMkJGNrBaeEJw@mail.gmail.com>
+Subject: Re: Showing Harold Cohen's Work in LA
+To: Thomas Machnik <zipnpup@yahoo.com>
+Cc: George Lionel Barker <george@gazelliarthouse.com>, Harold Cohen Trust <aaron@aaronshome.com>, 
+	Paul Cohen <paulrcohen@gmail.com>
+Content-Type: multipart/alternative; boundary="00000000000073553f062cfdbd0c"
+
+--00000000000073553f062cfdbd0c
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Hi!
+
+Apologies for the delay.
+I would advise against as it=E2=80=99s a pop up and unknown gallery/dealer.
+
+Happy to take over the conversation if easier to let them know it won=E2=80=
+=99t
+work out at this point in time.
+
+My best,
+Mila
+
+Mila Askarova
+CEO & Founder
+
+GAZELLI ART HOUSE
+
+www.gazelliarthouse.com
++44 (0) 207 491 8816 / +994 (0) 12 498 1230
+
+
+On Fri, 31 Jan 2025 at 09:24, Thomas Machnik <zipnpup@yahoo.com> wrote:
+
+> Hi All,
+> If we do decide to participate, I=E2=80=99d be happy to support. Too bad =
+it is
+> such short notice. I am not sure how any of this fits into the longer ter=
+m
+> goals. I believe Bre still has AARON files in reserve that were not plott=
+ed
+> at the Whitney. That and/or Paul=E2=80=99s Maze reconstruction running on=
+ Bre=E2=80=99s
+> plotter would certainly have the potential to still the show.
+>
+> If we want to piggyback and highlight the efforts you are currently doing
+> (Gazelli) or plan to preview in the near future, maybe we have similar wo=
+rk
+> here in the studio that is ready to hang and that is not part of the
+> shipment to Gazelli. In any case, like I said if we do decide to
+> participate, I=E2=80=99d be happy to support.
+> Tom
+>
+> On Thursday, January 30, 2025 at 08:10:26 AM PST, Paul Cohen <
+> paulrcohen@gmail.com> wrote:
+>
+>
+> Folks, this arrived a couple of days ago.  How should I respond?  Thanks,
+> --P
+>
+> ---------- Forwarded message ---------
+> From: *Neil Mendoza* <neil@neilmendoza.com>
+> Date: Tue, Jan 28, 2025 at 12:21=E2=80=AFPM
+> Subject: Showing Harold Cohen's Work in LA
+> To: <prcohen@pitt.edu>, paulrcohen@gmail.com <paulrcohen@gmail.com>
+>
+>
+> Hi Paul,
+>
+> My name is Neil Mendoza, I'm an artist working with technology. I saw you
+> teach at Pitt. Coincidentally, I actually have a few pieces installed at
+> the Children's Museum there including a drawing machine.
+>
+> I'm helping a friend curate a show for Ctrl Gallery, a new pop up in LA.
+> The show will open on February 15th for three weeks so it will be open
+> during Frieze week when a lot of the art world is in town. The show is
+> based around machine imagination and I think your father's work would be =
+a
+> perfect fit if there is anything available. I was just in London and real=
+ly
+> enjoyed seeing his work at Electric Dreams at the Tate modern!
+>
+> Let me know what you think.
+>
+> Thanks!
+>
+> Neil
+> --
+> www.neilmendoza.com
+> @neilmendoza <http://instagram.com/neilmendoza>
+>
+
+--00000000000073553f062cfdbd0c
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto">Hi!=C2=A0</div><div dir=3D"auto"><br></div><div dir=3D"au=
+to">Apologies for the delay.=C2=A0</div><div dir=3D"auto">I would advise ag=
+ainst as it=E2=80=99s a pop up and unknown gallery/dealer.=C2=A0</div><div =
+dir=3D"auto"><br></div><div dir=3D"auto">Happy to take over the conversatio=
+n if easier to let them know it won=E2=80=99t work out at this point in tim=
+e.=C2=A0</div><div dir=3D"auto"><br></div><div dir=3D"auto">My best,</div><=
+div dir=3D"auto">Mila =C2=A0<br clear=3D"all"><br clear=3D"all"><div dir=3D=
+"auto"><div dir=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"gmail_s=
+ignature">Mila Askarova=C2=A0<br>CEO &amp; Founder=C2=A0<br><br>GAZELLI ART=
+ HOUSE<br><br><a href=3D"http://www.gazelliarthouse.com">www.gazelliarthous=
+e.com</a><br>+44 (0) 207 491 8816 / +994 (0) 12 498 1230<br></div></div></d=
+iv><div dir=3D"auto"><br></div><div><br><div class=3D"gmail_quote"><div dir=
+=3D"ltr" class=3D"gmail_attr">On Fri, 31 Jan 2025 at 09:24, Thomas Machnik =
+&lt;<a href=3D"mailto:zipnpup@yahoo.com">zipnpup@yahoo.com</a>&gt; wrote:<b=
+r></div><blockquote class=3D"gmail_quote" style=3D"margin:0 0 0 .8ex;border=
+-left:1px #ccc solid;padding-left:1ex"><div><div style=3D"font-family:Helve=
+tica Neue,Helvetica,Arial,sans-serif;font-size:16px"><div></div>
+        <div dir=3D"ltr">Hi All,</div><div dir=3D"ltr">If we do decide to p=
+articipate, I=E2=80=99d be happy to support. Too bad it is such short notic=
+e. I am not sure how any of this fits into the longer term goals. I believe=
+ Bre still has AARON files in reserve that were not plotted at the Whitney.=
+ That and/or Paul=E2=80=99s Maze reconstruction running on Bre=E2=80=99s pl=
+otter would certainly have the potential to still the show.=C2=A0</div><div=
+ dir=3D"ltr"><br></div><div dir=3D"ltr">If we want to piggyback and highlig=
+ht the efforts you are currently doing (Gazelli) or plan to preview in the =
+near future, maybe we have similar work here in the studio that is ready to=
+ hang and that is not part of the shipment to Gazelli. In any case, like I =
+said if we do decide to participate, I=E2=80=99d be happy to support.</div>=
+<div dir=3D"ltr">Tom</div></div></div><div><div style=3D"font-family:Helvet=
+ica Neue,Helvetica,Arial,sans-serif;font-size:16px"><div dir=3D"ltr"><br></=
+div>
+       =20
+        <div id=3D"m_8321410532527274383ydp16f5d81byahoo_quoted_9199068282"=
+>
+            <div style=3D"font-family:&#39;Helvetica Neue&#39;,Helvetica,Ar=
+ial,sans-serif;font-size:13px">
+               =20
+                <div>
+                    On Thursday, January 30, 2025 at 08:10:26 AM PST, Paul =
+Cohen &lt;<a href=3D"mailto:paulrcohen@gmail.com" target=3D"_blank">paulrco=
+hen@gmail.com</a>&gt; wrote:
+                </div>
+                <div><br></div>
+                <div><br></div>
+                <div><div id=3D"m_8321410532527274383ydp16f5d81byiv79354371=
+17"><div dir=3D"ltr"><div><div style=3D"font-size:small">Folks, this arrive=
+d a couple of days ago.=C2=A0 How should I respond?=C2=A0 Thanks, --P</div>=
+</div><div><div dir=3D"ltr"><div dir=3D"ltr"><div><div dir=3D"ltr"><div><di=
+v dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"=
+ltr"><br></div></div></div></div></div></div></div></div></div></div></div>=
+</div></div><div><div dir=3D"ltr">---------- Forwarded message ---------<br=
+>From: <strong>Neil Mendoza</strong> <span>&lt;<a href=3D"mailto:neil@neilm=
+endoza.com" rel=3D"nofollow" target=3D"_blank">neil@neilmendoza.com</a>&gt;=
+</span><br>Date: Tue, Jan 28, 2025 at 12:21=E2=80=AFPM<br>Subject: Showing =
+Harold Cohen&#39;s Work in LA<br>To:  &lt;<a href=3D"mailto:prcohen@pitt.ed=
+u" rel=3D"nofollow" target=3D"_blank">prcohen@pitt.edu</a>&gt;, <a href=3D"=
+mailto:paulrcohen@gmail.com" rel=3D"nofollow" target=3D"_blank">paulrcohen@=
+gmail.com</a> &lt;<a href=3D"mailto:paulrcohen@gmail.com" rel=3D"nofollow" =
+target=3D"_blank">paulrcohen@gmail.com</a>&gt;<br></div><br><br><div dir=3D=
+"ltr"><div>Hi Paul,<br><br>My name is Neil Mendoza, I&#39;m an artist worki=
+ng with technology. I saw you teach at Pitt. Coincidentally, I actually hav=
+e a few pieces installed at the Children&#39;s Museum there including a dra=
+wing machine.<br><br>I&#39;m helping a friend curate a show for Ctrl Galler=
+y, a new pop up in LA. The show will open on February=C2=A015th for three w=
+eeks so it will be=C2=A0open during Frieze week when a lot=C2=A0of the art =
+world is in town. The show is based around machine=C2=A0imagination and I t=
+hink your father&#39;s work would be a perfect fit if there is anything ava=
+ilable. I was just in London and really enjoyed seeing his work at Electric=
+ Dreams at the Tate modern!</div><div><br></div><div>Let me know what you t=
+hink.<br><br>Thanks!<br><br>Neil</div><div><div dir=3D"ltr"><div dir=3D"ltr=
+">--<div><a href=3D"http://www.neilmendoza.com" rel=3D"nofollow" target=3D"=
+_blank">www.neilmendoza.com</a><div><a href=3D"http://instagram.com/neilmen=
+doza" rel=3D"nofollow" target=3D"_blank">@neilmendoza</a></div></div></div>=
+</div></div></div>
+</div></div>
+</div></div>
+            </div>
+        </div></div></div></blockquote></div></div>
+
+--00000000000073553f062cfdbd0c--

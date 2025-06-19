@@ -1,0 +1,143 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a4a:c28c:0:0:0:0:0 with SMTP id b12csp6943512ooq;
+        Sun, 5 Jun 2022 16:42:57 -0700 (PDT)
+X-Received: by 2002:a05:6638:248c:b0:32e:be23:7160 with SMTP id x12-20020a056638248c00b0032ebe237160mr12063969jat.311.1654472577794;
+        Sun, 05 Jun 2022 16:42:57 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1654472577; cv=none;
+        d=google.com; s=arc-20160816;
+        b=JZ0hPYkpci25nO0ckf/VYYV5l/+NVo6nIL1V3uOamHkdMePAc1VSASYYrhxeBxyfis
+         TQICx8ybeRhfgNTyrbsYyO3XlZWkhVNrPIp7bJg1HrtCURV7vfj2Tddu15RykHFRWKca
+         P7uWdP/wA/wG2/L+ONzBBdnjCnT627qigfRtJfKgRTMXwufYccp5XzivuuVmLKLnDRSN
+         61Z10KF2WDy6GdY7n5onV8Bzes85M93DufCtGij4ZDGNKMChYJUwmuNOW0mW/TgBKJ6+
+         PCOmLHISQ6E5N0XnTfwHzAK+uea1+J9S+BeJFMKgkXqylKrkU4t3bzVc133rUld9C3b3
+         Gwdg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=spNNQqCrY8Jx4rc7vS4chTF4CB/9CTgD+ldyRe/CSew=;
+        b=tvj0+xpMNdKVqQ3WO0t8hnPpcvT64oxfZBc/A1wbeJtIeAzjLIyHGEmlCqzhcfxv8A
+         BiEBWk4mmOjO34UZa+Dr2qjeZzk8KsQBKsVgICz8jJbOtjZG8Uat+sAoWKBHhQ6YX58E
+         40qz61E9uVFbM3O0VxBYFMCzm54ohj6iGditqeWuMrMcekUlqvYDaJo66H47ZYCIriet
+         dQj5d0Rvcz5F0tGvlVQ1kjkuyfA+hp4gPs3KwCCwCaLh05522SEM9Gp5XuL6j7LRqtO4
+         2Rb2/yQ2rda9UTc0s9f2ximGq7eHXp2270e+P23LNzFbGcRbiF4S78XruNY/zpZDkcHe
+         +J+w==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20210112 header.b=ahExNDZf;
+       spf=pass (google.com: domain of nishisara@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=nishisara@gmail.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
+Return-Path: <nishisara@gmail.com>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id p25-20020a02b899000000b003314f786d34sor5774219jam.16.2022.06.05.16.42.57
+        for <paulrcohen@gmail.com>
+        (Google Transport Security);
+        Sun, 05 Jun 2022 16:42:57 -0700 (PDT)
+Received-SPF: pass (google.com: domain of nishisara@gmail.com designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20210112 header.b=ahExNDZf;
+       spf=pass (google.com: domain of nishisara@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=nishisara@gmail.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20210112;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=spNNQqCrY8Jx4rc7vS4chTF4CB/9CTgD+ldyRe/CSew=;
+        b=ahExNDZf43SpxIYYU8zWYE/6AP8BDjO3PyX0DXQZlf74CrmGpg4uqXo004k83Z5NAx
+         vL7wQHciTHiBYlC0Kx6ZxvyhuEqsZEbxVoedyNz6IlvJ+UQvjSK/XyWpFUkbvSfmII/N
+         W8KKZlu3I2/fSvWeYdFVt8b2otQ9cmmQ8SDUP9K2ECX/adYnkpBo4t43EuYyEu1XjL4V
+         NdfTdRiIRKxtmUVbL5eIJULt2TjPCjQ4g5Av3Fusyk9XBOvaYGFjc6msC1s9iKfcGDpu
+         T0XPi3KYyI/iNnUvPM/Ky5/iK42ZC6LdrKjNNYQxoujsOodAHsAkzMc0YBGg/HU/e9hc
+         z69g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20210112;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=spNNQqCrY8Jx4rc7vS4chTF4CB/9CTgD+ldyRe/CSew=;
+        b=F/IVgJvs2VvE3SryMM4uk/pEYquA8GTx1sTGNlPWHfKx+UEdbEz7aUgamBjQLeEatz
+         0325ECeFbOaI42rMZYJxUI6Ei/p0cM/jUZg4vc5BrSgD0mbYjLOCb7dhJnAH/yVCmKc4
+         OuJjkJxkKkqgbeIdnqujtZ1oBU5Uux6aTsHpmNmtDNCFs23PoDflnBtFysVh3tnt6T5R
+         J4qEAvcCT2bFOWCcj/S1UYW6RPQQede5wMtf9haQzF3j/lxCtnp2QBW+lhh8o+8xv1eR
+         i+ltcctNSnsFqa+QMfh+JsD52gCUS6Du6fJjLw9hAfAUOAQTbGDht/OjlYIN95iXSnJX
+         gWZg==
+X-Gm-Message-State: AOAM533l3/9egE/knt8+tYjbdt9cw41YtgaMvE5motDYxLgc/ihug97y
+	ExQLb1L4Vyy4B2Qa8A2SMngcXlVWgi8ePhz2LzXrc2mD
+X-Google-Smtp-Source: ABdhPJy5UlqLeDYiplIfpz+coN5TRYNhJn1iYjAhSRfqzBkm5ltk3pQHdLFyQTgXFyhJwzgzA5Rvl4kbrfwTmwsLhVo=
+X-Received: by 2002:a05:6638:14c3:b0:331:8153:e5b with SMTP id
+ l3-20020a05663814c300b0033181530e5bmr6570388jak.114.1654472577278; Sun, 05
+ Jun 2022 16:42:57 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAKjPZkG1mtU16eYLKx-ify6-6dK6pzJzOi4dZsL-UmZV0Sa=8w@mail.gmail.com>
+In-Reply-To: <CAKjPZkG1mtU16eYLKx-ify6-6dK6pzJzOi4dZsL-UmZV0Sa=8w@mail.gmail.com>
+From: Sara Nishi <nishisara@gmail.com>
+Date: Sun, 5 Jun 2022 16:42:49 -0700
+Message-ID: <CAB5T6BknE8OHDZx8gLDAyskQK+v=OoBqoa0tFBa+sATppzjKOA@mail.gmail.com>
+Subject: Re:
+To: Paul Cohen <paulrcohen@gmail.com>
+Cc: Thomas Machnik <zipnpup@yahoo.com>
+Content-Type: multipart/alternative; boundary="00000000000042659205e0bbeab5"
+
+--00000000000042659205e0bbeab5
+Content-Type: text/plain; charset="UTF-8"
+
+That's great!
+I'll let you know once they arrive.
+It looks like Mr. Sasaki speaks very good English, but if you think it
+would be more appropriate to thank him in Japanese, I'd be happy to prepare
+a letter!
+
+Sara
+
+
+On Sun, Jun 5, 2022 at 12:28 PM Paul Cohen <paulrcohen@gmail.com> wrote:
+
+> A friend of Ed's found what looks like the color separation negatives for
+> printing the First AI Coloring Book.  No idea how they ended up in Japan,
+> but Ed thinks it happened around the Tskuba exhibition.  Sasaki, Ed's
+> friend, somehow got them and has kept them, and is now I suppose getting on
+> and downsizing. So he's going to send them to us.
+>
+> Sara, I might need your help writing the right kind of thank you note.
+>
+> Thanks, --P
+> ______________________________
+>
+> Paul Cohen,  Professor
+> School of Computing and Information
+> University of Pittsburgh
+> personal webpage <http://www.pitt.edu/~prcohen/>
+> ______________________________
+>
+
+--00000000000042659205e0bbeab5
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">That&#39;s great!<br>I&#39;ll let you know once they arriv=
+e.=C2=A0<div>It looks like Mr. Sasaki speaks very good English, but if you =
+think it would be more appropriate to thank him in Japanese, I&#39;d be hap=
+py to prepare a letter!=C2=A0<br><br><div>Sara</div><div><br></div></div></=
+div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On=
+ Sun, Jun 5, 2022 at 12:28 PM Paul Cohen &lt;<a href=3D"mailto:paulrcohen@g=
+mail.com" target=3D"_blank">paulrcohen@gmail.com</a>&gt; wrote:<br></div><b=
+lockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-le=
+ft:1px solid rgb(204,204,204);padding-left:1ex"><div dir=3D"ltr"><div class=
+=3D"gmail_default" style=3D"font-size:small">A friend of Ed&#39;s found wha=
+t looks like the color separation negatives for printing the First AI Color=
+ing Book.=C2=A0 No idea how they ended up in Japan, but Ed thinks it happen=
+ed around the Tskuba exhibition.=C2=A0 Sasaki, Ed&#39;s friend, somehow got=
+ them and has kept them, and is now I suppose getting on and downsizing. So=
+ he&#39;s going to send them to us.</div><div class=3D"gmail_default" style=
+=3D"font-size:small"><br></div><div class=3D"gmail_default" style=3D"font-s=
+ize:small">Sara, I might need your help writing the right kind of thank you=
+ note. <br></div><div class=3D"gmail_default" style=3D"font-size:small"><br=
+></div><div class=3D"gmail_default" style=3D"font-size:small">Thanks, --P<b=
+r clear=3D"all"></div><div><div dir=3D"ltr"><div dir=3D"ltr"><div><div dir=
+=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr">=
+<div><div dir=3D"ltr">______________________________<br><br>Paul Cohen,=C2=
+=A0=C2=A0Professor</div><div dir=3D"ltr">School of Computing and Informatio=
+n</div><div dir=3D"ltr">University of Pittsburgh</div><div dir=3D"ltr"><a h=
+ref=3D"http://www.pitt.edu/~prcohen/" target=3D"_blank">personal webpage</a=
+><br>______________________________</div></div></div></div></div></div></di=
+v></div></div></div></div></div></div></div>
+</blockquote></div>
+
+--00000000000042659205e0bbeab5--

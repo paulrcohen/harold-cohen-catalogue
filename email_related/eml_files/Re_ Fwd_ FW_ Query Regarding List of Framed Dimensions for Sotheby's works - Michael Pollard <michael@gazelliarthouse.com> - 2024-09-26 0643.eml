@@ -1,0 +1,356 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a11:4819:b0:5ad:6c17:f336 with SMTP id nr25csp940571pxb;
+        Thu, 26 Sep 2024 03:44:06 -0700 (PDT)
+X-Forwarded-Encrypted: i=2; AJvYcCVQIeJU24ojWu+i1gWH+KzxzLH2BM0c7mDiFIoBVv2HrzhZ2m6XaqLEMXX5G6LZqe7eOhNdwzgicGZ6@gmail.com
+X-Received: by 2002:a17:907:78e:b0:a8d:1303:2283 with SMTP id a640c23a62f3a-a93a03f3be4mr488483666b.30.1727347446083;
+        Thu, 26 Sep 2024 03:44:06 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1727347446; cv=none;
+        d=google.com; s=arc-20160816;
+        b=vJjpKEyYF6gOlyaMsP5C3n0iwVioulwRV0p5NQdnw6PBbIpBfln4M7NPlV/Lal2UWd
+         3wC6R8W+YZAIIKImeFVFbWaZhuAM9doacOhKfHu67IYyeoxwwe08nFO/etFCRpGN1sPB
+         ywX1Le1oMwYsfO/edzopLtQwTC/PNIQqrO2RcnJ9/PKSB8R3G3gNWuzSVycrDxZquZ+H
+         V24Dy1UjVj27UFH62Geb8zAxJUHuTnVHNxrE/KPUuObgnUAXkjzlEVf1oydAEtjxa/ue
+         6C2T7h+qD4W8rcqNM6MflnRhBGats8qIERIpOW8Blnmfn3D+J5dT4wNW4Hw4Ig3ffnVS
+         9/9A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=ji4MDfgH5Elb3IkUjP9tHTafIx7aaVNbLDE47cYe+ZY=;
+        fh=MxpiWYoaWH2RL+r8v3Qp2r3DSTRGbBT+zajWQLwIDxg=;
+        b=x1VQB3f7MXymsz93H2ze7q4RXEAuvZxJzO85lA9LlEznatVTxMvUWeXcXgamj1BPV6
+         Tp2i63ocFjZV/N9QgqTTHZ+SeVB1vt1mrN9qYHLevI5Wtq/iJG94wpTiYACJWrRpxEJL
+         AsVwzh4GmMsKTYU+xpPg2Zn0qkRbItUkDbWwdS/IN7p4vFTCJzkwthAZ1nTt/fwe+uhB
+         exvpA7uBjugjGVVb3lUCWvXJsUNmHesbU4kTky2OVB6IvNh3HQQzb9eVLcWalEuSwyag
+         FrnJmrSYUZmb7NnvQoYshWgQ2jqLmGmhh8sbwuMrU5/XInOpngeNpv2c3KdiUTRk83GO
+         jDJg==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@gazelliarthouse-com.20230601.gappssmtp.com header.s=20230601 header.b=BoWy1TeQ;
+       spf=pass (google.com: domain of michael@gazelliarthouse.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=michael@gazelliarthouse.com;
+       dara=pass header.i=@gmail.com
+Return-Path: <michael@gazelliarthouse.com>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id a640c23a62f3a-a939310dfb2sor223390966b.18.2024.09.26.03.44.05
+        for <paulrcohen@gmail.com>
+        (Google Transport Security);
+        Thu, 26 Sep 2024 03:44:06 -0700 (PDT)
+Received-SPF: pass (google.com: domain of michael@gazelliarthouse.com designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@gazelliarthouse-com.20230601.gappssmtp.com header.s=20230601 header.b=BoWy1TeQ;
+       spf=pass (google.com: domain of michael@gazelliarthouse.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=michael@gazelliarthouse.com;
+       dara=pass header.i=@gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gazelliarthouse-com.20230601.gappssmtp.com; s=20230601; t=1727347445; x=1727952245; dara=google.com;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=ji4MDfgH5Elb3IkUjP9tHTafIx7aaVNbLDE47cYe+ZY=;
+        b=BoWy1TeQK+2J2vo4t7lfqEQdOwb+ULQpd4x252yMREv+iw9ISG2H2gtLAWNJmyN7tT
+         qaOG+XaqaWe7bLg+oiao76HLLuGkgsn/hTP+lCrSo12CaKnfdUVcH8W94tNiNfqeo1XL
+         pefmfyTtEHmw2OmUfciUJgjSi4kw93JQfcOgPCTAMx3DuLSIrGGSoOjXMT4qWqm0XgmK
+         OP1WVb7igEI1VEbEWNBjVrWgLi4LjdYr4ZmqSjRQYqI3qrBJB8AObaEk+tBGHo8CN3EY
+         CJpBAcY2UaO0N+tVrBlH/yZvPzyhJZwMUFRHk6ux9WRcX87rUHgzrVWw/sBVL4NGuaA1
+         xSaA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727347445; x=1727952245;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ji4MDfgH5Elb3IkUjP9tHTafIx7aaVNbLDE47cYe+ZY=;
+        b=mNAx6BvDAVQmQTkd54xCpqFjCqgZZZWneZ1QwYiZsmoQOD2l2QgjyoW8bTjdcLMc7k
+         FlZC7D32B3ntMyZ9ryUsVJyTHlgzA+d84i+b3IOdrL5D+0MXfmKDVFAstK0JtET3qnEQ
+         Te1+iYRpMKZwGH635IXWA6in1ah9ugz+Zlv9GPuIIiUwUHTlv27cTJjOydYw0G00qap+
+         jUmIaO36iddvtba/sefwyks/cSD1L3LkDtV6MDp7HcHne5+1xtm523A1RD60Nq83zRsl
+         RKmn6Z/KBlS38Du6NMzInHBcFUAODi4a+62ukxUJg5YmOlllvjAYUPiyrl+W7c+iezWQ
+         5Orw==
+X-Forwarded-Encrypted: i=1; AJvYcCWxkFmHer06jUm1UETfUUUurAiiX3w8y/rFhxnQtZt6fxjvFhGGjYT3xQMak0LH8lVLjYQL9fOpKEre@gmail.com
+X-Gm-Message-State: AOJu0YxJWNDUK9Bv7h1eezYyhu8TxXWkWHbIgKwYltfJGgM9tTRBIcBY
+	2hdTdj57WTKUDXwymkU614/vtkH3blWKdJMaHPlYQpkcrOZ+NniC/p8MRtfnWGyGD2UvzsRjLMo
+	cR9tIM6ZSdTsWfR/Cy9qG0v9KFhKf5LAjBEhE1A==
+X-Google-Smtp-Source: AGHT+IEXqUbYSxyEi08FLv7cx0QvvQnW2SDUuzdFXvquUWzaS+5tfud4zGGn6umEbvt3/JA4kDTOswKRN6m9gnhuOe4=
+X-Received: by 2002:a17:907:9483:b0:a77:cca9:b212 with SMTP id
+ a640c23a62f3a-a93a0646a17mr653961466b.45.1727347445174; Thu, 26 Sep 2024
+ 03:44:05 -0700 (PDT)
+MIME-Version: 1.0
+References: <72739310.2552050.1727283445327@yahoo.com> <4df0fbe1-b571-00f3-d09d-5691f64623d0@aaronshome.com>
+ <1164869840.6550853.1727289863701@mail.yahoo.com>
+In-Reply-To: <1164869840.6550853.1727289863701@mail.yahoo.com>
+From: Michael Pollard <michael@gazelliarthouse.com>
+Date: Thu, 26 Sep 2024 11:43:53 +0100
+Message-ID: <CAGxUL8sqeSFAuUTmKs2E2FBuWAH1Mw7uQJxKTeO1Mcj02o7dHg@mail.gmail.com>
+Subject: Re: Fwd: FW: Query Regarding List of Framed Dimensions for Sotheby's works
+To: Thomas Machnik <zipnpup@yahoo.com>
+Cc: Harold Cohen Trust <aaron@aaronshome.com>, anastasia@gazelliarthouse.com, 
+	Paul Cohen <paulrcohen@gmail.com>, 
+	Mila Askarova of Gazelli Art House <m.askarova@gazelliarthouse.com>, Paul Cohen <team@haroldcohentrust.org>
+Content-Type: multipart/alternative; boundary="000000000000dfad4a0623036ae5"
+
+--000000000000dfad4a0623036ae5
+Content-Type: text/plain; charset="UTF-8"
+
+Hi Tom,
+
+Thank you kindly for providing these.
+Will look over all of the spreadsheets / other documents and artworks in
+full and will get back to you with any questions.
+
+Michael.
+
+On Wed, 25 Sept 2024 at 19:44, Thomas Machnik <zipnpup@yahoo.com> wrote:
+
+> Hi Michael
+> I finished updating the spreadsheet in case that is more helpful for you.
+> Tom
+>
+>
+>
+> Sent from Yahoo Mail for iPad
+> <https://mail.onelink.me/107872968?pid=nativeplacement&c=Global_Acquisition_YMktg_315_Internal_EmailSignature&af_sub1=Acquisition&af_sub2=Global_YMktg&af_sub3=&af_sub4=100000604&af_sub5=EmailSignature__Static_>
+>
+> On Wednesday, September 25, 2024, 11:18 AM, Harold Cohen Trust <
+> aaron@aaronshome.com> wrote:
+>
+>
+> Hi Michael
+> There seems to be some typos on both documents. Here is a link to the most
+> accurate measurements.
+> I'm not sure how precise they need to be. Some of the measurements on the
+> Sotheby sheet are only 1/16 or 1/8 inch off.
+> I am will be updating the spreadsheet later today.
+>
+> But in case you need it now, here is the link to the files on the HCT
+> Google Drive. But, I also attached them here in case that is easier.
+> Ana also has access to the files on the Google Drive.
+>
+>
+> https://drive.google.com/drive/folders/1-I58jehZm-LCu27BbNYjwd724Kt2hzb9?usp=drive_link
+>
+>
+> Tom
+>
+>
+>
+> -------- Forwarded Message --------
+> Subject: FW: Query Regarding List of Framed Dimensions for Sotheby's works
+> Date: Wed, 25 Sep 2024 09:57:03 -0700
+> From: zipnpup <zipnpup@yahoo.com> <zipnpup@yahoo.com>
+> To: Harold Cohen Trust <aaron@aaronshome.com> <aaron@aaronshome.com>
+>
+>
+>
+>
+>
+> Sent from my T-Mobile 4G LTE Device
+>
+>
+> -------- Original message --------
+> From: Michael Pollard <michael@gazelliarthouse.com>
+> <michael@gazelliarthouse.com>
+> Date: 9/25/24 5:59 AM (GMT-08:00)
+> To: Thomas Machnik <zipnpup@yahoo.com> <zipnpup@yahoo.com>
+> Cc: Anastasia Shapovalova <anastasia@gazelliarthouse.com>
+> <anastasia@gazelliarthouse.com>
+> Subject: Query Regarding List of Framed Dimensions for Sotheby's works
+>
+> Hi Tom,
+>
+> Ana and I are updating the details needed to catalog the works for the
+> upcoming Sotheby's Sale.
+>
+> I've attached two lists that Ana and I received.
+> One is a pdf that looks like it was provided to Sotheby's for sales
+> cataloging.
+> The other is a (edited) page from a spreadsheet calle 'Summary for
+> Sotheby's'.
+> I've trimmed it to only include the works of interest.
+>
+> Each document has different framed dims.
+>
+> Do you know if the dims in the spreadsheet are more accurate, or if the
+> dims in the list provided to Sotheby's are more accurate?
+>
+> Michael
+>
+> --
+> *Michael Pollard*
+> *Senior Registrar*
+>
+>
+>
+> *GAZELLI ART HOUSE LONDON  *
+>
+>
+
+--000000000000dfad4a0623036ae5
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Hi Tom,<div><br></div><div>Thank you kindly for providing=
+=C2=A0these.</div><div>Will look over all of the spreadsheets / other docum=
+ents and artworks in full and will get back to you with any questions.</div=
+><div><br></div><div>Michael.</div></div><br><div class=3D"gmail_quote"><di=
+v dir=3D"ltr" class=3D"gmail_attr">On Wed, 25 Sept 2024 at 19:44, Thomas Ma=
+chnik &lt;<a href=3D"mailto:zipnpup@yahoo.com">zipnpup@yahoo.com</a>&gt; wr=
+ote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px=
+ 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div>
+Hi Michael<div>I finished=C2=A0updating=C2=A0the spreadsheet in case that i=
+s more helpful for you.</div><div>Tom</div><div><br><br><br><div><a style=
+=3D"font-size:12px" href=3D"https://mail.onelink.me/107872968?pid=3Dnativep=
+lacement&amp;c=3DGlobal_Acquisition_YMktg_315_Internal_EmailSignature&amp;a=
+f_sub1=3DAcquisition&amp;af_sub2=3DGlobal_YMktg&amp;af_sub3=3D&amp;af_sub4=
+=3D100000604&amp;af_sub5=3DEmailSignature__Static_" target=3D"_blank">Sent =
+from Yahoo Mail for iPad</a><br></div><br><p style=3D"font-size:15px;color:=
+rgb(132,115,255);padding-top:15px;margin-top:0px">On Wednesday, September 2=
+5, 2024, 11:18 AM, Harold Cohen Trust &lt;<a href=3D"mailto:aaron@aaronshom=
+e.com" target=3D"_blank">aaron@aaronshome.com</a>&gt; wrote:</p><blockquote=
+><div id=3D"m_3770325813457217721yiv7352124178">
+ =20
+
+   =20
+ =20
+  <div>
+    <br>
+    <div>Hi Michael<br>
+      There seems to be some typos on both documents. Here is a link to
+      the most accurate measurements. <br>
+      I&#39;m not sure how precise they need to be. Some of the measurement=
+s
+      on the Sotheby sheet are only 1/16 or 1/8 inch off.<br>
+      I am will be updating the spreadsheet later today. <br>
+      <br>
+      But in case you need it now, here is the link to the files on the
+      HCT Google Drive. But, I also attached them here in case that is
+      easier.<br>
+      Ana also has access to the files on the Google Drive.<br>
+      <br>
+<a rel=3D"nofollow noopener noreferrer" href=3D"https://drive.google.com/dr=
+ive/folders/1-I58jehZm-LCu27BbNYjwd724Kt2hzb9?usp=3Ddrive_link" target=3D"_=
+blank">https://drive.google.com/drive/folders/1-I58jehZm-LCu27BbNYjwd724Kt2=
+hzb9?usp=3Ddrive_link</a><br>
+      <br>
+      <br>
+      Tom<br>
+      <br>
+      <br>
+      <br>
+      -------- Forwarded Message --------
+      <table cellspacing=3D"0" cellpadding=3D"0" border=3D"0">
+        <tbody>
+          <tr>
+            <th valign=3D"BASELINE" nowrap align=3D"RIGHT">Subject:
+            </th>
+            <td>FW: Query Regarding List of Framed Dimensions for
+              Sotheby&#39;s works</td>
+          </tr>
+          <tr>
+            <th valign=3D"BASELINE" nowrap align=3D"RIGHT">Date: </th>
+            <td>Wed, 25 Sep 2024 09:57:03 -0700</td>
+          </tr>
+          <tr>
+            <th valign=3D"BASELINE" nowrap align=3D"RIGHT">From: </th>
+            <td>zipnpup <a rel=3D"nofollow noopener noreferrer" href=3D"mai=
+lto:zipnpup@yahoo.com" target=3D"_blank">&lt;zipnpup@yahoo.com&gt;</a></td>
+          </tr>
+          <tr>
+            <th valign=3D"BASELINE" nowrap align=3D"RIGHT">To: </th>
+            <td>Harold Cohen Trust <a rel=3D"nofollow noopener noreferrer" =
+href=3D"mailto:aaron@aaronshome.com" target=3D"_blank">&lt;aaron@aaronshome=
+.com&gt;</a></td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      <br>
+     =20
+      <div><br>
+      </div>
+      <div><br>
+      </div>
+      <div><br>
+      </div>
+      <div><br>
+      </div>
+      <div id=3D"m_3770325813457217721yiv7352124178composer_signature">
+        <div style=3D"font-size:12px;color:rgb(87,87,87)">Sent from
+          my T-Mobile 4G LTE Device</div>
+      </div>
+      <div><br>
+      </div>
+      <div><br>
+      </div>
+      <div style=3D"font-size:100%;color:rgb(0,0,0)" align=3D"left">
+        <div>-------- Original message --------</div>
+        <div>From: Michael Pollard <a rel=3D"nofollow noopener noreferrer" =
+href=3D"mailto:michael@gazelliarthouse.com" target=3D"_blank">&lt;michael@g=
+azelliarthouse.com&gt;</a> </div>
+        <div>Date: 9/25/24 5:59 AM (GMT-08:00) </div>
+        <div>To: Thomas Machnik <a rel=3D"nofollow noopener noreferrer" hre=
+f=3D"mailto:zipnpup@yahoo.com" target=3D"_blank">&lt;zipnpup@yahoo.com&gt;<=
+/a> </div>
+        <div>Cc: Anastasia Shapovalova
+          <a rel=3D"nofollow noopener noreferrer" href=3D"mailto:anastasia@=
+gazelliarthouse.com" target=3D"_blank">&lt;anastasia@gazelliarthouse.com&gt=
+;</a> </div>
+        <div>Subject: Query Regarding List of Framed Dimensions for
+          Sotheby&#39;s works </div>
+        <div><br>
+        </div>
+      </div>
+      <div dir=3D"ltr">
+        <div dir=3D"ltr">
+          <div dir=3D"ltr">
+            <div dir=3D"ltr">Hi Tom,</div>
+            <div dir=3D"ltr"><br>
+            </div>
+            <div>Ana and I are updating the details needed to catalog
+              the works for the upcoming Sotheby&#39;s Sale.</div>
+            <div><br>
+            </div>
+            <div>I&#39;ve attached two lists that Ana and I received.</div>
+            <div>One is a pdf that looks like it was provided to
+              Sotheby&#39;s for sales cataloging.</div>
+            <div>The other is a (edited) page from a spreadsheet
+              calle=C2=A0&#39;Summary for Sotheby&#39;s&#39;.</div>
+            <div>I&#39;ve trimmed it to only include the works of interest.=
+</div>
+            <div><br>
+            </div>
+            <div>Each document has different framed dims.</div>
+            <div><br>
+            </div>
+            <div>Do you know if the dims in the spreadsheet are more
+              accurate, or if the dims in the list provided to Sotheby&#39;=
+s
+              are more accurate?</div>
+            <div><br>
+            </div>
+            <div>Michael</div>
+            <div dir=3D"ltr">
+              <div><br>
+              </div>
+              <span>-- </span><br>
+              <div dir=3D"ltr">
+                <div dir=3D"ltr">
+                  <div style=3D"color:rgb(34,34,34)">
+                    <div dir=3D"ltr">
+                      <div dir=3D"ltr"><b>Michael Pollard</b></div>
+                      <div dir=3D"ltr"><b>Senior Registrar</b></div>
+                      <div dir=3D"ltr"><b><br>
+                          </b></div>
+                      <div dir=3D"ltr"><b>GAZELLI ART HOUSE<br>
+                            <br>
+                            LONDON=C2=A0=C2=A0</b></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><blockquote></blockquote></blockquote></div>
+</div></blockquote></div>
+
+--000000000000dfad4a0623036ae5--

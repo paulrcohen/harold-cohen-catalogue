@@ -1,0 +1,229 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a10:e10b:b0:5ec:db95:1ae4 with SMTP id a11csp6656331pxw;
+        Sun, 18 May 2025 23:10:26 -0700 (PDT)
+X-Forwarded-Encrypted: i=2; AJvYcCUX+//40uSLctXouWtqNHIJPCDlx2yZQWTW1v0r5bfg+BovjsCjlc58V/5q8xDxULeONLK4+C8QMeqw@gmail.com
+X-Google-Smtp-Source: AGHT+IErT9rHxznijnHeYzxVMetZ1mr9SCvXRZejqZcafz0T9bFMAOSQMol57eCb2NPcJMPCDU1m
+X-Received: by 2002:a05:622a:5589:b0:477:ea0:1b27 with SMTP id d75a77b69052e-494ae3dbd84mr210976961cf.26.1747635026332;
+        Sun, 18 May 2025 23:10:26 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1747635026; cv=none;
+        d=google.com; s=arc-20240605;
+        b=NpLi1E2pwOy7VT/nX5vJYskA8OnH6Fjni817ieJjAyjwAPm8liL2gXCaNvCcP8eV+s
+         8hHDb7da1M7zAERh5pB2gvhHOClSvFqC2vGr2lT8SKe14ikovY6Qb3JgK2Yx+MddJf67
+         eAf7rjWvi3IOFRa0scSchdgoJYFd2HMnrBzBTL6DLk65prDmxNH0kiJPG8UiD02ufZ+e
+         FBVFV+dq7yw4ZZC/dRG1ay1JRyhfF7g8Fq2L820nsw0BQTmdLGLxDAU9X0VSAOnXK4yr
+         qwj9oyR6DYSKhgT7s3Yb5W7rRhVbY31gbZ4G22brcQjCsCckzyNiYwgdVLvy8k43PVX8
+         duOw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:subject:references:in-reply-to:message-id:cc:to
+         :reply-to:from:date:dkim-signature;
+        bh=oI6AZCw5fPBynkX1wJqo9MV2CNQkRkClfaMUodKV/m0=;
+        fh=vbLTggCsUgZBqhEXLgJ36Xo/muQgkopzijGLjkLrdc0=;
+        b=JMRjuR8YaWhcqGStDMvoulcKePHaQOLxcjtYQfafNwsCmx8IwfjbKU1BfSEiekW4fK
+         ilFKpNizrX0WybzoNLIrFPbyFIfE7CTkA5cCgjNTiAYddwygyRr3QwVkWJQ/foqFZsj/
+         JmOoEkMKw5DP8IaSJwFURAj9kaYJJDC3/goFys27oqinGNiexFLwQKy4u8cO4vIhAlD8
+         ctOEmusmjv0Iv3Gb2vn+7dYeR0UclrZGP8O8+lQKpjTexlCPm+YDoebu6yALLycCA0MP
+         /R4soQNeLY3T7hgATEUn/8XUNN6Axi5tadgVj70pX4c3h1VrS2HY4Uj8sz4TUi8lIqzb
+         yXLA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=Tht+ep4n;
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.133.40 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+Return-Path: <zipnpup@yahoo.com>
+Received: from sonic305-1.consmr.mail.bf2.yahoo.com (sonic305-1.consmr.mail.bf2.yahoo.com. [74.6.133.40])
+        by mx.google.com with ESMTPS id d75a77b69052e-494ae40c17csi76727181cf.63.2025.05.18.23.10.26
+        for <paulrcohen@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 18 May 2025 23:10:26 -0700 (PDT)
+Received-SPF: pass (google.com: domain of zipnpup@yahoo.com designates 74.6.133.40 as permitted sender) client-ip=74.6.133.40;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=Tht+ep4n;
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.133.40 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1747635025; bh=oI6AZCw5fPBynkX1wJqo9MV2CNQkRkClfaMUodKV/m0=; h=Date:From:Reply-To:To:Cc:In-Reply-To:References:Subject:From:Subject:Reply-To; b=Tht+ep4n7miNuAOka81y7xKizaF0Ra3mONeETgmKyO0Ze/K7opcx2TL1TQHF8djYumuaIw9JidbMsMzDzJKtz8Mhpc+Yx3/34qytmx0M5AHorDeatZ1Zbh11oJpsGyHM3tiUHHLVVFfSaftQLwIIxJZEI4a6zzs7Xj5p1LYlIW4hzFF3GiNNvBl3R+o9V8pNrMwAHnBwfO9UnVkfNx0gJWyx17fuC7UwilZuwEGLmOgai7ADtJKzj7+UyUDHsm7+hURTzfnbpgZQRgLmp70OdFrrHSrqehpDOhS8JUmg0PO3Qwm8Hy6zOAu8knds9X/ggBhf8r5XXva9uyYAxDlCOQ==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1747635025; bh=4ebGrSvXmDQU+mV8MQx9RuG4oidw4QUox/z/um9Mz0S=; h=X-Sonic-MF:Date:From:To:Subject:From:Subject; b=s+b4quv8aCxFC8uXmN+sbbbch6MproPhY1xBXNt60WlAfz6QbgJY6L/heWWJCo2tapxHeByt91532hxxVhMRV4f0ytd1VYcEHprPKenxWfRTKJ38wp7gMOb/pCC79Mw1qtY2PiL1vWNxnr63Ru6Wu3b62+J+VAIgxxKb0hYmT3uDeeLbuPSMPvf5QieKYqfghn8zuJGg2nj5zl+TWTXy2NTIKzJe4dlpNOViQiMlm+5fWAtGrzOfTMpEc2AjmbeZAPBOeqkGsi2qYhrc6ZfkxJYBp0swPj2kW0bHJ5VwetMSn4TkeRsiQy0aRrvZ1STDd+cH/aXvlUZeUFkxNCoBxw==
+X-YMail-OSG: I.boA0YVM1n1GrlQmJI3y34Fd9b6Xv9_H8tRVcstnUUQEX23Rf7iikqRglNe1.3
+ NBDE7PPJ3h8Gu7t165B6eJus_9W91xdmyPRUiEpSKigDP7Q7i3dtboJCzr6jlNld_ApyUTpYV0ca
+ J4mXPoqc276QEA6uwWxMYrXZswsbhJhWq9I2Mi41Jro9mHC7C.s5q9BvIqiRjMVGM5UEVHZsf4rE
+ CDs62WIN_Mk5DLHP.P8nXJsqCecF77Id9ocS7QLr6z8L0gli9Vzcer7DkOVVy1GCTZr7ieOyRgtb
+ yimPbfuGj.LRuaa_TpELojTFoAmmhXx.JWy3I0Kn3dOLAjM3eLCeX75NFKjkqWetFGOEDBkFGC6f
+ gJDvY4KqZc6eqhq1cclqtLJJ4X_5.2mDRg0VUtS0_WMWpYchP8of3TW.9lRFmoBhdCC1Dd50LX9T
+ x86ks58EQrL_c7rL7XVTjB3Z6sYQqBcmFohTEy25KIhJdTx6ytw144wIzJ9MCvm6SQAsbdIr.DjS
+ FAuCRP0yh7vB0msawoDtQ5tKgVKiNSsNdXZayBK_7xj49QZQ3PXYVaPYobGsc12bRxjx5mmzJohL
+ 7OoUtTLaENliwZiB29aEC0TKU3HFPD7pniHRp7zsFFf73akTHLx1SuHmNW0w_8IxPq99BwfqTqcA
+ HQ7Q7YIHnI6fhntbZc4wSGvV4Qtq2r3wsWafr0rDHpfla92Hw3dc_auKBiRDY4jR6de0cSW.lOlJ
+ C7H4Qu5zgb6PaXO9M8BvnAGJy24TwvzRRW2hkBOhNTIF3JeL05foWo49zEZcmhO1MlCswQj4EmQq
+ TDhEuMknsMclOjBurqQ92NvVmKLQ241FjzH4ipNCTY0.mlIPmtOb4uq.1h0aTGA4T9aP1wFwbLqS
+ pwTFkPxDG3GOc8k5b6AkUhYt0SnSPoncRQyidevXiQsEjUXXM13XiNvED1sMUQnw.s.hDOIsigST
+ kWgDe5.APaDETQDTsv5ZS0wtA3rnbOq91XDSSFZ3sEW7.EmogE8HglMDQbdo3vMhIDiCMFGW3MSo
+ mY8QE4N5tTdrSf6DdA8Lv9Bk07QhZL8sUaM6hVFUsAgQzEmMQwWJryayGvLCMvZR7mUozuFEyOVH
+ Ea_lBYDgpXXOWbtH5nvVyF77RPnLI.FfMhB4xB6bMtWdMF5mWTzADWlFwv2e9GwVV8sMHQ7cY3j7
+ e3s4V4sn30uzOQyVDn1i0hjabmmQ3IAO.mBYiJDNuEOELSYogKrwE8x78XgRj5bmqAgVa.LkRKZP
+ 6Q2jvpAIrjGO_RC4YcDJN73vR9crWTEeJ4.yAIFPNjb06a_rsBlGtjcONrTtvbKxGmyPjDpCbEGc
+ 8T.G0pKkwNxcMr_OMj3AfT5PID_Au83Ur6nXKWDIevHdL9s7gt_Gbs8lNn9JKXou9T8qmMDc5s3t
+ FP8yA082lJF60Z22WcJvk6DsYnNOsMG7A.60nYab2vX2FfKkWpc59urOz4PszTUb9PXOmE4_4FB9
+ 2iSv7R9HvOaeFdL55YhLTPZYEQgLJ_9VRBOtr.xIXdfk5QcMea_VznX4asqA9OgOKNybUWT.2gd4
+ IRaEAhAEFFjigjse5POkimC3djK0bnwD3tYyzJEkbOb0lT6xhBr3GO0LZhGKPbTusdWK08v1jPPE
+ B4LCFcago9RYKIE9AkzUaDZkdJWHvdH7JLRoqrquaSkiW.O2vAToQ9U0Pr_CVIrXeiqB8_o_MIoM
+ 1LVm4f3ytGqO0aKoX1qTRGJn2ih1jUrFGkybipIJI3Ph9Q367G4LTPXg8URVTbQQ3vmqjEBfu_I8
+ iYLM_zfgieNzpYUbIIHaq.kZbz9o42S2CDLw43.Ggo89jMO4qOeof4X5XBgSGKqwfXWKpvKtleHA
+ YOpRPnjOWlmB7waoXx9yKgm3DIz9.QSrCDKEKKMN2nNJ4r7G54xf7aSiifxjgcMoPnpP505Y.bn.
+ eF.S6ssU8BYDED9S7csRhZTLCf8ExMNlfyDLb6_3QibXllFU8e0w9HkuWSkHH5C7i_9d.OEYgoN4
+ R3wlveVJa1AyTUL7xBVOgYZ3T4F5XhbhG16GL1tPBbT2Elezli_Cf9oafYTXc82n0wvcf4Xx4Age
+ yWAPBPKNKL1zFD8WN9RWn2cS_pb9oQGxe0RipWLFcWfDFyRX2rxRZrYO8LGH87Nb3voJOFzvc.2c
+ qaFhKHxGXlcH1iwEEJSu89Ykt.wrNkG6FUi4ud0WVuyfYYLCRlVjRZmK5T9QqvNcKhEyQJOM-
+X-Sonic-MF: <zipnpup@yahoo.com>
+X-Sonic-ID: 697a211f-5264-453a-8110-ab531998caf2
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic305.consmr.mail.bf2.yahoo.com with HTTP; Mon, 19 May 2025 06:10:25 +0000
+Date: Mon, 19 May 2025 06:10:23 +0000 (UTC)
+From: Thomas Machnik <zipnpup@yahoo.com>
+Reply-To: Thomas Machnik <zipnpup@yahoo.com>
+To: "stalbaum@ucsd.edu" <stalbaum@ucsd.edu>, 
+	Nina Karavasiles <nkaravasiles@gmail.com>
+Cc: Paul Cohen <team@haroldcohentrust.org>, 
+	Harold Cohen Trust <aaron@aaronshome.com>, 
+	"Moss, Ceci" <clmoss@ucsd.edu>
+Message-ID: <2033466238.1068172.1747635023108@mail.yahoo.com>
+In-Reply-To: <CAP8AsbFzH6Y5yduw7qqqVqFxNWfH2dJzBAxEGeutitjT5AfPZQ@mail.gmail.com>
+References: <d4787c30-b3fa-4843-bc3e-ae49086f50ed@ucsd.edu> <CAP8AsbFzH6Y5yduw7qqqVqFxNWfH2dJzBAxEGeutitjT5AfPZQ@mail.gmail.com>
+Subject: Re: introductions
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_1068171_540391663.1747635023107"
+X-Mailer: WebService/1.1.23840 YMailNovation
+Content-Length: 6538
+
+------=_Part_1068171_540391663.1747635023107
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+ Hi Everyone,Thanks for the introductions. I will let Paul chime in regardi=
+ng any potential San Diego visit by him. If you have a timeline or sorts, e=
+ven a vague one, that would be helpful.
+Thomas Machnik =E2=80=94 Art Studio Manager =E2=80=94 The Harold Cohen Trus=
+t
+    On Saturday, May 17, 2025 at 08:48:54 AM PDT, Nina Karavasiles <nkarava=
+siles@gmail.com> wrote: =20
+=20
+ Hey all,I'm very excited about all of this and can manipulate my schedule =
+around, perhaps Paul's, who I'm guessing is the furthest=C2=A0away. When wi=
+ll you be in town?Nina
+On Thu, May 15, 2025 at 4:09=E2=80=AFPM Brett Stalbaum <bstalbaum@ucsd.edu>=
+ wrote:
+
+Dear Ceci, Thomas, Paul, Nina and trust,
+
+Just taking a moment here to make introductions between us all. Ceci=20
+Moss is my dear colleague and director of the Mandeville Art Gallery at=20
+UCSD where I serve as an advisory board member. Thomas is Art Studio=20
+Manager of the Harold Cohen Trust, Nina is a former student of Harold's,=20
+UCSD MFA and of course Paul is Harold's son and a computer scientist of=20
+many roles including dean at Pitt and DARPA alum. (Side note: Paul, we=20
+started this convesation with the fact that Harold has been part of our=20
+curriculum in AI arts history units in our vis 142 class since I started=20
+here in 2004, a class in which we also discuss DARPA! There are so many=20
+neat serendipitous connections here... Nina is a backcountry neighbor of=20
+mine and knows my wife Paula from Warner Springs, where Paula is the=20
+public school art teacher... they have worked together in the past:-)
+
+So that conversation has been about UCSD's recent attempts and plans to=20
+honor Harold's legacy here. The idea that had emerged was that we meet=20
+up in person and discuss further. So I am just throwing out intros at=20
+this point, and looking for thoughts as to a time line for meeting!
+
+cheers all,
+Brett Stalbaum
+
+
+
+
+--=20
+Nina Karavasiles
+619-607-0511www.ninak.info =20
+------=_Part_1068171_540391663.1747635023107
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head></head><body><div class=3D"ydpc3c6a2d1yahoo-style-wrap" style=
+=3D"font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px=
+;"><div></div>
+        <div dir=3D"ltr" data-setdir=3D"false">Hi Everyone,</div><div dir=
+=3D"ltr" data-setdir=3D"false">Thanks for the introductions. I will let Pau=
+l chime in regarding any potential San Diego visit by him. If you have a ti=
+meline or sorts, even a vague one, that would be helpful.</div><div dir=3D"=
+ltr" data-setdir=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"false"=
+>Thomas Machnik =E2=80=94 Art Studio Manager =E2=80=94 The Harold Cohen Tru=
+st</div><div dir=3D"ltr" data-setdir=3D"false"><br></div>
+       =20
+        <div id=3D"ydpc3c6a2d1yahoo_quoted_7917155694" class=3D"ydpc3c6a2d1=
+yahoo_quoted">
+            <div style=3D"font-family:'Helvetica Neue', Helvetica, Arial, s=
+ans-serif;font-size:13px;">
+               =20
+                <div>
+                    On Saturday, May 17, 2025 at 08:48:54 AM PDT, Nina Kara=
+vasiles &lt;nkaravasiles@gmail.com&gt; wrote:
+                </div>
+                <div><br></div>
+                <div><br></div>
+                <div><div id=3D"ydpc3c6a2d1yiv0320421553"><div><div dir=3D"=
+ltr">Hey all,<div>I'm very excited about all of this and can manipulate my =
+schedule around, perhaps Paul's, who I'm guessing is the furthest&nbsp;away=
+. When will you be in town?</div><div>Nina</div></div><br clear=3D"none"><d=
+iv id=3D"ydpc3c6a2d1yiv0320421553yqt34393" class=3D"ydpc3c6a2d1yiv032042155=
+3yqt6355260581"><div class=3D"ydpc3c6a2d1yiv0320421553gmail_quote ydpc3c6a2=
+d1yiv0320421553gmail_quote_container"><div dir=3D"ltr" class=3D"ydpc3c6a2d1=
+yiv0320421553gmail_attr">On Thu, May 15, 2025 at 4:09=E2=80=AFPM Brett Stal=
+baum &lt;<a shape=3D"rect" href=3D"mailto:bstalbaum@ucsd.edu" rel=3D"nofoll=
+ow" target=3D"_blank">bstalbaum@ucsd.edu</a>&gt; wrote:<br clear=3D"none"><=
+/div><blockquote style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid rg=
+b(204,204,204);padding-left:1ex;" class=3D"ydpc3c6a2d1yiv0320421553gmail_qu=
+ote">Dear Ceci, Thomas, Paul, Nina and trust,<br clear=3D"none">
+<br clear=3D"none">
+Just taking a moment here to make introductions between us all. Ceci <br cl=
+ear=3D"none">
+Moss is my dear colleague and director of the Mandeville Art Gallery at <br=
+ clear=3D"none">
+UCSD where I serve as an advisory board member. Thomas is Art Studio <br cl=
+ear=3D"none">
+Manager of the Harold Cohen Trust, Nina is a former student of Harold's, <b=
+r clear=3D"none">
+UCSD MFA and of course Paul is Harold's son and a computer scientist of <br=
+ clear=3D"none">
+many roles including dean at Pitt and DARPA alum. (Side note: Paul, we <br =
+clear=3D"none">
+started this convesation with the fact that Harold has been part of our <br=
+ clear=3D"none">
+curriculum in AI arts history units in our vis 142 class since I started <b=
+r clear=3D"none">
+here in 2004, a class in which we also discuss DARPA! There are so many <br=
+ clear=3D"none">
+neat serendipitous connections here... Nina is a backcountry neighbor of <b=
+r clear=3D"none">
+mine and knows my wife Paula from Warner Springs, where Paula is the <br cl=
+ear=3D"none">
+public school art teacher... they have worked together in the past:-)<br cl=
+ear=3D"none">
+<br clear=3D"none">
+So that conversation has been about UCSD's recent attempts and plans to <br=
+ clear=3D"none">
+honor Harold's legacy here. The idea that had emerged was that we meet <br =
+clear=3D"none">
+up in person and discuss further. So I am just throwing out intros at <br c=
+lear=3D"none">
+this point, and looking for thoughts as to a time line for meeting!<br clea=
+r=3D"none">
+<br clear=3D"none">
+cheers all,<br clear=3D"none">
+Brett Stalbaum<br clear=3D"none">
+<br clear=3D"none">
+</blockquote></div></div><div><br clear=3D"all"></div><div><br clear=3D"non=
+e"></div><span class=3D"ydpc3c6a2d1yiv0320421553gmail_signature_prefix">-- =
+</span><br clear=3D"none"><div dir=3D"ltr" class=3D"ydpc3c6a2d1yiv032042155=
+3gmail_signature"><div dir=3D"ltr">Nina Karavasiles<br clear=3D"none">619-6=
+07-0511<div><a shape=3D"rect" href=3D"http://www.ninak.info" rel=3D"nofollo=
+w" target=3D"_blank">www.ninak.info</a></div></div></div>
+</div></div></div>
+            </div>
+        </div></div></body></html>
+------=_Part_1068171_540391663.1747635023107--

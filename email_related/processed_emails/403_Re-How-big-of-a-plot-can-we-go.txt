@@ -1,0 +1,37 @@
+Subject: Re: How big of a plot can we go?
+From: Bre Pettis <bre@bantamtools.com>
+To: Thomas Machnik <zipnpup@yahoo.com>
+Date: 2025-04-16 13:37:04
+Message-ID: <CACze48upzGr5AOHEu5+GdQPwwer0mmfc9fJ157i0MQu-x+9wzQ@mail.gmail.com>
+--------------------------------------------------------------------------------
+
+Just catching up.
+
+We have a prototype that can do a 24x72" plot on 28x76" paper. Giant and
+wall mounted plotters are possible, but the effort and expense are non
+trivial.
+
+Happy to chat more about ideas if you like. Do you have a project in mind?
+
+Bre
+
+
+
+> Hi Bre,
+>
+> Hope you are well. Hoping to get some preliminary background on the
+> possibility of an idea Paul mentioned. How close to a mural-size work do
+> you think your plotters could plot? Is 48 or 60 inch wide paper a
+> possibility? Is even larger, say 8 or 10 ft possible? And instead having a
+> person manually mount each sheet like at the Whitney, is it possible to
+> have a roll of paper? Like, say a 60” x 100 foot roll or 48” x 350 ft? Or
+> multiple rolls? And plot maybe a 60x48inch area at a time. And then advance
+> the roll for the next plot? Or could it somehow plot an area, whatever size
+> that maybe, and then, move to another area and plot that other area. And
+> move about across whatever space is available to complete the work? And
+> maybe more importantly than the size… could all of this be done vertically?
+> This may be a bit ambitious, but in a sense, I am asking how close do you
+> think you could get to making a vertical turtle that would execute multiple
+> murals and do so with minimal human intervention. And however close that
+> might be, what would that look like?
+>

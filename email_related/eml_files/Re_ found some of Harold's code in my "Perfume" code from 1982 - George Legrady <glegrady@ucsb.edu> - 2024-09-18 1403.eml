@@ -1,0 +1,324 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a10:d607:b0:5a5:c71b:1392 with SMTP id gm7csp926090pxb;
+        Wed, 18 Sep 2024 11:03:13 -0700 (PDT)
+X-Received: by 2002:a05:6a00:1906:b0:717:8cef:4053 with SMTP id d2e1a72fcca58-71936a5dd71mr29609414b3a.14.1726682592647;
+        Wed, 18 Sep 2024 11:03:12 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1726682592; cv=none;
+        d=google.com; s=arc-20160816;
+        b=J13o9U+HMssefUFaWSnpmHML9oAiU1tMgzuPfNH17i6G41X6Cjbq/DDBIqQyU/v3MQ
+         uRmudP0HWrZPuB6EOcCAX2DBHVBnBfhsNzGp4WBC2XiWBrpIrfm7BfjiIbROVkWidUiF
+         Rf3AUOiKw1LPU9RN++r5UA7DHbIb4GJwwmJbeo9QmVkvi4aSVXomIiTtJ1vlaTD0BSFd
+         Tv1RkoWXuj5kMznSOAcB0Ab7YxlooJZ8POHEB7y5gwN8tky4QYrViMCHh4iZT2KeNlNp
+         5OctwHxxTAg00mejV7Q/fJShn4rE48mk/cbdgSO5byp76NuTXr0Tc4g0QwAUhsqX4DqX
+         v8Mw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:references:message-id:cc:date:in-reply-to:from:subject
+         :mime-version:dkim-signature;
+        bh=epM6E/NqUu30n7ThbAe/adsCL3QV3KMjYl/3QrQlIHE=;
+        fh=6mJz73pQ3zblMSgOUtFoy1bvu9An19cSf8y74Mj0fv0=;
+        b=MUcgtBZ/0nBgb8rduITQ/YCk3au4zc3jD9yIoDiS7LI87r+JNhObEl1hn9Qy6fa9xw
+         9M0YGM+zl6MBXQOdaWdrQILs+XRH9TuGy5iwxxwEOPLkMbPmcO3XqZ0ToNx/zejMQPc7
+         EtpGFjR4s39V4LGHy4HM9vLvpT54VWfSlLZx8U58T8qhadrrrGg+AyCGVCsYl2p6LDTw
+         Cg8duh8eToozhD9wINZwzgMm1t54PUlvBLU2hai/B05tFSokb0yc7hNiDTEkwybSCqpR
+         wYVrmnsh02aS1FhQPGOS/RHM8tdYVPViSetBp2cM38NVRGLSUXl9/6Oo/u1jKncdbGrC
+         bT1Q==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@ucsb.edu header.s=google header.b=ehvTjQ8t;
+       spf=pass (google.com: domain of glegrady@ucsb.edu designates 209.85.220.41 as permitted sender) smtp.mailfrom=glegrady@ucsb.edu;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=ucsb.edu;
+       dara=pass header.i=@gmail.com
+Return-Path: <glegrady@ucsb.edu>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id d2e1a72fcca58-71944bd82f8sor7624070b3a.12.2024.09.18.11.03.12
+        for <paulrcohen@gmail.com>
+        (Google Transport Security);
+        Wed, 18 Sep 2024 11:03:12 -0700 (PDT)
+Received-SPF: pass (google.com: domain of glegrady@ucsb.edu designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@ucsb.edu header.s=google header.b=ehvTjQ8t;
+       spf=pass (google.com: domain of glegrady@ucsb.edu designates 209.85.220.41 as permitted sender) smtp.mailfrom=glegrady@ucsb.edu;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=ucsb.edu;
+       dara=pass header.i=@gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ucsb.edu; s=google; t=1726682592; x=1727287392; dara=google.com;
+        h=to:references:message-id:cc:date:in-reply-to:from:subject
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=epM6E/NqUu30n7ThbAe/adsCL3QV3KMjYl/3QrQlIHE=;
+        b=ehvTjQ8tenRdH1DfgnywRdsZVWW3LI7cl5isf0fJbeJ416l6agEw1uzO+V1//8lwk0
+         c6A/CImrOKAtzPuugfFoXryOA7fg4sinCcMzWJJQfF+vARfOhS2AwgizsiTavJoqfgUG
+         ohgADbxVfIJNx/t/jb2oYQXVXI21BPlGiGKbmEAluNDxTyexOmMb0akZDR5kcz9+Klb7
+         z0rP+DI8ukOS6DsSb6eoIu6I1X+NpELuX1ohsv0zFwCvKG8M89D7MD81FsUMzuLvEJqK
+         +L7bX5YfjKPwvlQ3SJjLHwmCZh7mIyN7L3phbh7HO5DSS3L+21t+XZ1hUDSsiRCeg/+F
+         8Vhw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1726682592; x=1727287392;
+        h=to:references:message-id:cc:date:in-reply-to:from:subject
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=epM6E/NqUu30n7ThbAe/adsCL3QV3KMjYl/3QrQlIHE=;
+        b=RGYGrNo9eftpPO/5zT4CZKoHSefkuirP+ESJ0hIYjvysG1uXPIENC1cvnzu7cofkqm
+         uO+xGXpG9wcRRiqxwPCyJf2YeGQPLXYLIKKKEQAoV+KXQ43naRAUa1VcCmoby4gweDxS
+         mrbtNpxllV1u7hp4qo0d+Q7YtyN9iHceuToonuizZopQnX6AEouFlLQW57vJW5fgkAUg
+         kKda42gvCPNPIHFYlLXXzbz8Rcanx/SDJH4WZFfEjHf1acYfeMckqeDmK58d6n8TidnX
+         oES909hYFTWvAHgolePfvHfjF7iWNqZCw9BXq6kFi3QAIPusY5C5A4WcjcQP6a/Uos80
+         asPg==
+X-Gm-Message-State: AOJu0Yz0fqQ3grIP2ww2HYcjx1dzwsMoCK5aAN5PI6dXyb/eKgtZ7KPL
+	H6zl7GbDMYoA7UKDT95Ki23YnajuN5te/wn1i5SUk37q39DOUuDZOMufU1tg847zpOzKV75Phh4
+	+
+X-Google-Smtp-Source: AGHT+IHjSjd6OXO4CucjuBQxFoWvQfvQIHrpxlPUFQnYpcPR+Kzdg8ThEIK1oN4wjEN5J22qP9Vtvg==
+X-Received: by 2002:a05:6a00:2441:b0:717:85d4:939c with SMTP id d2e1a72fcca58-71936b1a062mr30724001b3a.23.1726682591655;
+        Wed, 18 Sep 2024 11:03:11 -0700 (PDT)
+Return-Path: <glegrady@ucsb.edu>
+Received: from smtpclient.apple (ip68-6-95-119.sb.sd.cox.net. [68.6.95.119])
+        by smtp.gmail.com with ESMTPSA id 41be03b00d2f7-7db499a016bsm7949060a12.87.2024.09.18.11.03.10
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 18 Sep 2024 11:03:11 -0700 (PDT)
+Content-Type: multipart/alternative;
+	boundary="Apple-Mail=_D2ADFFB9-BD93-4B56-A799-138A010536DE"
+Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3776.700.51\))
+Subject: Re: found some of Harold's code in my "Perfume" code from 1982
+From: George Legrady <glegrady@ucsb.edu>
+In-Reply-To: <CAKjPZkGi3-CCtXEgnuLYY0uoodO_QzZ3c8Jiib-RFVkZ4PfsMg@mail.gmail.com>
+Date: Wed, 18 Sep 2024 11:03:00 -0700
+Cc: "Christiane Paul, Curatorial" <christiane_paul@whitney.org>,
+ Becky Cohen <beckycohenphotographer@gmail.com>,
+ Thomas Machnik <zipnpup@yahoo.com>
+Message-Id: <77123204-9E9B-4F75-915D-D1798C6028D9@ucsb.edu>
+References: <6BF1B99A-7BCA-4C20-9660-BBA9A6E33D22@ucsb.edu>
+ <CAKjPZkHpV5UZW8Y8_hFSORP33p=G4u=XPwOfgyg-MD_DEkZkZA@mail.gmail.com>
+ <5E256D2A-04D6-48DA-9D7D-D0654BD4D11C@ucsb.edu>
+ <CAKjPZkE_Tr9q6Q6pvuG3ZGa4Z9TTr0RyoptF0R9sfV8CqK8axQ@mail.gmail.com>
+ <F85BAAD4-4DD2-4895-8587-1DA5478DD236@ucsb.edu>
+ <CAKjPZkGi3-CCtXEgnuLYY0uoodO_QzZ3c8Jiib-RFVkZ4PfsMg@mail.gmail.com>
+To: Paul Cohen <paulrcohen@gmail.com>
+X-Mailer: Apple Mail (2.3776.700.51)
+
+
+--Apple-Mail=_D2ADFFB9-BD93-4B56-A799-138A010536DE
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain;
+	charset=utf-8
+
+Hi Paul,=20
+
+The code which I will scan this week-end and send to you is simple - it =
+visualizes how a set of particles leave the contained space of a bottle =
+to fill the large space around it. What is relevant to you is that I am =
+using Harold=E2=80=99s environment of how the software data is =
+visualized on the Tecktronix, so you get to have the code for the =
+interface.=20
+
+=E2=80=94
+
+Background: I arrived in San Digeo in August 1981, and was staying by =
+chance with a grad student, Jeff Greenberg, who turned out to be =
+Harold=E2=80=99s assistant. I saw a =E2=80=9CBYTE=E2=80=9D magazine in =
+the corner of the room, and told him about my interest in getting to =
+know about computers. Jeff took me to Harold=E2=80=99s studio and =
+introduced me. It was a Friday afternoon. After about 5 minutes=E2=80=99 =
+conversation, Harold said, come by Monday and we will get you a key to =
+the studio. Harold knew I was an artist as I think Jeff had shown Harold =
+my two-page photographic spread titled =E2=80=9CArtificial =
+Intelligence=E2=80=9D in Parachute magazine, an art theory journal from =
+Montreal.
+
+I had access to Harold=E2=80=99s studio and equipment for about 3 years, =
+while teaching photography at Cal Arts. That is how I learned computing, =
+working at his PD-11 and later VAX mainframe whenever I was not in the =
+way. There were 3 or 4 terminals so we each had our personal station. I =
+got Kernigan=E2=80=99s and Ritchie=E2=80=99s book on C language and =
+learned on my own with Jeff helping me out here and there. Harold never =
+asked anything from me, and I consider his generous offer to his =
+computer invaluable as there was no access to computers unless one was =
+afiliated with academia, industry or the military. It was on Harold=E2=80=99=
+s system that I was able to transition from the analog world of =
+photography to the computational world. Nonetheless I had to wait until =
+1986 to be able to do =E2=80=9Cdigital photography=E2=80=9D when the =
+AT&T Targa Truevision system became available. There is an early image =
+from that series in the =E2=80=9CDigital Witness=E2=80=9D exh. at LACMA.=20=
+
+
+George
+
+> On Sep 18, 2024, at 7:32=E2=80=AFAM, Paul Cohen <paulrcohen@gmail.com> =
+wrote:
+>=20
+> Hi George, this is great news!  Congratulations!  I'd love to see the =
+code in any format (and I don't mind retyping it by hand -- it is a good =
+way to get a feel for how it works).  I've managed to avoid learning C, =
+but now is a good opportunity!  I don't quite understand what it does -- =
+is this your code that you wrote when working with HC or is it code that =
+HC used, or a combination?  In any case, it's super important to =
+preserve these origins, so I'd love to have a look.  Thanks!  --P
+> ______________________________
+>=20
+> Paul Cohen,  Professor
+> School of Computing and Information
+> University of Pittsburgh
+> personal webpage <http://www.pitt.edu/~prcohen/>
+> ______________________________
+>=20
+>=20
+> On Wed, Sep 18, 2024 at 1:59=E2=80=AFAM George Legrady =
+<glegrady@ucsb.edu <mailto:glegrady@ucsb.edu>> wrote:
+>> Hi Paul, Becky, Thomas and Christiane,=20
+>>=20
+>> At Harold=E2=80=99s opening we had talked about tracking down some of =
+Harold=E2=80=99s code from the early 1980s in my storage space. Also =
+Becky who I had not seen for many decades, amazingly remembered I wrote =
+my first program in Harold=E2=80=99s lab that visualized the operation =
+of perfume molecules leaving an enclosed contained space into a wider =
+open space as a way to illustrate that time cannot proceed backwards as =
+the molecules could not be recollected and returned back into the =
+enclosed space of the bottle. I got the story from a Scientific American =
+article and this seemed at the time to be a good first coding project as =
+a continuity to my staged studio photography.=20
+>>=20
+>> I had forgotten about this code until Becky mentioned it at the =
+opening this past winter, but this week-end, I inadvertendly came across =
+a full printout in a stored box. It is dated June 17, 1982, and takes up =
+20 pages.=20
+>>=20
+>> Even though I wrote the code that visualizes the molecular animation, =
+nearly all of the utilities subroutines used to visualize the moving =
+dots on the TeckTronix screen as seen here on the right page was written =
+by Harold, so the full printout partially documents what part of his =
+code was like at that time. Unfortunately, the more interesting aspect =
+of Harold=E2=80=99s code I dont have, only the utilities subroutines. =
+Additionally, the code also gives the insight of how to get the data =
+from the PDP-11 to the Tecktronix to visualize the program.
+>>=20
+>> Please let me know how you all want to access the code if it is of =
+interest. I can scan all the pages and do a OCR to turn it into real =
+code. Also how do we distribute the credit given that the subroutines =
+are Harold=E2=80=99s whereas the molecular animation is mine. For the =
+coding finetuning, I was asisted by Jeff Greenberg, who was Harold=E2=80=99=
+s studio assistant at the time.=20
+>>=20
+>> Very Best,=20
+>>=20
+>> George
+>>=20
+>>=20
+>>=20
+>>=20
+>>=20
+
+
+--Apple-Mail=_D2ADFFB9-BD93-4B56-A799-138A010536DE
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html;
+	charset=utf-8
+
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; =
+charset=3Dutf-8"></head><body style=3D"overflow-wrap: break-word; =
+-webkit-nbsp-mode: space; line-break: after-white-space;">Hi =
+Paul,&nbsp;<div><br></div><div><div>The code which I will scan this =
+week-end and send to you is simple - it visualizes how a set of =
+particles leave the contained space of a bottle to fill the large space =
+around it. What is relevant to you is that I am using Harold=E2=80=99s =
+environment of how the software data is visualized on the Tecktronix, so =
+you get to have the code for the =
+interface.&nbsp;</div></div><div><br></div><div>=E2=80=94</div><div><br></=
+div><div>Background: I arrived in San Digeo in August 1981, and was =
+staying by chance with a grad student, Jeff Greenberg, who turned out to =
+be Harold=E2=80=99s assistant. I saw a =E2=80=9CBYTE=E2=80=9D magazine =
+in the corner of the room, and told him about my interest in getting to =
+know about computers. Jeff took me to Harold=E2=80=99s studio and =
+introduced me. It was a Friday afternoon. After about 5 minutes=E2=80=99 =
+conversation, Harold said, come by Monday and we will get you a key to =
+the studio. Harold knew I was an artist as I think Jeff had shown Harold =
+my two-page photographic spread titled =E2=80=9CArtificial =
+Intelligence=E2=80=9D in Parachute magazine, an art theory journal from =
+Montreal.</div><div><br></div><div>I had access to Harold=E2=80=99s =
+studio and equipment for about 3 years, while teaching photography at =
+Cal Arts. That is how I learned computing, working at his PD-11 and =
+later VAX mainframe whenever I was not in the way. There were 3 or 4 =
+terminals so we each had our personal station. I got Kernigan=E2=80=99s =
+and Ritchie=E2=80=99s book on C language and learned on my own with Jeff =
+helping me out here and there. Harold never asked anything from me, and =
+I consider his generous offer to his computer invaluable as there was no =
+access to computers unless one was afiliated with academia, industry or =
+the military. It was on Harold=E2=80=99s system that I was able to =
+transition from the analog world of photography to the computational =
+world. Nonetheless I had to wait until 1986 to be able to do =E2=80=9Cdigi=
+tal photography=E2=80=9D when the AT&amp;T Targa Truevision system =
+became available. There is an early image from that series in the =
+=E2=80=9CDigital Witness=E2=80=9D exh. at =
+LACMA.&nbsp;</div><div><br></div><div>George<br =
+id=3D"lineBreakAtBeginningOfMessage"><div><br><blockquote =
+type=3D"cite"><div>On Sep 18, 2024, at 7:32=E2=80=AFAM, Paul Cohen =
+&lt;paulrcohen@gmail.com&gt; wrote:</div><br =
+class=3D"Apple-interchange-newline"><div><div dir=3D"ltr"><div =
+class=3D"gmail_default" style=3D"font-size:small">Hi George, this is =
+great news!&nbsp; Congratulations!&nbsp; I'd love to see the code in any =
+format (and I don't mind retyping it by hand -- it is a good way to get =
+a feel for how it works).&nbsp; I've managed to avoid learning C, but =
+now is a good opportunity!&nbsp; I don't quite understand what it does =
+-- is this your code that you wrote when working with HC or is it code =
+that HC used, or a combination?&nbsp; In any case, it's super important =
+to preserve these origins, so I'd love to have a look.&nbsp; =
+Thanks!&nbsp; --P<br clear=3D"all"></div><div><div dir=3D"ltr" =
+class=3D"gmail_signature" data-smartmail=3D"gmail_signature"><div =
+dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div =
+dir=3D"ltr"><div><div dir=3D"ltr"><div><div =
+dir=3D"ltr">______________________________<br><br>Paul =
+Cohen,&nbsp;&nbsp;Professor</div><div dir=3D"ltr">School of Computing =
+and Information</div><div dir=3D"ltr">University of Pittsburgh</div><div =
+dir=3D"ltr"><a href=3D"http://www.pitt.edu/~prcohen/" =
+target=3D"_blank">personal =
+webpage</a><br>______________________________</div></div></div></div></div=
+></div></div></div></div></div></div></div></div><br></div><br><div =
+class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Wed, Sep =
+18, 2024 at 1:59=E2=80=AFAM George Legrady &lt;<a =
+href=3D"mailto:glegrady@ucsb.edu">glegrady@ucsb.edu</a>&gt; =
+wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px =
+0px 0px 0.8ex;border-left:1px solid =
+rgb(204,204,204);padding-left:1ex">Hi Paul, Becky, Thomas and =
+Christiane, <br>
+<br>
+At Harold=E2=80=99s opening we had talked about tracking down some of =
+Harold=E2=80=99s code from the early 1980s in my storage space. Also =
+Becky who I had not seen for many decades, amazingly remembered I wrote =
+my first program in Harold=E2=80=99s lab that visualized the operation =
+of perfume molecules leaving an enclosed contained space into a wider =
+open space as a way to illustrate that time cannot proceed backwards as =
+the molecules could not be recollected and returned back into the =
+enclosed space of the bottle. I got the story from a Scientific American =
+article and this seemed at the time to be a good first coding project as =
+a continuity to my staged studio photography. <br>
+<br>
+I had forgotten about this code until Becky mentioned it at the opening =
+this past winter, but this week-end, I inadvertendly came across a full =
+printout in a stored box. It is dated June 17, 1982, and takes up 20 =
+pages. <br>
+<br>
+Even though I wrote the code that visualizes the molecular animation, =
+nearly all of the utilities subroutines used to visualize the moving =
+dots on the TeckTronix screen as seen here on the right page was written =
+by Harold, so the full printout partially documents what part of his =
+code was like at that time. Unfortunately, the more interesting aspect =
+of Harold=E2=80=99s code I dont have, only the utilities subroutines. =
+Additionally, the code also gives the insight of how to get the data =
+from the PDP-11 to the Tecktronix to visualize the program.<br>
+<br>
+Please let me know how you all want to access the code if it is of =
+interest. I can scan all the pages and do a OCR to turn it into real =
+code. Also how do we distribute the credit given that the subroutines =
+are Harold=E2=80=99s whereas the molecular animation is mine. For the =
+coding finetuning, I was asisted by Jeff Greenberg, who was Harold=E2=80=99=
+s studio assistant at the time. <br>
+<br>
+Very Best, <br>
+<br>
+George<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+</blockquote></div>
+</div></blockquote></div><br></div></body></html>=
+
+--Apple-Mail=_D2ADFFB9-BD93-4B56-A799-138A010536DE--

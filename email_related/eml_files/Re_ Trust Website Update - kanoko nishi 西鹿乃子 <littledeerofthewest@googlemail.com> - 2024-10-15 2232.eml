@@ -1,0 +1,381 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a10:e214:b0:5ad:6c17:f336 with SMTP id r20csp539902pxx;
+        Tue, 15 Oct 2024 19:33:06 -0700 (PDT)
+X-Received: by 2002:a05:690c:600e:b0:6e3:ceb:9e49 with SMTP id 00721157ae682-6e3d37a1677mr24496167b3.16.1729045985919;
+        Tue, 15 Oct 2024 19:33:05 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1729045985; cv=none;
+        d=google.com; s=arc-20240605;
+        b=bivrU+aKC2t/z8P+nZCmTVdbKKJn6pY22YaStJ3QlfyQrfeqQkAaqZe4c/ccbOcX5P
+         pG6EmW5yVcRI9OJUoDcJRWj1Q6IsNqeYgOumVYMkXZvg7mvvgYPZrNPx+TXDeQ/LfDOh
+         3+VsqfhBw3n0O6EU9WQsa+eJjmzuV+RLFKivjIVl9kHA+r9Lsoa10AtdKY8lAGVPS2Zd
+         3sZb9T0WgPoKGFw5TYbkJ/ohuQowas8Uwsl/Qj/r1OQWG/kierDV4q5PcMBWkOHab1BP
+         o/L6m6VZxu2GBvNA2t1X6CqBLIay2X64RNeiDApjDcfBEwAUPYhZaudcwG4NcbOky+Gd
+         XF5w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=8AALwnD5vdybKBDOxvc0lyJNGHIVomi/4y/m5MufU6w=;
+        fh=fRVjK+agjQVdXXGRMKdOR/cPN+NiMZlNzKqbEzI6VNo=;
+        b=Git4tLGuxzfyqcfDA0gxaJ5amy9diK312tGVs7Azyt788aw5ngZe9zUL48GZKKcin6
+         IomBm5sl+MYEnDd9ml4MQzBw79VKCiayMO9ddNk6qnMMFUZ/8McOhgUisrOxoQphFw1j
+         WX/uAGDVlhmHmDgHdevwk1ZQPJ3DOIuu1HCTps7pX1q0Rf4Dhx1HMWnruFqh+RA7Bmkg
+         IfZAI4yS+9yz66CXiFW7/j9dJFOjkvQiUSoHlE5C07RL7EAqAaamuHQaYPtg4yhBVXXg
+         VCpGo9xT5HjTWk/KGjstOvVO4FpTZoP6VkSfUCLS2rImFWPm9X+AOl2RtwCykAKdfeyM
+         d/qQ==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@googlemail.com header.s=20230601 header.b=X4KScckT;
+       spf=pass (google.com: domain of littledeerofthewest@googlemail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=littledeerofthewest@googlemail.com;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=googlemail.com;
+       dara=pass header.i=@gmail.com
+Return-Path: <littledeerofthewest@googlemail.com>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id 00721157ae682-6e3c5af40b7sor12539897b3.1.2024.10.15.19.33.05
+        (Google Transport Security);
+        Tue, 15 Oct 2024 19:33:05 -0700 (PDT)
+Received-SPF: pass (google.com: domain of littledeerofthewest@googlemail.com designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@googlemail.com header.s=20230601 header.b=X4KScckT;
+       spf=pass (google.com: domain of littledeerofthewest@googlemail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=littledeerofthewest@googlemail.com;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=googlemail.com;
+       dara=pass header.i=@gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20230601; t=1729045985; x=1729650785; dara=google.com;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=8AALwnD5vdybKBDOxvc0lyJNGHIVomi/4y/m5MufU6w=;
+        b=X4KScckT7uuOq4Sgfqaavvsd/0sAnBaxO1EIp5IBBHLiPqFNJVAf2DCOCqwI5abXcj
+         XbVhKZ0NcEt3tAFuYB3MasDycmGnF9+qDGEuFqJgFbKMgrX3AkCxJQnuD3YuN8JxOWhu
+         VY5MFAkQiy1eaPErRc6gseXDcI/m7ImDY7gPGHy4GUfrPVqzwFS2SCjFuCaCLzhKAT59
+         VhXpiBEVwVbJhlaMIgbQCtm+GETz6/yc0xXvwqVB3E7pTfF78gC009Y2j7NfOhs0wSI1
+         5w/ZdNPuwpOGW918fNtwpS0wNtjbV8Ou3+3d93KFVcWHkGX+YLlIjIR8Gpi6k4L8mpVj
+         ScwA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1729045985; x=1729650785;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=8AALwnD5vdybKBDOxvc0lyJNGHIVomi/4y/m5MufU6w=;
+        b=pCJIztYVRcwRmEeaytXgQx0E81O6VGuMRZUYeP+vlC1CORegEQCng3m88fZi8r8KWs
+         w3JXMDzdFM3M6+hRjogMB+kn5jTS7ufJuESGdlu3QIIHOlpYpKRkVQwRPKoQWhrZ1tP0
+         T6Eg6dm11s8IskRePl52R4QYQ5vw+oFnsLScgeoOVjxusn5j0MSEuJtYcXVtPwVjYRAZ
+         XGWAo00Gn/E5wlJHUN296LUUeKtm8bEmMOscZURl1i/IF3MsM05X6Tqca+VdO8f/Fzzy
+         gITpA6tQxbffj0kmcALfA9d5VLXNGTHDpTuneJlwdfewJ7DbmrEQFRu3g4zYIXPzCEy9
+         VEuQ==
+X-Forwarded-Encrypted: i=1; AJvYcCUunyEASLC2uLQZ3HXcFS7VrTT91uMnrbJS/O6oIblQIIdyc6fZG3gf7M59wM75yy5pp/KGU/rliZr9T0tlZWHw@gmail.com
+X-Gm-Message-State: AOJu0YzfrjXbZMc9yv4HJLoS3qK4shs3j628JFPdmblTc9mFYodNtaw5
+	roTHMIKreCDeMi5pIIfl/MkqJz8IElHqUt33p+GPeZPoBKPV5jf6PxT8KK1r1HY8/cbwOK6E/Ln
+	gDnVmigv4PUi9DjcXVjnZedksgvDcYMuV
+X-Google-Smtp-Source: AGHT+IGd3KdWaU/+Da+wWcJAiVuEDduChqp9cttN+hExGi0iAvGo7NZKNESxvfUiJZOnkOm0OhAom+umGGkAmPny2L0=
+X-Received: by 2002:a05:690c:f90:b0:6e2:5a6f:d90b with SMTP id
+ 00721157ae682-6e344c021bbmr118824097b3.2.1729045985152; Tue, 15 Oct 2024
+ 19:33:05 -0700 (PDT)
+MIME-Version: 1.0
+References: <CAGUP2nwAbTgKuM1FO4jLGjz31OjZBbeeS3BA5nJ17jhQ2UyCnA@mail.gmail.com>
+ <CAFAU3LNp3rtKkaeGNSq0pXC3m73eDwc7nB35qcnDAfKqPLLOvA@mail.gmail.com>
+ <CAFAU3LMRwkr-yKwN5h9S9U4TA2RO2BfSuUsR3n4sBaQYK-2o5g@mail.gmail.com>
+ <CAGUP2nxvyFxNBQEiYTvQnJANtyTBpAb5xGONCA7Mhh8gG7dMHg@mail.gmail.com> <CAKjPZkFZiwHpF6VW-HFnNaYkJJhWaTSYCibpnB1PWG+7T+fSqQ@mail.gmail.com>
+In-Reply-To: <CAKjPZkFZiwHpF6VW-HFnNaYkJJhWaTSYCibpnB1PWG+7T+fSqQ@mail.gmail.com>
+From: =?UTF-8?B?a2Fub2tvIG5pc2hpIOilv+m5v+S5g+WtkA==?= <littledeerofthewest@googlemail.com>
+Date: Tue, 15 Oct 2024 19:32:54 -0700
+Message-ID: <CAFAU3LNFP4Dxbk26Nd9c-ghFO+GxfAyXFH9nsKUyCYcq27AHDA@mail.gmail.com>
+Subject: Re: Trust Website Update
+To: Paul Cohen <paulrcohen@gmail.com>
+Cc: Daniel Maxwell <maxwellgraphics@gmail.com>, Thomas Machnik <zipnpup@yahoo.com>, 
+	Allegra Cohen <allegra.ab.cohen@gmail.com>
+Content-Type: multipart/alternative; boundary="000000000000bed60e06248ee3bf"
+
+--000000000000bed60e06248ee3bf
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Yes, the water color textures look so nice as the first thing that pops up!
+I can=E2=80=99t wait till the link is fully working so that I can send it t=
+o people
+:)
+
+Please keep me posted about this new project.  I would like to follow along
+as much as I can.
+
+k
+
+"The phenomenon called =E2=80=9CI=E2=80=9D
+is a blue illumination
+of the hypothesized, organic alternating current lamp" - Miyazawa Kenji
+
+
+On Tue, Oct 15, 2024 at 1:03=E2=80=AFPM Paul Cohen <paulrcohen@gmail.com> w=
+rote:
+
+> Hi Daniel, it looks great!  I look forward to iterating with you on littl=
+e
+> adjustments but overall I think Harold would be thrilled and proud of it.
+>
+> Can I ask two things, please.  First, please invoice the HCT for the work=
+.
+> Second, if you are willing to continue on the project, then I'd like to
+> have a zoom call with you and Sascha, who is CTO at Verisart.  Briefly th=
+e
+> idea is to publish two catalogs raisonne, one a handsome print volume tha=
+t
+> doesn't include everything, the other an exhaustive, searchable listing
+> accessible from the HCT web site.  The question is whether Verisart can
+> serve records to the web site easily.  If so, then 1) everything can be o=
+n
+> chain, 2) we can augment Verisart records with information they cannot
+> currently handle, such as Tom's provenance notes or facsimiles of
+> exhibition catalogs.  I think we should run a little experiment to see
+> whether Verisart can serve a record when requested from the HCT website
+> client.  I might also be totally off-base about the right way to get the
+> functionality we want!  If you are interested, can you suggest some times
+> we might chat with Sascha, keeping in mind the eight-hour time difference=
+.
+>
+> Beautiful work, thank you!
+>
+> --P
+> ______________________________
+>
+> Paul Cohen,  Professor
+> School of Computing and Information
+> University of Pittsburgh
+> personal webpage <https://paulrcohen.github.io/>
+> ______________________________
+>
+>
+> On Tue, Oct 15, 2024 at 3:45=E2=80=AFPM Daniel Maxwell <maxwellgraphics@g=
+mail.com>
+> wrote:
+>
+>> So the site is technically live but it does seem to pop up that coming
+>> soon page on some devices. It works for me on desktop but not mobile. No=
+t
+>> sure if there is a cache issue on the host/device end, something with th=
+e
+>> domain name pointing/DNS, indexing or what. If go to a subpage on the si=
+te
+>> it seems to work fine:
+>> https://haroldcohentrust.org/about/
+>> Can navigate the whole site except the home page page, which leads me to
+>> think it is something with the hosting/WordPress...
+>>
+>> Anyway, I will keep working on it and let you know when resolved.
+>>
+>> On Sat, Oct 12, 2024, 9:42 PM kanoko nishi =E8=A5=BF=E9=B9=BF=E4=B9=83=
+=E5=AD=90 <
+>> littledeerofthewest@googlemail.com> wrote:
+>>
+>>> Hi all!
+>>>
+>>> it still saying =E2=80=9CComing Soon=E2=80=9D currently, right?
+>>>
+>>> "The phenomenon called =E2=80=9CI=E2=80=9D
+>>> is a blue illumination
+>>> of the hypothesized, organic alternating current lamp" - Miyazawa Kenji
+>>>
+>>>
+>>> On Sun, Oct 6, 2024 at 4:03=E2=80=AFPM kanoko nishi =E8=A5=BF=E9=B9=BF=
+=E4=B9=83=E5=AD=90 <
+>>> littledeerofthewest@googlemail.com> wrote:
+>>>
+>>>> This is great, thanks a lot, Daniel! I will try it too tonight!
+>>>>
+>>>> On Sun, Oct 6, 2024, 3:42 PM Daniel Maxwell <maxwellgraphics@gmail.com=
+>
+>>>> wrote:
+>>>>
+>>>>> Hi all, sorry for the long delay but the trust website should be up
+>>>>> and live soon. I was able to point the current URL (
+>>>>> haroldcohentrust.org) to the new site however it will take up to 72
+>>>>> hours for the DNS records to be updated and propagate across the inte=
+rnet.
+>>>>> I will keep an eye on it to see when the site is actually live.
+>>>>>
+>>>>> It is a little confusing but there are currently 3 services involved:
+>>>>>
+>>>>>    1. *Google Workspaces* (manages the .org domain, email etc.)
+>>>>>    2. *SquareSpace* acquired all Google hosted domains so they are
+>>>>>    now the registrar for the .org domain. This is where we can manage=
+ what
+>>>>>    site the domain points to.
+>>>>>    3. *HostGator* is the actual host of the website as well as
+>>>>>    managing the .com domain (just to have with the .org). The .com wi=
+ll just
+>>>>>    forward to the .org once it is live.
+>>>>>
+>>>>> Once the site is live and accessible there will probably be a little
+>>>>> more tidying up to do and we will want to start updating with recents=
+ news
+>>>>> and whatnot.
+>>>>>
+>>>>> Please let me know if you have any issues with Google Workspaces and
+>>>>> email, they should be unaffected but just want to make sure.
+>>>>>
+>>>>> --
+>>>>> Daniel Maxwell
+>>>>> E-Mail : maxwellgraphics@gmail.com
+>>>>> Phone : 954.448.2340
+>>>>>
+>>>>>
+>>>>> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>>>>> CONFIDENTIALITY NOTICE: This email and any files transmitted with it
+>>>>> are confidential and intended solely for the use of the individual or
+>>>>> entity to which they are addressed. If you are not the intended recip=
+ient,
+>>>>> you may not review, copy or distribute this message. If you have rece=
+ived
+>>>>> this email in error, please notify the sender immediately and delete =
+the
+>>>>> original message. Neither the sender nor the company for which he or =
+she
+>>>>> works accepts any liability for any damage caused by any virus transm=
+itted
+>>>>> by this email.
+>>>>>
+>>>>> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+>>>>>
+>>>>
+
+--000000000000bed60e06248ee3bf
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"auto">Yes, the water color textures look so nice as the first t=
+hing that pops up! I can=E2=80=99t wait till the link is fully working so t=
+hat I can send it to people :)=C2=A0</div><div dir=3D"auto"><br></div><div =
+dir=3D"auto">Please keep me posted about this new project.=C2=A0 I would li=
+ke to follow along as much as I can. =C2=A0</div><div dir=3D"auto"><br></di=
+v><div dir=3D"auto">k</div><div dir=3D"auto"><br clear=3D"all"><div dir=3D"=
+auto"><div dir=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"gmail_si=
+gnature">&quot;The phenomenon called =E2=80=9CI=E2=80=9D <br>is a blue illu=
+mination <br>of the hypothesized, organic alternating current lamp&quot; - =
+Miyazawa Kenji</div></div></div><div><br></div><div><br><div class=3D"gmail=
+_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Oct 15, 2024 at 1:03=
+=E2=80=AFPM Paul Cohen &lt;<a href=3D"mailto:paulrcohen@gmail.com">paulrcoh=
+en@gmail.com</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" styl=
+e=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px;border-left-style:solid=
+;padding-left:1ex;border-left-color:rgb(204,204,204)"><div dir=3D"ltr"><div=
+ class=3D"gmail_default" style=3D"font-size:small">Hi Daniel, it looks grea=
+t!=C2=A0 I look forward to iterating with you on little adjustments but ove=
+rall I think Harold would be thrilled and proud of it.=C2=A0 <br></div><div=
+ class=3D"gmail_default" style=3D"font-size:small"><br></div><div class=3D"=
+gmail_default" style=3D"font-size:small">Can I ask two things, please.=C2=
+=A0 First, please invoice the HCT for the work. Second, if you are willing =
+to continue on the project, then I&#39;d like to have a zoom call with you =
+and Sascha, who is CTO at Verisart.=C2=A0 Briefly the idea is to publish tw=
+o catalogs raisonne, one a handsome print volume that doesn&#39;t include e=
+verything, the other an exhaustive, searchable listing accessible from the =
+HCT web site.=C2=A0 The question is whether Verisart can serve records to t=
+he web site easily.=C2=A0 If so, then 1) everything can be on chain, 2) we =
+can augment Verisart records with information they cannot currently handle,=
+ such as Tom&#39;s provenance notes or facsimiles of exhibition catalogs.=
+=C2=A0 I think we should run a little experiment to see whether Verisart ca=
+n serve a record when requested from the HCT website client.=C2=A0 I might =
+also be totally off-base about the right way to get the functionality we wa=
+nt!=C2=A0 If you are interested, can you suggest some times we might chat w=
+ith Sascha, keeping in mind the eight-hour time difference.</div><div class=
+=3D"gmail_default" style=3D"font-size:small"><br></div><div class=3D"gmail_=
+default" style=3D"font-size:small">Beautiful work, thank you!=C2=A0 <br></d=
+iv><div class=3D"gmail_default" style=3D"font-size:small"><br></div><div cl=
+ass=3D"gmail_default" style=3D"font-size:small">--P<br clear=3D"all"></div>=
+<div><div dir=3D"ltr" class=3D"gmail_signature" data-smartmail=3D"gmail_sig=
+nature"><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div><=
+div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr">_______________=
+_______________<br><br>Paul Cohen,=C2=A0=C2=A0Professor</div><div dir=3D"lt=
+r">School of Computing and Information</div><div dir=3D"ltr">University of =
+Pittsburgh</div><div dir=3D"ltr"><a href=3D"https://paulrcohen.github.io/" =
+target=3D"_blank">personal webpage</a><br>______________________________</d=
+iv></div></div></div></div></div></div></div></div></div></div></div></div>=
+<br></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_at=
+tr">On Tue, Oct 15, 2024 at 3:45=E2=80=AFPM Daniel Maxwell &lt;<a href=3D"m=
+ailto:maxwellgraphics@gmail.com" target=3D"_blank">maxwellgraphics@gmail.co=
+m</a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin=
+:0px 0px 0px 0.8ex;border-left-width:1px;border-left-style:solid;padding-le=
+ft:1ex;border-left-color:rgb(204,204,204)"><p dir=3D"ltr">So the site is te=
+chnically live but it does seem to pop up that coming soon page on some dev=
+ices. It works for me on desktop but not mobile. Not sure if there is a cac=
+he issue on the host/device end, something with the domain name pointing/DN=
+S, indexing or what. If go to a subpage on the site it seems to work fine:<=
+br>
+<a href=3D"https://haroldcohentrust.org/about/" target=3D"_blank">https://h=
+aroldcohentrust.org/about/</a><br>
+Can navigate the whole site except the home page page, which leads me to th=
+ink it is something with the hosting/WordPress...</p>
+<p dir=3D"ltr">Anyway, I will keep working on it and let you know when reso=
+lved.</p>
+<br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Sat=
+, Oct 12, 2024, 9:42 PM kanoko nishi =E8=A5=BF=E9=B9=BF=E4=B9=83=E5=AD=90 &=
+lt;<a href=3D"mailto:littledeerofthewest@googlemail.com" target=3D"_blank">=
+littledeerofthewest@googlemail.com</a>&gt; wrote:<br></div><blockquote clas=
+s=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-left-width:1px;b=
+order-left-style:solid;padding-left:1ex;border-left-color:rgb(204,204,204)"=
+><div><div dir=3D"auto">Hi all!=C2=A0</div><div dir=3D"auto"><br></div><div=
+ dir=3D"auto">it still saying =E2=80=9CComing Soon=E2=80=9D currently, righ=
+t?=C2=A0<br clear=3D"all"><br clear=3D"all"><div dir=3D"auto"><div dir=3D"l=
+tr" class=3D"gmail_signature">&quot;The phenomenon called =E2=80=9CI=E2=80=
+=9D <br>is a blue illumination <br>of the hypothesized, organic alternating=
+ current lamp&quot; - Miyazawa Kenji</div></div></div></div><div><div><br><=
+/div><div><br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_at=
+tr">On Sun, Oct 6, 2024 at 4:03=E2=80=AFPM kanoko nishi =E8=A5=BF=E9=B9=BF=
+=E4=B9=83=E5=AD=90 &lt;<a href=3D"mailto:littledeerofthewest@googlemail.com=
+" rel=3D"noreferrer" target=3D"_blank">littledeerofthewest@googlemail.com</=
+a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0p=
+x 0px 0px 0.8ex;border-left-width:1px;border-left-style:solid;padding-left:=
+1ex;border-left-color:rgb(204,204,204)"><p dir=3D"ltr">This is great, thank=
+s a lot, Daniel! I will try it too tonight! </p>
+<br><div class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Sun=
+, Oct 6, 2024, 3:42 PM Daniel Maxwell &lt;<a href=3D"mailto:maxwellgraphics=
+@gmail.com" rel=3D"noreferrer" target=3D"_blank">maxwellgraphics@gmail.com<=
+/a>&gt; wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0=
+px 0px 0px 0.8ex;border-left-width:1px;border-left-style:solid;padding-left=
+:1ex;border-left-color:rgb(204,204,204)"><div dir=3D"ltr">Hi all, sorry for=
+ the long delay but the trust website should be up and live soon. I was abl=
+e to point the current URL (<a href=3D"http://haroldcohentrust.org" rel=3D"=
+noreferrer noreferrer" target=3D"_blank">haroldcohentrust.org</a>) to the n=
+ew site however it will take up to 72 hours for the DNS records=C2=A0to be =
+updated and propagate=C2=A0across the internet. I will keep an eye on it to=
+ see when the site is actually live.<div><br></div><div>It is a little conf=
+using but there are currently 3 services involved:</div><div><ol><li><b>Goo=
+gle Workspaces</b> (manages the .org domain, email etc.)</li><li><b>SquareS=
+pace</b> acquired=C2=A0all Google hosted domains so they are now the regist=
+rar for the .org domain. This is where we can manage what site the domain p=
+oints to.</li><li><b>HostGator</b> is the actual host of the website as wel=
+l as managing the .com domain (just to have with the .org). The .com will j=
+ust forward to the .org once it is live.</li></ol></div><div>Once=C2=A0the =
+site is live and accessible there will probably be a little more tidying up=
+ to do and we will want to start updating with recents news and whatnot.<br=
+></div><div><br></div><div>Please let me know if you have any issues with G=
+oogle Workspaces and email, they should be unaffected but just want to make=
+ sure.</div><div><div><br></div><span class=3D"gmail_signature_prefix">-- <=
+/span><br><div dir=3D"ltr" class=3D"gmail_signature">Daniel Maxwell<br>E-Ma=
+il : <a href=3D"mailto:maxwellgraphics@gmail.com" rel=3D"noreferrer norefer=
+rer" target=3D"_blank">maxwellgraphics@gmail.com</a><br>Phone : 954.448.234=
+0<br><br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D<br>CONFIDENTIALITY NOTICE: This email and=
+ any files transmitted with it are confidential and intended solely for the=
+ use of the individual or entity to which they are addressed. If you are no=
+t the intended recipient, you may not review, copy or distribute this messa=
+ge. If you have received this email in error, please notify the sender imme=
+diately and delete the original message. Neither the sender nor the company=
+ for which he or she works accepts any liability for any damage caused by a=
+ny virus transmitted by this email.<br>=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D</div></div>=
+</div>
+</blockquote></div>
+</blockquote></div></div>
+</div>
+</blockquote></div>
+</blockquote></div>
+</blockquote></div></div>
+
+--000000000000bed60e06248ee3bf--

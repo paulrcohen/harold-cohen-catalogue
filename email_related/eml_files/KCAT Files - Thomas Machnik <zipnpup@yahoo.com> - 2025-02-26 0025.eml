@@ -1,0 +1,135 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a10:688f:b0:5c7:f970:fbca with SMTP id e15csp689411pxw;
+        Tue, 25 Feb 2025 21:25:05 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IHzLQ3o6JkHjJcIE0d/MbqLAjtukLUrUrBZLFqUb6LI0UY6ZzIT7BmbbRrlMoUE6vuq1oeM
+X-Received: by 2002:ad4:5ca6:0:b0:6d8:9abb:3c28 with SMTP id 6a1803df08f44-6e87abaddabmr73329236d6.29.1740547505655;
+        Tue, 25 Feb 2025 21:25:05 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1740547505; cv=none;
+        d=google.com; s=arc-20240605;
+        b=K05DP6qpKm2mR2qvAoyvhvaR9UZ2hva7TUjEijDlNrASKXfPK0/OjfxkMQ6g38V3fj
+         V07wDv+uPw+VobI5fxPC1bc48G88o8a42/2U3qOqW9ic21w7mRBTXHxW1Y4d3D3bgqjT
+         NHfLWevOFgPrb4CIA8uK/MtjsZon2P1A4ucAiwZBOr003q2dHQZMM77LCq557EgsSnxN
+         U3xzxE4iNtKM1qKuy2Ju1KSZn7vMxM+h15SnSuPkF8A+Ttb5WrUrj2njMh0yVIK0e/wv
+         pyw4lxE4NVzn4i5Obh1t9yLOUjwmAi8ghue5xRwGy1zNwy4/X2z1QenEtVTcK/P/CpkU
+         5rDw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=references:mime-version:subject:message-id:cc:to:reply-to:from:date
+         :dkim-signature;
+        bh=KNKm++0nBOd+wD5Yp/gBsMrsLRX8mD+AcSqpEOdPPgA=;
+        fh=q2Q/JQCjpcH6EnoDV/0Yqf7wm/QYpy5GzfumT7kwJAs=;
+        b=F5oedJdtuUucsgaInD/vLzdbt9gzQkN/Juqwunm+2pPsBCzOjMaj/b3TDCCIxzBRg5
+         TfKYUYlKdEBOOhjVzlX/Fl666pRc8jZzA7mzoAs/nSWcZs9fxfDlkDqTq81nXzgogy2z
+         cdgHkTc9VKEUaCZxb9ddJ5T41Z+/1LjGBtEZG2Mbtd/USb8X4LTLZGl5Y7TA8Qd+Jgvv
+         1sTuS9M7RRLcFA65dKIJSMq+DkiseRiGBQ1c4YJIv8PnIPfuN/Nvklg502srfm9SpW+O
+         +vOBG6QwkvU3gztJUCXO7+7dvfJxkboxf8sExWq/2oXsZbIA6dRa6fUYDj4r28WT/Kd7
+         F6mQ==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=CiyHhERJ;
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.129.125 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+Return-Path: <zipnpup@yahoo.com>
+Received: from sonic309-15.consmr.mail.bf2.yahoo.com (sonic309-15.consmr.mail.bf2.yahoo.com. [74.6.129.125])
+        by mx.google.com with ESMTPS id 6a1803df08f44-6e87b01b136si29622856d6.97.2025.02.25.21.25.05
+        for <paulrcohen@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 25 Feb 2025 21:25:05 -0800 (PST)
+Received-SPF: pass (google.com: domain of zipnpup@yahoo.com designates 74.6.129.125 as permitted sender) client-ip=74.6.129.125;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=CiyHhERJ;
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.129.125 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1740547505; bh=KNKm++0nBOd+wD5Yp/gBsMrsLRX8mD+AcSqpEOdPPgA=; h=Date:From:Reply-To:To:Cc:Subject:References:From:Subject:Reply-To; b=CiyHhERJOKJqn4RON6ln7z4VynxYCU/HGCbEeDSIges23zZYhUCEgaymsOx8Yad7H53l2CpljiMOQWPhk9/ePT7dqiJgZ1RePKK5X5H08pJfnnukJWARqiJW4Pd3Y9GiEz1PUienM7Tdb8DAZP6FErnp9IvcHJa/88S6gKE41Tf94g7b3y764tkLpUPO10M3RIr2NSxzdQrWWJ0VwlDBqUR5BlhHxZJxbqrarhgULQbzG1Jc+nKo6fabC575HV+bupbzOeeTg75NVxwRykMmysLmNZDf53wNTUWVk7sdBvVUFrGkhcy7I8rb3FSKGNONl2ulvg11a/rE9MTSXiStLw==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1740547505; bh=aE+3H3+sVsWsVOWEP9BnjpbhAGhswWlBqViDRbZsB9s=; h=X-Sonic-MF:Date:From:To:Subject:From:Subject; b=DGdYXEDH4cDGuGxuRV+UgzXwzPDRmOdC3ECCCbx6ucoBGMaZzcnYATbd9ciX3Tagsz0M4TCfJWJ1Ih11D2krVOTDDwDykrexIWlJCtGUC8hEXAUA6wtaszpmWuft7j8cBhHB7CEFoydKO0wF55x5IoU3ev5UtQpT3dlePbX650yenoplzOSmtPz9xXgi7Yd6rSO3cJyU1M7kz38O4/GvmY0KignwLqL0nFCBcDEBgp8gxK4zWBSRwCex98eBR/Q/e+IXYBp0KmySFyQMjkuHmjS5KDQyxgtGPFj90WSx9C44pulrVb6N7IuBjnFVX+F4PMZbAbwEbUnN1xVLtYR8qA==
+X-YMail-OSG: Kwcg4GcVM1kKuXw6LCBeC3IbFUTlPiJX4xdjzhPR6zQUs1GN5XqZot4tu_GO2hV
+ PyUvORXOZaLWYha8OexHF_UT1INWZLUzs7Dg2s4CwXtTFI34bEk4CFUw8iHQy9G6ieuRgXuDYZ5w
+ aasErW1ncN2ViNBX_LAJoK.qqqRQu4_ssJSrNMY5uUKBvmJIMWc6oo1uk7IiK3DEelEHLcJ6FTE9
+ 39NKTbFSJWJ00dHrIeET12yV.kUjxkiHKITPgRdOx_XaARZaAoYBY2vU915t5y1tHM3A7wwlc5In
+ rP417FvvAXtRhTPi9GWkWZU.jCNpFYxjHXBBhg.JRapYdSVHA2XSeU.vFumE1m8ieDxwL33RFv82
+ Rr.uv5p6jyxEvdsCx6xysJWuRKflchO9yRC63xfpLLK3i0zkG2jb994qK0BxAPohdiBk56.7w3kB
+ LgYKk8qS7ZiUce9nstBti2zp6351Rr.3X6c_i6zLj5VF6I1fnYO0pD8gW94cXgW7wXsEu.R9hQUp
+ KRloRw11o513TQMGPn0yIovBt_JyH2UL.2RUkprkdri_8YoRDOfeAoyV9DNIgZ4SGcsuZxcaBgTS
+ p8PkSPEvUswKJ2LSn5S9EQTsJfJJ3gbZSjaFGM0OUCanOGwMKIYRN0eLJkpYcNH.UeiZATfzbOIT
+ XPeN5Y8jtrle70i1oQPqzCcEgIC__89yUoU7Y_wGrSFfBB.CX.1fC7r05aJ9LH2W3E0LODcH2NKZ
+ xMJ3J3sozpQqZXqVNRe3Ir.8wGOdj.nhk8NAsOSEunFQk13feRtqXEOYpidPjcXNNTQJEoAvr_nH
+ DgDGTvJjAvBDKCneVEjscYbOpIG7RcEw7HR8gDRUAKuHVJEfIpEfIqtH_UhbkR5NI1nbKjJ0gNPv
+ 06ZVc82uAz3UL339wPidKT3FRJB.LbeqZOzsg9zI_bBMBxFGGz2p.YtBF89oHy.DsJ0AjQ.hTbqQ
+ UNmKF9IQiX2FYtIboxJ.6a9nODlXXxoHKuc4BSkE969amzlvN58dBhZxHTBUT6eouqAYmEymJckE
+ Z.taif48UJIlwh1IiW5g4Cu5vw56q58kM1IHJipatO_5Z4bmuNAntmLTd.N.fm.aKQX.nFYq9hdG
+ MBQNtOtbGkN12_LFDB6HQB6xJBmUnGMeHpi7gHyOlhOfcq6zv3U7vFvhrKiaAQA6Cx227Je92T8O
+ 7jzO50Zk1RTcA._wnB3kAoiHRCF8a0DbX.XIQWxq9Ou_vF4q01gJZz6K0B9_.WHGe7ctd_k8yXrG
+ pOW3GEXvgSSwfxJuyalXuAOWpGbEMHvb5yMwCQH._qHnfkZU.JPBnEZz4ZGTNn8FlYVNQ3weYH31
+ QNPSPmpe230QcBO6h8s_kiGeGcI7I0dS1hY5fOYh0Vrewzg63XyraZ9Pf_.PP3qRahFh.yu66dbo
+ zkkMUq1SmILTkHC3lOIhSzYYWGtWpR7L_B4UGuqliXEHUMoYs5ogHiHDT0K5dHr4CxwnNdB8fHcd
+ qUbwUcGXEBLtIQa3znzSCJk1F.FLGlVLATyKm9tlLuZL.Moo6UQBV_ndtMPiv9JUM1icHUTa14pg
+ r0GIO326BV6LVJVkrNwNuuvfREXSE4UNjK58fygPwAc5gnHI3zpFyAT.CDNLdpywheBUp_hF_7nB
+ wJ1kihFRiIJgHH7hed0vUpRWDdhexFyUAEUQM_79I3JA4bD2kxcnP_ybMlyoljqtHOCvUGgbStXJ
+ JE9ffBtNBJx_X5tnDeHUhTQrNuUXOHEf1F9Rff0EFx5xiBJlT2zD..Q8zk5E.eZsWwOLH9YJF9_7
+ VLj7SCdZYQGY0S1GaIKTiYXrngGTrQN0ucVV6o3ND55dUKaRCTL0ounkLvbLTZRM69FPlgxEawkB
+ vC1z9ar6pdwK0clTkxMbMHapakxtyhyuRKIjl9NW5AqnGlhEE5A.8pJjEBieWKeIMIz8T_4.dEYi
+ wWyUuhUKWgIRoPzjhlbwyTnwq49L9W5KaQFziCBX3INbij0LpHy_6tW2GTrE5Q9Lkysebj49wnRZ
+ 5yraAEXw_hsxPNV2XN_h3W1Wg1DQczjxDy6PbjSminw0MZOLCyDNj6UvK088QdPkHvZ3I5EiCRv4
+ Kgq.Luiivbv8ga03VZmhvntiiGxeLQ3s_eRBJrmVl6pW_WwiT.aFQUiailizFFfyj6MEmt9A_ghX
+ c8GgAySQ70Hf7iRNo49fgUwA6tGUGdPwXzEVbM9NXcxeoWaHPtNZf7Ykq_TWWKd2HiEj7dY.flMO
+ CNa8z8Sn3fXJ6JLP4mFxs90yR8arYVHWTDIRJVLuNxIW0xNxrrDnaF1ioqo0QxHpGrPid5idgXV3
+ 5ccAJvD1LwRWT5PXijiYuFg--
+X-Sonic-MF: <zipnpup@yahoo.com>
+X-Sonic-ID: 3a288968-eaa9-48c1-aba4-2695b79a8d9e
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic309.consmr.mail.bf2.yahoo.com with HTTP; Wed, 26 Feb 2025 05:25:05 +0000
+Date: Wed, 26 Feb 2025 05:25:04 +0000 (UTC)
+From: Thomas Machnik <zipnpup@yahoo.com>
+Reply-To: Thomas Machnik <zipnpup@yahoo.com>
+To: Bre Pettis <brepettis@gmail.com>
+Cc: Paul Cohen <paulrcohen@gmail.com>, 
+	Harold Cohen Trust <aaron@aaronshome.com>
+Message-ID: <468444384.2543004.1740547504119@mail.yahoo.com>
+Subject: KCAT Files
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_2543003_139932581.1740547504118"
+References: <468444384.2543004.1740547504119.ref@mail.yahoo.com>
+X-Mailer: WebService/1.1.23369 YMailNovation
+Content-Length: 2665
+
+------=_Part_2543003_139932581.1740547504118
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Hi Bre,It=E2=80=99s rather late but happy New Year! Hope all is well there.=
+ I am working on identifying some of Harold Cohen=E2=80=99s prints here in =
+the studio. And I have this outlier for it has an unusual characteristic I =
+have never seen in an AARON print. I looked through everything we have that=
+ is photographed. I still have plenty to look through that is not photograp=
+hed but that would take sometime. I recalled that you had generated a rathe=
+r large body of AARON KCAT drawings in prep of the Whitney. Any chance you =
+still have them? And if so, could I somehow peruse them? If they have color=
+ that=E2=80=99s ok but for what I am doing, I really don=E2=80=99t need the=
+ coloring just the lines.=C2=A0
+Hard to believe a year has already spun by since we were all there at the W=
+hitney watching your machines run. I=E2=80=99m looking forward to visiting =
+your shop sometime in the future.=C2=A0
+SincerelyTom
+------=_Part_2543003_139932581.1740547504118
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head></head><body><div class=3D"yahoo-style-wrap" style=3D"font-fami=
+ly:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px;"><div dir=
+=3D"ltr" data-setdir=3D"false">Hi Bre,</div><div dir=3D"ltr" data-setdir=3D=
+"false">It=E2=80=99s rather late but happy New Year! Hope all is well there=
+. I am working on identifying some of Harold Cohen=E2=80=99s prints here in=
+ the studio. And I have this outlier for it has an unusual characteristic I=
+ have never seen in an AARON print. I looked through everything we have tha=
+t is photographed. I still have plenty to look through that is not photogra=
+phed but that would take sometime. I recalled that you had generated a rath=
+er large body of AARON KCAT drawings in prep of the Whitney. Any chance you=
+ still have them? And if so, could I somehow peruse them? If they have colo=
+r that=E2=80=99s ok but for what I am doing, I really don=E2=80=99t need th=
+e coloring just the lines.&nbsp;</div><div dir=3D"ltr" data-setdir=3D"false=
+"><br></div><div dir=3D"ltr" data-setdir=3D"false">Hard to believe a year h=
+as already spun by since we were all there at the Whitney watching your mac=
+hines run. I=E2=80=99m looking forward to visiting your shop sometime in th=
+e future.&nbsp;</div><div dir=3D"ltr" data-setdir=3D"false"><br></div><div =
+dir=3D"ltr" data-setdir=3D"false">Sincerely</div><div dir=3D"ltr" data-setd=
+ir=3D"false">Tom</div></div></body></html>
+------=_Part_2543003_139932581.1740547504118--

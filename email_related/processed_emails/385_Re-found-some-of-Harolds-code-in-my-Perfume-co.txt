@@ -1,0 +1,22 @@
+Subject: Re: found some of Harold's code in my "Perfume" code from 1982
+From: George Legrady <glegrady@ucsb.edu>
+To: Thomas Machnik <zipnpup@yahoo.com>
+Date: 2024-10-07 09:38:28
+Message-ID: <3426084A-6DFE-44ED-97E1-4AD5830CC67F@ucsb.edu>
+--------------------------------------------------------------------------------
+
+Apologies, I should have included the plot() function. Here it is on page 60 and describes how it connects with the Tektronix. You can see some bit operations. Page 59 has the function to draw to the printer. 
+
+￼
+
+> On Oct 6, 2024, at 11:13 PM, zipnpup <zipnpup@yahoo.com> wrote:
+> 
+> Hi George
+> Thanks for taking the time to scan and send this to us. I was able to take a quick glance at it and found it quite interesting. We have some older code with this mysterious call to a routine named "plot" but no code definition for plot. In the code you sent, plot seems to be used to send commands to the Tektronix display. This could provide clues on how and what these commands were used needed in the earlier code. 
+> 
+> Thanks so much!
+> 
+> Tom
+> 
+> 
+>

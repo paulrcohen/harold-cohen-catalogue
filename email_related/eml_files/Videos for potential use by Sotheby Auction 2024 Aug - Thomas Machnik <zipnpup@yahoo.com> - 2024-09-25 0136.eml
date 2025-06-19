@@ -1,0 +1,189 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a11:4819:b0:5ad:6c17:f336 with SMTP id nr25csp218687pxb;
+        Tue, 24 Sep 2024 22:36:11 -0700 (PDT)
+X-Forwarded-Encrypted: i=2; AJvYcCXDO0oiULdqQFim0Oq+/L1eliRPrMRcWnQaLn41OvEyuH9qzlhf6x46I9BXdQwDlRKerQPyOYrJwbG3@gmail.com
+X-Google-Smtp-Source: AGHT+IGrrRNaI0UJR8RpKycl2DiclaRUN5nxm5e7fk5J5D52XVqODJYGq/kAUeJNTsM0vcRE6x9R
+X-Received: by 2002:ac8:57d0:0:b0:458:2e67:feb6 with SMTP id d75a77b69052e-45b5dec7dfcmr28574161cf.11.1727242571671;
+        Tue, 24 Sep 2024 22:36:11 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1727242571; cv=none;
+        d=google.com; s=arc-20240605;
+        b=B2v2CBhaL4sbKQetx2nwAgaStlA/MxP+wz4Kb4nrqPiOY+CUXQbVwsbfV4yJibwx6k
+         A/K9ljbtBtuE3TBAZjvc6xYd0B+PrDKVG3OMHXZ9iSOhittiVYQJN58EhM/FHUcKObIL
+         HmoIzuP2nyO559tGqwAIZbkutuDCH7/M8kAGv/CatWDDAsCD6mUIxq7V7Qso13XTmDms
+         a7BesRq4JIcrSFXi8ENHtmPMbFEJ5fM1Qi/g5tTg35jDb8+kBMuNOGbNvV9y9Xa1ivYI
+         CU+GsiVQdPMaY4T8TvFXXslcC3WcGe1CuzcO1yKyLUnYDHN2TH9pTsebLW4mVJDRikUD
+         6pMQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=references:mime-version:subject:message-id:cc:to:reply-to:from:date
+         :dkim-signature;
+        bh=u5hyj6XPSnM+Wh4lSf3QfbJFGunzH0pU158t/QRSsEU=;
+        fh=P3Hjf/0E3/MNYg3a5gj09BJMCar1V2hutr7CbV+OvfA=;
+        b=Cf1mUI/Jn9o51DD7yRWPCvYXIyvwKAdaKFW0+EI36EuDEiMYGPyQpbolulYPfG1YA7
+         ZKu/1PNQseuJK6YI/ZWRg3YCfZbs4LeET5xW+xm3hNM/M4RNdLsXCP7kdw5dhh9t5VQz
+         SrpUe6eMEsqtrRotyck5YSAF8xDXb8l1HlNSsPCRGx4f6P6eg28IG694Shyw8V8XORYm
+         Cu1rAuWHoBDQjXo0mibULRvb8etIPITiH+p1PwJCpfvU6raVM4PIvgS/SwAd9kah1FT4
+         cLHWSrgcDdDCdGQwVGdP+GxymU0rxnDUBLm7jW6GDqGxB8sgR0f1+6xfqtqu1Ntx8DfZ
+         kE6Q==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=h45bC14C;
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.128.31 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+Return-Path: <zipnpup@yahoo.com>
+Received: from sonic304-56.consmr.mail.bf2.yahoo.com (sonic304-56.consmr.mail.bf2.yahoo.com. [74.6.128.31])
+        by mx.google.com with ESMTPS id d75a77b69052e-45b52591e89si30349941cf.210.2024.09.24.22.36.11
+        for <paulrcohen@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 24 Sep 2024 22:36:11 -0700 (PDT)
+Received-SPF: pass (google.com: domain of zipnpup@yahoo.com designates 74.6.128.31 as permitted sender) client-ip=74.6.128.31;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=h45bC14C;
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.128.31 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1727242571; bh=u5hyj6XPSnM+Wh4lSf3QfbJFGunzH0pU158t/QRSsEU=; h=Date:From:Reply-To:To:Cc:Subject:References:From:Subject:Reply-To; b=h45bC14C8AbNhFPR5pnpataaD7WVNKQIcvjdok3uMdx6QYDIC28IB9u0M5DeVSRzhO9NIdkYqDyva98iwzwwTEmhUbhWWktfRfmhycmdrdppkR0yEzzPJ87ZBBRQc6VlNzSxLL8zmhsVWaLDkytD53/uBEDK44xTyUo/T2ByUgss7fUpm6CF2nqBcE7awtRlcvWrpUodZ6+TuapGR9U8L9/2ZON/CoIhWGZfg2gjWvvKx7PlwrDQdYJjpm8RcExxngcCpulZ4tfuWyTRsh+eXYMJe2t8fHN7+cWf8nlrwyXLFHIKBm30vQDs24kB01RTSBj7b219haacNzBRAOIPog==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1727242571; bh=YOKbciMxrjlNnx9M8oQKIptH2YrX5+2nVgg1SBI8/+M=; h=X-Sonic-MF:Date:From:To:Subject:From:Subject; b=ZNPDJe2pmtGonXGtpVklb9uwcFf7mvCz8rAe6/Z2QhtFn1BarCejQtv72i3J6IcUkbMlmH/xn+Y/GRS7zgIvd2molllP1+FjU2L72nI7GQwUXiTwwwKFJOlBjLkqOW4BLOKvsCVE8iNC4SSg/StaqrmUx1nP7/374QwMEMoCUEGoS9k+kJ/tOSyAlje9j+6bNreWZzghpKGctYLHpO8CbDYLBMcZmMwuVRGCMf5KOgzhuO941LBzyqA9R+I3dMlcpmz2vzTdz5oIOGz2AHbRonrM93+NgR/59n7W6YJLsMylnDg4fBJT6LY9SVRHLesn9xVpNjOOIqpVK4toKkffLA==
+X-YMail-OSG: y8u8p.kVM1mYclILdVWJiNYHwYBNtOBW8l95ArElP7L82Oz2J_4VaDaBDiZi56N
+ 4O4Mp95V7kRSmX9jdS9LLTTiCiP6Xxn9Axbovd4rqSABbK0QIlVTsI46PjYsfV4vhwnoA0is5v3N
+ uNzhP4WIdt_O5yoTaOYufrgtEe6imdIP2G8Y4WQC6AphBxz2o9SwNnPLf5lB16scp2hwkg4IPfDp
+ 2bGDTXUNPwY0iyphbitm8jw20lcmcJAKRj0tu4Vb__m53YiZgFbuR4G08s2l1OTZvSX29nwxW_4F
+ akgBWGV.0822BU6dlw7D0aVQB4al_01tlygBWltkMNd6RM7.MwxK80jjNz7C.5coO_KSvG8y0ABj
+ 1YqOcgb31hYNHuKwQBt8yPmnVy6AjWL1CdlDFyzCa4L8C1VWiXSylpBtRkPE3ECSzpYPjBaOwpYw
+ EGsAAyvrY2ml2C4yrKnJQuBupNWpXlSptn1IKLF09oHuzmE3ZtK7CbRZBA_EIGiZrfFBt6dcpKEr
+ WJ.oqT1Mgw_yRMzcfDmDKmc5_BDiCT.5WFgSsRYAZuYqarqhtaxkdBDutZdrIH8.YcwEoA3ZluQj
+ 7oCX06Et5p.4UqV4pt6QbY51qYZtdpJMpX5WgkdbteT9d5oIaRdSSWAEvudjDKGU0ymFzyGTLrGD
+ fyXsQVgUHKryRtUw_Pexsvw_pTu1AaZ9qo_o43ALIKqgbzgZjsC1AJvg3YhS40Pi_ux3iQeF2c.D
+ S31Ob9ICiuXsjUjdb.anVBwfg2ig_SSho5ivAuvgQ55oWx83GB2eeyhntNiMANX01ivE4Qd8oIcs
+ _MjsmvS8EK5FlqFlbuywS9rU.0g7gvMbWzF9zeSrlR95hbQzWylpknTxIDkXMtQRkR1_vxsE6xZj
+ znETg.vz.RIMuovcdr4D5x1GrLZkIy1oBvHO1hoVZn5W55HnJaCKiyJG_6caP3r1Q7GYi7eCIAwh
+ 6XjYJzAQRt0ZjTNquspOqLafq8JVkZUrbEuGhFFVdVCvAfg5Zn3T5jjOAOIRKJwjY_1YMXpBLMbZ
+ MnfxNtOMubW5HX9rKMPZAI1tj4JellYfPYpbd8F0kUR71ZWGDnZ0zaQqLKOKkb_iAAFQoTks3H03
+ gSaBLT5seY07gFoVzr9l.ileJsqrwkfnYbRGtVeyJ6UGj4aa_FxoqAqTgWrux2niQ3BjFBm8Yw8z
+ XWwqBJFRHm7jYiv9OeeHwAgSr67z5moz.p_8J_QLQsh3T84lV18pxHq_ogaF.bIX6FhTHbRJu5L5
+ O8.fcJovSIsma67T152n_xfT3iINbtwu2xvgwCgnGbY594C.nHYd9rFYyaUGAm_h9SxTth5tCLBw
+ q28MWUZj.pdhB79Z9U1ekHQmRrm5vNkau.Fukysdmpd0N8bVnNpefNkCXaJRLa7EKcT_VrZwlvdC
+ 2kMN38srrD9TPfPAlAZc1IJd0gKo07XpZJiQfKtKgb9DfXDV.eL0K_vB5K.oo9EYsrPFFYntcyqI
+ JR1QgIVdwrdIWtqcf9P2I_jt7KyQdO9vbIrBnYeJbIS5bI8thnwb1xr3TmwkjqgEjIQ.MJBulX_R
+ tFuaw_J2WfvLYYN_ppek2_nndQFnurpxqTEGg.QANCjZV92I.JBJ1wVPbsbB9kYYJm4l6trQA8O2
+ 1mi3nvM_W4cAdZST5UHFTtY1sudzV9JO.kzeryEMbzG2p9OGJVw0918YDk6jYRd1JaPeSjO97SXQ
+ GfYrPTbXpPp2qU1fKd0kKHT_kJguhOwwFo_cDkBS0tfrMOnRpewn.Ddo5slDeRztvHZiSGNJfXVH
+ KAkAD1udTjZkOPMe04j74B.QhBirsQshq9aDiMAwH6NpdQYzPr2MnnimOjLKWeEbNCPWSlG4rhUy
+ 4_Fjm1vW5pKxRn7Ey7j5BW2dEuVW47k5qTH.AxhvMqEM6fGGLUn3X0hQKDZ90a_sJr9.qViEvK4A
+ sR2tfXOgr8IuaObdFhEWlzAZpBLmet89u0svrG5rLny5T2DtT7u43p78IwNJBEjd1TIC_hsyblak
+ zcUcAMzRMrRZD3KTLxE5spLAzK2MGFoNyE_K_pY1Te3NEY5mksMsj4bJSISmHa1hn_FfP1g51qCC
+ b6dTBH2xdEmJItpr2GL.Q2js5X03H6EGg.7m1ocgUMgu99uSWWN_ZUj3hDDEQfzWZwF8md6k7zj3
+ Yy89yCPgxs8pXzIIp63UDALeNaegSVbjUOUozUi988FNUWmybQnjZ9chsBNIG_f1n52q5unyOFtu
+ M.G94xlk3YmimK89R3Yt5IdXcrHqj2mlBnMlkRPMRA97HQ.HDSbbGKU0DOiE8HpWIzNPP4zqsvSo
+ fWSkOJg--
+X-Sonic-MF: <zipnpup@yahoo.com>
+X-Sonic-ID: 9c7e5312-0c5c-4c64-ade8-c33948eceae7
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic304.consmr.mail.bf2.yahoo.com with HTTP; Wed, 25 Sep 2024 05:36:11 +0000
+Date: Wed, 25 Sep 2024 05:36:09 +0000 (UTC)
+From: Thomas Machnik <zipnpup@yahoo.com>
+Reply-To: Thomas Machnik <zipnpup@yahoo.com>
+To: Mila Askarova <m.askarova@gazelliarthouse.com>, 
+	Paul Cohen <paulrcohen@gmail.com>
+Cc: Harold Cohen Trust <aaron@aaronshome.com>, 
+	Paul Cohen <team@haroldcohentrust.org>
+Message-ID: <1414353827.6395015.1727242569338@mail.yahoo.com>
+Subject: Videos for potential use by Sotheby Auction 2024 Aug
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_6395014_1816078106.1727242569336"
+References: <1414353827.6395015.1727242569338.ref@mail.yahoo.com>
+X-Mailer: WebService/1.1.22645 YMailNorrin
+Content-Length: 5583
+
+------=_Part_6395014_1816078106.1727242569336
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Dear Mila,I am working on some quotes and will send them separately. In thi=
+s email I have a link to two videos. These are the closest we have time-wis=
+e to the date of the artworks. Both are 2004 and both are a few months afte=
+r all the works have been made.=20
+
+This First one is dated May 5th 2004=20
+VHS_09-2004-05-05--Birkbeck-Harold Cohen Interview
+is an interview format. The beginning is interesting because he give backgr=
+ound. This one does not not show any artwork. It is just Harold answering q=
+uestions in detail.=20
+
+
+The second one=20
+VHS_10A-2004-08-30--CityTV24-San Diego-Profiles Harold Cohen Artist
+is dated Aug 30th 2004 and was made as part of the show "Untouched by Hands=
+". In the second one, at the beginning you can see the artwork 031135 follo=
+wed by 040502. Then shortly have there is a clip showing AARON generating a=
+n artwork onto the monitor. There is also video of him in his studio which =
+shows works from the same time period all the while the narrator does a goo=
+d job giving background on Cohen.=20
+
+Following this we see all the works hanging in "Untouched by Hands" show fi=
+ve of which are the Sotheby picks including040502, 031135, 030905, 030906 a=
+nd 031132
+Then there is a detailed interview of Cohen. When the camera is focused in =
+on Harold we see 031132 behind him. When the camera is focused on the inter=
+viewer we see=C2=A0 031135. Both of these are the largest of the 9 picks. W=
+hen the camera shows the two of them we can see AARON continually generatin=
+g works on a monitor between the two of them and we also see artwork 030905=
+ behind them up on the wall.=20
+
+
+
+https://drive.google.com/drive/folders/15U-8iLvxcFrro-avAz0M_P2o_mUyPsy_?us=
+p=3Ddrive_link
+I am not sure if permission is required for using the clips. But there is c=
+ertainly much to pick from and would certainly highlight the works in a ver=
+y positive light.=20
+
+Tom
+
+------=_Part_6395014_1816078106.1727242569336
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head></head><body><div class=3D"yahoo-style-wrap" style=3D"font-fami=
+ly:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px;"><div dir=
+=3D"ltr" data-setdir=3D"false">Dear Mila,</div><div dir=3D"ltr" data-setdir=
+=3D"false">I am working on some quotes and will send them separately. In th=
+is email I have a link to two videos. These are the closest we have time-wi=
+se to the date of the artworks. Both are 2004 and both are a few months aft=
+er all the works have been made. <br></div><div dir=3D"ltr" data-setdir=3D"=
+false"><br></div><div dir=3D"ltr" data-setdir=3D"false">This First one is d=
+ated May 5th 2004 <br></div><div dir=3D"ltr" data-setdir=3D"false"><span>VH=
+S_09-2004-05-05--Birkbeck-Harold Cohen Interview</span><br></div><div dir=
+=3D"ltr" data-setdir=3D"false">is an interview format. The beginning is int=
+eresting because he give background. This one does not not show any artwork=
+. It is just Harold answering questions in detail. <br></div><div dir=3D"lt=
+r" data-setdir=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"false"><=
+br></div><div dir=3D"ltr" data-setdir=3D"false">The second one <br></div><d=
+iv dir=3D"ltr" data-setdir=3D"false"><span><span><span>VHS_10A-2004-08-30--=
+CityTV24-San Diego-Profiles Harold Cohen Artist</span></span></span><br></d=
+iv><div dir=3D"ltr" data-setdir=3D"false">is dated Aug 30th 2004 and was ma=
+de as part of the show "Untouched by Hands". In the second one, at the begi=
+nning you can see the artwork 031135 followed by 040502. Then shortly have =
+there is a clip showing AARON generating an artwork onto the monitor. There=
+ is also video of him in his studio which shows works from the same time pe=
+riod all the while the narrator does a good job giving background on Cohen.=
+ <br></div><div dir=3D"ltr" data-setdir=3D"false"><br></div><div dir=3D"ltr=
+" data-setdir=3D"false"><div>Following this we see all the works hanging in=
+ "Untouched by Hands" show five of which are the Sotheby picks including</d=
+iv><div>040502, 031135, 030905, 030906 and 031132</div><div><br></div><div =
+dir=3D"ltr" data-setdir=3D"false">Then there is a detailed interview of Coh=
+en. When the camera is focused in on Harold we see 031132 behind him. When =
+the camera is focused on the interviewer we see&nbsp; 031135. Both of these=
+ are the largest of the 9 picks. When the camera shows the two of them we c=
+an see AARON continually generating works on a monitor between the two of t=
+hem and we also see artwork 030905 behind them up on the wall. <br></div></=
+div><div dir=3D"ltr" data-setdir=3D"false"><br></div><div dir=3D"ltr" data-=
+setdir=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"false"><br></div=
+><div dir=3D"ltr" data-setdir=3D"false"><a href=3D"https://drive.google.com=
+/drive/folders/15U-8iLvxcFrro-avAz0M_P2o_mUyPsy_?usp=3Ddrive_link" rel=3D"n=
+ofollow" target=3D"_blank">https://drive.google.com/drive/folders/15U-8iLvx=
+cFrro-avAz0M_P2o_mUyPsy_?usp=3Ddrive_link</a></div><div dir=3D"ltr" data-se=
+tdir=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"false">I am not su=
+re if permission is required for using the clips. But there is certainly mu=
+ch to pick from and would certainly highlight the works in a very positive =
+light. <br></div><div dir=3D"ltr" data-setdir=3D"false"><br></div><div dir=
+=3D"ltr" data-setdir=3D"false">Tom<br></div></div></body></html>
+------=_Part_6395014_1816078106.1727242569336--

@@ -1,0 +1,150 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a10:2aa2:b0:5c7:f970:fbca with SMTP id ja34csp252035pxb;
+        Wed, 8 Jan 2025 23:52:32 -0800 (PST)
+X-Google-Smtp-Source: AGHT+IG+TZRxi8KM1y8kJGJzWPd0ZZZbJ6g4LsuQnkii/rPTd48wEQp7MMfIJCPkpmj8CVABYmUC
+X-Received: by 2002:ad4:5fc5:0:b0:6d8:9f61:de81 with SMTP id 6a1803df08f44-6df9b25420dmr81952776d6.24.1736409151841;
+        Wed, 08 Jan 2025 23:52:31 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1736409151; cv=none;
+        d=google.com; s=arc-20240605;
+        b=DXJh8QZOuzQ70FHQTovH2KJPjnQ38D8HfWG1nhthfUNVR3kdvyReftLA23kWqbsmEC
+         DZmet/U6aNNjzpIzCZhdXS1wJXRlgTBwCBdeRWgFkE1eAvkA0u/Erbg1WAId/cI3a1z3
+         xKnwDDMdUVf6sut4gT+4+QwC2YFYjVPTgRXx+0ZOtcQ3IIxSJVn0HbnYL7S7rh8vDJTx
+         N5heL41jhExDydvEeaNyKHLiCOFPyHYQsi0dBpa644aHU2FtWd+PX/bmQ6tiLFpsVj2m
+         JCkyqNNL5HPGD4pmCq8Jcl3cmKndCoWBck0YFIOnna8VPQr/b3z0t+Vb/lwZpXG6mJeb
+         uMfA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=references:mime-version:subject:message-id:cc:to:reply-to:from:date
+         :dkim-signature;
+        bh=ZO/7jVCxt9AYiz9WAJHCZBLADcMcmRyd9iBBgKI8Ox8=;
+        fh=uZ/Oa8o2qFb8Gnt4tiQdz9Zv1AzpTmMdnK+6GW+SBTE=;
+        b=FBP5PkudpFmVRM7gxLBF/yxGvMh4WhyrxFiyaOyLh2CHeH9/PsToG4Me5VDqE27/NQ
+         Pry6HGOkMQWwXQHyrJIMDIBOGR53ZlG7oU0x3AtXtC1/Z+dTV7XFcyhSLZ//Rk0yAWvV
+         QmU0Bl+s2VY0X7ObOWOoNl81Fra+T164bL4I50N8WhM2ohuZuzPEm1JA4QVxleTkml7m
+         RjJST9Kc5IKLTZvwJiLCx2xPrCkDvpD/8Qai7AU1hfSOwzsQMwJpg+qmExHaYMeAbHFo
+         N97E0DJsS/g3S6W5rQWUrEuS6/s2MjFt/mWLpbhgPhYoStndlHMMN9BbJO0HL522+i9B
+         +dBA==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=Mp4puTJP;
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.133.40 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+Return-Path: <zipnpup@yahoo.com>
+Received: from sonic305-1.consmr.mail.bf2.yahoo.com (sonic305-1.consmr.mail.bf2.yahoo.com. [74.6.133.40])
+        by mx.google.com with ESMTPS id 6a1803df08f44-6dd19cf9241si161589446d6.82.2025.01.08.23.52.31
+        for <paulrcohen@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 08 Jan 2025 23:52:31 -0800 (PST)
+Received-SPF: pass (google.com: domain of zipnpup@yahoo.com designates 74.6.133.40 as permitted sender) client-ip=74.6.133.40;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=Mp4puTJP;
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.133.40 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1736409151; bh=ZO/7jVCxt9AYiz9WAJHCZBLADcMcmRyd9iBBgKI8Ox8=; h=Date:From:Reply-To:To:Cc:Subject:References:From:Subject:Reply-To; b=Mp4puTJPhnpmc6V7oMptwijTnyHLGRCf+h0Lo/LEbc63bgNO8TfB3hERhNm9wdBOMzTXU9lLYuO/sFkN2McTkKduEedC/5HYCg07ZsqgwHQPsPYDd20UyJpZ1G4BhPRIoD4sxfP8vBiAn+5LnIwXGBk0CYf1b15c063x5aLQFjqQvz6Y2gKq8YRyy9hNwru/n8my50tlWsIeYriYLjpCJwao8BY5oB5gjREblQb71PFebY/ba9DPAV/f+8iQgQy/Zii3H7jvbLrtEb2fr+oJPkO30Pg1JeYukHUBP5GEKa14iW0HHi/aDRca77E1ZXsBrHUoywoczHYJiUqREt/yXA==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1736409151; bh=aW6MflCxZrKag7pEpVGRziUgCtQQb89ZsXB6UIZ4ysw=; h=X-Sonic-MF:Date:From:To:Subject:From:Subject; b=VVR9UvL5ehi6rxO/50k8LyQf/OPDY/SFYH0ed/P4M9zdQs+FDTflz0GRrDJwIL2oIeVKpFxHY3XpKfE8GaZtQmnA/9bcnvd3Lz4i29WcLXwo1nbwci/ewJ0cXzOpZeLBzGvQR95xz+moEo0qJ9h+MLpEie4eqriD0Agy/CbgvVFuh7YwAmQTwicKTL2mzBqlyxxKTJPUuqNKSA4nVVdFtlPylgWtbEKtSYHtgUtywx+Dd3rO31SfPwO/pI/Xsq8/JfuUAMgg9Jrt+jnQsvUnT60KviL1q6IdjHSpXT27VX4XX+x7Nk+0I5imiOBT9XLiw77b3VSRPqug65z2K4UK/w==
+X-YMail-OSG: m3xh.xkVM1nNBoIeGtrtmQyAkK.PmPKbmYVSx3sxhdqeAPay793MRZ1nza_3nQt
+ iX4mO5FS2k7WRcuEA4vuqJpyMPZ4KD9v__jlcRvKkxFov3d09Sb4kKbGSoa7Mi03yJzDHKElLxqI
+ fhwWDHOkBmnyenTEXIm6Lan7y6FyYTKpa1TBKL.3MxtY.QNxCnoS.61wvj0WViKfMD0neS3s8seo
+ AnMrw5NLBQ7p0Ai8ydLd5QFL.22DLnVxxm7Eb2YlUJbtoggHhKhUOTKH8vb6fiaJdMgknTZPPgND
+ 9UU4xkcOdRlX2IH.d4n8m7TgrYDko0.sqZ9HroJjQtZ5SgD5guHVTv4hl6xLOtj_eRYafHoMAs6B
+ vuGQdX5NLa.yoxAkXjQzVQNOATQ69OQ51sisBgfcGhSzg4OjXF3sa3fMre7ZuorJ6.KVgGEvueHU
+ 47aQhai7mMCYTeyeoDcy6CNaIxQxTyO7Ag5MoItdb6T5okHcdvp2q_NOAUiTnuBSXTwBLiGumv5s
+ NB.ha07Fl_IkiDa8Zdq3xK49FR0vR7O8VSbmyrAt9QorHZavGBtQ_VaXsRv5RQF0tAWTuWNMBTl0
+ deuubtfkO2_.qDYEDgQY18JT_pYPaacSJzsZcmtVsDfcg8rEqm9mzZ3DhH9dewVvyXY..QGSM1Zg
+ roJM99F6yb2Lnn0fBWl8TPwfX8wHAojSQr84wQ08Orh3jbclC0bV_wpnU5Qg2za5jCAj5gTSPvAZ
+ glHpNgdT0NZA3tTj8mpLGiGlEjv0_EPWyqBJHyiqYOyxWjGSOAlXL5Ms4zD3B3I1pTGV8jDTHGjG
+ H5wgHBTkFZM9HNHVyjlEgxGJTsMboLCJXR1u_1z5NeWFQiuMgHR9oy2NvSb0C2nkUhELeDChl6sY
+ di_L.wCEbe.R.gBxmUgo6vG8Vr8fsLvDIXeZzvqsX.5kzI9O_ieUqDXu1sizEI4lW4kP8OApDrPn
+ QeWxcuQy7OaFRMendgGQR8aIWGVLvriQUzl2Oou7gF9eacZTbvtZgqsNOEw6oY384UXNRZscbs.8
+ zoH9C4efoK_WQX9HuxfosSRxgJYAz4VIQU8IcWp_w56Go7mLLMfQWRhiWw8rfs5d2A82.l3olzp5
+ pPCI5CdHYE5elbmHuKzWXAtdyZwMI_KNLgPqU5ADQD37M7g6qCidS5gY2JSI_F6q4usc6irpowFk
+ MEs.JHfvdE5tQk9SEMYdZs1YXsDx.GQQ3P4AdIipMSk8Z8.jQnqMbv3IK9z1vuWrAQPehcD5kB9C
+ 6.3xmM254508Yf_PlWQ71Az9ntRN7yW1RUrrkdJyxnxgoqA2uEHPunHBcPIvJxK8Yid2l.H298FO
+ f591E5_dxh8ij59zdl7GeWBkPXsF_mrqTuyG2TqKIYbSvZPEdGpVn3tf.CdQ80HZRbjmHV1Ry1Qg
+ ojH6k8g8pDOVznMHPQ1CxG_eTHJd_hJaNPCuUw7Ocj..3KCeavdDIBK4Dh90lI0nJV3HH.M1pLqe
+ qJSX_tIV3b1bGVzJ92o6wzlKJ41M5qb3e0KRRyQC0Y3xVU27iAJd34uuc24SQYeOvD7T.X5K0VC3
+ nZzxJaMig1CWHlIQcRK0L1Wek22h000ANA4_ThXVuU4F5X1Z6bXxkQQvLJKh0jIceIIj110_7Sl0
+ 1GVyfJrtB2qsRdxI1YVOYFaH8Gm9FFcVlKGL9UL6EXXx8SgEt9IlW3UGgtMaLX0MOofRlEzzERGs
+ zJyEZq_NYKToYMlnUXPzxcozWo4ZnUDj.pIHeoElR2PxVnQAkdDVRHLavsirS68f.6cIxbnN2ycB
+ .qnsezCGbst6_0soI_ZHCtpnEbJ3BwZyfDHScAkaXcvRz1a3CZ.GtDWMTlsyjjgR.u39K1EIv6VG
+ fClsynWZfPESrIbrExnF4FbzllXga1kseO3Xq5ExbsQnSpJrl9YlPb0jJANqqox4Kd2N0qP2sI9M
+ 5XbIkDH7Ay5_pBlEFpehqkNzRyNTh5.1GWHMcq.4bjlFMkfV3tSADwvfuRpra5wM3aMGyc2tdSBL
+ 0hZLuKSwW2TMN0zWny_xxTALz5MKLE16pwvnHm21QEfvoqqjv._cARfuXheGu6Y.tmtOpwtPGcCV
+ SprZ.790J6uD7aGPDWAawPZRoKrPbfh6cY.GMqDeQ5JoDEH.7qJ1A1wed3fU7e7Qh55eFvKsi2kO
+ QgNqAPqRGke.kd7C2P7jKz73ZtU_SwVIgdxrutkzL_uePdAQ2_iZOMMbSBn3CnSyQZLFELxq90Wk
+ 31lrZ1omMf1zh.YWPv.ojA3CJHwZcT2t07eV9aoQhcdqz3mRDK7aX.ZWblJ_W.QfC2ib_Dot53ne
+ WaRwjGRp.LwBeUlvWkZ2VFdzG_MjL4FEn28u8pcIZ2jiEAtCwkY5AHLiA7RLIhLioY8uVlvOKafH
+ Xg45XvujtXgmHxSQRDNqSMMYOG46PDf1JF2Ozppv1YdJqE8bYT1LEhpzZIYk-
+X-Sonic-MF: <zipnpup@yahoo.com>
+X-Sonic-ID: 5d6289bf-6de0-43ac-995a-6cf3818ee1ad
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic305.consmr.mail.bf2.yahoo.com with HTTP; Thu, 9 Jan 2025 07:52:31 +0000
+Date: Thu, 9 Jan 2025 07:52:30 +0000 (UTC)
+From: Thomas Machnik <zipnpup@yahoo.com>
+Reply-To: Thomas Machnik <zipnpup@yahoo.com>
+To: Mila Askarova <m.askarova@gazelliarthouse.com>, 
+	George Lionel Barker <george@gazelliarthouse.com>, 
+	Michael Pollard <michael@gazelliarthouse.com>, 
+	Anastasia Shapovalova <anastasia@gazelliarthouse.com>
+Cc: Paul Cohen <paulrcohen@gmail.com>, 
+	Harold Cohen Trust <aaron@aaronshome.com>
+Message-ID: <377415254.5258034.1736409150178@mail.yahoo.com>
+Subject: WIP 2025 Artwork Shipment List
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_5258033_1288385383.1736409150177"
+References: <377415254.5258034.1736409150178.ref@mail.yahoo.com>
+X-Mailer: WebService/1.1.23040 YMailNovation
+Content-Length: 3479
+
+------=_Part_5258033_1288385383.1736409150177
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+Dear Gazelli Team,Below is a link to the 2025 Artwork Shipment List. This l=
+ist is a work in progress and not complete. I ran into a problem with some =
+of the portrait paintings dates. I am not sure why but some of them have th=
+e wrong dates so I am reviewing all of them. I did notice some other incons=
+istancies in the artlogic document compared to the original notes sometime =
+ago but have not done a comprehensive review as of yet. In any case, I am p=
+lugging away at creating the list you can see most of it here. I need to mo=
+ve some items around to access some additional works which may be approxima=
+tely 4 more items. Currently there are 54 items to be shipped. That is quit=
+e of few and I want to make sure everything it correct so I appreciate your=
+ patience as it will take a bit longer to complete. I do have most of the m=
+easurements that were not in the original artlogic doc George sent and hope=
+ to have all the measurements by Thursday or at least an estimated measurem=
+ent as I suspect the measurements are important to the shipper.=C2=A0
+Here is the link. If you are unable to view this please let me know.https:/=
+/docs.google.com/spreadsheets/d/11MqbW2pAIPfUA4YNC6AHWu09PPzyM20-YvIF8nedKN=
+s/edit?usp=3Dsharing
+
+Tom=C2=A0
+------=_Part_5258033_1288385383.1736409150177
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head></head><body><div class=3D"yahoo-style-wrap" style=3D"font-fami=
+ly:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px;"><div dir=
+=3D"ltr" data-setdir=3D"false">Dear Gazelli Team,</div><div dir=3D"ltr" dat=
+a-setdir=3D"false">Below is a link to the 2025 Artwork Shipment List. This =
+list is a work in progress and not complete. I ran into a problem with some=
+ of the portrait paintings dates. I am not sure why but some of them have t=
+he wrong dates so I am reviewing all of them. I did notice some other incon=
+sistancies in the artlogic document compared to the original notes sometime=
+ ago but have not done a comprehensive review as of yet. In any case, I am =
+plugging away at creating the list you can see most of it here. I need to m=
+ove some items around to access some additional works which may be approxim=
+ately 4 more items. Currently there are 54 items to be shipped. That is qui=
+te of few and I want to make sure everything it correct so I appreciate you=
+r patience as it will take a bit longer to complete. I do have most of the =
+measurements that were not in the original artlogic doc George sent and hop=
+e to have all the measurements by Thursday or at least an estimated measure=
+ment as I suspect the measurements are important to the shipper.&nbsp;</div=
+><div dir=3D"ltr" data-setdir=3D"false"><br></div><div dir=3D"ltr" data-set=
+dir=3D"false">Here is the link. If you are unable to view this please let m=
+e know.</div><div dir=3D"ltr" data-setdir=3D"false"><a href=3D"https://docs=
+.google.com/spreadsheets/d/11MqbW2pAIPfUA4YNC6AHWu09PPzyM20-YvIF8nedKNs/edi=
+t?usp=3Dsharing" rel=3D"nofollow" target=3D"_blank">https://docs.google.com=
+/spreadsheets/d/11MqbW2pAIPfUA4YNC6AHWu09PPzyM20-YvIF8nedKNs/edit?usp=3Dsha=
+ring</a><br></div><div dir=3D"ltr" data-setdir=3D"false"><br></div><div dir=
+=3D"ltr" data-setdir=3D"false">Tom&nbsp;</div></div></body></html>
+------=_Part_5258033_1288385383.1736409150177--

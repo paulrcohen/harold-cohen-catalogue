@@ -1,0 +1,8 @@
+Subject: Re: How big of a plot can we go?
+From: Thomas Machnik <zipnpup@yahoo.com>
+To: bre pettis <brepettis@gmail.com>
+Date: 2025-05-22 06:44:46
+Message-ID: <69186567.101538.1747896287458@mail.yahoo.com>
+--------------------------------------------------------------------------------
+
+Hi Bre,Thanks for your words. Hope Spring has sprung there in New York. The Airport exhibit is basically a 24/7 exhibit that has to be unattended unfortunately. I wanted to ask you a question regarding the how captured the numerous KCAT and Maze drawings. As I recall, you generated a collection of files in advance and then basically replayed them at the Whitney in a slowed down mode. I believe the KCAT program can only make 16 different files and on the 17th it starts overwriting the previous ones. How did you go about collecting the 1000+ KCAT files?  I am also assuming you had some kind of automated process. Then when you were playing back/plotting the files at the Whitney what were you using to do the playback?  I believe you shared previously during the playback/plotting the KCAT and Maze files were pre-converted meaning they were not do so on the fly.

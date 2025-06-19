@@ -1,0 +1,21 @@
+Subject: Re: found some of Harold's code in my "Perfume" code from 1982
+From: Thomas Machnik <zipnpup@yahoo.com>
+To: George Legrady <glegrady@ucsb.edu>
+Date: 2024-10-07 23:09:15
+Message-ID: <1353524331.9266903.1728342555621@mail.yahoo.com>
+--------------------------------------------------------------------------------
+
+Thanks clarifying George.
+
+BTW I have a package that I need to ship to you. What would be the best address at this time for me to ship the package to?
+Tom
+
+ On Monday, October 7, 2024, 11:41:23 AM PDT, George Legrady <glegrady@ucsb.edu> wrote: 
+
+ hi Tom, 
+Codes from Harold: 
+gmac.hplotpak.cutils.c
+
+
+Hi George Thanks so much for the extra code. This plotting routine is very interesting. Helps to answer some questions. Do you recall whether or not the .h header files are your making or Harold’s.  I ask because it seems like some of the definitions and macros were made in such a way that the Harold’s older SAIL code or even Fortran could be used with out completely translate each line manually into c. Not sure this is true but just a thought based on observation.
+Very helpful thanks againTom

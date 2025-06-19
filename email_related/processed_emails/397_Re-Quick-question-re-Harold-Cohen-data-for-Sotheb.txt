@@ -1,0 +1,15 @@
+Subject: Re: Quick question re Harold Cohen data for Sothebys
+From: Robert norton <robert@verisart.com>
+To: Thomas Machnik <zipnpup@yahoo.com>
+Date: 2024-10-08 09:44:35
+Message-ID: <29E5BE81-63C1-4F65-8F9D-424D7705AB1E@verisart.com>
+--------------------------------------------------------------------------------
+
+Thanks Tom for this and I do appreciate how hard it is to account for everything that happened such a long time ago. &nbsp;This was one of the motivations for starting Verisart - &nbsp;to help artists keep veritable and accurate records. &nbsp;Just to clarify Sotheby’s are not asking about the print as this spreadsheet specifically refers to the image file for the NFT. Is it possible that the program was run in 2002 but the image not saved until 2003?Perhaps your answer is the same for the image as it was for the print but just wanted to make check this with you.&nbsp;Grateful for any further thoughts. &nbsp;In meantime I can share this with Sotheby’s. &nbsp;ThanksRobert&nbsp;On Oct 8, 2024, at 04:53, Thomas Machnik &lt;zipnpup@yahoo.com&gt; wrote:﻿
+Hi Robert,When it comes to Harold there rarely is a quick answer. Since the 
+physical print date precedes the aa file timestamp by one year, that begs the 
+question, "How is this possible?" I know you probably want a quick yes or no answer. If that is true then the quick is answer yes. Yes, meaning the physical work is signed as 2002 and the aa file timestamp is 2003. But this would certainly suggest an error. Did Tom write down the information incorrectly? Is that the error? No. The timestamp for the aa file is 2003 and the signed print is 2002. It seems like we have one of two scenarios. One, Harold signed the physical print incorrectly.&nbsp; Two, he signed the print correctly. But, we don't know why the generated work seems to be in the future. If the second scenario is true, how could it be true? Maybe, the version of AARON Harold used was from 2002 and that he simply ran it in 2003. We had a situation at the Whitney this past year whereby all the work 
+was generated in 2023 and then plotted in 2024. However, the version of 
+AARON generating the work was from 2001. We may think these are 2024 works 
+because they were plotted in 2024. But maybe in the mind of the artist 
+they are really 2001 works because all the works were already fixed as

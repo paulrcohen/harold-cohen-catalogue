@@ -1,0 +1,1391 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a10:ce9c:b0:5ec:db95:1ae4 with SMTP id jh28csp542347pxb;
+        Wed, 12 Mar 2025 15:25:04 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IE3Vne4DR4BPn8xlAW9F2VFct+TTCfhmwpYliDKjyvWw3arBo9F61xDg+9uv8kV1EN1CoZh
+X-Received: by 2002:a05:6214:1bc7:b0:6e8:f91a:c5a with SMTP id 6a1803df08f44-6e90064fa4cmr316860376d6.22.1741818304648;
+        Wed, 12 Mar 2025 15:25:04 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1741818304; cv=none;
+        d=google.com; s=arc-20240605;
+        b=MFNEGdKzXMNYSPyZjAmRh1ndTeLdzLGN7yzXGMQD2Ab4/Ddud3B+hhFKOCIIocJP4v
+         2hgJs02XbqLvf0dnv0O9KO2P8YPL5p4aFaK1C7iIvDQbzc1U7KNBqK0KAAbdbaI23uTW
+         avwdoAoIfmZ9nIZkE5+29BT5D/AhI2J1N3tfMk/ceJUdSNVQhJ9NKEpnfCRVwQnOlllo
+         z7wGUEGq/ESWRdCvnV2F/90gNJAMN9M0B9oQ7VJ9tDwHGe8EGSlyDDVEiLegprGsOgwA
+         610rpbEQcrweEvo71uVDqtmjTQaUO6L0raoT6ckW00DF8bEGko1Ut6XF/e4cSUgDcALu
+         JM4g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:subject:references:in-reply-to:message-id:to:reply-to
+         :from:date:dkim-signature;
+        bh=bJqJTGHtfHXWg1EA9yQ9NNGpl5+NsWPDUpWUSGjudVA=;
+        fh=FQF/313Uo+rImM+h5HjOmtrKeBhoP+5HSLl9pDCyhyI=;
+        b=FL8anpzQ1Z+O1mPcG2AE/AsvzJqdkw6A0+AujbyP2cDW3h7pYUgHt9vlBCU/zyEeh+
+         9i8ASdQ0Lk1DivZ+s7ITyDCiY6bOiGX9GeW5ZOddRTaxT2sjkuXwGBZiNNaVHssK9sOK
+         E+FHcUyCvEFYEKsej8IXuZkH0HCrAJVRv/02f9pXJHVaqZBXzpdBJ5xF8mFXGvQV74pK
+         lgqDO+yyoM43CMDUY8YQzd18OYUeGXOgJRsZhRKW6Mjb853SFQm+EEZuKqbNVGqubD21
+         uoloez0aiJ+Xm3ZQdDzy9thtOejR2WBpnqkiEP+Rc1qdzGKMbFSvwVxfLX7rYoM9LfFe
+         Jsiw==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=CFAZ8IBu;
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.135.82 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+Return-Path: <zipnpup@yahoo.com>
+Received: from sonic318-27.consmr.mail.bf2.yahoo.com (sonic318-27.consmr.mail.bf2.yahoo.com. [74.6.135.82])
+        by mx.google.com with ESMTPS id 6a1803df08f44-6eade386851si998196d6.489.2025.03.12.15.25.04
+        for <paulrcohen@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 12 Mar 2025 15:25:04 -0700 (PDT)
+Received-SPF: pass (google.com: domain of zipnpup@yahoo.com designates 74.6.135.82 as permitted sender) client-ip=74.6.135.82;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=CFAZ8IBu;
+       spf=pass (google.com: domain of zipnpup@yahoo.com designates 74.6.135.82 as permitted sender) smtp.mailfrom=zipnpup@yahoo.com;
+       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=yahoo.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1741818304; bh=bJqJTGHtfHXWg1EA9yQ9NNGpl5+NsWPDUpWUSGjudVA=; h=Date:From:Reply-To:To:In-Reply-To:References:Subject:From:Subject:Reply-To; b=CFAZ8IBuUAJovz8hs38yqLXVmqG0/5dO1QjRCCZv0LxNTSlqriZ3FylPVL4mDEhNp853AhpzjtaFdTr2HHR+G1n8v60uMyZOeQ5xV42u+UYYjisbBWezcjCQEMFaXNXtssSabG08NRsu+qz8RWH/0NuHctpc1GSrn+cFNbdfp71i6kb6UPtOm8Lno8RUmIYAY7RJ+Qyl/omYpDsD5eQ2WL283bU5nAAemuRW8auaWDmOGwxiC93ODEtwJfk2v0bB6CnugMjdHufByXrrIF3K+yE12gsdmFgzphc929A+kx7Xo3TCXGSDWwvpIDQngHXRBzDSrZI5gR1o+UNYf6477w==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1741818304; bh=601ro5re/yHgILHJumfk6OsIG3gNhZ3N5uXF13V8l30=; h=X-Sonic-MF:Date:From:To:Subject:From:Subject; b=Q+yib8yr38s2Mm7YC0LOtdzvcTQYqDRd1iS/QdOVPmSh6m/Gk1EGA8yRWajUUu7Xit67dYKDF9/qz0rCbVRl0Ycwt8OFXGIfBeqNZ7qTPCgBNfJSAqBh4wl3PGz9Q6mxMFdbLaWKaHR5mg01/mH/hKizMjm0cZzxDUG0zNINLFghAtSXuCgYMLyE4zugVvyyCgj0xMfMU5r7S62PlmXKTaYS4b4NIeOe1zWrx+2zIwVwrsEhpSsZCYitQ14qsp2XIYbUlbALkArC3e+N/OmjAkzEjSr9yJSU1EHZ0v+oQMlaC0UTx/lYzC7SJinho74eMiOPysvP/abd4PB9LNPrnQ==
+X-YMail-OSG: 68joB7YVM1mvyAmhympZ0IdBvCwJb28YfQ7hKp.ZFm2ghoLlVoYFgKwQi6xQvu6
+ 2Za7hNdLeqjA2D3NCBgIsl9dqBkpyez3Vjpv__7wctXhVv.lInq8MQAdg4plUjanErmDOoinoAup
+ lFk1h_4x2VFUumYudDkmqacqNBnzp8osYlDPiTqfRbY5qFFasL4tjFrp0wAHfzozic.X60hupP.K
+ 5Rl3iQzTOJbmmZKSDLM2hvsO6SIrMIvpx_DDXMOBamgRSwVqZltZtnmf4Nj3xSRN7Qms2npytrRm
+ 6v_Tu6z8DI8t.TvkhQa8yeppovGXhlZovtTtwyRp_uY8.iw_xxw2qk_hRKpBw029VOcqHYZK7gzB
+ 68U7sGtcI06f9NbJWkJzF2iC85f3JPMZwobwkwYUSLIX46rq18vT3LZKv3Gbf63EQr2CIOhOASoL
+ snT9eh4GR5BwFmotg1s4IdsuAKrXS8DDjWlo4r7pnT0cy9_gBljoOY1Ys.tW_hVqpTz2LAw.Kl1E
+ i8Ex3S5qM.qClF_dhH2A9cfW1FNZ9IfGKLltY91mLWzHxCfryjZlsNSVDqmYbppJdsg6Ac0f.Mb5
+ xB7cS_y4ysgeQH07tiWnyLqZN9aYabxkh2_H8fRCF45pPbXrCvc551bqDz1H6VORDu2tpZiBruhi
+ YUbAPXq_bVmg.2a7WovalP_t80.E3n7GRwPUS4wE5jDGn4IUJ4NalKxPGQ4kzMdvNTT.2_xMSEL0
+ mMq_iZz0L4dxmUfUvuM_RIjw0qW4M8gE2hhyMI_0rB_DWir99ApKLwil7_gTpK_VmD_gNa1jzbN7
+ XaBpZckm0HpX3OcFPIm4TlYP89F8klWlpO9e.gVTFFFnoYol8bydz2MezCvBhtaYA.1Ktlr46EUp
+ Ye4RhkCT.dZ5aiawQsAlKV4CwQ34Wx6lsxoXJNe2ZcTKen.BLTGRqqP_bOQuf2EYRmav8fd2bsmE
+ gm4CqvoXAADmDtoZFku2YPN1P4QkMSD3IU7VE4C2UD9LzGtKsPi1o32AlazyXIlkwAM.KXqsnHH2
+ B8Rkyd9vxlxyMNSnd4AHfetXA2ZECTweokdrezd7fMrD02oFlHBimHeqPk0mnss16kEdxnZUAlHz
+ KknmassKwON_xFwVrduAeIELPI.Lg978LvM7PyQc2U4lwSApPdvkKezxWP8j9qp8..f.Ir2bze3p
+ IFMDqglx3G69wQQuadrtJ5.aKuz429WDVkKwJyWA.VSGoajB9AQHFBvVXQNdZD1CVuUB1bjgcraP
+ iim418EWYSJZLCOrreSmMzJ5mwpjXk7JnSgXdOe_8PsNO82iEpw1bQ5DoeD_hkWTrkGtRmkFPw8n
+ ubMTqIKQtkA3cJDYs1z92buzgLdkkDghiXbn_TMGnDr9LG5DFwiiuFbTwmbwZrkk3XF9SiP_FAe5
+ r.6XMZF2irWAYNaYe8uY3q8yUbIVs_by7CPyGDsG4YVcpwhqXRGuGuZnOWAwHwy7OM4BCB7dRFHo
+ _BcVe.KGGWwDXAGjEp1GipvruJ.bhBAHZDWwi10LiMus4PyDxm6HkrrxUjpC9cEaxN4Xk.ddyzGX
+ xo7EPy6Q1glxfXI9M6LubRdmQo09fc0rAhZWaA8auH7RoJAbEd8eraBE8Vat29tDOiHefBD9W31e
+ .tp1rGS9N6G4rn1e0.EE.XFFcYM9UyWEeuJwz1dRLxFMqAeJj5JxMeliL0vk7c54xysY006uveba
+ zj8tWczhpfRUEovlfGY17ku78ef8qN29Q.YATz7yzb6rGnJZPRxSL1bPHDD4.Ws_emkVGvBSpvAN
+ HuhOsftuCk6bTMVSEk63GkI7twi0VOAHuJRY.QBrgTsKsXBJfWxOZSNUG3WgR2dqYP3JmbmZjoF3
+ 0t_Ji8pDqhybEEfnVvoXCaWhI4YG0wagDXa853iOnvOfcq_ddJu5cXNlFTdqVXvJhRaxGLnjGPx_
+ ZyHAPaqy_VwotSz3qREa89Rxo4AOGbqroJAHk9DvqEtD5uq4HdfcqpkuF0rrXEd_PWGF_UiBFwxp
+ qBMWnxdnyTHiLXMfxQxBgXthI.ORIe1S4yP_Cjh.SswuoSRj8cW0KfNDlp5EomKNXpMVSbTk89A_
+ eag.Yb5OnCqOK1KVlzczKJFFc0tZMIBMXnRs.n_Cec8Ut.OQflmyBRQn1nhN2CqEszXDf19RKPiB
+ u8R0owR51DEhD06huXGMVgT43oEKarMXXeOCrxiczDj.O2tpjk852McSq9sIAGbUg0p_9dSHti_E
+ hJJfo4VP.K7bBAaPXEcHi9ZwSpY5OHeMARvDMSZdqDL8UoNIecwTTSl6UJOxYBWb5oaaT147eG6r
+ Zez_3Jf.DFqPMPd5TFFRqSiY1fkgkCQMzFzx_jRkEd_Ug3msI4JQt2jc1IZUvA16vEwOVU4PMq1e
+ z4aky6HOLGDGb4QwnRtXbr5owBtaJ5Vlj6s7LQI6BUKuSVyLUiqr8hew1
+X-Sonic-MF: <zipnpup@yahoo.com>
+X-Sonic-ID: d2ecb006-af1a-47a3-839c-10875d8cfd65
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic318.consmr.mail.bf2.yahoo.com with HTTP; Wed, 12 Mar 2025 22:25:04 +0000
+Date: Wed, 12 Mar 2025 22:24:59 +0000 (UTC)
+From: Thomas Machnik <zipnpup@yahoo.com>
+Reply-To: Thomas Machnik <zipnpup@yahoo.com>
+To: Paul Cohen <paulrcohen@gmail.com>, 
+	George Lionel Barker <george@gazelliarthouse.com>
+Message-ID: <892832818.1847071.1741818299578@mail.yahoo.com>
+In-Reply-To: <CAFoqNjSKdyU7h9RWnXCFC4x_XMm1eh3rLvdV-9zXRSPpQXEi6A@mail.gmail.com>
+References: <CAFoqNjSJGUrqpD4hUPGnCAorr3KxO4Rp4+7drEQ=vVKRz3m2WQ@mail.gmail.com> <1116493047.1222236.1741623909160@mail.yahoo.com> <CAFoqNjTpa=oqwXfh21ewzKmjDwEi-ErgJ9KJsJ7fc06PkYhL7Q@mail.gmail.com> <240904279.1277291.1741633729852@mail.yahoo.com> <CAFoqNjRhE49z0QU+M4N3dtiREvcdrscNcHR0RC8ks3bFmq-9XQ@mail.gmail.com> <526825533.1762315.1741797468170@mail.yahoo.com> <CAFoqNjSKdyU7h9RWnXCFC4x_XMm1eh3rLvdV-9zXRSPpQXEi6A@mail.gmail.com>
+Subject: Re: Question about Turtle Painting
+MIME-Version: 1.0
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_1847070_960391683.1741818299564"
+X-Mailer: WebService/1.1.23435 YMailNovation
+Content-Length: 88991
+
+------=_Part_1847070_960391683.1741818299564
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+ Hi George,
+Regarding what was made by the Turtle and your question:=C2=A0"And the only=
+ large scale drawings made by the Turtle were on paper? "
+Short Answer YES
+Detailed AnswerThe actual Turtle did not drawn directly on canvas. Instead,=
+ the Turtle made marks on photographic backdrop paper cut to size approxima=
+tely 8 x 16 feet. Some were colored by school children. The works were comp=
+osed by AARON and drawn using the Turtle. Drawing was executed on the floor=
+ and the computer guided the Turtle remotely with no human intervention. Th=
+e Turtle=E2=80=99s position was relayed back to the computer using ultrason=
+ic navigation. =C2=A0I am working on a project called AARON Running. It is =
+a collection of videos and animations showing AARON composing works while r=
+unning on a computer. While my project is a in process, you can take a snea=
+k peak at the link below. If you go to slide 4 you can see the a slide sequ=
+ence animation of the Turtle drawing and thereby see how an AARON compositi=
+on was drawn by the Turtle. I also have on slide 5 a 1980 video of AARON co=
+mposing a Turtle Era work on screen. While it is not 1977 or 1979 it still =
+demonstrates how AARON would have composed similar works.
+=C2=A0https://docs.google.com/presentation/d/1k6Ba5DNmJyEXRy761WeI1HzeYoz6J=
+Z87NdS9GwJTHf0/edit?usp=3Dsharing=C2=A0
+Regarding the murals and your question=C2=A0just so I'm clear: these are mu=
+ral panels made of wood, hand painted by Harold, and not made by the Turtle=
+ at all?=C2=A0
+Short Answer Turtle was not used in the making of any mural
+Detailed AnswerThe murals in the studio are large cloth panels (not canvas =
+and not wood panels). They are folded cloth sheets, bundled together and wr=
+apped in plastic and taped up. The panels were stuck together using velcro.=
+ There were a dozen+ public commission murals executed onsite including UCS=
+D, Stanford, Digital Equipment and others. I don=E2=80=99t know too much ab=
+out the base material for these. None of these are in the studio. The Turtl=
+e was not used in the making of any mural. They were, like you say, hand-pa=
+inted.=C2=A0
+Regarding the execution of the work at Gazelli and your questionThere are o=
+nly three examples=C2=A0of the large scale drawings on canvas (like the one=
+ we have), but they were also painted by Harold from B+W negatives projecte=
+d, not made by the Turtle either?=C2=A0Short Answer Correct=C2=A0Detailed A=
+nswerWith respect to the execution of the 3 canvases including the one at G=
+azelli, AARON was responsible for the composition of the line drawing. Six =
+negatives were made of the composition =E2=80=94 split into upper left, mid=
+dle upper, upper right and 3 more for the bottom. The canvas was stapled to=
+ the wall at his UCSD studio. The film based images were projected onto the=
+ canvas and hand traced. The color composition and color choices were decid=
+ed, mixed and applied by Harold Cohen.=C2=A0
+SummaryTurtle works =3D> paper only =E2=80=94 AARON Composed executed by Tu=
+rtle=C2=A0Canvas & Mural works =3D> non-paper =E2=80=94 AARON Composed exec=
+uted by hand
+If you need any thing else or further clarification let me know,Tom
+
+    On Wednesday, March 12, 2025 at 10:36:05 AM PDT, George Lionel Barker <=
+george@gazelliarthouse.com> wrote: =20
+=20
+ Hey Tom,=C2=A0
+Interesting!=C2=A0
+You mentioned that you "might have the mural panels in the studio or we mig=
+ht not..." I appreciate that would be a big, inconvenient undertaking, so t=
+here is no need to do anything about that. But just so I'm clear: these are=
+ mural panels made of wood, hand painted by Harold, and not made by the Tur=
+tle at all? And the only large scale drawings made by the Turtle were on pa=
+per? Sorry I keep coming back to this, but I just want to understand. There=
+ are only three examples=C2=A0of the large scale drawings on canvas (like t=
+he one we have), but they were also painted by Harold from B+W negatives pr=
+ojected, not made by the Turtle either?=C2=A0
+Looking=C2=A0forward to hearing from you,=C2=A0
+George=C2=A0
+
+
+LONDONLilly Fenichel: Against the Grain
+BAKU=C2=A0Parallel Worlds: Chris Levine, Michael Takeo Magruder, Marshmallo=
+w Laser Feast, Elnara Nasirli, Recycle Group, Nye Thompson
+GAZELL.iO=C2=A0February Resident |=C2=A0Sofia CrespoProject Space |=C2=A000=
+ Zhang: Honey
+www.gazelliarthouse.com+44 (0) 207 491 8816 / +994 (0) 12 498 1230=C2=A0
+
+
+
+This e-mail message, including all attachments, is for the=C2=A0sole use of=
+ the intended recipient(s) and may contain=C2=A0legally privileged and conf=
+idential information. If you are=C2=A0not an intended recipient, you are he=
+reby notified that=C2=A0you have either received this message in error or t=
+hrough=C2=A0interception, and that any=C2=A0review, use, distribution,=C2=
+=A0copying or disclosure of this message and/or its=C2=A0attachments or par=
+ts thereof is strictly prohibited and is=C2=A0subject to criminal and civil=
+ penalties with appropriate=C2=A0national legislation.
+=E1=90=A7
+On Wed, 12 Mar 2025 at 16:40, Thomas Machnik <zipnpup@yahoo.com> wrote:
+
+ Hi George,I have an additional comment. Although, it is more like a questi=
+on mark. Below are two photos. The first one (0394A RA26) with the tire swi=
+ng shape behind Harold is the one now at the Tate. The second one (Slide-03=
+94b no RA) is unidentified.=C2=A0 As my research focus for Valentina=C2=A0R=
+avaglia=C2=A0was to clarify the title of the work, I did not research more =
+deeply about the unidentified one. I would like to think the unidentified o=
+ne was the one Harold asked me to destroy sometime ago. If not, then this a=
+ question mark.
+Tom
+Slide0394a =E2=80=93 HC w/RA26 (AKA AARON #1) =C2=A0 Slide0394b HC w/Uniden=
+tified=C2=A0painting
+
+    On Wednesday, March 12, 2025 at 03:38:29 AM PDT, George Lionel Barker <=
+george@gazelliarthouse.com> wrote: =20
+=20
+ Hi Tom,=C2=A0
+Sorry for the delay in getting back to you.=C2=A0 This is really useful inf=
+ormation. Thanks very much for sending it, I appreciate it.=C2=A0
+George=C2=A0
+LONDONLilly Fenichel: Against the Grain
+BAKU=C2=A0Parallel Worlds: Chris Levine, Michael Takeo Magruder, Marshmallo=
+w Laser Feast, Elnara Nasirli, Recycle Group, Nye Thompson
+GAZELL.iO=C2=A0February Resident |=C2=A0Sofia CrespoProject Space |=C2=A000=
+ Zhang: Honey
+www.gazelliarthouse.com+44 (0) 207 491 8816 / +994 (0) 12 498 1230=C2=A0
+
+
+
+This e-mail message, including all attachments, is for the=C2=A0sole use of=
+ the intended recipient(s) and may contain=C2=A0legally privileged and conf=
+idential information. If you are=C2=A0not an intended recipient, you are he=
+reby notified that=C2=A0you have either received this message in error or t=
+hrough=C2=A0interception, and that any=C2=A0review, use, distribution,=C2=
+=A0copying or disclosure of this message and/or its=C2=A0attachments or par=
+ts thereof is strictly prohibited and is=C2=A0subject to criminal and civil=
+ penalties with appropriate=C2=A0national legislation.
+=E1=90=A7
+On Mon, 10 Mar 2025 at 19:08, Thomas Machnik <zipnpup@yahoo.com> wrote:
+
+=20
+
+George,
+
+The works at Documenta =E2=80=9977 were ink on paper drawn by the Turtle. A=
+ccording to notes/correspondences from Harold, he claims they were given to=
+ schools. I have found no evidence of the potential names of the schools. B=
+asically the same answer for the Stedlijk show also 1977. These too were wo=
+rks on paper given to schools yet to be located.=C2=A0
+
+
+As for the full color paintings that are not murals, there are 3:
+  =20
+   -   =20
+RA26 now with Tate previously shown at they 1979 Reno Nevada show and also =
+known as Reno 2 or AARON Drawing #1
+
+   -   =20
+RA40 sent to Gazelli also shown previously at Reno and known as Reno 1
+
+   -   =20
+RA46 now with Thoma not known to have been shown at a show prior to the Tho=
+ma acquisition =E2=80=93 was shown on TV while in process of being painted
+
+
+
+As for the 1979 SFMOMA show, two things were going on. One, the Turtle was =
+making drawings on paper just like Stedlijk and Documenta. Two, the mural b=
+ehind him was executed onsite. I don=E2=80=99t yet know what happened to th=
+e mural. We might have the mural panels in the studio or we might not. I di=
+d open one of the folded panels a few years ago. That panel looked like a p=
+anel from the early 1980s =E2=80=93 possibly the one shown at the Tate in t=
+he early 1980s. It was certainly not 1979. I could try opening up other pan=
+els but it may need to wait as the only space to accommodate the size of th=
+ese panels is the living room and the family has visitors this week. That i=
+s, unless, I can figure something else out. I hope we have it as that would=
+ explain what happened to the SFMOMA mural. I know this maybe a whole =E2=
+=80=98nother=E2=80=99 can of worms but there are other pre-1980 murals. The=
+y may not necessarily be paintings on canvas but they may exist in public s=
+pace. This is on our list to do but not much has been down towards that yet=
+.=C2=A0
+Tom
+    On Monday, March 10, 2025 at 10:49:22 AM PDT, George Lionel Barker <geo=
+rge@gazelliarthouse.com> wrote: =20
+=20
+ Hi Tom,=C2=A0
+Many thanks for getting back to me.=C2=A0
+Apologies for any confusion. My question was: do you know if there are any =
+of the large 'Turtle' paintings, aside from the Tate, in public/museum coll=
+ections? I was wondering if any of the museum shows where=C2=A0he produced =
+those works (image attached, SFMoMA 1979, for example) had kept them in the=
+ir=C2=A0permanent collection. But if, as you say 'there are =E2=80=9Cno" kn=
+own works that exist=E2=80=93=C2=A0 at all =E2=80=93 that were composed and=
+ executed at any of these shows'. Then that's the answer. I'm curious what =
+happened to them, but I guess they were destroyed=C2=A0and not acquired by =
+the Museums at the time?=C2=A0
+Thanks for sending over such a detailed document of the work in the Tate co=
+llection too. I really appreciate the in-depth research.=C2=A0
+Thanks again,=C2=A0
+George=C2=A0
+
+LONDONLilly Fenichel: Against the Grain
+BAKU=C2=A0Parallel Worlds: Chris Levine, Michael Takeo Magruder, Marshmallo=
+w Laser Feast, Elnara Nasirli, Recycle Group, Nye Thompson
+GAZELL.iO=C2=A0February Resident |=C2=A0Sofia CrespoProject Space |=C2=A000=
+ Zhang: Honey
+www.gazelliarthouse.com+44 (0) 207 491 8816 / +994 (0) 12 498 1230=C2=A0
+
+
+
+This e-mail message, including all attachments, is for the=C2=A0sole use of=
+ the intended recipient(s) and may contain=C2=A0legally privileged and conf=
+idential information. If you are=C2=A0not an intended recipient, you are he=
+reby notified that=C2=A0you have either received this message in error or t=
+hrough=C2=A0interception, and that any=C2=A0review, use, distribution,=C2=
+=A0copying or disclosure of this message and/or its=C2=A0attachments or par=
+ts thereof is strictly prohibited and is=C2=A0subject to criminal and civil=
+ penalties with appropriate=C2=A0national legislation.
+=E1=90=A7
+On Mon, 10 Mar 2025 at 16:25, Thomas Machnik <zipnpup@yahoo.com> wrote:
+
+=20
+Hi George,
+
+I am not sure I understand the question correctly. So, just to be clear, of=
+ the three shows you mention, there are =E2=80=9Cno" known works that exist=
+=E2=80=93=C2=A0 at all =E2=80=93 that were composed and executed at any of =
+these shows.=C2=A0
+
+
+If we are referring to canvas works, there were 3 executed after these show=
+s. One is now at the Tate. One is with Thoma. And we sent you the 3rd one. =
+We have a 4th canvas work that is black lines only in the studio =E2=80=93 =
+no coloring. I did a detailed investigation for Valentina Ravaglia of the T=
+ate into their work (RA26) for their Electric Dreams which you can view her=
+e if interested.=C2=A0
+
+RA26 (Oct 1979) - A Deeper Look
+
+Shortly after I began working for Harold, he had me destroy a canvas work w=
+hich may have been from that same period. But I really don=E2=80=99t know. =
+It might have been more recent.=C2=A0
+
+
+We have a tiny collection of early non-canvas works. These are folded cloth=
+ works. Some are multi-panel-mural works, others a single panel. I hope to =
+get to document them this year. The time period range of these works is not=
+ known but I rather think they are late 1970s early 1980s.=C2=A0
+
+
+If there are additional works out there, I am not aware of them. When I loo=
+ked into the details and origins of the Tate=E2=80=99s RA26, I did not come=
+ across any information suggesting more than the known 4 canvas works were =
+executed in the 1977-1979 style of AARON.=C2=A0
+
+
+Hope that helps, if you need anything else let me know,
+
+Tom
+
+
+    On Monday, March 10, 2025 at 05:29:55 AM PDT, George Lionel Barker <geo=
+rge@gazelliarthouse.com> wrote: =20
+=20
+ Hi Tom and Paul,=C2=A0
+I hope you are both doing well?=C2=A0
+Aside from the Tate, do you know how many of the large Turtle paintings are=
+ in museum or public collections? Shows at that time include Documenta 6, g=
+roup show (1977), Stedejilk, solo show (1977) and SFMoMA, solo (1979).=C2=
+=A0
+Really appreciate=C2=A0your help, as always!=C2=A0
+George=C2=A0
+
+
+
+LONDONLilly Fenichel: Against the Grain
+BAKU=C2=A0Parallel Worlds: Chris Levine, Michael Takeo Magruder, Marshmallo=
+w Laser Feast, Elnara Nasirli, Recycle Group, Nye Thompson
+GAZELL.iO=C2=A0February Resident |=C2=A0Sofia CrespoProject Space |=C2=A000=
+ Zhang: Honey
+www.gazelliarthouse.com+44 (0) 207 491 8816 / +994 (0) 12 498 1230=C2=A0
+
+
+
+This e-mail message, including all attachments, is for the=C2=A0sole use of=
+ the intended recipient(s) and may contain=C2=A0legally privileged and conf=
+idential information. If you are=C2=A0not an intended recipient, you are he=
+reby notified that=C2=A0you have either received this message in error or t=
+hrough=C2=A0interception, and that any=C2=A0review, use, distribution,=C2=
+=A0copying or disclosure of this message and/or its=C2=A0attachments or par=
+ts thereof is strictly prohibited and is=C2=A0subject to criminal and civil=
+ penalties with appropriate=C2=A0national legislation.=E1=90=A7 =20
+ =20
+ =20
+ =20
+------=_Part_1847070_960391683.1741818299564
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head></head><body><div class=3D"ydp542b4c9ayahoo-style-wrap" style=
+=3D"font-family:Helvetica Neue, Helvetica, Arial, sans-serif;font-size:16px=
+;"><div></div>
+        <div dir=3D"ltr" data-setdir=3D"false">Hi George,</div><div dir=3D"=
+ltr" data-setdir=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"false"=
+><b>Regarding</b> what was made by the Turtle and your question:</div><div =
+dir=3D"ltr" data-setdir=3D"false"><span>&nbsp;"And the only large scale dra=
+wings made by the Turtle were on paper? "</span><br></div><div dir=3D"ltr" =
+data-setdir=3D"false"><b>Short Answer </b>YES</div><div dir=3D"ltr" data-se=
+tdir=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"false"><b>Detailed=
+ Answer</b></div><div dir=3D"ltr" data-setdir=3D"false">The actual Turtle d=
+id not drawn directly on canvas. Instead, the Turtle made marks on photogra=
+phic backdrop paper cut to size approximately 8 x 16 feet. Some were colore=
+d by school children. The works were composed by AARON and drawn using the =
+Turtle. Drawing was executed on the floor and the computer guided the Turtl=
+e remotely with no human intervention. The Turtle=E2=80=99s position was re=
+layed back to the computer using ultrasonic navigation. &nbsp;I am working =
+on a project called AARON Running. It is a collection of videos and animati=
+ons showing AARON composing works while running on a computer. While my pro=
+ject is a in process, you can take a sneak peak at the link below. If you g=
+o to slide 4 you can see the a slide sequence animation of the Turtle drawi=
+ng and thereby see how an AARON composition was drawn by the Turtle. I also=
+ have on slide 5 a 1980 video of AARON composing a Turtle Era work on scree=
+n. While it is not 1977 or 1979 it still demonstrates how AARON would have =
+composed similar works.<br></div><div dir=3D"ltr" data-setdir=3D"false">&nb=
+sp;<a href=3D"https://docs.google.com/presentation/d/1k6Ba5DNmJyEXRy761WeI1=
+HzeYoz6JZ87NdS9GwJTHf0/edit?usp=3Dsharing" target=3D"_blank" rel=3D"norefer=
+rer noopener">https://docs.google.com/presentation/d/1k6Ba5DNmJyEXRy761WeI1=
+HzeYoz6JZ87NdS9GwJTHf0/edit?usp=3Dsharing</a>&nbsp;</div><div dir=3D"ltr" d=
+ata-setdir=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"false"><b>Re=
+garding </b>the murals and your question</div><div dir=3D"ltr" data-setdir=
+=3D"false"><span>&nbsp;just so I'm clear: these are mural panels made of wo=
+od, hand painted by Harold, and not made by the Turtle at all?&nbsp;</span>=
+<br></div><div dir=3D"ltr" data-setdir=3D"false"><b>Short Answer </b>Turtle=
+ was not used in the making of any mural</div><div dir=3D"ltr" data-setdir=
+=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"false"><b>Detailed Ans=
+wer</b></div><div dir=3D"ltr" data-setdir=3D"false">The murals in the studi=
+o are large cloth panels (not canvas and not wood panels). They are folded =
+cloth sheets, bundled together and wrapped in plastic and taped up. The pan=
+els were stuck together using velcro. There were a dozen+ public commission=
+ murals executed onsite including UCSD, Stanford, Digital Equipment and oth=
+ers. I don=E2=80=99t know too much about the base material for these. None =
+of these are in the studio. The Turtle was not used in the making of any mu=
+ral. They were, like you say, hand-painted.&nbsp;</div><div dir=3D"ltr" dat=
+a-setdir=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"false"><b>Rega=
+rding </b>the execution of the work at Gazelli and your question</div><div =
+dir=3D"ltr" data-setdir=3D"false">There are only three examples&nbsp;of the=
+ large scale drawings on canvas (like the one we have), but they were also =
+painted by Harold from B+W negatives projected, not made by the Turtle eith=
+er?&nbsp;</div><div dir=3D"ltr" data-setdir=3D"false"><b>Short Answer </b>C=
+orrect</div><div dir=3D"ltr" data-setdir=3D"false"><b>&nbsp;</b></div><div =
+dir=3D"ltr" data-setdir=3D"false"><b>Detailed Answer</b></div><div dir=3D"l=
+tr" data-setdir=3D"false">With respect to the execution of the 3 canvases i=
+ncluding the one at Gazelli, AARON was responsible for the composition of t=
+he line drawing. Six negatives were made of the composition =E2=80=94 split=
+ into upper left, middle upper, upper right and 3 more for the bottom. The =
+canvas was stapled to the wall at his UCSD studio. The film based images we=
+re projected onto the canvas and hand traced. The color composition and col=
+or choices were decided, mixed and applied by Harold Cohen.&nbsp;</div><div=
+ dir=3D"ltr" data-setdir=3D"false"><br></div><div dir=3D"ltr" data-setdir=
+=3D"false"><b>Summary</b></div><div dir=3D"ltr" data-setdir=3D"false">Turtl=
+e works =3D&gt; paper only =E2=80=94 AARON Composed executed by Turtle&nbsp=
+;</div><div dir=3D"ltr" data-setdir=3D"false">Canvas &amp; Mural works =3D&=
+gt; non-paper =E2=80=94 AARON Composed executed by hand</div><div dir=3D"lt=
+r" data-setdir=3D"false"><br></div><div dir=3D"ltr" data-setdir=3D"false">I=
+f you need any thing else or further clarification let me know,</div><div d=
+ir=3D"ltr" data-setdir=3D"false">Tom</div><div dir=3D"ltr" data-setdir=3D"f=
+alse"><br></div><div dir=3D"ltr" data-setdir=3D"false"><br></div>
+       =20
+        <div id=3D"ydp542b4c9ayahoo_quoted_1819579000" class=3D"ydp542b4c9a=
+yahoo_quoted">
+            <div style=3D"font-family:'Helvetica Neue', Helvetica, Arial, s=
+ans-serif;font-size:13px;">
+               =20
+                <div>
+                    On Wednesday, March 12, 2025 at 10:36:05 AM PDT, George=
+ Lionel Barker &lt;george@gazelliarthouse.com&gt; wrote:
+                </div>
+                <div><br></div>
+                <div><br></div>
+                <div><div id=3D"ydp542b4c9ayiv0143316616"><div><div dir=3D"=
+ltr"><div>Hey Tom,&nbsp;</div><div><br clear=3D"none"></div><div>Interestin=
+g!&nbsp;</div><div><br clear=3D"none"></div><div>You mentioned that you "<s=
+pan style=3D"color:rgb(29,29,29);font-family:Arial, sans-serif;">might have=
+ the mural panels in the studio or we might not</span>..." I appreciate tha=
+t would be a big, inconvenient undertaking, so there is no need to do anyth=
+ing about that. But just so I'm clear: these are mural panels made of wood,=
+ hand painted by Harold, and not made by the Turtle at all? And the only la=
+rge scale drawings made by the Turtle were on paper? Sorry I keep coming ba=
+ck to this, but I just want to understand. There are only three examples&nb=
+sp;of the large scale drawings on canvas (like the one we have), but they w=
+ere also painted by Harold from B+W negatives projected, not made by the Tu=
+rtle either?&nbsp;</div><div><br clear=3D"none"></div><div>Looking&nbsp;for=
+ward to hearing from you,&nbsp;</div><div><br clear=3D"none"></div><div>Geo=
+rge&nbsp;</div><div><br clear=3D"none"></div><div><br clear=3D"none"></div>=
+<div><br clear=3D"none"></div><div><div dir=3D"ltr" class=3D"ydp542b4c9ayiv=
+0143316616gmail_signature"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"lt=
+r"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div=
+ dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D=
+"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><=
+div dir=3D"ltr"><div dir=3D"ltr"><div style=3D"padding-top: 0px; padding-ri=
+ght: 0px; padding-left: 0px;"><div style=3D"margin:0px;padding:0px 0px 20px=
+;width:1116px;"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div><div dir=3D"ltr">=
+<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div di=
+r=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"lt=
+r"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div=
+ dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D=
+"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><=
+div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr" style=3D"color:rgb(34,34,34);"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div style=3D"padding-top: 0px; padding-right: 0px; p=
+adding-left: 0px; font-family: Roboto, RobotoDraft, Helvetica, Arial, sans-=
+serif;"><div style=3D"margin:0px;min-width:0px;padding:0px 0px 20px;width:i=
+nitial;"><div style=3D"margin:8px 0px 0px;padding:0px;"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr" style=3D"font-family:Arial, Helvetica, sans-serif;"><div dir=3D"lt=
+r"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div=
+ dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><span></span><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><font=
+ face=3D"arial, sans-serif" color=3D"#000000">LONDON</font></div><div dir=
+=3D"ltr"><a shape=3D"rect" href=3D"https://886b17ba.streaklinks.com/CWIOumu=
+r6x13FUkggAePo1Q7/https%3A%2F%2Fgazelliarthouse.com%2Fexhibitions%2F191-aga=
+inst-the-grain-lilly-fenichel%2F" style=3D"font-family:arial, sans-serif;co=
+lor:rgb(17,85,204);" target=3D"_blank" rel=3D"noreferrer noopener">Lilly Fe=
+nichel: Against the Grain</a></div><div><span style=3D"color:rgb(0,0,0);fon=
+t-family:arial, sans-serif;"><br clear=3D"none"></span></div><div><span sty=
+le=3D"color:rgb(0,0,0);font-family:arial, sans-serif;">BAKU&nbsp;</span></d=
+iv><div><a shape=3D"rect" href=3D"https://886b17ba.streaklinks.com/CWIOumu3=
+t7uk7ywJMQNCEvOh/https%3A%2F%2Fgazelliarthouse.com%2Fexhibitions%2F188-para=
+llel-worlds-chris-levine-michael-takeo-magruder-marshmallow-laser-feast%2F"=
+ style=3D"color:rgb(17,85,204);" target=3D"_blank" rel=3D"noreferrer noopen=
+er">Parallel Worlds: Chris Levine, Michael Takeo Magruder, Marshmallow Lase=
+r Feast, Elnara Nasirli, Recycle Group, Nye Thompson</a></div><div dir=3D"l=
+tr"><div><font color=3D"#000000" face=3D"arial, sans-serif"><br clear=3D"no=
+ne"></font></div><div><font color=3D"#000000" face=3D"arial, sans-serif">GA=
+ZELL.iO&nbsp;</font></div><div><span style=3D"font-family:arial, sans-serif=
+;">February Resident |&nbsp;</span><a shape=3D"rect" href=3D"https://886b17=
+ba.streaklinks.com/CWIOumuurqNWoP23UgGu9Xvu/https%3A%2F%2Fgazell.io%2Fpages=
+%2Fsofia-crespo" style=3D"color:rgb(17,85,204);font-family:arial, sans-seri=
+f;" target=3D"_blank" rel=3D"noreferrer noopener">Sofia Crespo</a></div><di=
+v><span style=3D"font-family:arial, sans-serif;">Project Space |&nbsp;</spa=
+n><font color=3D"#1155cc" face=3D"arial, sans-serif"><a shape=3D"rect" href=
+=3D"https://886b17ba.streaklinks.com/CWIOumujY8l_P8SI7whOvA4F/https%3A%2F%2=
+Fgazell.io%2Fcollections%2F00-zhang-honey" style=3D"color:rgb(17,85,204);" =
+target=3D"_blank" rel=3D"noreferrer noopener">00 Zhang: Honey</a></font></d=
+iv></div><div><br clear=3D"none"></div></div></div></div></div></div></div>=
+</div></div></div></div></div></div></div></div><div dir=3D"ltr"><font face=
+=3D"arial, sans-serif"></font><div><a shape=3D"rect" href=3D"http://www.gaz=
+elliarthouse.com/" style=3D"color:rgb(17,85,204);" target=3D"_blank" rel=3D=
+"noreferrer noopener"><font color=3D"#0b5394">www.gazelliarthouse.com</font=
+></a></div><div>+44 (0) 207 491 8816 / +994 (0) 12 498 1230</div></div></di=
+v></div></div></div></div></div><div dir=3D"ltr"><font face=3D"arial, sans-=
+serif"></font><div><div><font color=3D"#000000"><a shape=3D"rect" href=3D"h=
+ttps://886b17ba.streaklinks.com/CWIOum22NnXBQX3enwjUfayK/https%3A%2F%2Fwww.=
+instagram.com%2Fgazelliarthouse%2F" style=3D"color:rgb(17,85,204);display:i=
+nline-block;" target=3D"_blank" rel=3D"noreferrer noopener"><img src=3D"htt=
+ps://68ef2f69c7787d4078ac-7864ae55ba174c40683f10ab811d9167.ssl.cf1.rackcdn.=
+com/instagram-icon_24x24.png" width=3D"24" style=3D"margin: 0.8em 0.2em; pa=
+dding: 0px; letter-spacing: -0.1px; border-width: 0px; border-style: none; =
+border-color: currentcolor; vertical-align: middle; max-width: 100%;" data-=
+inlineimagemanipulating=3D"true" draggable=3D"false"><div style=3D"margin:0=
+px;width:0px;min-height:0px;"><div></div></div></a><a shape=3D"rect" href=
+=3D"https://886b17ba.streaklinks.com/CWIOumud3f79BfFijw2nejjM/https%3A%2F%2=
+Ftwitter.com%2FGazelliArtHouse" style=3D"color:rgb(17,85,204);display:inlin=
+e-block;" target=3D"_blank" rel=3D"noreferrer noopener"><img src=3D"https:/=
+/68ef2f69c7787d4078ac-7864ae55ba174c40683f10ab811d9167.ssl.cf1.rackcdn.com/=
+twitter-icon_24x24.png" width=3D"24" style=3D"margin: 0.8em 0.2em; padding:=
+ 0px; letter-spacing: -0.1px; border-width: 0px; border-style: none; border=
+-color: currentcolor; vertical-align: middle; max-width: 100%;" data-inline=
+imagemanipulating=3D"true" draggable=3D"false"><div style=3D"margin:0px;wid=
+th:0px;min-height:0px;"><div></div></div></a>&nbsp;<a shape=3D"rect" href=
+=3D"https://886b17ba.streaklinks.com/CWIOumuVlY5xdA-qAgmhjJHZ/https%3A%2F%2=
+Fwww.facebook.com%2FGazelliArtHouse%2F" style=3D"color:rgb(17,85,204);displ=
+ay:inline-block;" target=3D"_blank" rel=3D"noreferrer noopener"><img src=3D=
+"https://68ef2f69c7787d4078ac-7864ae55ba174c40683f10ab811d9167.ssl.cf1.rack=
+cdn.com/facebook-icon_24x24.png" width=3D"24" style=3D"margin: 0.8em 0.2em;=
+ padding: 0px; letter-spacing: -0.1px; border-width: 0px; border-style: non=
+e; border-color: currentcolor; vertical-align: middle; max-width: 100%;" da=
+ta-inlineimagemanipulating=3D"true" draggable=3D"false"></a></font></div></=
+div><div><br clear=3D"none"></div><div><img width=3D"96" height=3D"44" src=
+=3D"https://ci3.googleusercontent.com/mail-sig/AIorK4w7gKovNZAR8tYAuQ9hIjEi=
+BgWel9uIDPpW34GyeY595Rek12deHDAlPE9ZZxtPymKBYCzaHBU" data-inlineimagemanipu=
+lating=3D"true" draggable=3D"false"><br clear=3D"none"></div><div><br clear=
+=3D"none"></div><div><br clear=3D"none"></div><div><font color=3D"#000000">=
+This e-mail message, including all attachments, is for the&nbsp;sole use of=
+ the intended recipient(s) and may contain&nbsp;legally privileged and conf=
+idential information. If you are&nbsp;not an intended recipient, you are he=
+reby notified that&nbsp;you have either received this message in error or t=
+hrough&nbsp;interception, and that any&nbsp;review, use, distribution,&nbsp=
+;copying or disclosure of this message and/or its&nbsp;attachments or parts=
+ thereof is strictly prohibited and is&nbsp;subject to criminal and civil p=
+enalties with appropriate&nbsp;national legislation.</font></div></div></di=
+v></div></div></div></div></div></div></div></div></div></div></div></div><=
+/div></div></div></div></div></div></div></div></div></div></div></div></di=
+v></div></div></div></div></div></div></div></div></div></div></div></div><=
+/div></div></div></div></div></div></div></div></div><div style=3D"color:rg=
+b(34,34,34);"><div dir=3D"ltr"><div dir=3D"ltr"><div><div></div></div></div=
+></div></div></div></div></div></div></div></div></div></div></div></div></=
+div></div></div></div></div></div></div></div></div></div></div></div></div=
+></div></div></div></div></div></div></div></div><div style=3D"color:rgb(34=
+,34,34);"><div dir=3D"ltr"><div dir=3D"ltr"></div></div></div></div></div><=
+/div></div></div></div></div></div></div></div></div></div></div></div></di=
+v></div></div></div></div></div></div></div></div></div></div></div></div><=
+/div></div></div></div></div></div></div></div></div></div></div></div></di=
+v></div></div></div></div></div></div></div></div></div></div></div></div><=
+/div></div></div></div></div></div></div></div></div></div></div></div></di=
+v></div></div></div></div></div></div></div></div></div></div></div></div><=
+/div></div></div></div></div></div></div></div></div></div></div></div></di=
+v></div></div></div></div></div></div></div></div></div><div style=3D"margi=
+n:8px 0px 0px;padding:0px;"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"l=
+tr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><di=
+v dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div><div dir=3D"ltr"><div dir=3D"ltr"><div></div></div></div></div><div>=
+<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div di=
+r=3D"ltr"><div dir=3D"ltr"><span></span></div></div></div></div></div></div=
+></div></div></div></div></div></div></div></div></div></div></div></div></=
+div></div></div></div></div></div></div></div></div></div></div></div></div=
+></div></div></div></div></div></div></div></div></div></div></div></div></=
+div></div></div><br clear=3D"none"></div><div style=3D"min-height: 1px;"><i=
+mg alt=3D"" style=3D"width: 0px;" src=3D"https://mailfoogae.appspot.com/t?s=
+ender=3DaZ2VvcmdlQGdhemVsbGlhcnRob3VzZS5jb20%3D&amp;type=3Dzerocontent&amp;=
+guid=3Df6ef538c-5988-4648-a2d0-9ad22b2c4afb" data-inlineimagemanipulating=
+=3D"true" data-id=3D"1741804534186" draggable=3D"false"><font color=3D"#fff=
+fff" size=3D"1">=E1=90=A7</font></div><br clear=3D"none"><div id=3D"ydp542b=
+4c9ayiv0143316616yqt38658" class=3D"ydp542b4c9ayiv0143316616yqt2119719826">=
+<div class=3D"ydp542b4c9ayiv0143316616gmail_quote"><div dir=3D"ltr" class=
+=3D"ydp542b4c9ayiv0143316616gmail_attr">On Wed, 12 Mar 2025 at 16:40, Thoma=
+s Machnik &lt;<a shape=3D"rect" href=3D"mailto:zipnpup@yahoo.com" target=3D=
+"_blank" rel=3D"noreferrer noopener">zipnpup@yahoo.com</a>&gt; wrote:<br cl=
+ear=3D"none"></div><blockquote style=3D"margin:0px 0px 0px 0.8ex;border-lef=
+t:1px solid rgb(204,204,204);padding-left:1ex;" class=3D"ydp542b4c9ayiv0143=
+316616gmail_quote"><div><div style=3D"font-family:Helvetica, Arial, sans-se=
+rif;font-size:16px;"><div style=3D"font-family:Helvetica, Arial, sans-serif=
+;font-size:16px;"></div>
+        <div dir=3D"ltr" style=3D"font-family:Helvetica, Arial, sans-serif;=
+font-size:16px;">Hi George,</div><div dir=3D"ltr" style=3D"font-family:Helv=
+etica, Arial, sans-serif;font-size:16px;">I have an additional comment. Alt=
+hough, it is more like a question mark. Below are two photos. The first one=
+ (0394A RA26) with the tire swing shape behind Harold is the one now at the=
+ Tate. The second one (Slide-0394b no RA) is unidentified.&nbsp; As my rese=
+arch focus for Valentina&nbsp;<span style=3D"font-family:Arial, sans-serif;=
+">Ravaglia</span>&nbsp;was to clarify the title of the work, I did not rese=
+arch more deeply about the unidentified one. I would like to think the unid=
+entified one was the one Harold asked me to destroy sometime ago. If not, t=
+hen this a question mark.</div><div dir=3D"ltr" style=3D"font-family:Helvet=
+ica, Arial, sans-serif;font-size:16px;"><br clear=3D"none"></div><div dir=
+=3D"ltr" style=3D"font-family:Helvetica, Arial, sans-serif;font-size:16px;"=
+>Tom</div><div dir=3D"ltr" style=3D"font-family:Helvetica, Arial, sans-seri=
+f;font-size:16px;"><br clear=3D"none"></div><div dir=3D"ltr" style=3D"font-=
+family:Helvetica, Arial, sans-serif;font-size:16px;"><img src=3D"https://lh=
+7-rt.googleusercontent.com/docsz/AD_4nXc5maPhT7G-EZP4fAasPtDsF8Ndx1wUkvzbtR=
+FFCUBepKoLP3zTwTzUosBbOLcilCVIx4JLrEmEkG7EiqTSNTS3K96JehOmcVrAWaFSoMy794Gn2=
+SuFyVVGFr3A5kzd1xqIgxi2TDnE0pJLhKlmFTj-B2U?key=3D4cOhj3AoKLyE-ezPsrnR0A" st=
+yle=3D"font-family:Arial, sans-serif;font-size:11pt;color:rgb(0, 0, 0);marg=
+in-left:0px;margin-top:0px;width:284px;max-width:800px;" data-inlineimagema=
+nipulating=3D"true" data-id=3D"1741804534186" draggable=3D"false"><img src=
+=3D"https://lh7-rt.googleusercontent.com/docsz/AD_4nXeQ-1TrUg1srO_L9HqR65Dk=
+FJG5JCqRDLdMlJOXmbBNCu8QjGlOUNdWxs5EubVv9_Pw77RSOPgX16XzKE6x8iGwf2lV8iJCLMd=
+14RG2FVDppXTXkCWONi37adXZ9P3BmGEDm8YJE6v-dHyjFzYriWUFEsR4?key=3D4cOhj3AoKLy=
+E-ezPsrnR0A" style=3D"font-family:Arial, sans-serif;font-size:11pt;color:rg=
+b(0, 0, 0);margin-left:0px;margin-top:0px;width:284px;max-width:800px;" dat=
+a-inlineimagemanipulating=3D"true" data-id=3D"1741804534186" draggable=3D"f=
+alse"></div><div dir=3D"ltr"><span id=3D"ydp542b4c9ayiv0143316616m_50330047=
+36732594662m_-6698405388969486826ydp739a3bfcdocs-internal-guid-68027671-7ff=
+f-5973-b536-b82ccff3d3d1"><span style=3D"vertical-align:baseline;"><font co=
+lor=3D"#000000" face=3D"Arial, sans-serif" style=3D"background-color:inheri=
+t;"><span style=3D"font-size:11pt;">Slide0394a =E2=80=93 HC w/RA26 (AKA AAR=
+ON #1) &nbsp; Slide0394b HC w/</span><span style=3D"font-size:14.6667px;">U=
+nidentified</span><span style=3D"font-size:11pt;">&nbsp;painting</span></fo=
+nt></span></span><br clear=3D"none"></div><div style=3D"font-family:Helveti=
+ca, Arial, sans-serif;font-size:16px;"><br clear=3D"none"></div>
+       =20
+        <div id=3D"ydp542b4c9ayiv0143316616m_5033004736732594662m_-66984053=
+88969486826ydpaea19446yahoo_quoted_2712854557" style=3D"font-family:Helveti=
+ca, Arial, sans-serif;font-size:16px;">
+            <div style=3D"font-family:Helvetica, Arial, sans-serif;font-siz=
+e:13px;">
+               =20
+                <div>
+                    On Wednesday, March 12, 2025 at 03:38:29 AM PDT, George=
+ Lionel Barker &lt;<a shape=3D"rect" href=3D"mailto:george@gazelliarthouse.=
+com" target=3D"_blank" rel=3D"noreferrer noopener">george@gazelliarthouse.c=
+om</a>&gt; wrote:
+                </div>
+                <div><br clear=3D"none"></div>
+                <div><br clear=3D"none"></div>
+                <div><div id=3D"ydp542b4c9ayiv0143316616m_50330047367325946=
+62m_-6698405388969486826ydpaea19446yiv8059158930"><div><div dir=3D"ltr"><di=
+v>Hi Tom,&nbsp;</div><div><br clear=3D"none"></div><div>Sorry for the delay=
+ in getting back to you.&nbsp; This is really useful information. Thanks ve=
+ry much for sending it, I appreciate it.&nbsp;</div><div><br clear=3D"none"=
+></div><div>George&nbsp;</div><div><br clear=3D"none"></div><div><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div style=3D"padding-top:0px;padding-right:0px;padding-left=
+:0px;"><div style=3D"margin:0px;padding:0px 0px 20px;width:1116px;"><div di=
+r=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"lt=
+r"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div=
+ dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D=
+"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><=
+div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div><div dir=3D"ltr"><div dir=3D"ltr"><div di=
+r=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"lt=
+r"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div=
+ dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D=
+"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><=
+div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr">=
+<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div di=
+r=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"lt=
+r"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div=
+ dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D=
+"ltr" style=3D"color:rgb(34,34,34);"><div dir=3D"ltr"><div dir=3D"ltr"><div=
+ style=3D"padding-top:0px;padding-right:0px;padding-left:0px;font-family:Ro=
+boto, RobotoDraft, Helvetica, Arial, sans-serif;"><div style=3D"margin:0px;=
+min-width:0px;padding:0px 0px 20px;width:initial;"><div style=3D"margin:8px=
+ 0px 0px;padding:0px;"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><=
+div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr" style=3D"font-family:Aria=
+l, Helvetica, sans-serif;"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"lt=
+r"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div=
+ dir=3D"ltr"><span></span><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><font face=3D"arial, sans-serif" color=
+=3D"#000000">LONDON</font></div><div dir=3D"ltr"><a shape=3D"rect" href=3D"=
+https://886b17ba.streaklinks.com/CWGvJK-sLJHWxn0EsguMb2bk/https%3A%2F%2Fgaz=
+elliarthouse.com%2Fexhibitions%2F191-against-the-grain-lilly-fenichel%2F" s=
+tyle=3D"font-family:arial, sans-serif;color:rgb(17,85,204);" target=3D"_bla=
+nk" rel=3D"noreferrer noopener">Lilly Fenichel: Against the Grain</a></div>=
+<div><span style=3D"color:rgb(0,0,0);font-family:arial, sans-serif;"><br cl=
+ear=3D"none"></span></div><div><span style=3D"color:rgb(0,0,0);font-family:=
+arial, sans-serif;">BAKU&nbsp;</span></div><div><a shape=3D"rect" href=3D"h=
+ttps://886b17ba.streaklinks.com/CWGvJK-a2pzJ90UQkwE0a9HW/https%3A%2F%2Fgaze=
+lliarthouse.com%2Fexhibitions%2F188-parallel-worlds-chris-levine-michael-ta=
+keo-magruder-marshmallow-laser-feast%2F" style=3D"color:rgb(17,85,204);" ta=
+rget=3D"_blank" rel=3D"noreferrer noopener">Parallel Worlds: Chris Levine, =
+Michael Takeo Magruder, Marshmallow Laser Feast, Elnara Nasirli, Recycle Gr=
+oup, Nye Thompson</a></div><div dir=3D"ltr"><div><font color=3D"#000000" fa=
+ce=3D"arial, sans-serif"><br clear=3D"none"></font></div><div><font color=
+=3D"#000000" face=3D"arial, sans-serif">GAZELL.iO&nbsp;</font></div><div><s=
+pan style=3D"font-family:arial, sans-serif;">February Resident |&nbsp;</spa=
+n><a shape=3D"rect" href=3D"https://886b17ba.streaklinks.com/CWGvJK-ODoIfU9=
+ZmRw_skgH3/https%3A%2F%2Fgazell.io%2Fpages%2Fsofia-crespo" style=3D"color:r=
+gb(17,85,204);font-family:arial, sans-serif;" target=3D"_blank" rel=3D"nore=
+ferrer noopener">Sofia Crespo</a></div><div><span style=3D"font-family:aria=
+l, sans-serif;">Project Space |&nbsp;</span><font color=3D"#1155cc" face=3D=
+"arial, sans-serif"><a shape=3D"rect" href=3D"https://886b17ba.streaklinks.=
+com/CWGvJK-WViQpAcP6AAcGaRgc/https%3A%2F%2Fgazell.io%2Fcollections%2F00-zha=
+ng-honey" style=3D"color:rgb(17,85,204);" target=3D"_blank" rel=3D"noreferr=
+er noopener">00 Zhang: Honey</a></font></div></div><div><br clear=3D"none">=
+</div></div></div></div></div></div></div></div></div></div></div></div></d=
+iv></div></div><div dir=3D"ltr"><font face=3D"arial, sans-serif"></font><di=
+v><a shape=3D"rect" href=3D"http://www.gazelliarthouse.com/" style=3D"color=
+:rgb(17,85,204);" target=3D"_blank" rel=3D"noreferrer noopener"><font color=
+=3D"#0b5394">www.gazelliarthouse.com</font></a></div><div>+44 (0) 207 491 8=
+816 / +994 (0) 12 498 1230</div></div></div></div></div></div></div></div><=
+div dir=3D"ltr"><font face=3D"arial, sans-serif"></font><div><div><font col=
+or=3D"#000000"><a shape=3D"rect" href=3D"https://886b17ba.streaklinks.com/C=
+WGvJK-fnzXL_bmdmw4Ed95A/https%3A%2F%2Fwww.instagram.com%2Fgazelliarthouse%2=
+F" style=3D"color:rgb(17,85,204);display:inline-block;" target=3D"_blank" r=
+el=3D"noreferrer noopener"><img src=3D"https://68ef2f69c7787d4078ac-7864ae5=
+5ba174c40683f10ab811d9167.ssl.cf1.rackcdn.com/instagram-icon_24x24.png" wid=
+th=3D"24" style=3D"margin:0.8em 0.2em;padding:0px;letter-spacing:-0.1px;bor=
+der-width:0px;border-style:none;border-color:currentcolor;vertical-align:mi=
+ddle;max-width:100%;" data-inlineimagemanipulating=3D"true" draggable=3D"fa=
+lse"><div style=3D"margin:0px;width:0px;min-height:0px;"><div></div></div><=
+/a><a shape=3D"rect" href=3D"https://886b17ba.streaklinks.com/CWGvJK-5-e3kK=
+tRXBgE-BeaT/https%3A%2F%2Ftwitter.com%2FGazelliArtHouse" style=3D"color:rgb=
+(17,85,204);display:inline-block;" target=3D"_blank" rel=3D"noreferrer noop=
+ener"><img src=3D"https://68ef2f69c7787d4078ac-7864ae55ba174c40683f10ab811d=
+9167.ssl.cf1.rackcdn.com/twitter-icon_24x24.png" width=3D"24" style=3D"marg=
+in:0.8em 0.2em;padding:0px;letter-spacing:-0.1px;border-width:0px;border-st=
+yle:none;border-color:currentcolor;vertical-align:middle;max-width:100%;" d=
+ata-inlineimagemanipulating=3D"true" draggable=3D"false"><div style=3D"marg=
+in:0px;width:0px;min-height:0px;"><div></div></div></a>&nbsp;<a shape=3D"re=
+ct" href=3D"https://886b17ba.streaklinks.com/CWGvJLHh4TruWOh7bgoIB_dk/https=
+%3A%2F%2Fwww.facebook.com%2FGazelliArtHouse%2F" style=3D"color:rgb(17,85,20=
+4);display:inline-block;" target=3D"_blank" rel=3D"noreferrer noopener"><im=
+g src=3D"https://68ef2f69c7787d4078ac-7864ae55ba174c40683f10ab811d9167.ssl.=
+cf1.rackcdn.com/facebook-icon_24x24.png" width=3D"24" style=3D"margin:0.8em=
+ 0.2em;padding:0px;letter-spacing:-0.1px;border-width:0px;border-style:none=
+;border-color:currentcolor;vertical-align:middle;max-width:100%;" data-inli=
+neimagemanipulating=3D"true" draggable=3D"false"></a></font></div></div><di=
+v><br clear=3D"none"></div><div><img width=3D"96" height=3D"44" src=3D"http=
+s://ci3.googleusercontent.com/mail-sig/AIorK4w7gKovNZAR8tYAuQ9hIjEiBgWel9uI=
+DPpW34GyeY595Rek12deHDAlPE9ZZxtPymKBYCzaHBU" data-inlineimagemanipulating=
+=3D"true" draggable=3D"false"><br clear=3D"none"></div><div><br clear=3D"no=
+ne"></div><div><br clear=3D"none"></div><div><font color=3D"#000000">This e=
+-mail message, including all attachments, is for the&nbsp;sole use of the i=
+ntended recipient(s) and may contain&nbsp;legally privileged and confidenti=
+al information. If you are&nbsp;not an intended recipient, you are hereby n=
+otified that&nbsp;you have either received this message in error or through=
+&nbsp;interception, and that any&nbsp;review, use, distribution,&nbsp;copyi=
+ng or disclosure of this message and/or its&nbsp;attachments or parts there=
+of is strictly prohibited and is&nbsp;subject to criminal and civil penalti=
+es with appropriate&nbsp;national legislation.</font></div></div></div></di=
+v></div></div></div></div></div></div></div></div></div></div></div></div><=
+/div></div></div></div></div></div></div></div></div></div></div></div></di=
+v></div></div></div></div></div></div></div></div></div></div></div></div><=
+/div></div></div></div></div></div></div></div><div style=3D"color:rgb(34,3=
+4,34);"><div dir=3D"ltr"><div dir=3D"ltr"><div><div></div></div></div></div=
+></div></div></div></div></div></div></div></div></div></div></div></div></=
+div></div></div></div></div></div></div></div></div></div></div></div></div=
+></div></div></div></div></div></div></div><div style=3D"color:rgb(34,34,34=
+);"><div dir=3D"ltr"><div dir=3D"ltr"></div></div></div></div></div></div><=
+/div></div></div></div></div></div></div></div></div></div></div></div></di=
+v></div></div></div></div></div></div></div></div></div></div></div></div><=
+/div></div></div></div></div></div></div></div></div></div></div></div></di=
+v></div></div></div></div></div></div></div></div></div></div></div></div><=
+/div></div></div></div></div></div></div></div></div></div></div></div></di=
+v></div></div></div></div></div></div></div></div></div></div></div></div><=
+/div></div></div></div></div></div></div></div></div></div></div></div></di=
+v></div></div></div></div></div></div></div></div><div style=3D"margin:8px =
+0px 0px;padding:0px;"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div>=
+<div dir=3D"ltr"><div dir=3D"ltr"><div></div></div></div></div><div><div di=
+r=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"lt=
+r"><div dir=3D"ltr"><span></span></div></div></div></div></div></div></div>=
+</div></div></div></div></div></div></div></div></div></div></div></div></d=
+iv></div></div></div></div></div></div></div></div></div></div></div></div>=
+</div></div></div></div></div></div></div></div></div></div></div></div></d=
+iv></div><br clear=3D"none"></div><div style=3D"min-height:1px;"><img alt=
+=3D"" style=3D"width:0px;" src=3D"https://mailfoogae.appspot.com/t?sender=
+=3DaZ2VvcmdlQGdhemVsbGlhcnRob3VzZS5jb20%3D&amp;type=3Dzerocontent&amp;guid=
+=3D80ce1330-5cc8-4ee8-b721-96515f0d94ed" data-inlineimagemanipulating=3D"tr=
+ue" data-id=3D"1741804534186" draggable=3D"false"><font color=3D"#ffffff" s=
+ize=3D"1">=E1=90=A7</font></div><br clear=3D"none"><div id=3D"ydp542b4c9ayi=
+v0143316616m_5033004736732594662m_-6698405388969486826ydpaea19446yiv8059158=
+930yqt11092"><div><div dir=3D"ltr">On Mon, 10 Mar 2025 at 19:08, Thomas Mac=
+hnik &lt;<a shape=3D"rect" href=3D"mailto:zipnpup@yahoo.com" target=3D"_bla=
+nk" rel=3D"noreferrer noopener">zipnpup@yahoo.com</a>&gt; wrote:<br clear=
+=3D"none"></div><blockquote style=3D"margin:0px 0px 0px 0.8ex;border-left:1=
+px solid rgb(204,204,204);padding-left:1ex;"><div><div style=3D"font-family=
+:Helvetica, Arial, sans-serif;font-size:16px;"><div></div>
+        <div dir=3D"ltr"><div><br clear=3D"none"></div><div><span id=3D"ydp=
+542b4c9ayiv0143316616m_5033004736732594662m_-6698405388969486826ydpaea19446=
+yiv8059158930m_-7417840049820570468ydpc4813f14docs-internal-guid-c7acc220-7=
+fff-7162-28ea-4bf116a64bbd" style=3D"color:rgb(0,0,0);"></span><p dir=3D"lt=
+r" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style=
+=3D"font-size:12pt;font-family:Arial, sans-serif;color:rgb(29,29,29);vertic=
+al-align:baseline;">George,</span></p><p dir=3D"ltr" style=3D"line-height:1=
+.38;margin-top:0pt;margin-bottom:0pt;"><span style=3D"font-size:12pt;font-f=
+amily:Arial, sans-serif;color:rgb(29,29,29);vertical-align:baseline;">The w=
+orks at Documenta =E2=80=9977 were ink on paper drawn by the Turtle. Accord=
+ing to notes/correspondences from Harold, he claims they were given to scho=
+ols. I have found no evidence of the potential names of the schools. Basica=
+lly the same answer for the Stedlijk show also 1977. These too were works o=
+n paper given to schools yet to be located.&nbsp;</span></p><br clear=3D"no=
+ne"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0=
+pt;"><span style=3D"font-size:12pt;font-family:Arial, sans-serif;color:rgb(=
+29,29,29);vertical-align:baseline;">As for the full color paintings that ar=
+e not murals, there are 3:</span></p><ol style=3D"margin-top:0px;margin-bot=
+tom:0px;"><li dir=3D"ltr" style=3D"list-style-type:decimal;font-size:12pt;f=
+ont-family:Arial, sans-serif;color:rgb(29,29,29);vertical-align:baseline;">=
+<p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;"=
+><span style=3D"font-size:12pt;vertical-align:baseline;">RA26 now with Tate=
+ previously shown at they 1979 Reno Nevada show and also known as Reno 2 or=
+ AARON Drawing #1</span></p></li><li dir=3D"ltr" style=3D"list-style-type:d=
+ecimal;font-size:12pt;font-family:Arial, sans-serif;color:rgb(29,29,29);ver=
+tical-align:baseline;"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:=
+0pt;margin-bottom:0pt;"><span style=3D"font-size:12pt;vertical-align:baseli=
+ne;">RA40 sent to Gazelli also shown previously at Reno and known as Reno 1=
+</span></p></li><li dir=3D"ltr" style=3D"list-style-type:decimal;font-size:=
+12pt;font-family:Arial, sans-serif;color:rgb(29,29,29);vertical-align:basel=
+ine;"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom=
+:0pt;"><span style=3D"font-size:12pt;vertical-align:baseline;">RA46 now wit=
+h Thoma not known to have been shown at a show prior to the Thoma acquisiti=
+on =E2=80=93 was shown on TV while in process of being painted</span></p></=
+li></ol><br clear=3D"none"><p dir=3D"ltr" style=3D"line-height:1.38;margin-=
+top:0pt;margin-bottom:0pt;"><span style=3D"font-size:12pt;font-family:Arial=
+, sans-serif;color:rgb(29,29,29);vertical-align:baseline;">As for the </spa=
+n><span style=3D"font-size:12pt;font-family:Arial, sans-serif;color:rgb(29,=
+29,29);font-weight:700;vertical-align:baseline;">1979 SFMOMA </span><span s=
+tyle=3D"font-size:12pt;font-family:Arial, sans-serif;color:rgb(29,29,29);ve=
+rtical-align:baseline;">show, two things were going on. One, the Turtle was=
+ making drawings on paper just like Stedlijk and Documenta. Two, the mural =
+behind him was executed onsite. I don=E2=80=99t yet know what happened to t=
+he mural. We might have the mural panels in the studio or we might not. I d=
+id open one of the folded panels a few years ago. That panel looked like a =
+panel from the early 1980s =E2=80=93 possibly the one shown at the Tate in =
+the early 1980s. It was certainly not 1979. I could try opening up other pa=
+nels but it may need to wait as the only space to accommodate the size of t=
+hese panels is the living room and the family has visitors this week. That =
+is, unless, I can figure something else out. I hope we have it as that woul=
+d explain what happened to the SFMOMA mural. I know this maybe a whole =E2=
+=80=98nother=E2=80=99 can of worms but there are other pre-1980 murals. The=
+y may not necessarily be paintings on canvas but they may exist in public s=
+pace. This is on our list to do but not much has been down towards that yet=
+.&nbsp;</span></p><div><span style=3D"font-size:12pt;font-family:Arial, san=
+s-serif;color:rgb(29,29,29);vertical-align:baseline;">Tom</span></div></div=
+></div><div><br clear=3D"none"></div>
+       =20
+        <div id=3D"ydp542b4c9ayiv0143316616m_5033004736732594662m_-66984053=
+88969486826ydpaea19446yiv8059158930m_-7417840049820570468ydp582c6cebyahoo_q=
+uoted_2184577644">
+            <div style=3D"font-family:Helvetica, Arial, sans-serif;font-siz=
+e:13px;">
+               =20
+                <div>
+                    On Monday, March 10, 2025 at 10:49:22 AM PDT, George Li=
+onel Barker &lt;<a shape=3D"rect" href=3D"mailto:george@gazelliarthouse.com=
+" target=3D"_blank" rel=3D"noreferrer noopener">george@gazelliarthouse.com<=
+/a>&gt; wrote:
+                </div>
+                <div><br clear=3D"none"></div>
+                <div><br clear=3D"none"></div>
+                <div><div id=3D"ydp542b4c9ayiv0143316616m_50330047367325946=
+62m_-6698405388969486826ydpaea19446yiv8059158930m_-7417840049820570468ydp58=
+2c6cebyiv3522094107"><div><div dir=3D"ltr"><div>Hi Tom,&nbsp;</div><div><br=
+ clear=3D"none"></div><div>Many thanks for getting back to me.&nbsp;</div><=
+div><br clear=3D"none"></div><div>Apologies for any confusion. My question =
+was: do you know if there are any of the large 'Turtle' paintings, aside fr=
+om the Tate, in public/museum collections? I was wondering if any of the mu=
+seum shows where&nbsp;he produced those works (image attached, SFMoMA 1979,=
+ for example) had kept them in their&nbsp;permanent collection. But if, as =
+you say '<span style=3D"color:rgb(29,29,29);font-family:Arial, sans-serif;"=
+>there are =E2=80=9Cno" known works that exist=E2=80=93&nbsp; at all =E2=80=
+=93 that were composed and executed at any of these shows'. Then that's the=
+ answer. I'm curious what happened to them, but I guess they were destroyed=
+&nbsp;and not acquired by the Museums at the time?&nbsp;</span></div><div><=
+span style=3D"color:rgb(29,29,29);font-family:Arial, sans-serif;"><br clear=
+=3D"none"></span></div><div><span style=3D"color:rgb(29,29,29);font-family:=
+Arial, sans-serif;">Thanks for sending over such a detailed document of the=
+ work in the Tate collection too. I really appreciate the in-depth research=
+.&nbsp;</span></div><div><span style=3D"color:rgb(29,29,29);font-family:Ari=
+al, sans-serif;"><br clear=3D"none"></span></div><div><span style=3D"color:=
+rgb(29,29,29);font-family:Arial, sans-serif;">Thanks again,&nbsp;</span></d=
+iv><div><span style=3D"color:rgb(29,29,29);font-family:Arial, sans-serif;">=
+<br clear=3D"none"></span></div><div><span style=3D"color:rgb(29,29,29);fon=
+t-family:Arial, sans-serif;">George&nbsp;</span></div><div><br clear=3D"non=
+e"></div><div><br clear=3D"none"></div><div><div dir=3D"ltr"><div dir=3D"lt=
+r"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div=
+ dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D=
+"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><=
+div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div sty=
+le=3D"padding-top:0px;padding-right:0px;padding-left:0px;"><div style=3D"ma=
+rgin:0px;padding:0px 0px 20px;width:1116px;"><div dir=3D"ltr"><div dir=3D"l=
+tr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><di=
+v dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr">=
+<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div di=
+r=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"lt=
+r"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div=
+ dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr" style=3D"co=
+lor:rgb(34,34,34);"><div dir=3D"ltr"><div dir=3D"ltr"><div style=3D"padding=
+-top:0px;padding-right:0px;padding-left:0px;font-family:Roboto, RobotoDraft=
+, Helvetica, Arial, sans-serif;"><div style=3D"margin:0px;min-width:0px;pad=
+ding:0px 0px 20px;width:initial;"><div style=3D"margin:8px 0px 0px;padding:=
+0px;"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><=
+div dir=3D"ltr"><div dir=3D"ltr" style=3D"font-family:Arial, Helvetica, san=
+s-serif;"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"lt=
+r"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><spa=
+n></span><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><font face=3D"arial, sans-serif" color=3D"#000000">LONDO=
+N</font></div><div dir=3D"ltr"><a shape=3D"rect" href=3D"https://886b17ba.s=
+treaklinks.com/CV9-kaGWVvSwD3do0QhoJYl-/https%3A%2F%2Fgazelliarthouse.com%2=
+Fexhibitions%2F191-against-the-grain-lilly-fenichel%2F" style=3D"font-famil=
+y:arial, sans-serif;color:rgb(17,85,204);" target=3D"_blank" rel=3D"norefer=
+rer noopener">Lilly Fenichel: Against the Grain</a></div><div><span style=
+=3D"color:rgb(0,0,0);font-family:arial, sans-serif;"><br clear=3D"none"></s=
+pan></div><div><span style=3D"color:rgb(0,0,0);font-family:arial, sans-seri=
+f;">BAKU&nbsp;</span></div><div><a shape=3D"rect" href=3D"https://886b17ba.=
+streaklinks.com/CV9-kaG_v_VgJRRZYQHWrlDZ/https%3A%2F%2Fgazelliarthouse.com%=
+2Fexhibitions%2F188-parallel-worlds-chris-levine-michael-takeo-magruder-mar=
+shmallow-laser-feast%2F" style=3D"color:rgb(17,85,204);" target=3D"_blank" =
+rel=3D"noreferrer noopener">Parallel Worlds: Chris Levine, Michael Takeo Ma=
+gruder, Marshmallow Laser Feast, Elnara Nasirli, Recycle Group, Nye Thompso=
+n</a></div><div dir=3D"ltr"><div><font color=3D"#000000" face=3D"arial, san=
+s-serif"><br clear=3D"none"></font></div><div><font color=3D"#000000" face=
+=3D"arial, sans-serif">GAZELL.iO&nbsp;</font></div><div><span style=3D"font=
+-family:arial, sans-serif;">February Resident |&nbsp;</span><a shape=3D"rec=
+t" href=3D"https://886b17ba.streaklinks.com/CV9-kaG4eB_r-_uxkgyeJmwa/https%=
+3A%2F%2Fgazell.io%2Fpages%2Fsofia-crespo" style=3D"color:rgb(17,85,204);fon=
+t-family:arial, sans-serif;" target=3D"_blank" rel=3D"noreferrer noopener">=
+Sofia Crespo</a></div><div><span style=3D"font-family:arial, sans-serif;">P=
+roject Space |&nbsp;</span><font color=3D"#1155cc" face=3D"arial, sans-seri=
+f"><a shape=3D"rect" href=3D"https://886b17ba.streaklinks.com/CV9-kaGYWNvE2=
+hn7SwBbg2FC/https%3A%2F%2Fgazell.io%2Fcollections%2F00-zhang-honey" style=
+=3D"color:rgb(17,85,204);" target=3D"_blank" rel=3D"noreferrer noopener">00=
+ Zhang: Honey</a></font></div></div><div><br clear=3D"none"></div></div></d=
+iv></div></div></div></div></div></div></div></div></div></div></div></div>=
+<div dir=3D"ltr"><font face=3D"arial, sans-serif"></font><div><a shape=3D"r=
+ect" href=3D"http://www.gazelliarthouse.com/" style=3D"color:rgb(17,85,204)=
+;" target=3D"_blank" rel=3D"noreferrer noopener"><font color=3D"#0b5394">ww=
+w.gazelliarthouse.com</font></a></div><div>+44 (0) 207 491 8816 / +994 (0) =
+12 498 1230</div></div></div></div></div></div></div></div><div dir=3D"ltr"=
+><font face=3D"arial, sans-serif"></font><div><div><font color=3D"#000000">=
+<a shape=3D"rect" href=3D"https://886b17ba.streaklinks.com/CV9-kaG-_qJzkF7m=
+XwPxy41O/https%3A%2F%2Fwww.instagram.com%2Fgazelliarthouse%2F" style=3D"col=
+or:rgb(17,85,204);display:inline-block;" target=3D"_blank" rel=3D"noreferre=
+r noopener"><img src=3D"https://68ef2f69c7787d4078ac-7864ae55ba174c40683f10=
+ab811d9167.ssl.cf1.rackcdn.com/instagram-icon_24x24.png" width=3D"24" style=
+=3D"margin:0.8em 0.2em;padding:0px;letter-spacing:-0.1px;border-width:0px;b=
+order-style:none;border-color:currentcolor;vertical-align:middle;max-width:=
+100%;" data-inlineimagemanipulating=3D"true" draggable=3D"false"><div style=
+=3D"margin:0px;width:0px;min-height:0px;"><div></div></div></a><a shape=3D"=
+rect" href=3D"https://886b17ba.streaklinks.com/CV9-kaGeHvvs-Lv_gQDS7G3v/htt=
+ps%3A%2F%2Ftwitter.com%2FGazelliArtHouse" style=3D"color:rgb(17,85,204);dis=
+play:inline-block;" target=3D"_blank" rel=3D"noreferrer noopener"><img src=
+=3D"https://68ef2f69c7787d4078ac-7864ae55ba174c40683f10ab811d9167.ssl.cf1.r=
+ackcdn.com/twitter-icon_24x24.png" width=3D"24" style=3D"margin:0.8em 0.2em=
+;padding:0px;letter-spacing:-0.1px;border-width:0px;border-style:none;borde=
+r-color:currentcolor;vertical-align:middle;max-width:100%;" data-inlineimag=
+emanipulating=3D"true" draggable=3D"false"><div style=3D"margin:0px;width:0=
+px;min-height:0px;"><div></div></div></a>&nbsp;<a shape=3D"rect" href=3D"ht=
+tps://886b17ba.streaklinks.com/CV9-kaKxMUk-zVTr8AfRsitl/https%3A%2F%2Fwww.f=
+acebook.com%2FGazelliArtHouse%2F" style=3D"color:rgb(17,85,204);display:inl=
+ine-block;" target=3D"_blank" rel=3D"noreferrer noopener"><img src=3D"https=
+://68ef2f69c7787d4078ac-7864ae55ba174c40683f10ab811d9167.ssl.cf1.rackcdn.co=
+m/facebook-icon_24x24.png" width=3D"24" style=3D"margin:0.8em 0.2em;padding=
+:0px;letter-spacing:-0.1px;border-width:0px;border-style:none;border-color:=
+currentcolor;vertical-align:middle;max-width:100%;" data-inlineimagemanipul=
+ating=3D"true" draggable=3D"false"></a></font></div></div><div><br clear=3D=
+"none"></div><div><img width=3D"96" height=3D"44" src=3D"https://ci3.google=
+usercontent.com/mail-sig/AIorK4w7gKovNZAR8tYAuQ9hIjEiBgWel9uIDPpW34GyeY595R=
+ek12deHDAlPE9ZZxtPymKBYCzaHBU" data-inlineimagemanipulating=3D"true" dragga=
+ble=3D"false"><br clear=3D"none"></div><div><br clear=3D"none"></div><div><=
+br clear=3D"none"></div><div><font color=3D"#000000">This e-mail message, i=
+ncluding all attachments, is for the&nbsp;sole use of the intended recipien=
+t(s) and may contain&nbsp;legally privileged and confidential information. =
+If you are&nbsp;not an intended recipient, you are hereby notified that&nbs=
+p;you have either received this message in error or through&nbsp;intercepti=
+on, and that any&nbsp;review, use, distribution,&nbsp;copying or disclosure=
+ of this message and/or its&nbsp;attachments or parts thereof is strictly p=
+rohibited and is&nbsp;subject to criminal and civil penalties with appropri=
+ate&nbsp;national legislation.</font></div></div></div></div></div></div></=
+div></div></div></div></div></div></div></div></div></div></div></div></div=
+></div></div></div></div></div></div></div></div></div></div></div></div></=
+div></div></div></div></div></div></div></div></div></div></div></div></div=
+></div></div></div></div></div><div style=3D"color:rgb(34,34,34);"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div><div></div></div></div></div></div></div></d=
+iv></div></div></div></div></div></div></div></div></div></div></div></div>=
+</div></div></div></div></div></div></div></div></div></div></div></div></d=
+iv></div></div></div></div><div style=3D"color:rgb(34,34,34);"><div dir=3D"=
+ltr"><div dir=3D"ltr"></div></div></div></div></div></div></div></div></div=
+></div></div></div></div></div></div></div></div></div></div></div></div></=
+div></div></div></div></div></div></div></div></div></div></div></div></div=
+></div></div></div></div></div></div></div></div></div></div></div></div></=
+div></div></div></div></div></div></div></div></div></div></div></div></div=
+></div></div></div></div></div></div></div></div></div></div></div></div></=
+div></div></div></div></div></div></div></div></div></div></div></div></div=
+></div></div></div></div></div></div></div></div></div></div></div></div></=
+div></div></div></div></div></div><div style=3D"margin:8px 0px 0px;padding:=
+0px;"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><=
+div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div><div dir=3D"ltr">=
+<div dir=3D"ltr"><div></div></div></div></div><div><div dir=3D"ltr"><div di=
+r=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"lt=
+r"><span></span></div></div></div></div></div></div></div></div></div></div=
+></div></div></div></div></div></div></div></div></div></div></div></div></=
+div></div></div></div></div></div></div></div></div></div></div></div></div=
+></div></div></div></div></div></div></div></div></div></div></div><br clea=
+r=3D"none"></div><div style=3D"min-height:1px;"><img alt=3D"" style=3D"widt=
+h:0px;" src=3D"https://mailfoogae.appspot.com/t?sender=3DaZ2VvcmdlQGdhemVsb=
+GlhcnRob3VzZS5jb20%3D&amp;type=3Dzerocontent&amp;guid=3D91af11fe-bf76-4e1e-=
+8f7f-978cfb8c7db3" data-inlineimagemanipulating=3D"true" data-id=3D"1741804=
+534186" draggable=3D"false"><font color=3D"#ffffff" size=3D"1">=E1=90=A7</f=
+ont></div><br clear=3D"none"><div id=3D"ydp542b4c9ayiv0143316616m_503300473=
+6732594662m_-6698405388969486826ydpaea19446yiv8059158930m_-7417840049820570=
+468ydp582c6cebyiv3522094107yqt60770"><div><div dir=3D"ltr">On Mon, 10 Mar 2=
+025 at 16:25, Thomas Machnik &lt;<a shape=3D"rect" href=3D"mailto:zipnpup@y=
+ahoo.com" target=3D"_blank" rel=3D"noreferrer noopener">zipnpup@yahoo.com</=
+a>&gt; wrote:<br clear=3D"none"></div><blockquote style=3D"margin:0px 0px 0=
+px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex;"><div><di=
+v style=3D"font-family:Helvetica, Arial, sans-serif;font-size:16px;"><div><=
+/div>
+        <div dir=3D"ltr"><div><span id=3D"ydp542b4c9ayiv0143316616m_5033004=
+736732594662m_-6698405388969486826ydpaea19446yiv8059158930m_-74178400498205=
+70468ydp582c6cebyiv3522094107m_5676373241413562372m_-2481474780353897999ydp=
+d17870ccdocs-internal-guid-94b16d1e-7fff-3061-3baf-a6791a610edc" style=3D"c=
+olor:rgb(0,0,0);"></span><p dir=3D"ltr" style=3D"line-height:1.38;margin-to=
+p:0pt;margin-bottom:0pt;"><span style=3D"font-size:12pt;font-family:Arial, =
+sans-serif;color:rgb(29,29,29);vertical-align:baseline;">Hi George,</span><=
+/p><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0p=
+t;"><span style=3D"font-size:12pt;font-family:Arial, sans-serif;color:rgb(2=
+9,29,29);vertical-align:baseline;">I am not sure I understand the question =
+correctly. So, just to be clear, of the three shows you mention, there are =
+=E2=80=9Cno" known works that exist=E2=80=93&nbsp; at all =E2=80=93 that we=
+re composed and executed at any of these shows.&nbsp;</span></p><br clear=
+=3D"none"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bo=
+ttom:0pt;"><span style=3D"font-size:12pt;font-family:Arial, sans-serif;colo=
+r:rgb(29,29,29);vertical-align:baseline;">If we are referring to canvas wor=
+ks, there were 3 executed after these shows. One is now at the Tate. One is=
+ with Thoma. And we sent you the 3rd one. We have a 4th canvas work that is=
+ black lines only in the studio =E2=80=93 no coloring. I did a detailed inv=
+estigation for Valentina Ravaglia of the Tate into their work (RA26) for th=
+eir Electric Dreams which you can view here if interested.&nbsp;</span></p>=
+<p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;"=
+><span style=3D"font-size:11pt;font-family:Arial, sans-serif;color:rgb(17,8=
+5,204);font-weight:700;text-decoration:underline;vertical-align:baseline;">=
+<a shape=3D"rect" href=3D"https://docs.google.com/presentation/d/1OC0hF9Pt3=
+fRs8PBIgBQMF8shL5WZFNjIotzWs8ROll0/edit?usp=3Dsharing" target=3D"_blank" re=
+l=3D"noreferrer noopener">RA26 (Oct 1979) -  A Deeper Look</a></span></p><p=
+ dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><=
+span style=3D"font-size:11pt;font-family:Arial, sans-serif;vertical-align:b=
+aseline;">Shortly after I began working for Harold, he had me destroy a can=
+vas work which may have been from that same period. But I really don=E2=80=
+=99t know. It might have been more recent.&nbsp;</span></p><br clear=3D"non=
+e"><p dir=3D"ltr" style=3D"line-height:1.38;margin-top:0pt;margin-bottom:0p=
+t;"><span style=3D"font-size:11pt;font-family:Arial, sans-serif;vertical-al=
+ign:baseline;">We have a tiny collection of early non-canvas works. These a=
+re folded cloth works. Some are multi-panel-mural works, others a single pa=
+nel. I hope to get to document them this year. The time period range of the=
+se works is not known but I rather think they are late 1970s early 1980s.&n=
+bsp;</span></p><br clear=3D"none"><p dir=3D"ltr" style=3D"line-height:1.38;=
+margin-top:0pt;margin-bottom:0pt;"><span style=3D"font-size:11pt;font-famil=
+y:Arial, sans-serif;vertical-align:baseline;">If there are additional works=
+ out there, I am not aware of them. When I looked into the details and orig=
+ins of the Tate=E2=80=99s RA26, I did not come across any information sugge=
+sting more than the known 4 canvas works were executed in the 1977-1979 sty=
+le of AARON.&nbsp;</span></p><br clear=3D"none"><p dir=3D"ltr" style=3D"lin=
+e-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style=3D"font-size:1=
+1pt;font-family:Arial, sans-serif;vertical-align:baseline;">Hope that helps=
+, if you need anything else let me know,</span></p><p dir=3D"ltr" style=3D"=
+line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><span style=3D"font-siz=
+e:11pt;font-family:Arial, sans-serif;vertical-align:baseline;">Tom</span></=
+p><br clear=3D"none"></div></div><div><br clear=3D"none"></div>
+       =20
+        <div id=3D"ydp542b4c9ayiv0143316616m_5033004736732594662m_-66984053=
+88969486826ydpaea19446yiv8059158930m_-7417840049820570468ydp582c6cebyiv3522=
+094107m_5676373241413562372m_-2481474780353897999ydpbfca6a6yahoo_quoted_180=
+0584589">
+            <div style=3D"font-family:Helvetica, Arial, sans-serif;font-siz=
+e:13px;">
+               =20
+                <div>
+                    On Monday, March 10, 2025 at 05:29:55 AM PDT, George Li=
+onel Barker &lt;<a shape=3D"rect" href=3D"mailto:george@gazelliarthouse.com=
+" target=3D"_blank" rel=3D"noreferrer noopener">george@gazelliarthouse.com<=
+/a>&gt; wrote:
+                </div>
+                <div><br clear=3D"none"></div>
+                <div><br clear=3D"none"></div>
+                <div><div id=3D"ydp542b4c9ayiv0143316616m_50330047367325946=
+62m_-6698405388969486826ydpaea19446yiv8059158930m_-7417840049820570468ydp58=
+2c6cebyiv3522094107m_5676373241413562372m_-2481474780353897999ydpbfca6a6yiv=
+0065785541"><div dir=3D"ltr"><div>Hi Tom and Paul,&nbsp;</div><div><br clea=
+r=3D"none"></div><div>I hope you are both doing well?&nbsp;</div><div><br c=
+lear=3D"none"></div><div>Aside from the Tate, do you know how many of the l=
+arge Turtle paintings are in museum or public collections? Shows at that ti=
+me include Documenta 6, group show (1977), Stedejilk, solo show (1977) and =
+SFMoMA, solo (1979).&nbsp;</div><div><br clear=3D"none"></div><div>Really a=
+ppreciate&nbsp;your help, as always!&nbsp;</div><div><br clear=3D"none"></d=
+iv><div>George&nbsp;</div><div><br clear=3D"none"></div><div><br clear=3D"n=
+one"></div><div><br clear=3D"none"></div><div><br clear=3D"none"></div><div=
+><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div d=
+ir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"l=
+tr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><di=
+v dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div style=3D"padding-top:0px;padding-right:0px;p=
+adding-left:0px;"><div style=3D"margin:0px;padding:0px 0px 20px;width:1116p=
+x;"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><di=
+v dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div><div dir=3D"ltr"><div dir=3D"ltr">=
+<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div di=
+r=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"lt=
+r"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div=
+ dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D=
+"ltr"><div dir=3D"ltr" style=3D"color:rgb(34,34,34);"><div dir=3D"ltr"><div=
+ dir=3D"ltr"><div style=3D"padding-top:0px;padding-right:0px;padding-left:0=
+px;font-family:Roboto, RobotoDraft, Helvetica, Arial, sans-serif;"><div sty=
+le=3D"margin:0px;min-width:0px;padding:0px 0px 20px;width:initial;"><div st=
+yle=3D"margin:8px 0px 0px;padding:0px;"><div dir=3D"ltr"><div dir=3D"ltr"><=
+div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr" style=3D=
+"font-family:Arial, Helvetica, sans-serif;"><div dir=3D"ltr"><div dir=3D"lt=
+r"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div=
+ dir=3D"ltr"><div dir=3D"ltr"><span></span><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><font face=3D"arial, s=
+ans-serif" color=3D"#000000">LONDON</font></div><div dir=3D"ltr"><a shape=
+=3D"rect" href=3D"https://886b17ba.streaklinks.com/CV81eEYOTjwJAupjPAxJB2UC=
+/https%3A%2F%2Fgazelliarthouse.com%2Fexhibitions%2F191-against-the-grain-li=
+lly-fenichel%2F" style=3D"font-family:arial, sans-serif;color:rgb(17,85,204=
+);" target=3D"_blank" rel=3D"noreferrer noopener">Lilly Fenichel: Against t=
+he Grain</a></div><div><span style=3D"color:rgb(0,0,0);font-family:arial, s=
+ans-serif;"><br clear=3D"none"></span></div><div><span style=3D"color:rgb(0=
+,0,0);font-family:arial, sans-serif;">BAKU&nbsp;</span></div><div><a shape=
+=3D"rect" href=3D"https://886b17ba.streaklinks.com/CV81eEUPz38UDn5CTAcupqn7=
+/https%3A%2F%2Fgazelliarthouse.com%2Fexhibitions%2F188-parallel-worlds-chri=
+s-levine-michael-takeo-magruder-marshmallow-laser-feast%2F" style=3D"color:=
+rgb(17,85,204);" target=3D"_blank" rel=3D"noreferrer noopener">Parallel Wor=
+lds: Chris Levine, Michael Takeo Magruder, Marshmallow Laser Feast, Elnara =
+Nasirli, Recycle Group, Nye Thompson</a></div><div dir=3D"ltr"><div><font c=
+olor=3D"#000000" face=3D"arial, sans-serif"><br clear=3D"none"></font></div=
+><div><font color=3D"#000000" face=3D"arial, sans-serif">GAZELL.iO&nbsp;</f=
+ont></div><div><span style=3D"font-family:arial, sans-serif;">February Resi=
+dent |&nbsp;</span><a shape=3D"rect" href=3D"https://886b17ba.streaklinks.c=
+om/CV81eEYU1HRDCRomoAY_dnaM/https%3A%2F%2Fgazell.io%2Fpages%2Fsofia-crespo"=
+ style=3D"color:rgb(17,85,204);font-family:arial, sans-serif;" target=3D"_b=
+lank" rel=3D"noreferrer noopener">Sofia Crespo</a></div><div><span style=3D=
+"font-family:arial, sans-serif;">Project Space |&nbsp;</span><font color=3D=
+"#1155cc" face=3D"arial, sans-serif"><a shape=3D"rect" href=3D"https://886b=
+17ba.streaklinks.com/CV81eEcp6T2jDxpwSAC1BbFm/https%3A%2F%2Fgazell.io%2Fcol=
+lections%2F00-zhang-honey" style=3D"color:rgb(17,85,204);" target=3D"_blank=
+" rel=3D"noreferrer noopener">00 Zhang: Honey</a></font></div></div><div><b=
+r clear=3D"none"></div></div></div></div></div></div></div></div></div></di=
+v></div></div></div></div></div><div dir=3D"ltr"><font face=3D"arial, sans-=
+serif"></font><div><a shape=3D"rect" href=3D"http://www.gazelliarthouse.com=
+/" style=3D"color:rgb(17,85,204);" target=3D"_blank" rel=3D"noreferrer noop=
+ener"><font color=3D"#0b5394">www.gazelliarthouse.com</font></a></div><div>=
++44 (0) 207 491 8816 / +994 (0) 12 498 1230</div></div></div></div></div></=
+div></div></div><div dir=3D"ltr"><font face=3D"arial, sans-serif"></font><d=
+iv><div><font color=3D"#000000"><a shape=3D"rect" href=3D"https://886b17ba.=
+streaklinks.com/CV81eEYOTpCy9yc2oQzS4lxO/https%3A%2F%2Fwww.instagram.com%2F=
+gazelliarthouse%2F" style=3D"color:rgb(17,85,204);display:inline-block;" ta=
+rget=3D"_blank" rel=3D"noreferrer noopener"><img src=3D"https://68ef2f69c77=
+87d4078ac-7864ae55ba174c40683f10ab811d9167.ssl.cf1.rackcdn.com/instagram-ic=
+on_24x24.png" width=3D"24" style=3D"margin:0.8em 0.2em;padding:0px;letter-s=
+pacing:-0.1px;border-width:0px;border-style:none;border-color:currentcolor;=
+vertical-align:middle;max-width:100%;" data-inlineimagemanipulating=3D"true=
+" draggable=3D"false"><div style=3D"margin:0px;width:0px;min-height:0px;"><=
+div></div></div></a><a shape=3D"rect" href=3D"https://886b17ba.streaklinks.=
+com/CV81eEUmZpwszdnkog5nsktb/https%3A%2F%2Ftwitter.com%2FGazelliArtHouse" s=
+tyle=3D"color:rgb(17,85,204);display:inline-block;" target=3D"_blank" rel=
+=3D"noreferrer noopener"><img src=3D"https://68ef2f69c7787d4078ac-7864ae55b=
+a174c40683f10ab811d9167.ssl.cf1.rackcdn.com/twitter-icon_24x24.png" width=
+=3D"24" style=3D"margin:0.8em 0.2em;padding:0px;letter-spacing:-0.1px;borde=
+r-width:0px;border-style:none;border-color:currentcolor;vertical-align:midd=
+le;max-width:100%;" data-inlineimagemanipulating=3D"true" draggable=3D"fals=
+e"><div style=3D"margin:0px;width:0px;min-height:0px;"><div></div></div></a=
+>&nbsp;<a shape=3D"rect" href=3D"https://886b17ba.streaklinks.com/CV81eEYeX=
+nPhLwldAQtGOOpG/https%3A%2F%2Fwww.facebook.com%2FGazelliArtHouse%2F" style=
+=3D"color:rgb(17,85,204);display:inline-block;" target=3D"_blank" rel=3D"no=
+referrer noopener"><img src=3D"https://68ef2f69c7787d4078ac-7864ae55ba174c4=
+0683f10ab811d9167.ssl.cf1.rackcdn.com/facebook-icon_24x24.png" width=3D"24"=
+ style=3D"margin:0.8em 0.2em;padding:0px;letter-spacing:-0.1px;border-width=
+:0px;border-style:none;border-color:currentcolor;vertical-align:middle;max-=
+width:100%;" data-inlineimagemanipulating=3D"true" draggable=3D"false"></a>=
+</font></div></div><div><br clear=3D"none"></div><div><img width=3D"96" hei=
+ght=3D"44" src=3D"https://ci3.googleusercontent.com/mail-sig/AIorK4w7gKovNZ=
+AR8tYAuQ9hIjEiBgWel9uIDPpW34GyeY595Rek12deHDAlPE9ZZxtPymKBYCzaHBU" data-inl=
+ineimagemanipulating=3D"true" draggable=3D"false"><br clear=3D"none"></div>=
+<div><br clear=3D"none"></div><div><br clear=3D"none"></div><div><font colo=
+r=3D"#000000">This e-mail message, including all attachments, is for the&nb=
+sp;sole use of the intended recipient(s) and may contain&nbsp;legally privi=
+leged and confidential information. If you are&nbsp;not an intended recipie=
+nt, you are hereby notified that&nbsp;you have either received this message=
+ in error or through&nbsp;interception, and that any&nbsp;review, use, dist=
+ribution,&nbsp;copying or disclosure of this message and/or its&nbsp;attach=
+ments or parts thereof is strictly prohibited and is&nbsp;subject to crimin=
+al and civil penalties with appropriate&nbsp;national legislation.</font></=
+div></div></div></div></div></div></div></div></div></div></div></div></div=
+></div></div></div></div></div></div></div></div></div></div></div></div></=
+div></div></div></div></div></div></div></div></div></div></div></div></div=
+></div></div></div></div></div></div></div></div></div></div></div><div sty=
+le=3D"color:rgb(34,34,34);"><div dir=3D"ltr"><div dir=3D"ltr"><div><div></d=
+iv></div></div></div></div></div></div></div></div></div></div></div></div>=
+</div></div></div></div></div></div></div></div></div></div></div></div></d=
+iv></div></div></div></div></div></div></div></div></div></div><div style=
+=3D"color:rgb(34,34,34);"><div dir=3D"ltr"><div dir=3D"ltr"></div></div></d=
+iv></div></div></div></div></div></div></div></div></div></div></div></div>=
+</div></div></div></div></div></div></div></div></div></div></div></div></d=
+iv></div></div></div></div></div></div></div></div></div></div></div></div>=
+</div></div></div></div></div></div></div></div></div></div></div></div></d=
+iv></div></div></div></div></div></div></div></div></div></div></div></div>=
+</div></div></div></div></div></div></div></div></div></div></div></div></d=
+iv></div></div></div></div></div></div></div></div></div></div></div></div>=
+</div></div></div></div></div></div></div></div></div></div></div></div><di=
+v style=3D"margin:8px 0px 0px;padding:0px;"><div dir=3D"ltr"><div dir=3D"lt=
+r"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div=
+ dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D=
+"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><=
+div dir=3D"ltr"><div><div dir=3D"ltr"><div dir=3D"ltr"><div></div></div></d=
+iv></div><div><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><span></span></div></div></div><=
+/div></div></div></div></div></div></div></div></div></div></div></div></di=
+v></div></div></div></div></div></div></div></div></div></div></div></div><=
+/div></div></div></div></div></div></div></div></div></div></div></div></di=
+v></div></div></div></div></div></div><div style=3D"min-height:1px;"><img a=
+lt=3D"" style=3D"width:0px;" src=3D"https://mailfoogae.appspot.com/t?sender=
+=3DaZ2VvcmdlQGdhemVsbGlhcnRob3VzZS5jb20%3D&amp;type=3Dzerocontent&amp;guid=
+=3Dfd2bc286-63fd-4eb8-9598-9f2165646f01" data-inlineimagemanipulating=3D"tr=
+ue" data-id=3D"1741804534186" draggable=3D"false"><font color=3D"#ffffff" s=
+ize=3D"1">=E1=90=A7</font></div>
+</div></div>
+            </div>
+        </div></div></div></blockquote></div></div>
+</div></div></div>
+            </div>
+        </div></div></div></blockquote></div></div>
+</div></div></div>
+            </div>
+        </div></div></div></blockquote></div></div>
+</div></div></div>
+            </div>
+        </div></div></body></html>
+------=_Part_1847070_960391683.1741818299564--

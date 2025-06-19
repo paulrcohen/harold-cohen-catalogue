@@ -1,0 +1,1277 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a11:4819:b0:5ad:6c17:f336 with SMTP id nr25csp547525pxb;
+        Wed, 25 Sep 2024 09:54:55 -0700 (PDT)
+X-Google-Smtp-Source: AGHT+IE8DXtLZbgICR6sbJF/pwiRYI+y2P5PQEr3WklNzU6vPdD6Bblq4yTIQBdTvQMLer/+jimF
+X-Received: by 2002:a05:6830:211b:b0:713:7e1f:f140 with SMTP id 46e09a7af769-713c7d977b9mr3631846a34.5.1727283295327;
+        Wed, 25 Sep 2024 09:54:55 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1727283295; cv=none;
+        d=google.com; s=arc-20240605;
+        b=euY9DoT3PnkYf6eZHYd1FTxLoOR5U7RCU9po3PiAOt7vaI5pdZCECi+/+aNOpRYxMJ
+         AwtKvB35r5Xfm/x3ylrvIS12p394BkG2tZ4e/khoGyBprE230MnoA4pbnbEgOu4wcMfW
+         SRJKCbNfsipUgykqoXsfexY0ZB/zMVrGnCCccvEONb9UxoI/Bsu7z1bGSgox4KDISdGJ
+         qIWEwR391JxI1oXYg9h99pbIR6fPMGCbiEg4sD7ZB3pXhfjdFfIwSpU7mavSPqEWdKPM
+         kL6uQxUdBdYYeBfxcyQTPQ7BdrsihFwOaEfIOYjA8dbDwv/Ex+PN/eCGYg6XH9q+fAVt
+         LvNA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=content-language:in-reply-to:mime-version:user-agent:date
+         :message-id:from:references:cc:to:subject:dkim-signature;
+        bh=gsyIu1zoNpbnbRFZuUUdsSpqP7qGS/gaobMs75Hfbno=;
+        fh=dYgHKlAp2LipGjwmYhr1CaVzr9+0SDoHp3FOM51QjqI=;
+        b=buchOorlpN2eh7aZ39A8vNlNnGRxR9dGSbzUsH1kzS2xr7bX6mRFQ66cX2f+s7SepV
+         mHez6HmG510VJMIyTCLmpSTuzSk/CDdaXzdH9418MsKqSNJhsZwQpUcBda8Z23bDmfVH
+         x7MDS3hTjRtdH12/qRKONSMacD/8Gb19qx2YvvAEb6RnjWx2WNV/2LSmCa72P8d2eIEe
+         AswmR5hWmnISYmLZzyrORIDriM55XMrOA2BLUyXNLJa+0bszXK9xkg6FzOvD9aBjH7s4
+         cd96p+jo+OHZxTMEcP/2Lzy1Olw25fMjhQMGbsMtya3j2kP8ObxAlE/PMMY/4sjUb9zW
+         Jy3w==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=NAJaaYzl;
+       spf=neutral (google.com: 74.6.133.195 is neither permitted nor denied by best guess record for domain of aaron@aaronshome.com) smtp.mailfrom=aaron@aaronshome.com
+Return-Path: <aaron@aaronshome.com>
+Received: from sonic313-21.consmr.mail.bf2.yahoo.com (sonic313-21.consmr.mail.bf2.yahoo.com. [74.6.133.195])
+        by mx.google.com with ESMTPS id d75a77b69052e-45b52680f1bsi40486231cf.292.2024.09.25.09.54.54
+        for <paulrcohen@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 25 Sep 2024 09:54:55 -0700 (PDT)
+Received-SPF: neutral (google.com: 74.6.133.195 is neither permitted nor denied by best guess record for domain of aaron@aaronshome.com) client-ip=74.6.133.195;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@yahoo.com header.s=s2048 header.b=NAJaaYzl;
+       spf=neutral (google.com: 74.6.133.195 is neither permitted nor denied by best guess record for domain of aaron@aaronshome.com) smtp.mailfrom=aaron@aaronshome.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1727283294; bh=gsyIu1zoNpbnbRFZuUUdsSpqP7qGS/gaobMs75Hfbno=; h=Subject:To:Cc:References:From:Date:In-Reply-To:From:Subject:Reply-To; b=NAJaaYzln3VvreWKys8RHj1EI3wWzSvofgMvoJhD4qrGzTWUoR62ffvtC/MdbTpnShsSfLZvPJro9GMNO5r5wH8iKDMDj6wtDNrcWBCiou2YHXAQlrOSRQ6npHIHRjgjVfaOOA94p6DnhaGRVbIM94/eMzZR0VCOl9XpOoacKFKvH4LCurENyEofvkdNG/gT39ZjBreGt1fnvI3nY5swT07FzB7z1zLPHOnITUJZeC4VmTKEg3MRBwZVBTb4x441YDmlvpOtWO22bCgUqQz/1cngKcEE/MBQnqi66/z4v8HB7DBoPP548RaSuVaWIBIQ7Ki6MPT8ZydiV1EkaycmnA==
+X-SONIC-DKIM-SIGN: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s2048; t=1727283294; bh=cpM+26HtONUz4sFjwL+ZwkCTStaAHVcRbmkPSIupnM8=; h=X-Sonic-MF:Subject:To:From:Date:From:Subject; b=uGBDFcMacdmn+CHRy37kyf0vLdRET1mdHNT63QChVhfIA6qxKFTBdIrdLzw+koR5t5lS/sJ2U/kHMwLmi2BUCTJeh+8sb6ymEujC/jzE53pYBXf0MCUUv8qu5kEZXebO0lPergR3S26b1JPYxxIOJgxhhFGfnEdOKTdw3w8TGcd/7XqzTN3Il7X7CdGKte5Y8zI1cuto7rN3AlCe+K3tClRs9obFEqDBDcNpNdcZU+25x08pfkZmZJkcvHY4TLRERMy/7E51olfWq3oQPQuaLb9foFM71YGrCw6UZFqfoBsvAX5MP1187hKuFjMDsjfZcIyAiteXmKPaoK/smEzbRQ==
+X-YMail-OSG: WZm7gmcVM1nj81kyeyKIvv5DU0vMGVZkzPbEbfQLkcAgq9s55XvmjssR5DWKHMj
+ LLk_yRU6RC8Yv5hjvaLvOQ9M.N8T5P1kszPgsbuvfbGtsjsYQjsy_QBcpUYA1SNl8v31X8uBmURO
+ fnMXzPg5gdJEG8c7aQlc7MdnoXC4VSUDI_5A23r4bJhuUJhPScTsAKkyv8i_WHAmP2Qg5L0AG_cn
+ 3fKpeOkwJpynqhOHbj3bdA4SHepr.TaPCJ6tZa0xQZAdq_AI7WUURawyys1RHzLHe_2sCUwvM2P5
+ tnuCxYbZSSKdtIwdrI14uRxo05DNokGsYht0HFcBlc5RKgsNrvx0hgQs9dRWbV74gu_huH9nDDDI
+ ED0O3ut4TQuiHcBkOQIFJ.XkYKJThtf14FCpICg4_JnYY5dVC6e3v1O42XcSQBxyoi5Gb8Ne4tPB
+ iN2sTcJw3z7JEqjBonUqtF8pP8OCQdpSphHH3O1HGULZKyN18GQYct3tks6xVpNINbygxiwGp7Xl
+ wV55UA405E6ATUdvHc1uCPPRMng7_VOhD35Xn54ljr_CqBiz8o7ZxxmS9nvRcJWfNSujlnHpKUsd
+ Jnw2O0L91_GDMw4TXRA4RFD7aqXa.kN2QDc6QOrx4fHRGGG3XkRfw3fHhZKRxfo2.N0oJ0YVPL8G
+ Jhqlm2h8HHlk0kJsQ100QDN.XKIwdXG99YNKSTIhwJx7tQOb6J6ftE3aU1bcyJ14UdYeUJKFZO8Q
+ JpAhaVNCCTIY3P4DJ1iE19sVu3koy4Np_keXEAG6_EVQys3RWo1OJfqa641_WNfwDLnH0KtfUS83
+ 6mlAaQhIWZVLbnmd.VUHiFhC5hJFFZI6jd8NxBOKL4ZfbOkb_OAIogwGFGHlNYN8Oqnex77doQLg
+ fT._30qJz5NS4wmdp0yWS0ehGbr3lzyjCT3x14DEGG_5D8ZIez8haJKIuS8xVHolnkKHeLF6jibf
+ ihDDbhLm7VrtXwIdK79qWf75j4yuO9kMts7VMMYIj4ujcNceFShZHz_O7qhVHodj7qiWnxvr5ppv
+ HXZRFkyqcedSx7gJ8pI7hbUBp.o9mOgydmU2EroRq7M8Z5fwWzpiyqz5k4iwulgZ1ldgF2J.EdMQ
+ GxOYviFyTAaEptYhq.Pvi9ogFE3aPHEOEUl6xlI2P7fhBPuRL0lzJdxrc.XWPrOhoPe2e8aU1jqp
+ B8VzLEG30l.1zYlzGr7Vg5g1JrQQPre08JkbUkl1URkQbIbrsRAVHz5rPZsYMqbjYxPoh4Zk8LgB
+ NG.IphlEWSEXQ.nksmjhCMP0eYfnyRYxt2mg2X_LqrrZKCwF8AzBBt8yV_VfPUgOSL2Iiy6XdHz1
+ aw2I949wCxcy_ijgS_8WpAO_jwxUVGd0Pvc97cjfj7IXQoJoo4JE4Sg6KfxDWqJUbX5BXuVEUguw
+ qlak8luKCvdfuQ3uPJ9mBliLZ0w2uYcVVwKXCTQE7VltGcdQTNNtgmtYXm5hKMpU3n2p72pBm4zu
+ iTIHSIQX7cvRYAYnow1r5YZXbqjcO3RXQeZv3.BzfXQIKffjz.vZO3Hqo8CxQWexO0x3kMQnkMPP
+ uQo06AK5mlivpJ6WGMqE5mWgUY0xZxEa6lLhYBjdBuACNY2E7xDIMY97_hlWFQVkOk2GY0vMIvyF
+ Pj4K.38s1.VZY8CGSqFU.9_txElP2gDEM6znkYSlQsw8OGobx7F.bwS2D8S85x_cktAF36.DWYWS
+ zNScUyAOZKRU3pn8AkDNoJ3UffFhRRInakIShRvkHCmp.mrRcKzYDjlT2RJpjSxNOe1uOQB7J85H
+ oszIkWBgsz13aeFUTjoiXAAqvBuQCK4D_aHxxUQBLPdAkuooyQhFaUuZi7u_dVQRkY78vgaC7Gww
+ GEoyc2C79FN1ezac.SYli2WUrkulXEHoW_JRBbHpg2yjOd92b3RtcnMinxhKxGG_rpTla0R5tFNv
+ A1rUI69uU8nik2rTsdAGW7LfiwUnu90hx8tLwu9Adx.FIbLJWR3zIxhLSEcyQe0NnY47_GUUoRlo
+ 7PjAkckyo2JLj9yeoQtfmFVBoYuHclnRLSrkG24opvloD.xm7P1KbqCu5YwIwniJ5dk6Eo_7r5ws
+ kxbq1fx5JG_RF4rfCkp6FTKYFaNOGOGVx7uM4F7N4CR48EHjEbBkkLjAJsQWGljpD3JYsxfLxWdE
+ HMYBs0LisV9JtAPZ21xYE7qFlYcxGQUkOzChsrfTx0BsPqF4j.VxUCvLAtgJisBuOrpys1Ezk1KV
+ IbJetQ37pr_DCYh9v3sRwAzQLU97tX35p4dOUpMSpZQkDOXOoEj6mfWUuljMWS1tcCC1yvqUAWd2
+ lJRT9Ah9c.mvKS9MN9yIikrIbiAbI.iNPEDjpm18TUZVha_EzTqM2P.CdvGvOLWJ5CB72BOr_WO2
+ koZbIsE5k9exIhEFzAbKVmub5DVTJ5MH1BVfklBmWnEqXwqQEFMwCflllZsALQYn4.Dw-
+X-Sonic-MF: <aaron@aaronshome.com>
+X-Sonic-ID: 31fb0540-6978-4343-9447-80575ca910c4
+Received: from sonic.gate.mail.ne1.yahoo.com by sonic313.consmr.mail.bf2.yahoo.com with HTTP; Wed, 25 Sep 2024 16:54:54 +0000
+Received: by hermes--production-gq1-5d95dc458-kk28l (Yahoo Inc. Hermes SMTP Server) with ESMTPA ID a6cc26dae42cb9b39a95d464335f6bc1;
+          Wed, 25 Sep 2024 16:54:52 +0000 (UTC)
+Subject: Re: Videos for potential use by Sotheby Auction 2024 Aug
+To: Mila Askarova <m.askarova@gazelliarthouse.com>,
+ zipnpup <zipnpup@yahoo.com>
+Cc: Paul Cohen <paulrcohen@gmail.com>, Paul Cohen <team@haroldcohentrust.org>
+References: <CAAOqD37owqgTU=vagOm6gV6hseODLDy5XoyXyrZ681SD8VQfMA@mail.gmail.com>
+ <999279370.3038017.1727275511990@yahoo.com>
+ <CAAOqD35bos4JXiV1JVryGcTmn3U60TMSU-ZvQacWKrPowaindQ@mail.gmail.com>
+From: Harold Cohen Trust <aaron@aaronshome.com>
+Message-ID: <e2427513-1752-0e85-5c6f-7a3bf9a3ee7d@aaronshome.com>
+Date: Wed, 25 Sep 2024 09:54:51 -0700
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:78.0)
+ Gecko/20100101 Thunderbird/78.13.0
+MIME-Version: 1.0
+In-Reply-To: <CAAOqD35bos4JXiV1JVryGcTmn3U60TMSU-ZvQacWKrPowaindQ@mail.gmail.com>
+Content-Type: multipart/alternative;
+ boundary="------------28679576DDD15A968F183CB3"
+Content-Language: en-US
+X-Mailer: WebService/1.1.22645 mail.backend.jedi.jws.acl:role.jedi.acl.token.atz.jws.hermes.yahoo
+Content-Length: 69420
+
+This is a multi-part message in MIME format.
+--------------28679576DDD15A968F183CB3
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+
+Mila,
+Here is some images of Harold and studio shots. They are a bit later 
+than 2004. And I haven't found the uncatalogued ones yet that I see in 
+my head. The shipper will be arriving in a few minutes. But I will 
+continue to look for them as time permits. But I wanted to give you 
+something in case you have a time limit, Tom
+
+https://drive.google.com/drive/folders/1FIG8PuAZZ1ckR7jjEZfpf9CYAHYyb2F8?usp=drive_link
+
+On 9/25/24 8:41 AM, Mila Askarova wrote:
+> Thank you so much Tom.
+> I have looked through the videos and these are excellent. I do hope 
+> they’ll make it into the show (will certainly push for it).
+>
+> Speak soon
+> Mila
+>
+> Mila Askarova
+> CEO & Founder
+>
+> GAZELLI ART HOUSE
+>
+> www.gazelliarthouse.com <http://www.gazelliarthouse.com>
+> +44 (0) 207 491 8816 / +994 (0) 12 498 1230
+>
+>
+> On Wed, 25 Sep 2024 at 15:45, zipnpup <zipnpup@yahoo.com 
+> <mailto:zipnpup@yahoo.com>> wrote:
+>
+>     Mila, those photos would not be ideal as they are from Boston
+>     almost 10 years earlier. The link to the VHS1-10 video I sent has
+>     extensive footage of him in the studio at the relevant time. If
+>     you need a still image, we might have a still or two closer in
+>     time that are yet to be catalogued. I will look into it today, Tom
+>
+>
+>
+>     Sent from my T-Mobile 4G LTE Device
+>
+>
+>     -------- Original message --------
+>     From: Mila Askarova <m.askarova@gazelliarthouse.com
+>     <mailto:m.askarova@gazelliarthouse.com>>
+>     Date: 9/25/24 6:07 AM (GMT-08:00)
+>     To: Thomas Machnik <zipnpup@yahoo.com <mailto:zipnpup@yahoo.com>>
+>     Cc: Paul Cohen <paulrcohen@gmail.com
+>     <mailto:paulrcohen@gmail.com>>, Harold Cohen Trust
+>     <aaron@aaronshome.com <mailto:aaron@aaronshome.com>>, Paul Cohen
+>     <team@haroldcohentrust.org <mailto:team@haroldcohentrust.org>>
+>     Subject: Re: Videos for potential use by Sotheby Auction 2024 Aug
+>
+>     Hi again,
+>
+>     Do you by any chance have images or studio photos of him working
+>     (depicting the selection or some relevant visual)?
+>     We have a few but they show a different series (see below).
+>
+>     Onwards,
+>     Mila
+>
+>     https://drive.google.com/drive/folders/1nFkDE0NVAOczLiO2bc0Z120Px8NccLGI?usp=drive_link
+>     <https://drive.google.com/drive/folders/1nFkDE0NVAOczLiO2bc0Z120Px8NccLGI?usp=drive_link>
+>     https://drive.google.com/drive/folders/1SPKDmceMyfCbfiiVG-1TZYyjS2aKGYBJ?usp=sharing
+>     <https://drive.google.com/drive/folders/1SPKDmceMyfCbfiiVG-1TZYyjS2aKGYBJ?usp=sharing>
+>
+>
+>     On Wed, 25 Sept 2024 at 13:26, Mila Askarova
+>     <m.askarova@gazelliarthouse.com
+>     <mailto:m.askarova@gazelliarthouse.com>> wrote:
+>
+>         Thank you very much Tom, all received well and passed on.
+>
+>         My best,
+>         Mila
+>
+>         On Wed, 25 Sept 2024 at 06:36, Thomas Machnik
+>         <zipnpup@yahoo.com <mailto:zipnpup@yahoo.com>> wrote:
+>
+>             Dear Mila,
+>             I am working on some quotes and will send them separately.
+>             In this email I have a link to two videos. These are the
+>             closest we have time-wise to the date of the artworks.
+>             Both are 2004 and both are a few months after all the
+>             works have been made.
+>
+>             This First one is dated May 5th 2004
+>             VHS_09-2004-05-05--Birkbeck-Harold Cohen Interview
+>             is an interview format. The beginning is interesting
+>             because he give background. This one does not not show any
+>             artwork. It is just Harold answering questions in detail.
+>
+>
+>             The second one
+>             VHS_10A-2004-08-30--CityTV24-San Diego-Profiles Harold
+>             Cohen Artist
+>             is dated Aug 30th 2004 and was made as part of the show
+>             "Untouched by Hands". In the second one, at the beginning
+>             you can see the artwork 031135 followed by 040502. Then
+>             shortly have there is a clip showing AARON generating an
+>             artwork onto the monitor. There is also video of him in
+>             his studio which shows works from the same time period all
+>             the while the narrator does a good job giving background
+>             on Cohen.
+>
+>             Following this we see all the works hanging in "Untouched
+>             by Hands" show five of which are the Sotheby picks including
+>             040502, 031135, 030905, 030906 and 031132
+>
+>             Then there is a detailed interview of Cohen. When the
+>             camera is focused in on Harold we see 031132 behind him.
+>             When the camera is focused on the interviewer we see 
+>             031135. Both of these are the largest of the 9 picks. When
+>             the camera shows the two of them we can see AARON
+>             continually generating works on a monitor between the two
+>             of them and we also see artwork 030905 behind them up on
+>             the wall.
+>
+>
+>
+>             https://drive.google.com/drive/folders/15U-8iLvxcFrro-avAz0M_P2o_mUyPsy_?usp=drive_link
+>             <https://drive.google.com/drive/folders/15U-8iLvxcFrro-avAz0M_P2o_mUyPsy_?usp=drive_link>
+>
+>             I am not sure if permission is required for using the
+>             clips. But there is certainly much to pick from and would
+>             certainly highlight the works in a very positive light.
+>
+>             Tom
+>
+>
+>
+>         -- 
+>         Mila Askarova
+>         CEO & Founder
+>         *
+>         *
+>         *GAZELLI ART HOUSE*
+>
+>         LONDON
+>         Cipher: Pouran Jinchi & Ruba Salameh
+>         <https://gazelliarthouse.com/exhibitions/185-cipher-pouran-jinchi-ruba-salameh/>
+>         The Window: Aida Mahmudova
+>         <https://gazelliarthouse.com/exhibitions/186-the-window-aida-mahmudova/>
+>         Project Space & Frieze Sculpture 2024: Libby Heaney
+>         <https://nft.gazell.io/collections/libby-heaney-frieze-sculpture-2024>
+>
+>         BAKU
+>         Group Show
+>
+>         GAZELL.iO
+>         September Resident | Kate Hollenbach
+>         <https://gazell.io/exhibitions/138-kate-hollenbach/>
+>
+>         www.gazelliarthouse.com <http://www.gazelliarthouse.com/>
+>         +44 (0) 207 491 8816 / +994 (0) 12 498 1230
+>
+>         <https://streaklinks.com/BHpVIxJHhzip8Hm6nAyO2h9O/https%3A%2F%2Fwww.instagram.com%2Fgazelliarthouse%2F><https://streaklinks.com/BHpVIoEUFPH6ci6Q4QBT8JGr/https%3A%2F%2Ftwitter.com%2FGazelliArtHouse>
+>         <https://streaklinks.com/BHpVIoEeHlRoFY_ETAqPyMXi/https%3A%2F%2Fwww.facebook.com%2FGazelliArtHouse%2F>
+>
+>
+>         This e-mail message, including all attachments, is for
+>         the sole use of the intended recipient(s) and may
+>         contain legally privileged and confidential information. If
+>         you are not an intended recipient, you are hereby notified
+>         that you have either received this message in error or
+>         through interception, and that any review, use,
+>         distribution, copying or disclosure of this message and/or
+>         its attachments or parts thereof is strictly prohibited and
+>         is subject to criminal and civil penalties with
+>         appropriate national legislation.
+>
+>
+>
+>     -- 
+>     Mila Askarova
+>     CEO & Founder
+>     *
+>     *
+>     *GAZELLI ART HOUSE*
+>
+>     LONDON
+>     Cipher: Pouran Jinchi & Ruba Salameh
+>     <https://gazelliarthouse.com/exhibitions/185-cipher-pouran-jinchi-ruba-salameh/>
+>     The Window: Aida Mahmudova
+>     <https://gazelliarthouse.com/exhibitions/186-the-window-aida-mahmudova/>
+>     Project Space & Frieze Sculpture 2024: Libby Heaney
+>     <https://nft.gazell.io/collections/libby-heaney-frieze-sculpture-2024>
+>
+>     BAKU
+>     Group Show
+>
+>     GAZELL.iO
+>     September Resident | Kate Hollenbach
+>     <https://gazell.io/exhibitions/138-kate-hollenbach/>
+>
+>     www.gazelliarthouse.com <http://www.gazelliarthouse.com/>
+>     +44 (0) 207 491 8816 / +994 (0) 12 498 1230
+>
+>     <https://streaklinks.com/BHpVIxJHhzip8Hm6nAyO2h9O/https%3A%2F%2Fwww.instagram.com%2Fgazelliarthouse%2F><https://streaklinks.com/BHpVIoEUFPH6ci6Q4QBT8JGr/https%3A%2F%2Ftwitter.com%2FGazelliArtHouse>
+>     <https://streaklinks.com/BHpVIoEeHlRoFY_ETAqPyMXi/https%3A%2F%2Fwww.facebook.com%2FGazelliArtHouse%2F>
+>
+>
+>     This e-mail message, including all attachments, is for the sole
+>     use of the intended recipient(s) and may contain legally
+>     privileged and confidential information. If you are not an
+>     intended recipient, you are hereby notified that you have either
+>     received this message in error or through interception, and that
+>     any review, use, distribution, copying or disclosure of this
+>     message and/or its attachments or parts thereof is strictly
+>     prohibited and is subject to criminal and civil penalties with
+>     appropriate national legislation.
+>
+
+
+--------------28679576DDD15A968F183CB3
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 8bit
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    Mila,<br>
+    Here is some images of Harold and studio shots. They are a bit later
+    than 2004. And I haven't found the uncatalogued ones yet that I see
+    in my head. The shipper will be arriving in a few minutes. But I
+    will continue to look for them as time permits. But I wanted to give
+    you something in case you have a time limit, Tom<br>
+    <br>
+<a class="moz-txt-link-freetext" href="https://drive.google.com/drive/folders/1FIG8PuAZZ1ckR7jjEZfpf9CYAHYyb2F8?usp=drive_link">https://drive.google.com/drive/folders/1FIG8PuAZZ1ckR7jjEZfpf9CYAHYyb2F8?usp=drive_link</a><br>
+    <br>
+    <div class="moz-cite-prefix">On 9/25/24 8:41 AM, Mila Askarova
+      wrote:<br>
+    </div>
+    <blockquote type="cite"
+cite="mid:CAAOqD35bos4JXiV1JVryGcTmn3U60TMSU-ZvQacWKrPowaindQ@mail.gmail.com">
+      <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+      <div dir="auto">Thank you so much Tom.</div>
+      <div dir="auto">I have looked through the videos and these are
+        excellent. I do hope they’ll make it into the show (will
+        certainly push for it). </div>
+      <div dir="auto"><br>
+      </div>
+      <div dir="auto">Speak soon</div>
+      <div dir="auto">Mila <br clear="all">
+        <br clear="all">
+        <div dir="auto">
+          <div dir="ltr" class="gmail_signature"
+            data-smartmail="gmail_signature">Mila Askarova <br>
+            CEO &amp; Founder <br>
+            <br>
+            GAZELLI ART HOUSE<br>
+            <br>
+            <a href="http://www.gazelliarthouse.com"
+              moz-do-not-send="true">www.gazelliarthouse.com</a><br>
+            +44 (0) 207 491 8816 / +994 (0) 12 498 1230<br>
+          </div>
+        </div>
+      </div>
+      <div><br>
+      </div>
+      <div><br>
+        <div class="gmail_quote">
+          <div dir="ltr" class="gmail_attr">On Wed, 25 Sep 2024 at
+            15:45, zipnpup &lt;<a href="mailto:zipnpup@yahoo.com"
+              moz-do-not-send="true">zipnpup@yahoo.com</a>&gt; wrote:<br>
+          </div>
+          <blockquote class="gmail_quote" style="margin:0 0 0
+            .8ex;border-left:1px #ccc solid;padding-left:1ex">
+            <div dir="auto">
+              <div dir="auto">Mila, those photos would not be ideal as
+                they are from Boston almost 10 years earlier. The link
+                to the VHS1-10 video I sent has extensive footage of him
+                in the studio at the relevant time. If you need a still
+                image, we might have a still or two closer in time that
+                are yet to be catalogued. I will look into it today, Tom</div>
+              <div dir="auto"><br>
+              </div>
+              <div dir="auto"><br>
+              </div>
+              <div dir="auto"><br>
+              </div>
+              <div id="m_4244432316099200513composer_signature"
+                dir="auto">
+                <div style="font-size:12px;color:#575757" dir="auto">Sent
+                  from my T-Mobile 4G LTE Device</div>
+              </div>
+            </div>
+            <div dir="auto">
+              <div dir="auto"><br>
+              </div>
+              <div><br>
+              </div>
+              <div dir="auto" style="font-size:100%;color:#000000"
+                align="left">
+                <div>-------- Original message --------</div>
+                <div>From: Mila Askarova &lt;<a
+                    href="mailto:m.askarova@gazelliarthouse.com"
+                    target="_blank" moz-do-not-send="true">m.askarova@gazelliarthouse.com</a>&gt;
+                </div>
+                <div>Date: 9/25/24 6:07 AM (GMT-08:00) </div>
+                <div>To: Thomas Machnik &lt;<a
+                    href="mailto:zipnpup@yahoo.com" target="_blank"
+                    moz-do-not-send="true">zipnpup@yahoo.com</a>&gt; </div>
+                <div>Cc: Paul Cohen &lt;<a
+                    href="mailto:paulrcohen@gmail.com" target="_blank"
+                    moz-do-not-send="true">paulrcohen@gmail.com</a>&gt;,
+                  Harold Cohen Trust &lt;<a
+                    href="mailto:aaron@aaronshome.com" target="_blank"
+                    moz-do-not-send="true">aaron@aaronshome.com</a>&gt;,
+                  Paul Cohen &lt;<a
+                    href="mailto:team@haroldcohentrust.org"
+                    target="_blank" moz-do-not-send="true">team@haroldcohentrust.org</a>&gt;
+                </div>
+                <div>Subject: Re: Videos for potential use by Sotheby
+                  Auction 2024 Aug </div>
+                <div><br>
+                </div>
+              </div>
+              <div dir="ltr">Hi again, 
+                <div><br>
+                </div>
+                <div>Do you by any chance have images or studio photos
+                  of him working (depicting the selection or some
+                  relevant visual)? </div>
+                <div>We have a few but they show a different series (see
+                  below). </div>
+                <div><br>
+                </div>
+                <div>Onwards,</div>
+                <div>Mila </div>
+                <div><br>
+                </div>
+                <div><a
+href="https://drive.google.com/drive/folders/1nFkDE0NVAOczLiO2bc0Z120Px8NccLGI?usp=drive_link"
+                    target="_blank" moz-do-not-send="true">https://drive.google.com/drive/folders/1nFkDE0NVAOczLiO2bc0Z120Px8NccLGI?usp=drive_link</a><br>
+                </div>
+                <div><a
+href="https://drive.google.com/drive/folders/1SPKDmceMyfCbfiiVG-1TZYyjS2aKGYBJ?usp=sharing"
+                    target="_blank" moz-do-not-send="true">https://drive.google.com/drive/folders/1SPKDmceMyfCbfiiVG-1TZYyjS2aKGYBJ?usp=sharing</a><br>
+                </div>
+                <div><br>
+                </div>
+              </div>
+              <br>
+              <div class="gmail_quote">
+                <div class="gmail_attr" dir="ltr">On Wed, 25 Sept 2024
+                  at 13:26, Mila Askarova &lt;<a
+                    href="mailto:m.askarova@gazelliarthouse.com"
+                    target="_blank" moz-do-not-send="true">m.askarova@gazelliarthouse.com</a>&gt;
+                  wrote:<br>
+                </div>
+                <blockquote style="margin:0px 0px 0px
+                  0.8ex;border-left:1px solid
+                  rgb(204,204,204);padding-left:1ex" class="gmail_quote">
+                  <div dir="ltr">Thank you very much Tom, all received
+                    well and passed on.
+                    <div><br>
+                    </div>
+                    <div>My best,</div>
+                    <div>Mila </div>
+                  </div>
+                  <br>
+                  <div class="gmail_quote">
+                    <div class="gmail_attr" dir="ltr">On Wed, 25 Sept
+                      2024 at 06:36, Thomas Machnik &lt;<a
+                        href="mailto:zipnpup@yahoo.com" target="_blank"
+                        moz-do-not-send="true">zipnpup@yahoo.com</a>&gt;
+                      wrote:<br>
+                    </div>
+                    <blockquote style="margin:0px 0px 0px
+                      0.8ex;border-left:1px solid
+                      rgb(204,204,204);padding-left:1ex"
+                      class="gmail_quote">
+                      <div>
+                        <div style="font-family:&quot;Helvetica
+                          Neue&quot;,Helvetica,Arial,sans-serif;font-size:16px">
+                          <div dir="ltr">Dear Mila,</div>
+                          <div dir="ltr">I am working on some quotes and
+                            will send them separately. In this email I
+                            have a link to two videos. These are the
+                            closest we have time-wise to the date of the
+                            artworks. Both are 2004 and both are a few
+                            months after all the works have been made. <br>
+                          </div>
+                          <div dir="ltr"><br>
+                          </div>
+                          <div dir="ltr">This First one is dated May 5th
+                            2004 <br>
+                          </div>
+                          <div dir="ltr"><span>VHS_09-2004-05-05--Birkbeck-Harold
+                              Cohen Interview</span><br>
+                          </div>
+                          <div dir="ltr">is an interview format. The
+                            beginning is interesting because he give
+                            background. This one does not not show any
+                            artwork. It is just Harold answering
+                            questions in detail. <br>
+                          </div>
+                          <div dir="ltr"><br>
+                          </div>
+                          <div dir="ltr"><br>
+                          </div>
+                          <div dir="ltr">The second one <br>
+                          </div>
+                          <div dir="ltr"><span><span><span>VHS_10A-2004-08-30--CityTV24-San
+                                  Diego-Profiles Harold Cohen Artist</span></span></span><br>
+                          </div>
+                          <div dir="ltr">is dated Aug 30th 2004 and was
+                            made as part of the show "Untouched by
+                            Hands". In the second one, at the beginning
+                            you can see the artwork 031135 followed by
+                            040502. Then shortly have there is a clip
+                            showing AARON generating an artwork onto the
+                            monitor. There is also video of him in his
+                            studio which shows works from the same time
+                            period all the while the narrator does a
+                            good job giving background on Cohen. <br>
+                          </div>
+                          <div dir="ltr"><br>
+                          </div>
+                          <div dir="ltr">
+                            <div>Following this we see all the works
+                              hanging in "Untouched by Hands" show five
+                              of which are the Sotheby picks including</div>
+                            <div>040502, 031135, 030905, 030906 and
+                              031132</div>
+                            <div><br>
+                            </div>
+                            <div dir="ltr">Then there is a detailed
+                              interview of Cohen. When the camera is
+                              focused in on Harold we see 031132 behind
+                              him. When the camera is focused on the
+                              interviewer we see  031135. Both of these
+                              are the largest of the 9 picks. When the
+                              camera shows the two of them we can see
+                              AARON continually generating works on a
+                              monitor between the two of them and we
+                              also see artwork 030905 behind them up on
+                              the wall. <br>
+                            </div>
+                          </div>
+                          <div dir="ltr"><br>
+                          </div>
+                          <div dir="ltr"><br>
+                          </div>
+                          <div dir="ltr"><br>
+                          </div>
+                          <div dir="ltr"><a rel="nofollow"
+href="https://drive.google.com/drive/folders/15U-8iLvxcFrro-avAz0M_P2o_mUyPsy_?usp=drive_link"
+                              target="_blank" moz-do-not-send="true">https://drive.google.com/drive/folders/15U-8iLvxcFrro-avAz0M_P2o_mUyPsy_?usp=drive_link</a></div>
+                          <div dir="ltr"><br>
+                          </div>
+                          <div dir="ltr">I am not sure if permission is
+                            required for using the clips. But there is
+                            certainly much to pick from and would
+                            certainly highlight the works in a very
+                            positive light. <br>
+                          </div>
+                          <div dir="ltr"><br>
+                          </div>
+                          <div dir="ltr">Tom<br>
+                          </div>
+                        </div>
+                      </div>
+                    </blockquote>
+                  </div>
+                  <br clear="all">
+                  <div><br>
+                  </div>
+                  <span class="gmail_signature_prefix">-- </span><br>
+                  <div class="gmail_signature" dir="ltr">
+                    <div dir="ltr">
+                      <div dir="ltr">
+                        <div dir="ltr">
+                          <div dir="ltr">
+                            <div dir="ltr">
+                              <div dir="ltr">
+                                <div dir="ltr">
+                                  <div dir="ltr">
+                                    <div dir="ltr">
+                                      <div dir="ltr">
+                                        <div dir="ltr">
+                                          <div dir="ltr">
+                                            <div dir="ltr">
+                                              <div dir="ltr">
+                                                <div dir="ltr">
+                                                  <div dir="ltr">
+                                                    <div dir="ltr">
+                                                      <div dir="ltr">
+                                                        <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div><font
+                                                          color="#000000">Mila
+                                                          Askarova </font></div>
+                                                          <div><font
+                                                          color="#000000">CEO
+                                                          &amp; Founder </font></div>
+                                                          <div
+                                                          style="color:rgb(80,0,80)"><b><br>
+                                                          </b></div>
+                                                          <div>
+                                                          <div
+                                                          style="font-family:&quot;times
+                                                          new
+                                                          roman&quot;,serif">
+                                                          <div
+                                                          style="font-family:Arial,Helvetica,sans-serif">
+                                                          <div
+                                                          style="color:rgb(34,34,34)">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr"><font
+color="#000000"><b>GAZELLI ART HOUSE</b></font></div>
+                                                          <div dir="ltr"><br>
+                                                          </div>
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr"><span>
+                                                          <div dir="ltr">
+                                                          <div dir="ltr"><font
+                                                          face="arial,
+                                                          sans-serif"
+                                                          color="#000000">LONDON</font></div>
+                                                          <div><font
+                                                          face="arial,
+                                                          sans-serif"><a
+style="color:rgb(17,85,204)"
+href="https://gazelliarthouse.com/exhibitions/185-cipher-pouran-jinchi-ruba-salameh/"
+target="_blank" moz-do-not-send="true">Cipher: Pouran Jinchi &amp; Ruba
+                                                          Salameh</a></font></div>
+                                                          <div><font
+                                                          face="arial,
+                                                          sans-serif"><a
+style="color:rgb(17,85,204)"
+href="https://gazelliarthouse.com/exhibitions/186-the-window-aida-mahmudova/"
+target="_blank" moz-do-not-send="true">The Window: Aida Mahmudova</a></font></div>
+                                                          <div><font
+                                                          face="arial,
+                                                          sans-serif"><a
+style="color:rgb(17,85,204)"
+href="https://nft.gazell.io/collections/libby-heaney-frieze-sculpture-2024"
+target="_blank" moz-do-not-send="true">Project Space &amp; Frieze
+                                                          Sculpture
+                                                          2024: Libby
+                                                          Heaney</a></font></div>
+                                                          <div><br>
+                                                          </div>
+                                                          <div><span
+                                                          style="color:rgb(0,0,0);font-family:arial,sans-serif">BAKU </span></div>
+                                                          <div>Group
+                                                          Show</div>
+                                                          <div><br>
+                                                          </div>
+                                                          <div dir="ltr">
+                                                          <div><font
+                                                          face="arial,
+                                                          sans-serif"
+                                                          color="#000000">GAZELL.iO </font></div>
+                                                          <div><span
+                                                          style="font-family:arial,sans-serif">September
+                                                          Resident | <a
+style="color:rgb(17,85,204)"
+                                                          href="https://gazell.io/exhibitions/138-kate-hollenbach/"
+target="_blank" moz-do-not-send="true">Kate Hollenbach</a></span></div>
+                                                          </div>
+                                                          </div>
+                                                          </span>
+                                                          <div dir="ltr">
+                                                          <div><br>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          <div dir="ltr"><font
+                                                          face="arial,
+                                                          sans-serif">
+                                                          <div><a
+                                                          style="color:rgb(17,85,204)"
+href="http://www.gazelliarthouse.com/" target="_blank"
+                                                          moz-do-not-send="true"><font
+color="#0b5394">www.gazelliarthouse.com</font></a></div>
+                                                          <div>+44 (0)
+                                                          207 491 8816 /
+                                                          +994 (0) 12
+                                                          498 1230</div>
+                                                          <div><br>
+                                                          </div>
+                                                          <div
+                                                          style="font-size:x-small">
+                                                          <div><font
+                                                          color="#000000"><a
+style="color:rgb(17,85,204);display:inline-block"
+href="https://streaklinks.com/BHpVIxJHhzip8Hm6nAyO2h9O/https%3A%2F%2Fwww.instagram.com%2Fgazelliarthouse%2F"
+target="_blank" moz-do-not-send="true"><img style="margin:0.8em
+0.2em;padding:0px;letter-spacing:-0.1px;border:0px;vertical-align:middle;max-width:100%"
+src="https://68ef2f69c7787d4078ac-7864ae55ba174c40683f10ab811d9167.ssl.cf1.rackcdn.com/instagram-icon_24x24.png"
+moz-do-not-send="true" width="24"></a><a
+                                                          style="color:rgb(17,85,204);display:inline-block"
+href="https://streaklinks.com/BHpVIoEUFPH6ci6Q4QBT8JGr/https%3A%2F%2Ftwitter.com%2FGazelliArtHouse"
+target="_blank" moz-do-not-send="true"><img style="margin:0.8em
+0.2em;padding:0px;letter-spacing:-0.1px;border:0px;vertical-align:middle;max-width:100%"
+src="https://68ef2f69c7787d4078ac-7864ae55ba174c40683f10ab811d9167.ssl.cf1.rackcdn.com/twitter-icon_24x24.png"
+moz-do-not-send="true" width="24"></a> <a
+                                                          style="color:rgb(17,85,204);display:inline-block"
+href="https://streaklinks.com/BHpVIoEeHlRoFY_ETAqPyMXi/https%3A%2F%2Fwww.facebook.com%2FGazelliArtHouse%2F"
+target="_blank" moz-do-not-send="true"><img style="margin:0.8em
+0.2em;padding:0px;letter-spacing:-0.1px;border:0px;vertical-align:middle;max-width:100%"
+src="https://68ef2f69c7787d4078ac-7864ae55ba174c40683f10ab811d9167.ssl.cf1.rackcdn.com/facebook-icon_24x24.png"
+moz-do-not-send="true" width="24"></a></font></div>
+                                                          </div>
+                                                          <div
+                                                          style="font-size:x-small"><br>
+                                                          </div>
+                                                          <div
+                                                          style="font-size:x-small"><img
+src="https://ci3.googleusercontent.com/mail-sig/AIorK4w7gKovNZAR8tYAuQ9hIjEiBgWel9uIDPpW34GyeY595Rek12deHDAlPE9ZZxtPymKBYCzaHBU"
+moz-do-not-send="true" width="96" height="44"></div>
+                                                          </font></div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          <div
+                                                          style="color:rgb(80,0,80)">
+                                                          <div
+                                                          style="color:rgb(34,34,34)">
+                                                          <div><font
+                                                          face="times
+                                                          new roman,
+                                                          serif"
+                                                          color="#000000"><br>
+                                                          </font></div>
+                                                          </div>
+                                                          </div>
+                                                          <div>
+                                                          <div><font
+                                                          size="1"><span
+style="font-family:&quot;times new roman&quot;,serif;color:rgb(0,0,0)">This
+                                                          e-mail
+                                                          message,
+                                                          including all
+                                                          attachments,
+                                                          is for
+                                                          the sole use
+                                                          of the
+                                                          intended
+                                                          recipient(s)
+                                                          and may
+                                                          contain legally
+                                                          privileged and
+                                                          confidential
+                                                          information.
+                                                          If you are not
+                                                          an intended
+                                                          recipient, you
+                                                          are hereby
+                                                          notified
+                                                          that you have
+                                                          either
+                                                          received this
+                                                          message in
+                                                          error or
+                                                          through interception,
+                                                          and that any </span><span
+style="font-family:&quot;times new roman&quot;,serif;color:rgb(0,0,0)">review</span><span
+style="font-family:&quot;times new roman&quot;,serif;color:rgb(0,0,0)">,
+                                                          use,
+                                                          distribution, copying
+                                                          or disclosure
+                                                          of this
+                                                          message and/or
+its attachments or parts thereof is strictly prohibited and is subject
+                                                          to criminal
+                                                          and civil
+                                                          penalties with
+appropriate national legislation.</span></font></div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                        </div>
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </blockquote>
+              </div>
+              <br clear="all">
+              <div><br>
+              </div>
+              <span class="gmail_signature_prefix">-- </span><br>
+              <div class="gmail_signature" dir="ltr">
+                <div dir="ltr">
+                  <div dir="ltr">
+                    <div dir="ltr">
+                      <div dir="ltr">
+                        <div dir="ltr">
+                          <div dir="ltr">
+                            <div dir="ltr">
+                              <div dir="ltr">
+                                <div dir="ltr">
+                                  <div dir="ltr">
+                                    <div dir="ltr">
+                                      <div dir="ltr">
+                                        <div dir="ltr">
+                                          <div dir="ltr">
+                                            <div dir="ltr">
+                                              <div dir="ltr">
+                                                <div dir="ltr">
+                                                  <div dir="ltr">
+                                                    <div dir="ltr">
+                                                      <div dir="ltr">
+                                                        <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div><font
+                                                          color="#000000">Mila
+                                                          Askarova </font></div>
+                                                          <div><font
+                                                          color="#000000">CEO
+                                                          &amp; Founder </font></div>
+                                                          <div
+                                                          style="color:rgb(80,0,80)"><b><br>
+                                                          </b></div>
+                                                          <div>
+                                                          <div
+                                                          style="font-family:&quot;times
+                                                          new
+                                                          roman&quot;,serif">
+                                                          <div
+                                                          style="font-family:Arial,Helvetica,sans-serif">
+                                                          <div
+                                                          style="color:rgb(34,34,34)">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr"><font
+color="#000000"><b>GAZELLI ART HOUSE</b></font></div>
+                                                          <div dir="ltr"><br>
+                                                          </div>
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr">
+                                                          <div dir="ltr"><span>
+                                                          <div dir="ltr">
+                                                          <div dir="ltr"><font
+                                                          face="arial,
+                                                          sans-serif"
+                                                          color="#000000">LONDON</font></div>
+                                                          <div><font
+                                                          face="arial,
+                                                          sans-serif"><a
+style="color:rgb(17,85,204)"
+href="https://gazelliarthouse.com/exhibitions/185-cipher-pouran-jinchi-ruba-salameh/"
+target="_blank" moz-do-not-send="true">Cipher: Pouran Jinchi &amp; Ruba
+                                                          Salameh</a></font></div>
+                                                          <div><font
+                                                          face="arial,
+                                                          sans-serif"><a
+style="color:rgb(17,85,204)"
+href="https://gazelliarthouse.com/exhibitions/186-the-window-aida-mahmudova/"
+target="_blank" moz-do-not-send="true">The Window: Aida Mahmudova</a></font></div>
+                                                          <div><font
+                                                          face="arial,
+                                                          sans-serif"><a
+style="color:rgb(17,85,204)"
+href="https://nft.gazell.io/collections/libby-heaney-frieze-sculpture-2024"
+target="_blank" moz-do-not-send="true">Project Space &amp; Frieze
+                                                          Sculpture
+                                                          2024: Libby
+                                                          Heaney</a></font></div>
+                                                          <div><br>
+                                                          </div>
+                                                          <div><span
+                                                          style="color:rgb(0,0,0);font-family:arial,sans-serif">BAKU </span></div>
+                                                          <div>Group
+                                                          Show</div>
+                                                          <div><br>
+                                                          </div>
+                                                          <div dir="ltr">
+                                                          <div><font
+                                                          face="arial,
+                                                          sans-serif"
+                                                          color="#000000">GAZELL.iO </font></div>
+                                                          <div><span
+                                                          style="font-family:arial,sans-serif">September
+                                                          Resident | <a
+style="color:rgb(17,85,204)"
+                                                          href="https://gazell.io/exhibitions/138-kate-hollenbach/"
+target="_blank" moz-do-not-send="true">Kate Hollenbach</a></span></div>
+                                                          </div>
+                                                          </div>
+                                                          </span>
+                                                          <div dir="ltr">
+                                                          <div><br>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          <div dir="ltr"><font
+                                                          face="arial,
+                                                          sans-serif">
+                                                          <div><a
+                                                          style="color:rgb(17,85,204)"
+href="http://www.gazelliarthouse.com/" target="_blank"
+                                                          moz-do-not-send="true"><font
+color="#0b5394">www.gazelliarthouse.com</font></a></div>
+                                                          <div>+44 (0)
+                                                          207 491 8816 /
+                                                          +994 (0) 12
+                                                          498 1230</div>
+                                                          <div><br>
+                                                          </div>
+                                                          <div
+                                                          style="font-size:x-small">
+                                                          <div><font
+                                                          color="#000000"><a
+style="color:rgb(17,85,204);display:inline-block"
+href="https://streaklinks.com/BHpVIxJHhzip8Hm6nAyO2h9O/https%3A%2F%2Fwww.instagram.com%2Fgazelliarthouse%2F"
+target="_blank" moz-do-not-send="true"><img style="margin:0.8em
+0.2em;padding:0px;letter-spacing:-0.1px;border:0px;vertical-align:middle;max-width:100%"
+src="https://68ef2f69c7787d4078ac-7864ae55ba174c40683f10ab811d9167.ssl.cf1.rackcdn.com/instagram-icon_24x24.png"
+moz-do-not-send="true" width="24"></a><a
+                                                          style="color:rgb(17,85,204);display:inline-block"
+href="https://streaklinks.com/BHpVIoEUFPH6ci6Q4QBT8JGr/https%3A%2F%2Ftwitter.com%2FGazelliArtHouse"
+target="_blank" moz-do-not-send="true"><img style="margin:0.8em
+0.2em;padding:0px;letter-spacing:-0.1px;border:0px;vertical-align:middle;max-width:100%"
+src="https://68ef2f69c7787d4078ac-7864ae55ba174c40683f10ab811d9167.ssl.cf1.rackcdn.com/twitter-icon_24x24.png"
+moz-do-not-send="true" width="24"></a> <a
+                                                          style="color:rgb(17,85,204);display:inline-block"
+href="https://streaklinks.com/BHpVIoEeHlRoFY_ETAqPyMXi/https%3A%2F%2Fwww.facebook.com%2FGazelliArtHouse%2F"
+target="_blank" moz-do-not-send="true"><img style="margin:0.8em
+0.2em;padding:0px;letter-spacing:-0.1px;border:0px;vertical-align:middle;max-width:100%"
+src="https://68ef2f69c7787d4078ac-7864ae55ba174c40683f10ab811d9167.ssl.cf1.rackcdn.com/facebook-icon_24x24.png"
+moz-do-not-send="true" width="24"></a></font></div>
+                                                          </div>
+                                                          <div
+                                                          style="font-size:x-small"><br>
+                                                          </div>
+                                                          <div
+                                                          style="font-size:x-small"><img
+src="https://ci3.googleusercontent.com/mail-sig/AIorK4w7gKovNZAR8tYAuQ9hIjEiBgWel9uIDPpW34GyeY595Rek12deHDAlPE9ZZxtPymKBYCzaHBU"
+moz-do-not-send="true" width="96" height="44"></div>
+                                                          </font></div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          <div
+                                                          style="color:rgb(80,0,80)">
+                                                          <div
+                                                          style="color:rgb(34,34,34)">
+                                                          <div><font
+                                                          face="times
+                                                          new roman,
+                                                          serif"
+                                                          color="#000000"><br>
+                                                          </font></div>
+                                                          </div>
+                                                          </div>
+                                                          <div>
+                                                          <div><font
+                                                          size="1"><span
+style="font-family:&quot;times new roman&quot;,serif;color:rgb(0,0,0)">This
+                                                          e-mail
+                                                          message,
+                                                          including all
+                                                          attachments,
+                                                          is for
+                                                          the sole use
+                                                          of the
+                                                          intended
+                                                          recipient(s)
+                                                          and may
+                                                          contain legally
+                                                          privileged and
+                                                          confidential
+                                                          information.
+                                                          If you are not
+                                                          an intended
+                                                          recipient, you
+                                                          are hereby
+                                                          notified
+                                                          that you have
+                                                          either
+                                                          received this
+                                                          message in
+                                                          error or
+                                                          through interception,
+                                                          and that any </span><span
+style="font-family:&quot;times new roman&quot;,serif;color:rgb(0,0,0)">review</span><span
+style="font-family:&quot;times new roman&quot;,serif;color:rgb(0,0,0)">,
+                                                          use,
+                                                          distribution, copying
+                                                          or disclosure
+                                                          of this
+                                                          message and/or
+its attachments or parts thereof is strictly prohibited and is subject
+                                                          to criminal
+                                                          and civil
+                                                          penalties with
+appropriate national legislation.</span></font></div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                        </div>
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </blockquote>
+        </div>
+      </div>
+    </blockquote>
+    <br>
+  </body>
+</html>
+
+--------------28679576DDD15A968F183CB3--

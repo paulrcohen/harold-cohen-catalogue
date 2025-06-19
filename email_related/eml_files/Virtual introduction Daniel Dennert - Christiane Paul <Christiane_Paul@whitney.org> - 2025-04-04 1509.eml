@@ -1,0 +1,298 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a10:5c8:b0:5ec:db95:1ae4 with SMTP id p8csp5112686pxt;
+        Fri, 4 Apr 2025 12:09:20 -0700 (PDT)
+X-Forwarded-Encrypted: i=3; AJvYcCXM0A5cLTFSHel0l7S8pihvl2xmIAelAjD9ii37TIktmzZ+m2MIs4sGZvsewqYDvxPPkKRlFEFlX6CR@gmail.com
+X-Google-Smtp-Source: AGHT+IEXUb+FvXuvzIkEebITCDtY5mdlZTkD0CK2fScJOHi9Io5ppEBjlZoBM0YDTgcxIzgkDArj
+X-Received: by 2002:ad4:4ead:0:b0:6e8:fa33:2965 with SMTP id 6a1803df08f44-6f00de9d5dbmr69578146d6.14.1743793759876;
+        Fri, 04 Apr 2025 12:09:19 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1743793759; cv=pass;
+        d=google.com; s=arc-20240605;
+        b=DDY8lZ+TDkXNxcD2+FgAkCWWAzEm/7HoRGoyzCZIBbfSGeO5XXlzSO8wczUznB+Oh3
+         whPZOR6InEb48RUPojT4rX51IO1ny13sYgTwoSdgPlGYYEFYlhDu42KbT9zbltYoCs/j
+         5bSCUjztDC8LS+HbJX3f4Lh8LtHq5TPtM9Gjsiq6hjuqGWexAClM/kjj2rhVXW0qgatK
+         VAB8rGr6FGFsjEGlSoYzu6jMvRKQkBr+fdp3k2mLR5OyBQUlETxfFCALV58jOoqjT6QF
+         iZTjTMgQNq4XafDhLlcAu9fa3W3O7vIOihF8Dv5GvCiJ7QdO938i/SEvJBhe6bJNqOlD
+         9Y9A==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:msip_labels:content-language:accept-language
+         :message-id:date:thread-index:thread-topic:subject:to:from
+         :dkim-signature;
+        bh=4GasI0oLzEystw+g0RKmQzoBJRwciHLxfDChqxYC4+o=;
+        fh=a7S9yuoWeXzSTib3aecMwlBjF8IXa1Pg/zi4KhxNTmk=;
+        b=gbt5L2vCp+PbK2Ji1RFItXQMscTYwm2HUm6aeabmHktF9Cw08rW1DDuukfZeRNVE6z
+         dOyfUdEbVSA/DDN0KQzsOW64JZINHg1kQfrSUxUW8DQJvxy/2j5EFpSUcEmkE1dhm+nw
+         e68KMtfGeaPOgBiyV5Ztz5XvQlpdcfznmz6pgs6ho3t8Tqv81cWTBYifI+gNnzPZ98DV
+         /mTyTk7SxxIjNSPNIY0/i3a2Oj0mCmarXAXPhtobsAxz4Def1MiKCewed7OyIqi76tme
+         4HlU2q5RCHcqywBaSvlGDDIaQn+0jpnna9yn1FFsPxJUEUN/IiSCStIOLCLeWTpB1x6l
+         8sFg==;
+        dara=google.com
+ARC-Authentication-Results: i=2; mx.google.com;
+       dkim=pass header.i=@whitney.org header.s=selector1 header.b=G0Gszvsk;
+       arc=pass (i=1 spf=pass spfdomain=whitney.org dkim=pass dkdomain=whitney.org dmarc=pass fromdomain=whitney.org);
+       spf=pass (google.com: domain of christiane_paul@whitney.org designates 209.222.82.60 as permitted sender) smtp.mailfrom=Christiane_Paul@whitney.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=whitney.org
+Return-Path: <Christiane_Paul@whitney.org>
+Received: from outbound-ip193a.ess.barracuda.com (outbound-ip193a.ess.barracuda.com. [209.222.82.60])
+        by mx.google.com with ESMTPS id 6a1803df08f44-6ef0f10d67fsi37480546d6.234.2025.04.04.12.09.16
+        for <paulrcohen@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 04 Apr 2025 12:09:19 -0700 (PDT)
+Received-SPF: pass (google.com: domain of christiane_paul@whitney.org designates 209.222.82.60 as permitted sender) client-ip=209.222.82.60;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@whitney.org header.s=selector1 header.b=G0Gszvsk;
+       arc=pass (i=1 spf=pass spfdomain=whitney.org dkim=pass dkdomain=whitney.org dmarc=pass fromdomain=whitney.org);
+       spf=pass (google.com: domain of christiane_paul@whitney.org designates 209.222.82.60 as permitted sender) smtp.mailfrom=Christiane_Paul@whitney.org;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=whitney.org
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (mail-bn7nam10lp2044.outbound.protection.outlook.com [104.47.70.44]) by mx-outbound47-16.us-east-2c.ess.aws.cudaops.com (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO); Fri, 04 Apr 2025 19:09:15 +0000
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=usNiWc+C2k8ZJQVmt4IM0h1T8qyovo9qVrZg1U777n3M24hw973RmmV/mijN7MYOi+hdlL0XKmS1Pq7LAsOaIXNRA61z19e00UGcRDYKmiIScGhP8jj+A2zS47Is4NThCL3EQj01qommAAnCyAmdK/oGo39RJ0bZq+PR+SGpYK7Qb0zpvi9IQGceAaSfviz26fOLqCRjrEc87LC8AtfD1yrT46+HukRwh5YAtKM6YbrF2X+VHwNS74H/2mc7dR2l1k1I9NyGpkRG8kjg44iX2pFeARvp6h4xaoiwrKWmEZfsTHMrOHFD2twBODmqwSF7j1iqFvH2D6rRHVUovJe2nQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=4GasI0oLzEystw+g0RKmQzoBJRwciHLxfDChqxYC4+o=;
+ b=gmL6ht4Yx6FTswrtPCpmtxYUrBmlw7HPEsXKk+fU8GBAqZ8XTS8iMD8c0gyo5PHfhj1ArxzljSeJJjaDKze7p9AZ+PC6pUo1xQrdnaE/NIQekWUfqeqBfEGirU9QguQbrd/0KbmCrfTLhKDJj9k0hiegHYTSy4uxKnLOd0f0gLVAfExY3d+71a9SOrzlFfmG9GMA8OUaP/LoACWsiaJ6axIF3/OY0JQ1cyFQ7oYbbPdMRAT4ASRxT4Pi6+hsD9Qfxo7voUN/j2xBClntfKswhmcNx6jJ9dJcSir0n91h81iSdTEB57G5sE969UYH2G/10bIkbgpaXZbeeMdDu9hRzg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=whitney.org; dmarc=pass action=none header.from=whitney.org;
+ dkim=pass header.d=whitney.org; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=whitney.org;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=4GasI0oLzEystw+g0RKmQzoBJRwciHLxfDChqxYC4+o=;
+ b=G0Gszvsk3iQQz/zwnP/9pHK45pSo6AvFvQaiZ3K73rIpnHs66kV2b9GCFFvfObvViT4goac96lj7j7zLVU78Am00zWqN9SpXIp/mEeDJTKXOxYOd1aVgg4aX3DVjlFwLZOSq25s4um7hkwlfOODziULPpqkcL4QozdlHDw/g//k=
+Received: from PH7PR22MB3661.namprd22.prod.outlook.com (2603:10b6:510:1d4::14)
+ by LV8PR22MB5799.namprd22.prod.outlook.com (2603:10b6:408:261::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.8632.9; Fri, 4 Apr
+ 2025 19:09:13 +0000
+Received: from PH7PR22MB3661.namprd22.prod.outlook.com
+ ([fe80::6b16:b6ee:3578:c4f7]) by PH7PR22MB3661.namprd22.prod.outlook.com
+ ([fe80::6b16:b6ee:3578:c4f7%4]) with mapi id 15.20.8632.006; Fri, 4 Apr 2025
+ 19:09:13 +0000
+From: Christiane Paul <Christiane_Paul@whitney.org>
+To: Dennert Daniel <ddennert@san.org>, Paul Cohen <paulrcohen@gmail.com>,
+	Thomas Machnik <zipnpup@yahoo.com>
+Subject: Virtual introduction Daniel Dennert
+Thread-Topic: Virtual introduction Daniel Dennert
+Thread-Index: AQHbpZPtlK/Hu2y630C337WRtglfgw==
+Date: Fri, 4 Apr 2025 19:09:13 +0000
+Message-ID:
+ <PH7PR22MB36614CC081C4694A46B295029DA92@PH7PR22MB3661.namprd22.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach:
+X-MS-TNEF-Correlator:
+msip_labels:
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=whitney.org;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: PH7PR22MB3661:EE_|LV8PR22MB5799:EE_
+x-ms-office365-filtering-correlation-id: 8d10d90d-818b-4b1c-86c1-08dd73ac3009
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|1800799024|376014|366016|8096899003|38070700018;
+x-microsoft-antispam-message-info:
+ =?iso-8859-1?Q?BxhvljJpDizfXjtMfuWi6PCqjUVID9JPtQ9lHBexwDtibuZbRMT61y/mvw?=
+ =?iso-8859-1?Q?xdo2N1temPGJ4dFllLaJjqzx3clYEoUanj1bxj6EX8iTm8Jpq+BeyszZud?=
+ =?iso-8859-1?Q?otd9d9vWMKDFTlUqAlnbraxK+qy6QRsPhGmV4s1D1MMYeJ8X7hs3hPIe+U?=
+ =?iso-8859-1?Q?lc6lGEaafGeo+xSrJx1FQ7H14qgdgAtCLB/oETb049cZ5n3Q4PAHsL6xJ4?=
+ =?iso-8859-1?Q?fgBRzWm7fEG382fPN/cO5hR8MLvKqawGEymfI2DVrA0jsx+Qu5mZ43gLMK?=
+ =?iso-8859-1?Q?EOprQ0FknjhZMt2QAt5Ow61FpuK2q5WzdcktC1kCf7IamdjfHtcWG4MLNV?=
+ =?iso-8859-1?Q?xdCBLxaAHdGC4F/f45geA309YG99Vl3ZcLnqw1+T/5cRoLNDne8L3p9lIB?=
+ =?iso-8859-1?Q?+O48SiMBtqttWQyEAVVs+fPo0Uklu9urflWeljtqvK5QAFj4ieBGH1JybX?=
+ =?iso-8859-1?Q?JXLjEy0YL/kOMR4u8BD4gglBvNcZD8bh7/fUUO3JjC8HRxRGRMcr/Q+/00?=
+ =?iso-8859-1?Q?tqGpVm8kxj706wAyLoDtbi5kBvb5H/NAFh/aQAjBYstkoDljPEVZKV2yg7?=
+ =?iso-8859-1?Q?sTar+GZyqopQOH1C6Q0HjvWEzYPKxeoN/Qeji2DkXLi/s64N5mhBr+vA12?=
+ =?iso-8859-1?Q?3c87493aGH3GA6J54vlX00y4xem6o8vNPnwRGGavdqizWt1rN7EpbGHvMF?=
+ =?iso-8859-1?Q?8bE7JjilrukOawLO5XSGSy+ctDfNB/n5eL6yQ76233UdNWY3CmXb8al1tT?=
+ =?iso-8859-1?Q?GnOWzMaHS93qTQboETVTz7wM8GLyYunDfMe2R1tTAp7JsitSTGD4PJ5+gd?=
+ =?iso-8859-1?Q?2ONMrY7qilukLcDgzUuHO0LsqH850UGMu9FkOlkvYaXpkauwcnhPmfy8bj?=
+ =?iso-8859-1?Q?E/sTI76P0RSzd72fNuykFXenox8Dip4C66zsWo5Xkv2ZJUOhNaWPgViZQp?=
+ =?iso-8859-1?Q?D2KG/7x0ZjY7QmL+drHYiN2wq69eBW0SU1kpuuVIIZaN2YrBn5SPhOY1GB?=
+ =?iso-8859-1?Q?+utfOtaUmDvHr1cFMHv6nCqenLawjXUt6e8LqafWcDFoNRi3x8CPIs6hmk?=
+ =?iso-8859-1?Q?ALuoeFoM+HZtMcfBfOvSI524BsZW1xZKTAZQBxFOWZgBzJ9nWc51FLGXSw?=
+ =?iso-8859-1?Q?w3usskSa17pwB3Du5cEtx9ibJEWEBCcXyImnK4sxPxPTXcSO6Iss9zqg4o?=
+ =?iso-8859-1?Q?UwL2L5b7umRyH6Amt/T6W4x2Ho+swRKS0QjzqTlwuxqxTG/OoXrGyve/Ds?=
+ =?iso-8859-1?Q?Gtbj07JHXUvyoEPyNE6l2KWZhxSTjmC4B1p99CsgX3PoAfVdBRqZyL6VgR?=
+ =?iso-8859-1?Q?NBSqEfDQL0gZF2Z9h1C9m6XNs0Z1/4gNFnQfNC1cdEMlaP2pfZss/aUPDD?=
+ =?iso-8859-1?Q?dlNBWsWUmK/7dsMuXzp6zldw4Pg0iRe+mz/hpXBOJhNMaO4m2QkeS8J0/m?=
+ =?iso-8859-1?Q?mNOG0+Ca45MO8bfOE9cVnJ7CL3oiCmUIkso/LsJXRJkYyjmAtsiQ2xmGEv?=
+ =?iso-8859-1?Q?ba4NEFU62XRSXm267LxLYc?=
+x-forefront-antispam-report:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PH7PR22MB3661.namprd22.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(1800799024)(376014)(366016)(8096899003)(38070700018);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0:
+ =?iso-8859-1?Q?yel8sNFQZj/A0w2o5AkzpV7a1QpVW34OizYhdAuzaHpnqYkeDYlaC0JbzA?=
+ =?iso-8859-1?Q?eBWJNov4xZlESV4ydR3rTvdpAjkrBBrKlS/cc5tu8HR7B8yo/I4kPhpKaK?=
+ =?iso-8859-1?Q?My24S4MBJf6Jd8idZdh4NhrxJ/tAfHLHRFApma1tNk6xRuNBmiw+FB68IQ?=
+ =?iso-8859-1?Q?uAuNZtEeYC4OZt9CjjxtFN0iGwLS3paStHbfS3ySGWe00ZaBP1Bzt2vcsy?=
+ =?iso-8859-1?Q?wCZorJlFUuehBPKL8sY/v5TWxX+LloRiE7GkRm5Mjke5vyBC6/wELAj+Mu?=
+ =?iso-8859-1?Q?R31cqr1le0oNMfCSNMZlAkoOFs6sIiFnzDrgSl67xx1Ati/a5KrUqBrCmk?=
+ =?iso-8859-1?Q?RqhT5T1ixvvM3cO5JnLD2JsbU8bFNRVWhTghKlGYgPumndbzDsQF9y8dS7?=
+ =?iso-8859-1?Q?bYk5C32671VJc6lXgzz9mBm9rQgI7xTsJJmF/dTGXt9YTL/KqHjsR87Iv/?=
+ =?iso-8859-1?Q?BQsDRbJumoxLIWkgYOISp8TpPsN6wB4KBm/ZS56ipSEWqHy5w5RCWoREKt?=
+ =?iso-8859-1?Q?k2SJBFxFPTtSEK8Z/KIwFwzA9mX6xrTLxKE+un8ZzDy/zUFiPR1TZgKAVO?=
+ =?iso-8859-1?Q?3KsQu6YV1hP/WTaBCyxreDMagcQnPeyATvzsSnhKctb6ZFCi+2altMRoYJ?=
+ =?iso-8859-1?Q?LZWiPoo6pU2hM4QjqJHUbexzreOE96mv/lyMaAwj3+73iZAwEu6BfFN3rI?=
+ =?iso-8859-1?Q?YVC2AVF0WEMN+nBv5JTILZqbe06KzMu5mx6Q+3ooacAbvGcHjbbFp/BrRb?=
+ =?iso-8859-1?Q?Xhlk/AoQRMRXGG4X9ZyKjJjN595kvmW9Xtwlzy0M50vBlj3iba0OXBq6CY?=
+ =?iso-8859-1?Q?pnwbd4ANTIJkJE2BgMi8HS1lGzIdXxKVToozpcYeDIjUD2d2VtwF5otk93?=
+ =?iso-8859-1?Q?Iem36jJ44HgtRvVZswyzWwKxmph41OGWgWRfekQlYVqQUjSt89WDcDC9/Q?=
+ =?iso-8859-1?Q?dZUm5MD9EIlGv4u9t8x7kDI8mkWhiJJF5ObDzSI2+xjTAViGMdGEwNIuvl?=
+ =?iso-8859-1?Q?vl60yzZMb99ZmIe4hgMBwdFIjJgMR5bk2dBMxyCvbdFiQqZ6aC7xCboptt?=
+ =?iso-8859-1?Q?AP/Z8BV7CBFNNJQyS6n5T//TSQ1vylzn44GAdu5akOlOWHETomGfO1RWQN?=
+ =?iso-8859-1?Q?neGf1U7EsIVauEowG9ljSBtImmBhtA7Gjg9JNrQxFGyEvqvz+WkDlIxikz?=
+ =?iso-8859-1?Q?UR90YYXxnwQqm3ux/Bb9wjOpq6szOkQlb5y647IxqU6ITgFNQvYyCZmdwU?=
+ =?iso-8859-1?Q?nluCIwD8mmLIAqG9sJjAEIQGPQinWa466kUebCMn+uY19VfIvg4K2Z9Jjt?=
+ =?iso-8859-1?Q?T2YI8BjKy7BByKpvk6jEnXSLdRCDOQkIvo5M1WhENfjp5/lB8OvRg8QnzL?=
+ =?iso-8859-1?Q?UBqjvgQOXqfZZh01mIoAGB2OzBGTUTlk2FGQCs9b+H3zm9mtx8f5VYDluA?=
+ =?iso-8859-1?Q?RCqGndbxx/dr2ymedFeSlmLGO3smgMHNFeeDU2B3iDYNF7vGmLthBueNXG?=
+ =?iso-8859-1?Q?TTRVrFa1I3GQuCGGUTyYFvfsdMdMHKagDccCWpYY3+Fj+Wi3CgLaGYnvzD?=
+ =?iso-8859-1?Q?A9jaMVDgAGlip/t5sqklJT21Llvs75Shlrl9LSPyHHbB1odIP+Jho9Y0a8?=
+ =?iso-8859-1?Q?Eqkga1DKYWRnI=3D?=
+Content-Type: multipart/alternative;
+	boundary="_000_PH7PR22MB36614CC081C4694A46B295029DA92PH7PR22MB3661namp_"
+MIME-Version: 1.0
+X-OriginatorOrg: whitney.org
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR22MB3661.namprd22.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8d10d90d-818b-4b1c-86c1-08dd73ac3009
+X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Apr 2025 19:09:13.3357
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 28ad7bce-66ad-4171-92a3-6e36d172f6eb
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Rj0H1DxMou2yf7RRtC4DNo1Lm0N/wVEZHNYsaqHXPPHJNyZZu18ewKZ04h5xapG6ecGNMA8z8M1gQpHOjibNaw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV8PR22MB5799
+X-BESS-ID: 1743793755-112048-7602-10607-1
+X-BESS-VER: 2019.1_20250402.1544
+X-BESS-Apparent-Source-IP: 104.47.70.44
+X-BESS-Parts: H4sIAAAAAAACAzXMOwqAMBAE0LtsnSKbzf8qYrFJNtiIhSkE8e6m0GYYBt4sN8
+	g1IMOYqeA4IZP1s2xzY9KkY/elc6BmXaJuqCE3qRK1RHjUz7ex/xyT+7wxxdfQTGUKXB
+	BJxFtXU7cY9DyBZ30BHiyqEoAAAAA=
+X-BESS-Spam-Status: SCORE=0.00 using account:ESS82558 scores of QUARANTINE_LEVEL=3.0 KILL_LEVEL=5.0 tests=HTML_MESSAGE, BSF_BESS_OUTBOUND
+X-BESS-Spam-Report: Code version 3.2, rules version 3.2.2.263652 [from cloudscan9-
+	41.us-east-2a.ess.aws.cudaops.com]
+	Rule breakdown below
+	 pts rule name              description
+	---- ---------------------- --------------------------------
+	0.00 HTML_MESSAGE           BODY: HTML included in message 
+	0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
+X-BESS-Outbound-Spam-Status: SCORE=0.00 using account:ESS111578 scores of KILL_LEVEL=7.0 tests=HTML_MESSAGE, BSF_BESS_OUTBOUND
+X-BESS-Outbound-Spam-Report: Code version 3.2, rules version 3.2.2.263652 [from 
+	cloudscan10-216.us-east-2a.ess.aws.cudaops.com]
+	Rule breakdown below
+	 pts rule name              description
+	---- ---------------------- --------------------------------
+	0.00 HTML_MESSAGE           BODY: HTML included in message 
+	0.00 BSF_BESS_OUTBOUND      META: BESS Outbound 
+X-BESS-Spam-Score: 0.00
+Authentication-Results: mx-outbound47-16.us-east-2c.ess.aws.cudaops.com; dkim=pass header.d=whitney.org; dmarc=none header.from=Christiane_Paul@whitney.org
+X-BESS-Outbound-Spam-Score: 0.00
+X-BESS-BRTS-Status:1
+
+--_000_PH7PR22MB36614CC081C4694A46B295029DA92PH7PR22MB3661namp_
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+Dear Paul and Tom,
+
+I'd like to introduce you to Daniel Dennert,  Curator of the Arts Program a=
+t San Diego Airport. Daniel would be interested in talking to you about AAR=
+ON and exhibition possibilities.
+
+All the best,
+
+Christiane
+
+
+
+Christiane Paul
+
+Curator of Digital Art
+
+Whitney Museum of American Art
+99 Gansevoort Street
+New York, NY 10014
+
+
+--_000_PH7PR22MB36614CC081C4694A46B295029DA92PH7PR22MB3661namp_
+Content-Type: text/html; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Diso-8859-=
+1">
+<style type=3D"text/css" style=3D"display:none;"> P {margin-top:0;margin-bo=
+ttom:0;} </style>
+</head>
+<body dir=3D"ltr">
+<div class=3D"elementToProof" style=3D"font-family: Aptos, Aptos_EmbeddedFo=
+nt, Aptos_MSFontService, Calibri, Helvetica, sans-serif; font-size: 10pt; c=
+olor: rgb(0, 0, 0);">
+Dear Paul and Tom,</div>
+<p class=3D"elementToProof" style=3D"text-align: left; text-indent: 0px; ba=
+ckground-color: rgb(255, 255, 255); margin: 0px 0px 3pt;">
+<span style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService,=
+ Calibri, Helvetica, sans-serif; font-size: 10pt; color: rgb(0, 0, 0);">I'd=
+ like to introduce you to Daniel Dennert,&nbsp; Curator of the Arts Program=
+ at San Diego Airport. Daniel would be
+ interested in talking to you about AARON and exhibition possibilities.</sp=
+an></p>
+<p class=3D"elementToProof" style=3D"text-align: left; text-indent: 0px; ba=
+ckground-color: rgb(255, 255, 255); margin: 0px 0px 3pt;">
+<span style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService,=
+ Calibri, Helvetica, sans-serif; font-size: 10pt; color: rgb(0, 0, 0);">All=
+ the best,</span></p>
+<p class=3D"elementToProof" style=3D"text-align: left; text-indent: 0px; ba=
+ckground-color: rgb(255, 255, 255); margin: 0px 0px 3pt;">
+<span style=3D"font-family: Aptos, Aptos_EmbeddedFont, Aptos_MSFontService,=
+ Calibri, Helvetica, sans-serif; font-size: 10pt; color: rgb(0, 0, 0);">Chr=
+istiane</span></p>
+<div class=3D"elementToProof" style=3D"font-family: Calibri, Helvetica, san=
+s-serif; font-size: 10pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div class=3D"elementToProof" style=3D"font-family: Calibri, Helvetica, san=
+s-serif; font-size: 10pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+<div id=3D"Signature" class=3D"elementToProof">
+<p style=3D"text-align: left; background-color: rgb(255, 255, 255); margin:=
+ 0in 0in 0.0001pt;">
+<span style=3D"font-family: Calibri, sans-serif, serif, EmojiFont; font-siz=
+e: 9pt; color: rgb(33, 33, 33);"><b>Christiane Paul</b></span></p>
+<div style=3D"background-color: rgb(255, 255, 255); margin: 0px;">
+<div style=3D"direction: ltr; text-align: left; margin: 0px; font-family: C=
+alibri, sans-serif, serif, EmojiFont; font-size: 9pt; color: rgb(33, 33, 33=
+);">
+Curator of Digital Art</div>
+<div style=3D"direction: ltr; text-align: left; margin: 0px; font-family: C=
+alibri, sans-serif, serif, EmojiFont; font-size: 9pt; color: rgb(33, 33, 33=
+);">
+<br>
+</div>
+<div style=3D"direction: ltr; text-align: left; margin: 0px; font-family: C=
+alibri, sans-serif, serif, EmojiFont; font-size: 9pt; color: rgb(33, 33, 33=
+);">
+<b>Whitney Museum of American Art</b></div>
+<div style=3D"direction: ltr; text-align: left; margin: 0px; font-family: C=
+alibri, sans-serif, serif, EmojiFont; font-size: 9pt; color: rgb(33, 33, 33=
+);">
+99 Gansevoort Street</div>
+<div style=3D"direction: ltr; text-align: left; margin: 0px; font-family: C=
+alibri, sans-serif, serif, EmojiFont; font-size: 9pt; color: rgb(33, 33, 33=
+);">
+New York, NY 10014</div>
+</div>
+<div style=3D"text-align: left; background-color: rgb(255, 255, 255); margi=
+n: 0in 0in 0.0001pt; font-family: Calibri, Helvetica, sans-serif; font-size=
+: 9pt; color: rgb(0, 0, 0);">
+<br>
+</div>
+</div>
+</body>
+</html>
+
+--_000_PH7PR22MB36614CC081C4694A46B295029DA92PH7PR22MB3661namp_--

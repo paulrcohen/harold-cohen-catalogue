@@ -1,0 +1,196 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a10:a141:b0:5ad:6c17:f336 with SMTP id r1csp2066482pxc;
+        Mon, 30 Sep 2024 12:34:55 -0700 (PDT)
+X-Received: by 2002:a17:907:9445:b0:a91:15dc:31ab with SMTP id a640c23a62f3a-a93c4c20711mr1591747166b.53.1727724895721;
+        Mon, 30 Sep 2024 12:34:55 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1727724895; cv=none;
+        d=google.com; s=arc-20240605;
+        b=UqAcIJ63PK5tmVEUEVlNHMZOJScNj7hNOJ+wvtimfpK9LnL4NRuQDUSkK9v1NdMpfr
+         xJ98KERy0ptQvWzvWFLMV/QQSygolGRbl9UlWA60qsFmu2hRsX+jbrEZgv4yA7Ul5STC
+         MBJDDryQCb4FoEbzgS3vNmVNTN3b6UNEcCOplBVEmSDRYOTxpCy9ATtwnB8X3t6eEgBM
+         GKjX+Nt31Dm70ocTI56TThQx+HWTkWbZfpaY+VwrqE6o41d26CkkztTtTvZp9cZ/5L+8
+         gqYSVm8GtzDhii5v1d9eXF+AB90qW6NCHmgwRn74+2Nlmy6FizcjAvLi0ylUu+Frfk2W
+         fbrg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:in-reply-to:cc:references:message-id:date:subject:mime-version
+         :from:content-transfer-encoding:dkim-signature;
+        bh=Lbruy9pakazszJBRofO+kxSbQwB/77Nvn4k+ZaSzPXY=;
+        fh=oHT+p0El4g5qj8VA7WOzIbyDfUd4ZHpwi3fgd4h0cDc=;
+        b=WGd/yx2tYt3oNq/lwPvV5crTcv3Mlls4KNV1m6Bome5iGMrOsv4SfJ/Fpys4Kqqu9O
+         Usv6DLQ50SwrTXQqTIxtCw78ug7IAlgZSIq38alXwzEET+sh8Eo7DHXazGdTmVdiRC0J
+         M7DnmVJPvkUnKgTyPdGlrvvhL6RvJ8Ej6jWu+5GARaHkbcBOO1yca0sbuNpPaTv6EyTd
+         ASnX571a1XG4sOXQSVsDGy4VIkKx7WBh1A+5WauLm3/oqzvBlO5zNv/X/gU7GCPGOC0B
+         BSbxUQK5EkruOoKtAvD0WCe2iekqVHTLaHfdPU3Cgp/6VWp+3X/BsIH0rGUwLkF+kGEX
+         vWkQ==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@verisart.com header.s=google header.b=OYINvUHG;
+       spf=pass (google.com: domain of robert@verisart.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=robert@verisart.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=verisart.com;
+       dara=pass header.i=@gmail.com
+Return-Path: <robert@verisart.com>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id a640c23a62f3a-a93dbd8cecdsor190994166b.21.2024.09.30.12.34.55
+        for <paulrcohen@gmail.com>
+        (Google Transport Security);
+        Mon, 30 Sep 2024 12:34:55 -0700 (PDT)
+Received-SPF: pass (google.com: domain of robert@verisart.com designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@verisart.com header.s=google header.b=OYINvUHG;
+       spf=pass (google.com: domain of robert@verisart.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=robert@verisart.com;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=verisart.com;
+       dara=pass header.i=@gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=verisart.com; s=google; t=1727724895; x=1728329695; dara=google.com;
+        h=to:in-reply-to:cc:references:message-id:date:subject:mime-version
+         :from:content-transfer-encoding:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Lbruy9pakazszJBRofO+kxSbQwB/77Nvn4k+ZaSzPXY=;
+        b=OYINvUHG+HuPRiKBD1lV50M2/2NJ7CputrU28lgXUsTwND1f85Jo2wOUEp0O6Qy30W
+         y29E8UzvSDYy8UwwRisvQZyew1oqCVfJ54Gk2w+NpN0RzDoSMz9qctkrBfvTtCHDdqmw
+         1mPg29BE74IFMmuIKksdil7Em3Qxg5iQpMuxXpzNnA1mJZvVBZmO6RfT/RgFRRkMENla
+         T7+OghDgG7zI2lSe1bUv6N+n9gggI+Cjdg+izXDxvloLqyVFXpyICPP8v12/aGUsS42J
+         7G+u7e5ZqYqFL2nfTv7WqcT6LXrk2uaRn4DyLUznJA1QwgZIXDXqKKaR1U91LBUxqPZd
+         K0GA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1727724895; x=1728329695;
+        h=to:in-reply-to:cc:references:message-id:date:subject:mime-version
+         :from:content-transfer-encoding:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Lbruy9pakazszJBRofO+kxSbQwB/77Nvn4k+ZaSzPXY=;
+        b=RPVNXVHo+fk7IrLDEub2cHLQAQ3t2PbvpbGQeRgjlWvlE3g5bm+W9i9K3Z7EGUt/e8
+         Cs44YwnK1P33Meo+qjICbUJeTyeR1QDlJaVOzeJDHaB2tLmwxtcJEEunZ+ZsCRztsblX
+         io6mclnH5c6AGQ5kJ3nHrMOmB54ETqiCl9WIeaCDB23ep3bMi6t3SMSOc/Lz8TuKww/Y
+         6T7uFYvs98wArXuqjLd7aHrZ1EBYAcVDu2kSZsuPW+nYVV3ZILz5tiGw1utnf9f531FO
+         WugrYwB0FcDsGDBjMECKhcAVS0mNyceTdNleDJkpsQgOfaEQcQM9cGzDsT6YUcD8DCw7
+         X3uw==
+X-Gm-Message-State: AOJu0YzCzKJhIYNOQzKkP8hrx5pjXW5MnzSezt7+c+mpqZrhV1AD9wwF
+	8pfv3vXVqHZRek3tE3pRqBd1esiPf1ubAVBwzqE+zbPnqpp7SO4wqKnYpCoKfiI=
+X-Google-Smtp-Source: AGHT+IGQiJsnez59SePSlGtF0/4k82nSpmkhM5R3yGpcLFbtAF0idh6dWu2bQQD7wrPRDnOaKrepvA==
+X-Received: by 2002:a17:906:4787:b0:a8a:af0c:dba9 with SMTP id a640c23a62f3a-a93c49197e0mr1624751266b.16.1727724894991;
+        Mon, 30 Sep 2024 12:34:54 -0700 (PDT)
+Return-Path: <robert@verisart.com>
+Received: from smtpclient.apple (host81-146-30-152.range81-146.btcentralplus.com. [81.146.30.152])
+        by smtp.gmail.com with ESMTPSA id a640c23a62f3a-a93cd7a3609sm515864766b.211.2024.09.30.12.34.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 30 Sep 2024 12:34:54 -0700 (PDT)
+Content-Type: multipart/alternative; boundary=Apple-Mail-9D7074A7-DFB3-4338-9357-7DDA255F024B
+Content-Transfer-Encoding: 7bit
+From: Robert norton <robert@verisart.com>
+Mime-Version: 1.0 (1.0)
+Subject: Re: Proposed wording for Harold Cohen Sale
+Date: Mon, 30 Sep 2024 20:34:44 +0100
+Message-Id: <3BC4D65E-3B41-4ACD-8A18-0998147B3023@verisart.com>
+References: <CAKjPZkFaaS09SdSwayqU5zWAddmpKMAcGGb+k9OPqoyQxgZSdw@mail.gmail.com>
+Cc: Paul Cohen <team@haroldcohentrust.org>,
+ Thomas Machnik <zipnpup@yahoo.com>,
+ Askarova Norton Mila <m.askarova@gazelliarthouse.com>
+In-Reply-To: <CAKjPZkFaaS09SdSwayqU5zWAddmpKMAcGGb+k9OPqoyQxgZSdw@mail.gmail.com>
+To: Paul Cohen <paulrcohen@gmail.com>
+X-Mailer: iPhone Mail (21H16)
+
+
+--Apple-Mail-9D7074A7-DFB3-4338-9357-7DDA255F024B
+Content-Type: text/html;
+	charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html><head><meta http-equiv=3D"content-type" content=3D"text/html; charset=3D=
+utf-8"></head><body dir=3D"auto"><div dir=3D"ltr"></div><div dir=3D"ltr">The=
+ poweeed by Verisart is just part of my email signature. Thanks for the note=
+s. &nbsp;We will ensure the bio is corrected as this may be a format issue. &=
+nbsp;Also yes once we get the updated digital information from Tom we will u=
+se this for each of the NFTs</div><div dir=3D"ltr"><br></div><div dir=3D"ltr=
+">Thanks for your timely input and time today</div><div dir=3D"ltr"><br></di=
+v><div dir=3D"ltr">Best</div><div dir=3D"ltr"><br></div><div dir=3D"ltr">Rob=
+ert&nbsp;</div><div dir=3D"ltr"><br><blockquote type=3D"cite">On Sep 30, 202=
+4, at 20:08, Paul Cohen &lt;paulrcohen@gmail.com&gt; wrote:<br><br></blockqu=
+ote></div><blockquote type=3D"cite"><div dir=3D"ltr">=EF=BB=BF<div dir=3D"lt=
+r"><div class=3D"gmail_default" style=3D"font-size:small">Hi Robert, thanks f=
+or all this good material.&nbsp; I'm not sure what the "powered by Verisart"=
+ one was intended to be.&nbsp; It says it's a gif, but this is what I see wh=
+en I open it.&nbsp; Is this right?</div><div class=3D"gmail_default" style=3D=
+"font-size:small"><br></div><div class=3D"gmail_default" style=3D"font-size:=
+small"><div>&lt;Screenshot 2024-09-30 at 2.51.50=E2=80=AFPM.png&gt;</div></d=
+iv><div class=3D"gmail_default" style=3D"font-size:small"><br></div><div cla=
+ss=3D"gmail_default" style=3D"font-size:small">The printed certificate mocku=
+p looks good, thanks.&nbsp; I scanned the QR code and was taken to Verisart (=
+abeit a private record) so that works.&nbsp; The traits for the opensea NFT m=
+ockup are as we discussed.&nbsp; For Tom's benefit, the traits describe the N=
+FT, not the physical print.&nbsp; Traits do however include the fact that a p=
+rint is included.&nbsp; Traits are searchable.&nbsp;</div><div class=3D"gmai=
+l_default" style=3D"font-size:small"><br></div><div class=3D"gmail_default" s=
+tyle=3D"font-size:small">I'm not sure of the purpose of&nbsp; the pdfs, two o=
+f them&nbsp; look like they are parts of a contractual agreement w Sotheby's=
+.&nbsp; For the one that deals with NFTs, I assume this is where you will ad=
+d the provenance/metadata material you'll be getting from Tom?&nbsp; WRT the=
+ final doc, which includes the certificate of authenticity, the NFT and the C=
+onfiguration, I have a couple of observations:&nbsp; 1) the second paragraph=
+ of the NFT will be slightly different for most of the NFTs because the date=
+s will be different and so will the jpeg metadata, and because in one case w=
+e need to that the jpeg was made by Tom in 2024.&nbsp; 2) In "professional b=
+io" under "opensea configuration" the first three paragraphs are separated b=
+y blank lines but the fourth is not. <br></div><div class=3D"gmail_default" s=
+tyle=3D"font-size:small"><br></div><div class=3D"gmail_default" style=3D"fon=
+t-size:small">Thanks! --P<br></div><div class=3D"gmail_default" style=3D"fon=
+t-size:small"><br></div><div><div dir=3D"ltr" class=3D"gmail_signature" data=
+-smartmail=3D"gmail_signature"><div dir=3D"ltr"><div><div dir=3D"ltr"><div><=
+div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D"ltr"><div><div dir=3D=
+"ltr">______________________________<br><br>Paul Cohen,&nbsp;&nbsp;Professor=
+</div><div dir=3D"ltr">School of Computing and Information</div><div dir=3D"=
+ltr">University of Pittsburgh</div><div dir=3D"ltr"><a href=3D"https://paulr=
+cohen.github.io/" target=3D"_blank">personal webpage</a><br>________________=
+______________</div></div></div></div></div></div></div></div></div></div></=
+div></div></div><br></div><br><div class=3D"gmail_quote"><div dir=3D"ltr" cl=
+ass=3D"gmail_attr">On Mon, Sep 30, 2024 at 2:37=E2=80=AFPM Robert Norton &lt=
+;<a href=3D"mailto:robert@verisart.com">robert@verisart.com</a>&gt; wrote:<b=
+r></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;=
+border-left:1px solid rgb(204,204,204);padding-left:1ex"><div>Hi Paul,<div><=
+br></div><div>Thanks for your time today.&nbsp; Please see below the propose=
+d new wording.&nbsp; The Estate will be sending through further digital info=
+rmation today.&nbsp; However please check the proposed NFT description which=
+ we have also mocked up as to how it will appear on Opensea for ease of refe=
+rence. &nbsp;</div><div><br></div><div>We have also included the following:<=
+/div><div><br></div><div><ul><li>Draft certificate from the Trust for the ph=
+ysical print</li><li>Draft Opensea Listing for the NFT with updated collecti=
+on, wallet name, traits and description</li><li>Draft spreadsheet of NFTs wi=
+th descriptions and dimensions</li><li>Draft spreadsheet of prints with desc=
+riptions and dimensions&nbsp;</li><li><b>Draft Copy that needs your sign off=
+ as will be used by Sotheby=E2=80=99s in their outreach&nbsp;</b></li></ul><=
+div><br></div></div><div>Please note we will need to provide you with the Ve=
+risart URLs for all the printed works as these will be certified separately f=
+rom the NFTs and linked to from the NFT descriptions.</div><div><br></div><d=
+iv>Please let us know if you require any changes as we would like to send ac=
+ross final copy for Sotheby=E2=80=99s by end of day your time.&nbsp; We will=
+ update NFT descriptions with any information we get from Tom in due course.=
+</div><div><br></div><div><br></div><div>Best</div><div><br></div><div>Rober=
+t</div><div>
+<div style=3D"font-family:Helvetica;font-size:12px;font-style:normal;font-va=
+riant-caps:normal;font-weight:normal;letter-spacing:normal;text-align:start;=
+text-indent:0px;text-transform:none;white-space:normal;word-spacing:0px;text=
+-decoration:none;color:rgb(0,0,0)"><font color=3D"#696969"><br>Robert Norton=
+</font></div><div style=3D"font-family:Helvetica;font-size:12px;font-style:n=
+ormal;font-variant-caps:normal;font-weight:normal;letter-spacing:normal;text=
+-align:start;text-indent:0px;text-transform:none;white-space:normal;word-spa=
+cing:0px;text-decoration:none;color:rgb(0,0,0)"><font color=3D"#696969">CEO &=
+amp; co-founder</font></div><div style=3D"font-family:Helvetica;font-size:12=
+px;font-style:normal;font-variant-caps:normal;font-weight:normal;letter-spac=
+ing:normal;text-align:start;text-indent:0px;text-transform:none;white-space:=
+normal;word-spacing:0px;text-decoration:none;color:rgb(0,0,0)"><a href=3D"ht=
+tp://www.verisart.com" target=3D"_blank">Verisart</a></div><div style=3D"fon=
+t-family:Helvetica;font-size:12px;font-style:normal;font-variant-caps:normal=
+;font-weight:400;letter-spacing:normal;text-align:start;text-indent:0px;text=
+-transform:none;white-space:normal;word-spacing:0px;text-decoration:none;col=
+or:rgb(0,0,0)"><br></div><br><span></span></div></div><div><div><span></span=
+>
+</div><div><span><br></span></div><div><span><br></span></div><div><span><di=
+v></div></span></div></div><div><div id=3D"m_6950436162080802264AppleMailSig=
+nature"><span><div></div></span></div></div><div><div id=3D"m_69504361620808=
+02264AppleMailSignature"><span><div></div></span></div></div><div><div id=3D=
+"m_6950436162080802264AppleMailSignature"><span><div></div></span></div></di=
+v><div><div id=3D"m_6950436162080802264AppleMailSignature"><span><div></div>=
+</span></div></div><div><div><span><div></div><br></span></div>
+<br></div></blockquote></div>
+</div></blockquote></body></html>=
+
+--Apple-Mail-9D7074A7-DFB3-4338-9357-7DDA255F024B--

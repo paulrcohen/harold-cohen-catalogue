@@ -1,0 +1,61 @@
+Subject: Re: Trust Website Update
+From: Daniel Maxwell <maxwellgraphics@gmail.com>
+To: kanoko nishi 西鹿乃子 <littledeerofthewest@googlemail.com>
+Date: 2024-10-15 12:45:39
+Message-ID: <CAGUP2nxvyFxNBQEiYTvQnJANtyTBpAb5xGONCA7Mhh8gG7dMHg@mail.gmail.com>
+--------------------------------------------------------------------------------
+
+So the site is technically live but it does seem to pop up that coming soon
+page on some devices. It works for me on desktop but not mobile. Not sure
+if there is a cache issue on the host/device end, something with the domain
+name pointing/DNS, indexing or what. If go to a subpage on the site it
+seems to work fine:
+https://haroldcohentrust.org/about/
+Can navigate the whole site except the home page page, which leads me to
+think it is something with the hosting/WordPress...
+
+Anyway, I will keep working on it and let you know when resolved.
+
+On Sat, Oct 12, 2024, 9:42 PM kanoko nishi 西鹿乃子 <
+littledeerofthewest@googlemail.com> wrote:
+
+> Hi all!
+>
+> it still saying “Coming Soon” currently, right?
+>
+> "The phenomenon called “I”
+> is a blue illumination
+> of the hypothesized, organic alternating current lamp" - Miyazawa Kenji
+>
+>
+> On Sun, Oct 6, 2024 at 4:03 PM kanoko nishi 西鹿乃子 <
+> littledeerofthewest@googlemail.com> wrote:
+>
+>> This is great, thanks a lot, Daniel! I will try it too tonight!
+>>
+>> On Sun, Oct 6, 2024, 3:42 PM Daniel Maxwell <maxwellgraphics@gmail.com>
+>> wrote:
+>>
+>>> Hi all, sorry for the long delay but the trust website should be up and
+>>> live soon. I was able to point the current URL (haroldcohentrust.org)
+>>> to the new site however it will take up to 72 hours for the DNS records to
+>>> be updated and propagate across the internet. I will keep an eye on it to
+>>> see when the site is actually live.
+>>>
+>>> It is a little confusing but there are currently 3 services involved:
+>>>
+>>> 1. *Google Workspaces* (manages the .org domain, email etc.)
+>>> 2. *SquareSpace* acquired all Google hosted domains so they are now
+>>> the registrar for the .org domain. This is where we can manage what site
+>>> the domain points to.
+>>> 3. *HostGator* is the actual host of the website as well as managing
+>>> the .com domain (just to have with the .org). The .com will just forward to
+>>> the .org once it is live.
+>>>
+>>> Once the site is live and accessible there will probably be a little
+>>> more tidying up to do and we will want to start updating with recents news
+>>> and whatnot.
+>>>
+>>> Please let me know if you have any issues with Google Workspaces and
+>>> email, they should be unaffected but just want to make sure.
+>>>

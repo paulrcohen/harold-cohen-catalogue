@@ -1,0 +1,2955 @@
+Delivered-To: paulrcohen@gmail.com
+Received: by 2002:a05:6a10:774d:b0:5c7:f970:fbca with SMTP id yp13csp2384567pxc;
+        Fri, 20 Dec 2024 03:31:02 -0800 (PST)
+X-Forwarded-Encrypted: i=2; AJvYcCVpet2YTMT8Ce5EnMsYGcfC8Ip7A2fTLaVQLUCcjJjKqueXnayLcFOZxbeBRM6dC4ScUltI8qrEpEvu@gmail.com
+X-Received: by 2002:a17:907:3e8c:b0:aa6:abe2:5cb8 with SMTP id a640c23a62f3a-aac3366f16emr192380266b.60.1734694262370;
+        Fri, 20 Dec 2024 03:31:02 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1734694262; cv=none;
+        d=google.com; s=arc-20240605;
+        b=HXbMLbharSzm2yz7iWNAJV5f0MIm2+58bOSbLwOuJNjIf4oCu74/Gq+27J/GQnqOEJ
+         fKhPnHmQTUve/HyUZRzO+1HeKfyvq5RL+lv0/bq6RAQhr3l5h9OXWSNJoqLym5fGI2S4
+         YxvcsJc6qtRpdR3zIfMAR+DuGfWbbvHRyhdMO9VFS5IIOBTrArkG6z1SBEapYbFUoKX2
+         PrVV+9rQneCkG804v58HA5iJoCtaaoEgC4M5OIoVv+s+wO+umoKCIUNHhwf+YrkOnvyO
+         yC+ZUUfMuNQcW/WYeWgmQQtNF1TTRU1RWJpLmdcENUZnye7X4jeWirLm8BP9rv2jdtoK
+         mQ/Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:dkim-signature;
+        bh=O5EGToDWwygAQdxjR3Ea21xLyPDDl73KFGYJOPeIVUg=;
+        fh=hu5Zd9ke3lBOJynUfygpFaCQKFkzF1HOBs2FaE6GuQM=;
+        b=Vt1jpiCQV1IW5Aru88l0HvJlMQ8jcglTyMJ6vP+nKptgW2g8Sw37GBZYP9Ns0MropQ
+         smPCjRfJJuGTz8g9YU2s4u5swDAesN2t3KsUiNzs/i9jyRv5aHaEBtmC1xFSN4HOwp/B
+         0vwySuyt753aA5fiv4wd3/BBCdbYNWDdPDXoWRR0jP51nQRcoKsUsdcnVhKOFeSmO70o
+         Al1ms7SOEFsMLK61nkfEf+TYPQF94Qi+rI6Y3+ZgdWbxBD4DXLAhGPtmcLs22EJLvWni
+         N2qNVE50G4P0pIcSiiauUrjk+8EScBaUZnzwN8BbiXOH5cpCOkIc1XOzEWpIzY2PIoOu
+         c3ig==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@gazelliarthouse-com.20230601.gappssmtp.com header.s=20230601 header.b=oDgA84DN;
+       spf=pass (google.com: domain of michael@gazelliarthouse.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=michael@gazelliarthouse.com;
+       dara=pass header.i=@gmail.com
+Return-Path: <michael@gazelliarthouse.com>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id a640c23a62f3a-aac0e838ba3sor137871566b.7.2024.12.20.03.31.02
+        for <paulrcohen@gmail.com>
+        (Google Transport Security);
+        Fri, 20 Dec 2024 03:31:02 -0800 (PST)
+Received-SPF: pass (google.com: domain of michael@gazelliarthouse.com designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@gazelliarthouse-com.20230601.gappssmtp.com header.s=20230601 header.b=oDgA84DN;
+       spf=pass (google.com: domain of michael@gazelliarthouse.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=michael@gazelliarthouse.com;
+       dara=pass header.i=@gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gazelliarthouse-com.20230601.gappssmtp.com; s=20230601; t=1734694262; x=1735299062; dara=google.com;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=O5EGToDWwygAQdxjR3Ea21xLyPDDl73KFGYJOPeIVUg=;
+        b=oDgA84DN3uo5SFqI7kfiblL/LkxkwqWekePIC6qaw74q9FEIZ1ASQ+pIt+pOwPK/xt
+         vzD0PYlD8oRrz+eiH6i71bAWVEjX1WiGVF1dNfJ/PHV5U0MOAudUBRf009QVfVHbwH9T
+         mcJ8/FiKZRSZNAmaocTw19mmr1zrW5NRz4ZehNdrQzkzu6YpsQ8L8cMn8GjIAAxdTpKP
+         sC2vl9jpzDA/9br0R+A5QlOXMb4Fd+seEDV9yBYlhy4DOPLPCnraKb6RD91X4pkilGnO
+         cMaaWx5Juls/zF8ykNwx2BfdAKz+4WI/VZc2L/uZDctKAL9nkIovKsAJZYxmO6RGcIhx
+         PoaA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1734694262; x=1735299062;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=O5EGToDWwygAQdxjR3Ea21xLyPDDl73KFGYJOPeIVUg=;
+        b=o4vJDb7eggeeI6t4KpmRmfvIpqXvvfTRykK8dC6dTE1M2gePIQNuuFr33qfq/24UU8
+         HEDG/rgqxEBDT6QocsnRCGe2iEWEuzseuGTpKyR6oqh4Q6w8tresKG8m3a3IwKfFwHQC
+         Mbk4LrMEE8fjGrOArZwR5lMxydmPuF78KiMCL8PAXh7sMLhIeyYtBypNRp73D2Ve03oS
+         Sfh2kwD6aMKdvraldexkeZ9WjmFyXDDRBNqUT7B8DIqyh5UiqCVWzxnSZS3eCx7WbH+d
+         X6dWe3zq+sm44dRr4mGvSWJzqcQQRk5z5Coyo14zJLFnk776eUIMq/K5RH1TUiAkjo7w
+         0/9g==
+X-Forwarded-Encrypted: i=1; AJvYcCViS9Kv0krrUQ4gixLbZfdoipqyxq0f7n8HsnsJXUXGjRhO9bWF9HmUk68EUFRVthEukir2i0PKc6vg@gmail.com
+X-Gm-Message-State: AOJu0YzrhScbnVGC3CUjf/i12hXx1WR80qs5shEB765p1FNu/70yzVbl
+	g320mkPTxwW+0G61Me94kzuWdFt6hEvYHp3Gw34TkFHxK8cufXmW8TUUiOxxuK2LoHr/0P8oqzA
+	qNt1XKBDU7X/kyDRxMg3dP58UKrD/Ow3aLBs0Yg==
+X-Gm-Gg: ASbGncuyzJclcj+AerZEdErwAyFz3NnGDxpmS+DrzsGUBWv5N9gyk8upnycdXp5vB7r
+	x2qOy4VXQEZGWHV5xbgylXEGFbztA464+oJmUvNSd
+X-Google-Smtp-Source: AGHT+IF/ihqy0apOvaCB061A8ZEQf42aHWPJP3VYAbjndTfQfCfabu8FLWcG6QF//qBkopPYJmmKLp9x//L3BNSXNzs=
+X-Received: by 2002:a17:907:724b:b0:aa6:7737:1991 with SMTP id
+ a640c23a62f3a-aac2702ae51mr215141866b.2.1734694261324; Fri, 20 Dec 2024
+ 03:31:01 -0800 (PST)
+MIME-Version: 1.0
+References: <1137054440.295256.1734377217908@yahoo.com> <922087b5-5cc9-34f6-1670-51077ac79ac0@aaronshome.com>
+ <CAFoqNjT+eTFBiJTA+e4kMDzZcDg8x145fN5x-+uXCkVroWd3VQ@mail.gmail.com> <1693630827.2988781.1734648201809@mail.yahoo.com>
+In-Reply-To: <1693630827.2988781.1734648201809@mail.yahoo.com>
+From: Michael Pollard <michael@gazelliarthouse.com>
+Date: Fri, 20 Dec 2024 11:30:49 +0000
+Message-ID: <CAGxUL8v8EqbG+TbfLKzf+0ovDpSRcKeorc_9uPJGd_LHeNiLMA@mail.gmail.com>
+Subject: Re: UK Export license for 'Untitled', 1971
+To: Thomas Machnik <zipnpup@yahoo.com>
+Cc: Harold Cohen Trust <aaron@aaronshome.com>, George Lionel Barker <george@gazelliarthouse.com>, 
+	Paul Cohen <paulrcohen@gmail.com>, 
+	Mila Askarova of Gazelli Art House <m.askarova@gazelliarthouse.com>, 
+	Anastasia Shapovalova <anastasia@gazelliarthouse.com>
+Content-Type: multipart/alternative; boundary="0000000000003da0e60629b1fbfa"
+
+--0000000000003da0e60629b1fbfa
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+Dear Tom and George,
+
+*With regards to the packing*, ideally, yes, the collecting agent would be
+able to use a space in order to pack the works, at least for local transit.
+Once we know which works are being collected, I will pick/schedule a
+shipper and will put them in touch with you Tom, in order to schedule a
+convenient day/time and help ensure the works are collected promptly.
+
+The other points will need to be answered by *George/Mila*:
+-Shall we send any posters?
+-Shall we send any or all of the large framed works sitting on the floor?
+-Shall we send Harold's last Fingerpainting?
+
+Michael.
+
+On Thu, 19 Dec 2024 at 22:44, Thomas Machnik <zipnpup@yahoo.com> wrote:
+
+> Dear George
+> Thanks for the information. I do plan to be out of town a few days +/- Ja=
+n
+> 7th but I think the general time frame of early next year is doable.
+>
+> Regarding additional works, there are no additional canvas paintings that
+> fit the 6 parameters.
+>
+> As for a pickup. I am currently reorganizing the remaining 15 drawers of
+> works yet to be inventoried so that they are grouped into logical groups
+> and not just strewn wherever. Once the work to be shipped is pulled,
+> ideally it is picked up in a timely manner. It would be helpful to know i=
+f
+> the shipper will need the studio space for preparing the work to be
+> shipped. That would help me determine how much other work I can have out =
+in
+> order to continue the grouping process.
+>
+> A few of the drawers do not have artwork but rather other artifacts. One
+> in particular has posters from some of Harold's 1983 exhibitions. Might w=
+e
+> send a few of these at this time? We multiple duplicates of these posters
+> all in excellent condition:
+> Brooklyn Museum
+> Tate
+> Arnolfini
+> National Museum of Wales
+>
+> Also, I know this is not part of the works that fit the 6 parameters, but
+> we have a group of large sized wood framed prints behind plexi-glass that
+> have to sit on the studio floor as we don't have a proper place to store
+> them and they are slowly getting damaged. Some are from the same time
+> period as they ones auctioned off this past fall. Others are more recent
+> like 2010 or so. One of them is a signed Machine Painting. I am assuming
+> the Machine Painting will go. I am wondering if some or all of the others
+> should go at this time. There are 8 of them. All of them are signed works=
+.
+>
+> Also Harold's very last work -- a Fingerpainting on canvas 2016 -- needs
+> TLC. While the composition is complete, it was not stretched and sprayed
+> with acrylic like all the others. This is because I printed it while Haro=
+ld
+> was in the hospital for the last time. He did return home shortly before
+> his passing and saw the completed work and ok'd it. Normally he would hav=
+e
+> had me stretch it so that I could then spray it. But we did not have enou=
+gh
+> wood and he did not authorize me to order the additional wood. This means
+> work is not sprayed with acrylic and therefore more delicate and in need
+> care. I currently have it pinned to large board and covered in plastic bu=
+t
+> has it takes up much space it has to be moved around regularly and this i=
+s
+> beginning to take its toll on this important work. I am wondering if we
+> could ship this one at this time.
+>
+> Summary
+> Early next year shipment is doable
+> There are no additional canvas works that fit the 6 parameters
+> Will the shipper need the studio space for preliminary packing or is that
+> not necessary?
+> Shall we send any posters?
+> Shall we send any or all of the large framed works sitting on the floor?
+> Shall we send Harold's last Fingerpainting?
+>
+> Tom
+>
+>
+>
+>
+> On Tuesday, December 17, 2024, 7:40:31 AM PST, George Lionel Barker <
+> george@gazelliarthouse.com> wrote:
+>
+>
+> Hi Tom,
+>
+> Great to hear from you.
+>
+> I've attached the shipping document for the 18 Figurative works on canvas
+> that fit within your 6 parameters. I have attached a list which has image=
+s,
+> plus the link here:
+> https://privateviews.artlogic.net/2/f5fcb1f56f9ce5a013b84a/
+> <https://privateviews.artlogic.net/2/f5fcb1f56f9ce5a013b84a/>.
+>
+> Not to distract from the shipping project, but can you also please check
+> if there are any additional works with you that fit your parameters that
+> are not listed here?
+>
+> Regarding the Painting Machine works. We have a total of 18 in London.
+> This list includes sold works, plus two that are consigned from Tom Grube=
+r.
+> Here's the list:
+> https://privateviews.artlogic.net/2/237bf664d6efbf6f724c20/
+>
+> According to your document 'Preliminary WIP', you have 17 works remaining
+> in the HCT collection? They are TCM5, TCM7, TCM8, TCM9, TCM10, TCM12,
+> TCM13, TCM18, TCM24, TCM25, TCM27 (signed and framed), TCM101, TCM102,
+> TCM104, TCM105, TCM106, TCM108. I have put together a document with the
+> images and titles attached.
+>
+> Can you please include these works with the shipment of the figurative
+> canvas too? Our timeframe would be in the early New Year, if possible?
+>
+> As always, we are here to help, so please do get in touch with any
+> outstanding questions or concerns.
+>
+> Very best wishes,
+>
+> George
+>
+>
+>
+> *GAZELLI ART HOUSE*
+>
+> LONDON
+> Group Show: Quiet Motion
+> <https://886b17ba.streaklinks.com/CPSFF8c6-tgAijQLzAdniO8K/https%3A%2F%2F=
+gazelliarthouse.com%2Fexhibitions%2F189-quiet-motion-derek-boshier-pauline-=
+boty-harold-cohen-judy-chicago%2F>
+>
+> BAKU
+> Parallel Worlds: Chris Levine, Michael Takeo Magruder, Marshmallow Laser
+> Feast, Elnara Nasirli, Recycle Group, Nye Thompson
+> <https://886b17ba.streaklinks.com/CPSFF8cjI5NrcjYepgqbslhk/https%3A%2F%2F=
+gazelliarthouse.com%2Fexhibitions%2F188-parallel-worlds-chris-levine-michae=
+l-takeo-magruder-marshmallow-laser-feast%2F>
+>
+> GAZELL.iO
+> December Resident | Tom White
+> <https://886b17ba.streaklinks.com/CPSFF8Y__wkDPcctmgRogBZh/https%3A%2F%2F=
+gazell.io%2Fpages%2Ftom-white>
+>
+> www.gazelliarthouse.com
+> +44 (0) 207 491 8816 / +994 (0) 12 498 1230
+>
+> <https://886b17ba.streaklinks.com/CPSFF8ktbQKf_6n2OwCsT-N8/https%3A%2F%2F=
+www.instagram.com%2Fgazelliarthouse%2F>
+>
+> <https://886b17ba.streaklinks.com/CPSFF8IMjDQfX92WLwIhmgDx/https%3A%2F%2F=
+twitter.com%2FGazelliArtHouse>
+>
+> <https://886b17ba.streaklinks.com/CPSFF8USUptnEUWoMQMg210V/https%3A%2F%2F=
+www.facebook.com%2FGazelliArtHouse%2F>
+>
+>
+>
+>
+> This e-mail message, including all attachments, is for the sole use of th=
+e
+> intended recipient(s) and may contain legally privileged and confidential
+> information. If you are not an intended recipient, you are hereby notifie=
+d
+> that you have either received this message in error or
+> through interception, and that any review, use, distribution, copying or
+> disclosure of this message and/or its attachments or parts thereof is
+> strictly prohibited and is subject to criminal and civil penalties with
+> appropriate national legislation.
+>
+>
+> On Tue, 17 Dec 2024 at 00:49, Harold Cohen Trust <aaron@aaronshome.com>
+> wrote:
+>
+>
+> Hi Everyone,
+> I just want us to be in agreement as to what constitutes as figurative
+> work to be shipped. As a starting point, I am assuming, by figurative wor=
+ks
+> to be shipped, we mean an approximate timeperiod of 1991-1999 and that
+> match the following parameters
+>
+> 1) Works generated by the first few generations of LISP coded AARON -- No
+> 'C' Code nor earlier Coding
+> 2) Works generated only on a Silicon Graphic Workstations or the Texas
+> Instrument LISP Machine
+> 2) Works generated by the first few generations of LISP coded AARON -- No
+> 'C' Code nor earlier languages
+> 3) First works whereby AARON determined color choices -- no non-color
+> generated works
+> 4) AARON/Cohen Collaborative paintings on canvas -- oil or acrylic on
+> canvas
+> 5) Does not include any works on paper except for Machine Paintings -- dy=
+e
+> on paper
+> 6) Does not include works reserved by the Trust that are not to be sold
+> nor works owned by family members
+>
+> Assuming the above is the way we are proceeding then all 18 works listed
+> in the artlogic link you send fit the 6 parameters. I checked and we have
+> the same 18 artlogic that is listed in your link as we have in the studio=
+.
+> There were at one time an additional 9 in the studio that I believe were
+> sent to you in multiple shipments starting in 2022. I have not yet review=
+ed
+> if this is true. The ones shipped previously were certainly in better
+> condition than some of the remaining ones. The remaining ones have varyin=
+g
+> degrees of damage.
+>
+> I also checked all the rolled works executed prior to 2000. At one one
+> time, we had a total of 73 rolled works number RA1 to RA73. None of the 7=
+3
+> fit the 6 parameters. There are 2 additional stretched works that match t=
+he
+> 1st five parameters. One is Theo the other Hera and I believe both are he=
+ld
+> in reserve by the Trust.
+>
+> With respect to the Machine Paintings dye on paper, one was inventoried
+> last year, i23-3367. This one is framed in glass and has been shown
+> multiple times. The remaining Machine Paintings were inventoried this yea=
+r
+> and are numbered i24-0068 to i24-0093. Some of these have already been
+> shipped to you. I have not reviewed which ones were shipped to you. It
+> might be possible that we have the very first attempted coloring by the
+> Painting Machine. I say attempted because according to Harold, the machin=
+e
+> dropped a brush or in someother way malfunctioned and the work abondoned.=
+ I
+> say it might be possible we have it as I thought I saw it many years ago
+> prior to knowing what it was. I currently do not know if we have this wor=
+k
+> or not and not sure were to look. It might be in a collection of test
+> prints that have not yet been reviewed.
+>
+> Back in May 2024, I put together a Google Slide regarding what I knew
+> about the Machine Paintings. This can be viewed at
+>
+> https://docs.google.com/presentation/d/1sDl-4SVjAwayGX4Uk16zgH2IxqDOj20YV=
+T_uWOd5MMo/edit?usp=3Dsharing
+>
+> Page 89 of the Google Slide and the next 5 slides show the works that
+> belong to HCT in May 2024. The Google Slide was made prior to the invento=
+ry
+> so the works do not have the i24-xxxx numbers but I will add them.
+>
+> I currently have other work pulled and multiple computer systems setup on
+> another project. So, it is not practical to pull any additional work at
+> this time for an immediate shipment. However, let me know if we need to
+> expand or contract the intended works to be shipped so I can make determi=
+ne
+> how to schedule time to rearrange the studio and to be able to stage work
+> for pickup.
+>
+> As a review
+> - I suggest 6 parameters to determining works to be sent and an time
+> period of 1991-1999
+> - The 18 in the artlogic list and all the Machine Paintings fit these
+> parameters
+> - I have yet to reviewed and therefore not certain which works from these
+> two groups were previously sent
+> - I will update the Google Slide with the inventory information and send
+> you my inventory notes
+> - I am currently working on another project using the up the studio space
+> so an immediate shipment is possible it is not practical
+> - What would be helpful to me is knowing if the 6 parameters fit the scop=
+e
+> of shipment, potential time frame for pickup and what works you have or h=
+ad
+> but were sold
+>
+> Tom
+>
+>
+>
+>
+>
+> -------- Forwarded Message --------
+> Subject: FW: Re: UK Export license for 'Untitled', 1971
+> Date: Mon, 16 Dec 2024 11:26:47 -0800
+> From: zipnpup <zipnpup@yahoo.com> <zipnpup@yahoo.com>
+> To: Harold Cohen Trust <aaron@aaronshome.com> <aaron@aaronshome.com>
+>
+>
+>
+>
+>
+> Sent from my T-Mobile 4G LTE Device
+>
+>
+> -------- Original message --------
+> From: George Lionel Barker <george@gazelliarthouse.com>
+> <george@gazelliarthouse.com>
+> Date: 12/16/24 8:28 AM (GMT-08:00)
+> To: Paul Cohen <paulrcohen@gmail.com> <paulrcohen@gmail.com>
+> Cc: Michael Pollard <michael@gazelliarthouse.com>
+> <michael@gazelliarthouse.com>, Mila Askarova
+> <m.askarova@gazelliarthouse.com> <m.askarova@gazelliarthouse.com>, Thomas
+> Machnik <zipnpup@yahoo.com> <zipnpup@yahoo.com>
+> Subject: Re: UK Export license for 'Untitled', 1971
+>
+> Hi Paul,
+>
+> Thanks for the update, I appreciate it.
+>
+> I'm not sure how many more Painting Machine works you guys have, but I
+> remember we didn't ship everything to London last time..? Understanding h=
+ow
+> many figurative works on canvas you have is important, so if you wouldn't
+> mind confirming which ones you have, aside from this list that would be
+> great: https://privateviews.artlogic.net/2/f5fcb1f56f9ce5a013b84a/ we'd
+> like to ship them all over.
+>
+> Thanks everyone !
+>
+> George
+>
+> *GAZELLI ART HOUSE*
+>
+> LONDON
+> Group Show: Quiet Motion
+> <https://886b17ba.streaklinks.com/CPSFF8gvL2IbI8QkVg37Hlz0/https%3A%2F%2F=
+gazelliarthouse.com%2Fexhibitions%2F189-quiet-motion-derek-boshier-pauline-=
+boty-harold-cohen-judy-chicago%2F>
+>
+> BAKU
+> Parallel Worlds: Chris Levine, Michael Takeo Magruder, Marshmallow Laser
+> Feast, Elnara Nasirli, Recycle Group, Nye Thompson
+> <https://886b17ba.streaklinks.com/CPSFF8YhYSViPl3hzQI034bK/https%3A%2F%2F=
+gazelliarthouse.com%2Fexhibitions%2F188-parallel-worlds-chris-levine-michae=
+l-takeo-magruder-marshmallow-laser-feast%2F>
+>
+> GAZELL.iO
+> December Resident | Tom White
+> <https://886b17ba.streaklinks.com/CPSFF8UOTuBmGZNR7gH4Zf-a/https%3A%2F%2F=
+gazell.io%2Fpages%2Ftom-white>
+>
+> www.gazelliarthouse.com
+> +44 (0) 207 491 8816 / +994 (0) 12 498 1230
+>
+> <https://886b17ba.streaklinks.com/CPSFF8gDw9e8WJUOdAsjtLPb/https%3A%2F%2F=
+www.instagram.com%2Fgazelliarthouse%2F>
+> <https://886b17ba.streaklinks.com/CPSFF8g19VZRE8uDrwtmvnlc/https%3A%2F%2F=
+twitter.com%2FGazelliArtHouse>
+>
+> <https://886b17ba.streaklinks.com/CPSFF8gKilErltixVgjHsM0b/https%3A%2F%2F=
+www.facebook.com%2FGazelliArtHouse%2F>
+>
+>
+>
+>
+> This e-mail message, including all attachments, is for the sole use of th=
+e
+> intended recipient(s) and may contain legally privileged and confidential
+> information. If you are not an intended recipient, you are hereby notifie=
+d
+> that you have either received this message in error or
+> through interception, and that any review, use, distribution, copying or
+> disclosure of this message and/or its attachments or parts thereof is
+> strictly prohibited and is subject to criminal and civil penalties with
+> appropriate national legislation.
+>
+> =E1=90=A7
+>
+> On Mon, 16 Dec 2024 at 16:13, Paul Cohen <paulrcohen@gmail.com> wrote:
+>
+> Hi George, I chatted with Tom last week.  My understanding is that the
+> rolled works are mostly dacron drawings and "dots" paintings, but Tom wil=
+l
+> correct me if that's wrong.  The figurative paintings are mostly
+> stretched.  Not sure how many painting machine paintings remain in San
+> Diego.  --P
+>
+> ______________________________
+>
+> Paul Cohen,  Professor
+> School of Computing and Information
+> University of Pittsburgh
+> personal webpage
+> <https://886b17ba.streaklinks.com/CPSFF8gaWt56DkSNXQk0-m16/https%3A%2F%2F=
+paulrcohen.github.io%2F>
+> ______________________________
+>
+>
+> On Mon, Dec 16, 2024 at 8:08=E2=80=AFAM George Lionel Barker <
+> george@gazelliarthouse.com> wrote:
+>
+> Hi Mike and Tom,
+>
+> Please find attached the shipping list of figurative works on canvas that
+> we think are with you:
+> https://privateviews.artlogic.net/2/f5fcb1f56f9ce5a013b84a/ These are to
+> be sent alongside the unrolled works mentioned in your previous email @Th=
+omas
+> Machnik <zipnpup@yahoo.com>  If you can send the rolls, we will unroll
+> here to save time. I remembered that there might be additional 'figurativ=
+e'
+> works on canvas that have not yet gone on the spreadsheet too?
+>
+> We would also love to have the remaining Painting Machine pieces you have
+> in California. Here's a list of everything in London:
+> https://privateviews.artlogic.net/2/237bf664d6efbf6f724c20  @Thomas
+> Machnik <zipnpup@yahoo.com> how many do you still have with you?
+>
+> Looking forward to hearing from you, and let me know if you have any
+> questions.
+>
+> George
+>
+>
+>
+> *GAZELLI ART HOUSE*
+>
+> LONDON
+> Group Show: Quiet Motion
+> <https://886b17ba.streaklinks.com/CPSFF80CQsc3Hs5bzw15SPH8/https%3A%2F%2F=
+gazelliarthouse.com%2Fexhibitions%2F189-quiet-motion-derek-boshier-pauline-=
+boty-harold-cohen-judy-chicago%2F>
+>
+> BAKU
+> Parallel Worlds: Chris Levine, Michael Takeo Magruder, Marshmallow Laser
+> Feast, Elnara Nasirli, Recycle Group, Nye Thompson
+> <https://886b17ba.streaklinks.com/CPSFF8kg4BukkYvaLAJacyA2/https%3A%2F%2F=
+gazelliarthouse.com%2Fexhibitions%2F188-parallel-worlds-chris-levine-michae=
+l-takeo-magruder-marshmallow-laser-feast%2F>
+>
+> GAZELL.iO
+> December Resident | Tom White
+> <https://886b17ba.streaklinks.com/CPSFF8g9fS-UC6MSTw-AnVcw/https%3A%2F%2F=
+gazell.io%2Fpages%2Ftom-white>
+>
+> www.gazelliarthouse.com
+> +44 (0) 207 491 8816 / +994 (0) 12 498 1230
+>
+> <https://886b17ba.streaklinks.com/CPSFF80bG13_0pUjugu5IYEH/https%3A%2F%2F=
+www.instagram.com%2Fgazelliarthouse%2F>
+> <https://886b17ba.streaklinks.com/CPSFF9ZDA_7Mt8O34AX4CuOL/https%3A%2F%2F=
+twitter.com%2FGazelliArtHouse>
+>
+> <https://886b17ba.streaklinks.com/CPSFF8gMTA0EEsbmwAz-wFoS/https%3A%2F%2F=
+www.facebook.com%2FGazelliArtHouse%2F>
+>
+>
+>
+>
+> This e-mail message, including all attachments, is for the sole use of th=
+e
+> intended recipient(s) and may contain legally privileged and confidential
+> information. If you are not an intended recipient, you are hereby notifie=
+d
+> that you have either received this message in error or
+> through interception, and that any review, use, distribution, copying or
+> disclosure of this message and/or its attachments or parts thereof is
+> strictly prohibited and is subject to criminal and civil penalties with
+> appropriate national legislation.
+>
+> =E1=90=A7
+>
+> On Sun, 15 Dec 2024 at 11:27, Michael Pollard <michael@gazelliarthouse.co=
+m>
+> wrote:
+>
+> Hello Paul,
+>
+> This can be left to me and Tom.
+> I would simply need the list of inventory and current packed methods /
+> dims (if packed) in order to start scheduling a local shipper to collect.
+>
+> I'll follow up for any important information when needed (estimated
+> values, additional detail if necessary)
+>
+> Michael.
+>
+> On Fri, 13 Dec 2024 at 19:05, Paul Cohen <paulrcohen@gmail.com> wrote:
+>
+> Great news, Michael, thanks for letting us know.
+>
+> On a related subject, Mila and I talked earlier this week about getting
+> started on shipping the "figurative" canvases compiled by Tom and George =
+--
+> https://privateviews.artlogic.net/2/f5fcb1f56f9ce5a013b84a/ -- to GAH.
+> Do we need to have a zoom call to get going on this, or can we leave it
+> with you and Tom?
+>
+> Thanks, --Paul
+>
+> ______________________________
+>
+> Paul Cohen,  Professor
+> School of Computing and Information
+> University of Pittsburgh
+> personal webpage
+> <https://886b17ba.streaklinks.com/CPSFF8gRUZJfoAGWfgx-tAT3/https%3A%2F%2F=
+paulrcohen.github.io%2F>
+> ______________________________
+>
+>
+> On Fri, Dec 13, 2024 at 12:53=E2=80=AFPM Michael Pollard <
+> michael@gazelliarthouse.com> wrote:
+>
+> Dear Paul and Tom,
+>
+> I just wanted to follow up and say thank you both for your help here.
+>
+> The Arts council (faster than expected) approved the Export license
+> without an issue or any follow up questions.
+>
+> I'm certain the signed letter and the researched details that Tom provide=
+d
+> that were provided along with the application made a huge contribution in
+> this going through without contest.
+>
+> Best,
+>
+> Michael.
+>
+> On Wed, 4 Dec 2024 at 15:50, Michael Pollard <michael@gazelliarthouse.com=
+>
+> wrote:
+>
+> This is perfect, thank you so much!
+>
+> I will let you know the outcome.
+> FYI, there is a chance you may receive an email directly from the Arts
+> Council asking for more detail if available / possible.
+>
+> If they reach out, feel free to ask me any questions.
+>
+> Michael.
+>
+> On Wed, 4 Dec 2024 at 15:40, Paul Cohen <paulrcohen@gmail.com> wrote:
+>
+> Hi Michael, thanks for writing this!  I put it on my university letterhea=
+d
+> to make it seem more official.  Hope this is fine, let me know.  --P
+>
+> ______________________________
+>
+> Paul Cohen,  Professor
+> School of Computing and Information
+> University of Pittsburgh
+> personal webpage
+> <https://886b17ba.streaklinks.com/CPSFF8o4OOCkIuCSEAx6XHxP/https%3A%2F%2F=
+paulrcohen.github.io%2F>
+> ______________________________
+>
+>
+> On Wed, Dec 4, 2024 at 6:37=E2=80=AFAM Michael Pollard <
+> michael@gazelliarthouse.com> wrote:
+>
+> Dear Paul,
+>
+> Sorry we didn't get to chat again after our brief sit-down.
+>
+> Attached here is a proposed affidavit / draft for a document stating that=
+,
+> to the best of the Trust's knowledge, that the artwork was imported at so=
+me
+> point during, likely during the mid-70's / early 80's, for the purpose of
+> exhibition.
+>
+> To confirm, the artwork in question is this one:
+> [image: image.png]
+> *Harold Cohen*
+> *Untitled*, 1971
+> Acrylic on canvas
+> 213.4 x 302 cm, 84 x 118 7/8 in
+> (HC0174)
+>
+> If you could review the attached, edit as you deem appropriate, and let m=
+e
+> know if you'd be willing to sign / have this submitted as part of the
+> application to the UK Arts Council, that would be appreciated.
+>
+> Also any questions you may have about the application process, I would be
+> happy to answer.
+> Michael.
+>
+> --
+> *Michael Pollard*
+> *Senior Registrar*
+>
+>
+>
+> *GAZELLI ART HOUSE LONDON  *
+>
+> =E1=90=A7
+>
+
+--0000000000003da0e60629b1fbfa
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr">Dear Tom and George,<div><br></div><div><b>With regards to=
+ the packing</b>, ideally, yes, the collecting agent would be able to use a=
+ space in order to pack the works, at least for local transit.</div><div>On=
+ce we know which works are being collected, I will pick/schedule a shipper =
+and will put them in touch with you Tom, in order to schedule a convenient =
+day/time and help ensure the works are collected promptly.</div><div><br></=
+div><div>The other points will need to be answered by <b>George/Mila</b>:</=
+div><div><div dir=3D"ltr" style=3D"font-family:&quot;Helvetica Neue&quot;,H=
+elvetica,Arial,sans-serif;font-size:16px">-Shall we send any posters?</div>=
+<div dir=3D"ltr" style=3D"font-family:&quot;Helvetica Neue&quot;,Helvetica,=
+Arial,sans-serif;font-size:16px">-Shall we send any or all of the large fra=
+med works sitting on the floor?</div><div dir=3D"ltr" style=3D"font-family:=
+&quot;Helvetica Neue&quot;,Helvetica,Arial,sans-serif;font-size:16px">-Shal=
+l we send Harold&#39;s last Fingerpainting?</div></div><div><br></div><div>=
+Michael.</div></div><br><div class=3D"gmail_quote gmail_quote_container"><d=
+iv dir=3D"ltr" class=3D"gmail_attr">On Thu, 19 Dec 2024 at 22:44, Thomas Ma=
+chnik &lt;<a href=3D"mailto:zipnpup@yahoo.com">zipnpup@yahoo.com</a>&gt; wr=
+ote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px=
+ 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"><div><div s=
+tyle=3D"font-family:&quot;Helvetica Neue&quot;,Helvetica,Arial,sans-serif;f=
+ont-size:16px"><div></div>
+        <div dir=3D"ltr"><div><div><div>Dear George</div><div dir=3D"ltr">T=
+hanks for the information. I do plan to be out of town a few days +/- Jan 7=
+th but <span>I think the general time frame of early next year is doable. <=
+/span><br></div><div><br></div><div>Regarding additional works, there are n=
+o additional canvas paintings that fit the 6 parameters.=C2=A0</div><div><b=
+r></div><div dir=3D"ltr">As
+ for a pickup. I am currently reorganizing the remaining 15 drawers of=20
+works yet to be inventoried so that they are grouped into logical groups
+ and not just strewn wherever. Once the work to be shipped is pulled, ideal=
+ly it is picked up in a timely manner. It would be helpful to know if the=
+=20
+shipper will need the studio space for preparing the work to be shipped.
+ That would help me determine how much other work I can have out in order t=
+o continue the grouping process.<br><div><div><br></div></div></div><div di=
+r=3D"ltr">A few of the drawers do not have=20
+artwork but rather other artifacts. One in particular has posters from=20
+some of Harold&#39;s 1983 exhibitions. Might we send a few of these at this=
+ time? We multiple duplicates of these posters all in excellent condition:<=
+/div><div dir=3D"ltr">Brooklyn Museum <br></div><div dir=3D"ltr">Tate<br></=
+div><div dir=3D"ltr">Arnolfini <br></div><div dir=3D"ltr">National Museum o=
+f Wales <br></div><div><br></div><div dir=3D"ltr">Also, I
+ know this is not part of the works that fit the 6 parameters, but we=20
+have a group of large sized wood framed prints behind plexi-glass that have=
+ to sit on the studio
+ floor as we don&#39;t have a proper place to store them and they are slowl=
+y=20
+getting damaged. Some are from the same time period as they ones=20
+auctioned off this past fall. Others are more recent like 2010 or so. One o=
+f them is a signed Machine Painting. I am assuming the Machine Painting wil=
+l go. I=20
+am wondering if some or all of the others should go at this time. There are=
+ 8 of them. All of them are signed works.<br></div><div><br></div><div>Also
+ Harold&#39;s very last work -- a Fingerpainting on canvas 2016 -- needs TL=
+C. While
+ the composition is complete, it was not stretched and sprayed with=20
+acrylic like all the others. This is because I printed it while Harold=20
+was in the hospital for the last time. He did return home shortly before
+ his passing and saw the completed work and ok&#39;d it. Normally he would=
+=20
+have had me stretch it so that I could then spray it. But we did not=20
+have enough wood and he did not authorize me to order the additional=20
+wood. This means work is not sprayed with acrylic and therefore more
+ delicate and in need care. I currently have it pinned to large board and c=
+overed in plastic but has it takes up much space it has to be moved around =
+regularly and this is beginning to take its toll on this important work. I =
+am wondering if we could ship this one at this time. <br></div><div><br></d=
+iv><div dir=3D"ltr">Summary</div><div dir=3D"ltr">Early next year shipment =
+is doable</div><div dir=3D"ltr">There are no additional canvas works that f=
+it the 6 parameters<br></div><div dir=3D"ltr">Will the shipper need the stu=
+dio space for preliminary packing or is that not necessary?</div><div dir=
+=3D"ltr">Shall we send any posters?</div><div dir=3D"ltr">Shall we send any=
+ or all of the large framed works sitting on the floor?</div><div dir=3D"lt=
+r">Shall we send Harold&#39;s last Fingerpainting?</div><div dir=3D"ltr"><b=
+r></div><div dir=3D"ltr"> Tom<br></div></div><div><br><br></div></div><div>=
+<br></div></div><div><br></div>
+       =20
+        </div><div id=3D"m_-8753515695039522970ydpb2ce7c50yahoo_quoted_5368=
+756233">
+            <div style=3D"font-family:&quot;Helvetica Neue&quot;,Helvetica,=
+Arial,sans-serif;font-size:13px;color:rgb(38,40,42)">
+               =20
+                <div>
+                        On Tuesday, December 17, 2024, 7:40:31 AM PST, Geor=
+ge Lionel Barker &lt;<a href=3D"mailto:george@gazelliarthouse.com" target=
+=3D"_blank">george@gazelliarthouse.com</a>&gt; wrote:
+                    </div>
+                    <div><br></div>
+                    <div><br></div>
+               =20
+               =20
+                <div><div id=3D"m_-8753515695039522970ydpb2ce7c50yiv6624338=
+116"><div><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"lt=
+r"><div>Hi Tom,=C2=A0</div><div><br clear=3D"none"></div><div>Great to hear=
+ from you.=C2=A0</div><div><br clear=3D"none"></div><div>I&#39;ve attached =
+the shipping document for the 18 Figurative works on canvas that fit within=
+ your 6 parameters. I have attached a list which has images, plus the link =
+here:=C2=A0<a shape=3D"rect" href=3D"https://privateviews.artlogic.net/2/f5=
+fcb1f56f9ce5a013b84a/" rel=3D"noreferrer noopener" target=3D"_blank">https:=
+//privateviews.artlogic.net/2/f5fcb1f56f9ce5a013b84a/=C2=A0</a>.=C2=A0</div=
+><div><br clear=3D"none"></div><div>Not to distract from the shipping proje=
+ct, but can you also please check if there are any additional works with yo=
+u that fit your parameters that are not listed here?=C2=A0</div><div><br cl=
+ear=3D"none"></div><div>Regarding the Painting Machine works. We have a tot=
+al of 18 in London. This list includes sold works, plus two that are consig=
+ned from Tom Gruber. Here&#39;s the list:=C2=A0<a shape=3D"rect" href=3D"ht=
+tps://privateviews.artlogic.net/2/237bf664d6efbf6f724c20/" rel=3D"noreferre=
+r noopener" target=3D"_blank">https://privateviews.artlogic.net/2/237bf664d=
+6efbf6f724c20/</a></div><div><br clear=3D"none"></div><div>According to you=
+r document &#39;Preliminary WIP&#39;, you have 17 works remaining in the HC=
+T collection? They are TCM5, TCM7, TCM8, TCM9, TCM10, TCM12, TCM13, TCM18, =
+TCM24, TCM25, TCM27 (signed and framed), TCM101, TCM102, TCM104, TCM105, TC=
+M106, TCM108. I have put together=C2=A0a document with the images and title=
+s attached.=C2=A0</div><div><br clear=3D"none"></div><div>Can you please in=
+clude these works with the shipment of the figurative canvas too? Our timef=
+rame would be in the early New Year, if possible?=C2=A0</div><div><br clear=
+=3D"none"></div><div>As always, we are here to help, so please do get in to=
+uch with any outstanding questions or concerns.=C2=A0</div><div><br clear=
+=3D"none"></div><div>Very best wishes,=C2=A0</div><div><br clear=3D"none"><=
+/div><div>George</div><div><br clear=3D"none"></div><div><br clear=3D"none"=
+></div><div><br clear=3D"none"></div><div><div dir=3D"ltr"><div dir=3D"ltr"=
+><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div d=
+ir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"l=
+tr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><di=
+v dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div style=
+=3D"padding-top:0px;padding-right:0px;padding-left:0px"><div style=3D"margi=
+n:0px;padding:0px 0px 20px;width:1116px"><div dir=3D"ltr"><div dir=3D"ltr">=
+<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div di=
+r=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"lt=
+r"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div=
+ dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D=
+"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><=
+div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr">=
+<div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div di=
+r=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"lt=
+r"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div=
+ dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D=
+"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><=
+div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div><di=
+v dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr" style=3D"color:rgb(=
+34,34,34)"><div dir=3D"ltr"><div dir=3D"ltr"><div style=3D"padding-top:0px;=
+padding-right:0px;padding-left:0px;font-family:Roboto,RobotoDraft,Helvetica=
+,Arial,sans-serif"><div style=3D"margin:0px;min-width:0px;padding:0px 0px 2=
+0px;width:initial"><div style=3D"margin:8px 0px 0px;padding:0px"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr" style=3D"font-family:Arial,Helvetica,sans-serif"><div di=
+r=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"lt=
+r"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><span></span><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><font color=3D"#000000=
+"><b>GAZELLI ART HOUSE</b></font></div><div dir=3D"ltr"><br clear=3D"none">=
+</div><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><=
+div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><font face=3D"a=
+rial, sans-serif" color=3D"#000000">LONDON</font></div><div><font face=3D"a=
+rial, sans-serif"><a shape=3D"rect" href=3D"https://886b17ba.streaklinks.co=
+m/CPSFF8c6-tgAijQLzAdniO8K/https%3A%2F%2Fgazelliarthouse.com%2Fexhibitions%=
+2F189-quiet-motion-derek-boshier-pauline-boty-harold-cohen-judy-chicago%2F"=
+ style=3D"color:rgb(17,85,204)" rel=3D"noreferrer noopener" target=3D"_blan=
+k">Group Show: Quiet Motion</a></font></div><div><span style=3D"color:rgb(0=
+,0,0);font-family:arial,sans-serif"><br clear=3D"none"></span></div><div><s=
+pan style=3D"color:rgb(0,0,0);font-family:arial,sans-serif">BAKU=C2=A0</spa=
+n></div><div><a shape=3D"rect" href=3D"https://886b17ba.streaklinks.com/CPS=
+FF8cjI5NrcjYepgqbslhk/https%3A%2F%2Fgazelliarthouse.com%2Fexhibitions%2F188=
+-parallel-worlds-chris-levine-michael-takeo-magruder-marshmallow-laser-feas=
+t%2F" style=3D"color:rgb(17,85,204)" rel=3D"noreferrer noopener" target=3D"=
+_blank">Parallel Worlds: Chris Levine, Michael Takeo Magruder, Marshmallow =
+Laser Feast, Elnara Nasirli, Recycle Group, Nye Thompson</a></div><div dir=
+=3D"ltr"><div><font face=3D"arial, sans-serif" color=3D"#000000"><br clear=
+=3D"none"></font></div><div><font face=3D"arial, sans-serif" color=3D"#0000=
+00">GAZELL.iO=C2=A0</font></div><div><font face=3D"arial, sans-serif">Decem=
+ber Resident |=C2=A0<a shape=3D"rect" href=3D"https://886b17ba.streaklinks.=
+com/CPSFF8Y__wkDPcctmgRogBZh/https%3A%2F%2Fgazell.io%2Fpages%2Ftom-white" s=
+tyle=3D"color:rgb(17,85,204)" rel=3D"noreferrer noopener" target=3D"_blank"=
+>Tom White</a></font></div></div></div></div></div></div></div></div></div>=
+</div><div dir=3D"ltr"><br clear=3D"none"></div></div></div></div></div><di=
+v dir=3D"ltr"><font face=3D"arial, sans-serif"></font><div><a shape=3D"rect=
+" href=3D"http://www.gazelliarthouse.com/" style=3D"color:rgb(17,85,204)" r=
+el=3D"noreferrer noopener" target=3D"_blank"><font color=3D"#0b5394">www.ga=
+zelliarthouse.com</font></a></div><div>+44 (0) 207 491 8816 / +994 (0) 12 4=
+98 1230</div><div><div><font color=3D"#000000"><a shape=3D"rect" href=3D"ht=
+tps://886b17ba.streaklinks.com/CPSFF8ktbQKf_6n2OwCsT-N8/https%3A%2F%2Fwww.i=
+nstagram.com%2Fgazelliarthouse%2F" style=3D"color:rgb(17,85,204);display:in=
+line-block" rel=3D"noreferrer noopener" target=3D"_blank"><img src=3D"https=
+://68ef2f69c7787d4078ac-7864ae55ba174c40683f10ab811d9167.ssl.cf1.rackcdn.co=
+m/instagram-icon_24x24.png" style=3D"margin: 0.8em 0.2em; padding: 0px; let=
+ter-spacing: -0.1px; border-color: currentcolor; border-style: none; border=
+-width: 0px; vertical-align: middle; max-width: 100%;" width=3D"24"><div st=
+yle=3D"margin:0px;width:0px;min-height:0px"><div></div></div></a><a shape=
+=3D"rect" href=3D"https://886b17ba.streaklinks.com/CPSFF8IMjDQfX92WLwIhmgDx=
+/https%3A%2F%2Ftwitter.com%2FGazelliArtHouse" style=3D"color:rgb(17,85,204)=
+;display:inline-block" rel=3D"noreferrer noopener" target=3D"_blank"><img s=
+rc=3D"https://68ef2f69c7787d4078ac-7864ae55ba174c40683f10ab811d9167.ssl.cf1=
+.rackcdn.com/twitter-icon_24x24.png" style=3D"margin: 0.8em 0.2em; padding:=
+ 0px; letter-spacing: -0.1px; border-color: currentcolor; border-style: non=
+e; border-width: 0px; vertical-align: middle; max-width: 100%;" width=3D"24=
+"><div style=3D"margin:0px;width:0px;min-height:0px"><div></div></div></a>=
+=C2=A0<a shape=3D"rect" href=3D"https://886b17ba.streaklinks.com/CPSFF8USUp=
+tnEUWoMQMg210V/https%3A%2F%2Fwww.facebook.com%2FGazelliArtHouse%2F" style=
+=3D"color:rgb(17,85,204);display:inline-block" rel=3D"noreferrer noopener" =
+target=3D"_blank"><img src=3D"https://68ef2f69c7787d4078ac-7864ae55ba174c40=
+683f10ab811d9167.ssl.cf1.rackcdn.com/facebook-icon_24x24.png" style=3D"marg=
+in: 0.8em 0.2em; padding: 0px; letter-spacing: -0.1px; border-color: curren=
+tcolor; border-style: none; border-width: 0px; vertical-align: middle; max-=
+width: 100%;" width=3D"24"></a></font></div></div><div><br clear=3D"none"><=
+/div><div><img src=3D"https://ci3.googleusercontent.com/mail-sig/AIorK4w7gK=
+ovNZAR8tYAuQ9hIjEiBgWel9uIDPpW34GyeY595Rek12deHDAlPE9ZZxtPymKBYCzaHBU" widt=
+h=3D"96" height=3D"44"><br clear=3D"none"></div><div><br clear=3D"none"></d=
+iv><div><br clear=3D"none"></div><div><font color=3D"#000000">This e-mail m=
+essage, including all attachments, is for the=C2=A0sole use of the intended=
+ recipient(s) and may contain=C2=A0legally privileged and confidential info=
+rmation. If you are=C2=A0not an intended recipient, you are hereby notified=
+ that=C2=A0you have either received this message in error or through=C2=A0i=
+nterception, and that any=C2=A0review, use, distribution,=C2=A0copying or d=
+isclosure of this message and/or its=C2=A0attachments or parts thereof is s=
+trictly prohibited and is=C2=A0subject to criminal and civil penalties with=
+ appropriate=C2=A0national legislation.</font></div></div></div></div></div=
+></div></div></div></div></div></div></div></div></div></div></div></div></=
+div></div></div></div></div></div></div></div></div></div></div></div></div=
+></div></div></div></div></div></div></div></div></div></div></div></div></=
+div></div></div></div></div></div></div><div style=3D"color:rgb(34,34,34)">=
+<div dir=3D"ltr"><div dir=3D"ltr"><div><div></div></div></div></div></div><=
+/div></div></div></div></div></div></div></div></div></div></div></div></di=
+v></div></div></div></div></div></div></div></div></div></div></div></div><=
+/div></div></div></div></div></div><div style=3D"color:rgb(34,34,34)"><div =
+dir=3D"ltr"><div dir=3D"ltr"></div></div></div></div></div></div></div></di=
+v></div></div></div></div></div></div></div></div></div></div></div></div><=
+/div></div></div></div></div></div></div></div></div></div></div></div></di=
+v></div></div></div></div></div></div></div></div></div></div></div></div><=
+/div></div></div></div></div></div></div></div></div></div></div></div></di=
+v></div></div></div></div></div></div></div></div></div></div></div></div><=
+/div></div></div></div></div></div></div></div></div></div></div></div></di=
+v></div></div></div></div></div></div></div></div></div></div></div></div><=
+/div></div></div></div></div></div></div><div style=3D"margin:8px 0px 0px;p=
+adding:0px"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"=
+ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><d=
+iv dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=
+=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div><div dir=
+=3D"ltr"><div dir=3D"ltr"><div></div></div></div></div><div><div dir=3D"ltr=
+"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div dir=3D"ltr"><div =
+dir=3D"ltr"><span></span></div></div></div></div></div></div></div></div></=
+div></div></div></div></div></div></div></div></div></div></div></div></div=
+></div></div></div></div></div></div></div></div></div></div></div></div></=
+div></div></div></div></div></div></div></div></div></div></div></div></div=
+><br clear=3D"none"></div><br clear=3D"none"><div id=3D"m_-8753515695039522=
+970ydpb2ce7c50yiv6624338116yqt89594"><div><div dir=3D"ltr">On Tue, 17 Dec 2=
+024 at 00:49, Harold Cohen Trust &lt;<a shape=3D"rect" href=3D"mailto:aaron=
+@aaronshome.com" rel=3D"noreferrer noopener" target=3D"_blank">aaron@aarons=
+home.com</a>&gt; wrote:<br clear=3D"none"></div><blockquote style=3D"margin=
+:0px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex"=
+>
+ =20
+
+   =20
+ =20
+  <div>
+    <br clear=3D"none">
+    <div>Hi Everyone,<br clear=3D"none">
+      I just want us to be in agreement as to what constitutes as
+      figurative work to be shipped. As a starting point, I am assuming,
+      by figurative works to be shipped, we mean an approximate
+      timeperiod of 1991-1999 and that match the following parameters<br cl=
+ear=3D"none">
+      <br clear=3D"none">
+      1) Works generated by the first few generations of LISP coded
+      AARON -- No &#39;C&#39; Code nor earlier Coding <br clear=3D"none">
+      2) Works generated only on a Silicon Graphic Workstations or the
+      Texas Instrument LISP Machine <br clear=3D"none">
+      2) Works generated by the first few generations of LISP coded
+      AARON -- No &#39;C&#39; Code nor earlier languages<br clear=3D"none">
+      3) First works whereby AARON determined color choices -- no
+      non-color generated works<br clear=3D"none">
+      4) AARON/Cohen Collaborative paintings on canvas -- oil or acrylic
+      on canvas<br clear=3D"none">
+      5) Does not include any works on paper except for Machine
+      Paintings -- dye on paper<br clear=3D"none">
+      6) Does not include works reserved by the Trust that are not to be
+      sold nor works owned by family members <br clear=3D"none">
+      <br clear=3D"none">
+      Assuming the above is the way we are proceeding then all 18 works
+      listed in the artlogic link you send fit the 6 parameters. I
+      checked and we have the same 18 artlogic that is listed in your
+      link as we have in the studio. There were at one time an
+      additional 9 in the studio that I believe were sent to you in
+      multiple shipments starting in 2022. I have not yet reviewed if
+      this is true. The ones shipped previously were certainly in better
+      condition than some of the remaining ones. The remaining ones have
+      varying degrees of damage. <br clear=3D"none">
+      <br clear=3D"none">
+      I also checked all the rolled works executed prior to 2000. At one
+      one time, we had a total of 73 rolled works number RA1 to RA73.
+      None of the 73 fit the 6 parameters. There are 2 additional
+      stretched works that match the 1st five parameters. One is Theo
+      the other Hera and I believe both are held in reserve by the
+      Trust.<br clear=3D"none">
+      <br clear=3D"none">
+      With respect to the Machine Paintings dye on paper, one was
+      inventoried last year, i23-3367. This one is framed in glass and
+      has been shown multiple times. The remaining Machine Paintings
+      were inventoried this year and are numbered i24-0068 to i24-0093.
+      Some of these have already been shipped to you. I have not
+      reviewed which ones were shipped to you. It might be possible that
+      we have the very first attempted coloring by the Painting Machine.
+      I say attempted because according to Harold, the machine dropped a
+      brush or in someother way malfunctioned and the work abondoned. I
+      say it might be possible we have it as I thought I saw it many
+      years ago prior to knowing what it was. I currently do not know if
+      we have this work or not and not sure were to look. It might be in
+      a collection of test prints that have not yet been reviewed.<br clear=
+=3D"none">
+      <br clear=3D"none">
+      Back in May 2024, I put together a Google Slide regarding what I
+      knew about the Machine Paintings. This can be viewed at<br clear=3D"n=
+one">
+<a shape=3D"rect" href=3D"https://docs.google.com/presentation/d/1sDl-4SVjA=
+wayGX4Uk16zgH2IxqDOj20YVT_uWOd5MMo/edit?usp=3Dsharing" rel=3D"noreferrer no=
+opener" target=3D"_blank">https://docs.google.com/presentation/d/1sDl-4SVjA=
+wayGX4Uk16zgH2IxqDOj20YVT_uWOd5MMo/edit?usp=3Dsharing</a><br clear=3D"none"=
+>
+      <br clear=3D"none">
+      Page 89 of the Google Slide and the next 5 slides show the works
+      that belong to HCT in May 2024. The Google Slide was made prior to
+      the inventory so the works do not have the i24-xxxx numbers but I
+      will add them.<br clear=3D"none">
+      <br clear=3D"none">
+      I currently have other work pulled and multiple computer systems
+      setup on another project. So, it is not practical to pull any
+      additional work at this time for an immediate shipment. However,
+      let me know if we need to expand or contract the intended works to
+      be shipped so I can make determine how to schedule time to
+      rearrange the studio and to be able to stage work for pickup. <br cle=
+ar=3D"none">
+      <br clear=3D"none">
+      As a review<br clear=3D"none">
+      - I suggest 6 parameters to determining works to be sent and an
+      time period of 1991-1999<br clear=3D"none">
+      - The 18 in the artlogic list and all the Machine Paintings fit
+      these parameters<br clear=3D"none">
+      - I have yet to reviewed and therefore not certain which works
+      from these two groups were previously sent<br clear=3D"none">
+      - I will update the Google Slide with the inventory information
+      and send you my inventory notes <br clear=3D"none">
+      - I am currently working on another project using the up the
+      studio space so an immediate shipment is possible it is not
+      practical<br clear=3D"none">
+      - What would be helpful to me is knowing if the 6 parameters fit
+      the scope of shipment, potential time frame for pickup and what
+      works you have or had but were sold<br clear=3D"none">
+      <br clear=3D"none">
+      Tom<br clear=3D"none">
+      <br clear=3D"none">
+      <br clear=3D"none">
+      <br clear=3D"none">
+      <br clear=3D"none">
+      <br clear=3D"none">
+      -------- Forwarded Message --------
+      <table cellspacing=3D"0" cellpadding=3D"0" border=3D"0"><tbody><tr><t=
+h colspan=3D"1" rowspan=3D"1" valign=3D"BASELINE" nowrap align=3D"RIGHT">Su=
+bject:
+            </th><td colspan=3D"1" rowspan=3D"1">FW: Re: UK Export license =
+for &#39;Untitled&#39;, 1971</td></tr><tr><th colspan=3D"1" rowspan=3D"1" v=
+align=3D"BASELINE" nowrap align=3D"RIGHT">Date: </th><td colspan=3D"1" rows=
+pan=3D"1">Mon, 16 Dec 2024 11:26:47 -0800</td></tr><tr><th colspan=3D"1" ro=
+wspan=3D"1" valign=3D"BASELINE" nowrap align=3D"RIGHT">From: </th><td colsp=
+an=3D"1" rowspan=3D"1">zipnpup <a shape=3D"rect" href=3D"mailto:zipnpup@yah=
+oo.com" rel=3D"noreferrer noopener" target=3D"_blank">&lt;zipnpup@yahoo.com=
+&gt;</a></td></tr><tr><th colspan=3D"1" rowspan=3D"1" valign=3D"BASELINE" n=
+owrap align=3D"RIGHT">To: </th><td colspan=3D"1" rowspan=3D"1">Harold Cohen=
+ Trust <a shape=3D"rect" href=3D"mailto:aaron@aaronshome.com" rel=3D"norefe=
+rrer noopener" target=3D"_blank">&lt;aaron@aaronshome.com&gt;</a></td></tr>=
+</tbody></table>
+      <br clear=3D"none">
+      <br clear=3D"none">
+     =20
+      <div><br clear=3D"none">
+      </div>
+      <div><br clear=3D"none">
+      </div>
+      <div><br clear=3D"none">
+      </div>
+      <div><br clear=3D"none">
+      </div>
+      <div id=3D"m_-8753515695039522970ydpb2ce7c50yiv6624338116m_-773669897=
+6792908194m_-3119648994119887865m_5128385001439821307m_5480474215034052244c=
+omposer_signature">
+        <div style=3D"font-size:12px;color:rgb(87,87,87)">Sent from
+          my T-Mobile 4G LTE Device</div>
+      </div>
+      <div><br clear=3D"none">
+      </div>
+      <div><br clear=3D"none">
+      </div>
+      <div style=3D"font-size:100%;color:rgb(0,0,0)" align=3D"left">
+        <div>-------- Original message --------</div>
+        <div>From: George Lionel Barker
+          <a shape=3D"rect" href=3D"mailto:george@gazelliarthouse.com" rel=
+=3D"noreferrer noopener" target=3D"_blank">&lt;george@gazelliarthouse.com&g=
+t;</a> </div>
+        <div>Date: 12/16/24 8:28 AM (GMT-08:00) </div>
+        <div>To: Paul Cohen <a shape=3D"rect" href=3D"mailto:paulrcohen@gma=
+il.com" rel=3D"noreferrer noopener" target=3D"_blank">&lt;paulrcohen@gmail.=
+com&gt;</a> </div>
+        <div>Cc: Michael Pollard <a shape=3D"rect" href=3D"mailto:michael@g=
+azelliarthouse.com" rel=3D"noreferrer noopener" target=3D"_blank">&lt;micha=
+el@gazelliarthouse.com&gt;</a>,
+          Mila Askarova <a shape=3D"rect" href=3D"mailto:m.askarova@gazelli=
+arthouse.com" rel=3D"noreferrer noopener" target=3D"_blank">&lt;m.askarova@=
+gazelliarthouse.com&gt;</a>, Thomas
+          Machnik <a shape=3D"rect" href=3D"mailto:zipnpup@yahoo.com" rel=
+=3D"noreferrer noopener" target=3D"_blank">&lt;zipnpup@yahoo.com&gt;</a> </=
+div>
+        <div>Subject: Re: UK Export license for &#39;Untitled&#39;, 1971 </=
+div>
+        <div><br clear=3D"none">
+        </div>
+      </div>
+      <div dir=3D"ltr">
+        <div>Hi Paul,=C2=A0</div>
+        <div><br clear=3D"none">
+        </div>
+        <div>Thanks for the update, I appreciate it.=C2=A0</div>
+        <div><br clear=3D"none">
+        </div>
+        <div>I&#39;m not sure how many more Painting Machine works you=C2=
+=A0guys
+          have, but I remember we didn&#39;t ship everything to London last
+          time..? Understanding how many figurative works on canvas you
+          have is important, so if you wouldn&#39;t mind confirming
+          which=C2=A0ones you have, aside from this list=C2=A0that would be
+          great:=C2=A0<a shape=3D"rect" href=3D"https://privateviews.artlog=
+ic.net/2/f5fcb1f56f9ce5a013b84a/" rel=3D"noreferrer noopener" target=3D"_bl=
+ank">https://privateviews.artlogic.net/2/f5fcb1f56f9ce5a013b84a/</a>=C2=A0w=
+e&#39;d
+          like to ship them all over.=C2=A0</div>
+        <div><br clear=3D"none">
+        </div>
+        <div>Thanks everyone !=C2=A0</div>
+        <div><br clear=3D"none">
+        </div>
+        <div>George=C2=A0</div>
+        <div><br clear=3D"none">
+        </div>
+        <div>
+          <div dir=3D"ltr">
+            <div dir=3D"ltr">
+              <div dir=3D"ltr">
+                <div dir=3D"ltr">
+                  <div dir=3D"ltr">
+                    <div dir=3D"ltr">
+                      <div dir=3D"ltr">
+                        <div dir=3D"ltr">
+                          <div dir=3D"ltr">
+                            <div dir=3D"ltr">
+                              <div dir=3D"ltr">
+                                <div dir=3D"ltr">
+                                  <div dir=3D"ltr">
+                                    <div dir=3D"ltr">
+                                      <div dir=3D"ltr">
+                                        <div dir=3D"ltr">
+                                          <div dir=3D"ltr">
+                                            <div dir=3D"ltr">
+                                              <div dir=3D"ltr">
+                                                <div style=3D"padding-top:0=
+px;padding-right:0px;padding-left:0px">
+                                                  <div style=3D"margin:0px;=
+padding:0px 0px 20px;width:1116px">
+                                                    <div dir=3D"ltr">
+                                                      <div dir=3D"ltr">
+                                                        <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div>
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div>
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr" =
+style=3D"color:rgb(34,34,34)">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div>
+                                                          <div style=3D"mar=
+gin:0px;min-width:0px;padding:0px 0px 20px;width:initial">
+                                                          <div style=3D"mar=
+gin:8px 0px 0px;padding:0px">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr" =
+style=3D"font-family:Arial,Helvetica,sans-serif">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">=
+<span>
+                                                          </span><div dir=
+=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">=
+<font color=3D"#000000"><b>GAZELLI ART HOUSE</b></font></div>
+                                                          <div dir=3D"ltr">=
+<br clear=3D"none">
+                                                          </div>
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">=
+<font face=3D"arial,                                                       =
+    sans-serif" color=3D"#000000">LONDON</font></div>
+                                                          <div><font face=
+=3D"arial,                                                           sans-s=
+erif"><a shape=3D"rect" style=3D"color:rgb(17,85,204)" href=3D"https://886b=
+17ba.streaklinks.com/CPSFF8gvL2IbI8QkVg37Hlz0/https%3A%2F%2Fgazelliarthouse=
+.com%2Fexhibitions%2F189-quiet-motion-derek-boshier-pauline-boty-harold-coh=
+en-judy-chicago%2F" rel=3D"noreferrer noopener" target=3D"_blank">Group Sho=
+w: Quiet Motion</a></font></div>
+                                                          <div><span style=
+=3D"color:rgb(0,0,0);font-family:arial,sans-serif"><br clear=3D"none">
+                                                          </span></div>
+                                                          <div><span style=
+=3D"color:rgb(0,0,0);font-family:arial,sans-serif">BAKU=C2=A0</span></div>
+                                                          <div><a shape=3D"=
+rect" style=3D"color:rgb(17,85,204)" href=3D"https://886b17ba.streaklinks.c=
+om/CPSFF8YhYSViPl3hzQI034bK/https%3A%2F%2Fgazelliarthouse.com%2Fexhibitions=
+%2F188-parallel-worlds-chris-levine-michael-takeo-magruder-marshmallow-lase=
+r-feast%2F" rel=3D"noreferrer noopener" target=3D"_blank">Parallel Worlds: =
+Chris Levine, Michael Takeo
+                                                          Magruder,
+                                                          Marshmallow
+                                                          Laser Feast,
+                                                          Elnara
+                                                          Nasirli,
+                                                          Recycle Group,
+                                                          Nye Thompson</a><=
+/div>
+                                                          <div dir=3D"ltr">
+                                                          <div><font face=
+=3D"arial,                                                           sans-s=
+erif" color=3D"#000000"><br clear=3D"none">
+                                                          </font></div>
+                                                          <div><font face=
+=3D"arial,                                                           sans-s=
+erif" color=3D"#000000">GAZELL.iO=C2=A0</font></div>
+                                                          <div><font face=
+=3D"arial,                                                           sans-s=
+erif">December
+                                                          Resident |=C2=A0<=
+a shape=3D"rect" style=3D"color:rgb(17,85,204)" href=3D"https://886b17ba.st=
+reaklinks.com/CPSFF8UOTuBmGZNR7gH4Zf-a/https%3A%2F%2Fgazell.io%2Fpages%2Fto=
+m-white" rel=3D"noreferrer noopener" target=3D"_blank">Tom White</a></font>=
+</div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          <div dir=3D"ltr">=
+<br clear=3D"none">
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          <div dir=3D"ltr">=
+<font face=3D"arial,                                                       =
+    sans-serif">
+                                                          </font><div><a sh=
+ape=3D"rect" style=3D"color:rgb(17,85,204)" href=3D"http://www.gazelliartho=
+use.com/" rel=3D"noreferrer noopener" target=3D"_blank"><font color=3D"#0b5=
+394">www.gazelliarthouse.com</font></a></div>
+                                                          <div>+44 (0)
+                                                          207 491 8816 /
+                                                          +994 (0) 12
+                                                          498 1230</div>
+                                                          <div>
+                                                          <div><font color=
+=3D"#000000"><a shape=3D"rect" style=3D"color:rgb(17,85,204);display:inline=
+-block" href=3D"https://886b17ba.streaklinks.com/CPSFF8gDw9e8WJUOdAsjtLPb/h=
+ttps%3A%2F%2Fwww.instagram.com%2Fgazelliarthouse%2F" rel=3D"noreferrer noop=
+ener" target=3D"_blank"><img style=3D"margin: 0.8em 0.2em; padding: 0px; le=
+tter-spacing: -0.1px; border-color: currentcolor; border-style: none; borde=
+r-width: 0px; vertical-align: middle; max-width: 100%;" src=3D"https://68ef=
+2f69c7787d4078ac-7864ae55ba174c40683f10ab811d9167.ssl.cf1.rackcdn.com/insta=
+gram-icon_24x24.png" width=3D"24"></a><a shape=3D"rect" style=3D"color:rgb(=
+17,85,204);display:inline-block" href=3D"https://886b17ba.streaklinks.com/C=
+PSFF8g19VZRE8uDrwtmvnlc/https%3A%2F%2Ftwitter.com%2FGazelliArtHouse" rel=3D=
+"noreferrer noopener" target=3D"_blank"><img style=3D"margin: 0.8em 0.2em; =
+padding: 0px; letter-spacing: -0.1px; border-color: currentcolor; border-st=
+yle: none; border-width: 0px; vertical-align: middle; max-width: 100%;" src=
+=3D"https://68ef2f69c7787d4078ac-7864ae55ba174c40683f10ab811d9167.ssl.cf1.r=
+ackcdn.com/twitter-icon_24x24.png" width=3D"24"></a>=C2=A0<a shape=3D"rect"=
+ style=3D"color:rgb(17,85,204);display:inline-block" href=3D"https://886b17=
+ba.streaklinks.com/CPSFF8gKilErltixVgjHsM0b/https%3A%2F%2Fwww.facebook.com%=
+2FGazelliArtHouse%2F" rel=3D"noreferrer noopener" target=3D"_blank"><img st=
+yle=3D"margin: 0.8em 0.2em; padding: 0px; letter-spacing: -0.1px; border-co=
+lor: currentcolor; border-style: none; border-width: 0px; vertical-align: m=
+iddle; max-width: 100%;" src=3D"https://68ef2f69c7787d4078ac-7864ae55ba174c=
+40683f10ab811d9167.ssl.cf1.rackcdn.com/facebook-icon_24x24.png" width=3D"24=
+"></a></font></div>
+                                                          </div>
+                                                          <div><br clear=3D=
+"none">
+                                                          </div>
+                                                          <div><img src=3D"=
+https://ci3.googleusercontent.com/mail-sig/AIorK4w7gKovNZAR8tYAuQ9hIjEiBgWe=
+l9uIDPpW34GyeY595Rek12deHDAlPE9ZZxtPymKBYCzaHBU" width=3D"96" height=3D"44"=
+><br clear=3D"none">
+                                                          </div>
+                                                          <div><br clear=3D=
+"none">
+                                                          </div>
+                                                          <div><br clear=3D=
+"none">
+                                                          </div>
+                                                          <div><font color=
+=3D"#000000">This
+                                                          e-mail
+                                                          message,
+                                                          including all
+                                                          attachments,
+                                                          is for
+                                                          the=C2=A0sole use
+                                                          of the
+                                                          intended
+                                                          recipient(s)
+                                                          and may
+                                                          contain=C2=A0lega=
+lly
+                                                          privileged and
+                                                          confidential
+                                                          information.
+                                                          If you are=C2=A0n=
+ot
+                                                          an intended
+                                                          recipient, you
+                                                          are hereby
+                                                          notified
+                                                          that=C2=A0you hav=
+e
+                                                          either
+                                                          received this
+                                                          message in
+                                                          error or
+                                                          through=C2=A0inte=
+rception,
+                                                          and that
+                                                          any=C2=A0review,
+                                                          use,
+                                                          distribution,=C2=
+=A0copying
+                                                          or disclosure
+                                                          of this
+                                                          message and/or
+its=C2=A0attachments or parts thereof is strictly prohibited and is=C2=A0su=
+bject
+                                                          to criminal
+                                                          and civil
+                                                          penalties with
+appropriate=C2=A0national legislation.</font></div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                        </div>
+                                                      </div>
+                                                    </div>
+                                                    <div style=3D"margin:8p=
+x 0px 0px;padding:0px">
+                                                      <div dir=3D"ltr">
+                                                        <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div>
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">=
+<span></span></div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                        </div>
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br clear=3D"none">
+      </div>
+      <div style=3D"min-height:1px"><img src=3D"https://mailfoogae.appspot.=
+com/t?sender=3DaZ2VvcmdlQGdhemVsbGlhcnRob3VzZS5jb20%3D&amp;type=3Dzeroconte=
+nt&amp;guid=3De574a8b7-a027-44ae-bdcc-ed4751827af7" style=3D"width: 0px;" a=
+lt=3D""><font size=3D"1" color=3D"#ffffff">=E1=90=A7</font></div>
+      <br clear=3D"none">
+      <div>
+        <div dir=3D"ltr">On Mon, 16 Dec 2024 at 16:13,
+          Paul Cohen &lt;<a shape=3D"rect" href=3D"mailto:paulrcohen@gmail.=
+com" rel=3D"noreferrer noopener" target=3D"_blank">paulrcohen@gmail.com</a>=
+&gt; wrote:<br clear=3D"none">
+        </div>
+        <blockquote style=3D"margin:0px 0px 0px 0.8ex;border-left:1px solid=
+ rgb(204,204,204);padding-left:1ex">
+          <div dir=3D"ltr">
+            <div>
+              <div style=3D"font-size:small">Hi
+                George, I chatted with Tom last week.=C2=A0 My understandin=
+g
+                is that the rolled works are mostly dacron drawings and
+                &quot;dots&quot; paintings, but Tom will correct me if that=
+&#39;s
+                wrong.=C2=A0 The figurative paintings are mostly stretched.=
+=C2=A0
+                Not sure how many painting machine paintings remain in
+                San Diego.=C2=A0 --P<br clear=3D"none">
+              </div>
+              <br clear=3D"all">
+            </div>
+            <div>
+              <div dir=3D"ltr">
+                <div dir=3D"ltr">
+                  <div>
+                    <div dir=3D"ltr">
+                      <div>
+                        <div dir=3D"ltr">
+                          <div>
+                            <div dir=3D"ltr">
+                              <div>
+                                <div dir=3D"ltr">
+                                  <div>
+                                    <div dir=3D"ltr">______________________=
+________<br clear=3D"none">
+                                      <br clear=3D"none">
+                                      Paul Cohen,=C2=A0=C2=A0Professor</div=
+>
+                                    <div dir=3D"ltr">School of Computing
+                                      and Information</div>
+                                    <div dir=3D"ltr">University of
+                                      Pittsburgh</div>
+                                    <div dir=3D"ltr"><a shape=3D"rect" href=
+=3D"https://886b17ba.streaklinks.com/CPSFF8gaWt56DkSNXQk0-m16/https%3A%2F%2=
+Fpaulrcohen.github.io%2F" rel=3D"noreferrer noopener" target=3D"_blank">per=
+sonal
+                                        webpage</a><br clear=3D"none">
+                                      ______________________________</div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br clear=3D"none">
+          </div>
+          <br clear=3D"none">
+          <div>
+            <div dir=3D"ltr">On Mon, Dec 16, 2024 at
+              8:08=E2=80=AFAM George Lionel Barker &lt;<a shape=3D"rect" hr=
+ef=3D"mailto:george@gazelliarthouse.com" rel=3D"noreferrer noopener" target=
+=3D"_blank">george@gazelliarthouse.com</a>&gt;
+              wrote:<br clear=3D"none">
+            </div>
+            <blockquote style=3D"margin:0px 0px 0px 0.8ex;border-left:1px s=
+olid rgb(204,204,204);padding-left:1ex">
+              <div dir=3D"ltr">
+                <div>Hi Mike and Tom,=C2=A0<br clear=3D"all">
+                </div>
+                <div><br clear=3D"none">
+                </div>
+                <div>Please find attached the shipping list of
+                  figurative works on canvas that we think are with
+                  you:=C2=A0<a shape=3D"rect" href=3D"https://privateviews.=
+artlogic.net/2/f5fcb1f56f9ce5a013b84a/" rel=3D"noreferrer noopener" target=
+=3D"_blank">https://privateviews.artlogic.net/2/f5fcb1f56f9ce5a013b84a/</a>=
+=C2=A0These
+                  are to be sent alongside the unrolled works mentioned
+                  in your previous email=C2=A0<a shape=3D"rect" id=3D"m_-87=
+53515695039522970ydpb2ce7c50yiv6624338116m_-7736698976792908194m_-311964899=
+4119887865m_5128385001439821307m_5480474215034052244m_3911403396652685062m_=
+3289542770075083766plusReplyChip-1" href=3D"mailto:zipnpup@yahoo.com" rel=
+=3D"noreferrer noopener" target=3D"_blank">@Thomas
+                    Machnik</a>=C2=A0 If you can send the rolls, we will
+                  unroll here to save time. I remembered that there
+                  might be additional=C2=A0&#39;figurative&#39; works on ca=
+nvas that
+                  have not yet gone on the spreadsheet too?=C2=A0</div>
+                <div><br clear=3D"none">
+                </div>
+                <div>We would also love to have the remaining Painting
+                  Machine pieces you have in California. Here&#39;s a list
+                  of everything in London:=C2=A0<span style=3D"background-c=
+olor:rgb(247,247,249);color:rgb(81,168,224);font-family:ProximaNova,Helveti=
+ca,Arial,sans-serif;font-size:13px;letter-spacing:0.2px"><a shape=3D"rect" =
+href=3D"https://privateviews.artlogic.net/2/237bf664d6efbf6f724c20" rel=3D"=
+noreferrer noopener" target=3D"_blank">https://privateviews.artlogic.net/2/=
+237bf664d6efbf6f724c20</a>=C2=A0=C2=A0<a shape=3D"rect" id=3D"m_-8753515695=
+039522970ydpb2ce7c50yiv6624338116m_-7736698976792908194m_-31196489941198878=
+65m_5128385001439821307m_5480474215034052244m_3911403396652685062m_32895427=
+70075083766plusReplyChip-0" href=3D"mailto:zipnpup@yahoo.com" rel=3D"norefe=
+rrer noopener" target=3D"_blank">@Thomas
+                      Machnik</a>=C2=A0</span><span style=3D"font-family:Pr=
+oximaNova,Helvetica,Arial,sans-serif;font-size:13px;letter-spacing:0.2px;ba=
+ckground-color:rgb(255,255,255)"><font style=3D"background-color:inherit" c=
+olor=3D"#000000">how many do you still have with
+                      you?=C2=A0</font></span></div>
+                <div><span style=3D"font-family:ProximaNova,Helvetica,Arial=
+,sans-serif;font-size:13px;letter-spacing:0.2px;background-color:rgb(255,25=
+5,255)"><font style=3D"background-color:inherit" color=3D"#000000"><br clea=
+r=3D"none">
+                    </font></span></div>
+                <div><span style=3D"font-family:ProximaNova,Helvetica,Arial=
+,sans-serif;font-size:13px;letter-spacing:0.2px;background-color:rgb(255,25=
+5,255)"><font style=3D"background-color:inherit" color=3D"#000000">Looking =
+forward to hearing from
+                      you, and let=C2=A0me know if you have any questions.=
+=C2=A0</font></span></div>
+                <div><span style=3D"font-family:ProximaNova,Helvetica,Arial=
+,sans-serif;font-size:13px;letter-spacing:0.2px;background-color:rgb(255,25=
+5,255)"><font style=3D"background-color:inherit" color=3D"#000000"><br clea=
+r=3D"none">
+                    </font></span></div>
+                <div><span style=3D"font-family:ProximaNova,Helvetica,Arial=
+,sans-serif;font-size:13px;letter-spacing:0.2px;background-color:rgb(255,25=
+5,255)"><font style=3D"background-color:inherit" color=3D"#000000">George=
+=C2=A0</font></span></div>
+                <div><br clear=3D"none">
+                </div>
+                <div><br clear=3D"none">
+                </div>
+                <div><br clear=3D"none">
+                </div>
+                <div>
+                  <div dir=3D"ltr">
+                    <div dir=3D"ltr">
+                      <div dir=3D"ltr">
+                        <div dir=3D"ltr">
+                          <div dir=3D"ltr">
+                            <div dir=3D"ltr">
+                              <div dir=3D"ltr">
+                                <div dir=3D"ltr">
+                                  <div dir=3D"ltr">
+                                    <div dir=3D"ltr">
+                                      <div dir=3D"ltr">
+                                        <div dir=3D"ltr">
+                                          <div dir=3D"ltr">
+                                            <div dir=3D"ltr">
+                                              <div dir=3D"ltr">
+                                                <div dir=3D"ltr">
+                                                  <div dir=3D"ltr">
+                                                    <div dir=3D"ltr">
+                                                      <div dir=3D"ltr">
+                                                        <div style=3D"paddi=
+ng-top:0px;padding-right:0px;padding-left:0px">
+                                                          <div style=3D"mar=
+gin:0px;padding:0px 0px 20px;width:1116px">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div>
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div>
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr" =
+style=3D"color:rgb(34,34,34)">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div>
+                                                          <div style=3D"mar=
+gin:0px;min-width:0px;padding:0px 0px 20px;width:initial">
+                                                          <div style=3D"mar=
+gin:8px 0px 0px;padding:0px">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr" =
+style=3D"font-family:Arial,Helvetica,sans-serif">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">=
+<span>
+                                                          </span><div dir=
+=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">=
+<font color=3D"#000000"><b>GAZELLI ART HOUSE</b></font></div>
+                                                          <div dir=3D"ltr">=
+<br clear=3D"none">
+                                                          </div>
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">=
+<font face=3D"arial,                                                       =
+    sans-serif" color=3D"#000000">LONDON</font></div>
+                                                          <div><font face=
+=3D"arial,                                                           sans-s=
+erif"><a shape=3D"rect" style=3D"color:rgb(17,85,204)" href=3D"https://886b=
+17ba.streaklinks.com/CPSFF80CQsc3Hs5bzw15SPH8/https%3A%2F%2Fgazelliarthouse=
+.com%2Fexhibitions%2F189-quiet-motion-derek-boshier-pauline-boty-harold-coh=
+en-judy-chicago%2F" rel=3D"noreferrer noopener" target=3D"_blank">Group Sho=
+w: Quiet Motion</a></font></div>
+                                                          <div><span style=
+=3D"color:rgb(0,0,0);font-family:arial,sans-serif"><br clear=3D"none">
+                                                          </span></div>
+                                                          <div><span style=
+=3D"color:rgb(0,0,0);font-family:arial,sans-serif">BAKU=C2=A0</span></div>
+                                                          <div><a shape=3D"=
+rect" style=3D"color:rgb(17,85,204)" href=3D"https://886b17ba.streaklinks.c=
+om/CPSFF8kg4BukkYvaLAJacyA2/https%3A%2F%2Fgazelliarthouse.com%2Fexhibitions=
+%2F188-parallel-worlds-chris-levine-michael-takeo-magruder-marshmallow-lase=
+r-feast%2F" rel=3D"noreferrer noopener" target=3D"_blank">Parallel Worlds: =
+Chris Levine, Michael Takeo
+                                                          Magruder,
+                                                          Marshmallow
+                                                          Laser Feast,
+                                                          Elnara
+                                                          Nasirli,
+                                                          Recycle Group,
+                                                          Nye Thompson</a><=
+/div>
+                                                          <div dir=3D"ltr">
+                                                          <div><font face=
+=3D"arial,                                                           sans-s=
+erif" color=3D"#000000"><br clear=3D"none">
+                                                          </font></div>
+                                                          <div><font face=
+=3D"arial,                                                           sans-s=
+erif" color=3D"#000000">GAZELL.iO=C2=A0</font></div>
+                                                          <div><font face=
+=3D"arial,                                                           sans-s=
+erif">December
+                                                          Resident |=C2=A0<=
+a shape=3D"rect" style=3D"color:rgb(17,85,204)" href=3D"https://886b17ba.st=
+reaklinks.com/CPSFF8g9fS-UC6MSTw-AnVcw/https%3A%2F%2Fgazell.io%2Fpages%2Fto=
+m-white" rel=3D"noreferrer noopener" target=3D"_blank">Tom White</a></font>=
+</div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          <div dir=3D"ltr">=
+<br clear=3D"none">
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          <div dir=3D"ltr">=
+<font face=3D"arial,                                                       =
+    sans-serif">
+                                                          </font><div><a sh=
+ape=3D"rect" style=3D"color:rgb(17,85,204)" href=3D"http://www.gazelliartho=
+use.com/" rel=3D"noreferrer noopener" target=3D"_blank"><font color=3D"#0b5=
+394">www.gazelliarthouse.com</font></a></div>
+                                                          <div>+44 (0)
+                                                          207 491 8816 /
+                                                          +994 (0) 12
+                                                          498 1230</div>
+                                                          <div>
+                                                          <div><font color=
+=3D"#000000"><a shape=3D"rect" style=3D"color:rgb(17,85,204);display:inline=
+-block" href=3D"https://886b17ba.streaklinks.com/CPSFF80bG13_0pUjugu5IYEH/h=
+ttps%3A%2F%2Fwww.instagram.com%2Fgazelliarthouse%2F" rel=3D"noreferrer noop=
+ener" target=3D"_blank"><img style=3D"margin: 0.8em 0.2em; padding: 0px; le=
+tter-spacing: -0.1px; border-color: currentcolor; border-style: none; borde=
+r-width: 0px; vertical-align: middle; max-width: 100%;" src=3D"https://68ef=
+2f69c7787d4078ac-7864ae55ba174c40683f10ab811d9167.ssl.cf1.rackcdn.com/insta=
+gram-icon_24x24.png" width=3D"24"></a><a shape=3D"rect" style=3D"color:rgb(=
+17,85,204);display:inline-block" href=3D"https://886b17ba.streaklinks.com/C=
+PSFF9ZDA_7Mt8O34AX4CuOL/https%3A%2F%2Ftwitter.com%2FGazelliArtHouse" rel=3D=
+"noreferrer noopener" target=3D"_blank"><img style=3D"margin: 0.8em 0.2em; =
+padding: 0px; letter-spacing: -0.1px; border-color: currentcolor; border-st=
+yle: none; border-width: 0px; vertical-align: middle; max-width: 100%;" src=
+=3D"https://68ef2f69c7787d4078ac-7864ae55ba174c40683f10ab811d9167.ssl.cf1.r=
+ackcdn.com/twitter-icon_24x24.png" width=3D"24"></a>=C2=A0<a shape=3D"rect"=
+ style=3D"color:rgb(17,85,204);display:inline-block" href=3D"https://886b17=
+ba.streaklinks.com/CPSFF8gMTA0EEsbmwAz-wFoS/https%3A%2F%2Fwww.facebook.com%=
+2FGazelliArtHouse%2F" rel=3D"noreferrer noopener" target=3D"_blank"><img st=
+yle=3D"margin: 0.8em 0.2em; padding: 0px; letter-spacing: -0.1px; border-co=
+lor: currentcolor; border-style: none; border-width: 0px; vertical-align: m=
+iddle; max-width: 100%;" src=3D"https://68ef2f69c7787d4078ac-7864ae55ba174c=
+40683f10ab811d9167.ssl.cf1.rackcdn.com/facebook-icon_24x24.png" width=3D"24=
+"></a></font></div>
+                                                          </div>
+                                                          <div><br clear=3D=
+"none">
+                                                          </div>
+                                                          <div><img src=3D"=
+https://ci3.googleusercontent.com/mail-sig/AIorK4w7gKovNZAR8tYAuQ9hIjEiBgWe=
+l9uIDPpW34GyeY595Rek12deHDAlPE9ZZxtPymKBYCzaHBU" width=3D"96" height=3D"44"=
+><br clear=3D"none">
+                                                          </div>
+                                                          <div><br clear=3D=
+"none">
+                                                          </div>
+                                                          <div><br clear=3D=
+"none">
+                                                          </div>
+                                                          <div><font color=
+=3D"#000000">This
+                                                          e-mail
+                                                          message,
+                                                          including all
+                                                          attachments,
+                                                          is for
+                                                          the=C2=A0sole use
+                                                          of the
+                                                          intended
+                                                          recipient(s)
+                                                          and may
+                                                          contain=C2=A0lega=
+lly
+                                                          privileged and
+                                                          confidential
+                                                          information.
+                                                          If you are=C2=A0n=
+ot
+                                                          an intended
+                                                          recipient, you
+                                                          are hereby
+                                                          notified
+                                                          that=C2=A0you hav=
+e
+                                                          either
+                                                          received this
+                                                          message in
+                                                          error or
+                                                          through=C2=A0inte=
+rception,
+                                                          and that
+                                                          any=C2=A0review,
+                                                          use,
+                                                          distribution,=C2=
+=A0copying
+                                                          or disclosure
+                                                          of this
+                                                          message and/or
+its=C2=A0attachments or parts thereof is strictly prohibited and is=C2=A0su=
+bject
+                                                          to criminal
+                                                          and civil
+                                                          penalties with
+appropriate=C2=A0national legislation.</font></div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          <div style=3D"mar=
+gin:8px 0px 0px;padding:0px">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div>
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">
+                                                          <div dir=3D"ltr">=
+<span></span></div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                          </div>
+                                                        </div>
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <br clear=3D"none">
+              </div>
+              <div style=3D"min-height:1px"><img src=3D"https://mailfoogae.=
+appspot.com/t?sender=3DaZ2VvcmdlQGdhemVsbGlhcnRob3VzZS5jb20%3D&amp;type=3Dz=
+erocontent&amp;guid=3Da591f37f-e9ff-48d4-bbb7-76302c296e58" style=3D"width:=
+ 0px;" alt=3D""><font size=3D"1" color=3D"#ffffff">=E1=90=A7</font></div>
+              <br clear=3D"none">
+              <div>
+                <div dir=3D"ltr">On Sun, 15 Dec 2024 at
+                  11:27, Michael Pollard &lt;<a shape=3D"rect" href=3D"mail=
+to:michael@gazelliarthouse.com" rel=3D"noreferrer noopener" target=3D"_blan=
+k">michael@gazelliarthouse.com</a>&gt;
+                  wrote:<br clear=3D"none">
+                </div>
+                <blockquote style=3D"margin:0px 0px 0px 0.8ex;border-left:1=
+px solid rgb(204,204,204);padding-left:1ex">
+                  <div dir=3D"ltr">Hello Paul,
+                    <div><br clear=3D"none">
+                    </div>
+                    <div>This can be left to me and Tom.</div>
+                    <div>I would=C2=A0simply need the list of inventory=C2=
+=A0and
+                      current packed methods / dims (if packed) in order
+                      to start scheduling a local shipper to collect.</div>
+                    <div><br clear=3D"none">
+                    </div>
+                    <div>I&#39;ll follow up for any important
+                      information=C2=A0when needed (estimated values,
+                      additional detail if necessary)</div>
+                    <div><br clear=3D"none">
+                    </div>
+                    <div>Michael.</div>
+                  </div>
+                  <br clear=3D"none">
+                  <div>
+                    <div dir=3D"ltr">On Fri, 13 Dec
+                      2024 at 19:05, Paul Cohen &lt;<a shape=3D"rect" href=
+=3D"mailto:paulrcohen@gmail.com" rel=3D"noreferrer noopener" target=3D"_bla=
+nk">paulrcohen@gmail.com</a>&gt;
+                      wrote:<br clear=3D"none">
+                    </div>
+                    <blockquote style=3D"margin:0px 0px 0px 0.8ex;border-le=
+ft:1px solid rgb(204,204,204);padding-left:1ex">
+                      <div dir=3D"ltr">
+                        <div>
+                          <div style=3D"font-size:small">Great news, Michae=
+l,
+                            thanks for letting us know.</div>
+                          <div style=3D"font-size:small"><br clear=3D"none"=
+>
+                          </div>
+                          <div style=3D"font-size:small">On a related
+                            subject, Mila and I talked earlier this week
+                            about getting started on shipping the
+                            &quot;figurative&quot; canvases compiled by Tom=
+ and
+                            George -- <a shape=3D"rect" href=3D"https://pri=
+vateviews.artlogic.net/2/f5fcb1f56f9ce5a013b84a/" rel=3D"noreferrer noopene=
+r" target=3D"_blank">https://privateviews.artlogic.net/2/f5fcb1f56f9ce5a013=
+b84a/</a>
+                            -- to GAH.=C2=A0 Do we need to have a zoom call
+                            to get going on this, or can we leave it
+                            with you and Tom?</div>
+                          <div style=3D"font-size:small"><br clear=3D"none"=
+>
+                          </div>
+                          <div style=3D"font-size:small">Thanks, --Paul<br =
+clear=3D"none">
+                          </div>
+                          <br clear=3D"all">
+                        </div>
+                        <div>
+                          <div dir=3D"ltr">
+                            <div dir=3D"ltr">
+                              <div>
+                                <div dir=3D"ltr">
+                                  <div>
+                                    <div dir=3D"ltr">
+                                      <div>
+                                        <div dir=3D"ltr">
+                                          <div>
+                                            <div dir=3D"ltr">
+                                              <div>
+                                                <div dir=3D"ltr">__________=
+____________________<br clear=3D"none">
+                                                  <br clear=3D"none">
+                                                  Paul Cohen,=C2=A0=C2=A0Pr=
+ofessor</div>
+                                                <div dir=3D"ltr">School of
+                                                  Computing and
+                                                  Information</div>
+                                                <div dir=3D"ltr">University
+                                                  of Pittsburgh</div>
+                                                <div dir=3D"ltr"><a shape=
+=3D"rect" href=3D"https://886b17ba.streaklinks.com/CPSFF8gRUZJfoAGWfgx-tAT3=
+/https%3A%2F%2Fpaulrcohen.github.io%2F" rel=3D"noreferrer noopener" target=
+=3D"_blank">personal webpage</a><br clear=3D"none">
+______________________________</div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <br clear=3D"none">
+                      </div>
+                      <br clear=3D"none">
+                      <div>
+                        <div dir=3D"ltr">On Fri, Dec
+                          13, 2024 at 12:53=E2=80=AFPM Michael Pollard &lt;=
+<a shape=3D"rect" href=3D"mailto:michael@gazelliarthouse.com" rel=3D"norefe=
+rrer noopener" target=3D"_blank">michael@gazelliarthouse.com</a>&gt;
+                          wrote:<br clear=3D"none">
+                        </div>
+                        <blockquote style=3D"margin:0px 0px 0px 0.8ex;borde=
+r-left:1px solid rgb(204,204,204);padding-left:1ex">
+                          <div dir=3D"ltr">
+                            <div dir=3D"ltr">Dear Paul and Tom,
+                              <div><br clear=3D"none">
+                              </div>
+                              <div>I just wanted to follow up and say
+                                thank you both for your help here.</div>
+                              <div><br clear=3D"none">
+                              </div>
+                              <div>The Arts council (faster than
+                                expected) approved the Export license
+                                without an issue or any follow=C2=A0up
+                                questions.</div>
+                              <div><br clear=3D"none">
+                              </div>
+                              <div>I&#39;m certain the signed letter and th=
+e
+                                researched=C2=A0details that Tom provided
+                                that were provided along with the
+                                application made a huge contribution in
+                                this going through without contest.</div>
+                              <div><br clear=3D"none">
+                              </div>
+                              <div>Best,</div>
+                              <div><br clear=3D"none">
+                              </div>
+                              <div>Michael.</div>
+                            </div>
+                          </div>
+                          <br clear=3D"none">
+                          <div>
+                            <div dir=3D"ltr">On Wed, 4
+                              Dec 2024 at 15:50, Michael Pollard &lt;<a sha=
+pe=3D"rect" href=3D"mailto:michael@gazelliarthouse.com" rel=3D"noreferrer n=
+oopener" target=3D"_blank">michael@gazelliarthouse.com</a>&gt;
+                              wrote:<br clear=3D"none">
+                            </div>
+                            <blockquote style=3D"margin:0px 0px 0px 0.8ex;b=
+order-left:1px solid rgb(204,204,204);padding-left:1ex">
+                              <div dir=3D"ltr">This is perfect, thank you
+                                so much!=C2=A0
+                                <div><br clear=3D"none">
+                                </div>
+                                <div>I will let you know the outcome.</div>
+                                <div>FYI, there is a chance you may
+                                  receive an email directly from the
+                                  Arts Council asking for more detail if
+                                  available / possible.</div>
+                                <div><br clear=3D"none">
+                                </div>
+                                <div>If they reach out, feel free to ask
+                                  me any questions.</div>
+                                <div><br clear=3D"none">
+                                </div>
+                                <div>Michael.</div>
+                              </div>
+                              <br clear=3D"none">
+                              <div>
+                                <div dir=3D"ltr">On
+                                  Wed, 4 Dec 2024 at 15:40, Paul Cohen
+                                  &lt;<a shape=3D"rect" href=3D"mailto:paul=
+rcohen@gmail.com" rel=3D"noreferrer noopener" target=3D"_blank">paulrcohen@=
+gmail.com</a>&gt;
+                                  wrote:<br clear=3D"none">
+                                </div>
+                                <blockquote style=3D"margin:0px 0px 0px 0.8=
+ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+                                  <div dir=3D"ltr">
+                                    <div>
+                                      <div style=3D"font-size:small">Hi
+                                        Michael, thanks for writing
+                                        this!=C2=A0 I put it on my universi=
+ty
+                                        letterhead to make it seem more
+                                        official.=C2=A0 Hope this is fine,
+                                        let me know.=C2=A0 --P<br clear=3D"=
+none">
+                                      </div>
+                                      <br clear=3D"all">
+                                    </div>
+                                    <div>
+                                      <div dir=3D"ltr">
+                                        <div dir=3D"ltr">
+                                          <div>
+                                            <div dir=3D"ltr">
+                                              <div>
+                                                <div dir=3D"ltr">
+                                                  <div>
+                                                    <div dir=3D"ltr">
+                                                      <div>
+                                                        <div dir=3D"ltr">
+                                                          <div>
+                                                          <div dir=3D"ltr">=
+______________________________<br clear=3D"none">
+                                                          <br clear=3D"none=
+">
+                                                          Paul
+                                                          Cohen,=C2=A0=C2=
+=A0Professor</div>
+                                                          <div dir=3D"ltr">=
+School
+                                                          of Computing
+                                                          and
+                                                          Information</div>
+                                                          <div dir=3D"ltr">=
+University
+                                                          of Pittsburgh</di=
+v>
+                                                          <div dir=3D"ltr">=
+<a shape=3D"rect" href=3D"https://886b17ba.streaklinks.com/CPSFF8o4OOCkIuCS=
+EAx6XHxP/https%3A%2F%2Fpaulrcohen.github.io%2F" rel=3D"noreferrer noopener"=
+ target=3D"_blank">personal
+                                                          webpage</a><br cl=
+ear=3D"none">
+______________________________</div>
+                                                          </div>
+                                                        </div>
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <br clear=3D"none">
+                                  </div>
+                                  <br clear=3D"none">
+                                  <div>
+                                    <div dir=3D"ltr">On
+                                      Wed, Dec 4, 2024 at 6:37=E2=80=AFAM
+                                      Michael Pollard &lt;<a shape=3D"rect"=
+ href=3D"mailto:michael@gazelliarthouse.com" rel=3D"noreferrer noopener" ta=
+rget=3D"_blank">michael@gazelliarthouse.com</a>&gt;
+                                      wrote:<br clear=3D"none">
+                                    </div>
+                                    <blockquote style=3D"margin:0px 0px 0px=
+ 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">
+                                      <div dir=3D"ltr">
+                                        <div dir=3D"ltr">
+                                          <div>Dear Paul,</div>
+                                          <div><br clear=3D"none">
+                                          </div>
+                                          <div>Sorry we didn&#39;t get to
+                                            chat again after our brief
+                                            sit-down.</div>
+                                          <div><br clear=3D"none">
+                                          </div>
+                                          <div>Attached here is a
+                                            proposed affidavit=C2=A0/ draft
+                                            for a document=C2=A0stating tha=
+t,
+                                            to the best of the Trust&#39;s
+                                            knowledge, that the artwork
+                                            was imported at some point
+                                            during, likely=C2=A0during the
+                                            mid-70&#39;s / early 80&#39;s, =
+for
+                                            the purpose of exhibition.</div=
+>
+                                          <div><br clear=3D"none">
+                                          </div>
+                                          <div>To confirm, the artwork
+                                            in question is this one:</div>
+                                          <div><img style=3D"margin-right: =
+0px; width: 127px; max-width: 0px;" alt=3D"image.png"><br clear=3D"none">
+                                          </div>
+                                          <div>
+                                            <div style=3D"padding-top:1px;c=
+olor:rgb(0,0,0);font-size:14px;font-family:ProximaNova,Helvetica,Arial,sans=
+-serif;letter-spacing:0.2px"><strong>Harold Cohen</strong></div>
+                                            <div style=3D"color:rgb(0,0,0);=
+font-family:ProximaNova,Helvetica,Arial,sans-serif;font-size:13px;letter-sp=
+acing:0.2px"><em>Untitled</em>, 1971</div>
+                                            <div style=3D"color:rgb(0,0,0);=
+font-family:ProximaNova,Helvetica,Arial,sans-serif;font-size:13px;letter-sp=
+acing:0.2px">Acrylic
+                                              on canvas</div>
+                                            <div style=3D"color:rgb(0,0,0);=
+font-family:ProximaNova,Helvetica,Arial,sans-serif;font-size:13px;letter-sp=
+acing:0.2px">213.4
+                                              x 302 cm, 84 x 118 7/8 in</di=
+v>
+                                            <div style=3D"color:rgb(0,0,0);=
+font-family:ProximaNova,Helvetica,Arial,sans-serif;font-size:13px;letter-sp=
+acing:0.2px">(HC0174)</div>
+                                          </div>
+                                          <div><br clear=3D"none">
+                                          </div>
+                                          <div>If you=C2=A0could review the
+                                            attached, edit as you deem
+                                            appropriate, and let me know
+                                            if you&#39;d be willing to sign
+                                            / have this submitted as
+                                            part of the application to
+                                            the UK Arts Council, that
+                                            would be appreciated.</div>
+                                          <div><br clear=3D"none">
+                                          </div>
+                                          <div>Also any questions you
+                                            may have about the
+                                            application process, I would
+                                            be happy to answer.</div>
+                                          <div>Michael.</div>
+                                          <div><br clear=3D"none">
+                                          </div>
+                                          <span>--
+                                          </span><br clear=3D"none">
+                                          <div dir=3D"ltr">
+                                            <div dir=3D"ltr">
+                                              <div style=3D"color:rgb(34,34=
+,34)">
+                                                <div dir=3D"ltr">
+                                                  <div dir=3D"ltr"><font si=
+ze=3D"1"><b>Michael
+                                                        Pollard</b></font><=
+/div>
+                                                  <div dir=3D"ltr"><font si=
+ze=3D"1"><b>Senior
+                                                        Registrar</b></font=
+></div>
+                                                  <div dir=3D"ltr"><font si=
+ze=3D"1"><b><br clear=3D"none">
+                                                      </b></font></div>
+                                                  <div dir=3D"ltr"><font si=
+ze=3D"1"><b>GAZELLI
+                                                        ART HOUSE<br clear=
+=3D"none">
+                                                        <br clear=3D"none">
+                                                        LONDON=C2=A0=C2=A0<=
+/b></font></div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </blockquote>
+                                  </div>
+                                </blockquote>
+                              </div>
+                            </blockquote>
+                          </div>
+                        </blockquote>
+                      </div>
+                    </blockquote>
+                  </div>
+                </blockquote>
+              </div>
+            </blockquote>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+  </div>
+
+</blockquote></div></div>
+</div>
+</div>
+</div><div style=3D"min-height:1px"><img alt=3D"" style=3D"width: 0px;" src=
+=3D"https://mailfoogae.appspot.com/t?sender=3DaZ2VvcmdlQGdhemVsbGlhcnRob3Vz=
+ZS5jb20%3D&amp;type=3Dzerocontent&amp;guid=3D3dd83e18-aa9b-43c6-8b99-b49e1f=
+b72aec"><font size=3D"1" color=3D"#ffffff">=E1=90=A7</font></div>
+</div></div></div>
+            </div>
+        </div></div></blockquote></div>
+
+--0000000000003da0e60629b1fbfa--
