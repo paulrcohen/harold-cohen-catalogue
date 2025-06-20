@@ -81,10 +81,10 @@ class SemanticSearchEngine:
             
             # Fallback: try with in-memory client first
             self.client = chromadb.Client()
-            self.collection = self.client.create_collection(
+            self.collection = self.client.get_or_create_collection(
                 name=collection_name,
                 metadata={"description": "Harold Cohen catalogue raisonné corpus"}
-            )
+                )
             print("Using in-memory ChromaDB (data won't persist)")
     
     def _get_file_hash(self, file_path: str) -> str:
