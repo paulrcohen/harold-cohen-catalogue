@@ -39,10 +39,18 @@ st.session_state.demo_mode = True
 
 
 # Initialize session state
+# if 'search_engine' not in st.session_state:
+#     st.session_state.search_engine = SemanticSearchEngine()
+# if 'rag_generator' not in st.session_state:
+#     st.session_state.rag_generator = ResponseGenerator()
+
+# Initialize session state
 if 'search_engine' not in st.session_state:
-    st.session_state.search_engine = SemanticSearchEngine()
+    st.session_state.search_engine = None  # Disabled for deployment
 if 'rag_generator' not in st.session_state:
-    st.session_state.rag_generator = ResponseGenerator()
+    st.session_state.rag_generator = None  # Disabled for deployment
+
+    
 if 'task_list' not in st.session_state:
     st.session_state.task_list = []
 if 'query_history' not in st.session_state:
