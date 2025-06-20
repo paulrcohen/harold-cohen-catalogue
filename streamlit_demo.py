@@ -31,44 +31,44 @@ try:
 except ImportError:
     rag_module_available = False
 
-# Initialize session state
+# Initialize session state variables only
 if 'initialized' not in st.session_state:
-    st.session_state.initialized = True
+    st.session_state.initialized = False
     st.session_state.query_history = []
     st.session_state.total_cost = 0.0
 
-# Initialize search engine (with error handling)
-if 'search_engine' not in st.session_state:
-    st.session_state.search_engine = None
-    st.session_state.search_ready = False
-    st.session_state.search_error = None
-    
-    if search_module_available:
-        try:
-            st.session_state.search_engine = SemanticSearchEngine()
-            st.session_state.search_ready = True
-        except Exception as e:
-            st.session_state.search_error = str(e)
-            st.session_state.search_ready = False
+def initialize_engines():
+    """Initialize search engine and RAG generator"""
+    # Initialize search engine
+    if 'search_engine' not in st.session_state:
+        st.session_state.search_engine = None
+        st.session_state.search_ready = False
+        st.session_state.search_error = None
+        
+        if search_module_available:
+            try:
+                st.session_state.search_engine = SemanticSearchEngine()
+                st.session_state.search_ready = True
+            except Exception as e:
+                st.session_state.search_error = str(e)
+                st.session_state.search_ready = False
 
-# Initialize RAG (with error handling)
-if 'rag_generator' not in st.session_state:
-    st.session_state.rag_generator = None
-    st.session_state.rag_ready = False
-    st.session_state.rag_error = None
-    
-    if rag_module_available:
-        try:
-            api_key = st.secrets.get('ANTHROPIC_API_KEY')
-            if api_key:
-                st.session_state.rag_generator = ResponseGenerator(anthropic_api_key=api_key)
-                st.session_state.rag_ready = True
-            else:
-                st.session_state.rag_error = "No API key configured"
-        except Exception as e:
-            st.session_state.rag_error = str(e)
-
-def check_password():
+    # Initialize RAG
+    if 'rag_generator' not in st.session_state:
+        st.session_state.rag_generator = None
+        st.session_state.rag_ready = False
+        st.session_state.rag_error = None
+        
+        if rag_module_available:
+            try:
+                api_key = st.secrets.get('ANTHROPIC_API_KEY')
+                if api_key:
+                    st.session_state.rag_generator = ResponseGenerator(anthropic_api_key=api_key)
+                    st.session_state.rag_ready = True
+                else:
+                    st.session_state.rag_error = "No API key configured"
+            except Exception as e:
+                st.session_state.rag_error = str(e)
     """Simple password check"""
     if st.session_state.get("password_correct", False):
         return True
@@ -86,7 +86,7 @@ def check_password():
     
     return False
 
-def main_search_page():
+def check_password():
     """Main search interface"""
     st.header("🔍 Search & Query")
     
@@ -317,6 +317,11 @@ def main():
     """Main app function"""
     if not check_password():
         return
+    
+    # Initialize engines on first run
+    if not st.session_state.initialized:
+        initialize_engines()
+        st.session_state.initialized = True
     
     st.title("🎨 Harold Cohen Catalogue Raisonné")
     st.markdown("*Research system for Harold Cohen's figurative period*")
