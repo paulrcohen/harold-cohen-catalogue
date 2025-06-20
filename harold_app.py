@@ -358,9 +358,7 @@ def render_collection_overview():
 
 def main():
     """Main application"""
-    def main():
-    """Main application function"""
-
+    
     # Check password first
     if not check_password():
         return
