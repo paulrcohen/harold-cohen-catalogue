@@ -37,15 +37,25 @@ st.session_state.demo_mode = True
 
 
 
-if 'search_engine' not in st.session_state:
-    st.session_state.search_engine = SemanticSearchEngine()
+# Initialize session state variables
+if 'task_list' not in st.session_state:
+    st.session_state.task_list = []
+if 'query_history' not in st.session_state:
+    st.session_state.query_history = []
+if 'total_cost' not in st.session_state:
+    st.session_state.total_cost = 0.0
 
-# if 'rag_generator' not in st.session_state:
-#     api_key = st.secrets.get('ANTHROPIC_API_KEY')
-#     st.session_state.rag_generator = ResponseGenerator(anthropic_api_key=api_key)
+# Initialize search engine with error handling
+if 'search_engine' not in st.session_state:
+    try:
+        st.session_state.search_engine = SemanticSearchEngine()
+        st.session_state.search_available = True
+    except Exception as e:
+        st.session_state.search_engine = None
+        st.session_state.search_available = False
+        print(f"Search engine initialization failed: {e}")
 
 # Initialize RAG generator with error handling
-
 if 'rag_generator' not in st.session_state:
     try:
         api_key = st.secrets.get('ANTHROPIC_API_KEY')
@@ -53,20 +63,11 @@ if 'rag_generator' not in st.session_state:
         st.session_state.rag_available = True
         st.session_state.rag_error = None
     except Exception as e:
-        st.session_state.rag_generator = ResponseGenerator()  # Will work without API
+        # Create a basic generator that won't use AI
+        st.session_state.rag_generator = ResponseGenerator()
         st.session_state.rag_available = False
         st.session_state.rag_error = str(e)
-        
-        # Show error in sidebar
-        with st.sidebar:
-            st.error(f"⚠️ AI responses unavailable: {str(e)[:50]}...")
-
-if 'task_list' not in st.session_state:
-    st.session_state.task_list = []
-if 'query_history' not in st.session_state:
-    st.session_state.query_history = []
-if 'total_cost' not in st.session_state:
-    st.session_state.total_cost = 0.0
+        print(f"RAG generator initialization failed: {e}")
 
 def load_task_list():
     """Load task list from file"""
@@ -143,8 +144,27 @@ def main():
     if not check_password():
         return
     
-    st.title("Harold Cohen Catalogue Raisonné")
-    st.markdown("*Comprehensive archival and research system for Harold Cohen's art*")
+    st.title("🎨 Harold Cohen Catalogue Raisonné")
+    st.markdown("*Comprehensive archival and research system for Harold Cohen's figurative period*")
+    
+    # Show system status in sidebar
+    with st.sidebar:
+        st.header("System Status")
+        
+        # Search engine status
+        if st.session_state.get('search_available', False):
+            st.success("🔍 Search: Available")
+        else:
+            st.error("🔍 Search: Unavailable")
+        
+        # RAG status  
+        if st.session_state.get('rag_available', False):
+            st.success("🤖 AI: Available")
+        else:
+            st.warning("🤖 AI: Unavailable")
+            if st.session_state.get('rag_error'):
+                with st.expander("AI Error Details"):
+                    st.code(st.session_state.rag_error)
     
     # Load tasks on startup
     if not st.session_state.task_list:
@@ -159,20 +179,20 @@ def main():
             "📋 Task Management",
             "📊 Collection Overview",
             "⚙️ Settings"
-        ])
+        ], key="main_page_selector")
         
         st.divider()
         
-        # Quick stats
-        # stats = st.session_state.search_engine.get_collection_stats()
-        # st.metric("Documents in Collection", stats.get('total_documents', 0))
-
-        # Quick stats (demo mode when search_engine is None)
-        if st.session_state.search_engine:
-            stats = st.session_state.search_engine.get_collection_stats()
-            st.metric("Documents in Collection", stats.get('total_documents', 0))
-        else:
-            st.metric("Documents in Collection", "2,847 (demo)")
+        # Quick stats with error handling
+        try:
+            if st.session_state.get('search_available', False):
+                stats = st.session_state.search_engine.get_collection_stats()
+                st.metric("Documents in Collection", stats.get('total_documents', 0))
+            else:
+                st.metric("Documents in Collection", "N/A")
+        except Exception as e:
+            st.metric("Documents in Collection", "Error")
+            
         st.metric("Session Cost", f"${st.session_state.total_cost:.3f}")
         
         # Quick task summary
@@ -180,60 +200,82 @@ def main():
         st.metric("Open Tasks", len(incomplete_tasks))
     
     # Main content based on selected page
-    if page == "🔍 Search & Query":
-        search_and_query_page()
-    elif page == "📤 Add New Materials":
-        add_materials_page()
-    elif page == "📋 Task Management":
-        task_management_page()
-    elif page == "📊 Collection Overview":
-        collection_overview_page()
-    elif page == "⚙️ Settings":
-        settings_page()
+    try:
+        if page == "🔍 Search & Query":
+            if not st.session_state.get('search_available', False):
+                st.error("❌ Search functionality is currently unavailable. Please check the system configuration.")
+                st.info("This might be due to missing dependencies or configuration issues.")
+            else:
+                search_and_query_page()
+        elif page == "📤 Add New Materials":
+            add_materials_page()
+        elif page == "📋 Task Management":
+            task_management_page()
+        elif page == "📊 Collection Overview":
+            collection_overview_page()
+        elif page == "⚙️ Settings":
+            settings_page()
+    except Exception as e:
+        st.error(f"An error occurred: {str(e)}")
+        st.info("Please try refreshing the page or contact support if the problem persists.")
+        
+        # Show error details in expander for debugging
+        with st.expander("Error Details (for debugging)"):
+            import traceback
+            st.code(traceback.format_exc())
 
 def search_and_query_page():
     st.header("Search & Query")
-
-    # Show RAG status
-    if not st.session_state.get('rag_available', False):
-        st.warning("🤖 AI responses currently unavailable. Search results will show, but no AI analysis.")
-        if st.session_state.get('rag_error'):
-            with st.expander("Technical Details"):
-                st.code(st.session_state.rag_error)
     
-    # Query input
+    # Query input with unique key
     query = st.text_area(
         "Ask a question about Harold Cohen's work:",
         placeholder="e.g., Do you remember the painting at the National Theater? What happened with it?",
-        height=100
+        height=100,
+        key="main_query_input"
     )
     
     col1, col2, col3 = st.columns([2, 1, 1])
     
     with col1:
-        search_button = st.button("🔍 Search", type="primary")
+        search_button = st.button("🔍 Search", type="primary", key="main_search_button")
     
     with col2:
-        num_results = st.selectbox("Results", [2, 3, 5, 10], index=0)
+        num_results = st.selectbox("Results", [2, 3, 5, 10], index=0, key="num_results_select")
     
     with col3:
-        use_ai = st.checkbox("Generate AI Response", value=True)
+        # Check if RAG is available before showing the checkbox
+        if st.session_state.get('rag_available', False):
+            use_ai = st.checkbox("Generate AI Response", value=True, key="use_ai_checkbox")
+        else:
+            use_ai = False
+            st.info("AI unavailable")
     
     if search_button and query:
+        # Check if search engine is available
+        if not st.session_state.get('search_available', False):
+            st.error("Search engine is not available. Please check the system configuration.")
+            return
+            
         with st.spinner("Searching..."):
-            # Perform semantic search
-            raw_results = st.session_state.search_engine.collection.query(
-                query_texts=[query],
-                n_results=num_results
-            )
-            
-            formatted_results = st.session_state.rag_generator.format_search_results(raw_results)
-            
+            try:
+                # Perform semantic search
+                raw_results = st.session_state.search_engine.collection.query(
+                    query_texts=[query],
+                    n_results=num_results
+                )
+                
+                formatted_results = st.session_state.rag_generator.format_search_results(raw_results)
+                
+            except Exception as e:
+                st.error(f"Search failed: {str(e)}")
+                return
+        
         # Display search results
         st.subheader(f"📄 Found {len(formatted_results)} relevant passages")
         
         for i, result in enumerate(formatted_results, 1):
-            with st.expander(f"Result {i}: {result['metadata'].get('source_file', 'Unknown')[:50]}..."):
+            with st.expander(f"Result {i}: {result['metadata'].get('source_file', 'Unknown')[:50]}...", key=f"result_expander_{i}"):
                 col1, col2 = st.columns([3, 1])
                 
                 with col1:
@@ -247,45 +289,42 @@ def search_and_query_page():
                             st.write(f"**{key}:** {value}")
         
         # Generate AI response if requested and available
-        
-        if st.session_state.get('rag_available', False):
-            use_ai = st.checkbox("Generate AI Response", value=True)
-        else:
-            use_ai = False
-            st.info("AI analysis unavailable - showing search results only")
-
-        if use_ai and formatted_results:
+        if use_ai and formatted_results and st.session_state.get('rag_available', False):
             st.divider()
             st.subheader("🤖 AI Analysis")
             
             with st.spinner("Generating response..."):
-                # Cost estimation
-                context_text = "\n".join([r['content'] for r in formatted_results[:3]])
-                estimated_cost = estimate_cost(context_text + query)
-                
-                st.info(f"Estimated cost: ${estimated_cost:.4f}")
-                
-                response = st.session_state.rag_generator.generate_response(
-                    query=query,
-                    context_chunks=formatted_results[:3],
-                    max_chunks=3,
-                    max_chars_per_chunk=800,
-                    use_cheaper_model=True
-                )
+                try:
+                    # Cost estimation
+                    context_text = "\n".join([r['content'] for r in formatted_results[:3]])
+                    estimated_cost = estimate_cost(context_text + query)
+                    
+                    st.info(f"Estimated cost: ${estimated_cost:.4f}")
+                    
+                    response = st.session_state.rag_generator.generate_response(
+                        query=query,
+                        context_chunks=formatted_results[:3],
+                        max_chunks=3,
+                        max_chars_per_chunk=800,
+                        use_cheaper_model=True
+                    )
 
-                st.write(response)
-                
-                # Update cost tracking
-                st.session_state.total_cost += estimated_cost
-                
-                # Save to history
-                st.session_state.query_history.append({
-                    'timestamp': datetime.now().isoformat(),
-                    'query': query,
-                    'results_count': len(formatted_results),
-                    'cost': estimated_cost,
-                    'response': response[:200] + "..." if len(response) > 200 else response
-                })
+                    st.write(response)
+                    
+                    # Update cost tracking
+                    st.session_state.total_cost += estimated_cost
+                    
+                    # Save to history
+                    st.session_state.query_history.append({
+                        'timestamp': datetime.now().isoformat(),
+                        'query': query,
+                        'results_count': len(formatted_results),
+                        'cost': estimated_cost,
+                        'response': response[:200] + "..." if len(response) > 200 else response
+                    })
+                    
+                except Exception as e:
+                    st.error(f"AI response generation failed: {str(e)}")
         
         # Quick task creation
         st.divider()
@@ -293,10 +332,14 @@ def search_and_query_page():
         col1, col2 = st.columns([3, 1])
         
         with col1:
-            task_title = st.text_input("Task title", value=query[:50] + "..." if len(query) > 50 else query)
+            task_title = st.text_input(
+                "Task title", 
+                value=query[:50] + "..." if len(query) > 50 else query,
+                key="task_title_input"
+            )
         
         with col2:
-            if st.button("Add Task"):
+            if st.button("Add Task", key="add_task_button"):
                 add_task(
                     title=task_title,
                     description=f"Follow up on query: {query}",
