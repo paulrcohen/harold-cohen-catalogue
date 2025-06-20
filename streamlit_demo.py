@@ -85,40 +85,7 @@ def estimate_cost(text: str, model: str = "haiku") -> float:
     else:  # sonnet
         return tokens * 0.003 / 1000   # $3 per 1M tokens
 
-# def check_password():
-#     """Returns True if the user has entered the correct password."""
-    
-#     def password_entered():
-#         """Checks whether a password entered by the user is correct."""
-#         if st.session_state["password"] == st.secrets.get("APP_PASSWORD", "harold_cohen_2025"):
-#             st.session_state["password_correct"] = True
-#             del st.session_state["password"]  # Don't store password
-#         else:
-#             st.session_state["password_correct"] = False
 
-#     # Return True if password is correct
-#     if st.session_state.get("password_correct", False):
-#         return True
-
-#     # Show input for password
-#     st.markdown("### 🔒 Harold Cohen Catalogue Raisonné")
-#     st.markdown("*Please enter the access password*")
-    
-#     st.text_input(
-#         "Password", 
-#         type="password", 
-#         on_change=password_entered, 
-#         key="password",
-#         help="Contact Paul Cohen for access"
-#     )
-    
-#     if st.session_state.get("password_correct", False) == False and "password" in st.session_state:
-#         st.error("😕 Password incorrect")
-    
-#     st.markdown("---")
-#     st.markdown("*This system contains private correspondence, inventory data, and confidential research materials.*")
-    
-#     return False
 
 def check_password():
     """Returns True if the user has entered the correct password."""
@@ -146,7 +113,7 @@ def check_password():
             st.rerun()  # Refresh to show main app
         else:
             st.error("😕 Password incorrect")
-            st.write(f"Debug: Try '{expected_password}'")  # Temporary debug
+            #st.write(f"Debug: Try '{expected_password}'")  # Temporary debug
     
     st.markdown("---")
     st.markdown("*This system contains private correspondence, inventory data, and confidential research materials.*")
@@ -236,100 +203,75 @@ def search_and_query_page():
             )
             
             formatted_results = st.session_state.rag_generator.format_search_results(raw_results)
-
-
-            else:
-                # Demo search results
-                formatted_results = [
-                    {
-                        'content': f"Found relevant passage about '{query[:30]}...' in Harold Cohen correspondence from 1975. The artist discusses the transition from abstract to figurative work, mentioning specific pieces and exhibitions.",
-                        'metadata': {
-                            'source_file': 'harold_letters_1975.csv',
-                            'date': '1975-03-15',
-                            'sender': 'Harold Cohen',
-                            'subject': 'Re: Gallery Exhibition',
-                            'source_type': 'email'
-                        }
-                    },
-                    {
-                        'content': f"Additional context found regarding '{query[:30]}...' in gallery correspondence. Discussion of pricing and exhibition logistics for the figurative works series.",
-                        'metadata': {
-                            'source_file': 'gallery_correspondence.csv',
-                            'date': '1975-04-02',
-                            'sender': 'Gallery Director',
-                            'subject': 'Exhibition Planning',
-                            'source_type': 'email'
-                        }
-                    }
-                ][:num_results]  # Limit to requested number of results
-
-            # Display search results
-            st.subheader(f"📄 Found {len(formatted_results)} relevant passages")
             
-            for i, result in enumerate(formatted_results, 1):
-                with st.expander(f"Result {i}: {result['metadata'].get('source_file', 'Unknown')[:50]}..."):
-                    col1, col2 = st.columns([3, 1])
-                    
-                    with col1:
-                        st.write("**Content:**")
-                        st.write(result['content'][:500] + "..." if len(result['content']) > 500 else result['content'])
-                    
-                    with col2:
-                        st.write("**Metadata:**")
-                        for key, value in result['metadata'].items():
-                            if key in ['date', 'sender', 'subject', 'source_type']:
-                                st.write(f"**{key}:** {value}")
-            
-            # Generate AI response if requested
-            if use_ai and formatted_results:
-                st.divider()
-                st.subheader("🤖 AI Analysis")
+        # Display search results
+        st.subheader(f"📄 Found {len(formatted_results)} relevant passages")
+        
+        for i, result in enumerate(formatted_results, 1):
+            with st.expander(f"Result {i}: {result['metadata'].get('source_file', 'Unknown')[:50]}..."):
+                col1, col2 = st.columns([3, 1])
                 
-                with st.spinner("Generating response..."):
-                    # Cost estimation
-                    context_text = "\n".join([r['content'] for r in formatted_results[:3]])
-                    estimated_cost = estimate_cost(context_text + query)
-                    
-                    st.info(f"Estimated cost: ${estimated_cost:.4f}")
-                    
-                    response = st.session_state.rag_generator.generate_response(
-                        query=query,
-                        context_chunks=formatted_results[:3],
-                        max_chunks=3,
-                        max_chars_per_chunk=800,
-                        use_cheaper_model=True
-                    )
-
-                    st.write(response)
-                    
-                    # Update cost tracking
-                    st.session_state.total_cost += estimated_cost
-                    
-                    # Save to history
-                    st.session_state.query_history.append({
-                        'timestamp': datetime.now().isoformat(),
-                        'query': query,
-                        'results_count': len(formatted_results),
-                        'cost': estimated_cost,
-                        'response': response[:200] + "..." if len(response) > 200 else response
-                    })
-            
-            # Quick task creation
+                with col1:
+                    st.write("**Content:**")
+                    st.write(result['content'][:500] + "..." if len(result['content']) > 500 else result['content'])
+                
+                with col2:
+                    st.write("**Metadata:**")
+                    for key, value in result['metadata'].items():
+                        if key in ['date', 'sender', 'subject', 'source_type']:
+                            st.write(f"**{key}:** {value}")
+        
+        # Generate AI response if requested
+        if use_ai and formatted_results:
             st.divider()
-            st.subheader("📝 Create Task from This Query")
-            col1, col2 = st.columns([3, 1])
+            st.subheader("🤖 AI Analysis")
             
-            with col1:
-                task_title = st.text_input("Task title", value=query[:50] + "..." if len(query) > 50 else query)
-            
-            with col2:
-                if st.button("Add Task"):
-                    add_task(
-                        title=task_title,
-                        description=f"Follow up on query: {query}",
-                        category="Research"
-                    )
-                    st.success("Task added!")
+            with st.spinner("Generating response..."):
+                # Cost estimation
+                context_text = "\n".join([r['content'] for r in formatted_results[:3]])
+                estimated_cost = estimate_cost(context_text + query)
+                
+                st.info(f"Estimated cost: ${estimated_cost:.4f}")
+                
+                response = st.session_state.rag_generator.generate_response(
+                    query=query,
+                    context_chunks=formatted_results[:3],
+                    max_chunks=3,
+                    max_chars_per_chunk=800,
+                    use_cheaper_model=True
+                )
+
+                st.write(response)
+                
+                # Update cost tracking
+                st.session_state.total_cost += estimated_cost
+                
+                # Save to history
+                st.session_state.query_history.append({
+                    'timestamp': datetime.now().isoformat(),
+                    'query': query,
+                    'results_count': len(formatted_results),
+                    'cost': estimated_cost,
+                    'response': response[:200] + "..." if len(response) > 200 else response
+                })
+        
+        # Quick task creation
+        st.divider()
+        st.subheader("📝 Create Task from This Query")
+        col1, col2 = st.columns([3, 1])
+        
+        with col1:
+            task_title = st.text_input("Task title", value=query[:50] + "..." if len(query) > 50 else query)
+        
+        with col2:
+            if st.button("Add Task"):
+                add_task(
+                    title=task_title,
+                    description=f"Follow up on query: {query}",
+                    category="Research"
+                )
+                st.success("Task added!")
+                st.rerun()
 
 def add_materials_page():
     st.header("Add New Materials")
