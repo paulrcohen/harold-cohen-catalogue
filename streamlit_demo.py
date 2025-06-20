@@ -93,35 +93,68 @@ def estimate_cost(text: str, model: str = "haiku") -> float:
     else:  # sonnet
         return tokens * 0.003 / 1000   # $3 per 1M tokens
 
+# def check_password():
+#     """Returns True if the user has entered the correct password."""
+    
+#     def password_entered():
+#         """Checks whether a password entered by the user is correct."""
+#         if st.session_state["password"] == st.secrets.get("APP_PASSWORD", "harold_cohen_2025"):
+#             st.session_state["password_correct"] = True
+#             del st.session_state["password"]  # Don't store password
+#         else:
+#             st.session_state["password_correct"] = False
+
+#     # Return True if password is correct
+#     if st.session_state.get("password_correct", False):
+#         return True
+
+#     # Show input for password
+#     st.markdown("### 🔒 Harold Cohen Catalogue Raisonné")
+#     st.markdown("*Please enter the access password*")
+    
+#     st.text_input(
+#         "Password", 
+#         type="password", 
+#         on_change=password_entered, 
+#         key="password",
+#         help="Contact Paul Cohen for access"
+#     )
+    
+#     if st.session_state.get("password_correct", False) == False and "password" in st.session_state:
+#         st.error("😕 Password incorrect")
+    
+#     st.markdown("---")
+#     st.markdown("*This system contains private correspondence, inventory data, and confidential research materials.*")
+    
+#     return False
+
 def check_password():
     """Returns True if the user has entered the correct password."""
     
-    def password_entered():
-        """Checks whether a password entered by the user is correct."""
-        if st.session_state["password"] == st.secrets.get("APP_PASSWORD", "harold_cohen_2025"):
-            st.session_state["password_correct"] = True
-            del st.session_state["password"]  # Don't store password
-        else:
-            st.session_state["password_correct"] = False
-
-    # Return True if password is correct
+    # Return True if password is already correct
     if st.session_state.get("password_correct", False):
         return True
 
-    # Show input for password
+    # Show password input
     st.markdown("### 🔒 Harold Cohen Catalogue Raisonné")
     st.markdown("*Please enter the access password*")
     
-    st.text_input(
+    # Simple password input
+    user_password = st.text_input(
         "Password", 
-        type="password", 
-        on_change=password_entered, 
-        key="password",
-        help="Contact Paul Cohen for access"
+        type="password",
+        placeholder="Enter password here"
     )
     
-    if st.session_state.get("password_correct", False) == False and "password" in st.session_state:
-        st.error("😕 Password incorrect")
+    # Check password when user types something
+    if user_password:
+        expected_password = st.secrets.get("APP_PASSWORD", "harold_cohen_2025")
+        if user_password == expected_password:
+            st.session_state["password_correct"] = True
+            st.rerun()  # Refresh to show main app
+        else:
+            st.error("😕 Password incorrect")
+            st.write(f"Debug: Try '{expected_password}'")  # Temporary debug
     
     st.markdown("---")
     st.markdown("*This system contains private correspondence, inventory data, and confidential research materials.*")
@@ -303,7 +336,7 @@ def search_and_query_page():
                     This appears to be part of a broader exploration of human representation that would later influence his work with AARON and computational creativity.
                     
                     *Note: This is a demo response. Full AI analysis will be available once dependencies are resolved.*"""
-                                        
+
                     st.write(response)
                     
                     # Update cost tracking
