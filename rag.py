@@ -29,11 +29,6 @@ from anthropic import Anthropic
 
 
 
-if not api_key and 'ANTHROPIC_API_KEY' in st.secrets:
-    api_key = st.secrets['ANTHROPIC_API_KEY']
-if api_key:
-    os.environ['ANTHROPIC_API_KEY'] = api_key
-
 class ResponseGenerator:
     """
     Module for generating responses using retrieved context
