@@ -18,7 +18,7 @@ from pathlib import Path
 from datetime import datetime
 
 # Import our modules
-from cloud_search import get_search_engine
+from simple_vector_search import get_search_engine
 
 # Page configuration
 st.set_page_config(
