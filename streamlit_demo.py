@@ -26,12 +26,17 @@ from PIL import Image
 import io
 
 # Import your modules (adjust paths as needed)
-try:
-    from semantic_search import SemanticSearchEngine
-    from rag import ResponseGenerator
-except ImportError:
-    st.error("Could not import semantic_search or rag modules. Please ensure they're in the same directory.")
-    st.stop()
+# try:
+#     from semantic_search import SemanticSearchEngine
+#     from rag import ResponseGenerator
+# except ImportError:
+#     st.error("Could not import semantic_search or rag modules. Please ensure they're in the same directory.")
+
+
+#     st.stop()# Temporarily disabled for deployment
+st.session_state.demo_mode = True
+
+
 
 # Initialize session state
 if 'search_engine' not in st.session_state:
