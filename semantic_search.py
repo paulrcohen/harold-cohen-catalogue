@@ -12,6 +12,21 @@ Modular Catalogue Raisonné System for Harold Cohen
 Semantic search module with persistence checking
 """
 
+# Fix for ChromaDB SQLite compatibility on Streamlit Cloud
+import sys
+import subprocess
+
+try:
+    import pysqlite3
+    sys.modules['sqlite3'] = pysqlite3
+except ImportError:
+    pass
+
+# Now import chromadb
+import chromadb
+
+
+
 import os
 import re
 import json
