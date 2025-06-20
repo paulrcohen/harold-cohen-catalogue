@@ -25,30 +25,22 @@ import base64
 from PIL import Image
 import io
 
-# Import your modules (adjust paths as needed)
-# try:
-#     from semantic_search import SemanticSearchEngine
-#     from rag import ResponseGenerator
-# except ImportError:
-#     st.error("Could not import semantic_search or rag modules. Please ensure they're in the same directory.")
+Import your modules (adjust paths as needed)
+try:
+    from semantic_search import SemanticSearchEngine
+    from rag import ResponseGenerator
+except ImportError:
+    st.error("Could not import semantic_search or rag modules. Please ensure they're in the same directory.")
+    st.stop()# Temporarily disabled for deployment
 
-
-#     st.stop()# Temporarily disabled for deployment
 st.session_state.demo_mode = True
 
 
 
-# Initialize session state
-# if 'search_engine' not in st.session_state:
-#     st.session_state.search_engine = SemanticSearchEngine()
-# if 'rag_generator' not in st.session_state:
-#     st.session_state.rag_generator = ResponseGenerator()
-
-# Initialize session state
 if 'search_engine' not in st.session_state:
-    st.session_state.search_engine = None  # Disabled for deployment
+    st.session_state.search_engine = SemanticSearchEngine()
 if 'rag_generator' not in st.session_state:
-    st.session_state.rag_generator = None  # Disabled for deployment
+    st.session_state.rag_generator = ResponseGenerator()
 
 
 if 'task_list' not in st.session_state:
