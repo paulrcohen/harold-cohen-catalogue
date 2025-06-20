@@ -28,8 +28,7 @@ from chromadb.config import Settings
 from anthropic import Anthropic
 
 
-# Get API key from environment or Streamlit secrets
-api_key = os.getenv('ANTHROPIC_API_KEY')
+
 if not api_key and 'ANTHROPIC_API_KEY' in st.secrets:
     api_key = st.secrets['ANTHROPIC_API_KEY']
 if api_key:
@@ -40,11 +39,35 @@ class ResponseGenerator:
     Module for generating responses using retrieved context
     """
     
-    def __init__(self, anthropic_api_key: Optional[str] = None):
+    # def __init__(self, anthropic_api_key: Optional[str] = None):
+    #     # Get API key from environment variable if not provided
+    #     api_key = anthropic_api_key or os.getenv('ANTHROPIC_API_KEY')
+    #     self.anthropic_client = Anthropic(api_key=api_key) if api_key else None
+
+    def __init__(self, anthropic_api_key=None):
         # Get API key from environment variable if not provided
         api_key = anthropic_api_key or os.getenv('ANTHROPIC_API_KEY')
-        self.anthropic_client = Anthropic(api_key=api_key) if api_key else None
-    
+        
+        # Debug: Print what we got (remove this later)
+        print(f"DEBUG: anthropic_api_key parameter: {anthropic_api_key is not None}")
+        print(f"DEBUG: final api_key: {api_key is not None}")
+        print(f"DEBUG: api_key length: {len(api_key) if api_key else 0}")
+        
+        if not api_key and 'ANTHROPIC_API_KEY' in st.secrets:
+            api_key = st.secrets['ANTHROPIC_API_KEY']
+            print(f"DEBUG: Got from secrets: {api_key is not None}")
+        
+        if api_key:
+            os.environ['ANTHROPIC_API_KEY'] = api_key
+        
+        # Try to create client with error handling
+        try:
+            self.anthropic_client = Anthropic(api_key=api_key) if api_key else None
+            print("DEBUG: Anthropic client created successfully")
+        except Exception as e:
+            print(f"DEBUG: Anthropic client creation failed: {e}")
+            raise
+
     def format_search_results(self, raw_results: Dict[str, Any]) -> List[Dict[str, Any]]:
         """
         Convert ChromaDB query results to the expected format
