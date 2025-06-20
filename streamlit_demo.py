@@ -25,7 +25,7 @@ import base64
 from PIL import Image
 import io
 
-Import your modules (adjust paths as needed)
+# Import your modules (adjust paths as needed)
 try:
     from semantic_search import SemanticSearchEngine
     from rag import ResponseGenerator
