@@ -230,21 +230,14 @@ def search_and_query_page():
     if search_button and query:
         with st.spinner("Searching..."):
             # Perform semantic search
-            # raw_results = st.session_state.search_engine.collection.query(
-            #     query_texts=[query],
-            #     n_results=num_results
-            # )
+            raw_results = st.session_state.search_engine.collection.query(
+                query_texts=[query],
+                n_results=num_results
+            )
             
-            # formatted_results = st.session_state.rag_generator.format_search_results(raw_results)
+            formatted_results = st.session_state.rag_generator.format_search_results(raw_results)
 
-            # Demo search results (since search_engine is None)
-            if st.session_state.search_engine:
-                # Real search (when dependencies are working)
-                raw_results = st.session_state.search_engine.collection.query(
-                    query_texts=[query],
-                    n_results=num_results
-                )
-                formatted_results = st.session_state.rag_generator.format_search_results(raw_results)
+
             else:
                 # Demo search results
                 formatted_results = [
@@ -299,35 +292,13 @@ def search_and_query_page():
                     
                     st.info(f"Estimated cost: ${estimated_cost:.4f}")
                     
-                    # response = st.session_state.rag_generator.generate_response(
-                    #     query=query,
-                    #     context_chunks=formatted_results[:3],
-                    #     max_chunks=3,
-                    #     max_chars_per_chunk=800,
-                    #     use_cheaper_model=True
-                    # )
-
-                    if st.session_state.rag_generator:
-                        # Real AI response (when dependencies work)
-                        response = st.session_state.rag_generator.generate_response(
-                            query=query,
-                            context_chunks=formatted_results[:3],
-                            max_chunks=3,
-                            max_chars_per_chunk=800,
-                            use_cheaper_model=True
-                        )
-                    else:
-                        # Demo AI response
-                        response = f"""Based on the archival materials, your query about "{query}" relates to Harold Cohen's figurative period (1970s-1980s). The correspondence shows his transition from abstract computational art to more representational work.
-                    
-                    Key findings:
-                    - Gallery correspondence indicates active exhibition planning during this period
-                    - Cohen was personally involved in pricing and exhibition logistics  
-                    - The figurative works represented a significant shift in his artistic practice
-                    
-                    This appears to be part of a broader exploration of human representation that would later influence his work with AARON and computational creativity.
-                    
-                    *Note: This is a demo response. Full AI analysis will be available once dependencies are resolved.*"""
+                    response = st.session_state.rag_generator.generate_response(
+                        query=query,
+                        context_chunks=formatted_results[:3],
+                        max_chunks=3,
+                        max_chars_per_chunk=800,
+                        use_cheaper_model=True
+                    )
 
                     st.write(response)
                     
