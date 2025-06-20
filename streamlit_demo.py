@@ -1,795 +1,325 @@
 #!/usr/bin/env python3
 """
-Harold Cohen Catalogue Raisonné Streamlit App
-Clean version with improved error handling and debugging
+Simplified Harold Cohen Catalogue Raisonné Streamlit App
+Focus on core functionality without excessive diagnostics
 """
 
 import streamlit as st
-
-# Page configuration MUST be first
-st.set_page_config(
-    page_title="Harold Cohen Catalogue Raisonné",
-    page_icon="🎨",
-    layout="wide",
-    initial_sidebar_state="expanded"
-)
-
-# Now import everything else
 import pandas as pd
-import os
 from pathlib import Path
 from datetime import datetime
 import json
-from typing import List, Dict, Any, Optional
-from PIL import Image
 
-# Import your modules
+# Page config must be first
+st.set_page_config(
+    page_title="Harold Cohen Catalogue Raisonné",
+    page_icon="🎨",
+    layout="wide"
+)
+
+# Import modules with error handling
 try:
     from semantic_search import SemanticSearchEngine
-    from rag import ResponseGenerator
-except ImportError:
-    st.error("Could not import semantic_search or rag modules. Please ensure they're in the same directory.")
-    st.stop()
+    search_module_available = True
+except ImportError as e:
+    st.error(f"Could not import semantic_search module: {e}")
+    search_module_available = False
 
-# Initialize session state variables
-if 'task_list' not in st.session_state:
-    st.session_state.task_list = []
-if 'query_history' not in st.session_state:
+try:
+    from rag import ResponseGenerator
+    rag_module_available = True
+except ImportError:
+    rag_module_available = False
+
+# Initialize session state
+if 'initialized' not in st.session_state:
+    st.session_state.initialized = True
     st.session_state.query_history = []
-if 'total_cost' not in st.session_state:
     st.session_state.total_cost = 0.0
 
-# Initialize search engine with error handling
-if 'search_engine' not in st.session_state:
+# Initialize search engine
+if 'search_engine' not in st.session_state and search_module_available:
     try:
         with st.spinner("Initializing search engine..."):
             st.session_state.search_engine = SemanticSearchEngine()
-            st.session_state.search_available = True
+            st.session_state.search_ready = True
     except Exception as e:
-        st.session_state.search_engine = None
-        st.session_state.search_available = False
-        print(f"Search engine initialization failed: {e}")
+        st.error(f"Search engine initialization failed: {e}")
+        st.session_state.search_ready = False
 
-# Initialize RAG generator with error handling
-if 'rag_generator' not in st.session_state:
+# Initialize RAG
+if 'rag_generator' not in st.session_state and rag_module_available:
     try:
         api_key = st.secrets.get('ANTHROPIC_API_KEY')
-        st.session_state.rag_generator = ResponseGenerator(anthropic_api_key=api_key)
-        st.session_state.rag_available = True
-        st.session_state.rag_error = None
+        if api_key:
+            st.session_state.rag_generator = ResponseGenerator(anthropic_api_key=api_key)
+            st.session_state.rag_ready = True
+        else:
+            st.session_state.rag_ready = False
     except Exception as e:
-        st.session_state.rag_generator = ResponseGenerator()
-        st.session_state.rag_available = False
-        st.session_state.rag_error = str(e)
-        print(f"RAG generator initialization failed: {e}")
-
-
-def load_task_list():
-    """Load task list from file"""
-    task_file = Path("hc_tasks.json")
-    if task_file.exists():
-        with open(task_file, 'r') as f:
-            st.session_state.task_list = json.load(f)
-
-def save_task_list():
-    """Save task list to file"""
-    task_file = Path("hc_tasks.json")
-    with open(task_file, 'w') as f:
-        json.dump(st.session_state.task_list, f, indent=2)
-
-def add_task(title: str, description: str, category: str = "General"):
-    """Add a new task"""
-    task = {
-        'id': len(st.session_state.task_list) + 1,
-        'title': title,
-        'description': description,
-        'category': category,
-        'created': datetime.now().isoformat(),
-        'completed': False,
-        'related_queries': []
-    }
-    st.session_state.task_list.append(task)
-    save_task_list()
-
-def estimate_cost(text: str, model: str = "haiku") -> float:
-    """Rough cost estimation"""
-    tokens = len(text) / 4  # Rough approximation
-    if model == "haiku":
-        return tokens * 0.00025 / 1000  # $0.25 per 1M tokens
-    else:  # sonnet
-        return tokens * 0.003 / 1000   # $3 per 1M tokens
+        st.session_state.rag_ready = False
 
 def check_password():
-    """Returns True if the user has entered the correct password."""
-    
-    # Return True if password is already correct
+    """Simple password check"""
     if st.session_state.get("password_correct", False):
         return True
-
-    # Show password input
+    
     st.markdown("### 🔒 Harold Cohen Catalogue Raisonné")
-    st.markdown("*Please enter the access password*")
+    password = st.text_input("Password", type="password")
     
-    # Simple password input
-    user_password = st.text_input(
-        "Password", 
-        type="password",
-        placeholder="Enter password here"
-    )
-    
-    # Check password when user types something
-    if user_password:
-        expected_password = st.secrets.get("APP_PASSWORD", "harold_cohen_2025")
-        if user_password == expected_password:
+    if password:
+        expected = st.secrets.get("APP_PASSWORD", "harold_cohen_2025")
+        if password == expected:
             st.session_state["password_correct"] = True
-            st.rerun()  # Refresh to show main app
+            st.rerun()
         else:
-            st.error("😕 Password incorrect")
-    
-    st.markdown("---")
-    st.markdown("*This system contains private correspondence, inventory data, and confidential research materials.*")
+            st.error("Incorrect password")
     
     return False
 
-def debug_collection_page():
-    """Debug page to check collection status and add test data"""
-    st.header("🔍 Collection Debug & Testing")
+def main_search_page():
+    """Main search interface"""
+    st.header("🔍 Search & Query")
     
-    if not st.session_state.get('search_available', False):
+    # Check if search is ready
+    if not st.session_state.get('search_ready', False):
         st.error("Search engine not available")
         return
     
-    # Show persistence status
-    st.subheader("💾 Persistence Status")
-    try:
-        status = st.session_state.search_engine.get_persistence_status()
-        
-        col1, col2 = st.columns(2)
-        with col1:
-            if status["using_persistent"]:
-                st.success("✅ Using Persistent Storage")
-            else:
-                st.error("❌ Using In-Memory Storage")
-        
-        with col2:
-            st.info(f"Documents: {status.get('document_count', 0)}")
-        
-        # Show detailed status
-        with st.expander("Detailed Persistence Info"):
-            for key, value in status.items():
-                st.write(f"**{key}:** {value}")
-                
-        # Warning for in-memory storage
-        if not status["using_persistent"]:
-            st.warning("""
-            ⚠️ **Data Persistence Issue Detected**
-            
-            ChromaDB is running in memory-only mode. This means:
-            - All data will be lost when the app restarts
-            - You'll need to re-ingest documents each session
-            - Test data has been automatically added for this session
-            """)
-            
-    except Exception as e:
-        st.error(f"Could not get persistence status: {e}")
+    # Show status
+    status = st.session_state.search_engine.get_status()
+    col1, col2, col3 = st.columns(3)
     
-    st.divider()
+    with col1:
+        st.metric("Documents", status.get('document_count', 0))
+    with col2:
+        if status.get('persistent_storage', False):
+            st.success("💾 Persistent Storage")
+        else:
+            st.warning("⚠️ Memory Only")
+    with col3:
+        st.metric("Session Cost", f"${st.session_state.total_cost:.3f}")
     
-    # Add test data manually
-    st.subheader("➕ Add More Test Data")
-    if st.button("Add Additional Test Documents", key="add_more_test_data"):
-        try:
-            additional_docs = [
-                "Cohen's AARON program evolved significantly during the 1980s figurative period. The system learned to create more complex human forms and spatial relationships.",
-                "We received confirmation that all artwork arrived at the museum in good condition. The insurance documentation has been filed appropriately.",
-                "The exhibition opening was a great success. Many visitors were fascinated by the computer-generated artwork and Cohen's innovative approach."
-            ]
-            
-            additional_metadata = [
-                {"source_type": "research", "source_file": "aaron_evolution.txt"},
-                {"source_type": "email", "source_file": "shipping_confirmation.txt", "sender": "insurance@artcare.com"},
-                {"source_type": "event", "source_file": "opening_notes.txt", "event": "exhibition_opening"}
-            ]
-            
-            additional_ids = [f"additional_doc_{i}" for i in range(len(additional_docs))]
-            
-            st.session_state.search_engine.collection.add(
-                documents=additional_docs,
-                metadatas=additional_metadata,
-                ids=additional_ids
-            )
-            
-            st.success(f"Added {len(additional_docs)} additional test documents")
-            st.rerun()
-            
-        except Exception as e:
-            st.error(f"Failed to add additional test data: {e}")
-    
-    st.divider()
-    
-    # Collection statistics
-    st.subheader("📊 Collection Statistics")
-    try:
-        stats = st.session_state.search_engine.get_collection_stats()
-        
-        col1, col2, col3 = st.columns(3)
-        with col1:
-            st.metric("Total Documents", stats.get('total_documents', 0))
-        with col2:
-            st.metric("Source Types", len(stats.get('source_types', [])))
-        with col3:
-            status_color = "✅" if stats.get('total_documents', 0) > 0 else "❌"
-            st.metric("Status", f"{status_color} {stats.get('status', 'unknown')}")
-        
-        # Show source types
-        if stats.get('source_types'):
-            st.write("**Source Types:**", ", ".join(stats['source_types']))
-        
-    except Exception as e:
-        st.error(f"Error getting collection stats: {e}")
-    
-    st.divider()
-    
-    # Test search
-    st.subheader("🧪 Test Search")
-    test_query = st.text_input(
-        "Try a search query:", 
-        value="Brooklyn museum",
-        help="Try: 'Brooklyn museum', 'shipping delays', 'National Theatre', or 'Harold Cohen'",
-        key="debug_test_query"
-    )
-    
-    if st.button("Test Search", key="debug_test_search") and test_query:
-        with st.spinner("Searching..."):
-            try:
-                results = st.session_state.search_engine.search(test_query, n_results=3)
-                
-                if results:
-                    st.success(f"✅ Found {len(results)} results!")
-                    
-                    for i, result in enumerate(results, 1):
-                        with st.expander(f"Result {i}"):
-                            st.write("**Content:**")
-                            st.write(result['content'][:300] + "..." if len(result['content']) > 300 else result['content'])
-                            st.write("**Metadata:**")
-                            for key, value in result['metadata'].items():
-                                st.write(f"- **{key}:** {value}")
-                            if result.get('distance') is not None:
-                                st.write(f"**Distance:** {result['distance']:.3f}")
-                else:
-                    st.warning("❌ No results found")
-                    
-            except Exception as e:
-                st.error(f"Search failed: {e}")
-
-def search_and_query_page():
-    """Main search and query page"""
-    st.header("Search & Query")
-    
-    # Check if search is available
-    if not st.session_state.get('search_available', False):
-        st.error("❌ Search functionality is currently unavailable.")
-        st.info("Please check the Debug Collection page for more information.")
-        return
-    
-    # Show data status
-    try:
-        stats = st.session_state.search_engine.get_collection_stats()
-        if stats.get('total_documents', 0) == 0:
-            st.warning("⚠️ No documents in collection. Please add data via 'Add New Materials' or use 'Debug Collection' to add test data.")
-            return
-    except:
-        pass
-    
-    # Query input
+    # Search interface
     query = st.text_area(
-        "Ask a question about Harold Cohen's work:",
-        placeholder="e.g., Do you remember the painting at the National Theater? What happened with it?",
-        height=100,
-        key="main_query_input"
+        "Search the Harold Cohen collection:",
+        placeholder="e.g., Brooklyn museum exhibition, National Theatre painting, shipping delays...",
+        height=100
     )
     
     col1, col2, col3 = st.columns([2, 1, 1])
-    
     with col1:
-        search_button = st.button("🔍 Search", type="primary", key="main_search_button")
-    
+        search_btn = st.button("🔍 Search", type="primary")
     with col2:
-        num_results = st.selectbox("Results", [2, 3, 5, 10], index=1, key="num_results_select")
-    
+        num_results = st.selectbox("Results", [3, 5, 10], index=0)
     with col3:
-        if st.session_state.get('rag_available', False):
-            use_ai = st.checkbox("Generate AI Response", value=True, key="use_ai_checkbox")
-        else:
-            use_ai = False
-            st.info("AI unavailable")
+        use_ai = st.checkbox("AI Response", value=st.session_state.get('rag_ready', False))
     
-    if search_button and query:
+    if search_btn and query:
+        # Perform search
         with st.spinner("Searching..."):
-            try:
-                # Use the search method from SemanticSearchEngine
-                results = st.session_state.search_engine.search(query, n_results=num_results)
-                
-            except Exception as e:
-                st.error(f"Search failed: {str(e)}")
-                return
+            results = st.session_state.search_engine.search(query, n_results=num_results)
         
-        # Display search results
         if results:
-            st.subheader(f"📄 Found {len(results)} relevant passages")
+            st.subheader(f"📄 Found {len(results)} results")
             
+            # Display results
             for i, result in enumerate(results, 1):
-                with st.expander(f"Result {i}: {result['metadata'].get('source_file', 'Unknown')[:50]}...", key=f"result_expander_{i}"):
-                    col1, col2 = st.columns([3, 1])
+                with st.expander(f"Result {i} - {result['metadata'].get('source_file', 'Unknown source')}"):
+                    st.write("**Content:**")
+                    st.write(result['content'])
                     
-                    with col1:
-                        st.write("**Content:**")
-                        content = result['content']
-                        st.write(content[:500] + "..." if len(content) > 500 else content)
-                    
-                    with col2:
+                    if result['metadata']:
                         st.write("**Metadata:**")
                         for key, value in result['metadata'].items():
-                            if key in ['date', 'sender', 'subject', 'source_type', 'title']:
-                                st.write(f"**{key}:** {value}")
+                            st.write(f"- **{key}:** {value}")
+                    
+                    if 'distance' in result:
+                        relevance = 1 - result['distance']
+                        st.write(f"**Relevance:** {relevance:.2f}")
+            
+            # AI Response
+            if use_ai and st.session_state.get('rag_ready', False):
+                st.divider()
+                st.subheader("🤖 AI Analysis")
+                
+                with st.spinner("Generating AI response..."):
+                    try:
+                        response = st.session_state.rag_generator.generate_response(
+                            query=query,
+                            context_chunks=results[:3],
+                            max_chunks=3,
+                            use_cheaper_model=True
+                        )
+                        st.write(response)
                         
-                        if result.get('distance') is not None:
-                            st.write(f"**Relevance:** {1-result['distance']:.2f}")
+                        # Rough cost estimate
+                        estimated_cost = len(query + str(results[:3])) * 0.0001 / 1000
+                        st.session_state.total_cost += estimated_cost
+                        
+                    except Exception as e:
+                        st.error(f"AI response failed: {e}")
+            
+            # Save to history
+            st.session_state.query_history.append({
+                'timestamp': datetime.now().isoformat(),
+                'query': query,
+                'results_count': len(results)
+            })
+            
         else:
             st.warning("No results found. Try different search terms.")
-            return
-        
-        # Generate AI response if requested
-        if use_ai and results and st.session_state.get('rag_available', False):
-            st.divider()
-            st.subheader("🤖 AI Analysis")
-            
-            with st.spinner("Generating response..."):
-                try:
-                    # Estimate cost
-                    context_text = "\n".join([r['content'] for r in results[:3]])
-                    estimated_cost = estimate_cost(context_text + query)
-                    
-                    st.info(f"Estimated cost: ${estimated_cost:.4f}")
-                    
-                    # Generate response using the formatted results
-                    response = st.session_state.rag_generator.generate_response(
-                        query=query,
-                        context_chunks=results[:3],
-                        max_chunks=3,
-                        max_chars_per_chunk=800,
-                        use_cheaper_model=True
-                    )
 
-                    st.write(response)
-                    
-                    # Update cost tracking
-                    st.session_state.total_cost += estimated_cost
-                    
-                    # Save to history
-                    st.session_state.query_history.append({
-                        'timestamp': datetime.now().isoformat(),
-                        'query': query,
-                        'results_count': len(results),
-                        'cost': estimated_cost,
-                        'response': response[:200] + "..." if len(response) > 200 else response
-                    })
-                    
-                except Exception as e:
-                    st.error(f"AI response generation failed: {str(e)}")
-        
-        # Quick task creation
-        st.divider()
-        st.subheader("📝 Create Task from This Query")
-        col1, col2 = st.columns([3, 1])
-        
-        with col1:
-            task_title = st.text_input(
-                "Task title", 
-                value=query[:50] + "..." if len(query) > 50 else query,
-                key="task_title_input"
-            )
-        
-        with col2:
-            if st.button("Add Task", key="add_task_button"):
-                add_task(
-                    title=task_title,
-                    description=f"Follow up on query: {query}",
-                    category="Research"
-                )
-                st.success("Task added!")
-                st.rerun()
-
-def add_materials_page():
-    """Page for adding new materials"""
-    st.header("Add New Materials")
+def upload_page():
+    """File upload page"""
+    st.header("📤 Upload Materials")
     
-    if not st.session_state.get('search_available', False):
-        st.error("Search engine not available - cannot ingest materials")
-        return
-    
-    tab1, tab2 = st.tabs(["📧 Email Files", "🖼️ Images"])
-    
-    with tab1:
-        st.subheader("Upload Email CSV Files")
-        uploaded_file = st.file_uploader(
-            "Choose CSV file containing emails",
-            type=['csv'],
-            help="CSV should contain columns like 'message_text', 'sender', 'date', etc.",
-            key="csv_uploader"
-        )
-        
-        if uploaded_file:
-            # Save uploaded file
-            file_path = Path(f"./uploads/{uploaded_file.name}")
-            file_path.parent.mkdir(exist_ok=True)
-            
-            with open(file_path, 'wb') as f:
-                f.write(uploaded_file.getbuffer())
-            
-            st.success(f"File saved as {file_path}")
-            
-            # Preview the file
-            try:
-                df = pd.read_csv(file_path)
-                st.write("**Preview:**")
-                st.dataframe(df.head())
-                
-                # Ingestion options
-                text_column = st.selectbox("Text column", df.columns.tolist(), key="text_column_select")
-                force_reingest = st.checkbox("Force re-ingestion if already exists", key="force_reingest_checkbox")
-                
-                if st.button("Ingest into Collection", key="ingest_button"):
-                    with st.spinner("Ingesting emails..."):
-                        try:
-                            stats = st.session_state.search_engine.ingest_csv_emails(
-                                str(file_path),
-                                text_column=text_column,
-                                force_reingest=force_reingest
-                            )
-                            
-                            if stats['status'] == 'ingested':
-                                st.success(f"✅ Ingested {stats['processed_emails']} emails ({stats['total_chunks']} chunks)")
-                                
-                                # Create a task for this new material
-                                add_task(
-                                    title=f"Review new emails: {uploaded_file.name}",
-                                    description=f"New email corpus ingested with {stats['processed_emails']} emails",
-                                    category="New Material"
-                                )
-                                st.rerun()
-                            else:
-                                st.info(f"ℹ️ {stats['message']}")
-                                
-                        except Exception as e:
-                            st.error(f"Error during ingestion: {e}")
-            except Exception as e:
-                st.error(f"Error reading CSV file: {e}")
-    
-    with tab2:
-        st.subheader("Upload Images")
-        st.info("🚧 Image handling coming soon! Will support artwork photos, documents, etc.")
-        
-        uploaded_images = st.file_uploader(
-            "Choose image files",
-            type=['jpg', 'jpeg', 'png', 'tiff'],
-            accept_multiple_files=True,
-            key="image_uploader"
-        )
-        
-        if uploaded_images:
-            for img_file in uploaded_images:
-                col1, col2 = st.columns([1, 2])
-                
-                with col1:
-                    image = Image.open(img_file)
-                    st.image(image, caption=img_file.name, width=200)
-                
-                with col2:
-                    st.text_input(f"Title for {img_file.name}", key=f"title_{img_file.name}")
-                    st.text_area(f"Description", key=f"desc_{img_file.name}")
-                    st.selectbox(f"Category", ["Artwork", "Document", "Reference"], key=f"cat_{img_file.name}")
-
-def task_management_page():
-    """Task management page"""
-    st.header("Task Management")
-    
-    # Add new task
-    with st.expander("➕ Add New Task"):
-        col1, col2 = st.columns([2, 1])
-        
-        with col1:
-            new_title = st.text_input("Task title", key="new_task_title")
-            new_description = st.text_area("Description", key="new_task_description")
-        
-        with col2:
-            new_category = st.selectbox("Category", [
-                "Research", "Acquisition", "Documentation", 
-                "Exhibition", "Conservation", "General"
-            ], key="new_task_category")
-            
-            if st.button("Add Task", key="add_new_task_button") and new_title:
-                add_task(new_title, new_description, new_category)
-                st.success("Task added!")
-                st.rerun()
-    
-    # Display tasks
-    if st.session_state.task_list:
-        # Filter options
-        col1, col2, col3 = st.columns(3)
-        
-        with col1:
-            show_completed = st.checkbox("Show completed tasks", key="show_completed_filter")
-        
-        with col2:
-            filter_category = st.selectbox("Filter by category", 
-                ["All"] + list(set(t['category'] for t in st.session_state.task_list)),
-                key="category_filter")
-        
-        # Filter tasks
-        filtered_tasks = st.session_state.task_list
-        
-        if not show_completed:
-            filtered_tasks = [t for t in filtered_tasks if not t['completed']]
-        
-        if filter_category != "All":
-            filtered_tasks = [t for t in filtered_tasks if t['category'] == filter_category]
-        
-        # Display tasks
-        for task in filtered_tasks:
-            with st.container():
-                col1, col2, col3, col4 = st.columns([3, 1, 1, 1])
-                
-                with col1:
-                    if task['completed']:
-                        st.write(f"~~{task['title']}~~")
-                    else:
-                        st.write(f"**{task['title']}**")
-                    st.write(task['description'])
-                
-                with col2:
-                    st.write(f"**{task['category']}**")
-                    st.write(task['created'][:10])
-                
-                with col3:
-                    if st.button("✅" if not task['completed'] else "↺", key=f"toggle_{task['id']}"):
-                        task['completed'] = not task['completed']
-                        save_task_list()
-                        st.rerun()
-                
-                with col4:
-                    if st.button("🗑️", key=f"delete_{task['id']}"):
-                        st.session_state.task_list.remove(task)
-                        save_task_list()
-                        st.rerun()
-                
-                st.divider()
-    else:
-        st.info("No tasks yet. Add some tasks to track your research!")
-
-def collection_overview_page():
-    """Collection overview page"""
-    st.header("Collection Overview")
-    
-    if not st.session_state.get('search_available', False):
+    if not st.session_state.get('search_ready', False):
         st.error("Search engine not available")
         return
     
-    # Get collection statistics
-    try:
-        stats = st.session_state.search_engine.get_collection_stats()
-        persistence_status = st.session_state.search_engine.get_persistence_status()
+    uploaded_file = st.file_uploader(
+        "Upload CSV file with emails/documents",
+        type=['csv'],
+        help="CSV should have a column with text content (e.g., 'message_text', 'content', 'text')"
+    )
+    
+    if uploaded_file:
+        # Save file temporarily
+        temp_path = Path(f"./temp_uploads/{uploaded_file.name}")
+        temp_path.parent.mkdir(exist_ok=True)
         
-        col1, col2, col3, col4 = st.columns(4)
+        with open(temp_path, 'wb') as f:
+            f.write(uploaded_file.getbuffer())
         
-        with col1:
-            st.metric("Total Documents", stats.get('total_documents', 0))
-        
-        with col2:
-            st.metric("Source Types", len(stats.get('source_types', [])))
-        
-        with col3:
-            st.metric("Total Session Cost", f"${st.session_state.total_cost:.3f}")
-        
-        with col4:
-            if persistence_status.get('using_persistent', False):
-                st.metric("Storage", "💾 Persistent")
+        # Preview file
+        try:
+            df = pd.read_csv(temp_path)
+            st.success(f"File uploaded: {len(df)} rows")
+            
+            # Show preview
+            st.write("**Preview:**")
+            st.dataframe(df.head())
+            
+            # Select text column
+            text_columns = [col for col in df.columns if any(keyword in col.lower() 
+                          for keyword in ['text', 'message', 'content', 'body'])]
+            
+            if text_columns:
+                default_col = text_columns[0]
             else:
-                st.metric("Storage", "⚠️ Temporary")
-        
-        # Show source types
-        if stats.get('source_types'):
-            st.subheader("📚 Source Types")
-            source_types = stats['source_types']
-            cols = st.columns(len(source_types))
-            for i, source_type in enumerate(source_types):
-                with cols[i]:
-                    st.info(f"**{source_type}**")
-        
-        # Persistence warning
-        if not persistence_status.get('using_persistent', False):
-            st.warning("""
-            ⚠️ **Temporary Storage Active**
+                default_col = df.columns[0] if len(df.columns) > 0 else None
             
-            Your data is stored in memory only and will be lost when the app restarts.
-            Consider uploading your data files for each session, or check the Debug Collection page for more details.
-            """)
-        
-        # Query history
-        st.subheader("🔍 Recent Queries")
-        if st.session_state.query_history:
-            history_df = pd.DataFrame(st.session_state.query_history[-10:])  # Last 10 queries
-            history_df['timestamp'] = pd.to_datetime(history_df['timestamp']).dt.strftime('%H:%M:%S')
-            st.dataframe(history_df[['timestamp', 'query', 'results_count', 'cost']])
-        else:
-            st.info("No queries yet.")
+            text_column = st.selectbox(
+                "Select text column:",
+                df.columns.tolist(),
+                index=df.columns.tolist().index(default_col) if default_col else 0
+            )
             
-    except Exception as e:
-        st.error(f"Error getting collection overview: {e}")
+            # Ingest button
+            if st.button("📥 Ingest into Collection", type="primary"):
+                with st.spinner("Ingesting documents..."):
+                    result = st.session_state.search_engine.ingest_csv_emails(
+                        str(temp_path), 
+                        text_column=text_column
+                    )
+                    
+                    if result['status'] == 'success':
+                        st.success(f"✅ Successfully ingested {result['documents_added']} documents!")
+                        st.info(f"Total documents in collection: {result['total_documents']}")
+                        st.rerun()
+                    else:
+                        st.error(f"❌ Ingestion failed: {result['message']}")
+        
+        except Exception as e:
+            st.error(f"Error reading file: {e}")
 
-def settings_page():
-    """Settings page"""
-    st.header("Settings")
+def history_page():
+    """Query history page"""
+    st.header("📊 Query History")
     
-    # System Status
-    st.subheader("🔧 System Status")
-    
-    col1, col2 = st.columns(2)
-    
-    with col1:
-        st.write("**Search Engine:**")
-        if st.session_state.get('search_available', False):
-            st.success("✅ Available")
-            try:
-                status = st.session_state.search_engine.get_persistence_status()
-                if status.get('using_persistent', False):
-                    st.info("💾 Using persistent storage")
-                else:
-                    st.warning("⚠️ Using temporary storage")
-            except:
-                pass
-        else:
-            st.error("❌ Unavailable")
-    
-    with col2:
-        st.write("**AI Response Generator:**")
-        if st.session_state.get('rag_available', False):
-            st.success("✅ Available")
-        else:
-            st.error("❌ Unavailable")
-            if st.session_state.get('rag_error'):
-                with st.expander("Error Details"):
-                    st.code(st.session_state.rag_error)
-    
-    # API Settings
-    st.subheader("🔑 API Configuration")
-    
-    current_key = os.getenv('ANTHROPIC_API_KEY', '')
-    if current_key:
-        masked_key = f"sk-ant-...{current_key[-8:]}"
-        st.success(f"✅ API Key: {masked_key}")
-    else:
-        st.warning("⚠️ No API key configured")
-    
-    # Model preferences
-    st.subheader("🤖 Model Preferences")
-    default_model = st.selectbox("Default model", ["Claude Haiku (Cheap)", "Claude Sonnet (Better)"], key="model_preference")
-    max_chunks = st.slider("Max context chunks", 1, 10, 3, key="max_chunks_setting")
-    max_chars = st.slider("Max characters per chunk", 500, 2000, 800, key="max_chars_setting")
-    
-    # Data management
-    st.subheader("💾 Data Management")
-    
-    col1, col2 = st.columns(2)
-    
-    with col1:
-        if st.button("🗑️ Clear Query History", key="clear_query_history"):
+    if st.session_state.query_history:
+        # Convert to DataFrame for better display
+        df = pd.DataFrame(st.session_state.query_history)
+        df['timestamp'] = pd.to_datetime(df['timestamp']).dt.strftime('%Y-%m-%d %H:%M:%S')
+        
+        st.dataframe(df, use_container_width=True)
+        
+        # Clear history button
+        if st.button("🗑️ Clear History"):
             st.session_state.query_history = []
-            st.success("Query history cleared!")
             st.rerun()
+    else:
+        st.info("No search history yet.")
+
+def debug_page():
+    """Simple debug page"""
+    st.header("🔧 System Status")
     
-    with col2:
-        if st.button("💰 Reset Cost Counter", key="reset_cost_counter"):
-            st.session_state.total_cost = 0.0
-            st.success("Cost counter reset!")
-            st.rerun()
+    # Search engine status
+    st.subheader("Search Engine")
+    if st.session_state.get('search_ready', False):
+        status = st.session_state.search_engine.get_status()
+        
+        col1, col2 = st.columns(2)
+        with col1:
+            st.success("✅ Search engine active")
+            st.write(f"**Documents:** {status.get('document_count', 0)}")
+        with col2:
+            if status.get('persistent_storage', False):
+                st.success("💾 Using persistent storage")
+                st.write(f"**Path:** {status.get('storage_path', 'Unknown')}")
+            else:
+                st.warning("⚠️ Using memory storage")
+                st.write("Data will be lost on restart")
+    else:
+        st.error("❌ Search engine not available")
     
-    # Export/Import
-    st.subheader("📤 Export/Import")
+    # RAG status
+    st.subheader("AI Response Generator")
+    if st.session_state.get('rag_ready', False):
+        st.success("✅ AI responses available")
+    else:
+        st.warning("⚠️ AI responses not available")
+        st.write("Check API key configuration")
     
-    if st.button("Export Tasks", key="export_tasks_button"):
-        task_json = json.dumps(st.session_state.task_list, indent=2)
-        st.download_button(
-            "Download tasks.json",
-            task_json,
-            "hc_tasks.json",
-            "application/json",
-            key="download_tasks_button"
-        )
+    # Test search
+    st.subheader("Test Search")
+    if st.session_state.get('search_ready', False):
+        test_query = st.text_input("Test query:", value="Harold Cohen")
+        if st.button("Test") and test_query:
+            results = st.session_state.search_engine.search(test_query, n_results=2)
+            st.write(f"Found {len(results)} results")
+            for r in results:
+                st.write(f"- {r['content'][:100]}...")
 
 def main():
-    """Main application function"""
-    # Check password before showing anything
+    """Main app function"""
     if not check_password():
         return
     
     st.title("🎨 Harold Cohen Catalogue Raisonné")
-    st.markdown("*Comprehensive archival and research system for Harold Cohen's figurative period*")
+    st.markdown("*Research system for Harold Cohen's figurative period*")
     
-    # Load tasks on startup
-    if not st.session_state.task_list:
-        load_task_list()
+    # Navigation
+    tab1, tab2, tab3, tab4 = st.tabs([
+        "🔍 Search", 
+        "📤 Upload", 
+        "📊 History", 
+        "🔧 Debug"
+    ])
     
-    # Sidebar for navigation and settings
-    with st.sidebar:
-        # System status indicators
-        st.header("System Status")
-        
-        # Search engine status
-        if st.session_state.get('search_available', False):
-            st.success("🔍 Search: Available")
-        else:
-            st.error("🔍 Search: Unavailable")
-        
-        # RAG status  
-        if st.session_state.get('rag_available', False):
-            st.success("🤖 AI: Available")
-        else:
-            st.warning("🤖 AI: Unavailable")
-        
-        st.divider()
-        
-        # Navigation
-        st.header("Navigation")
-        page = st.selectbox("Select Page", [
-            "🔍 Search & Query",
-            "📤 Add New Materials", 
-            "📋 Task Management",
-            "📊 Collection Overview",
-            "🐛 Debug Collection",
-            "⚙️ Settings"
-        ], key="main_page_selector")
-        
-        st.divider()
-        
-        # Quick stats
-        try:
-            if st.session_state.get('search_available', False):
-                stats = st.session_state.search_engine.get_collection_stats()
-                st.metric("Documents in Collection", stats.get('total_documents', 0))
-            else:
-                st.metric("Documents in Collection", "N/A")
-        except Exception:
-            st.metric("Documents in Collection", "Error")
-            
-        st.metric("Session Cost", f"${st.session_state.total_cost:.3f}")
-        
-        # Quick task summary
-        incomplete_tasks = [t for t in st.session_state.task_list if not t['completed']]
-        st.metric("Open Tasks", len(incomplete_tasks))
+    with tab1:
+        main_search_page()
     
-    # Main content based on selected page
-    try:
-        if page == "🔍 Search & Query":
-            search_and_query_page()
-        elif page == "📤 Add New Materials":
-            add_materials_page()
-        elif page == "📋 Task Management":
-            task_management_page()
-        elif page == "📊 Collection Overview":
-            collection_overview_page()
-        elif page == "🐛 Debug Collection":
-            debug_collection_page()
-        elif page == "⚙️ Settings":
-            settings_page()
-    except Exception as e:
-        st.error(f"An error occurred: {str(e)}")
-        st.info("Please try refreshing the page or contact support if the problem persists.")
-        
-        # Show error details in expander for debugging
-        with st.expander("Error Details (for debugging)"):
-            import traceback
-            st.code(traceback.format_exc())
+    with tab2:
+        upload_page()
+    
+    with tab3:
+        history_page()
+    
+    with tab4:
+        debug_page()
 
 if __name__ == "__main__":
     main()
