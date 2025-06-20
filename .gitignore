@@ -1,0 +1,49 @@
+# API Keys and Secrets
+.env
+secrets.toml
+.streamlit/secrets.toml
+
+# Data files with private information
+*emails*.csv
+*private*.csv
+*inventory*.csv
+*prices*.csv
+*personal*.csv
+
+# Database files
+*.db
+*.sqlite
+chroma_db/
+chromadb/
+
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.Python
+env/
+venv/
+.venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Personal notes
+*notes*.txt
+*TODO*.txt
+*PRIVATE*.txt

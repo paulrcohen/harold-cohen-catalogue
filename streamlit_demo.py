@@ -80,7 +80,46 @@ def estimate_cost(text: str, model: str = "haiku") -> float:
     else:  # sonnet
         return tokens * 0.003 / 1000   # $3 per 1M tokens
 
+def check_password():
+    """Returns True if the user has entered the correct password."""
+    
+    def password_entered():
+        """Checks whether a password entered by the user is correct."""
+        if st.session_state["password"] == st.secrets.get("APP_PASSWORD", "harold_cohen_2025"):
+            st.session_state["password_correct"] = True
+            del st.session_state["password"]  # Don't store password
+        else:
+            st.session_state["password_correct"] = False
+
+    # Return True if password is correct
+    if st.session_state.get("password_correct", False):
+        return True
+
+    # Show input for password
+    st.markdown("### 🔒 Harold Cohen Catalogue Raisonné")
+    st.markdown("*Please enter the access password*")
+    
+    st.text_input(
+        "Password", 
+        type="password", 
+        on_change=password_entered, 
+        key="password",
+        help="Contact Paul Cohen for access"
+    )
+    
+    if st.session_state.get("password_correct", False) == False and "password" in st.session_state:
+        st.error("😕 Password incorrect")
+    
+    st.markdown("---")
+    st.markdown("*This system contains private correspondence, inventory data, and confidential research materials.*")
+    
+    return False
+
 def main():
+    # Check password before showing anything
+    if not check_password():
+        return
+    
     st.title("🎨 Harold Cohen Catalogue Raisonné")
     st.markdown("*Comprehensive archival and research system for Harold Cohen's figurative period*")
     
