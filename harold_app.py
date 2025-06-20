@@ -14,6 +14,38 @@ from datetime import datetime
 from simple_vector_search import get_search_engine
 from ai_assistant import get_ai_assistant
 
+def check_password():
+    """Returns True if password is correct"""
+    
+    def password_entered():
+        """Checks whether a password entered by the user is correct."""
+        if st.session_state["password"] == "hct2025":
+            st.session_state["password_correct"] = True
+            del st.session_state["password"]  # Don't store password
+        else:
+            st.session_state["password_correct"] = False
+
+    if "password_correct" not in st.session_state:
+        # First run, show input for password
+        st.title("🎨 Harold Cohen Email Archive")
+        st.markdown("### Please enter the password to access the research tool")
+        st.text_input("Password", type="password", on_change=password_entered, key="password")
+        st.markdown("---")
+        st.markdown("*This archive contains confidential research materials*")
+        return False
+    elif not st.session_state["password_correct"]:
+        # Password incorrect, show input + error
+        st.title("🎨 Harold Cohen Email Archive") 
+        st.markdown("### Please enter the password to access the research tool")
+        st.text_input("Password", type="password", on_change=password_entered, key="password")
+        st.error("❌ Password incorrect - please try again")
+        st.markdown("---")
+        st.markdown("*This archive contains confidential research materials*")
+        return False
+    else:
+        # Password correct
+        return True
+
 # Page configuration
 st.set_page_config(
     page_title="Harold Cohen Catalogue",
@@ -326,6 +358,13 @@ def render_collection_overview():
 
 def main():
     """Main application"""
+    def main():
+    """Main application function"""
+
+    # Check password first
+    if not check_password():
+        return
+
     # Render header
     render_header()
     
