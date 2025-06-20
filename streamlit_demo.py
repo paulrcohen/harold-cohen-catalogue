@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Simplified Harold Cohen Catalogue Raisonné Streamlit App
-Focus on core functionality without excessive diagnostics
+Clean rewrite to avoid syntax issues
 """
 
 import streamlit as st
@@ -31,44 +31,43 @@ try:
 except ImportError:
     rag_module_available = False
 
-# Initialize session state variables only
-if 'initialized' not in st.session_state:
-    st.session_state.initialized = False
-    st.session_state.query_history = []
-    st.session_state.total_cost = 0.0
+def initialize_session_state():
+    """Initialize session state variables"""
+    if 'initialized' not in st.session_state:
+        st.session_state.initialized = False
+        st.session_state.query_history = []
+        st.session_state.total_cost = 0.0
+        st.session_state.search_engine = None
+        st.session_state.search_ready = False
+        st.session_state.search_error = None
+        st.session_state.rag_generator = None
+        st.session_state.rag_ready = False
+        st.session_state.rag_error = None
 
 def initialize_engines():
     """Initialize search engine and RAG generator"""
     # Initialize search engine
-    if 'search_engine' not in st.session_state:
-        st.session_state.search_engine = None
-        st.session_state.search_ready = False
-        st.session_state.search_error = None
-        
-        if search_module_available:
-            try:
-                st.session_state.search_engine = SemanticSearchEngine()
-                st.session_state.search_ready = True
-            except Exception as e:
-                st.session_state.search_error = str(e)
-                st.session_state.search_ready = False
+    if search_module_available and not st.session_state.search_ready:
+        try:
+            st.session_state.search_engine = SemanticSearchEngine()
+            st.session_state.search_ready = True
+        except Exception as e:
+            st.session_state.search_error = str(e)
+            st.session_state.search_ready = False
 
     # Initialize RAG
-    if 'rag_generator' not in st.session_state:
-        st.session_state.rag_generator = None
-        st.session_state.rag_ready = False
-        st.session_state.rag_error = None
-        
-        if rag_module_available:
-            try:
-                api_key = st.secrets.get('ANTHROPIC_API_KEY')
-                if api_key:
-                    st.session_state.rag_generator = ResponseGenerator(anthropic_api_key=api_key)
-                    st.session_state.rag_ready = True
-                else:
-                    st.session_state.rag_error = "No API key configured"
-            except Exception as e:
-                st.session_state.rag_error = str(e)
+    if rag_module_available and not st.session_state.rag_ready:
+        try:
+            api_key = st.secrets.get('ANTHROPIC_API_KEY')
+            if api_key:
+                st.session_state.rag_generator = ResponseGenerator(anthropic_api_key=api_key)
+                st.session_state.rag_ready = True
+            else:
+                st.session_state.rag_error = "No API key configured"
+        except Exception as e:
+            st.session_state.rag_error = str(e)
+
+def check_password():
     """Simple password check"""
     if st.session_state.get("password_correct", False):
         return True
@@ -86,15 +85,15 @@ def initialize_engines():
     
     return False
 
-def check_password():
+def main_search_page():
     """Main search interface"""
     st.header("🔍 Search & Query")
     
     # Check if search is ready
-    if not st.session_state.get('search_ready', False) or not st.session_state.get('search_engine'):
+    if not st.session_state.get('search_ready', False):
         st.error("Search engine not available")
-        if st.session_state.get('search_engine') is None:
-            st.info("The semantic_search module may not be properly installed or there was an initialization error.")
+        if st.session_state.get('search_error'):
+            st.write(f"Error: {st.session_state.search_error}")
         return
     
     # Show status
@@ -185,7 +184,7 @@ def upload_page():
     """File upload page"""
     st.header("📤 Upload Materials")
     
-    if not st.session_state.get('search_ready', False) or not st.session_state.get('search_engine'):
+    if not st.session_state.get('search_ready', False):
         st.error("Search engine not available")
         return
     
@@ -267,9 +266,24 @@ def debug_page():
     """Simple debug page"""
     st.header("🔧 System Status")
     
+    # Module availability
+    st.subheader("Module Status")
+    col1, col2 = st.columns(2)
+    with col1:
+        if search_module_available:
+            st.success("✅ semantic_search module imported")
+        else:
+            st.error("❌ semantic_search module failed to import")
+    
+    with col2:
+        if rag_module_available:
+            st.success("✅ rag module imported")
+        else:
+            st.warning("⚠️ rag module not available")
+    
     # Search engine status
     st.subheader("Search Engine")
-    if st.session_state.get('search_ready', False) and st.session_state.get('search_engine'):
+    if st.session_state.get('search_ready', False):
         status = st.session_state.search_engine.get_status()
         
         col1, col2 = st.columns(2)
@@ -285,10 +299,8 @@ def debug_page():
                 st.write("Data will be lost on restart")
     else:
         st.error("❌ Search engine not available")
-        if not search_module_available:
-            st.write("- semantic_search module could not be imported")
-        elif st.session_state.get('search_engine') is None:
-            st.write("- Search engine initialization failed")
+        if st.session_state.get('search_error'):
+            st.write(f"**Error:** {st.session_state.search_error}")
     
     # RAG status
     st.subheader("AI Response Generator")
@@ -296,14 +308,12 @@ def debug_page():
         st.success("✅ AI responses available")
     else:
         st.warning("⚠️ AI responses not available")
-        if not rag_module_available:
-            st.write("- rag module could not be imported")
-        else:
-            st.write("- Check API key configuration")
+        if st.session_state.get('rag_error'):
+            st.write(f"**Error:** {st.session_state.rag_error}")
     
     # Test search
     st.subheader("Test Search")
-    if st.session_state.get('search_ready', False) and st.session_state.get('search_engine'):
+    if st.session_state.get('search_ready', False):
         test_query = st.text_input("Test query:", value="Harold Cohen")
         if st.button("Test") and test_query:
             results = st.session_state.search_engine.search(test_query, n_results=2)
@@ -315,6 +325,9 @@ def debug_page():
 
 def main():
     """Main app function"""
+    # Initialize session state first
+    initialize_session_state()
+    
     if not check_password():
         return
     
