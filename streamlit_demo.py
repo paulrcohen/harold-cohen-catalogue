@@ -50,7 +50,7 @@ if 'search_engine' not in st.session_state:
 if 'rag_generator' not in st.session_state:
     st.session_state.rag_generator = None  # Disabled for deployment
 
-    
+
 if 'task_list' not in st.session_state:
     st.session_state.task_list = []
 if 'query_history' not in st.session_state:
@@ -154,8 +154,15 @@ def main():
         st.divider()
         
         # Quick stats
-        stats = st.session_state.search_engine.get_collection_stats()
-        st.metric("Documents in Collection", stats.get('total_documents', 0))
+        # stats = st.session_state.search_engine.get_collection_stats()
+        # st.metric("Documents in Collection", stats.get('total_documents', 0))
+
+        # Quick stats (demo mode when search_engine is None)
+        if st.session_state.search_engine:
+            stats = st.session_state.search_engine.get_collection_stats()
+            st.metric("Documents in Collection", stats.get('total_documents', 0))
+        else:
+            st.metric("Documents in Collection", "2,847 (demo)")
         st.metric("Session Cost", f"${st.session_state.total_cost:.3f}")
         
         # Quick task summary
