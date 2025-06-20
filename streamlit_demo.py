@@ -37,32 +37,36 @@ if 'initialized' not in st.session_state:
     st.session_state.query_history = []
     st.session_state.total_cost = 0.0
 
-# Initialize search engine
+# Initialize search engine (with error handling)
 if 'search_engine' not in st.session_state:
+    st.session_state.search_engine = None
+    st.session_state.search_ready = False
+    st.session_state.search_error = None
+    
     if search_module_available:
         try:
-            with st.spinner("Initializing search engine..."):
-                st.session_state.search_engine = SemanticSearchEngine()
-                st.session_state.search_ready = True
+            st.session_state.search_engine = SemanticSearchEngine()
+            st.session_state.search_ready = True
         except Exception as e:
-            st.error(f"Search engine initialization failed: {e}")
-            st.session_state.search_engine = None
+            st.session_state.search_error = str(e)
             st.session_state.search_ready = False
-    else:
-        st.session_state.search_engine = None
-        st.session_state.search_ready = False
 
-# Initialize RAG
-if 'rag_generator' not in st.session_state and rag_module_available:
-    try:
-        api_key = st.secrets.get('ANTHROPIC_API_KEY')
-        if api_key:
-            st.session_state.rag_generator = ResponseGenerator(anthropic_api_key=api_key)
-            st.session_state.rag_ready = True
-        else:
-            st.session_state.rag_ready = False
-    except Exception as e:
-        st.session_state.rag_ready = False
+# Initialize RAG (with error handling)
+if 'rag_generator' not in st.session_state:
+    st.session_state.rag_generator = None
+    st.session_state.rag_ready = False
+    st.session_state.rag_error = None
+    
+    if rag_module_available:
+        try:
+            api_key = st.secrets.get('ANTHROPIC_API_KEY')
+            if api_key:
+                st.session_state.rag_generator = ResponseGenerator(anthropic_api_key=api_key)
+                st.session_state.rag_ready = True
+            else:
+                st.session_state.rag_error = "No API key configured"
+        except Exception as e:
+            st.session_state.rag_error = str(e)
 
 def check_password():
     """Simple password check"""
@@ -316,6 +320,13 @@ def main():
     
     st.title("🎨 Harold Cohen Catalogue Raisonné")
     st.markdown("*Research system for Harold Cohen's figurative period*")
+    
+    # Show initialization errors if any
+    if st.session_state.get('search_error'):
+        st.error(f"Search engine initialization failed: {st.session_state.search_error}")
+    
+    if st.session_state.get('rag_error'):
+        st.warning(f"AI features unavailable: {st.session_state.rag_error}")
     
     # Navigation
     tab1, tab2, tab3, tab4 = st.tabs([
