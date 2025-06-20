@@ -40,7 +40,8 @@ st.session_state.demo_mode = True
 if 'search_engine' not in st.session_state:
     st.session_state.search_engine = SemanticSearchEngine()
 if 'rag_generator' not in st.session_state:
-    st.session_state.rag_generator = ResponseGenerator()
+    api_key = st.secrets.get('ANTHROPIC_API_KEY')
+    st.session_state.rag_generator = ResponseGenerator(anthropic_api_key=api_key)
 
 
 if 'task_list' not in st.session_state:
