@@ -38,13 +38,18 @@ if 'initialized' not in st.session_state:
     st.session_state.total_cost = 0.0
 
 # Initialize search engine
-if 'search_engine' not in st.session_state and search_module_available:
-    try:
-        with st.spinner("Initializing search engine..."):
-            st.session_state.search_engine = SemanticSearchEngine()
-            st.session_state.search_ready = True
-    except Exception as e:
-        st.error(f"Search engine initialization failed: {e}")
+if 'search_engine' not in st.session_state:
+    if search_module_available:
+        try:
+            with st.spinner("Initializing search engine..."):
+                st.session_state.search_engine = SemanticSearchEngine()
+                st.session_state.search_ready = True
+        except Exception as e:
+            st.error(f"Search engine initialization failed: {e}")
+            st.session_state.search_engine = None
+            st.session_state.search_ready = False
+    else:
+        st.session_state.search_engine = None
         st.session_state.search_ready = False
 
 # Initialize RAG
@@ -82,8 +87,10 @@ def main_search_page():
     st.header("🔍 Search & Query")
     
     # Check if search is ready
-    if not st.session_state.get('search_ready', False):
+    if not st.session_state.get('search_ready', False) or not st.session_state.get('search_engine'):
         st.error("Search engine not available")
+        if st.session_state.get('search_engine') is None:
+            st.info("The semantic_search module may not be properly installed or there was an initialization error.")
         return
     
     # Show status
@@ -174,7 +181,7 @@ def upload_page():
     """File upload page"""
     st.header("📤 Upload Materials")
     
-    if not st.session_state.get('search_ready', False):
+    if not st.session_state.get('search_ready', False) or not st.session_state.get('search_engine'):
         st.error("Search engine not available")
         return
     
@@ -258,7 +265,7 @@ def debug_page():
     
     # Search engine status
     st.subheader("Search Engine")
-    if st.session_state.get('search_ready', False):
+    if st.session_state.get('search_ready', False) and st.session_state.get('search_engine'):
         status = st.session_state.search_engine.get_status()
         
         col1, col2 = st.columns(2)
@@ -274,6 +281,10 @@ def debug_page():
                 st.write("Data will be lost on restart")
     else:
         st.error("❌ Search engine not available")
+        if not search_module_available:
+            st.write("- semantic_search module could not be imported")
+        elif st.session_state.get('search_engine') is None:
+            st.write("- Search engine initialization failed")
     
     # RAG status
     st.subheader("AI Response Generator")
@@ -281,17 +292,22 @@ def debug_page():
         st.success("✅ AI responses available")
     else:
         st.warning("⚠️ AI responses not available")
-        st.write("Check API key configuration")
+        if not rag_module_available:
+            st.write("- rag module could not be imported")
+        else:
+            st.write("- Check API key configuration")
     
     # Test search
     st.subheader("Test Search")
-    if st.session_state.get('search_ready', False):
+    if st.session_state.get('search_ready', False) and st.session_state.get('search_engine'):
         test_query = st.text_input("Test query:", value="Harold Cohen")
         if st.button("Test") and test_query:
             results = st.session_state.search_engine.search(test_query, n_results=2)
             st.write(f"Found {len(results)} results")
             for r in results:
                 st.write(f"- {r['content'][:100]}...")
+    else:
+        st.info("Search engine not available for testing")
 
 def main():
     """Main app function"""
