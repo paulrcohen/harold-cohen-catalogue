@@ -48,6 +48,26 @@ def render_header():
             st.success("🤖 AI Ready")
         else:
             st.warning("🤖 AI Unavailable")
+            # Temporary debug info
+            with st.expander("🔍 Debug AI Status"):
+                try:
+                    # Check if secrets are accessible
+                    has_key = "ANTHROPIC_API_KEY" in st.secrets
+                    st.write(f"Key in secrets: {has_key}")
+                    
+                    if has_key:
+                        key_preview = st.secrets["ANTHROPIC_API_KEY"][:10] + "..."
+                        st.write(f"Key preview: {key_preview}")
+                    
+                    # Check anthropic import
+                    try:
+                        import anthropic
+                        st.write("Anthropic imported: ✅")
+                    except ImportError as e:
+                        st.write(f"Anthropic import error: {e}")
+                    
+                except Exception as e:
+                    st.write(f"Debug error: {e}")
     with col4:
         cost = ai_stats.get('total_cost_estimate', 0)
         st.metric("AI Cost", f"${cost:.3f}")
