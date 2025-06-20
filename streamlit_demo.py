@@ -9,7 +9,7 @@ import streamlit as st
 # Page configuration MUST be first
 st.set_page_config(
     page_title="Harold Cohen Catalogue Raisonné",
-    page_icon="🎨",
+    page_icon="None",
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -39,10 +39,27 @@ st.session_state.demo_mode = True
 
 if 'search_engine' not in st.session_state:
     st.session_state.search_engine = SemanticSearchEngine()
-if 'rag_generator' not in st.session_state:
-    api_key = st.secrets.get('ANTHROPIC_API_KEY')
-    st.session_state.rag_generator = ResponseGenerator(anthropic_api_key=api_key)
 
+# if 'rag_generator' not in st.session_state:
+#     api_key = st.secrets.get('ANTHROPIC_API_KEY')
+#     st.session_state.rag_generator = ResponseGenerator(anthropic_api_key=api_key)
+
+# Initialize RAG generator with error handling
+
+if 'rag_generator' not in st.session_state:
+    try:
+        api_key = st.secrets.get('ANTHROPIC_API_KEY')
+        st.session_state.rag_generator = ResponseGenerator(anthropic_api_key=api_key)
+        st.session_state.rag_available = True
+        st.session_state.rag_error = None
+    except Exception as e:
+        st.session_state.rag_generator = ResponseGenerator()  # Will work without API
+        st.session_state.rag_available = False
+        st.session_state.rag_error = str(e)
+        
+        # Show error in sidebar
+        with st.sidebar:
+            st.error(f"⚠️ AI responses unavailable: {str(e)[:50]}...")
 
 if 'task_list' not in st.session_state:
     st.session_state.task_list = []
@@ -126,8 +143,8 @@ def main():
     if not check_password():
         return
     
-    st.title("🎨 Harold Cohen Catalogue Raisonné")
-    st.markdown("*Comprehensive archival and research system for Harold Cohen's figurative period*")
+    st.title("Harold Cohen Catalogue Raisonné")
+    st.markdown("*Comprehensive archival and research system for Harold Cohen's art*")
     
     # Load tasks on startup
     if not st.session_state.task_list:
@@ -176,6 +193,13 @@ def main():
 
 def search_and_query_page():
     st.header("Search & Query")
+
+    # Show RAG status
+    if not st.session_state.get('rag_available', False):
+        st.warning("🤖 AI responses currently unavailable. Search results will show, but no AI analysis.")
+        if st.session_state.get('rag_error'):
+            with st.expander("Technical Details"):
+                st.code(st.session_state.rag_error)
     
     # Query input
     query = st.text_area(
@@ -222,7 +246,14 @@ def search_and_query_page():
                         if key in ['date', 'sender', 'subject', 'source_type']:
                             st.write(f"**{key}:** {value}")
         
-        # Generate AI response if requested
+        # Generate AI response if requested and available
+        
+        if st.session_state.get('rag_available', False):
+            use_ai = st.checkbox("Generate AI Response", value=True)
+        else:
+            use_ai = False
+            st.info("AI analysis unavailable - showing search results only")
+
         if use_ai and formatted_results:
             st.divider()
             st.subheader("🤖 AI Analysis")

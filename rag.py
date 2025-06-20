@@ -34,34 +34,64 @@ class ResponseGenerator:
     Module for generating responses using retrieved context
     """
     
-    # def __init__(self, anthropic_api_key: Optional[str] = None):
-    #     # Get API key from environment variable if not provided
-    #     api_key = anthropic_api_key or os.getenv('ANTHROPIC_API_KEY')
-    #     self.anthropic_client = Anthropic(api_key=api_key) if api_key else None
-
     def __init__(self, anthropic_api_key=None):
         # Get API key from environment variable if not provided
         api_key = anthropic_api_key or os.getenv('ANTHROPIC_API_KEY')
         
-        # Debug: Print what we got (remove this later)
-        print(f"DEBUG: anthropic_api_key parameter: {anthropic_api_key is not None}")
-        print(f"DEBUG: final api_key: {api_key is not None}")
-        print(f"DEBUG: api_key length: {len(api_key) if api_key else 0}")
+        # Try Streamlit secrets if available
+        try:
+            import streamlit as st
+            if not api_key and 'ANTHROPIC_API_KEY' in st.secrets:
+                api_key = st.secrets['ANTHROPIC_API_KEY']
+        except ImportError:
+            pass  # Not in Streamlit environment
         
-        if not api_key and 'ANTHROPIC_API_KEY' in st.secrets:
-            api_key = st.secrets['ANTHROPIC_API_KEY']
-            print(f"DEBUG: Got from secrets: {api_key is not None}")
+        # Debug info (remove in production)
+        print(f"DEBUG: API key available: {api_key is not None}")
+        print(f"DEBUG: API key length: {len(api_key) if api_key else 0}")
         
+        # Set environment variable if we have the key
         if api_key:
             os.environ['ANTHROPIC_API_KEY'] = api_key
         
-        # Try to create client with error handling
-        try:
-            self.anthropic_client = Anthropic(api_key=api_key) if api_key else None
-            print("DEBUG: Anthropic client created successfully")
-        except Exception as e:
-            print(f"DEBUG: Anthropic client creation failed: {e}")
-            raise
+        # Try to create client with comprehensive error handling
+        self.anthropic_client = None
+        self.client_error = None
+        
+        if api_key:
+            try:
+                # Import here to catch import errors
+                from anthropic import Anthropic
+                
+                # Try creating the client
+                self.anthropic_client = Anthropic(api_key=api_key)
+                print("DEBUG: Anthropic client created successfully")
+                
+                # Test the client with a simple call
+                # Note: This doesn't actually make an API call, just validates initialization
+                
+            except ImportError as e:
+                self.client_error = f"Anthropic package import failed: {e}"
+                print(f"DEBUG: Import error: {e}")
+                
+            except Exception as e:
+                self.client_error = f"Anthropic client creation failed: {e}"
+                print(f"DEBUG: Client creation error: {e}")
+                
+                # Try alternative initialization approaches
+                try:
+                    # Sometimes specifying timeout helps
+                    self.anthropic_client = Anthropic(
+                        api_key=api_key,
+                        timeout=30.0
+                    )
+                    self.client_error = None
+                    print("DEBUG: Anthropic client created with timeout")
+                except Exception as e2:
+                    print(f"DEBUG: Alternative initialization also failed: {e2}")
+        else:
+            self.client_error = "No API key provided"
+            print("DEBUG: No API key available")
 
     def format_search_results(self, raw_results: Dict[str, Any]) -> List[Dict[str, Any]]:
         """
