@@ -1,17 +1,10 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Fri Jun 20 12:06:02 2025
-
-@author: prcohen
-"""
-
-#!/usr/bin/env python3
 """
 Modular Harold Cohen Catalogue App
 Clean separation of concerns with cloud-ready persistence
 """
 
+from typing import List, Dict, Any, Optional
 import streamlit as st
 import pandas as pd
 from pathlib import Path
@@ -19,6 +12,7 @@ from datetime import datetime
 
 # Import our modules
 from simple_vector_search import get_search_engine
+from ai_assistant import get_ai_assistant
 
 # Page configuration
 st.set_page_config(
@@ -37,9 +31,11 @@ def render_header():
     
     # Status bar
     engine = get_search_engine()
+    ai = get_ai_assistant()
     stats = engine.get_stats()
+    ai_stats = ai.get_stats()
     
-    col1, col2, col3 = st.columns(3)
+    col1, col2, col3, col4 = st.columns(4)
     with col1:
         st.metric("Documents", stats.get('document_count', 0))
     with col2:
@@ -48,7 +44,13 @@ def render_header():
         else:
             st.info("💾 No Backup Yet")
     with col3:
-        st.metric("Status", stats.get('status', 'unknown').title())
+        if ai_stats.get('available', False):
+            st.success("🤖 AI Ready")
+        else:
+            st.warning("🤖 AI Unavailable")
+    with col4:
+        cost = ai_stats.get('total_cost_estimate', 0)
+        st.metric("AI Cost", f"${cost:.3f}")
 
 
 def render_search_interface():
@@ -60,19 +62,99 @@ def render_search_interface():
     # Search input
     col1, col2 = st.columns([3, 1])
     with col1:
+        # Check for suggested query
+        default_query = st.session_state.get('suggested_query', '')
+        if default_query:
+            del st.session_state.suggested_query  # Use it once
+        
         query = st.text_input(
             "Enter your search query:",
+            value=default_query,
             placeholder="e.g., Brooklyn museum, National Theatre painting, shipping delays, AARON program..."
         )
+        st.caption("💡 Ignore the 'Press Enter' message - click the Search button below for results")
     with col2:
         num_results = st.selectbox("Max results:", [3, 5, 10], index=1)
     
-    # Search button and results
-    if st.button("🔍 Search", type="primary") and query:
+    # Search button and options
+    col1, col2, col3 = st.columns([2, 1, 1])
+    with col1:
+        search_btn = st.button("🔍 Search", type="primary")
+    with col2:
+        st.write("")  # Empty space or other content
+    with col3:
+        ai = get_ai_assistant()
+        use_ai = st.checkbox("🤖 AI Analysis", value=ai.is_ready(), disabled=not ai.is_ready())
+    if search_btn and query:
+        # Perform search
         with st.spinner("Searching..."):
             results = engine.search(query, n_results=num_results)
         
-        display_search_results(results, query)
+        if results:
+            display_search_results(results, query)
+            
+            # AI Analysis
+            if use_ai and results:
+                st.divider()
+                render_ai_analysis(query, results)
+        else:
+            st.warning("No results found. Try different search terms or check if documents are loaded.")
+
+
+def render_ai_analysis(query: str, results: List[Dict]):
+    """Render AI analysis of search results"""
+    st.subheader("🤖 AI Analysis")
+    
+    ai = get_ai_assistant()
+    
+    if not ai.is_ready():
+        st.error("AI assistant not available. Check API key configuration.")
+        return
+    
+    # Analysis options
+    col1, col2 = st.columns([3, 1])
+    with col1:
+        st.write("AI analysis of search results using Harold Cohen expertise:")
+    with col2:
+        max_docs = st.selectbox("Analyze top:", [3, 5], index=0, key="ai_max_docs")
+    
+    with st.spinner("🤖 Analyzing results with AI..."):
+        analysis = ai.analyze_search_results(query, results, max_results=max_docs)
+    
+    if analysis["status"] == "success":
+        # Display AI response
+        st.write(analysis["response"])
+        
+        # Show analysis info
+        with st.expander("📊 Analysis Details"):
+            col1, col2, col3 = st.columns(3)
+            with col1:
+                st.metric("Documents Analyzed", analysis["documents_analyzed"])
+            with col2:
+                st.metric("Cost (this query)", f"${analysis['cost_estimate']:.4f}")
+            with col3:
+                st.metric("Total Session Cost", f"${analysis['total_cost']:.3f}")
+        
+        # Generate follow-up suggestions
+        if st.button("💡 Suggest Follow-up Questions"):
+            with st.spinner("Generating suggestions..."):
+                try:
+                    suggestions = ai.suggest_follow_up_queries(query, analysis["response"])
+                    
+                    if suggestions:
+                        st.write("**Suggested follow-up research questions:**")
+                        for i, suggestion in enumerate(suggestions, 1):
+                            if st.button(f"🔍 {suggestion}", key=f"suggestion_{i}"):
+                                # Trigger new search with suggested query
+                                st.session_state.suggested_query = suggestion
+                                st.rerun()
+                    else:
+                        st.warning("No suggestions generated. Try a different query.")
+                        
+                except Exception as e:
+                    st.error(f"Error generating suggestions: {e}")
+    else:
+        st.error(f"AI analysis failed: {analysis.get('message', 'Unknown error')}")
 
 
 def display_search_results(results, query):
@@ -110,10 +192,14 @@ def render_upload_interface():
     
     engine = get_search_engine()
     
+    # Add a note about the refresh behavior
+    st.info("💡 **Note:** When you select a file, the page will refresh. Just click back to this Upload tab to continue.")
+    
     uploaded_file = st.file_uploader(
         "Upload CSV file with documents/emails",
         type=['csv'],
-        help="CSV should contain a column with text content (emails, documents, etc.)"
+        help="CSV should contain a column with text content (emails, documents, etc.)",
+        key="main_file_uploader"
     )
     
     if uploaded_file:
@@ -220,14 +306,10 @@ def render_collection_overview():
 
 def main():
     """Main application"""
-    # Initialize session state
-    if 'page' not in st.session_state:
-        st.session_state.page = 'search'
-    
     # Render header
     render_header()
     
-    # Navigation
+    # Navigation - simple tabs without complex state management
     tab1, tab2, tab3 = st.tabs(["🔍 Search", "📤 Upload", "📊 Overview"])
     
     with tab1:

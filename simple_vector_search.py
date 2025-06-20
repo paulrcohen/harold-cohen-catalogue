@@ -1,12 +1,4 @@
 #!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Fri Jun 20 12:38:07 2025
-
-@author: prcohen
-"""
-
-#!/usr/bin/env python3
 """
 Simple vector search engine that works everywhere
 No ChromaDB dependencies - uses sentence-transformers directly
@@ -25,9 +17,8 @@ try:
     from sentence_transformers import SentenceTransformer
     from sklearn.metrics.pairwise import cosine_similarity
     transformers_available = True
-except ImportError:
+except ImportError as e:
     transformers_available = False
-
 
 class SimpleVectorSearch:
     """Simple vector search without ChromaDB dependencies"""
@@ -44,21 +35,30 @@ class SimpleVectorSearch:
         """Initialize the search engine"""
         try:
             if transformers_available:
+                print("🔧 Loading sentence transformer model...")
                 # Use a lightweight, fast model
                 self.model = SentenceTransformer('all-MiniLM-L6-v2')
+                print("✅ Model loaded successfully")
                 st.success("✅ Vector search engine initialized")
             else:
+                print("❌ Transformers not available")
                 st.error("❌ sentence-transformers not available - using basic text search")
                 return
             
             # Try to restore from backup
+            print("🔧 Attempting to restore from backup...")
             self._restore_from_backup()
             
             # Add initial data if empty
             if len(self.documents) == 0:
+                print("📄 No documents found, adding initial data...")
                 self._add_initial_data()
+            else:
+                print(f"📄 Found {len(self.documents)} documents")
+                print(f"🔢 Embeddings shape: {self.embeddings.shape if self.embeddings is not None else 'None'}")
                 
         except Exception as e:
+            print(f"❌ Initialization error: {e}")
             st.error(f"Search engine initialization failed: {e}")
             # Fallback to basic search
             self.model = None
@@ -116,7 +116,18 @@ class SimpleVectorSearch:
                 
                 embeddings_data = backup_data.get('embeddings')
                 if embeddings_data:
+                    print(f"🔧 Restoring embeddings from backup...")
                     self.embeddings = np.array(embeddings_data)
+                    print(f"✅ Embeddings restored: {self.embeddings.shape}")
+                else:
+                    print("❌ No embeddings found in backup - will regenerate")
+                    # Regenerate embeddings if model is available
+                    if self.model and self.documents:
+                        print("🔧 Regenerating embeddings...")
+                        self.embeddings = self.model.encode(self.documents)
+                        print(f"✅ Embeddings regenerated: {self.embeddings.shape}")
+                        # Save backup with new embeddings
+                        self._save_backup()
                 
                 backup_timestamp = backup_data.get('timestamp', 'unknown')
                 print(f"✅ Restored {len(self.documents)} documents from backup (created: {backup_timestamp})")
@@ -125,6 +136,8 @@ class SimpleVectorSearch:
                 
         except Exception as e:
             print(f"❌ Backup restore failed: {e}")
+            import traceback
+            traceback.print_exc()
     
     def add_documents(self, documents: List[str], metadatas: List[Dict] = None, source_name: str = "unknown") -> int:
         """Add documents to the collection"""
@@ -184,10 +197,10 @@ class SimpleVectorSearch:
                 # Vector search
                 query_embedding = self.model.encode([query])
                 similarities = cosine_similarity(query_embedding, self.embeddings)[0]
-                
+
                 # Get top results
                 top_indices = np.argsort(similarities)[::-1][:n_results]
-                
+
                 results = []
                 for idx in top_indices:
                     if idx < len(self.documents):
@@ -198,7 +211,7 @@ class SimpleVectorSearch:
                             'distance': 1 - float(similarities[idx]),
                             'id': f"doc_{idx}"
                         })
-                
+
                 return results
             else:
                 # Fallback: basic text search
@@ -221,7 +234,8 @@ class SimpleVectorSearch:
                 return matches[:n_results]
                 
         except Exception as e:
-            print(f"Search error: {e}")
+            import traceback
+            traceback.print_exc()
             return []
     
     def ingest_csv(self, df: pd.DataFrame, text_column: str, source_name: str = "csv_upload") -> Dict[str, Any]:

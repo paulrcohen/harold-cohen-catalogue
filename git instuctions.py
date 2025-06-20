@@ -20,6 +20,12 @@ git commit -m "Improved search algorithm and added new features"
 # 4. Send to GitHub
 git push
 
+
+
+Useful Git Commands to Remember:
+git status          # See what files changed
+git log --oneline   # See history of changes
+git diff            # See exactly what changed in files
 """
 
 import pandas as pd
